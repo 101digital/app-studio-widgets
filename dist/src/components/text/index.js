@@ -12,7 +12,7 @@ const ASText = (props) => {
 const styles = react_native_1.StyleSheet.create({
     textStyle: {
         fontSize: 16,
-        color: 'red',
+        color: 'black',
     },
 });
 exports.default = ASText;

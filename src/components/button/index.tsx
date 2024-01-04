@@ -1,11 +1,11 @@
 import React from 'react';
-import {TouchableOpacity, Text, TouchableOpacityProps, StyleSheet} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, TouchableOpacityProps} from 'react-native';
 
 interface ButtonProps extends TouchableOpacityProps {
     label: string;
 }
 
-const Button: React.FC<ButtonProps> = ({ label, ...props }) => {
+const Button: React.FC<ButtonProps> = ({label, ...props}) => {
     return (
         <TouchableOpacity style={styles.buttonStyle} {...props}>
             <Text>{label}</Text>
@@ -14,9 +14,7 @@ const Button: React.FC<ButtonProps> = ({ label, ...props }) => {
 };
 
 const styles = StyleSheet.create({
-    buttonStyle: {
-
-    },
+    buttonStyle: {},
 });
 
 export default Button;

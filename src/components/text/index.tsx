@@ -10,7 +10,7 @@ const ASText: React.FC<TextProps> = (props) => {
     const {children} = props || {}
 
     return (
-            <Text style={styles.textStyle} {...props}>{children}</Text>
+        <Text style={styles.textStyle} {...props}>{children}</Text>
     )
 }
 
