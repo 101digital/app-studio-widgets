@@ -6,7 +6,7 @@ type TextProps = {
     style?: StyleProp<TextStyle>;
 }
 
-const ASText: React.FC<TextProps> = (props) => {
+const ASText: React.FC<TextProps> = (props:TextProps) => {
     const {children} = props || {}
 
     return (

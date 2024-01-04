@@ -10,13 +10,11 @@
     "outDir": "./dist",
     "jsx": "react",
     "rootDir": ".",
-    "baseUrl": "./"
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
-  "include": [
-    "./src/**/*.ts",
-    "./src/**/*.tsx",
-    "index.ts"
-  ],
   "exclude": [
     "dist",
     "node_modules",

@@ -1,7 +1,9 @@
 import React from 'react';
-import { TouchableOpacityProps } from 'react-native';
-interface ButtonProps extends TouchableOpacityProps {
+import { StyleProp, TextStyle, TouchableOpacityProps, ViewStyle } from 'react-native';
+declare type ButtonProps = {
     label: string;
-}
-declare const Button: React.FC<ButtonProps>;
+    style?: StyleProp<ViewStyle>;
+    textStyle?: StyleProp<TextStyle>;
+};
+declare const Button: React.FC<ButtonProps | TouchableOpacityProps>;
 export default Button;
