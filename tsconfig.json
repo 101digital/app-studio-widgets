@@ -9,11 +9,18 @@
     "declaration": true,
     "outDir": "./dist",
     "jsx": "react",
-    "rootDir": "."
+    "rootDir": ".",
+    "baseUrl": "./"
   },
-  "include": ["./src/**/*.ts", "./src/**/*.tsx","index.ts"],
-  "exclude": ["dist",
+  "include": [
+    "./src/**/*.ts",
+    "./src/**/*.tsx",
+    "index.ts"
+  ],
+  "exclude": [
+    "dist",
     "node_modules",
-    "src/**/*.test.tsx"
+    "src/**/*.test.tsx",
+    "babel.config.js"
   ]
 }
