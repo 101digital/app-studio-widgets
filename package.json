@@ -1,0 +1,48 @@
+{
+  "name": "app-studio-widgets",
+  "version": "1.0.0",
+  "description": "Widgets for App Studio",
+  "repository": "https://github.com/101digital/appstudio-widgets",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "src/"
+  ],
+  "scripts": {
+    "lint": "tsc --noEmit && eslint src/ --ext .js,.jsx,.ts,.tsx",
+    "build": "tsc",
+    "watch": "tsc -w"
+  },
+  "keywords": [],
+  "author": "Hua Cat Luong",
+  "dependencies": {
+    "@types/xdate": "^0.8.32",
+    "currency.js": "^2.0.4",
+    "formik": "^2.1.5",
+    "lodash": "^4.17.21",
+    "react": "18.2.0",
+    "react-native": "0.72.6",
+    "react-native-masked-text": "^1.13.0",
+    "react-native-mime-types": "^2.3.0",
+    "react-native-modal": "^12.0.2",
+    "xdate": "^0.8.2"
+  },
+  "devDependencies": {
+    "@react-native-community/eslint-config": "^2.0.0",
+    "@types/lodash": "^4.14.170",
+    "@types/react": "^16.9.48",
+    "@types/react-native": "^0.63.13",
+    "@types/react-native-calendars": "^1.1264.2",
+    "eslint": "^7.8.1",
+    "react-native-image-crop-picker": "^0.36.2",
+    "react-native-localize": "^2.1.1",
+    "react-native-permissions": "^3.0.5",
+    "react-native-svg": "^12.1.1",
+    "react-test-renderer": "^17.0.2",
+    "typescript": "4.8.4"
+  },
+  "resolutions": {
+    "@types/react": "17.0.43"
+  }
+}
