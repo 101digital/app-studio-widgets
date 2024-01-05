@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleProp, StyleSheet, Text, TextStyle} from 'react-native'
+import {colors} from "../../utils/colors";
 
 type TextProps = {
     children: string;
@@ -7,17 +8,17 @@ type TextProps = {
 }
 
 const ASText: React.FC<TextProps> = (props:TextProps) => {
-    const {children} = props || {}
+    const {children,style} = props || {}
 
     return (
-        <Text style={styles.textStyle} {...props}>{children}</Text>
+        <Text  {...props} style={[styles.textStyle,style]}>{children}</Text>
     )
 }
 
 const styles = StyleSheet.create({
     textStyle: {
         fontSize: 16,
-        color: 'black',
+        color: colors.black,
     },
 });
 

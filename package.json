@@ -4,8 +4,8 @@
   "description": "Widgets for App Studio",
   "repository": "https://github.com/101digital/appstudio-widgets",
   "license": "MIT",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "index.ts",
+  "types": "index.d.ts",
   "files": [
     "src/"
   ],
@@ -19,7 +19,7 @@
   "dependencies": {
     "@types/xdate": "^0.8.32",
     "currency.js": "^2.0.4",
-    "formik": "^2.1.5",
+    "formik": "^2.4.5",
     "lodash": "^4.17.21",
     "react": "18.2.0",
     "react-native": "0.72.6",
