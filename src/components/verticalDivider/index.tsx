@@ -2,13 +2,13 @@ import React from 'react';
 import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native'
 import {colors} from "../../utils/colors";
 
-type VerticalDividerProps = {
+type ASVerticalDividerProps = {
     style?: StyleProp<ViewStyle>;
     marginHorizontal?: number
     height?: number | string
 }
 
-const VerticalDivider: React.FC<VerticalDividerProps> = (props: VerticalDividerProps) => {
+const ASVerticalDivider: React.FC<ASVerticalDividerProps> = (props: ASVerticalDividerProps) => {
     const {style, marginHorizontal = 10, height = '100%'} = props || {}
 
     return (
@@ -23,4 +23,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default VerticalDivider
+export default ASVerticalDivider

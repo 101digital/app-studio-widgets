@@ -2,13 +2,13 @@ import React from 'react';
 import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native'
 import {colors} from "../../utils/colors";
 
-type DividerProps = {
+type ASDividerProps = {
     style?: StyleProp<ViewStyle>;
     marginVertical?: number
     width?: number | string
 }
 
-const Divider: React.FC<DividerProps> = (props: DividerProps) => {
+const ASDivider: React.FC<ASDividerProps> = (props: ASDividerProps) => {
     const {style, marginVertical = 10, width = '100%'} = props || {}
 
     return (
@@ -23,4 +23,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Divider
+export default ASDivider

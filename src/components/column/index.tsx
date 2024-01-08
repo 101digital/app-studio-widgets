@@ -1,12 +1,12 @@
 import React, {ReactNode} from 'react';
 import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native'
 
-type ColumnProps = {
+type ASColumnProps = {
     children: ReactNode;
     style?: StyleProp<ViewStyle>;
 }
 
-const Column: React.FC<ColumnProps> = (props: ColumnProps) => {
+const ASColumn: React.FC<ASColumnProps> = (props: ASColumnProps) => {
     const {children, style} = props || {}
 
     return (
@@ -24,4 +24,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Column
+export default ASColumn

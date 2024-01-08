@@ -1,13 +1,13 @@
 import React from 'react';
 import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native'
 
-type SpacerProps = {
+type ASSpacerProps = {
     style?: StyleProp<ViewStyle>;
     width?: number | string
     height?: number | string
 }
 
-const Spacer: React.FC<SpacerProps> = (props: SpacerProps) => {
+const ASSpacer: React.FC<ASSpacerProps> = (props: ASSpacerProps) => {
     const {style, width, height} = props || {}
 
     return (
@@ -22,4 +22,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Spacer
+export default ASSpacer

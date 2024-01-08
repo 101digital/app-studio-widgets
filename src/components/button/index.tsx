@@ -3,7 +3,7 @@ import {StyleProp, StyleSheet, Text, TextStyle, TouchableOpacity, TouchableOpaci
 import {colors} from "../../utils/colors";
 import ASText from "../asText";
 
-type  ButtonProps = TouchableOpacityProps & {
+type  ASButtonProps = TouchableOpacityProps & {
     label: string;
     onPress: () => void
     style?: StyleProp<ViewStyle>;
@@ -11,14 +11,14 @@ type  ButtonProps = TouchableOpacityProps & {
     disabled?: boolean
 }
 
-const Button: React.FC<ButtonProps> = ({
+const ASButton: React.FC<ASButtonProps> = ({
                                            label,
                                            style,
                                            textStyle,
                                            onPress,
                                            disabled,
                                            ...props
-                                       }: ButtonProps) => {
+                                       }: ASButtonProps) => {
     return (
         <TouchableOpacity {...props} disabled={disabled} onPress={onPress}
                           style={[styles.buttonStyle, style, {backgroundColor: disabled ? colors.gray80 : colors.primaryHifiColor}]}>
@@ -41,4 +41,4 @@ const styles = StyleSheet.create({
     textStyle: {}
 });
 
-export default Button;
+export default ASButton;

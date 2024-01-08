@@ -16,7 +16,7 @@ import {TextInputMask, TextInputMaskProps} from 'react-native-masked-text';
 import {colors} from "../../utils/colors";
 import {useField} from 'formik';
 
-export type InputFieldProps = TextInputMaskProps &
+export type ASTextFieldProps = TextInputMaskProps &
     TextInputProps & {
     name: string;
     prefixIcon?: ReactNode;
@@ -25,11 +25,11 @@ export type InputFieldProps = TextInputMaskProps &
     activeBorderColor?: string;
     inactiveBorderColor?: string;
     placeholderTextColor?: string;
-    style?: InputFieldStyles;
+    style?: ASTextFieldStyles;
     formatError?: (error: string) => string;
 };
 
-export type InputFieldStyles = {
+export type ASTextFieldStyles = {
     containerStyle?: StyleProp<ViewStyle>;
     contentContainerStyle?: StyleProp<ViewStyle>;
     inputContainerStyle?: StyleProp<ViewStyle>;
@@ -37,7 +37,7 @@ export type InputFieldStyles = {
     errorTextStyle?: StyleProp<TextStyle>;
 };
 
-const InputField = (props: InputFieldProps) => {
+const ASTextField = (props: ASTextFieldProps) => {
     const {
         name,
         onFocus,
@@ -109,7 +109,9 @@ const InputField = (props: InputFieldProps) => {
                             onFocus={handleOnFocus}
                             onBlur={handleOnBlur}
                             value={field?.value}
-                            onChangeText={onChangeText}
+                            onChangeText={field?.onChange(name)}
+
+                            // onChangeText={onChangeText}
                             style={styles.textInputStyle}
                             placeholderTextColor={placeholderTextColor}
                             autoComplete={'off'}
@@ -128,7 +130,7 @@ const InputField = (props: InputFieldProps) => {
     );
 };
 
-InputField.defaultProps = {
+ASTextField.defaultProps = {
     type: 'custom',
 };
 
@@ -162,4 +164,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default InputField;
+export default ASTextField;

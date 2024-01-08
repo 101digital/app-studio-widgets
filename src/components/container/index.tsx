@@ -1,13 +1,13 @@
 import React, {ReactNode} from 'react';
 import {SafeAreaView, StyleProp, StyleSheet, View, ViewStyle} from 'react-native'
 
-type ContainerProps = {
+type ASContainerProps = {
     children: ReactNode;
     style?: StyleProp<ViewStyle>;
     isSafeViewArea?: boolean
 }
 
-const Container: React.FC<ContainerProps> = (props: ContainerProps) => {
+const ASContainer: React.FC<ASContainerProps> = (props: ASContainerProps) => {
     const {children, style, isSafeViewArea = true} = props || {}
 
     if (isSafeViewArea) {
@@ -31,4 +31,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Container
+export default ASContainer

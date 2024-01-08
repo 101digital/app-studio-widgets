@@ -1,12 +1,12 @@
 import React, {ReactNode} from 'react';
 import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native'
 
-type RowProps = {
+type ASRowProps = {
     children: ReactNode;
     style?: StyleProp<ViewStyle>;
 }
 
-const Row: React.FC<RowProps> = (props: RowProps) => {
+const ASRow: React.FC<ASRowProps> = (props: ASRowProps) => {
     const {children, style} = props || {}
 
     return (
@@ -23,4 +23,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Row
+export default ASRow
