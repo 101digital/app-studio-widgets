@@ -1,6 +1,6 @@
 {
   "name": "app-studio-widgets",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Widgets for App Studio",
   "repository": "https://github.com/101digital/appstudio-widgets",
   "license": "MIT",
@@ -23,9 +23,11 @@
     "lodash": "^4.17.21",
     "react": "18.2.0",
     "react-native": "0.72.6",
+    "react-native-element-dropdown": "^2.10.1",
     "react-native-masked-text": "^1.13.0",
     "react-native-mime-types": "^2.3.0",
     "react-native-modal": "^12.0.2",
+    "react-native-parsed-text": "^0.0.22",
     "xdate": "^0.8.2"
   },
   "devDependencies": {

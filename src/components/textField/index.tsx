@@ -51,7 +51,6 @@ const ASTextField = (props: ASTextFieldProps) => {
         placeholderTextColor = '#C4C4C4',
         formatError,
         options,
-        onChangeText,
         ...restProps
     } = props;
     const [active, setActive] = useState(false);
@@ -110,8 +109,6 @@ const ASTextField = (props: ASTextFieldProps) => {
                             onBlur={handleOnBlur}
                             value={field?.value}
                             onChangeText={field?.onChange(name)}
-
-                            // onChangeText={onChangeText}
                             style={styles.textInputStyle}
                             placeholderTextColor={placeholderTextColor}
                             autoComplete={'off'}

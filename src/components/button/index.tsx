@@ -1,7 +1,7 @@
 import React from 'react';
-import {StyleProp, StyleSheet, Text, TextStyle, TouchableOpacity, TouchableOpacityProps, ViewStyle} from 'react-native';
+import {StyleProp, StyleSheet, TextStyle, TouchableOpacity, TouchableOpacityProps, ViewStyle} from 'react-native';
 import {colors} from "../../utils/colors";
-import ASText from "../asText";
+import ASText from "../text";
 
 type  ASButtonProps = TouchableOpacityProps & {
     label: string;
@@ -9,23 +9,25 @@ type  ASButtonProps = TouchableOpacityProps & {
     style?: StyleProp<ViewStyle>;
     textStyle?: StyleProp<TextStyle>;
     disabled?: boolean
+    icon?: React.ReactNode
 }
 
 const ASButton: React.FC<ASButtonProps> = ({
-                                           label,
-                                           style,
-                                           textStyle,
-                                           onPress,
-                                           disabled,
-                                           ...props
-                                       }: ASButtonProps) => {
+                                               label,
+                                               style,
+                                               textStyle,
+                                               onPress,
+                                               disabled,
+                                               icon,
+                                               ...restProps
+                                           }: ASButtonProps) => {
     return (
-        <TouchableOpacity {...props} disabled={disabled} onPress={onPress}
+        <TouchableOpacity {...restProps} disabled={disabled} onPress={onPress}
                           style={[styles.buttonStyle, style, {backgroundColor: disabled ? colors.gray80 : colors.primaryHifiColor}]}>
-            {/*<Text*/}
-            {/*    style={[styles.textStyle, textStyle, {color: disabled ? colors.black500 : colors.white}]}>{label}</Text>*/}
-
-            <ASText style={[styles.textStyle, textStyle, {color: disabled ? colors.black500 : colors.white}]}>{label}</ASText>
+            {icon ? icon :
+                <ASText
+                    style={[styles.textStyle, textStyle, {color: disabled ? colors.black500 : colors.white}]}>{label}</ASText>
+            }
         </TouchableOpacity>
     );
 };
