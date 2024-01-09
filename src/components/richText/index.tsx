@@ -38,7 +38,7 @@ export default ASRichText
 
 //NOTE:  ASRichText Example
 /*
-<ASRichText parse={[
+                <ASRichText parse={[
                     {
                         type: 'url', style: {
                             color: 'red',

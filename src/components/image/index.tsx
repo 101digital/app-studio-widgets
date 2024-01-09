@@ -22,3 +22,8 @@ const ASImage: React.FC<ASImageProps> = (props: ASImageProps) => {
 };
 
 export default ASImage;
+
+/*
+                        <ASImage source={'https:i.imgur.com/oLgjoWx.png'} style={{width: '35%', height: '20%'}}
+                         resizeMode={'contain'}/>
+* */

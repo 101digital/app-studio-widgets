@@ -9,7 +9,7 @@ type  ASButtonProps = TouchableOpacityProps & {
     style?: StyleProp<ViewStyle>;
     textStyle?: StyleProp<TextStyle>;
     disabled?: boolean
-    icon?: React.ReactNode
+    children?: React.ReactNode
 }
 
 const ASButton: React.FC<ASButtonProps> = ({
@@ -18,14 +18,15 @@ const ASButton: React.FC<ASButtonProps> = ({
                                                textStyle,
                                                onPress,
                                                disabled,
-                                               icon,
+                                               children,
                                                ...restProps
                                            }: ASButtonProps) => {
     return (
         <TouchableOpacity {...restProps} disabled={disabled} onPress={onPress}
                           style={[styles.buttonStyle, style, {backgroundColor: disabled ? colors.gray80 : colors.primaryHifiColor}]}>
-            {icon ? icon :
-                <ASText
+            {children ?
+                <>children</>
+                : <ASText
                     style={[styles.textStyle, textStyle, {color: disabled ? colors.black500 : colors.white}]}>{label}</ASText>
             }
         </TouchableOpacity>

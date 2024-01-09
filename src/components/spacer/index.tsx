@@ -1,17 +1,20 @@
 import React from 'react';
-import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native'
+import {DimensionValue, StyleProp, StyleSheet, View, ViewStyle} from 'react-native'
+import {convertPercentageToPx} from "../../utils/commonUtils";
 
 type ASSpacerProps = {
     style?: StyleProp<ViewStyle>;
-    width?: number | string
-    height?: number | string
+    width?: DimensionValue
+    height?: DimensionValue
 }
 
 const ASSpacer: React.FC<ASSpacerProps> = (props: ASSpacerProps) => {
     const {style, width, height} = props || {}
+    const heightValue = convertPercentageToPx(height, false)
+    const widthValue = convertPercentageToPx(width, true)
 
     return (
-        <View style={[styles.spacerStyle, {width, height}, style]}/>
+        <View style={[styles.spacerStyle, {width:widthValue, height:heightValue}, style]}/>
     )
 }
 

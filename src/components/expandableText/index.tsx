@@ -44,3 +44,10 @@ const styles = StyleSheet.create({
 })
 
 export default ASExpandableText
+
+// NOTE:  ASExpandableText Example
+/*
+         <ASExpandableText initialLines={1}
+                           text={'Lorem ispum Lorem ispum Lorem ispum Lorem ispum Lorem ispum Lorem ispum Lorem ispum Lorem ispum Lorem ispum Lorem ispum '}/>
+
+* */

@@ -24,3 +24,12 @@ const styles = StyleSheet.create({
 });
 
 export default ASRow
+
+// Note: ASRow Example
+/*
+                <ASRow>
+                    <ASText style={{textAlign: 'center'}}>Welcome to App Studio</ASText>
+                    <ASVerticalDivider/>
+                    <ASText style={{color: 'red'}}>Testing component</ASText>
+                </ASRow>
+* */

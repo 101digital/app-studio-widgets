@@ -1,27 +1,36 @@
 import React, {ReactNode} from 'react';
-import {SafeAreaView, StyleProp, StyleSheet, View, ViewStyle} from 'react-native'
+import {ScrollView, ScrollViewProps, StyleProp, StyleSheet, ViewStyle} from 'react-native'
+import {SafeAreaView, SafeAreaViewProps} from 'react-native-safe-area-context';
 
-type ASContainerProps = {
+type ASContainerProps = SafeAreaViewProps & {
     children: ReactNode;
     style?: StyleProp<ViewStyle>;
-    isSafeViewArea?: boolean
+    isScrollable?: boolean
+    scrollViewContentContainerStyle?: StyleProp<ViewStyle> | undefined
+    scrollViewProps?: ScrollViewProps
 }
 
 const ASContainer: React.FC<ASContainerProps> = (props: ASContainerProps) => {
-    const {children, style, isSafeViewArea = true} = props || {}
-
-    if (isSafeViewArea) {
-        return (
-            <SafeAreaView style={[styles.container, style]}>
-                {children}
-            </SafeAreaView>
-        )
-    }
+    const {
+        children,
+        style,
+        isScrollable = true,
+        scrollViewContentContainerStyle,
+        scrollViewProps,
+        ...restProps
+    } = props || {}
 
     return (
-        <View style={[styles.container, style]}>
-            {children}
-        </View>
+        <SafeAreaView {...restProps} style={[styles.container, style]}>
+            {isScrollable ? (
+                    <ScrollView {...scrollViewProps}
+                                contentContainerStyle={[styles.scrollViewStyle, scrollViewContentContainerStyle]}>
+                        {children}
+                    </ScrollView>
+                ) :
+                children
+            }
+        </SafeAreaView>
     )
 }
 
@@ -29,6 +38,9 @@ const styles = StyleSheet.create({
     container: {
         flex: 1
     },
+    scrollViewStyle: {
+        flexGrow: 1
+    }
 });
 
 export default ASContainer
