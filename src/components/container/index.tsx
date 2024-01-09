@@ -23,7 +23,7 @@ const ASContainer: React.FC<ASContainerProps> = (props: ASContainerProps) => {
     return (
         <SafeAreaView {...restProps} style={[styles.container, style]}>
             {isScrollable ? (
-                    <ScrollView {...scrollViewProps}
+                    <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false} {...scrollViewProps}
                                 contentContainerStyle={[styles.scrollViewStyle, scrollViewContentContainerStyle]}>
                         {children}
                     </ScrollView>
