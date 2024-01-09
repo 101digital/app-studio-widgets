@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native'
-import {colors} from "../../utils/colors";
+import {colors} from "app-studio-widgets/src/utils/colors";
 
 type ASVerticalDividerProps = {
     style?: StyleProp<ViewStyle>;

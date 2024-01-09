@@ -4,7 +4,6 @@ import {
     Platform,
     StyleProp,
     StyleSheet,
-    Text,
     TextInput,
     TextInputFocusEventData,
     TextInputProps,
@@ -13,8 +12,17 @@ import {
     ViewStyle
 } from 'react-native';
 import {TextInputMask, TextInputMaskProps} from 'react-native-masked-text';
-import {colors} from "../../utils/colors";
+import {colors} from "app-studio-widgets/src/utils/colors";
 import {useField} from 'formik';
+import ASText from "app-studio-widgets/src/components/text";
+
+export type ASTextFieldStyles = {
+    containerStyle?: StyleProp<ViewStyle>;
+    contentContainerStyle?: StyleProp<ViewStyle>;
+    inputContainerStyle?: StyleProp<ViewStyle>;
+    textInputStyle?: StyleProp<TextStyle>;
+    errorTextStyle?: StyleProp<TextStyle>;
+};
 
 export type ASTextFieldProps = TextInputMaskProps &
     TextInputProps & {
@@ -27,14 +35,7 @@ export type ASTextFieldProps = TextInputMaskProps &
     placeholderTextColor?: string;
     style?: ASTextFieldStyles;
     formatError?: (error: string) => string;
-};
-
-export type ASTextFieldStyles = {
-    containerStyle?: StyleProp<ViewStyle>;
-    contentContainerStyle?: StyleProp<ViewStyle>;
-    inputContainerStyle?: StyleProp<ViewStyle>;
-    textInputStyle?: StyleProp<TextStyle>;
-    errorTextStyle?: StyleProp<TextStyle>;
+    label?: string;
 };
 
 const ASTextField = (props: ASTextFieldProps) => {
@@ -51,6 +52,7 @@ const ASTextField = (props: ASTextFieldProps) => {
         placeholderTextColor = '#C4C4C4',
         formatError,
         options,
+        label,
         ...restProps
     } = props;
     const [active, setActive] = useState(false);
@@ -88,42 +90,45 @@ const ASTextField = (props: ASTextFieldProps) => {
     };
 
     return (
-        <View style={styles.containerStyle}>
-            <View style={[styles.contentContainerStyle, {borderColor: separatorColor}]}>
-                {prefixIcon}
-                <View style={styles.inputContainerStyle}>
-                    {showMask ? (
-                        <TextInputMask
-                            onFocus={handleOnFocus}
-                            onBlur={handleOnBlur}
-                            value={field?.value}
-                            onChangeText={field?.onChange(name)}
-                            style={styles.textInputStyle}
-                            placeholderTextColor={placeholderTextColor}
-                            options={options}
-                            {...restProps}
-                        />
-                    ) : (
-                        <TextInput
-                            onFocus={handleOnFocus}
-                            onBlur={handleOnBlur}
-                            value={field?.value}
-                            onChangeText={field?.onChange(name)}
-                            style={styles.textInputStyle}
-                            placeholderTextColor={placeholderTextColor}
-                            autoComplete={'off'}
-                            autoCorrect={false}
-                            underlineColorAndroid='transparent'
-                            {...restProps}
-                        />
-                    )}
+        <>
+            <View style={styles.containerStyle}>
+                <ASText style={styles.labelStyle}>{label}</ASText>
+                <View style={[styles.contentContainerStyle, {borderColor: separatorColor}]}>
+                    {prefixIcon}
+                    <View style={styles.inputContainerStyle}>
+                        {showMask ? (
+                            <TextInputMask
+                                onFocus={handleOnFocus}
+                                onBlur={handleOnBlur}
+                                value={field?.value}
+                                onChangeText={field?.onChange(name)}
+                                style={styles.textInputStyle}
+                                placeholderTextColor={placeholderTextColor}
+                                options={options}
+                                {...restProps}
+                            />
+                        ) : (
+                            <TextInput
+                                onFocus={handleOnFocus}
+                                onBlur={handleOnBlur}
+                                value={field?.value}
+                                onChangeText={field?.onChange(name)}
+                                style={styles.textInputStyle}
+                                placeholderTextColor={placeholderTextColor}
+                                autoComplete={'off'}
+                                autoCorrect={false}
+                                underlineColorAndroid='transparent'
+                                {...restProps}
+                            />
+                        )}
+                    </View>
+                    {suffixIcon}
                 </View>
-                {suffixIcon}
             </View>
             {meta?.error && meta?.touched && (
-                <Text style={styles.errorTextStyle}>{getErrorMessage(meta?.error)}</Text>
+                <ASText style={styles.errorTextStyle}>{getErrorMessage(meta?.error)}</ASText>
             )}
-        </View>
+        </>
     );
 };
 
@@ -133,32 +138,36 @@ ASTextField.defaultProps = {
 
 const styles = StyleSheet.create({
     containerStyle: {
+        backgroundColor: colors.offWhite,
+        paddingHorizontal: 15,
+        paddingVertical: 5,
+        borderRadius: 5
     },
     contentContainerStyle: {
         alignItems: 'center',
         flexDirection: 'row',
-        backgroundColor: colors.lightWhite,
-        borderRadius:5
     },
     inputContainerStyle: {
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
-        paddingHorizontal: 15,
-        paddingVertical: 10,
     },
     textInputStyle: {
         flex: 1,
         fontSize: 12,
-        color: colors.inputColor,
-        paddingBottom: 0,
-        paddingTop: 0,
+        color: colors.black700,
+        paddingVertical: 0,
+        paddingHorizontal: 0
     },
     errorTextStyle: {
         fontSize: 12,
         color: 'red',
-        marginTop: Platform.OS === 'ios' ? 5 : 10,
+        marginTop: Platform.OS === 'ios' ? 4 : 5,
     },
+    labelStyle: {
+        fontSize: 10,
+        color: colors.gray400
+    }
 });
 
 export default ASTextField;

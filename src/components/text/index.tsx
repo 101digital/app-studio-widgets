@@ -1,9 +1,9 @@
 import React from 'react';
 import {StyleProp, StyleSheet, Text, TextProperties, TextStyle} from 'react-native'
-import {colors} from "../../utils/colors";
+import {colors} from "app-studio-widgets/src/utils/colors";
 
 type TextProps = TextProperties & {
-    children: string;
+    children: string | undefined;
     style?: StyleProp<TextStyle>;
 }
 
