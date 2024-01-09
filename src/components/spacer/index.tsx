@@ -10,6 +10,7 @@ type ASSpacerProps = {
 
 const ASSpacer: React.FC<ASSpacerProps> = (props: ASSpacerProps) => {
     const {style, width, height} = props || {}
+    // ASSpacer must use number instead of string percentage ("50%") that will cause scroll view unable to scroll
     const heightValue = convertPercentageToPx(height, false)
     const widthValue = convertPercentageToPx(width, true)
 
