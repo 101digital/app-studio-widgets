@@ -1,33 +1,72 @@
 import React from 'react';
-import {StyleProp, StyleSheet, TextStyle, TouchableOpacity, TouchableOpacityProps, ViewStyle} from 'react-native';
+import {StyleSheet, TextStyle, TouchableOpacity, TouchableOpacityProps, ViewStyle} from 'react-native';
 import {colors} from "app-studio-widgets/src/utils/colors";
 import ASText from "../text";
+
+type StyleProps = {}
 
 type  ASButtonProps = TouchableOpacityProps & {
     label: string;
     onPress: () => void
-    style?: StyleProp<ViewStyle>;
-    textStyle?: StyleProp<TextStyle>;
+    style?: ViewStyle;
+    textStyle?: TextStyle
     disabled?: boolean
     children?: React.ReactNode
+    simpleTextButton?: boolean
 }
 
-const ASButton: React.FC<ASButtonProps> = ({
-                                               label,
-                                               style,
-                                               textStyle,
-                                               onPress,
-                                               disabled,
-                                               children,
-                                               ...restProps
-                                           }: ASButtonProps) => {
+const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
+
+    const {
+        label,
+        style,
+        textStyle,
+        onPress,
+        disabled,
+        children,
+        simpleTextButton,
+        ...restProps
+    } = props
+
+    const getButtonBackgroundColor = () => {
+        if (disabled) {
+            return colors.gray80
+        }
+
+        if (style?.backgroundColor) {
+            return style?.backgroundColor
+        }
+
+        if (simpleTextButton) {
+            return 'transparent'
+        }
+
+        return colors.primaryHifiColor
+    }
+
+    const getButtonTextBackgroundColor = () => {
+        if (disabled) {
+            return colors.black500
+        }
+
+        if (textStyle?.color) {
+            return textStyle?.color
+        }
+
+        if (simpleTextButton) {
+            return colors.black700
+        }
+
+        return colors.white
+    }
+
     return (
         <TouchableOpacity {...restProps} disabled={disabled} onPress={onPress}
-                          style={[styles.buttonStyle, style, {backgroundColor: disabled ? colors.gray80 : colors.primaryHifiColor}]}>
+                          style={[simpleTextButton ? styles.simpleTextButton : styles.buttonStyle, style, {backgroundColor: getButtonBackgroundColor()}]}>
             {children ?
                 <>children</>
                 : <ASText
-                    style={[styles.textStyle, textStyle, {color: disabled ? colors.black500 : colors.white}]}>{label}</ASText>
+                    style={[simpleTextButton ? styles.simpleTextButtonTextStyle : styles.textStyle, textStyle, {color: getButtonTextBackgroundColor()}]}>{label}</ASText>
             }
         </TouchableOpacity>
     );
@@ -41,7 +80,16 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         borderRadius: 8
     },
-    textStyle: {}
+    simpleTextButton: {
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
+        paddingHorizontal: 0,
+        paddingVertical: 0,
+    },
+    textStyle: {},
+    simpleTextButtonTextStyle: {
+        fontSize: 12
+    }
 });
 
 export default ASButton;

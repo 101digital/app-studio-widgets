@@ -17,7 +17,7 @@ const ASText: React.FC<TextProps> = (props: TextProps) => {
 
 const styles = StyleSheet.create({
     textStyle: {
-        fontSize: 16,
+        fontSize: 14,
         color: colors.black,
     },
 });
