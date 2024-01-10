@@ -61,7 +61,9 @@ export type ThemeColorProps = {
   alertSubtitle?: string;
   offWhite?: string;
   primayEternalBloom200?: string;
+  green?: string;
 };
+
 export const colors: ThemeColorProps = {
   alertSubtitle: '#4D4D4D',
   offWhite: '#FCFCFC',
@@ -125,6 +127,7 @@ export const colors: ThemeColorProps = {
   superlighterPrimaryColor: '#f0bae5',
   neutral: '#F0F0F0',
   primayEternalBloom200: '#FFBAF0',
+  green: '#00BA88'
 };
 export const rgbToHex = (color: string) => {
   const a = color.replace(/[^\d,]/g, '').split(',');

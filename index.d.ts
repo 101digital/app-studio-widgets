@@ -13,6 +13,8 @@ export {default as ASImage} from './src/components/image';
 export {default as ASDropdown} from './src/components/dropDown';
 export {default as ASExpandableText} from './src/components/expandableText';
 export {default as ASWrapper} from './src/components/wrapper';
+export {default as ASSwitch} from './src/components/switch';
+export {default as ASCheckBox} from './src/components/checkBox';
 
 
 

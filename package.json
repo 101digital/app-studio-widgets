@@ -1,6 +1,6 @@
 {
   "name": "app-studio-widgets",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Widgets for App Studio",
   "repository": "https://github.com/101digital/app-studio-widgets",
   "license": "MIT",
@@ -17,6 +17,7 @@
   "keywords": [],
   "author": "Hua Cat Luong",
   "dependencies": {
+    "@react-native-community/checkbox": "^0.5.7",
     "@types/xdate": "^0.8.32",
     "currency.js": "^2.0.4",
     "formik": "^2.4.5",
