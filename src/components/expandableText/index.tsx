@@ -6,12 +6,12 @@ import ASText from "app-studio-widgets/src/components/text";
 interface ExpandableTextProps {
     initialLines: number;
     text: string;
-    readMoreTextStyles?: StyleProp<TextStyle>;
     textStyle?: StyleProp<TextStyle>;
+    readMoreTextStyles?: StyleProp<TextStyle>;
 }
 
 const ASExpandableText: React.FC<ExpandableTextProps> = (props: ExpandableTextProps) => {
-    const {initialLines = 1, text, readMoreTextStyles, textStyle} = props
+    const {initialLines = 1, text, textStyle, readMoreTextStyles} = props
     const [isExpanded, setIsExpanded] = React.useState(false);
 
     const toggleExpansion = () => {
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     },
     readMoreTextStyle: {
         color: colors.gray400,
-        fontSize:12
+        fontSize: 12
     }
 })
 
