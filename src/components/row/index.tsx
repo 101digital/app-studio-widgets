@@ -10,7 +10,7 @@ const ASRow: React.FC<ASRowProps> = (props: ASRowProps) => {
     const {children, style} = props || {}
 
     return (
-        <View style={[style, styles.container]}>
+        <View style={[styles.container, style]}>
             {children}
         </View>
     )

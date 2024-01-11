@@ -6,19 +6,20 @@ import ASText from "../text";
 type StyleProps = {}
 
 type  ASButtonProps = TouchableOpacityProps & {
-    label: string;
+    label?: string;
     onPress: () => void
     style?: ViewStyle;
     textStyle?: TextStyle
     disabled?: boolean
     children?: React.ReactNode
     simpleTextButton?: boolean
+    touchableContainer?: boolean
 }
 
 const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
 
     const {
-        label,
+        label = '',
         style,
         textStyle,
         onPress,
@@ -60,13 +61,27 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
         return colors.white
     }
 
+    const getButtonStyle = () => {
+        if (simpleTextButton) return styles.simpleTextButton
+
+        if (!!children) return styles.touchableContainerStyles
+
+        return styles.buttonStyle
+    }
+
+    const getButtonTextStyle = () => {
+        if (simpleTextButton) return styles.simpleTextButtonTextStyle
+
+        return styles.textStyle
+    }
+
     return (
         <TouchableOpacity {...restProps} disabled={disabled} onPress={onPress}
-                          style={[simpleTextButton ? styles.simpleTextButton : styles.buttonStyle, style, {backgroundColor: getButtonBackgroundColor()}]}>
-            {children ?
-                <>children</>
+                          style={[getButtonStyle(), style, {backgroundColor: getButtonBackgroundColor()}]}>
+            {!!children ?
+                children
                 : <ASText
-                    style={[simpleTextButton ? styles.simpleTextButtonTextStyle : styles.textStyle, textStyle, {color: getButtonTextBackgroundColor()}]}>{label}</ASText>
+                    style={[getButtonTextStyle(), textStyle, {color: getButtonTextBackgroundColor()}]}>{label}</ASText>
             }
         </TouchableOpacity>
     );
@@ -86,6 +101,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 0,
         paddingVertical: 0,
     },
+    touchableContainerStyles:{},
     textStyle: {},
     simpleTextButtonTextStyle: {
         fontSize: 12

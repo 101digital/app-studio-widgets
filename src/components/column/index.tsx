@@ -10,7 +10,7 @@ const ASColumn: React.FC<ASColumnProps> = (props: ASColumnProps) => {
     const {children, style} = props || {}
 
     return (
-        <View style={[style, styles.container]}>
+        <View style={[styles.container, style]}>
             {children}
         </View>
     )
