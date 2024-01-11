@@ -3,8 +3,6 @@ import {StyleSheet, TextStyle, TouchableOpacity, TouchableOpacityProps, ViewStyl
 import {colors} from "app-studio-widgets/src/utils/colors";
 import ASText from "../text";
 
-type StyleProps = {}
-
 type  ASButtonProps = TouchableOpacityProps & {
     label?: string;
     onPress: () => void
@@ -38,7 +36,7 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
             return style?.backgroundColor
         }
 
-        if (simpleTextButton) {
+        if (simpleTextButton || !!children) {
             return 'transparent'
         }
 
