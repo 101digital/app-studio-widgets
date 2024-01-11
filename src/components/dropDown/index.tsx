@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {forwardRef, ForwardRefExoticComponent, Ref, useImperativeHandle, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Dropdown} from 'react-native-element-dropdown';
 import {DropdownProps} from 'react-native-element-dropdown/src/components/Dropdown/model';
@@ -20,7 +20,11 @@ type ASDropDownProps =
     label?: string
 }
 
-const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
+export type ASDropDownRef = {
+    onChangeItem: (item: DropDownOptionsProps) => void;
+};
+
+const ASDropDown: ForwardRefExoticComponent<any> = forwardRef((props: ASDropDownProps, ref: Ref<any>) => {
     const {
         data,
         renderLeftIcon,
@@ -41,14 +45,33 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
         );
     };
 
-    const onChangeItem = (item: DropDownOptionsProps) => {
-        onSelect?.(item)
-        setValue(item?.value);
+    const onChangeItem = (item: DropDownOptionsProps | string) => {
+
+        if (typeof item === 'string') {
+            data.find((i) => {
+                if (i.value === item || i.label === item) {
+                    onSelect?.(i)
+                    setValue(i?.value);
+                }
+            })
+
+
+        } else {
+            onSelect?.(item)
+            setValue(item?.value);
+        }
     }
+
+    useImperativeHandle(
+        ref,
+        (): ASDropDownRef => ({
+            onChangeItem
+        })
+    );
 
     return (
         <View style={{
-            backgroundColor: colors.offWhite, borderRadius: 5,paddingTop:5
+            backgroundColor: colors.offWhite, borderRadius: 5, paddingTop: 5
         }}>
             <ASText style={styles.labelStyle}>{label}</ASText>
 
@@ -73,7 +96,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
             />
         </View>
     );
-};
+})
 
 export default ASDropDown;
 
@@ -95,17 +118,17 @@ const styles = StyleSheet.create({
     },
     placeholderStyle: {
         fontSize: 12,
-        paddingHorizontal:15,
+        paddingHorizontal: 15,
     },
     selectedTextStyle: {
         fontSize: 12,
         color: colors.black700,
-        paddingHorizontal:15,
+        paddingHorizontal: 15,
     },
     iconStyle: {
         width: 20,
         height: 20,
-        marginRight:15
+        marginRight: 15
     },
     inputSearchStyle: {
         height: 40,
@@ -114,7 +137,7 @@ const styles = StyleSheet.create({
     labelStyle: {
         fontSize: 10,
         color: colors.gray400,
-        paddingHorizontal:15
+        paddingHorizontal: 15
     }
 });
 

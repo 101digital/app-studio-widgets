@@ -100,7 +100,7 @@ const ASTextField = (props: ASTextFieldProps) => {
                             <TextInputMask
                                 onFocus={handleOnFocus}
                                 onBlur={handleOnBlur}
-                                value={field?.value}
+                                value={`${field?.value}`}
                                 onChangeText={field?.onChange(name)}
                                 style={styles.textInputStyle}
                                 placeholderTextColor={placeholderTextColor}
@@ -111,7 +111,7 @@ const ASTextField = (props: ASTextFieldProps) => {
                             <TextInput
                                 onFocus={handleOnFocus}
                                 onBlur={handleOnBlur}
-                                value={field?.value}
+                                value={`${field?.value}`}
                                 onChangeText={field?.onChange(name)}
                                 style={styles.textInputStyle}
                                 placeholderTextColor={placeholderTextColor}
