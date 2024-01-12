@@ -4,6 +4,7 @@ import {Dropdown} from 'react-native-element-dropdown';
 import {DropdownProps} from 'react-native-element-dropdown/src/components/Dropdown/model';
 import ASText from "app-studio-widgets/src/components/text";
 import {colors} from "app-studio-widgets/src/utils/colors";
+import {FieldHookConfig, useField} from "formik";
 
 type DropDownOptionsProps = {
     label: string;
@@ -18,6 +19,7 @@ type ASDropDownProps =
     renderLeftIcon?: () => React.ReactNode
     onChangeItem?: (item: DropDownOptionsProps) => void
     label?: string
+    name?: string | FieldHookConfig<any>
 }
 
 export type ASDropDownRef = {
@@ -33,9 +35,11 @@ const ASDropDown: ForwardRefExoticComponent<any> = forwardRef((props: ASDropDown
         searchPlaceholder = 'Search...',
         search = false,
         label,
+        name = '',
         ...restProps
     } = props
     const [value, setValue] = useState<string | null>(null);
+    const [field, meta, helpers] = useField(name);
 
     const renderItem = (item: { label: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }) => {
         return (
@@ -45,8 +49,9 @@ const ASDropDown: ForwardRefExoticComponent<any> = forwardRef((props: ASDropDown
         );
     };
 
+    // Note: Now use useField from formik, we dont change value using state anymore
+    // This component must be inside Formik component
     const onChangeItem = (item: DropDownOptionsProps | string) => {
-
         if (typeof item === 'string') {
             data.find((i) => {
                 if (i.value === item || i.label === item) {
@@ -62,12 +67,18 @@ const ASDropDown: ForwardRefExoticComponent<any> = forwardRef((props: ASDropDown
         }
     }
 
+    // Note: Now use useField from formik, we dont change value using state anymore
+    // This component must be inside Formik component
     useImperativeHandle(
         ref,
         (): ASDropDownRef => ({
             onChangeItem
         })
     );
+
+    const onChangeDropDownField = (item: DropDownOptionsProps | string) => {
+        field?.onChange(name)
+    }
 
     return (
         <View style={{
@@ -84,13 +95,13 @@ const ASDropDown: ForwardRefExoticComponent<any> = forwardRef((props: ASDropDown
                 data={data}
                 search={search}
                 maxHeight={300}
-                value={value}
+                value={`${field?.value}`}
                 searchPlaceholder={searchPlaceholder}
                 renderLeftIcon={renderLeftIcon}
                 renderItem={renderItem}
                 placeholder={placeholder}
                 {...restProps}
-                onChange={onChangeItem}
+                onChange={onChangeDropDownField}
                 labelField="label"
                 valueField="value"
             />
@@ -143,37 +154,11 @@ const styles = StyleSheet.create({
 
 // Note: ASDropdown Example
 /*
-                <ASDropdown data={[
-                    {label: 'Item 1', value: '1'},
-                    {label: 'Item 2', value: '2'},
-                    {label: 'Item 3', value: '3'},
-                    {label: 'Item 4', value: '4'},
-                    {label: 'Item 5', value: '5'},
-                    {label: 'Item 6', value: '6'},
-                    {label: 'Item 7', value: '7'},
-                    {label: 'Item 8', value: '8'}]}
-                            onSelect={(value) => {
-                                console.log('Selected Value:', value);
-                            }}
-                            placeholder="Please select item"
-                />
-* */
-
-
-// Note: ASDropdown Example
-/*
-                <ASDropdown data={[
-                    {label: 'Item 1', value: '1'},
-                    {label: 'Item 2', value: '2'},
-                    {label: 'Item 3', value: '3'},
-                    {label: 'Item 4', value: '4'},
-                    {label: 'Item 5', value: '5'},
-                    {label: 'Item 6', value: '6'},
-                    {label: 'Item 7', value: '7'},
-                    {label: 'Item 8', value: '8'}]}
-                            onSelect={(value) => {
-                                console.log('Selected Value:', value);
-                            }}
-                            placeholder="Please select item"
-                />
+                <ASDropdown
+                            name={'employmentSector'}
+                            label={'Employment sector'}
+                            data={[{label: 'F&B', value: 'f&b'}, {
+                                label: 'Financial and Insurance/ Takaful Activities',
+                                value: 'Financial and Insurance/ Takaful Activities'
+                            }]}/>
 * */
