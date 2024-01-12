@@ -10,11 +10,12 @@ export {default as ASVerticalDivider} from './src/components/verticalDivider';
 export {default as ASFormValidation} from './src/components/formValidation';
 export {default as ASRichText} from './src/components/richText';
 export {default as ASImage} from './src/components/image';
-export {default as ASDropdown,ASDropDownRef} from './src/components/dropDown';
+export {default as ASDropdown, ASDropDownRef} from './src/components/dropDown';
 export {default as ASExpandableText} from './src/components/expandableText';
-export {default as ASWrapper} from './src/components/wrapper';
+export {default as ASWrap} from './src/components/wrap';
 export {default as ASSwitch} from './src/components/switch';
 export {default as ASCheckBox} from './src/components/checkBox';
+export {default as ASProgressBar} from './src/components/progressBar';
 
 
 

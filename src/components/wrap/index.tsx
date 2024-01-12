@@ -10,7 +10,7 @@ type WrapProps = {
     itemMargin?: DimensionValue
 }
 
-const ASWrapper: React.FC<WrapProps> = (props: WrapProps) => {
+const ASWrap: React.FC<WrapProps> = (props: WrapProps) => {
     const {children, direction = 'row', style, itemMargin} = props
 
     return (
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     },
 });
 
-export default ASWrapper;
+export default ASWrap;
 
 // NOTE:  ASWrapper Example
 /*
