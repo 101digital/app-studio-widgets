@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native'
 import {colors} from "app-studio-widgets/src/utils/colors";
 
-type ASVerticalDividerProps = {
+export type ASVerticalDividerProps = {
     style?: StyleProp<ViewStyle>;
     marginHorizontal?: number
     height?: number | string

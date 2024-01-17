@@ -1,13 +1,12 @@
 import React, {useState} from 'react';
-import {View} from  'react-native';
 import CheckBox from '@react-native-community/checkbox';
 import {colors} from "app-studio-widgets/src/utils/colors";
 
-type ASCheckBox = {
+export type ASCheckBoxProps = {
     onChange?: (value: boolean) => void
 }
 
-const ASCheckBox: React.FC<ASCheckBox> = (props: ASCheckBox) => {
+const ASCheckBox: React.FC<ASCheckBoxProps> = (props: ASCheckBoxProps) => {
     const {onChange, ...restProps} = props
     const [toggleCheckBox, setToggleCheckBox] = useState<boolean>(false)
 

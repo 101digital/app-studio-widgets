@@ -2,7 +2,7 @@ import React, {ReactNode} from 'react';
 import {ScrollView, ScrollViewProps, StyleProp, StyleSheet, ViewStyle} from 'react-native'
 import {SafeAreaView, SafeAreaViewProps} from 'react-native-safe-area-context';
 
-type ASContainerProps = SafeAreaViewProps & {
+export type ASContainerProps = SafeAreaViewProps & {
     children: ReactNode;
     style?: StyleProp<ViewStyle>;
     isScrollable?: boolean

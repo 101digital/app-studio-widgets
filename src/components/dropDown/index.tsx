@@ -6,12 +6,12 @@ import ASText from "app-studio-widgets/src/components/text";
 import {colors} from "app-studio-widgets/src/utils/colors";
 import {FieldHookConfig, useField} from "formik";
 
-type DropDownOptionsProps = {
+export type DropDownOptionsProps = {
     label: string;
     value: string;
 }
 
-type ASDropDownProps =
+export type ASDropDownProps =
     Omit<DropdownProps<any>, 'labelField' | 'valueField' | 'onChange'>
     & {
     data: DropDownOptionsProps[]

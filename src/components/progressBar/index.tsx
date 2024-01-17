@@ -4,7 +4,7 @@ import {screenWidth} from "app-studio-widgets/src/utils/commonUtils";
 import {colors} from "app-studio-widgets/src/utils/colors";
 import ASText from "app-studio-widgets/src/components/text";
 
-type ASProgressBarProps = {
+export type ASProgressBarProps = {
     progressBarTitle: string,
     progressValue: number;
 }

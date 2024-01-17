@@ -1,16 +1,16 @@
 import React from 'react';
 import {DimensionValue, StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
 
-type WrapperDirection = 'row' | 'column';
+export type ASWrapperDirection = 'row' | 'column';
 
-type WrapProps = {
+export type ASWrapProps = {
     children: React.ReactNode;
-    direction?: WrapperDirection;
+    direction?: ASWrapperDirection;
     style?: StyleProp<ViewStyle>;
     itemMargin?: DimensionValue
 }
 
-const ASWrap: React.FC<WrapProps> = (props: WrapProps) => {
+const ASWrap: React.FC<ASWrapProps> = (props: ASWrapProps) => {
     const {children, direction = 'row', style, itemMargin} = props
 
     return (

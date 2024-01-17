@@ -2,7 +2,7 @@ import React, {ReactNode} from 'react';
 import {View} from 'react-native'
 import {Formik, FormikConfig, FormikHelpers, FormikProps} from 'formik';
 
-type ASFormValidationProps = FormikConfig<any> & {
+export type ASFormValidationProps = FormikConfig<any> & {
     children: (formikProps: FormikProps<any>) => ReactNode;
     onSubmit: (values: any, formikHelpers: FormikHelpers<any>) => void | Promise<any>;
     initialValues?: any;

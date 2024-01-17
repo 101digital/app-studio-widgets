@@ -1,7 +1,7 @@
 import React, {ReactNode} from 'react';
 import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native'
 
-type ASColumnProps = {
+export type ASColumnProps = {
     children: ReactNode;
     style?: StyleProp<ViewStyle>;
 }

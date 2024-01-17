@@ -3,14 +3,14 @@ import {StyleProp, StyleSheet, TextStyle} from 'react-native'
 import {colors} from "app-studio-widgets/src/utils/colors";
 import ParsedText from 'react-native-parsed-text';
 
-type RichTextProps = {
+export type ASRichTextProps = {
     children: string;
     style?: StyleProp<TextStyle>;
     childrenProps?: any;
     parse?: any[]
 }
 
-const ASRichText: React.FC<RichTextProps> = (props: RichTextProps) => {
+const ASRichText: React.FC<ASRichTextProps> = (props: ASRichTextProps) => {
     const {
         children, style, parse,
         childrenProps={allowFontScaling: false}

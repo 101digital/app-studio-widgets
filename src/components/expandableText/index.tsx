@@ -3,14 +3,14 @@ import {StyleProp, StyleSheet, TextStyle, TouchableOpacity, View} from 'react-na
 import {colors} from "app-studio-widgets/src/utils/colors";
 import ASText from "app-studio-widgets/src/components/text";
 
-interface ExpandableTextProps {
+export type ASExpandableTextProps ={
     initialLines: number;
     text: string;
     textStyle?: StyleProp<TextStyle>;
     readMoreTextStyles?: StyleProp<TextStyle>;
 }
 
-const ASExpandableText: React.FC<ExpandableTextProps> = (props: ExpandableTextProps) => {
+const ASExpandableText: React.FC<ASExpandableTextProps> = (props: ASExpandableTextProps) => {
     const {initialLines = 1, text, textStyle, readMoreTextStyles} = props
     const [isExpanded, setIsExpanded] = React.useState(false);
 

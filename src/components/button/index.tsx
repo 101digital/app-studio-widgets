@@ -3,7 +3,7 @@ import {StyleSheet, TextStyle, TouchableOpacity, TouchableOpacityProps, ViewStyl
 import {colors} from "app-studio-widgets/src/utils/colors";
 import ASText from "../text";
 
-type  ASButtonProps = TouchableOpacityProps & {
+export type  ASButtonProps = TouchableOpacityProps & {
     label?: string;
     onPress: () => void
     style?: ViewStyle;

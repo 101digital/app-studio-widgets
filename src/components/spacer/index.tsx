@@ -2,7 +2,7 @@ import React from 'react';
 import {DimensionValue, StyleProp, StyleSheet, View, ViewStyle} from 'react-native'
 import {convertPercentageToPx} from "app-studio-widgets/src/utils/commonUtils";
 
-type ASSpacerProps = {
+export type ASSpacerProps = {
     style?: StyleProp<ViewStyle>;
     width?: DimensionValue
     height?: DimensionValue
