@@ -1,6 +1,6 @@
 import React from 'react';
 import {DimensionValue, Image, ImageStyle, StyleProp} from 'react-native';
-import {convertPercentageToPx} from 'app-studio-widgets/src/utils/commonUtils';
+import {convertPercentageToPx} from '../../utils/commonUtils';
 
 export type ASImageProps = {
     source: any //ImageSourcePropType | string ;

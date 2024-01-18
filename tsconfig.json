@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "commonjs",
+    "target": "es5",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -11,8 +10,13 @@
     "jsx": "react",
     "rootDir": ".",
     "baseUrl": "./src",
+    "module": "es6",
     "paths": {
-      "@widgets/*": ["./src/*","./src/*/index","src/*"]
+      "@widgets/*": [
+        "./src/*",
+        "./src/*/index",
+        "src/*"
+      ]
     }
   },
   "exclude": [

@@ -12,9 +12,9 @@ import {
     ViewStyle
 } from 'react-native';
 import {TextInputMask, TextInputMaskProps} from 'react-native-masked-text';
-import {colors} from "app-studio-widgets/src/utils/colors";
+import {colors} from "../../utils/colors";
 import {useField} from 'formik';
-import ASText from "app-studio-widgets/src/components/text";
+import ASText from "../text";
 
 export type ASTextFieldStyles = {
     containerStyle?: StyleProp<ViewStyle>;

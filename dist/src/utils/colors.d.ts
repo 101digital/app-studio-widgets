@@ -61,6 +61,7 @@ export declare type ThemeColorProps = {
     alertSubtitle?: string;
     offWhite?: string;
     primayEternalBloom200?: string;
+    green?: string;
 };
 export declare const colors: ThemeColorProps;
 export declare const rgbToHex: (color: string) => string;

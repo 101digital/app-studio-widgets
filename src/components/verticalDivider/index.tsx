@@ -1,11 +1,11 @@
 import React from 'react';
-import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native'
-import {colors} from "app-studio-widgets/src/utils/colors";
+import {DimensionValue, StyleProp, StyleSheet, View, ViewStyle} from 'react-native'
+import {colors} from "../../utils/colors";
 
 export type ASVerticalDividerProps = {
     style?: StyleProp<ViewStyle>;
-    marginHorizontal?: number
-    height?: number | string
+    marginHorizontal?: DimensionValue
+    height?: DimensionValue
 }
 
 const ASVerticalDivider: React.FC<ASVerticalDividerProps> = (props: ASVerticalDividerProps) => {

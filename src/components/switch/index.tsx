@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Switch, SwitchProps} from 'react-native';
-import {colors} from "app-studio-widgets/src/utils/colors";
+import {colors} from "../../utils/colors";
 
 export type ASSwitchProps = SwitchProps & {
     enableThumbColor?: string;

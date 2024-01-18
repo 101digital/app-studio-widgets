@@ -1,8 +1,8 @@
 import React, { ReactNode } from 'react';
 import { StyleProp, ViewStyle } from 'react-native';
-declare type RowProps = {
+export declare type ASRowProps = {
     children: ReactNode;
     style?: StyleProp<ViewStyle>;
 };
-declare const Row: React.FC<RowProps>;
-export default Row;
+declare const ASRow: React.FC<ASRowProps>;
+export default ASRow;

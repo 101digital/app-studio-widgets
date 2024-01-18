@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, TextStyle, TouchableOpacity, TouchableOpacityProps, ViewStyle} from 'react-native';
-import {colors} from "app-studio-widgets/src/utils/colors";
+import {colors} from "../../utils/colors";
 import ASText from "../text";
 
 export type  ASButtonProps = TouchableOpacityProps & {

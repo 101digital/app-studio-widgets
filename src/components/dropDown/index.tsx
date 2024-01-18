@@ -2,8 +2,8 @@ import React, {forwardRef, ForwardRefExoticComponent, Ref, useImperativeHandle, 
 import {StyleSheet, Text, View} from 'react-native';
 import {Dropdown} from 'react-native-element-dropdown';
 import {DropdownProps} from 'react-native-element-dropdown/src/components/Dropdown/model';
-import ASText from "app-studio-widgets/src/components/text";
-import {colors} from "app-studio-widgets/src/utils/colors";
+import ASText from "../text";
+import {colors} from "../../utils/colors";
 import {FieldHookConfig, useField} from "formik";
 
 export type DropDownOptionsProps = {

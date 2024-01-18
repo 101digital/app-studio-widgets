@@ -1,10 +1,14 @@
 import React from 'react';
-import { StyleProp, TextStyle, TouchableOpacityProps, ViewStyle } from 'react-native';
-declare type ButtonProps = TouchableOpacityProps & {
-    label: string;
+import { TextStyle, TouchableOpacityProps, ViewStyle } from 'react-native';
+export declare type ASButtonProps = TouchableOpacityProps & {
+    label?: string;
     onPress: () => void;
-    style?: StyleProp<ViewStyle>;
-    textStyle?: StyleProp<TextStyle>;
+    style?: ViewStyle;
+    textStyle?: TextStyle;
+    disabled?: boolean;
+    children?: React.ReactNode;
+    simpleTextButton?: boolean;
+    touchableContainer?: boolean;
 };
-declare const Button: React.FC<ButtonProps>;
-export default Button;
+declare const ASButton: React.FC<ASButtonProps>;
+export default ASButton;

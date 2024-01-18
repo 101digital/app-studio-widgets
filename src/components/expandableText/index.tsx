@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleProp, StyleSheet, TextStyle, TouchableOpacity, View} from 'react-native';
-import {colors} from "app-studio-widgets/src/utils/colors";
-import ASText from "app-studio-widgets/src/components/text";
+import {colors} from "../../utils/colors";
+import ASText from "../text";
 
 export type ASExpandableTextProps ={
     initialLines: number;

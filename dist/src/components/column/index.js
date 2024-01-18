@@ -3,16 +3,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importDefault(require("react"));
-const react_native_1 = require("react-native");
-const Column = (props) => {
-    const { children, style } = props || {};
-    return (react_1.default.createElement(react_native_1.View, { style: [style, styles.container] }, children));
+var react_1 = __importDefault(require("react"));
+var react_native_1 = require("react-native");
+var ASColumn = function (props) {
+    var _a = props || {}, children = _a.children, style = _a.style;
+    return (react_1.default.createElement(react_native_1.View, { style: [styles.container, style] }, children));
 };
-const styles = react_native_1.StyleSheet.create({
+var styles = react_native_1.StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection: 'column'
+        flexDirection: 'column',
+        justifyContent: 'center'
     },
 });
-exports.default = Column;
+exports.default = ASColumn;

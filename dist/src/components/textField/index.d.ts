@@ -1,7 +1,14 @@
 import React, { ReactNode } from 'react';
 import { StyleProp, TextInputProps, TextStyle, ViewStyle } from 'react-native';
 import { TextInputMaskProps } from 'react-native-masked-text';
-export declare type InputFieldProps = TextInputMaskProps & TextInputProps & {
+export declare type ASTextFieldStyles = {
+    containerStyle?: StyleProp<ViewStyle>;
+    contentContainerStyle?: StyleProp<ViewStyle>;
+    inputContainerStyle?: StyleProp<ViewStyle>;
+    textInputStyle?: StyleProp<TextStyle>;
+    errorTextStyle?: StyleProp<TextStyle>;
+};
+export declare type ASTextFieldProps = TextInputMaskProps & TextInputProps & {
     name: string;
     prefixIcon?: ReactNode;
     suffixIcon?: ReactNode;
@@ -9,20 +16,14 @@ export declare type InputFieldProps = TextInputMaskProps & TextInputProps & {
     activeBorderColor?: string;
     inactiveBorderColor?: string;
     placeholderTextColor?: string;
-    style?: InputFieldStyles;
+    style?: ASTextFieldStyles;
     formatError?: (error: string) => string;
+    label?: string;
 };
-export declare type InputFieldStyles = {
-    containerStyle?: StyleProp<ViewStyle>;
-    contentContainerStyle?: StyleProp<ViewStyle>;
-    inputContainerStyle?: StyleProp<ViewStyle>;
-    textInputStyle?: StyleProp<TextStyle>;
-    errorTextStyle?: StyleProp<TextStyle>;
-};
-declare const InputField: {
-    (props: InputFieldProps): React.JSX.Element;
+declare const ASTextField: {
+    (props: ASTextFieldProps): React.JSX.Element;
     defaultProps: {
         type: string;
     };
 };
-export default InputField;
+export default ASTextField;

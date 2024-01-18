@@ -1,11 +1,11 @@
 import React from 'react';
-import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native'
-import {colors} from "app-studio-widgets/src/utils/colors";
+import {DimensionValue, StyleProp, StyleSheet, View, ViewStyle} from 'react-native'
+import {colors} from "../../utils/colors";
 
 export type ASDividerProps = {
     style?: StyleProp<ViewStyle>;
-    marginVertical?: number
-    width?: number | string
+    marginVertical?: DimensionValue
+    width?: DimensionValue
 }
 
 const ASDivider: React.FC<ASDividerProps> = (props: ASDividerProps) => {

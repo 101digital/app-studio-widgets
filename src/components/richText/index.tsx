@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleProp, StyleSheet, TextStyle} from 'react-native'
-import {colors} from "app-studio-widgets/src/utils/colors";
+import {colors} from "../../utils/colors";
 import ParsedText from 'react-native-parsed-text';
 
 export type ASRichTextProps = {

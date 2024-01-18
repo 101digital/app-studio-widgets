@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import CheckBox from '@react-native-community/checkbox';
-import {colors} from "app-studio-widgets/src/utils/colors";
+import {colors} from "../../utils/colors";
 
 export type ASCheckBoxProps = {
     onChange?: (value: boolean) => void

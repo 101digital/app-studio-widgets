@@ -64,17 +64,19 @@ exports.colors = {
     superlighterPrimaryColor: '#f0bae5',
     neutral: '#F0F0F0',
     primayEternalBloom200: '#FFBAF0',
+    green: '#00BA88'
 };
-const rgbToHex = (color) => {
-    const a = color.replace(/[^\d,]/g, '').split(',');
+var rgbToHex = function (color) {
+    var a = color.replace(/[^\d,]/g, '').split(',');
     return '#' + ((1 << 24) + (+a[0] << 16) + (+a[1] << 8) + +a[2]).toString(16).slice(1);
 };
 exports.rgbToHex = rgbToHex;
-const addAlpha = (color, opacity) => {
+var addAlpha = function (color, opacity) {
+    var _a;
     if (!color.startsWith('#')) {
         color = (0, exports.rgbToHex)(color);
     }
-    const _opacity = Math.round(Math.min(Math.max(opacity || 1, 0), 1) * 255);
-    return color + _opacity.toString(16)?.toUpperCase();
+    var _opacity = Math.round(Math.min(Math.max(opacity || 1, 0), 1) * 255);
+    return color + ((_a = _opacity.toString(16)) === null || _a === void 0 ? void 0 : _a.toUpperCase());
 };
 exports.addAlpha = addAlpha;

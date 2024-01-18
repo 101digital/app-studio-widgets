@@ -1,8 +1,8 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {screenWidth} from "app-studio-widgets/src/utils/commonUtils";
-import {colors} from "app-studio-widgets/src/utils/colors";
-import ASText from "app-studio-widgets/src/components/text";
+import {screenWidth} from "../../utils/commonUtils";
+import {colors} from "../../utils/colors";
+import ASText from "../text";
 
 export type ASProgressBarProps = {
     progressBarTitle: string,
