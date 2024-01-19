@@ -19,5 +19,4 @@ export {default as ASCheckBox, ASCheckBoxProps} from './src/components/checkBox'
 export {default as ASProgressBar, ASProgressBarProps} from './src/components/progressBar';
 export {default as ASStack, ASStackProps} from './src/components/stack';
 export {default as ASListView, ASListViewProps} from './src/components/listView';
-export {default as ASGridView, ASGridViewProps} from './src/components/gridView';
 
