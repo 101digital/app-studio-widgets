@@ -1,7 +1,7 @@
 import React from 'react';
-import {FlatList, StyleSheet,ListRenderItem} from 'react-native';
+import {FlatList, StyleSheet,ListRenderItem,FlatListProps} from 'react-native';
 
-export type ASListViewProps = {
+export type ASListViewProps = FlatListProps<any> & {
     data: any[]
     renderItem: ListRenderItem<React.ReactNode>
 }

@@ -21,15 +21,29 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 import React from 'react';
-import { FlatList, StyleSheet } from 'react-native';
-var ASListView = function (props) {
-    var data = props.data, renderItem = props.renderItem, restProps = __rest(props, ["data", "renderItem"]);
+import { StyleSheet, View } from 'react-native';
+import ASListView from "../listView";
+var ASGridView = function (props) {
+    var data = props.data, renderItem = props.renderItem, _a = props.numColumns, numColumns = _a === void 0 ? 3 : _a, restProps = __rest(props, ["data", "renderItem", "numColumns"]);
+    var renderGridItem = function (_a) {
+        var item = _a.item;
+        return (React.createElement(View, { style: styles.gridItem }, renderItem === null || renderItem === void 0 ? void 0 : renderItem(item)));
+    };
     var keyExtractor = function (item, index) {
         return "".concat(item.id || item.name || item.label || '', " - ").concat(index);
     };
-    return (React.createElement(FlatList, __assign({ data: data, renderItem: renderItem, keyExtractor: keyExtractor }, restProps)));
+    return (React.createElement(ASListView, __assign({ data: data, renderItem: renderGridItem, keyExtractor: keyExtractor, numColumns: numColumns }, restProps)));
 };
 var styles = StyleSheet.create({
-    container: {}
+    gridItem: {
+        flex: 1,
+        // margin: 8,
+        // justifyContent: 'center',
+        // alignItems: 'center',
+        // borderWidth: 1,
+        // borderColor: '#ccc',
+        // borderRadius: 8,
+        backgroundColor: 'red'
+    },
 });
-export default ASListView;
+export default ASGridView;

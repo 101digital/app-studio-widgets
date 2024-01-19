@@ -1,3 +1,4 @@
+export { ASWidgetsList, WidgetsList } from './src/utils/widgetsList';
 export { default as ASText, ASTextProps } from './src/components/text';
 export { default as ASButton, ASButtonProps } from './src/components/button';
 export { default as ASTextField, ASTextFieldProps, ASTextFieldStyles } from './src/components/textField';
@@ -18,4 +19,4 @@ export { default as ASCheckBox, ASCheckBoxProps } from './src/components/checkBo
 export { default as ASProgressBar, ASProgressBarProps } from './src/components/progressBar';
 export { default as ASStack, ASStackProps } from './src/components/stack';
 export { default as ASListView, ASListViewProps } from './src/components/listView';
-export { ASWidgetsList, WidgetsList } from './src/utils/widgetsList';
+export { default as ASGridView, ASGridViewProps } from './src/components/gridView';
