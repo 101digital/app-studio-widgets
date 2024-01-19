@@ -1,4 +1,3 @@
-"use strict";
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -21,19 +20,15 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = __importDefault(require("react"));
-var react_native_1 = require("react-native");
-var react_native_safe_area_context_1 = require("react-native-safe-area-context");
+import React from 'react';
+import { ScrollView, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 var ASContainer = function (props) {
     var _a = props || {}, children = _a.children, style = _a.style, _b = _a.isScrollable, isScrollable = _b === void 0 ? true : _b, scrollViewContentContainerStyle = _a.scrollViewContentContainerStyle, scrollViewProps = _a.scrollViewProps, restProps = __rest(_a, ["children", "style", "isScrollable", "scrollViewContentContainerStyle", "scrollViewProps"]);
-    return (react_1.default.createElement(react_native_safe_area_context_1.SafeAreaView, __assign({}, restProps, { style: [styles.container, style] }), isScrollable ? (react_1.default.createElement(react_native_1.ScrollView, __assign({ showsVerticalScrollIndicator: false, showsHorizontalScrollIndicator: false }, scrollViewProps, { contentContainerStyle: [styles.scrollViewStyle, scrollViewContentContainerStyle] }), children)) :
+    return (React.createElement(SafeAreaView, __assign({}, restProps, { style: [styles.container, style] }), isScrollable ? (React.createElement(ScrollView, __assign({ showsVerticalScrollIndicator: false, showsHorizontalScrollIndicator: false }, scrollViewProps, { contentContainerStyle: [styles.scrollViewStyle, scrollViewContentContainerStyle] }), children)) :
         children));
 };
-var styles = react_native_1.StyleSheet.create({
+var styles = StyleSheet.create({
     container: {
         flex: 1
     },
@@ -41,4 +36,4 @@ var styles = react_native_1.StyleSheet.create({
         flexGrow: 1
     }
 });
-exports.default = ASContainer;
+export default ASContainer;

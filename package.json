@@ -10,8 +10,8 @@
     "src/"
   ],
   "scripts": {
-    "lint": "tsc --noEmit && eslint src/ --ext .js,.jsx,.ts,.tsx",
     "build": "tsc",
+    "lint": "tsc --noEmit && eslint src/ --ext .js,.jsx,.ts,.tsx",
     "watch": "tsc -w"
   },
   "keywords": [],

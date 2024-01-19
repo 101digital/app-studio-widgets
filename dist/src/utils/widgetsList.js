@@ -1,4 +1,3 @@
-"use strict";
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -10,8 +9,6 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.ASWidgetsList = void 0;
 var ASWidgetsList = /** @class */ (function () {
     function ASWidgetsList() {
     }
@@ -72,16 +69,17 @@ var ASWidgetsList = /** @class */ (function () {
     };
     return ASWidgetsList;
 }());
-exports.ASWidgetsList = ASWidgetsList;
-var a = new ASWidgetsList();
-var asText = a.getWidgets().ASText({
-    children: 'haha',
-    style: { fontSize: 12 },
-    numberOfLines: 1,
-    ellipsizeMode: "tail"
-});
-var asContainer = a.getWidgetByName('ASContainer')({ children: asText, style: { flex: 1 } });
-console.log('RESULT WIDGET:\n', asContainer, '\n');
+export { ASWidgetsList };
+// const a = new ASWidgetsList()
+// const asText = a.getWidgets().ASText({
+//     children: 'haha',
+//     style: {fontSize: 12},
+//     numberOfLines: 1,
+//     ellipsizeMode: "tail"
+// },)
+// const asContainer = a.getWidgetByName('ASContainer')({children: asText, style: {flex: 1}})
+//
+// console.log('RESULT WIDGET:\n', asContainer , '\n')
 //  <ASContainer style={{"flex":1}}>
 //  <ASText style={{"fontSize":12}} numberOfLines={1} ellipsizeMode={"tail"}>haha</ASText>
 //  </ASContainer>

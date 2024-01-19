@@ -3,7 +3,6 @@
     "target": "es5",
     "strict": true,
     "esModuleInterop": true,
-    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
     "outDir": "./dist",
