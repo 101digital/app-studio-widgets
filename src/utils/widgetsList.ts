@@ -112,16 +112,17 @@ export class ASWidgetsList {
     }
 }
 
-const a = new ASWidgetsList()
-const asText = a.getWidgets().ASText({
-    children: 'haha',
-    style: {fontSize: 12},
-    numberOfLines: 1,
-    ellipsizeMode: "tail"
-},)
-const asContainer = a.getWidgetByName('ASContainer')({children: asText, style: {flex: 1}})
+// const a = new ASWidgetsList()
+// const asText = a.getWidgets().ASText({
+//     children: 'haha',
+//     style: {fontSize: 12},
+//     numberOfLines: 1,
+//     ellipsizeMode: "tail"
+// },)
+// const asContainer = a.getWidgetByName('ASContainer')({children: asText, style: {flex: 1}})
+//
+// console.log('RESULT WIDGET:\n', asContainer , '\n')
 
-console.log('RESULT WIDGET:\n', asContainer , '\n')
 //  <ASContainer style={{"flex":1}}>
 //  <ASText style={{"fontSize":12}} numberOfLines={1} ellipsizeMode={"tail"}>haha</ASText>
 //  </ASContainer>
