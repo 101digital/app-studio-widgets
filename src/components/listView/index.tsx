@@ -9,7 +9,8 @@ export type ASListViewProps = {
 const ASListView: React.FC<ASListViewProps> = (props: ASListViewProps) => {
     const {
         data,
-        renderItem
+        renderItem,
+        ...restProps
     } = props;
 
     const keyExtractor = (item: any, index: number) => {
@@ -21,6 +22,7 @@ const ASListView: React.FC<ASListViewProps> = (props: ASListViewProps) => {
             data={data}
             renderItem={renderItem}
             keyExtractor={keyExtractor}
+            {...restProps}
         />
     );
 };
