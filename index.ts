@@ -21,4 +21,5 @@ export {default as ASStack, ASStackProps} from './src/components/stack';
 export {default as ASListView, ASListViewProps} from './src/components/listView';
 export {default as ASCircleChart, ASCircleChartProps} from './src/components/circleChart';
 export {default as ASBadge, ASBadgeProps} from './src/components/badge';
+export {default as ASPageView, ASPageViewProps} from './src/components/pageView';
 
