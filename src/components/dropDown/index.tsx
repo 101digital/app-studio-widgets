@@ -12,9 +12,9 @@ export type DropDownOptionsProps = {
 }
 
 export type ASDropDownProps =
-    Omit<DropdownProps<any>, 'labelField' | 'valueField' | 'onChange'>
+    Omit<DropdownProps<any>, 'labelField' | 'valueField' | 'onChange' | 'data'>
     & {
-    data: DropDownOptionsProps[]
+    options: DropDownOptionsProps[]
     onSelect?: (item: DropDownOptionsProps) => void
     renderLeftIcon?: () => React.ReactNode
     onChangeItem?: (item: DropDownOptionsProps) => void
@@ -24,7 +24,7 @@ export type ASDropDownProps =
 
 const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
     const {
-        data,
+        options,
         renderLeftIcon,
         placeholder = "Please select item",
         onSelect,
@@ -45,6 +45,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
         );
     };
 
+
     const _onChangeDropDownField = (item: DropDownOptionsProps) => {
         setValue?.(item?.value)
     }
@@ -59,7 +60,6 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
                 selectedTextStyle={styles.selectedTextStyle}
                 inputSearchStyle={styles.inputSearchStyle}
                 iconStyle={styles.iconStyle}
-                data={data}
                 search={search}
                 maxHeight={300}
                 value={`${field?.value}`}
@@ -68,6 +68,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
                 renderItem={renderItem}
                 placeholder={placeholder}
                 {...restProps}
+                data={options}
                 onChange={_onChangeDropDownField}
                 labelField="label"
                 valueField="value"
@@ -79,7 +80,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
 export default ASDropDown;
 
 const styles = StyleSheet.create({
-    container: {
+    container:{
         backgroundColor: colors.offWhite, borderRadius: 5, paddingTop: 5
     },
     dropdown: {
@@ -127,7 +128,7 @@ const styles = StyleSheet.create({
                 <ASDropdown
                             name={'employmentSector'}
                             label={'Employment sector'}
-                            data={[{label: 'F&B', value: 'f&b'}, {
+                            options={[{label: 'F&B', value: 'f&b'}, {
                                 label: 'Financial and Insurance/ Takaful Activities',
                                 value: 'Financial and Insurance/ Takaful Activities'
                             }]}/>
