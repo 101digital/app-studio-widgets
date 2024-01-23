@@ -12,7 +12,7 @@ export type ASImageProps = {
 }
 
 const ASImage: React.FC<ASImageProps> = (props: ASImageProps) => {
-    const {source, width = 100, height = 100, style, resizeMode = 'cover', roundImageSize = 0, ...otherProps} = props
+    const {source, width = 100, height = 100, style, resizeMode = 'cover', roundImageSize = 0, ...restprops} = props
     const imageSource = typeof source === 'string' && source?.startsWith('http') ? {uri: source} : source
     const roundImageSizeValue = convertPercentageToPx(roundImageSize, true)
 
@@ -25,13 +25,14 @@ const ASImage: React.FC<ASImageProps> = (props: ASImageProps) => {
                 borderRadius: roundImageSizeValue
             }, style]} // Default to full width and height
             resizeMode={resizeMode} // Default to 'cover'
-            {...otherProps}
+            {...restprops}
         />
     );
 };
 
 export default ASImage;
 
+//Note: ASImage example
 /*
                         <ASImage source={'https:i.imgur.com/oLgjoWx.png'} style={{width: '35%', height: '20%'}}
                          resizeMode={'contain'}/>

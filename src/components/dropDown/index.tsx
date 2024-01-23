@@ -1,4 +1,4 @@
-import React, {forwardRef, ForwardRefExoticComponent, Ref, useImperativeHandle, useState} from 'react';
+import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Dropdown} from 'react-native-element-dropdown';
 import {DropdownProps} from 'react-native-element-dropdown/src/components/Dropdown/model';
@@ -19,14 +19,10 @@ export type ASDropDownProps =
     renderLeftIcon?: () => React.ReactNode
     onChangeItem?: (item: DropDownOptionsProps) => void
     label?: string
-    name?: string | FieldHookConfig<any>
+    name: string | FieldHookConfig<any>
 }
 
-export type ASDropDownRef = {
-    onChangeItem: (item: DropDownOptionsProps) => void;
-};
-
-const ASDropDown: ForwardRefExoticComponent<any> = forwardRef((props: ASDropDownProps, ref: Ref<any>) => {
+const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
     const {
         data,
         renderLeftIcon,
@@ -38,8 +34,8 @@ const ASDropDown: ForwardRefExoticComponent<any> = forwardRef((props: ASDropDown
         name = '',
         ...restProps
     } = props
-    const [value, setValue] = useState<string | null>(null);
-    const [field, meta, helpers] = useField(name);
+    const [field, meta, helpers] = useField<string>(name);
+    const {setValue} = helpers || {};
 
     const renderItem = (item: { label: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }) => {
         return (
@@ -49,41 +45,12 @@ const ASDropDown: ForwardRefExoticComponent<any> = forwardRef((props: ASDropDown
         );
     };
 
-    // Note: Now use useField from formik, we dont change value using state anymore
-    // This component must be inside Formik component
-    const onChangeItem = (item: DropDownOptionsProps | string) => {
-        if (typeof item === 'string') {
-            data.find((i) => {
-                if (i.value === item || i.label === item) {
-                    onSelect?.(i)
-                    setValue(i?.value);
-                }
-            })
-
-
-        } else {
-            onSelect?.(item)
-            setValue(item?.value);
-        }
-    }
-
-    // Note: Now use useField from formik, we dont change value using state anymore
-    // This component must be inside Formik component
-    useImperativeHandle(
-        ref,
-        (): ASDropDownRef => ({
-            onChangeItem
-        })
-    );
-
-    const onChangeDropDownField = (item: DropDownOptionsProps | string) => {
-        field?.onChange(name)
+    const _onChangeDropDownField = (item: DropDownOptionsProps) => {
+        setValue?.(item?.value)
     }
 
     return (
-        <View style={{
-            backgroundColor: colors.offWhite, borderRadius: 5, paddingTop: 5
-        }}>
+        <View style={styles.container}>
             <ASText style={styles.labelStyle}>{label}</ASText>
 
             <Dropdown
@@ -101,17 +68,20 @@ const ASDropDown: ForwardRefExoticComponent<any> = forwardRef((props: ASDropDown
                 renderItem={renderItem}
                 placeholder={placeholder}
                 {...restProps}
-                onChange={onChangeDropDownField}
+                onChange={_onChangeDropDownField}
                 labelField="label"
                 valueField="value"
             />
         </View>
     );
-})
+}
 
 export default ASDropDown;
 
 const styles = StyleSheet.create({
+    container: {
+        backgroundColor: colors.offWhite, borderRadius: 5, paddingTop: 5
+    },
     dropdown: {
         marginVertical: 0,
         borderRadius: 5,

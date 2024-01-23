@@ -1,8 +1,13 @@
 import React from 'react';
 import {FlatList, FlatListProps, ListRenderItem} from 'react-native';
 
+export type ASListViewItemProps =  {
+    label: string
+    id?: string
+}
+
 export type ASListViewProps = FlatListProps<any> & {
-    data: any[]
+    data: ASListViewItemProps[]
     renderItem: ListRenderItem<React.ReactNode>
 }
 
@@ -14,7 +19,7 @@ const ASListView: React.FC<ASListViewProps> = (props: ASListViewProps) => {
     } = props;
 
     const keyExtractor = (item: any, index: number) => {
-        return `${item.id || item.name || item.label || ''} - ${index}`
+        return `${item.id || item.label || ''} - ${index}`
     }
 
     return (
