@@ -60,3 +60,28 @@ const styles = StyleSheet.create({
         marginLeft: 16,
     },
 });
+
+/*
+
+                        <ASListTile title={item?.label} subtitle={item?.id}
+                            leadingIcon={
+                                <Icon name="user-circle-o"
+                                      size={30}
+                                      color="theme.colors.primaryIconColor"/>
+                            }
+                            trailingIcon={<Icon name="gear" size={30} color="theme.colors.primaryIconColor"/>}
+
+
+                          <ASListView data={[{id: '1', label: 'Item 1'},
+                        {id: '2', label: 'Item 2'},
+                        {id: '3', label: 'Item 3'},]} renderItem={({item}) => (
+                        <ASListTile title={item?.label} subtitle={item?.id}
+                                    leadingIcon={
+                                        <Icon name="user-circle-o"
+                                              size={30}
+                                              color="theme.colors.primaryIconColor"/>
+                                    }
+                                    trailingIcon={<Icon name="gear" size={30} color="theme.colors.primaryIconColor"/>}
+                            />
+                        )}/>
+* */

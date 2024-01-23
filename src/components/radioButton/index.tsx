@@ -70,3 +70,8 @@ const styles = StyleSheet.create({
     },
     label: {},
 });
+
+/*
+         <ASRadioButton name={'gender'}
+                        options={[{label: 'Male', value: 'male'}, {label: 'Female', value: 'female'}]}/>
+* */
