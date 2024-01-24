@@ -80,7 +80,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
 export default ASDropDown;
 
 const styles = StyleSheet.create({
-    container:{
+    container: {
         backgroundColor: colors.offWhite, borderRadius: 5, paddingTop: 5
     },
     dropdown: {

@@ -24,4 +24,6 @@ export {default as ASBadge, ASBadgeProps} from './src/components/badge';
 export {default as ASPageView, ASPageViewProps} from './src/components/pageView';
 export {default as ASListTile, ASListTileProps} from './src/components/listTile';
 export {default as ASRadioButton, ASRadioButtonProps} from './src/components/radioButton';
+export {default as ASSlider, ASSliderProps} from './src/components/slider';
+export {default as ASCounter, ASCounterProps} from './src/components/counter';
 

@@ -1,17 +1,24 @@
 import {
+    ASBadgeProps,
     ASButtonProps,
     ASCheckBoxProps,
+    ASCircleChartProps,
     ASColumnProps,
     ASContainerProps,
+    ASCounterProps,
     ASDividerProps,
     ASDropDownProps,
     ASExpandableTextProps,
     ASFormValidationProps,
     ASImageProps,
+    ASListTileProps,
     ASListViewProps,
+    ASPageViewProps,
     ASProgressBarProps,
+    ASRadioButtonProps,
     ASRichTextProps,
     ASRowProps,
+    ASSliderProps,
     ASSpacerProps,
     ASStackProps,
     ASSwitchProps,
@@ -44,17 +51,24 @@ export type WidgetsList = {
     ASProgressBar: (attributes: ASProgressBarProps) => string
     ASStack: (attributes: ASStackProps) => string
     ASListView: (attributes: ASListViewProps) => string
+    ASCircleChart: (attributes: ASCircleChartProps) => string
+    ASBadge: (attributes: ASBadgeProps) => string
+    ASPageView: (attributes: ASPageViewProps) => string
+    ASListTile: (attributes: ASListTileProps) => string
+    ASRadioButton: (attributes: ASRadioButtonProps) => string
+    ASSlider: (attributes: ASSliderProps) => string
+    ASCounter: (attributes: ASCounterProps) => string
 }
 
 export class ASWidgetsList {
 
     constructor() {
     }
-    // ASContainerProps | ASTextProps | ASButtonProps | ASTextFieldProps | ASSpacerProps | ASDividerProps | ASExpandableTextProps | ASCheckBoxProps | ASProgressBarProps | ASListViewProps
-    private static getWidgetAttributes(attributes:any): string {
+
+    private static getWidgetAttributes(attributes: any): string {
         let result: string = ''
         const atrributesObj = {...attributes}
-        if(atrributesObj?.children) {
+        if (atrributesObj?.children) {
             delete atrributesObj['children']
         }
 
@@ -104,6 +118,13 @@ export class ASWidgetsList {
             ASProgressBar: (attributes: ASProgressBarProps) => `<ASProgressBar${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
             ASStack: (attributes: ASStackProps) => `<ASStack${ASWidgetsList.getWidgetAttributes(attributes)}>${attributes?.children}</ASStack>`,
             ASListView: (attributes: ASListViewProps) => `<ASListView${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
+            ASCircleChart: (attributes: ASCircleChartProps) => `<ASCircleChart${ASWidgetsList.getWidgetAttributes(attributes)}>${attributes?.children}</ASCircleChart>`,
+            ASBadge: (attributes: ASBadgeProps) => `<ASBadge${ASWidgetsList.getWidgetAttributes(attributes)}>${attributes?.children}</ASBadge>`,
+            ASPageView: (attributes: ASPageViewProps) => `<ASPageView${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
+            ASListTile: (attributes: ASListTileProps) => `<ASListTile${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
+            ASRadioButton: (attributes: ASRadioButtonProps) => `<ASRadioButton${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
+            ASSlider: (attributes: ASSliderProps) => `<ASSlider${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
+            ASCounter: (attributes: ASCounterProps) => `<ASCounter${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
         }
     }
 
