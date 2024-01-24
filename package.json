@@ -15,7 +15,7 @@
     "watch": "tsc -w"
   },
   "keywords": [],
-  "author": "Hua Cat Luong ",
+  "author": "Hua Cat Luong",
   "dependencies": {
     "@react-native-community/checkbox": "^0.5.7",
     "@react-native-community/slider": "^4.5.0",
