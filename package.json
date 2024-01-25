@@ -22,10 +22,12 @@
     "@types/xdate": "^0.8.32",
     "add": "^2.0.6",
     "currency.js": "^2.0.4",
+    "date-fns": "^3.3.1",
     "formik": "^2.4.5",
     "lodash": "^4.17.21",
     "react": "18.2.0",
     "react-native": "0.72.6",
+    "react-native-calendars": "^1.1303.0",
     "react-native-element-dropdown": "^2.10.1",
     "react-native-masked-text": "^1.13.0",
     "react-native-mime-types": "^2.3.0",
@@ -55,9 +57,10 @@
     "typescript": "4.8.4"
   },
   "peerDependencies": {
+    "@react-native-community/slider": "^4.5.0",
+    "react-native-calendars": "^1.1303.0",
     "react-native-safe-area-context": "^4.7.1",
-    "react-native-swiper": "^1.6.0",
-    "@react-native-community/slider": "^4.5.0"
+    "react-native-swiper": "^1.6.0"
   },
   "resolutions": {
     "@types/react": "17.0.43"
