@@ -2,8 +2,11 @@ import React, {useEffect, useState} from 'react';
 import {StyleSheet} from 'react-native';
 import {Calendar, CalendarProps, DateData} from 'react-native-calendars';
 import {addDays, format, isBefore, parseISO} from "date-fns";
+import {colors} from "../../utils/colors";
 
-export type  ASCalendarProps = CalendarProps & {}
+export type  ASCalendarProps = CalendarProps & {
+    onChange?: (dates:any)=> any
+}
 
 const ASCalendar: React.FC<ASCalendarProps> = (props: ASCalendarProps) => {
     const {
@@ -11,6 +14,7 @@ const ASCalendar: React.FC<ASCalendarProps> = (props: ASCalendarProps) => {
         markedDates,
         markingType,
         minDate,
+        onChange,
         ...restProps
     } = props
     const [selected, setSelected] = useState<string>('');
@@ -19,13 +23,9 @@ const ASCalendar: React.FC<ASCalendarProps> = (props: ASCalendarProps) => {
     const isMarkingTypePeriod = markingType === 'period'
 
     const generateDateList = (startDateStr: string, endDateStr: string) => {
-
         const startDate = parseISO(startDateStr);
         const endDate = parseISO(endDateStr);
-
         const dates: any[] = [];
-
-
         let currentDate = startDate;
 
         while (isBefore(currentDate, endDate)) {
@@ -34,7 +34,6 @@ const ASCalendar: React.FC<ASCalendarProps> = (props: ASCalendarProps) => {
         }
 
         dates.push(format(endDate, 'yyyy-MM-dd'));
-
         return dates;
     };
 
@@ -42,58 +41,69 @@ const ASCalendar: React.FC<ASCalendarProps> = (props: ASCalendarProps) => {
         if (isMarkingTypePeriod && !!periodMarking[0]) {
             return periodMarking[0];
         }
-
         return minDate
     }
 
     useEffect(() => {
         if (isMarkingTypePeriod) {
+
+            if(!periodMarking || periodMarking?.length === 0){
+                setMarkedDatesState([])
+            }
+
+            if(periodMarking?.[0]){
+                setMarkedDatesState({
+                    [periodMarking[0]]:{
+                        color: colors.primaryColor,
+                        startingDay: true,
+                        textColor: colors.offWhite,
+                    }
+                })
+            }
+
             if (periodMarking.length === 2) {
                 const periodDateList = generateDateList(periodMarking[0], periodMarking[1])
-
-
                 const res: any = {}
-
 
                 for (let date of periodDateList) {
                     res[date] = {
-                        // selected: true,
-                        // disableTouchEvent: true,
-                        // selectedDotColor: 'orange',
-                        selectedColor: 'blue',
-                        color: 'blue',
+                        color: colors.primaryColor,
                         startingDay: periodDateList.indexOf(date) === 0,
-                        endingDay: periodDateList.indexOf(date) === periodDateList.length - 1
+                        endingDay: periodDateList.indexOf(date) === periodDateList.length - 1,
+                        textColor: colors.offWhite,
                     }
                 }
-
                 setMarkedDatesState(res)
-                console.log('iausdhfdsf-generateDateList', res)
-
             }
+
         }
 
     }, [periodMarking, isMarkingTypePeriod])
 
+
     const _onDayPress = (day: DateData) => {
         if (isMarkingTypePeriod) {
-            let _periodMarkingTemp = periodMarking
+            const responsePeriodDates:any = {}
 
             if (!periodMarking[0]) {
                 setPeriodMarking([day.dateString]);
+                responsePeriodDates.startingDay = day.dateString
             } else {
-
-                setPeriodMarking([periodMarking[0], day.dateString]);
+                setPeriodMarking([periodMarking?.[0], day.dateString]);
+                responsePeriodDates.startingDay = periodMarking?.[0]
+                responsePeriodDates.endingDay = day.dateString
             }
 
-            if (periodMarking[0] === day.dateString) {
+            if (periodMarking?.[0] === day.dateString) {
                 setPeriodMarking([]);
             }
+            onChange?.(responsePeriodDates)
+
         } else {
             setSelected(day.dateString);
+            onChange?.(day.dateString)
         }
     }
-
 
     return (
         <Calendar
@@ -108,12 +118,12 @@ const ASCalendar: React.FC<ASCalendarProps> = (props: ASCalendarProps) => {
                 [selected]: {
                     selected: true,
                     disableTouchEvent: true,
-                    selectedDotColor: 'orange',
-                    selectedColor: 'green'
+                    selectedColor: colors.primaryColor
                 },
                 ...markedDatesState,
                 ...markedDates
             }}
+            markingType={markingType}
             style={[styles.calendarStyles, style]}
         />
     );

@@ -1,7 +1,9 @@
 import {
     ASBadgeProps,
     ASButtonProps,
+    ASCalendarProps,
     ASCheckBoxProps,
+    ASChoiceChipsProps,
     ASCircleChartProps,
     ASColumnProps,
     ASContainerProps,
@@ -25,8 +27,7 @@ import {
     ASTextFieldProps,
     ASTextProps,
     ASVerticalDividerProps,
-    ASWrapProps,
-    ASChoiceChipsProps, ASChoiceChips
+    ASWrapProps
 } from "../../index";
 
 export type WidgetsName = keyof WidgetsList
@@ -60,6 +61,7 @@ export type WidgetsList = {
     ASSlider: (attributes: ASSliderProps) => string
     ASCounter: (attributes: ASCounterProps) => string
     ASChoiceChips: (attributes: ASChoiceChipsProps) => string
+    ASCalendar: (attributes: ASCalendarProps) => string
 }
 
 export class ASWidgetsList {
@@ -128,6 +130,7 @@ export class ASWidgetsList {
             ASSlider: (attributes: ASSliderProps) => `<ASSlider${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
             ASCounter: (attributes: ASCounterProps) => `<ASCounter${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
             ASChoiceChips: (attributes: ASChoiceChipsProps) => `<ASChoiceChips${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
+            ASCalendar: (attributes: ASCalendarProps) => `<ASCalendar${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
         }
     }
 
