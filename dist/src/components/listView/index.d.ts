@@ -1,7 +1,11 @@
 import React from 'react';
-import { ListRenderItem, FlatListProps } from 'react-native';
+import { FlatListProps, ListRenderItem } from 'react-native';
+export declare type ASListViewItemProps = {
+    label: string;
+    id?: string;
+};
 export declare type ASListViewProps = FlatListProps<any> & {
-    data: any[];
+    data: ASListViewItemProps[];
     renderItem: ListRenderItem<React.ReactNode>;
 };
 declare const ASListView: React.FC<ASListViewProps>;

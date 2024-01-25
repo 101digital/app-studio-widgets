@@ -11,7 +11,7 @@ export { default as ASVerticalDivider, ASVerticalDividerProps } from './src/comp
 export { default as ASFormValidation, ASFormValidationProps } from './src/components/formValidation';
 export { default as ASRichText, ASRichTextProps } from './src/components/richText';
 export { default as ASImage, ASImageProps } from './src/components/image';
-export { default as ASDropdown, ASDropDownRef, DropDownOptionsProps, ASDropDownProps } from './src/components/dropDown';
+export { default as ASDropDown, DropDownOptionsProps, ASDropDownProps } from './src/components/dropDown';
 export { default as ASExpandableText, ASExpandableTextProps } from './src/components/expandableText';
 export { default as ASWrap, ASWrapProps, ASWrapperDirection } from './src/components/wrap';
 export { default as ASSwitch, ASSwitchProps } from './src/components/switch';
@@ -19,4 +19,11 @@ export { default as ASCheckBox, ASCheckBoxProps } from './src/components/checkBo
 export { default as ASProgressBar, ASProgressBarProps } from './src/components/progressBar';
 export { default as ASStack, ASStackProps } from './src/components/stack';
 export { default as ASListView, ASListViewProps } from './src/components/listView';
-export { default as ASGridView, ASGridViewProps } from './src/components/gridView';
+export { default as ASCircleChart, ASCircleChartProps } from './src/components/circleChart';
+export { default as ASBadge, ASBadgeProps } from './src/components/badge';
+export { default as ASPageView, ASPageViewProps } from './src/components/pageView';
+export { default as ASListTile, ASListTileProps } from './src/components/listTile';
+export { default as ASRadioButton, ASRadioButtonProps } from './src/components/radioButton';
+export { default as ASSlider, ASSliderProps } from './src/components/slider';
+export { default as ASCounter, ASCounterProps } from './src/components/counter';
+export { default as ASChoiceChips, ASChoiceChipsProps, ChipProps } from './src/components/choicechips';

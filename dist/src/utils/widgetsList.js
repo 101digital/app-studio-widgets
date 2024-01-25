@@ -12,7 +12,6 @@ var __assign = (this && this.__assign) || function () {
 var ASWidgetsList = /** @class */ (function () {
     function ASWidgetsList() {
     }
-    // ASContainerProps | ASTextProps | ASButtonProps | ASTextFieldProps | ASSpacerProps | ASDividerProps | ASExpandableTextProps | ASCheckBoxProps | ASProgressBarProps | ASListViewProps
     ASWidgetsList.getWidgetAttributes = function (attributes) {
         var result = '';
         var atrributesObj = __assign({}, attributes);
@@ -61,6 +60,14 @@ var ASWidgetsList = /** @class */ (function () {
             ASProgressBar: function (attributes) { return "<ASProgressBar".concat(ASWidgetsList.getWidgetAttributes(attributes), "/>"); },
             ASStack: function (attributes) { return "<ASStack".concat(ASWidgetsList.getWidgetAttributes(attributes), ">").concat(attributes === null || attributes === void 0 ? void 0 : attributes.children, "</ASStack>"); },
             ASListView: function (attributes) { return "<ASListView".concat(ASWidgetsList.getWidgetAttributes(attributes), "/>"); },
+            ASCircleChart: function (attributes) { return "<ASCircleChart".concat(ASWidgetsList.getWidgetAttributes(attributes), ">").concat(attributes === null || attributes === void 0 ? void 0 : attributes.children, "</ASCircleChart>"); },
+            ASBadge: function (attributes) { return "<ASBadge".concat(ASWidgetsList.getWidgetAttributes(attributes), ">").concat(attributes === null || attributes === void 0 ? void 0 : attributes.children, "</ASBadge>"); },
+            ASPageView: function (attributes) { return "<ASPageView".concat(ASWidgetsList.getWidgetAttributes(attributes), "/>"); },
+            ASListTile: function (attributes) { return "<ASListTile".concat(ASWidgetsList.getWidgetAttributes(attributes), "/>"); },
+            ASRadioButton: function (attributes) { return "<ASRadioButton".concat(ASWidgetsList.getWidgetAttributes(attributes), "/>"); },
+            ASSlider: function (attributes) { return "<ASSlider".concat(ASWidgetsList.getWidgetAttributes(attributes), "/>"); },
+            ASCounter: function (attributes) { return "<ASCounter".concat(ASWidgetsList.getWidgetAttributes(attributes), "/>"); },
+            ASChoiceChips: function (attributes) { return "<ASChoiceChips".concat(ASWidgetsList.getWidgetAttributes(attributes), "/>"); },
         };
     };
     ASWidgetsList.prototype.getWidgetByName = function (name) {

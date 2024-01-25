@@ -52,7 +52,7 @@ const ASCounter: React.FC<ASCounterProps> = (props: ASCounterProps) => {
                 <ASText style={styles.countText}>{count}</ASText>
                 <ASButton simpleTextButton onPress={handleIncrement}
                           style={styles.button}
-                          textStyle={[styles.buttonText,{fontSize: 18}]}
+                          textStyle={styles.buttonPlusText}
                           hitSlop={{top: 5, bottom: 5, left: 5, right: 5}}
                           label={'＋'}/>
             </ASRow>
@@ -81,7 +81,11 @@ const styles = StyleSheet.create({
         color: colors.black700,
         fontSize: 21,
         fontWeight:'bold'
-
+    },
+    buttonPlusText: {
+        color: colors.black700,
+        fontSize: 18,
+        fontWeight:'bold'
     },
     countText: {
         color: colors.black700,

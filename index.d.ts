@@ -26,4 +26,6 @@ export {default as ASListTile, ASListTileProps} from './src/components/listTile'
 export {default as ASRadioButton, ASRadioButtonProps} from './src/components/radioButton';
 export {default as ASSlider, ASSliderProps} from './src/components/slider';
 export {default as ASCounter, ASCounterProps} from './src/components/counter';
+export {default as ASChoiceChips, ASChoiceChipsProps,ChipProps} from './src/components/choicechips';
+
 

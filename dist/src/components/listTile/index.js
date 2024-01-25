@@ -1,41 +1,18 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {colors} from "../../utils/colors";
-
-export type ASListTileProps = {
-    title: string;
-    subtitle?: string;
-    leadingIcon?: React.ReactNode;
-    trailingIcon?: React.ReactNode;
-    onPress?: () => void;
-}
-
-const ASListTile: React.FC<ASListTileProps> = (props: ASListTileProps) => {
-    const {
-        title,
-        subtitle,
-        leadingIcon,
-        trailingIcon,
-        onPress,
-    } = props
-
-    return (
-        <TouchableOpacity onPress={onPress}>
-            <View style={styles.container}>
-                {leadingIcon && <View style={styles.leadingIcon}>{leadingIcon}</View>}
-                <View style={styles.textContainer}>
-                    <Text style={styles.title}>{title}</Text>
-                    {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
-                </View>
-                {trailingIcon && <View style={styles.trailingIcon}>{trailingIcon}</View>}
-            </View>
-        </TouchableOpacity>
-    );
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { colors } from "../../utils/colors";
+var ASListTile = function (props) {
+    var title = props.title, subtitle = props.subtitle, leadingIcon = props.leadingIcon, trailingIcon = props.trailingIcon, onPress = props.onPress;
+    return (React.createElement(TouchableOpacity, { onPress: onPress },
+        React.createElement(View, { style: styles.container },
+            leadingIcon && React.createElement(View, { style: styles.leadingIcon }, leadingIcon),
+            React.createElement(View, { style: styles.textContainer },
+                React.createElement(Text, { style: styles.title }, title),
+                subtitle && React.createElement(Text, { style: styles.subtitle }, subtitle)),
+            trailingIcon && React.createElement(View, { style: styles.trailingIcon }, trailingIcon))));
 };
-
 export default ASListTile;
-
-const styles = StyleSheet.create({
+var styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -60,7 +37,6 @@ const styles = StyleSheet.create({
         marginLeft: 16,
     },
 });
-
 /*
 
                         <ASListTile title={item?.label} subtitle={item?.id}

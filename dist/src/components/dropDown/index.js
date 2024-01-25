@@ -20,52 +20,32 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { forwardRef, useImperativeHandle, useState } from 'react';
+import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import ASText from "../text";
 import { colors } from "../../utils/colors";
 import { useField } from "formik";
-var ASDropDown = forwardRef(function (props, ref) {
-    var data = props.data, renderLeftIcon = props.renderLeftIcon, _a = props.placeholder, placeholder = _a === void 0 ? "Please select item" : _a, onSelect = props.onSelect, _b = props.searchPlaceholder, searchPlaceholder = _b === void 0 ? 'Search...' : _b, _c = props.search, search = _c === void 0 ? false : _c, label = props.label, _d = props.name, name = _d === void 0 ? '' : _d, restProps = __rest(props, ["data", "renderLeftIcon", "placeholder", "onSelect", "searchPlaceholder", "search", "label", "name"]);
-    var _e = useState(null), value = _e[0], setValue = _e[1];
-    var _f = useField(name), field = _f[0], meta = _f[1], helpers = _f[2];
+var ASDropDown = function (props) {
+    var options = props.options, renderLeftIcon = props.renderLeftIcon, _a = props.placeholder, placeholder = _a === void 0 ? "Please select item" : _a, onSelect = props.onSelect, _b = props.searchPlaceholder, searchPlaceholder = _b === void 0 ? 'Search...' : _b, _c = props.search, search = _c === void 0 ? false : _c, label = props.label, _d = props.name, name = _d === void 0 ? '' : _d, restProps = __rest(props, ["options", "renderLeftIcon", "placeholder", "onSelect", "searchPlaceholder", "search", "label", "name"]);
+    var _e = useField(name), field = _e[0], meta = _e[1], helpers = _e[2];
+    var setValue = (helpers || {}).setValue;
     var renderItem = function (item) {
         return (React.createElement(View, { style: styles.item },
             React.createElement(Text, { style: styles.textItem }, item.label)));
     };
-    // Note: Now use useField from formik, we dont change value using state anymore
-    // This component must be inside Formik component
-    var onChangeItem = function (item) {
-        if (typeof item === 'string') {
-            data.find(function (i) {
-                if (i.value === item || i.label === item) {
-                    onSelect === null || onSelect === void 0 ? void 0 : onSelect(i);
-                    setValue(i === null || i === void 0 ? void 0 : i.value);
-                }
-            });
-        }
-        else {
-            onSelect === null || onSelect === void 0 ? void 0 : onSelect(item);
-            setValue(item === null || item === void 0 ? void 0 : item.value);
-        }
+    var _onChangeDropDownField = function (item) {
+        setValue === null || setValue === void 0 ? void 0 : setValue(item === null || item === void 0 ? void 0 : item.value);
     };
-    // Note: Now use useField from formik, we dont change value using state anymore
-    // This component must be inside Formik component
-    useImperativeHandle(ref, function () { return ({
-        onChangeItem: onChangeItem
-    }); });
-    var onChangeDropDownField = function (item) {
-        field === null || field === void 0 ? void 0 : field.onChange(name);
-    };
-    return (React.createElement(View, { style: {
-            backgroundColor: colors.offWhite, borderRadius: 5, paddingTop: 5
-        } },
+    return (React.createElement(View, { style: styles.container },
         React.createElement(ASText, { style: styles.labelStyle }, label),
-        React.createElement(Dropdown, __assign({ style: styles.dropdown, placeholderStyle: styles.placeholderStyle, selectedTextStyle: styles.selectedTextStyle, inputSearchStyle: styles.inputSearchStyle, iconStyle: styles.iconStyle, data: data, search: search, maxHeight: 300, value: "".concat(field === null || field === void 0 ? void 0 : field.value), searchPlaceholder: searchPlaceholder, renderLeftIcon: renderLeftIcon, renderItem: renderItem, placeholder: placeholder }, restProps, { onChange: onChangeDropDownField, labelField: "label", valueField: "value" }))));
-});
+        React.createElement(Dropdown, __assign({ style: styles.dropdown, placeholderStyle: styles.placeholderStyle, selectedTextStyle: styles.selectedTextStyle, inputSearchStyle: styles.inputSearchStyle, iconStyle: styles.iconStyle, search: search, maxHeight: 300, value: "".concat(field === null || field === void 0 ? void 0 : field.value), searchPlaceholder: searchPlaceholder, renderLeftIcon: renderLeftIcon, renderItem: renderItem, placeholder: placeholder }, restProps, { data: options, onChange: _onChangeDropDownField, labelField: "label", valueField: "value" }))));
+};
 export default ASDropDown;
 var styles = StyleSheet.create({
+    container: {
+        backgroundColor: colors.offWhite, borderRadius: 5, paddingTop: 5
+    },
     dropdown: {
         marginVertical: 0,
         borderRadius: 5,
@@ -110,7 +90,7 @@ var styles = StyleSheet.create({
                 <ASDropdown
                             name={'employmentSector'}
                             label={'Employment sector'}
-                            data={[{label: 'F&B', value: 'f&b'}, {
+                            options={[{label: 'F&B', value: 'f&b'}, {
                                 label: 'Financial and Insurance/ Takaful Activities',
                                 value: 'Financial and Insurance/ Takaful Activities'
                             }]}/>

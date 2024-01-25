@@ -21,15 +21,26 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 import React from 'react';
-import { FlatList, StyleSheet } from 'react-native';
+import { FlatList } from 'react-native';
 var ASListView = function (props) {
     var data = props.data, renderItem = props.renderItem, restProps = __rest(props, ["data", "renderItem"]);
     var keyExtractor = function (item, index) {
-        return "".concat(item.id || item.name || item.label || '', " - ").concat(index);
+        return "".concat(item.id || item.label || '', " - ").concat(index);
     };
     return (React.createElement(FlatList, __assign({ data: data, renderItem: renderItem, keyExtractor: keyExtractor }, restProps)));
 };
-var styles = StyleSheet.create({
-    container: {}
-});
 export default ASListView;
+// Note: ASListView example
+/*
+             <ASListView data={[{id: '1', title: 'Item 1'},
+                        {id: '2', title: 'Item 2'},
+                        {id: '3', title: 'Item 3'},]}
+                numColumns={3}
+                renderItem={({item}: { item: any }) => {
+                    return (
+                        <ASColumn  style={{alignItems:'center'}}>
+                            <ASText style={{flex:1, backgroundColor:'red',}}>{item?.title}</ASText>
+                        </ASColumn>
+                    )
+                }}/>
+* */

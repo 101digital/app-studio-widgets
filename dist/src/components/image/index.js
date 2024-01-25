@@ -24,16 +24,17 @@ import React from 'react';
 import { Image } from 'react-native';
 import { convertPercentageToPx } from '../../utils/commonUtils';
 var ASImage = function (props) {
-    var source = props.source, _a = props.width, width = _a === void 0 ? 100 : _a, _b = props.height, height = _b === void 0 ? 100 : _b, style = props.style, _c = props.resizeMode, resizeMode = _c === void 0 ? 'cover' : _c, _d = props.roundImageSize, roundImageSize = _d === void 0 ? 0 : _d, otherProps = __rest(props, ["source", "width", "height", "style", "resizeMode", "roundImageSize"]);
+    var source = props.source, _a = props.width, width = _a === void 0 ? 100 : _a, _b = props.height, height = _b === void 0 ? 100 : _b, style = props.style, _c = props.resizeMode, resizeMode = _c === void 0 ? 'cover' : _c, _d = props.roundImageSize, roundImageSize = _d === void 0 ? 0 : _d, restprops = __rest(props, ["source", "width", "height", "style", "resizeMode", "roundImageSize"]);
     var imageSource = typeof source === 'string' && (source === null || source === void 0 ? void 0 : source.startsWith('http')) ? { uri: source } : source;
     var roundImageSizeValue = convertPercentageToPx(roundImageSize, true);
     return (React.createElement(Image, __assign({ source: imageSource, style: [{
                 width: roundImageSizeValue || width,
                 height: roundImageSizeValue || height,
                 borderRadius: roundImageSizeValue
-            }, style], resizeMode: resizeMode }, otherProps)));
+            }, style], resizeMode: resizeMode }, restprops)));
 };
 export default ASImage;
+//Note: ASImage example
 /*
                         <ASImage source={'https:i.imgur.com/oLgjoWx.png'} style={{width: '35%', height: '20%'}}
                          resizeMode={'contain'}/>

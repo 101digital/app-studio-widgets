@@ -25,7 +25,8 @@ import {
     ASTextFieldProps,
     ASTextProps,
     ASVerticalDividerProps,
-    ASWrapProps
+    ASWrapProps,
+    ASChoiceChipsProps, ASChoiceChips
 } from "../../index";
 
 export type WidgetsName = keyof WidgetsList
@@ -58,6 +59,7 @@ export type WidgetsList = {
     ASRadioButton: (attributes: ASRadioButtonProps) => string
     ASSlider: (attributes: ASSliderProps) => string
     ASCounter: (attributes: ASCounterProps) => string
+    ASChoiceChips: (attributes: ASChoiceChipsProps) => string
 }
 
 export class ASWidgetsList {
@@ -125,6 +127,7 @@ export class ASWidgetsList {
             ASRadioButton: (attributes: ASRadioButtonProps) => `<ASRadioButton${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
             ASSlider: (attributes: ASSliderProps) => `<ASSlider${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
             ASCounter: (attributes: ASCounterProps) => `<ASCounter${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
+            ASChoiceChips: (attributes: ASChoiceChipsProps) => `<ASChoiceChips${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
         }
     }
 

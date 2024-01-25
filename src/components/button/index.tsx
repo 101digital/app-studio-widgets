@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, TextStyle, TouchableOpacity, TouchableOpacityProps, ViewStyle} from 'react-native';
+import {StyleProp, StyleSheet, TextStyle, TouchableOpacity, TouchableOpacityProps, ViewStyle} from 'react-native';
 import {colors} from "../../utils/colors";
 import ASText from "../text";
 
@@ -7,7 +7,7 @@ export type  ASButtonProps = TouchableOpacityProps & {
     label?: string;
     onPress: () => void
     style?: ViewStyle;
-    textStyle?: TextStyle
+    textStyle?:TextStyle
     disabled?: boolean
     children?: React.ReactNode
     simpleTextButton?: boolean

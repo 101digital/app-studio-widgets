@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "NOTE": "Need \"moduleResolution\": \"node\", and \"skipLibCheck\": true,  to be able to run yarn build",
     "target": "es5",
     "strict": true,
     "esModuleInterop": true,
@@ -11,6 +10,8 @@
     "rootDir": ".",
     "baseUrl": "./src",
     "module": "es6",
+
+    //"Need "moduleResolution": "node", and "skipLibCheck": true,  to be able to run yarn build"
 //    "moduleResolution": "node",
     "skipLibCheck": false,
     "paths": {
