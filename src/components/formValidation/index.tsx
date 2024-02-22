@@ -20,9 +20,9 @@ const ASFormValidation: React.FC<ASFormValidationProps> = (props: ASFormValidati
             onSubmit={onSubmit}>
             {(formikProps: FormikProps<typeof initialValues | any>) => {
                 return (
-                    <View>
+                    <>
                         {children(formikProps)}
-                    </View>
+                    </>
                 )
             }}
         </Formik>

@@ -8,6 +8,7 @@ export type ASContainerProps = SafeAreaViewProps & {
     isScrollable?: boolean
     scrollViewContentContainerStyle?: StyleProp<ViewStyle> | undefined
     scrollViewProps?: ScrollViewProps
+    disabledSafeArea?: boolean
 }
 
 const ASContainer: React.FC<ASContainerProps> = (props: ASContainerProps) => {
@@ -17,13 +18,16 @@ const ASContainer: React.FC<ASContainerProps> = (props: ASContainerProps) => {
         isScrollable = true,
         scrollViewContentContainerStyle,
         scrollViewProps,
+        disabledSafeArea,
         ...restProps
     } = props || {}
 
     return (
-        <SafeAreaView {...restProps} style={[styles.container, style]}>
+        <SafeAreaView edges={disabledSafeArea ? [] : ['right', 'left', 'top', "bottom"]} {...restProps}
+                      style={[styles.container, style]}>
             {isScrollable ? (
-                    <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false} {...scrollViewProps}
+                    <ScrollView showsVerticalScrollIndicator={false}
+                                showsHorizontalScrollIndicator={false} {...scrollViewProps}
                                 contentContainerStyle={[styles.scrollViewStyle, scrollViewContentContainerStyle]}>
                         {children}
                     </ScrollView>

@@ -1,25 +1,41 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {ColorValue, StyleProp, StyleSheet, TextStyle, View, ViewStyle} from 'react-native';
 import {screenWidth} from "../../utils/commonUtils";
 import {colors} from "../../utils/colors";
 import ASText from "../text";
 
 export type ASProgressBarProps = {
-    progressBarTitle: string,
+    progressBarTitle?: string,
     progressValue: number;
+    progressCurrentStyle?: StyleProp<ViewStyle>;
+    progressTitleStyle?: StyleProp<TextStyle>;
+    progressBarStyle?: StyleProp<ViewStyle>;
+    activeColor?: ColorValue
+    inActiveColor?: ColorValue
 }
 
 const ASProgressBar: React.FC<ASProgressBarProps> = (props: ASProgressBarProps) => {
-    const {progressBarTitle = '', progressValue} = props
+    const {
+        progressBarTitle = '',
+        progressValue,
+        progressCurrentStyle,
+        progressTitleStyle,
+        progressBarStyle,
+        activeColor,
+        inActiveColor
+    } = props
 
     return (
         <View style={styles.progressBarContainer}>
-            <ASText style={styles.progressBarText}>{progressBarTitle}</ASText>
-            <View style={styles.progressBar}>
+            {!!progressBarTitle &&
+                <ASText style={[styles.progressBarText, progressTitleStyle]}>{progressBarTitle}</ASText>}
+            <View style={[styles.progressBar, progressBarStyle, {backgroundColor: inActiveColor}]}>
                 <View
                     style={[
                         styles.progressCurrent,
                         {width: `${progressValue / 100 * 100}%`},
+                        progressCurrentStyle,
+                        {backgroundColor: activeColor}
                     ]}
                 />
             </View>
