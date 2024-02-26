@@ -12,6 +12,16 @@ export type ASPageViewProps = SwiperProps & {
 const ASPageView: React.FC<ASPageViewProps> = (props: ASPageViewProps) => {
     const {pages, style, paginationStyle, paginationBottomPosition = 15, ...restprops} = props
     const [height, setHeight] = useState<number>(0)
+    const [startSwiper, setStartSwiper] = useState<boolean>(false)
+
+    useState(() => {
+        const timeout = setTimeout(() => {
+            setStartSwiper(true)
+        }, 100)
+        return () => {
+            clearTimeout(timeout)
+        }
+    }, [])
 
     const handleSetHeight = (value: number) => {
         if (value > height) {
@@ -24,6 +34,7 @@ const ASPageView: React.FC<ASPageViewProps> = (props: ASPageViewProps) => {
     }
 
     return (
+        !!startSwiper &&
         <Swiper
             showsButtons={false}
             loop={false}

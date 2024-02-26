@@ -27,7 +27,8 @@ import {
     ASTextFieldProps,
     ASTextProps,
     ASVerticalDividerProps,
-    ASWrapProps
+    ASWrapProps,
+    ASTimerProps, ASTimer
 } from "../../index";
 
 export type WidgetsName = keyof WidgetsList
@@ -62,6 +63,7 @@ export type WidgetsList = {
     ASCounter: (attributes: ASCounterProps) => string
     ASChoiceChips: (attributes: ASChoiceChipsProps) => string
     ASCalendar: (attributes: ASCalendarProps) => string
+    ASTimer: (attributes: ASTimerProps) => string
 }
 
 export class ASWidgetsList {
@@ -131,6 +133,7 @@ export class ASWidgetsList {
             ASCounter: (attributes: ASCounterProps) => `<ASCounter${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
             ASChoiceChips: (attributes: ASChoiceChipsProps) => `<ASChoiceChips${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
             ASCalendar: (attributes: ASCalendarProps) => `<ASCalendar${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
+            ASTimer: (attributes: ASTimer) => `<ASTimer${ASWidgetsList.getWidgetAttributes(attributes)}/>`
         }
     }
 

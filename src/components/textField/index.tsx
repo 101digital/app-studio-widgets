@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
         flex: 1,
         fontSize: 12,
         color: colors.black700,
-        paddingVertical: 0,
+        paddingVertical: 8,
         paddingHorizontal: 0
     },
     errorTextStyle: {

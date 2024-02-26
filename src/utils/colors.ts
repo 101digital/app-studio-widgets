@@ -1,6 +1,6 @@
 export type ThemeColorProps = {
-  primaryColor?: string;
-  secondaryColor?: string;
+  primaryColor: string;
+  secondaryColor: string;
   inputTextColor?: string;
   primaryTextColor?: string;
   secondaryTextColor?: string;
@@ -60,6 +60,7 @@ export type ThemeColorProps = {
   neutral?: string;
   alertSubtitle?: string;
   offWhite?: string;
+  offWhite2: string;
   primayEternalBloom200?: string;
   green?: string;
 };
@@ -67,6 +68,7 @@ export type ThemeColorProps = {
 export const colors: ThemeColorProps = {
   alertSubtitle: '#4D4D4D',
   offWhite: '#FCFCFC',
+  offWhite2: '#FAF9F5',
   btnColor: '#1B1B1B',
   inputColor: '#858585',
   inputTextColor: '#1A1A1A',

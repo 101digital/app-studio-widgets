@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {ImageStyle, StyleProp, StyleSheet, Text, View, ViewStyle} from 'react-native';
 import {Dropdown} from 'react-native-element-dropdown';
 import {DropdownProps} from 'react-native-element-dropdown/src/components/Dropdown/model';
 import ASText from "../text";
@@ -20,6 +20,8 @@ export type ASDropDownProps =
     onChangeItem?: (item: DropDownOptionsProps) => void
     label?: string
     name: string | FieldHookConfig<any>
+    containerStyle?: StyleProp<ViewStyle>
+    iconStyles?: StyleProp<ImageStyle>
 }
 
 const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
@@ -32,6 +34,8 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
         search = false,
         label,
         name = '',
+        containerStyle,
+        iconStyles,
         ...restProps
     } = props
     const [field, meta, helpers] = useField<string>(name);
@@ -45,21 +49,20 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
         );
     };
 
-
     const _onChangeDropDownField = (item: DropDownOptionsProps) => {
         setValue?.(item?.value)
     }
 
     return (
-        <View style={styles.container}>
-            <ASText style={styles.labelStyle}>{label}</ASText>
+        <View style={[styles.container, containerStyle]}>
+            {!!label && <ASText style={styles.labelStyle}>{label}</ASText>}
 
             <Dropdown
                 style={styles.dropdown}
                 placeholderStyle={styles.placeholderStyle}
                 selectedTextStyle={styles.selectedTextStyle}
                 inputSearchStyle={styles.inputSearchStyle}
-                iconStyle={styles.iconStyle}
+                iconStyle={[styles.iconStyle,iconStyles]}
                 search={search}
                 maxHeight={300}
                 value={`${field?.value}`}
@@ -105,12 +108,13 @@ const styles = StyleSheet.create({
     selectedTextStyle: {
         fontSize: 12,
         color: colors.black700,
-        paddingHorizontal: 15,
+        paddingRight: 25,
+        paddingLeft: 10,
     },
     iconStyle: {
         width: 20,
         height: 20,
-        marginRight: 15
+        marginRight: 14,
     },
     inputSearchStyle: {
         height: 40,

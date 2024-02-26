@@ -3,6 +3,8 @@ import {ColorValue, StyleProp, StyleSheet, TextStyle, TouchableOpacity, View, Vi
 import {FieldHookConfig, useField} from "formik";
 import ASText from "../text";
 import {colors} from "../../utils/colors";
+import {TickIcon} from "../../assets/icon";
+import ASRow from "../row";
 
 export type ASRadioButtonItemProps = {
     label: string;
@@ -15,11 +17,20 @@ export type ASRadioButtonProps = {
     radioButtonStyle?: StyleProp<ViewStyle>;
     innerCircleStyle?: StyleProp<ViewStyle>;
     color?: ColorValue
-    labelStyle?: StyleProp<TextStyle>
+    labelStyle?: StyleProp<TextStyle>;
+    type?: 'default' | 'tick'
 }
 
 const ASRadioButton: React.FC<ASRadioButtonProps> = (props: ASRadioButtonProps) => {
-    const {options = [], name, radioButtonStyle, innerCircleStyle, color = colors.primaryColor, labelStyle} = props;
+    const {
+        options = [],
+        name,
+        radioButtonStyle,
+        innerCircleStyle,
+        color = colors.primaryColor,
+        labelStyle,
+        type = 'default'
+    } = props;
     const [field, meta, helpers] = useField(name);
     const {setValue} = helpers || {};
 
@@ -27,21 +38,51 @@ const ASRadioButton: React.FC<ASRadioButtonProps> = (props: ASRadioButtonProps) 
         setValue?.(item?.value)
     }
 
+    const defaultRadioButtonType = (item: ASRadioButtonItemProps) => {
+        return (
+            <>
+                <View style={[styles.radioButton, radioButtonStyle, {borderColor: color}]}>
+                    {item?.value === field?.value &&
+                        <View style={[styles.innerCircle, innerCircleStyle, {backgroundColor: color}]}/>}
+                </View>
+                <ASText style={[styles.label, labelStyle]}>{item?.label}</ASText>
+            </>
+        )
+    }
+
+    const tickRadioButtonType = (item: ASRadioButtonItemProps) => {
+        return (
+            <ASRow style={styles.tickRadioBtn}>
+                <ASText style={[styles.ticklabel, labelStyle]}>{item?.label}</ASText>
+                <TickIcon size={24} color={item?.value === field?.value ? color : 'transparent'}/>
+            </ASRow>
+        )
+    }
+
+    const renderRadioButtonType = (item: ASRadioButtonItemProps) => {
+        switch (type) {
+            case 'default':
+                return defaultRadioButtonType(item)
+            case 'tick':
+                return tickRadioButtonType(item)
+            default:
+                return defaultRadioButtonType(item)
+        }
+    }
+
+    const mapRadioButton = (item: ASRadioButtonItemProps, index: number) => {
+        return (
+            <TouchableOpacity key={`${index}${item?.label}`} onPress={_onPressRadioButton(item)}
+                              style={styles.container}>
+                {renderRadioButtonType(item)}
+            </TouchableOpacity>
+        )
+    }
+
     return (
         <>
             {
-                options.map((item: ASRadioButtonItemProps, index: number) => {
-                    return (
-                        <TouchableOpacity key={`${index}${item?.label}`} onPress={_onPressRadioButton(item)}
-                                          style={styles.container}>
-                            <View style={[styles.radioButton, radioButtonStyle, {borderColor: color}]}>
-                                {item?.value === field?.value &&
-                                    <View style={[styles.innerCircle, innerCircleStyle, {backgroundColor: color}]}/>}
-                            </View>
-                            <ASText style={[styles.label, labelStyle]}>{item?.label}</ASText>
-                        </TouchableOpacity>
-                    )
-                })
+                options?.map(mapRadioButton)
             }
         </>)
 };
@@ -69,6 +110,19 @@ const styles = StyleSheet.create({
         borderRadius: 6,
     },
     label: {},
+    ticklabel: {
+        fontWeight: 'bold',
+        fontSize: 16
+    },
+    tickRadioBtn: {
+        justifyContent: 'space-between',
+        flex: 1,
+        backgroundColor: colors.offWhite2,
+        padding: 18,
+        borderRadius: 5,
+        alignItems: 'center'
+    }
+
 });
 
 /*

@@ -28,6 +28,7 @@ export {default as ASSlider, ASSliderProps} from './src/components/slider';
 export {default as ASCounter, ASCounterProps} from './src/components/counter';
 export {default as ASChoiceChips, ASChoiceChipsProps,ChipProps} from './src/components/choicechips';
 export {default as ASCalendar, ASCalendarProps} from './src/components/calendar';
+export {default as ASTimer, ASTimerProps} from './src/components/timer';
 
 
 
