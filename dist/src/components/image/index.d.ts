@@ -1,6 +1,6 @@
 import React from 'react';
 import { DimensionValue, ImageStyle, StyleProp } from 'react-native';
-export declare type ASImageProps = {
+export type ASImageProps = {
     source: any;
     style?: StyleProp<ImageStyle>;
     resizeMode?: 'cover' | 'contain' | 'stretch' | 'repeat' | 'center';

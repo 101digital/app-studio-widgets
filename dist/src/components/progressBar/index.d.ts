@@ -1,7 +1,13 @@
 import React from 'react';
-export declare type ASProgressBarProps = {
-    progressBarTitle: string;
+import { ColorValue, StyleProp, TextStyle, ViewStyle } from 'react-native';
+export type ASProgressBarProps = {
+    progressBarTitle?: string;
     progressValue: number;
+    progressCurrentStyle?: StyleProp<ViewStyle>;
+    progressTitleStyle?: StyleProp<TextStyle>;
+    progressBarStyle?: StyleProp<ViewStyle>;
+    activeColor?: ColorValue;
+    inActiveColor?: ColorValue;
 };
 declare const ASProgressBar: React.FC<ASProgressBarProps>;
 export default ASProgressBar;

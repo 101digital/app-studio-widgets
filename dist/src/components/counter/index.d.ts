@@ -1,5 +1,5 @@
 import React from 'react';
-export declare type ASCounterProps = {
+export type ASCounterProps = {
     minValue?: number;
     maxValue?: number;
     onValueChange?: (value: number) => void;

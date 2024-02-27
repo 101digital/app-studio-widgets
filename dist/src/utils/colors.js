@@ -1,6 +1,7 @@
-export var colors = {
+export const colors = {
     alertSubtitle: '#4D4D4D',
     offWhite: '#FCFCFC',
+    offWhite2: '#FAF9F5',
     btnColor: '#1B1B1B',
     inputColor: '#858585',
     inputTextColor: '#1A1A1A',
@@ -63,15 +64,15 @@ export var colors = {
     primayEternalBloom200: '#FFBAF0',
     green: '#00BA88'
 };
-export var rgbToHex = function (color) {
-    var a = color.replace(/[^\d,]/g, '').split(',');
+export const rgbToHex = (color) => {
+    const a = color.replace(/[^\d,]/g, '').split(',');
     return '#' + ((1 << 24) + (+a[0] << 16) + (+a[1] << 8) + +a[2]).toString(16).slice(1);
 };
-export var addAlpha = function (color, opacity) {
+export const addAlpha = (color, opacity) => {
     var _a;
     if (!color.startsWith('#')) {
         color = rgbToHex(color);
     }
-    var _opacity = Math.round(Math.min(Math.max(opacity || 1, 0), 1) * 255);
+    const _opacity = Math.round(Math.min(Math.max(opacity || 1, 0), 1) * 255);
     return color + ((_a = _opacity.toString(16)) === null || _a === void 0 ? void 0 : _a.toUpperCase());
 };

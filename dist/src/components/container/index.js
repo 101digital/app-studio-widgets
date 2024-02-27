@@ -1,14 +1,3 @@
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -23,12 +12,12 @@ var __rest = (this && this.__rest) || function (s, e) {
 import React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-var ASContainer = function (props) {
-    var _a = props || {}, children = _a.children, style = _a.style, _b = _a.isScrollable, isScrollable = _b === void 0 ? true : _b, scrollViewContentContainerStyle = _a.scrollViewContentContainerStyle, scrollViewProps = _a.scrollViewProps, restProps = __rest(_a, ["children", "style", "isScrollable", "scrollViewContentContainerStyle", "scrollViewProps"]);
-    return (React.createElement(SafeAreaView, __assign({}, restProps, { style: [styles.container, style] }), isScrollable ? (React.createElement(ScrollView, __assign({ showsVerticalScrollIndicator: false, showsHorizontalScrollIndicator: false }, scrollViewProps, { contentContainerStyle: [styles.scrollViewStyle, scrollViewContentContainerStyle] }), children)) :
+const ASContainer = (props) => {
+    const _a = props || {}, { children, style, isScrollable = true, scrollViewContentContainerStyle, scrollViewProps, disabledSafeArea } = _a, restProps = __rest(_a, ["children", "style", "isScrollable", "scrollViewContentContainerStyle", "scrollViewProps", "disabledSafeArea"]);
+    return (React.createElement(SafeAreaView, Object.assign({ edges: disabledSafeArea ? [] : ['right', 'left', 'top', "bottom"] }, restProps, { style: [styles.container, style] }), isScrollable ? (React.createElement(ScrollView, Object.assign({ showsVerticalScrollIndicator: false, showsHorizontalScrollIndicator: false }, scrollViewProps, { contentContainerStyle: [styles.scrollViewStyle, scrollViewContentContainerStyle] }), children)) :
         children));
 };
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         flex: 1
     },

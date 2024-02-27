@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleProp, ViewStyle } from 'react-native';
-export declare type ASStackProps = {
+export type ASStackProps = {
     children: React.ReactNode;
     style?: StyleProp<ViewStyle>;
 };

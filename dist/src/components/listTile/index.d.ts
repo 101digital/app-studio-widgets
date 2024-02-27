@@ -1,5 +1,5 @@
 import React from 'react';
-export declare type ASListTileProps = {
+export type ASListTileProps = {
     title: string;
     subtitle?: string;
     leadingIcon?: React.ReactNode;

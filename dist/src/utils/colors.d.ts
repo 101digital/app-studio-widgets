@@ -1,6 +1,6 @@
-export declare type ThemeColorProps = {
-    primaryColor?: string;
-    secondaryColor?: string;
+export type ThemeColorProps = {
+    primaryColor: string;
+    secondaryColor: string;
     inputTextColor?: string;
     primaryTextColor?: string;
     secondaryTextColor?: string;
@@ -60,6 +60,7 @@ export declare type ThemeColorProps = {
     neutral?: string;
     alertSubtitle?: string;
     offWhite?: string;
+    offWhite2: string;
     primayEternalBloom200?: string;
     green?: string;
 };

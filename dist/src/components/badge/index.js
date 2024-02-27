@@ -1,15 +1,15 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import ASText from "../text";
-var ASBadge = function (props) {
-    var children = props.children, badgeNumber = props.badgeNumber, badgeStyles = props.badgeStyles, badgeTextStyle = props.badgeTextStyle, containerStyle = props.containerStyle;
+const ASBadge = (props) => {
+    const { children, badgeNumber, badgeStyles, badgeTextStyle, containerStyle } = props;
     return (React.createElement(View, { style: [styles.container, containerStyle] },
         React.createElement(View, null,
             children,
             !!badgeNumber && React.createElement(View, { style: [styles.badgeStyles, badgeStyles] },
                 React.createElement(ASText, { style: [styles.badgeTextStyle, badgeTextStyle] }, badgeNumber)))));
 };
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
     },

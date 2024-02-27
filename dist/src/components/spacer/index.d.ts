@@ -1,6 +1,6 @@
 import React from 'react';
 import { DimensionValue, StyleProp, ViewStyle } from 'react-native';
-export declare type ASSpacerProps = {
+export type ASSpacerProps = {
     style?: StyleProp<ViewStyle>;
     width?: DimensionValue;
     height?: DimensionValue;

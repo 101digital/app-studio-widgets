@@ -1,6 +1,6 @@
 import React from 'react';
 import { DimensionValue, StyleProp, ViewStyle } from 'react-native';
-export declare type ASVerticalDividerProps = {
+export type ASVerticalDividerProps = {
     style?: StyleProp<ViewStyle>;
     marginHorizontal?: DimensionValue;
     height?: DimensionValue;

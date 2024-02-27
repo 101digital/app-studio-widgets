@@ -1,82 +1,71 @@
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var ASWidgetsList = /** @class */ (function () {
-    function ASWidgetsList() {
+export class ASWidgetsList {
+    constructor() {
     }
-    ASWidgetsList.getWidgetAttributes = function (attributes) {
-        var result = '';
-        var atrributesObj = __assign({}, attributes);
+    static getWidgetAttributes(attributes) {
+        let result = '';
+        const atrributesObj = Object.assign({}, attributes);
         if (atrributesObj === null || atrributesObj === void 0 ? void 0 : atrributesObj.children) {
             delete atrributesObj['children'];
         }
-        for (var key in atrributesObj) {
-            var attributeValue = atrributesObj[key];
+        for (let key in atrributesObj) {
+            let attributeValue = atrributesObj[key];
             switch (typeof attributeValue) {
                 case 'number':
-                    attributeValue = "{".concat(attributeValue, "}");
+                    attributeValue = `{${attributeValue}}`;
                     break;
                 case 'string':
-                    attributeValue = "{\"".concat(attributeValue, "\"}");
+                    attributeValue = `{"${attributeValue}"}`;
                     break;
                 case 'object':
-                    attributeValue = "{".concat(JSON.stringify(attributeValue), "}");
+                    attributeValue = `{${JSON.stringify(attributeValue)}}`;
                     break;
                 default:
-                    attributeValue = "{\"".concat(attributeValue, "\"}");
+                    attributeValue = `{"${attributeValue}"}`;
                     break;
             }
-            result += " ".concat(key, "=").concat(attributeValue);
+            result += ` ${key}=${attributeValue}`;
         }
         return result;
-    };
-    ASWidgetsList.prototype.getWidgets = function () {
+    }
+    getWidgets() {
         return {
-            ASContainer: function (attributes) { return "<ASContainer".concat(ASWidgetsList.getWidgetAttributes(attributes), ">\n").concat(attributes === null || attributes === void 0 ? void 0 : attributes.children, "\n</ASContainer>"); },
-            ASText: function (attributes) { return "<ASText".concat(ASWidgetsList.getWidgetAttributes(attributes), ">").concat(attributes === null || attributes === void 0 ? void 0 : attributes.children, "</ASText>"); },
-            ASButton: function (attributes) { return "<ASButton".concat(ASWidgetsList.getWidgetAttributes(attributes), ">").concat(attributes === null || attributes === void 0 ? void 0 : attributes.children, "</ASButton>"); },
-            ASTextField: function (attributes) { return "<ASTextField".concat(ASWidgetsList.getWidgetAttributes(attributes), "/>"); },
-            ASColumn: function (attributes) { return "<ASColumn".concat(ASWidgetsList.getWidgetAttributes(attributes), ">").concat(attributes === null || attributes === void 0 ? void 0 : attributes.children, "</ASColumn>"); },
-            ASRow: function (attributes) { return "<ASRow".concat(ASWidgetsList.getWidgetAttributes(attributes), ">").concat(attributes === null || attributes === void 0 ? void 0 : attributes.children, "</ASRow>"); },
-            ASSpacer: function (attributes) { return "<ASSpacer".concat(ASWidgetsList.getWidgetAttributes(attributes), "/>"); },
-            ASDivider: function (attributes) { return "<ASDivider".concat(ASWidgetsList.getWidgetAttributes(attributes), "/>"); },
-            ASVerticalDivider: function (attributes) { return "<ASVerticalDivider".concat(ASWidgetsList.getWidgetAttributes(attributes), "/>"); },
-            ASFormValidation: function (attributes) { return "<ASFormValidation".concat(ASWidgetsList.getWidgetAttributes(attributes), ">").concat(attributes === null || attributes === void 0 ? void 0 : attributes.children, "</ASFormValidation>"); },
-            ASRichText: function (attributes) { return "<ASRichText".concat(ASWidgetsList.getWidgetAttributes(attributes), ">").concat(attributes === null || attributes === void 0 ? void 0 : attributes.children, "</ASRichText>"); },
-            ASImage: function (attributes) { return "<ASImage".concat(ASWidgetsList.getWidgetAttributes(attributes), "/>"); },
-            ASDropdown: function (attributes) { return "<ASDropdown".concat(ASWidgetsList.getWidgetAttributes(attributes), "/>"); },
-            ASExpandableText: function (attributes) { return "<ASExpandableText".concat(ASWidgetsList.getWidgetAttributes(attributes), "/>"); },
-            ASWrap: function (attributes) { return "<ASWrap".concat(ASWidgetsList.getWidgetAttributes(attributes), ">").concat(attributes === null || attributes === void 0 ? void 0 : attributes.children, "</ASWrap>"); },
-            ASSwitch: function (attributes) { return "<ASSwitch".concat(ASWidgetsList.getWidgetAttributes(attributes), "/>"); },
-            ASCheckBox: function (attributes) { return "<ASCheckBox".concat(ASWidgetsList.getWidgetAttributes(attributes), "/>"); },
-            ASProgressBar: function (attributes) { return "<ASProgressBar".concat(ASWidgetsList.getWidgetAttributes(attributes), "/>"); },
-            ASStack: function (attributes) { return "<ASStack".concat(ASWidgetsList.getWidgetAttributes(attributes), ">").concat(attributes === null || attributes === void 0 ? void 0 : attributes.children, "</ASStack>"); },
-            ASListView: function (attributes) { return "<ASListView".concat(ASWidgetsList.getWidgetAttributes(attributes), "/>"); },
-            ASCircleChart: function (attributes) { return "<ASCircleChart".concat(ASWidgetsList.getWidgetAttributes(attributes), ">").concat(attributes === null || attributes === void 0 ? void 0 : attributes.children, "</ASCircleChart>"); },
-            ASBadge: function (attributes) { return "<ASBadge".concat(ASWidgetsList.getWidgetAttributes(attributes), ">").concat(attributes === null || attributes === void 0 ? void 0 : attributes.children, "</ASBadge>"); },
-            ASPageView: function (attributes) { return "<ASPageView".concat(ASWidgetsList.getWidgetAttributes(attributes), "/>"); },
-            ASListTile: function (attributes) { return "<ASListTile".concat(ASWidgetsList.getWidgetAttributes(attributes), "/>"); },
-            ASRadioButton: function (attributes) { return "<ASRadioButton".concat(ASWidgetsList.getWidgetAttributes(attributes), "/>"); },
-            ASSlider: function (attributes) { return "<ASSlider".concat(ASWidgetsList.getWidgetAttributes(attributes), "/>"); },
-            ASCounter: function (attributes) { return "<ASCounter".concat(ASWidgetsList.getWidgetAttributes(attributes), "/>"); },
-            ASChoiceChips: function (attributes) { return "<ASChoiceChips".concat(ASWidgetsList.getWidgetAttributes(attributes), "/>"); },
+            ASContainer: (attributes) => `<ASContainer${ASWidgetsList.getWidgetAttributes(attributes)}>\n${attributes === null || attributes === void 0 ? void 0 : attributes.children}\n</ASContainer>`,
+            ASText: (attributes) => `<ASText${ASWidgetsList.getWidgetAttributes(attributes)}>${attributes === null || attributes === void 0 ? void 0 : attributes.children}</ASText>`,
+            ASButton: (attributes) => `<ASButton${ASWidgetsList.getWidgetAttributes(attributes)}>${attributes === null || attributes === void 0 ? void 0 : attributes.children}</ASButton>`,
+            ASTextField: (attributes) => `<ASTextField${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
+            ASColumn: (attributes) => `<ASColumn${ASWidgetsList.getWidgetAttributes(attributes)}>${attributes === null || attributes === void 0 ? void 0 : attributes.children}</ASColumn>`,
+            ASRow: (attributes) => `<ASRow${ASWidgetsList.getWidgetAttributes(attributes)}>${attributes === null || attributes === void 0 ? void 0 : attributes.children}</ASRow>`,
+            ASSpacer: (attributes) => `<ASSpacer${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
+            ASDivider: (attributes) => `<ASDivider${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
+            ASVerticalDivider: (attributes) => `<ASVerticalDivider${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
+            ASFormValidation: (attributes) => `<ASFormValidation${ASWidgetsList.getWidgetAttributes(attributes)}>${attributes === null || attributes === void 0 ? void 0 : attributes.children}</ASFormValidation>`,
+            ASRichText: (attributes) => `<ASRichText${ASWidgetsList.getWidgetAttributes(attributes)}>${attributes === null || attributes === void 0 ? void 0 : attributes.children}</ASRichText>`,
+            ASImage: (attributes) => `<ASImage${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
+            ASDropdown: (attributes) => `<ASDropdown${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
+            ASExpandableText: (attributes) => `<ASExpandableText${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
+            ASWrap: (attributes) => `<ASWrap${ASWidgetsList.getWidgetAttributes(attributes)}>${attributes === null || attributes === void 0 ? void 0 : attributes.children}</ASWrap>`,
+            ASSwitch: (attributes) => `<ASSwitch${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
+            ASCheckBox: (attributes) => `<ASCheckBox${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
+            ASProgressBar: (attributes) => `<ASProgressBar${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
+            ASStack: (attributes) => `<ASStack${ASWidgetsList.getWidgetAttributes(attributes)}>${attributes === null || attributes === void 0 ? void 0 : attributes.children}</ASStack>`,
+            ASListView: (attributes) => `<ASListView${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
+            ASCircleChart: (attributes) => `<ASCircleChart${ASWidgetsList.getWidgetAttributes(attributes)}>${attributes === null || attributes === void 0 ? void 0 : attributes.children}</ASCircleChart>`,
+            ASBadge: (attributes) => `<ASBadge${ASWidgetsList.getWidgetAttributes(attributes)}>${attributes === null || attributes === void 0 ? void 0 : attributes.children}</ASBadge>`,
+            ASPageView: (attributes) => `<ASPageView${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
+            ASListTile: (attributes) => `<ASListTile${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
+            ASRadioButton: (attributes) => `<ASRadioButton${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
+            ASSlider: (attributes) => `<ASSlider${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
+            ASCounter: (attributes) => `<ASCounter${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
+            ASChoiceChips: (attributes) => `<ASChoiceChips${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
+            ASCalendar: (attributes) => `<ASCalendar${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
+            ASTimer: (attributes) => `<ASTimer${ASWidgetsList.getWidgetAttributes(attributes)}/>`
         };
-    };
-    ASWidgetsList.prototype.getWidgetByName = function (name) {
+    }
+    getWidgetByName(name) {
         var _a;
         return (_a = this.getWidgets()) === null || _a === void 0 ? void 0 : _a[name];
-    };
-    return ASWidgetsList;
-}());
-export { ASWidgetsList };
+    }
+}
 // const a = new ASWidgetsList()
 // const asText = a.getWidgets().ASText({
 //     children: 'haha',
@@ -87,7 +76,7 @@ export { ASWidgetsList };
 // const asContainer = a.getWidgetByName('ASContainer')({children: asText, style: {flex: 1}})
 //
 // console.log('RESULT WIDGET:\n', asContainer , '\n')
-//  <ASContainer style={{"flex":1}}>
-//  <ASText style={{"fontSize":12}} numberOfLines={1} ellipsizeMode={"tail"}>haha</ASText>
-//  </ASContainer>
+// <ASContainer style={{"flex":1}}>
+// <ASText style={{"fontSize":12}} numberOfLines={1} ellipsizeMode={"tail"}>haha</ASText>
+// </ASContainer>
 //  ts-node --esm  /Users/huacatluong/101digital/generator-app/app-studio-widgets/src/utils/WidgetsList.ts

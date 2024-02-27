@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleProp, TextStyle, ViewStyle } from 'react-native';
-export declare type ASBadgeProps = {
+export type ASBadgeProps = {
     children: React.ReactNode;
     badgeNumber: number | string | null | undefined;
     badgeStyles?: StyleProp<ViewStyle>;

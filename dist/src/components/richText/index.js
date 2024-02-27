@@ -2,11 +2,11 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { colors } from "../../utils/colors";
 import ParsedText from 'react-native-parsed-text';
-var ASRichText = function (props) {
-    var _a = props || {}, children = _a.children, style = _a.style, parse = _a.parse, _b = _a.childrenProps, childrenProps = _b === void 0 ? { allowFontScaling: false } : _b;
+const ASRichText = (props) => {
+    const { children, style, parse, childrenProps = { allowFontScaling: false } } = props || {};
     return (React.createElement(ParsedText, { style: [styles.textStyle, style], parse: parse, childrenProps: childrenProps }, children));
 };
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
     textStyle: {
         fontSize: 16,
         color: colors.black,

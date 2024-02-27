@@ -1,14 +1,3 @@
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -26,18 +15,18 @@ import { TextInputMask } from 'react-native-masked-text';
 import { colors } from "../../utils/colors";
 import { useField } from 'formik';
 import ASText from "../text";
-var ASTextField = function (props) {
-    var name = props.name, onFocus = props.onFocus, onBlur = props.onBlur, suffixIcon = props.suffixIcon, prefixIcon = props.prefixIcon, errorBorderColor = props.errorBorderColor, activeBorderColor = props.activeBorderColor, inactiveBorderColor = props.inactiveBorderColor, style = props.style, _a = props.placeholderTextColor, placeholderTextColor = _a === void 0 ? '#C4C4C4' : _a, formatError = props.formatError, options = props.options, label = props.label, restProps = __rest(props, ["name", "onFocus", "onBlur", "suffixIcon", "prefixIcon", "errorBorderColor", "activeBorderColor", "inactiveBorderColor", "style", "placeholderTextColor", "formatError", "options", "label"]);
-    var _b = useState(false), active = _b[0], setActive = _b[1];
-    var _c = useField(name), field = _c[0], meta = _c[1], helpers = _c[2];
-    var showMask = !!(options === null || options === void 0 ? void 0 : options.mask);
-    var handleOnFocus = function (event) {
+const ASTextField = (props) => {
+    const { name, onFocus, onBlur, suffixIcon, prefixIcon, errorBorderColor, activeBorderColor, inactiveBorderColor, style, placeholderTextColor = '#C4C4C4', formatError, options, label } = props, restProps = __rest(props, ["name", "onFocus", "onBlur", "suffixIcon", "prefixIcon", "errorBorderColor", "activeBorderColor", "inactiveBorderColor", "style", "placeholderTextColor", "formatError", "options", "label"]);
+    const [active, setActive] = useState(false);
+    const [field, meta, helpers] = useField(name);
+    const showMask = !!(options === null || options === void 0 ? void 0 : options.mask);
+    const handleOnFocus = (event) => {
         setActive(true);
         if (onFocus) {
             onFocus(event);
         }
     };
-    var handleOnBlur = function (event) {
+    const handleOnBlur = (event) => {
         setActive(false);
         field === null || field === void 0 ? void 0 : field.onBlur(name);
         helpers === null || helpers === void 0 ? void 0 : helpers.setTouched(true);
@@ -45,7 +34,7 @@ var ASTextField = function (props) {
             onBlur(event);
         }
     };
-    var separatorColor;
+    let separatorColor;
     if ((meta === null || meta === void 0 ? void 0 : meta.error) && (meta === null || meta === void 0 ? void 0 : meta.touched)) {
         separatorColor = (errorBorderColor !== null && errorBorderColor !== void 0 ? errorBorderColor : colors.errorInputBorderColor);
     }
@@ -54,7 +43,7 @@ var ASTextField = function (props) {
             ? (activeBorderColor !== null && activeBorderColor !== void 0 ? activeBorderColor : colors.activeInputBorderColor)
             : (inactiveBorderColor !== null && inactiveBorderColor !== void 0 ? inactiveBorderColor : colors.inActiveInputBorderColor);
     }
-    var getErrorMessage = function (error) {
+    const getErrorMessage = (error) => {
         var _a;
         return (_a = formatError === null || formatError === void 0 ? void 0 : formatError(error)) !== null && _a !== void 0 ? _a : error;
     };
@@ -63,14 +52,14 @@ var ASTextField = function (props) {
             React.createElement(ASText, { style: styles.labelStyle }, label),
             React.createElement(View, { style: [styles.contentContainerStyle, { borderColor: separatorColor }] },
                 prefixIcon,
-                React.createElement(View, { style: styles.inputContainerStyle }, showMask ? (React.createElement(TextInputMask, __assign({ onFocus: handleOnFocus, onBlur: handleOnBlur, value: "".concat(field === null || field === void 0 ? void 0 : field.value), onChangeText: field === null || field === void 0 ? void 0 : field.onChange(name), style: styles.textInputStyle, placeholderTextColor: placeholderTextColor, options: options }, restProps))) : (React.createElement(TextInput, __assign({ onFocus: handleOnFocus, onBlur: handleOnBlur, value: "".concat(field === null || field === void 0 ? void 0 : field.value), onChangeText: field === null || field === void 0 ? void 0 : field.onChange(name), style: styles.textInputStyle, placeholderTextColor: placeholderTextColor, autoComplete: 'off', autoCorrect: false, underlineColorAndroid: 'transparent' }, restProps)))),
+                React.createElement(View, { style: styles.inputContainerStyle }, showMask ? (React.createElement(TextInputMask, Object.assign({ onFocus: handleOnFocus, onBlur: handleOnBlur, value: `${field === null || field === void 0 ? void 0 : field.value}`, onChangeText: field === null || field === void 0 ? void 0 : field.onChange(name), style: styles.textInputStyle, placeholderTextColor: placeholderTextColor, options: options }, restProps))) : (React.createElement(TextInput, Object.assign({ onFocus: handleOnFocus, onBlur: handleOnBlur, value: `${field === null || field === void 0 ? void 0 : field.value}`, onChangeText: field === null || field === void 0 ? void 0 : field.onChange(name), style: styles.textInputStyle, placeholderTextColor: placeholderTextColor, autoComplete: 'off', autoCorrect: false, underlineColorAndroid: 'transparent' }, restProps)))),
                 suffixIcon)),
         (meta === null || meta === void 0 ? void 0 : meta.error) && (meta === null || meta === void 0 ? void 0 : meta.touched) && (React.createElement(ASText, { style: styles.errorTextStyle }, getErrorMessage(meta === null || meta === void 0 ? void 0 : meta.error)))));
 };
 ASTextField.defaultProps = {
     type: 'custom',
 };
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
     containerStyle: {
         backgroundColor: colors.offWhite,
         paddingHorizontal: 15,
@@ -90,7 +79,7 @@ var styles = StyleSheet.create({
         flex: 1,
         fontSize: 12,
         color: colors.black700,
-        paddingVertical: 0,
+        paddingVertical: 8,
         paddingHorizontal: 0
     },
     errorTextStyle: {

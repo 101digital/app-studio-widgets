@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleProp, TextStyle } from 'react-native';
-export declare type ASExpandableTextProps = {
+export type ASExpandableTextProps = {
     initialLines: number;
     text: string;
     textStyle?: StyleProp<TextStyle>;

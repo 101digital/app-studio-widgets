@@ -9,7 +9,7 @@ export type ASPageViewProps = SwiperProps & {
     paginationBottomPosition?: number;
 }
 
-const ASPageView: React.FC<ASPageViewProps> = (props: ASPageViewProps) => {
+const ASPageView: (props: ASPageViewProps) => false | JSX.Element = (props: ASPageViewProps) => {
     const {pages, style, paginationStyle, paginationBottomPosition = 15, ...restprops} = props
     const [height, setHeight] = useState<number>(0)
     const [startSwiper, setStartSwiper] = useState<boolean>(false)
@@ -21,6 +21,7 @@ const ASPageView: React.FC<ASPageViewProps> = (props: ASPageViewProps) => {
         return () => {
             clearTimeout(timeout)
         }
+        // @ts-ignore
     }, [])
 
     const handleSetHeight = (value: number) => {
@@ -33,25 +34,22 @@ const ASPageView: React.FC<ASPageViewProps> = (props: ASPageViewProps) => {
         handleSetHeight(event.nativeEvent.layout.height)
     }
 
-    return (
-        !!startSwiper &&
-        <Swiper
-            showsButtons={false}
-            loop={false}
-            dotStyle={styles.dot}
-            activeDotStyle={styles.activeDot}
-            {...restprops}
-            paginationStyle={[styles.paginationStyle, paginationStyle]}
-            style={[styles.wrapper, {height}, style]}
-        >
-            {pages.map((page: React.ReactNode, index: number) => (
-                <View onLayout={onLayout}
-                      key={index} style={styles.slide}>
-                    {page}
-                </View>
-            ))}
-        </Swiper>
-    );
+    return (startSwiper && <Swiper
+        showsButtons={false}
+        loop={false}
+        dotStyle={styles.dot}
+        activeDotStyle={styles.activeDot}
+        {...restprops}
+        paginationStyle={[styles.paginationStyle, paginationStyle]}
+        style={[styles.wrapper, {height}, style]}
+    >
+        {pages.map((page: React.ReactNode, index: number) => (
+            <View onLayout={onLayout}
+                  key={index} style={styles.slide}>
+                {page}
+            </View>
+        ))}
+    </Swiper>);
 };
 
 const styles = StyleSheet.create({

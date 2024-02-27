@@ -1,5 +1,5 @@
 import React from 'react';
-export declare type ASCircleChartProps = {
+export type ASCircleChartProps = {
     /**
      * progress value
      */

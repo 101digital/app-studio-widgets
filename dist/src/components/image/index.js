@@ -1,14 +1,3 @@
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -23,11 +12,11 @@ var __rest = (this && this.__rest) || function (s, e) {
 import React from 'react';
 import { Image } from 'react-native';
 import { convertPercentageToPx } from '../../utils/commonUtils';
-var ASImage = function (props) {
-    var source = props.source, _a = props.width, width = _a === void 0 ? 100 : _a, _b = props.height, height = _b === void 0 ? 100 : _b, style = props.style, _c = props.resizeMode, resizeMode = _c === void 0 ? 'cover' : _c, _d = props.roundImageSize, roundImageSize = _d === void 0 ? 0 : _d, restprops = __rest(props, ["source", "width", "height", "style", "resizeMode", "roundImageSize"]);
-    var imageSource = typeof source === 'string' && (source === null || source === void 0 ? void 0 : source.startsWith('http')) ? { uri: source } : source;
-    var roundImageSizeValue = convertPercentageToPx(roundImageSize, true);
-    return (React.createElement(Image, __assign({ source: imageSource, style: [{
+const ASImage = (props) => {
+    const { source, width = 100, height = 100, style, resizeMode = 'cover', roundImageSize = 0 } = props, restprops = __rest(props, ["source", "width", "height", "style", "resizeMode", "roundImageSize"]);
+    const imageSource = typeof source === 'string' && (source === null || source === void 0 ? void 0 : source.startsWith('http')) ? { uri: source } : source;
+    const roundImageSizeValue = convertPercentageToPx(roundImageSize, true);
+    return (React.createElement(Image, Object.assign({ source: imageSource, style: [{
                 width: roundImageSizeValue || width,
                 height: roundImageSizeValue || height,
                 borderRadius: roundImageSizeValue

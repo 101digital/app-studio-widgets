@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-var ASColumn = function (props) {
-    var _a = props || {}, children = _a.children, style = _a.style;
+const ASColumn = (props) => {
+    const { children, style } = props || {};
     return (React.createElement(View, { style: [styles.container, style] }, children));
 };
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         flexDirection: 'column',
         justifyContent: 'center'

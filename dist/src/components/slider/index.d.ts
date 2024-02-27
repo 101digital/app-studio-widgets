@@ -1,6 +1,6 @@
 import React from 'react';
 import { SliderProps } from '@react-native-community/slider';
-export declare type ASSliderProps = SliderProps & {
+export type ASSliderProps = SliderProps & {
     onChange?: (value: number) => void;
     minimumValue: number;
     maximumValue: number;

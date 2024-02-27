@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleProp, TextProps, TextStyle } from 'react-native';
-export declare type ASTextProps = TextProps & {
+export type ASTextProps = TextProps & {
     children: string | undefined | number | React.ReactNode;
     style?: StyleProp<TextStyle>;
 };

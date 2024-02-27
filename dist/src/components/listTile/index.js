@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { colors } from "../../utils/colors";
-var ASListTile = function (props) {
-    var title = props.title, subtitle = props.subtitle, leadingIcon = props.leadingIcon, trailingIcon = props.trailingIcon, onPress = props.onPress;
+const ASListTile = (props) => {
+    const { title, subtitle, leadingIcon, trailingIcon, onPress, } = props;
     return (React.createElement(TouchableOpacity, { onPress: onPress },
         React.createElement(View, { style: styles.container },
             leadingIcon && React.createElement(View, { style: styles.leadingIcon }, leadingIcon),
@@ -12,7 +12,7 @@ var ASListTile = function (props) {
             trailingIcon && React.createElement(View, { style: styles.trailingIcon }, trailingIcon))));
 };
 export default ASListTile;
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         alignItems: 'center',

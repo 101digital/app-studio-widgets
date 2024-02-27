@@ -1,6 +1,6 @@
-import { ASBadgeProps, ASButtonProps, ASCheckBoxProps, ASCircleChartProps, ASColumnProps, ASContainerProps, ASCounterProps, ASDividerProps, ASDropDownProps, ASExpandableTextProps, ASFormValidationProps, ASImageProps, ASListTileProps, ASListViewProps, ASPageViewProps, ASProgressBarProps, ASRadioButtonProps, ASRichTextProps, ASRowProps, ASSliderProps, ASSpacerProps, ASStackProps, ASSwitchProps, ASTextFieldProps, ASTextProps, ASVerticalDividerProps, ASWrapProps, ASChoiceChipsProps } from "../../index";
-export declare type WidgetsName = keyof WidgetsList;
-export declare type WidgetsList = {
+import { ASBadgeProps, ASButtonProps, ASCalendarProps, ASCheckBoxProps, ASChoiceChipsProps, ASCircleChartProps, ASColumnProps, ASContainerProps, ASCounterProps, ASDividerProps, ASDropDownProps, ASExpandableTextProps, ASFormValidationProps, ASImageProps, ASListTileProps, ASListViewProps, ASPageViewProps, ASProgressBarProps, ASRadioButtonProps, ASRichTextProps, ASRowProps, ASSliderProps, ASSpacerProps, ASStackProps, ASSwitchProps, ASTextFieldProps, ASTextProps, ASVerticalDividerProps, ASWrapProps, ASTimerProps } from "../../index";
+export type WidgetsName = keyof WidgetsList;
+export type WidgetsList = {
     ASContainer: (attributes: ASContainerProps) => string;
     ASText: (attributes: ASTextProps) => string;
     ASButton: (attributes: ASButtonProps) => string;
@@ -29,6 +29,8 @@ export declare type WidgetsList = {
     ASSlider: (attributes: ASSliderProps) => string;
     ASCounter: (attributes: ASCounterProps) => string;
     ASChoiceChips: (attributes: ASChoiceChipsProps) => string;
+    ASCalendar: (attributes: ASCalendarProps) => string;
+    ASTimer: (attributes: ASTimerProps) => string;
 };
 export declare class ASWidgetsList {
     constructor();

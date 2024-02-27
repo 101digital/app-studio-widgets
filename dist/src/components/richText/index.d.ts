@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleProp, TextStyle } from 'react-native';
-export declare type ASRichTextProps = {
+export type ASRichTextProps = {
     children: string;
     style?: StyleProp<TextStyle>;
     childrenProps?: any;

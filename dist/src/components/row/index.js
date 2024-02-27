@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-var ASRow = function (props) {
-    var _a = props || {}, children = _a.children, style = _a.style;
+const ASRow = (props) => {
+    const { children, style } = props || {};
     return (React.createElement(View, { style: [styles.container, style] }, children));
 };
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         alignItems: 'center'

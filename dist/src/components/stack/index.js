@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-var ASStack = function (props) {
-    var children = props.children, style = props.style;
+const ASStack = (props) => {
+    const { children, style } = props;
     return React.createElement(View, { style: [style, styles.container] }, children);
 };
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         position: 'relative',
     },

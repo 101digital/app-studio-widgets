@@ -1,14 +1,3 @@
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -23,14 +12,14 @@ var __rest = (this && this.__rest) || function (s, e) {
 import React, { useState } from 'react';
 import CheckBox from '@react-native-community/checkbox';
 import { colors } from "../../utils/colors";
-var ASCheckBox = function (props) {
-    var onChange = props.onChange, restProps = __rest(props, ["onChange"]);
-    var _a = useState(false), toggleCheckBox = _a[0], setToggleCheckBox = _a[1];
-    var onValueChange = function (newValue) {
+const ASCheckBox = (props) => {
+    const { onChange } = props, restProps = __rest(props, ["onChange"]);
+    const [toggleCheckBox, setToggleCheckBox] = useState(false);
+    const onValueChange = (newValue) => {
         setToggleCheckBox(newValue);
         onChange === null || onChange === void 0 ? void 0 : onChange(newValue);
     };
-    return (React.createElement(CheckBox, __assign({ disabled: false, value: toggleCheckBox, onValueChange: onValueChange, 
+    return (React.createElement(CheckBox, Object.assign({ disabled: false, value: toggleCheckBox, onValueChange: onValueChange, 
         //IOS Only Props
         tintColor: colors.activeInputBorderColor, lineWidth: 2, 
         //Android Only Props

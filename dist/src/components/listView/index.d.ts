@@ -1,10 +1,10 @@
 import React from 'react';
 import { FlatListProps, ListRenderItem } from 'react-native';
-export declare type ASListViewItemProps = {
+export type ASListViewItemProps = {
     label: string;
     id?: string;
 };
-export declare type ASListViewProps = FlatListProps<any> & {
+export type ASListViewProps = FlatListProps<any> & {
     data: ASListViewItemProps[];
     renderItem: ListRenderItem<React.ReactNode>;
 };

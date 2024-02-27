@@ -133,7 +133,7 @@ export class ASWidgetsList {
             ASCounter: (attributes: ASCounterProps) => `<ASCounter${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
             ASChoiceChips: (attributes: ASChoiceChipsProps) => `<ASChoiceChips${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
             ASCalendar: (attributes: ASCalendarProps) => `<ASCalendar${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
-            ASTimer: (attributes: ASTimer) => `<ASTimer${ASWidgetsList.getWidgetAttributes(attributes)}/>`
+            ASTimer: (attributes: ASTimerProps) => `<ASTimer${ASWidgetsList.getWidgetAttributes(attributes)}/>`
         }
     }
 
@@ -153,9 +153,9 @@ export class ASWidgetsList {
 //
 // console.log('RESULT WIDGET:\n', asContainer , '\n')
 
-//  <ASContainer style={{"flex":1}}>
-//  <ASText style={{"fontSize":12}} numberOfLines={1} ellipsizeMode={"tail"}>haha</ASText>
-//  </ASContainer>
+ // <ASContainer style={{"flex":1}}>
+ // <ASText style={{"fontSize":12}} numberOfLines={1} ellipsizeMode={"tail"}>haha</ASText>
+ // </ASContainer>
 
 
 //  ts-node --esm  /Users/huacatluong/101digital/generator-app/app-studio-widgets/src/utils/WidgetsList.ts

@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { StyleProp, ViewStyle } from 'react-native';
-export declare type ASRowProps = {
+export type ASRowProps = {
     children: ReactNode;
     style?: StyleProp<ViewStyle>;
 };

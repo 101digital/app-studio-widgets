@@ -3,22 +3,43 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useField } from "formik";
 import ASText from "../text";
 import { colors } from "../../utils/colors";
-var ASRadioButton = function (props) {
-    var _a = props.options, options = _a === void 0 ? [] : _a, name = props.name, radioButtonStyle = props.radioButtonStyle, innerCircleStyle = props.innerCircleStyle, _b = props.color, color = _b === void 0 ? colors.primaryColor : _b, labelStyle = props.labelStyle;
-    var _c = useField(name), field = _c[0], meta = _c[1], helpers = _c[2];
-    var setValue = (helpers || {}).setValue;
-    var _onPressRadioButton = function (item) { return function () {
+import { TickIcon } from "../../assets/icon";
+import ASRow from "../row";
+const ASRadioButton = (props) => {
+    const { options = [], name, radioButtonStyle, innerCircleStyle, color = colors.primaryColor, labelStyle, type = 'default' } = props;
+    const [field, meta, helpers] = useField(name);
+    const { setValue } = helpers || {};
+    const _onPressRadioButton = (item) => () => {
         setValue === null || setValue === void 0 ? void 0 : setValue(item === null || item === void 0 ? void 0 : item.value);
-    }; };
-    return (React.createElement(React.Fragment, null, options.map(function (item, index) {
-        return (React.createElement(TouchableOpacity, { key: "".concat(index).concat(item === null || item === void 0 ? void 0 : item.label), onPress: _onPressRadioButton(item), style: styles.container },
+    };
+    const defaultRadioButtonType = (item) => {
+        return (React.createElement(React.Fragment, null,
             React.createElement(View, { style: [styles.radioButton, radioButtonStyle, { borderColor: color }] }, (item === null || item === void 0 ? void 0 : item.value) === (field === null || field === void 0 ? void 0 : field.value) &&
                 React.createElement(View, { style: [styles.innerCircle, innerCircleStyle, { backgroundColor: color }] })),
             React.createElement(ASText, { style: [styles.label, labelStyle] }, item === null || item === void 0 ? void 0 : item.label)));
-    })));
+    };
+    const tickRadioButtonType = (item) => {
+        return (React.createElement(ASRow, { style: styles.tickRadioBtn },
+            React.createElement(ASText, { style: [styles.ticklabel, labelStyle] }, item === null || item === void 0 ? void 0 : item.label),
+            React.createElement(TickIcon, { size: 24, color: (item === null || item === void 0 ? void 0 : item.value) === (field === null || field === void 0 ? void 0 : field.value) ? color : 'transparent' })));
+    };
+    const renderRadioButtonType = (item) => {
+        switch (type) {
+            case 'default':
+                return defaultRadioButtonType(item);
+            case 'tick':
+                return tickRadioButtonType(item);
+            default:
+                return defaultRadioButtonType(item);
+        }
+    };
+    const mapRadioButton = (item, index) => {
+        return (React.createElement(TouchableOpacity, { key: `${index}${item === null || item === void 0 ? void 0 : item.label}`, onPress: _onPressRadioButton(item), style: styles.container }, renderRadioButtonType(item)));
+    };
+    return (React.createElement(React.Fragment, null, options === null || options === void 0 ? void 0 : options.map(mapRadioButton)));
 };
 export default ASRadioButton;
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -39,6 +60,18 @@ var styles = StyleSheet.create({
         borderRadius: 6,
     },
     label: {},
+    ticklabel: {
+        fontWeight: 'bold',
+        fontSize: 16
+    },
+    tickRadioBtn: {
+        justifyContent: 'space-between',
+        flex: 1,
+        backgroundColor: colors.offWhite2,
+        padding: 18,
+        borderRadius: 5,
+        alignItems: 'center'
+    }
 });
 /*
          <ASRadioButton name={'gender'}

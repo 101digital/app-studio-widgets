@@ -1,14 +1,14 @@
 import React, { ReactNode } from 'react';
 import { StyleProp, TextInputProps, TextStyle, ViewStyle } from 'react-native';
 import { TextInputMaskProps } from 'react-native-masked-text';
-export declare type ASTextFieldStyles = {
+export type ASTextFieldStyles = {
     containerStyle?: StyleProp<ViewStyle>;
     contentContainerStyle?: StyleProp<ViewStyle>;
     inputContainerStyle?: StyleProp<ViewStyle>;
     textInputStyle?: StyleProp<TextStyle>;
     errorTextStyle?: StyleProp<TextStyle>;
 };
-export declare type ASTextFieldProps = TextInputMaskProps & TextInputProps & {
+export type ASTextFieldProps = TextInputMaskProps & TextInputProps & {
     name: string;
     prefixIcon?: ReactNode;
     suffixIcon?: ReactNode;

@@ -1,12 +1,12 @@
 import React from 'react';
-export declare type ChipProps = {
+export type ChipProps = {
     id?: string;
     label: string;
     value: string;
     icon?: React.ReactNode;
     [key: string]: string | React.ReactNode;
 };
-export declare type ASChoiceChipsProps = {
+export type ASChoiceChipsProps = {
     options: ChipProps[];
     name: string;
 };

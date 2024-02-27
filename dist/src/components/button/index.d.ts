@@ -1,6 +1,6 @@
 import React from 'react';
 import { TextStyle, TouchableOpacityProps, ViewStyle } from 'react-native';
-export declare type ASButtonProps = TouchableOpacityProps & {
+export type ASButtonProps = TouchableOpacityProps & {
     label?: string;
     onPress: () => void;
     style?: ViewStyle;

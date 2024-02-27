@@ -3,17 +3,20 @@ import { StyleSheet, View } from 'react-native';
 import { screenWidth } from "../../utils/commonUtils";
 import { colors } from "../../utils/colors";
 import ASText from "../text";
-var ASProgressBar = function (props) {
-    var _a = props.progressBarTitle, progressBarTitle = _a === void 0 ? '' : _a, progressValue = props.progressValue;
+const ASProgressBar = (props) => {
+    const { progressBarTitle = '', progressValue, progressCurrentStyle, progressTitleStyle, progressBarStyle, activeColor, inActiveColor } = props;
     return (React.createElement(View, { style: styles.progressBarContainer },
-        React.createElement(ASText, { style: styles.progressBarText }, progressBarTitle),
-        React.createElement(View, { style: styles.progressBar },
+        !!progressBarTitle &&
+            React.createElement(ASText, { style: [styles.progressBarText, progressTitleStyle] }, progressBarTitle),
+        React.createElement(View, { style: [styles.progressBar, progressBarStyle, { backgroundColor: inActiveColor }] },
             React.createElement(View, { style: [
                     styles.progressCurrent,
-                    { width: "".concat(progressValue / 100 * 100, "%") },
+                    { width: `${progressValue / 100 * 100}%` },
+                    progressCurrentStyle,
+                    { backgroundColor: activeColor }
                 ] }))));
 };
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
     progressBarContainer: {
         alignItems: 'center',
         justifyContent: 'center'

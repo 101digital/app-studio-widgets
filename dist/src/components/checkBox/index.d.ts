@@ -1,5 +1,5 @@
 import React from 'react';
-export declare type ASCheckBoxProps = {
+export type ASCheckBoxProps = {
     onChange?: (value: boolean) => void;
 };
 declare const ASCheckBox: React.FC<ASCheckBoxProps>;

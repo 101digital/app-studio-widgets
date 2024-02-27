@@ -1,7 +1,7 @@
 import { Dimensions } from 'react-native';
-var screenWidth = Dimensions.get('window').width;
-var screenHeight = Dimensions.get('window').height;
-var convertPercentageToPx = function (percentage, isWidth) {
+const screenWidth = Dimensions.get('window').width;
+const screenHeight = Dimensions.get('window').height;
+const convertPercentageToPx = (percentage, isWidth) => {
     if (!percentage) {
         return undefined;
     }
