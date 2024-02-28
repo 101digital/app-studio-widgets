@@ -12,8 +12,8 @@
     "module": "es6",
 
     //"Need "moduleResolution": "node", and "skipLibCheck": true,  to be able to run yarn build"
-//    "moduleResolution": "node",
-    "skipLibCheck": false,
+    "moduleResolution": "node",
+    "skipLibCheck": true,
     "paths": {
       "@widgets/*": [
         "./src/*",
