@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.addAlpha = exports.rgbToHex = exports.colors = void 0;
-exports.colors = {
+export const colors = {
     alertSubtitle: '#4D4D4D',
     offWhite: '#FCFCFC',
     offWhite2: '#FAF9F5',
@@ -67,17 +64,15 @@ exports.colors = {
     primayEternalBloom200: '#FFBAF0',
     green: '#00BA88'
 };
-const rgbToHex = (color) => {
+export const rgbToHex = (color) => {
     const a = color.replace(/[^\d,]/g, '').split(',');
     return '#' + ((1 << 24) + (+a[0] << 16) + (+a[1] << 8) + +a[2]).toString(16).slice(1);
 };
-exports.rgbToHex = rgbToHex;
-const addAlpha = (color, opacity) => {
+export const addAlpha = (color, opacity) => {
     var _a;
     if (!color.startsWith('#')) {
-        color = (0, exports.rgbToHex)(color);
+        color = rgbToHex(color);
     }
     const _opacity = Math.round(Math.min(Math.max(opacity || 1, 0), 1) * 255);
     return color + ((_a = _opacity.toString(16)) === null || _a === void 0 ? void 0 : _a.toUpperCase());
 };
-exports.addAlpha = addAlpha;

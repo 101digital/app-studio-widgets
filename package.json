@@ -5,13 +5,13 @@
   "repository": "https://github.com/101digital/app-studio-widgets",
   "license": "MIT",
   "type": "module",
-  "main": "dist/index.ts",
-  "types": "dist/index.d.ts",
+  "main": "index.ts",
+  "types": "index.d.ts",
   "files": [
     "src/"
   ],
   "scripts": {
-    "build": "yarn install && tsc && rm -rf node_modules",
+    "build": "tsc",
     "lint": "tsc --noEmit && eslint src/ --ext .js,.jsx,.ts,.tsx",
     "watch": "tsc -w"
   },

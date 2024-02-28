@@ -1,20 +1,15 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importDefault(require("react"));
-const react_native_1 = require("react-native");
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
 const ASStack = (props) => {
     const { children, style } = props;
-    return react_1.default.createElement(react_native_1.View, { style: [style, styles.container] }, children);
+    return React.createElement(View, { style: [style, styles.container] }, children);
 };
-const styles = react_native_1.StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         position: 'relative',
     },
 });
-exports.default = ASStack;
+export default ASStack;
 // NOTE:  ASStack Example
 /*
             <ASStack>

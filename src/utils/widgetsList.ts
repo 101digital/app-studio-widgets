@@ -66,14 +66,6 @@ export type WidgetsList = {
     ASTimer: (attributes: ASTimerProps) => string
 }
 
-// export const ASWidgetsList =()=> {
-//     const getWidget = ()=>{
-//         console.log('aosdujhfdsf', )
-//     }
-//
-//     return {getWidget}
-// }
-
 export class ASWidgetsList {
 
     constructor() {
@@ -149,8 +141,6 @@ export class ASWidgetsList {
         return this.getWidgets()?.[name]
     }
 }
-
-
 
 // const a = new ASWidgetsList()
 // const asText = a.getWidgets().ASText({

@@ -1,4 +1,3 @@
-"use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -10,21 +9,17 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importDefault(require("react"));
-const react_native_1 = require("react-native");
-const colors_1 = require("../../utils/colors");
+import React from 'react';
+import { StyleSheet, Text } from 'react-native';
+import { colors } from "../../utils/colors";
 const ASText = (props) => {
     const _a = props || {}, { children, style } = _a, restProps = __rest(_a, ["children", "style"]);
-    return (react_1.default.createElement(react_native_1.Text, Object.assign({}, restProps, { style: [styles.textStyle, style] }), children));
+    return (React.createElement(Text, Object.assign({}, restProps, { style: [styles.textStyle, style] }), children));
 };
-const styles = react_native_1.StyleSheet.create({
+const styles = StyleSheet.create({
     textStyle: {
         fontSize: 14,
-        color: colors_1.colors.black,
+        color: colors.black,
     },
 });
-exports.default = ASText;
+export default ASText;

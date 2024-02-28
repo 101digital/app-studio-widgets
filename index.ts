@@ -1,5 +1,4 @@
 export {ASWidgetsList, WidgetsList} from './src/utils/widgetsList';
-export {screenWidth, screenHeight, convertPercentageToPx} from './src/utils/commonUtils';
 export {default as ASText, ASTextProps} from './src/components/text';
 export {default as ASButton, ASButtonProps} from './src/components/button';
 export {default as ASTextField, ASTextFieldProps, ASTextFieldStyles} from './src/components/textField';

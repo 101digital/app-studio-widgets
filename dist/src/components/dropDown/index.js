@@ -1,4 +1,3 @@
-"use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -10,35 +9,31 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importDefault(require("react"));
-const react_native_1 = require("react-native");
-const react_native_element_dropdown_1 = require("react-native-element-dropdown");
-const text_1 = __importDefault(require("../text"));
-const colors_1 = require("../../utils/colors");
-const formik_1 = require("formik");
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { Dropdown } from 'react-native-element-dropdown';
+import ASText from "../text";
+import { colors } from "../../utils/colors";
+import { useField } from "formik";
 const ASDropDown = (props) => {
     const { options, renderLeftIcon, placeholder = "Please select item", onSelect, searchPlaceholder = 'Search...', search = false, label, name = '', containerStyle, iconStyles } = props, restProps = __rest(props, ["options", "renderLeftIcon", "placeholder", "onSelect", "searchPlaceholder", "search", "label", "name", "containerStyle", "iconStyles"]);
-    const [field, meta, helpers] = (0, formik_1.useField)(name);
+    const [field, meta, helpers] = useField(name);
     const { setValue } = helpers || {};
     const renderItem = (item) => {
-        return (react_1.default.createElement(react_native_1.View, { style: styles.item },
-            react_1.default.createElement(react_native_1.Text, { style: styles.textItem }, item.label)));
+        return (React.createElement(View, { style: styles.item },
+            React.createElement(Text, { style: styles.textItem }, item.label)));
     };
     const _onChangeDropDownField = (item) => {
         setValue === null || setValue === void 0 ? void 0 : setValue(item === null || item === void 0 ? void 0 : item.value);
     };
-    return (react_1.default.createElement(react_native_1.View, { style: [styles.container, containerStyle] },
-        !!label && react_1.default.createElement(text_1.default, { style: styles.labelStyle }, label),
-        react_1.default.createElement(react_native_element_dropdown_1.Dropdown, Object.assign({ style: styles.dropdown, placeholderStyle: styles.placeholderStyle, selectedTextStyle: styles.selectedTextStyle, inputSearchStyle: styles.inputSearchStyle, iconStyle: [styles.iconStyle, iconStyles], search: search, maxHeight: 300, value: `${field === null || field === void 0 ? void 0 : field.value}`, searchPlaceholder: searchPlaceholder, renderLeftIcon: renderLeftIcon, renderItem: renderItem, placeholder: placeholder }, restProps, { data: options, onChange: _onChangeDropDownField, labelField: "label", valueField: "value" }))));
+    return (React.createElement(View, { style: [styles.container, containerStyle] },
+        !!label && React.createElement(ASText, { style: styles.labelStyle }, label),
+        React.createElement(Dropdown, Object.assign({ style: styles.dropdown, placeholderStyle: styles.placeholderStyle, selectedTextStyle: styles.selectedTextStyle, inputSearchStyle: styles.inputSearchStyle, iconStyle: [styles.iconStyle, iconStyles], search: search, maxHeight: 300, value: `${field === null || field === void 0 ? void 0 : field.value}`, searchPlaceholder: searchPlaceholder, renderLeftIcon: renderLeftIcon, renderItem: renderItem, placeholder: placeholder }, restProps, { data: options, onChange: _onChangeDropDownField, labelField: "label", valueField: "value" }))));
 };
-exports.default = ASDropDown;
-const styles = react_native_1.StyleSheet.create({
+export default ASDropDown;
+const styles = StyleSheet.create({
     container: {
-        backgroundColor: colors_1.colors.offWhite, borderRadius: 5, paddingTop: 5
+        backgroundColor: colors.offWhite, borderRadius: 5, paddingTop: 5
     },
     dropdown: {
         marginVertical: 0,
@@ -53,7 +48,7 @@ const styles = react_native_1.StyleSheet.create({
     textItem: {
         flex: 1,
         fontSize: 12,
-        color: colors_1.colors.black700,
+        color: colors.black700,
     },
     placeholderStyle: {
         fontSize: 12,
@@ -61,7 +56,7 @@ const styles = react_native_1.StyleSheet.create({
     },
     selectedTextStyle: {
         fontSize: 12,
-        color: colors_1.colors.black700,
+        color: colors.black700,
         paddingRight: 25,
         paddingLeft: 10,
     },
@@ -76,7 +71,7 @@ const styles = react_native_1.StyleSheet.create({
     },
     labelStyle: {
         fontSize: 10,
-        color: colors_1.colors.gray400,
+        color: colors.gray400,
         paddingHorizontal: 15
     }
 });
