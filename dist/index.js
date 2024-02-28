@@ -29,3 +29,4 @@ export { default as ASCounter } from './src/components/counter';
 export { default as ASChoiceChips } from './src/components/choicechips';
 export { default as ASCalendar } from './src/components/calendar';
 export { default as ASTimer } from './src/components/timer';
+export { default as ASModal } from './src/components/modal';

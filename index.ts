@@ -29,5 +29,6 @@ export {default as ASCounter, ASCounterProps} from './src/components/counter';
 export {default as ASChoiceChips, ASChoiceChipsProps,ChipProps} from './src/components/choicechips';
 export {default as ASCalendar, ASCalendarProps} from './src/components/calendar';
 export {default as ASTimer, ASTimerProps} from './src/components/timer';
+export {default as ASModal, ASModalProps} from './src/components/modal';
 
 
