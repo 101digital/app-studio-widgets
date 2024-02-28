@@ -9,11 +9,13 @@
     "jsx": "react",
     "rootDir": ".",
     "baseUrl": "./src",
-    "module": "es6",
+//    "module": "es6",
+    "module": "commonJS",
+//    "types": [ "node" ],
 
     //"Need "moduleResolution": "node", and "skipLibCheck": true,  to be able to run yarn build"
-//    "moduleResolution": "node",
-    "skipLibCheck": false,
+    "moduleResolution": "node",
+    "skipLibCheck": true,
     "paths": {
       "@widgets/*": [
         "./src/*",

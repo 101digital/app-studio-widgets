@@ -1,4 +1,14 @@
-export class ASWidgetsList {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ASWidgetsList = void 0;
+// export const ASWidgetsList =()=> {
+//     const getWidget = ()=>{
+//         console.log('aosdujhfdsf', )
+//     }
+//
+//     return {getWidget}
+// }
+class ASWidgetsList {
     constructor() {
     }
     static getWidgetAttributes(attributes) {
@@ -66,6 +76,7 @@ export class ASWidgetsList {
         return (_a = this.getWidgets()) === null || _a === void 0 ? void 0 : _a[name];
     }
 }
+exports.ASWidgetsList = ASWidgetsList;
 // const a = new ASWidgetsList()
 // const asText = a.getWidgets().ASText({
 //     children: 'haha',

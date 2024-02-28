@@ -1,3 +1,4 @@
+"use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -9,15 +10,19 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
-import { colors } from "../../utils/colors";
-import ASText from "../text";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const react_1 = __importDefault(require("react"));
+const react_native_1 = require("react-native");
+const colors_1 = require("../../utils/colors");
+const text_1 = __importDefault(require("../text"));
 const ASButton = (props) => {
     const { label = '', style, textStyle, onPress, disabled, children, simpleTextButton } = props, restProps = __rest(props, ["label", "style", "textStyle", "onPress", "disabled", "children", "simpleTextButton"]);
     const getButtonBackgroundColor = () => {
         if (disabled) {
-            return colors.gray80;
+            return colors_1.colors.gray80;
         }
         if (style === null || style === void 0 ? void 0 : style.backgroundColor) {
             return style === null || style === void 0 ? void 0 : style.backgroundColor;
@@ -25,19 +30,19 @@ const ASButton = (props) => {
         if (simpleTextButton || !!children) {
             return 'transparent';
         }
-        return colors.primaryHifiColor;
+        return colors_1.colors.primaryHifiColor;
     };
     const getButtonTextBackgroundColor = () => {
         if (disabled) {
-            return colors.black500;
+            return colors_1.colors.black500;
         }
         if (textStyle === null || textStyle === void 0 ? void 0 : textStyle.color) {
             return textStyle === null || textStyle === void 0 ? void 0 : textStyle.color;
         }
         if (simpleTextButton) {
-            return colors.black700;
+            return colors_1.colors.black700;
         }
-        return colors.white;
+        return colors_1.colors.white;
     };
     const getButtonStyle = () => {
         if (simpleTextButton)
@@ -51,11 +56,11 @@ const ASButton = (props) => {
             return styles.simpleTextButtonTextStyle;
         return styles.textStyle;
     };
-    return (React.createElement(TouchableOpacity, Object.assign({}, restProps, { disabled: disabled, onPress: onPress, style: [getButtonStyle(), style, { backgroundColor: getButtonBackgroundColor() }] }), !!children ?
+    return (react_1.default.createElement(react_native_1.TouchableOpacity, Object.assign({}, restProps, { disabled: disabled, onPress: onPress, style: [getButtonStyle(), style, { backgroundColor: getButtonBackgroundColor() }] }), !!children ?
         children
-        : React.createElement(ASText, { style: [getButtonTextStyle(), textStyle, { color: getButtonTextBackgroundColor() }] }, label)));
+        : react_1.default.createElement(text_1.default, { style: [getButtonTextStyle(), textStyle, { color: getButtonTextBackgroundColor() }] }, label)));
 };
-const styles = StyleSheet.create({
+const styles = react_native_1.StyleSheet.create({
     buttonStyle: {
         justifyContent: 'center',
         alignItems: 'center',
@@ -75,4 +80,4 @@ const styles = StyleSheet.create({
         fontSize: 12
     }
 });
-export default ASButton;
+exports.default = ASButton;

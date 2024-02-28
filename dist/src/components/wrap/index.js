@@ -1,10 +1,15 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const react_1 = __importDefault(require("react"));
+const react_native_1 = require("react-native");
 const ASWrap = (props) => {
     const { children, direction = 'row', style, itemMargin } = props;
-    return (React.createElement(View, { style: [styles.container, { flexDirection: direction }, style] }, !!itemMargin ? React.Children.map(children, (child, index) => (React.createElement(View, { key: index, style: [styles.item, { margin: itemMargin || 5 }] }, child))) : children));
+    return (react_1.default.createElement(react_native_1.View, { style: [styles.container, { flexDirection: direction }, style] }, !!itemMargin ? react_1.default.Children.map(children, (child, index) => (react_1.default.createElement(react_native_1.View, { key: index, style: [styles.item, { margin: itemMargin || 5 }] }, child))) : children));
 };
-const styles = StyleSheet.create({
+const styles = react_native_1.StyleSheet.create({
     container: {
         flexWrap: 'wrap',
         alignItems: 'flex-start',
@@ -13,7 +18,7 @@ const styles = StyleSheet.create({
         margin: 5,
     },
 });
-export default ASWrap;
+exports.default = ASWrap;
 // NOTE:  ASWrapper Example
 /*
                 <ASWrapper direction="column" style={{ backgroundColor: 'blue', maxHeight:50 }}>
