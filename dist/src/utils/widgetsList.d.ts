@@ -1,4 +1,4 @@
-import { ASBadgeProps, ASButtonProps, ASCalendarProps, ASCheckBoxProps, ASChoiceChipsProps, ASCircleChartProps, ASColumnProps, ASContainerProps, ASCounterProps, ASDividerProps, ASDropDownProps, ASExpandableTextProps, ASFormValidationProps, ASImageProps, ASListTileProps, ASListViewProps, ASPageViewProps, ASProgressBarProps, ASRadioButtonProps, ASRichTextProps, ASRowProps, ASSliderProps, ASSpacerProps, ASStackProps, ASSwitchProps, ASTextFieldProps, ASTextProps, ASVerticalDividerProps, ASWrapProps, ASTimerProps } from "../../index";
+import { ASBadgeProps, ASButtonProps, ASCalendarProps, ASCheckBoxProps, ASChoiceChipsProps, ASCircleChartProps, ASColumnProps, ASContainerProps, ASCounterProps, ASDividerProps, ASDropDownProps, ASExpandableTextProps, ASFormValidationProps, ASImageProps, ASListTileProps, ASListViewProps, ASPageViewProps, ASProgressBarProps, ASRadioButtonProps, ASRichTextProps, ASRowProps, ASSliderProps, ASSpacerProps, ASStackProps, ASSwitchProps, ASTextFieldProps, ASTextProps, ASVerticalDividerProps, ASWrapProps, ASTimerProps, ASPinProps } from "../../index";
 export type WidgetsName = keyof WidgetsList;
 export type WidgetsList = {
     ASContainer: (attributes: ASContainerProps) => string;
@@ -31,6 +31,7 @@ export type WidgetsList = {
     ASChoiceChips: (attributes: ASChoiceChipsProps) => string;
     ASCalendar: (attributes: ASCalendarProps) => string;
     ASTimer: (attributes: ASTimerProps) => string;
+    ASPin: (attributes: ASPinProps) => string;
 };
 export declare class ASWidgetsList {
     constructor();

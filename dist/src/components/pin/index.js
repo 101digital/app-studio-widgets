@@ -21,7 +21,7 @@ const Keyboard = (props) => {
     const _onKeyboardPress = (item) => () => {
         onKeyboardPress === null || onKeyboardPress === void 0 ? void 0 : onKeyboardPress(item);
     };
-    const _renderItem = ({ item, }) => {
+    const _renderItem = ({ item }) => {
         return (React.createElement(ASButton, { style: Object.assign(Object.assign(Object.assign({}, styles.keyboardButton), ((item === null || item === void 0 ? void 0 : item.value) === 'continue' && StyleSheet.flatten(submitButtonStyle))), ((item === null || item === void 0 ? void 0 : item.value) === 'delete' && StyleSheet.flatten(deleteButtonStyle))), onPress: _onKeyboardPress(item) },
             (item === null || item === void 0 ? void 0 : item.value) !== 'delete' && (item === null || item === void 0 ? void 0 : item.value) !== 'continue' &&
                 React.createElement(ASText, { style: { fontWeight: 'bold', fontSize: 18 } }, item === null || item === void 0 ? void 0 : item.label),

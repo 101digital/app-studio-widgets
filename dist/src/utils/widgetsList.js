@@ -58,7 +58,8 @@ export class ASWidgetsList {
             ASCounter: (attributes) => `<ASCounter${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
             ASChoiceChips: (attributes) => `<ASChoiceChips${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
             ASCalendar: (attributes) => `<ASCalendar${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
-            ASTimer: (attributes) => `<ASTimer${ASWidgetsList.getWidgetAttributes(attributes)}/>`
+            ASTimer: (attributes) => `<ASTimer${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
+            ASPin: (attributes) => `<ASPin${ASWidgetsList.getWidgetAttributes(attributes)}>${attributes === null || attributes === void 0 ? void 0 : attributes.children}</ASCircleChart>`
         };
     }
     getWidgetByName(name) {
