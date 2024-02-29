@@ -1,16 +1,18 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { FlatListProps, StyleProp, ViewStyle } from "react-native";
 export type ASPinProps = KeyboardProps & {
     pinLength?: number;
-    onsubmit: (item: string) => void;
+    onSubmit: (item: string) => void;
+    children?: ReactNode;
+    onChange?: (item: string) => void;
 };
 export type KeyboardProps = {
-    submitButtonIcon?: React.ReactNode;
+    submitButtonIcon?: ReactNode;
     submitButtonStyle?: StyleProp<ViewStyle>;
-    deleteButtonIcon?: React.ReactNode;
+    deleteButtonIcon?: ReactNode;
     deleteButtonStyle?: StyleProp<ViewStyle>;
     flatListProps?: FlatListProps<KeyboardItemProps>;
-    onKeyboardPress: (item: KeyboardItemProps) => void;
+    onKeyboardPress?: (item: KeyboardItemProps) => void;
 };
 export type KeyboardItemProps = {
     label: string;

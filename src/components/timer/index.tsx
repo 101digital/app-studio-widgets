@@ -5,10 +5,11 @@ import ASText from "../text";
 export type ASTimerProps = {
     initialTime: number; // Initial time in seconds
     textStyle?: StyleProp<TextStyle>
+    onFinish: () => void | undefined
 }
 
 const ASTimer: React.FC<ASTimerProps> = (props: ASTimerProps) => {
-    const {initialTime, textStyle} = props || {}
+    const {initialTime, textStyle, onFinish} = props || {}
     const [timeRemaining, setTimeRemaining] = useState(initialTime);
 
     useEffect(() => {
@@ -17,6 +18,8 @@ const ASTimer: React.FC<ASTimerProps> = (props: ASTimerProps) => {
             timer = setInterval(() => {
                 setTimeRemaining((prevTime: number) => prevTime - 1);
             }, 1000);
+        }else{
+            onFinish?.()
         }
         return () => clearInterval(timer);
     }, [timeRemaining]);
@@ -33,12 +36,15 @@ const ASTimer: React.FC<ASTimerProps> = (props: ASTimerProps) => {
 }
 
 const styles = StyleSheet.create({
-    timerStyle: {}
+    timerStyle: {
+        fontWeight:'600',
+        fontSize: 16
+    }
 });
 
 export default ASTimer
 
 // Note: ASTimer Example
 /*
-         <ASTimer initialTime={62}/>
+         <ASTimer initialTime={62} onFinish={()=>{}}/>
 * */

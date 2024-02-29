@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {ReactNode, useEffect, useState} from "react";
 import ASText from "../text";
 import {FlatList, FlatListProps, StyleProp, StyleSheet, ViewStyle} from "react-native";
 import {colors} from "../../utils/colors";
@@ -20,16 +20,18 @@ const KEYBOARDS = [{'label': '1', 'value': '1'}, {'label': '2', 'value': '2'}, {
 
 export type ASPinProps = KeyboardProps & {
     pinLength?: number
-    onsubmit: (item: string) => void
+    onSubmit: (item: string) => void
+    children?: ReactNode
+    onChange?: (item: string) => void
 }
 
 export type KeyboardProps = {
-    submitButtonIcon?: React.ReactNode,
+    submitButtonIcon?: ReactNode,
     submitButtonStyle?: StyleProp<ViewStyle>
-    deleteButtonIcon?: React.ReactNode,
+    deleteButtonIcon?: ReactNode,
     deleteButtonStyle?: StyleProp<ViewStyle>
     flatListProps?: FlatListProps<KeyboardItemProps>
-    onKeyboardPress: (item: KeyboardItemProps) => void
+    onKeyboardPress?: (item: KeyboardItemProps) => void
 }
 
 export type KeyboardItemProps = {
@@ -53,10 +55,10 @@ const Keyboard: React.FC<KeyboardProps> = (props: KeyboardProps) => {
     } = props
 
     const _onKeyboardPress = (item: KeyboardItemProps) => () => {
-        onKeyboardPress(item)
+        onKeyboardPress?.(item)
     }
 
-    const _renderItem = ({item, index}: { item: KeyboardItemProps; index: number }) => {
+    const _renderItem = ({item}: { item: KeyboardItemProps; }) => {
         return (
             <ASButton
                 style={{...styles.keyboardButton, ...(item?.value === 'continue' && StyleSheet.flatten(submitButtonStyle)), ...(item?.value === 'delete' && StyleSheet.flatten(deleteButtonStyle))}}
@@ -78,7 +80,7 @@ const Keyboard: React.FC<KeyboardProps> = (props: KeyboardProps) => {
     return (
         <FlatList
             scrollEnabled={false}
-            contentContainerStyle={{gap: 15, justifyContent: 'flex-end', flexGrow: 1}}
+            contentContainerStyle={styles.flatListContainerStyles}
             columnWrapperStyle={{gap: 15}}
             {...flatListProps}
             data={KEYBOARDS}
@@ -97,6 +99,7 @@ const PinInputList: React.FC<PinInputListProps> = (props: PinInputListProps) => 
             {Array.from({length: pinLength}, (_, index) => {
                 return (
                     <ASColumn
+                        key={index}
                         style={[styles.pinItemWrapper, {
                             width: PIN_SIZE,
                             height: PIN_SIZE,
@@ -118,9 +121,15 @@ const ASPin: React.FC<ASPinProps> = (props: ASPinProps) => {
         deleteButtonStyle,
         flatListProps,
         pinLength = 6,
-        onsubmit
+        onSubmit,
+        children,
+        onChange
     } = props
     const [pin, setPin] = useState<string[]>([])
+
+    useEffect(() => {
+        onChange?.(pin.join(''))
+    }, [pin])
 
     const onKeyboardItemPress = (item: KeyboardItemProps) => {
         if (item?.value === 'delete') {
@@ -130,7 +139,7 @@ const ASPin: React.FC<ASPinProps> = (props: ASPinProps) => {
         }
 
         if (item?.value === 'continue' && pin.length === pinLength) {
-            onsubmit?.(pin.join(''))
+            onSubmit?.(pin.join(''))
         }
 
         if (pin.length < pinLength && (item?.value !== 'delete' && item?.value !== 'continue')) {
@@ -146,6 +155,8 @@ const ASPin: React.FC<ASPinProps> = (props: ASPinProps) => {
                 pinLength={pinLength}
                 pin={pin}
             />
+
+            {children}
 
             <Keyboard
                 submitButtonIcon={submitButtonIcon}
@@ -180,5 +191,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 5
-    }
+    },
+    flatListContainerStyles: {gap: 15, justifyContent: 'flex-end', flexGrow: 1}
 })

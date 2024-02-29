@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ASText from "../text";
 import { FlatList, StyleSheet } from "react-native";
 import { colors } from "../../utils/colors";
@@ -19,9 +19,9 @@ const KEYBOARDS = [{ 'label': '1', 'value': '1' }, { 'label': '2', 'value': '2' 
 const Keyboard = (props) => {
     const { submitButtonIcon, submitButtonStyle, deleteButtonIcon, deleteButtonStyle, flatListProps, onKeyboardPress } = props;
     const _onKeyboardPress = (item) => () => {
-        onKeyboardPress(item);
+        onKeyboardPress === null || onKeyboardPress === void 0 ? void 0 : onKeyboardPress(item);
     };
-    const _renderItem = ({ item, index }) => {
+    const _renderItem = ({ item, }) => {
         return (React.createElement(ASButton, { style: Object.assign(Object.assign(Object.assign({}, styles.keyboardButton), ((item === null || item === void 0 ? void 0 : item.value) === 'continue' && StyleSheet.flatten(submitButtonStyle))), ((item === null || item === void 0 ? void 0 : item.value) === 'delete' && StyleSheet.flatten(deleteButtonStyle))), onPress: _onKeyboardPress(item) },
             (item === null || item === void 0 ? void 0 : item.value) !== 'delete' && (item === null || item === void 0 ? void 0 : item.value) !== 'continue' &&
                 React.createElement(ASText, { style: { fontWeight: 'bold', fontSize: 18 } }, item === null || item === void 0 ? void 0 : item.label),
@@ -30,13 +30,13 @@ const Keyboard = (props) => {
             (item === null || item === void 0 ? void 0 : item.value) === 'continue' ? submitButtonIcon ||
                 React.createElement(ForwardIcon, null) : null));
     };
-    return (React.createElement(FlatList, Object.assign({ scrollEnabled: false, contentContainerStyle: { gap: 15, justifyContent: 'flex-end', flexGrow: 1 }, columnWrapperStyle: { gap: 15 } }, flatListProps, { data: KEYBOARDS, renderItem: _renderItem, numColumns: 3, keyExtractor: (item, index) => `${(item === null || item === void 0 ? void 0 : item.toString()) + index}` })));
+    return (React.createElement(FlatList, Object.assign({ scrollEnabled: false, contentContainerStyle: styles.flatListContainerStyles, columnWrapperStyle: { gap: 15 } }, flatListProps, { data: KEYBOARDS, renderItem: _renderItem, numColumns: 3, keyExtractor: (item, index) => `${(item === null || item === void 0 ? void 0 : item.toString()) + index}` })));
 };
 const PinInputList = (props) => {
     const { pinLength, pin } = props;
     const PIN_SIZE = 45;
     return (React.createElement(ASRow, { style: { justifyContent: 'space-between' } }, Array.from({ length: pinLength }, (_, index) => {
-        return (React.createElement(ASColumn, { style: [styles.pinItemWrapper, {
+        return (React.createElement(ASColumn, { key: index, style: [styles.pinItemWrapper, {
                     width: PIN_SIZE,
                     height: PIN_SIZE,
                 }] },
@@ -44,8 +44,11 @@ const PinInputList = (props) => {
     })));
 };
 const ASPin = (props) => {
-    const { submitButtonIcon, submitButtonStyle, deleteButtonIcon, deleteButtonStyle, flatListProps, pinLength = 6, onsubmit } = props;
+    const { submitButtonIcon, submitButtonStyle, deleteButtonIcon, deleteButtonStyle, flatListProps, pinLength = 6, onSubmit, children, onChange } = props;
     const [pin, setPin] = useState([]);
+    useEffect(() => {
+        onChange === null || onChange === void 0 ? void 0 : onChange(pin.join(''));
+    }, [pin]);
     const onKeyboardItemPress = (item) => {
         if ((item === null || item === void 0 ? void 0 : item.value) === 'delete') {
             setPin((prevState) => {
@@ -53,7 +56,7 @@ const ASPin = (props) => {
             });
         }
         if ((item === null || item === void 0 ? void 0 : item.value) === 'continue' && pin.length === pinLength) {
-            onsubmit === null || onsubmit === void 0 ? void 0 : onsubmit(pin.join(''));
+            onSubmit === null || onSubmit === void 0 ? void 0 : onSubmit(pin.join(''));
         }
         if (pin.length < pinLength && ((item === null || item === void 0 ? void 0 : item.value) !== 'delete' && (item === null || item === void 0 ? void 0 : item.value) !== 'continue')) {
             setPin((prevState) => {
@@ -63,6 +66,7 @@ const ASPin = (props) => {
     };
     return (React.createElement(ASColumn, { style: styles.flex1 },
         React.createElement(PinInputList, { pinLength: pinLength, pin: pin }),
+        children,
         React.createElement(Keyboard, { submitButtonIcon: submitButtonIcon, submitButtonStyle: submitButtonStyle, deleteButtonIcon: deleteButtonIcon, deleteButtonStyle: deleteButtonStyle, flatListProps: flatListProps, onKeyboardPress: onKeyboardItemPress })));
 };
 export default ASPin;
@@ -85,5 +89,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 5
-    }
+    },
+    flatListContainerStyles: { gap: 15, justifyContent: 'flex-end', flexGrow: 1 }
 });
