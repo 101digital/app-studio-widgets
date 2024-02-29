@@ -30,6 +30,7 @@ export {default as ASChoiceChips, ASChoiceChipsProps,ChipProps} from './src/comp
 export {default as ASCalendar, ASCalendarProps} from './src/components/calendar';
 export {default as ASTimer, ASTimerProps} from './src/components/timer';
 export {default as ASModal, ASModalProps} from './src/components/modal';
+export {default as ASPin, ASPinProps} from './src/components/pin';
 
 
 
