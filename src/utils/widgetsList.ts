@@ -16,6 +16,7 @@ import {
     ASListTileProps,
     ASListViewProps,
     ASPageViewProps,
+    ASPinProps,
     ASProgressBarProps,
     ASRadioButtonProps,
     ASRichTextProps,
@@ -26,10 +27,9 @@ import {
     ASSwitchProps,
     ASTextFieldProps,
     ASTextProps,
-    ASVerticalDividerProps,
-    ASWrapProps,
     ASTimerProps,
-    ASPinProps
+    ASVerticalDividerProps,
+    ASWrapProps
 } from "../../index";
 
 export type WidgetsName = keyof WidgetsList
@@ -82,8 +82,9 @@ export class ASWidgetsList {
 
         for (let key in atrributesObj) {
             let attributeValue = atrributesObj[key]
-
             switch (typeof attributeValue) {
+                case "function":
+                case 'boolean':
                 case 'number':
                     attributeValue = `{${attributeValue}}`
                     break
@@ -156,9 +157,9 @@ export class ASWidgetsList {
 //
 // console.log('RESULT WIDGET:\n', asContainer , '\n')
 
- // <ASContainer style={{"flex":1}}>
- // <ASText style={{"fontSize":12}} numberOfLines={1} ellipsizeMode={"tail"}>haha</ASText>
- // </ASContainer>
+// <ASContainer style={{"flex":1}}>
+// <ASText style={{"fontSize":12}} numberOfLines={1} ellipsizeMode={"tail"}>haha</ASText>
+// </ASContainer>
 
 
 //  ts-node --esm  /Users/huacatluong/101digital/generator-app/app-studio-widgets/src/utils/WidgetsList.ts

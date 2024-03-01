@@ -11,7 +11,7 @@ import {
     View,
     ViewStyle
 } from 'react-native';
-import {TextInputMask, TextInputMaskProps} from 'react-native-masked-text';
+import {TextInputMask, TextInputMaskProps,TextInputMaskTypeProp} from 'react-native-masked-text';
 import {colors} from "../../utils/colors";
 import {useField} from 'formik';
 import ASText from "../text";
@@ -24,7 +24,7 @@ export type ASTextFieldStyles = {
     errorTextStyle?: StyleProp<TextStyle>;
 };
 
-export type ASTextFieldProps = TextInputMaskProps &
+export type ASTextFieldProps = Omit<TextInputMaskProps, "type"> &
     TextInputProps & {
     name: string;
     prefixIcon?: ReactNode;
@@ -36,6 +36,7 @@ export type ASTextFieldProps = TextInputMaskProps &
     style?: ASTextFieldStyles;
     formatError?: (error: string) => string;
     label?: string;
+    type?: TextInputMaskTypeProp
 };
 
 const ASTextField = (props: ASTextFieldProps) => {
@@ -53,6 +54,7 @@ const ASTextField = (props: ASTextFieldProps) => {
         formatError,
         options,
         label,
+        type='custom',
         ...restProps
     } = props;
     const [active, setActive] = useState(false);
@@ -105,6 +107,7 @@ const ASTextField = (props: ASTextFieldProps) => {
                                 style={styles.textInputStyle}
                                 placeholderTextColor={placeholderTextColor}
                                 options={options}
+                                type={type}
                                 {...restProps}
                             />
                         ) : (

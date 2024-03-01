@@ -13,6 +13,8 @@ class ASWidgetsList {
         for (let key in atrributesObj) {
             let attributeValue = atrributesObj[key];
             switch (typeof attributeValue) {
+                case "function":
+                case 'boolean':
                 case 'number':
                     attributeValue = `{${attributeValue}}`;
                     break;
