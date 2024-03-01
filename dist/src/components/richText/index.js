@@ -1,18 +1,23 @@
-import React from 'react';
-import { StyleSheet } from 'react-native';
-import { colors } from "../../utils/colors";
-import ParsedText from 'react-native-parsed-text';
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const react_1 = __importDefault(require("react"));
+const react_native_1 = require("react-native");
+const colors_1 = require("../../utils/colors");
+const react_native_parsed_text_1 = __importDefault(require("react-native-parsed-text"));
 const ASRichText = (props) => {
     const { children, style, parse, childrenProps = { allowFontScaling: false } } = props || {};
-    return (React.createElement(ParsedText, { style: [styles.textStyle, style], parse: parse, childrenProps: childrenProps }, children));
+    return (react_1.default.createElement(react_native_parsed_text_1.default, { style: [styles.textStyle, style], parse: parse, childrenProps: childrenProps }, children));
 };
-const styles = StyleSheet.create({
+const styles = react_native_1.StyleSheet.create({
     textStyle: {
         fontSize: 16,
-        color: colors.black,
+        color: colors_1.colors.black,
     },
 });
-export default ASRichText;
+exports.default = ASRichText;
 //NOTE:  ASRichText Example
 /*
                 <ASRichText parse={[

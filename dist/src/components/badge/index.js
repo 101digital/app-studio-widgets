@@ -1,15 +1,20 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import ASText from "../text";
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const react_1 = __importDefault(require("react"));
+const react_native_1 = require("react-native");
+const text_1 = __importDefault(require("../text"));
 const ASBadge = (props) => {
     const { children, badgeNumber, badgeStyles, badgeTextStyle, containerStyle } = props;
-    return (React.createElement(View, { style: [styles.container, containerStyle] },
-        React.createElement(View, null,
+    return (react_1.default.createElement(react_native_1.View, { style: [styles.container, containerStyle] },
+        react_1.default.createElement(react_native_1.View, null,
             children,
-            !!badgeNumber && React.createElement(View, { style: [styles.badgeStyles, badgeStyles] },
-                React.createElement(ASText, { style: [styles.badgeTextStyle, badgeTextStyle] }, badgeNumber)))));
+            !!badgeNumber && react_1.default.createElement(react_native_1.View, { style: [styles.badgeStyles, badgeStyles] },
+                react_1.default.createElement(text_1.default, { style: [styles.badgeTextStyle, badgeTextStyle] }, badgeNumber)))));
 };
-const styles = StyleSheet.create({
+const styles = react_native_1.StyleSheet.create({
     container: {
         flexDirection: 'row',
     },
@@ -32,7 +37,7 @@ const styles = StyleSheet.create({
         fontSize: 12
     }
 });
-export default ASBadge;
+exports.default = ASBadge;
 // Note: ASBadge example
 /*
                 <ASBadge badgeNumber={3}>

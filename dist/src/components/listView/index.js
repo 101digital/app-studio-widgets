@@ -1,3 +1,4 @@
+"use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -9,16 +10,20 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React from 'react';
-import { FlatList } from 'react-native';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const react_1 = __importDefault(require("react"));
+const react_native_1 = require("react-native");
 const ASListView = (props) => {
     const { data, renderItem } = props, restProps = __rest(props, ["data", "renderItem"]);
     const keyExtractor = (item, index) => {
         return `${item.id || item.label || ''} - ${index}`;
     };
-    return (React.createElement(FlatList, Object.assign({ data: data, renderItem: renderItem, keyExtractor: keyExtractor }, restProps)));
+    return (react_1.default.createElement(react_native_1.FlatList, Object.assign({ data: data, renderItem: renderItem, keyExtractor: keyExtractor }, restProps)));
 };
-export default ASListView;
+exports.default = ASListView;
 // Note: ASListView example
 /*
              <ASListView data={[{id: '1', title: 'Item 1'},

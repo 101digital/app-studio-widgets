@@ -1,11 +1,16 @@
-import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { useField } from "formik";
-import ASWrap from "../wrap";
-import { colors } from "../../utils/colors";
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const react_1 = __importDefault(require("react"));
+const react_native_1 = require("react-native");
+const formik_1 = require("formik");
+const wrap_1 = __importDefault(require("../wrap"));
+const colors_1 = require("../../utils/colors");
 const ASChoiceChips = (props) => {
     const { options, name } = props;
-    const [field, meta, helpers] = useField(name);
+    const [field, meta, helpers] = (0, formik_1.useField)(name);
     const { setValue } = helpers || {};
     const selectedChoiceChips = field === null || field === void 0 ? void 0 : field.value;
     const _onPressChoiceChip = (chip) => () => {
@@ -21,17 +26,17 @@ const ASChoiceChips = (props) => {
         setValue(_selectedChoiceChips);
     };
     const findSelected = (value) => Array.isArray(selectedChoiceChips) && (selectedChoiceChips === null || selectedChoiceChips === void 0 ? void 0 : selectedChoiceChips.find((item) => (item === null || item === void 0 ? void 0 : item.value) === value));
-    return (React.createElement(ASWrap, { style: styles.container }, options.map((chip, index) => (React.createElement(TouchableOpacity, { key: `${chip.value}${index}`, onPress: _onPressChoiceChip(chip), style: [
+    return (react_1.default.createElement(wrap_1.default, { style: styles.container }, options.map((chip, index) => (react_1.default.createElement(react_native_1.TouchableOpacity, { key: `${chip.value}${index}`, onPress: _onPressChoiceChip(chip), style: [
             styles.chip,
             {
-                backgroundColor: findSelected(chip === null || chip === void 0 ? void 0 : chip.value) ? colors.primaryColor : colors.offWhite,
-                borderColor: findSelected(chip === null || chip === void 0 ? void 0 : chip.value) ? colors.primaryColor : colors.gray400,
+                backgroundColor: findSelected(chip === null || chip === void 0 ? void 0 : chip.value) ? colors_1.colors.primaryColor : colors_1.colors.offWhite,
+                borderColor: findSelected(chip === null || chip === void 0 ? void 0 : chip.value) ? colors_1.colors.primaryColor : colors_1.colors.gray400,
             },
         ] },
-        !!(chip === null || chip === void 0 ? void 0 : chip.icon) && React.createElement(View, { style: styles.iconContainer }, chip.icon),
-        React.createElement(Text, { style: [styles.label, { color: findSelected(chip === null || chip === void 0 ? void 0 : chip.value) ? colors.offWhite : colors.black700 }] }, chip.label))))));
+        !!(chip === null || chip === void 0 ? void 0 : chip.icon) && react_1.default.createElement(react_native_1.View, { style: styles.iconContainer }, chip.icon),
+        react_1.default.createElement(react_native_1.Text, { style: [styles.label, { color: findSelected(chip === null || chip === void 0 ? void 0 : chip.value) ? colors_1.colors.offWhite : colors_1.colors.black700 }] }, chip.label))))));
 };
-const styles = StyleSheet.create({
+const styles = react_native_1.StyleSheet.create({
     container: {
         justifyContent: 'center',
     },
@@ -51,4 +56,4 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
 });
-export default ASChoiceChips;
+exports.default = ASChoiceChips;

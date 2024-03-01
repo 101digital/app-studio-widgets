@@ -1,9 +1,14 @@
-import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
-import { colors } from "../../utils/colors";
-import React from "react";
-import ASButton from '../button';
-import ASContainer from '../container';
-import ASText from '../text';
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const react_native_1 = require("react-native");
+const colors_1 = require("../../utils/colors");
+const react_1 = __importDefault(require("react"));
+const button_1 = __importDefault(require("../button"));
+const container_1 = __importDefault(require("../container"));
+const text_1 = __importDefault(require("../text"));
 const ASModal = (props) => {
     const { children, containerStyle, isCloseOnBackground = true, isShowCloseIcon = true, paddingVertical, paddingHorizontal, closeModal } = props;
     const onPressBackground = () => {
@@ -13,14 +18,14 @@ const ASModal = (props) => {
     const _closeModal = () => {
         closeModal === null || closeModal === void 0 ? void 0 : closeModal();
     };
-    return (React.createElement(TouchableWithoutFeedback, { style: styles.flex1, onPress: onPressBackground },
-        React.createElement(ASContainer, { disabledSafeArea: true, isScrollable: false, style: [styles.container, { paddingVertical, paddingHorizontal }, containerStyle] },
-            React.createElement(TouchableWithoutFeedback, { style: styles.flex1, onPress: undefined },
-                React.createElement(View, { style: styles.flex1 }, typeof children === 'function' ? children(_closeModal) : children)),
-            isShowCloseIcon && React.createElement(ASButton, { style: styles.closeButton, onPress: _closeModal },
-                React.createElement(ASText, { style: styles.closeIconText }, "X")))));
+    return (react_1.default.createElement(react_native_1.TouchableWithoutFeedback, { style: styles.flex1, onPress: onPressBackground },
+        react_1.default.createElement(container_1.default, { disabledSafeArea: true, isScrollable: false, style: [styles.container, { paddingVertical, paddingHorizontal }, containerStyle] },
+            react_1.default.createElement(react_native_1.TouchableWithoutFeedback, { style: styles.flex1, onPress: undefined },
+                react_1.default.createElement(react_native_1.View, { style: styles.flex1 }, typeof children === 'function' ? children(_closeModal) : children)),
+            isShowCloseIcon && react_1.default.createElement(button_1.default, { style: styles.closeButton, onPress: _closeModal },
+                react_1.default.createElement(text_1.default, { style: styles.closeIconText }, "X")))));
 };
-const styles = StyleSheet.create({
+const styles = react_native_1.StyleSheet.create({
     flex1: {
         flex: 1,
     },
@@ -30,7 +35,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0,0,0,0.5)',
     },
     closeButton: {
-        backgroundColor: colors.white,
+        backgroundColor: colors_1.colors.white,
         borderRadius: 50,
         position: 'absolute',
         top: 40,
@@ -44,4 +49,4 @@ const styles = StyleSheet.create({
         fontSize: 18
     }
 });
-export default ASModal;
+exports.default = ASModal;

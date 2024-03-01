@@ -1,11 +1,39 @@
-import React, { useEffect, useState } from "react";
-import ASText from "../text";
-import { FlatList, StyleSheet } from "react-native";
-import { colors } from "../../utils/colors";
-import ASButton from '../button';
-import ASRow from "../row";
-import ASColumn from "../column";
-import { DeleteIcon, ForwardIcon } from '../../assets/icon';
+"use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const react_1 = __importStar(require("react"));
+const text_1 = __importDefault(require("../text"));
+const react_native_1 = require("react-native");
+const colors_1 = require("../../utils/colors");
+const button_1 = __importDefault(require("../button"));
+const row_1 = __importDefault(require("../row"));
+const column_1 = __importDefault(require("../column"));
+const icon_1 = require("../../assets/icon");
 const KEYBOARDS = [{ 'label': '1', 'value': '1' }, { 'label': '2', 'value': '2' }, {
         'label': '3',
         'value': '3'
@@ -22,31 +50,31 @@ const Keyboard = (props) => {
         onKeyboardPress === null || onKeyboardPress === void 0 ? void 0 : onKeyboardPress(item);
     };
     const _renderItem = ({ item }) => {
-        return (React.createElement(ASButton, { style: Object.assign(Object.assign(Object.assign({}, styles.keyboardButton), ((item === null || item === void 0 ? void 0 : item.value) === 'continue' && StyleSheet.flatten(submitButtonStyle))), ((item === null || item === void 0 ? void 0 : item.value) === 'delete' && StyleSheet.flatten(deleteButtonStyle))), onPress: _onKeyboardPress(item) },
+        return (react_1.default.createElement(button_1.default, { style: Object.assign(Object.assign(Object.assign({}, styles.keyboardButton), ((item === null || item === void 0 ? void 0 : item.value) === 'continue' && react_native_1.StyleSheet.flatten(submitButtonStyle))), ((item === null || item === void 0 ? void 0 : item.value) === 'delete' && react_native_1.StyleSheet.flatten(deleteButtonStyle))), onPress: _onKeyboardPress(item) },
             (item === null || item === void 0 ? void 0 : item.value) !== 'delete' && (item === null || item === void 0 ? void 0 : item.value) !== 'continue' &&
-                React.createElement(ASText, { style: { fontWeight: 'bold', fontSize: 18 } }, item === null || item === void 0 ? void 0 : item.label),
+                react_1.default.createElement(text_1.default, { style: { fontWeight: 'bold', fontSize: 18 } }, item === null || item === void 0 ? void 0 : item.label),
             (item === null || item === void 0 ? void 0 : item.value) === 'delete' ? deleteButtonIcon ||
-                React.createElement(DeleteIcon, null) : null,
+                react_1.default.createElement(icon_1.DeleteIcon, null) : null,
             (item === null || item === void 0 ? void 0 : item.value) === 'continue' ? submitButtonIcon ||
-                React.createElement(ForwardIcon, null) : null));
+                react_1.default.createElement(icon_1.ForwardIcon, null) : null));
     };
-    return (React.createElement(FlatList, Object.assign({ scrollEnabled: false, contentContainerStyle: styles.flatListContainerStyles, columnWrapperStyle: { gap: 15 } }, flatListProps, { data: KEYBOARDS, renderItem: _renderItem, numColumns: 3, keyExtractor: (item, index) => `${(item === null || item === void 0 ? void 0 : item.toString()) + index}` })));
+    return (react_1.default.createElement(react_native_1.FlatList, Object.assign({ scrollEnabled: false, contentContainerStyle: styles.flatListContainerStyles, columnWrapperStyle: { gap: 15 } }, flatListProps, { data: KEYBOARDS, renderItem: _renderItem, numColumns: 3, keyExtractor: (item, index) => `${(item === null || item === void 0 ? void 0 : item.toString()) + index}` })));
 };
 const PinInputList = (props) => {
     const { pinLength, pin } = props;
     const PIN_SIZE = 45;
-    return (React.createElement(ASRow, { style: { justifyContent: 'space-between' } }, Array.from({ length: pinLength }, (_, index) => {
-        return (React.createElement(ASColumn, { key: index, style: [styles.pinItemWrapper, {
+    return (react_1.default.createElement(row_1.default, { style: { justifyContent: 'space-between' } }, Array.from({ length: pinLength }, (_, index) => {
+        return (react_1.default.createElement(column_1.default, { key: index, style: [styles.pinItemWrapper, {
                     width: PIN_SIZE,
                     height: PIN_SIZE,
                 }] },
-            React.createElement(ASText, null, (pin === null || pin === void 0 ? void 0 : pin[index]) || '')));
+            react_1.default.createElement(text_1.default, null, (pin === null || pin === void 0 ? void 0 : pin[index]) || '')));
     })));
 };
 const ASPin = (props) => {
     const { submitButtonIcon, submitButtonStyle, deleteButtonIcon, deleteButtonStyle, flatListProps, pinLength = 6, onSubmit, children, onChange } = props;
-    const [pin, setPin] = useState([]);
-    useEffect(() => {
+    const [pin, setPin] = (0, react_1.useState)([]);
+    (0, react_1.useEffect)(() => {
         onChange === null || onChange === void 0 ? void 0 : onChange(pin.join(''));
     }, [pin]);
     const onKeyboardItemPress = (item) => {
@@ -64,13 +92,13 @@ const ASPin = (props) => {
             });
         }
     };
-    return (React.createElement(ASColumn, { style: styles.flex1 },
-        React.createElement(PinInputList, { pinLength: pinLength, pin: pin }),
+    return (react_1.default.createElement(column_1.default, { style: styles.flex1 },
+        react_1.default.createElement(PinInputList, { pinLength: pinLength, pin: pin }),
         children,
-        React.createElement(Keyboard, { submitButtonIcon: submitButtonIcon, submitButtonStyle: submitButtonStyle, deleteButtonIcon: deleteButtonIcon, deleteButtonStyle: deleteButtonStyle, flatListProps: flatListProps, onKeyboardPress: onKeyboardItemPress })));
+        react_1.default.createElement(Keyboard, { submitButtonIcon: submitButtonIcon, submitButtonStyle: submitButtonStyle, deleteButtonIcon: deleteButtonIcon, deleteButtonStyle: deleteButtonStyle, flatListProps: flatListProps, onKeyboardPress: onKeyboardItemPress })));
 };
-export default ASPin;
-const styles = StyleSheet.create({
+exports.default = ASPin;
+const styles = react_native_1.StyleSheet.create({
     flex1: {
         flex: 1
     },
@@ -80,11 +108,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderWidth: 1,
-        borderColor: colors.gray80,
+        borderColor: colors_1.colors.gray80,
         borderRadius: 5
     },
     pinItemWrapper: {
-        borderColor: colors.gray80,
+        borderColor: colors_1.colors.gray80,
         borderWidth: 1,
         justifyContent: 'center',
         alignItems: 'center',

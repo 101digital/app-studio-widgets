@@ -1,3 +1,9 @@
-export { TickIcon } from './tick.icon';
-export { DeleteIcon } from './delete.icon';
-export { ForwardIcon } from './forward.icon';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ForwardIcon = exports.DeleteIcon = exports.TickIcon = void 0;
+var tick_icon_1 = require("./tick.icon");
+Object.defineProperty(exports, "TickIcon", { enumerable: true, get: function () { return tick_icon_1.TickIcon; } });
+var delete_icon_1 = require("./delete.icon");
+Object.defineProperty(exports, "DeleteIcon", { enumerable: true, get: function () { return delete_icon_1.DeleteIcon; } });
+var forward_icon_1 = require("./forward.icon");
+Object.defineProperty(exports, "ForwardIcon", { enumerable: true, get: function () { return forward_icon_1.ForwardIcon; } });
