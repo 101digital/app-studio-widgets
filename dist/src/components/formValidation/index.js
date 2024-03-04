@@ -19,7 +19,7 @@ const formik_1 = require("formik");
 const ASFormValidation = (props) => {
     const _a = props || {}, { children, onSubmit, initialValues, validationSchema } = _a, restProps = __rest(_a, ["children", "onSubmit", "initialValues", "validationSchema"]);
     return (react_1.default.createElement(formik_1.Formik, Object.assign({}, restProps, { initialValues: initialValues, validationSchema: validationSchema, onSubmit: onSubmit }), (formikProps) => {
-        return (react_1.default.createElement(react_1.default.Fragment, null, children(formikProps)));
+        return (react_1.default.createElement(react_1.default.Fragment, null, children === null || children === void 0 ? void 0 : children(formikProps)));
     }));
 };
 exports.default = ASFormValidation;

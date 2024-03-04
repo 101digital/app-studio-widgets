@@ -21,7 +21,7 @@ const ASFormValidation: React.FC<ASFormValidationProps> = (props: ASFormValidati
             {(formikProps: FormikProps<typeof initialValues | any>) => {
                 return (
                     <>
-                        {children(formikProps)}
+                        {children?.(formikProps)}
                     </>
                 )
             }}

@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ASWidgetsList = void 0;
+const widgetUtils_1 = require("./widgetUtils");
 class ASWidgetsList {
     constructor() {
     }
@@ -12,6 +13,15 @@ class ASWidgetsList {
         }
         for (let key in atrributesObj) {
             let attributeValue = atrributesObj[key];
+            if (key === 'validationSchema') {
+                attributeValue = (0, widgetUtils_1.generateValidationSchema)(attributeValue);
+                result += ` ${key}=${attributeValue}`;
+                continue;
+            }
+            if (key === 'initialValues') {
+                result += ` ${attributeValue}`;
+                continue;
+            }
             switch (typeof attributeValue) {
                 case "function":
                 case 'boolean':
@@ -43,7 +53,7 @@ class ASWidgetsList {
             ASSpacer: (attributes) => `<ASSpacer${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
             ASDivider: (attributes) => `<ASDivider${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
             ASVerticalDivider: (attributes) => `<ASVerticalDivider${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
-            ASFormValidation: (attributes) => `<ASFormValidation${ASWidgetsList.getWidgetAttributes(attributes)}>${attributes === null || attributes === void 0 ? void 0 : attributes.children}</ASFormValidation>`,
+            ASFormValidation: (attributes) => `<ASFormValidation${ASWidgetsList.getWidgetAttributes(attributes)}>{(formikProps: FormikProps<any>)=>(<>${attributes === null || attributes === void 0 ? void 0 : attributes.children}</>)}</ASFormValidation>`,
             ASRichText: (attributes) => `<ASRichText${ASWidgetsList.getWidgetAttributes(attributes)}>${attributes === null || attributes === void 0 ? void 0 : attributes.children}</ASRichText>`,
             ASImage: (attributes) => `<ASImage${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
             ASDropdown: (attributes) => `<ASDropdown${ASWidgetsList.getWidgetAttributes(attributes)}/>`,

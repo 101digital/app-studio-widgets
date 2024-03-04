@@ -31,6 +31,7 @@ import {
     ASVerticalDividerProps,
     ASWrapProps
 } from "../../index";
+import {generateValidationSchema} from "./widgetUtils";
 
 export type WidgetsName = keyof WidgetsList
 
@@ -82,6 +83,18 @@ export class ASWidgetsList {
 
         for (let key in atrributesObj) {
             let attributeValue = atrributesObj[key]
+
+            if(key === 'validationSchema'){
+                attributeValue = generateValidationSchema(attributeValue)
+                result += ` ${key}=${attributeValue}`
+                continue
+            }
+
+            if(key === 'initialValues'){
+                result += ` ${attributeValue}`
+                continue
+            }
+
             switch (typeof attributeValue) {
                 case "function":
                 case 'boolean':
@@ -98,7 +111,6 @@ export class ASWidgetsList {
                     attributeValue = `{"${attributeValue}"}`
                     break
             }
-
             result += ` ${key}=${attributeValue}`
         }
 
@@ -116,7 +128,7 @@ export class ASWidgetsList {
             ASSpacer: (attributes: ASSpacerProps) => `<ASSpacer${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
             ASDivider: (attributes: ASDividerProps) => `<ASDivider${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
             ASVerticalDivider: (attributes: ASVerticalDividerProps) => `<ASVerticalDivider${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
-            ASFormValidation: (attributes: ASFormValidationProps) => `<ASFormValidation${ASWidgetsList.getWidgetAttributes(attributes)}>${attributes?.children}</ASFormValidation>`,
+            ASFormValidation: (attributes: ASFormValidationProps) => `<ASFormValidation${ASWidgetsList.getWidgetAttributes(attributes)}>{(formikProps: FormikProps<any>)=>(<>${attributes?.children}</>)}</ASFormValidation>`,
             ASRichText: (attributes: ASRichTextProps) => `<ASRichText${ASWidgetsList.getWidgetAttributes(attributes)}>${attributes?.children}</ASRichText>`,
             ASImage: (attributes: ASImageProps) => `<ASImage${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
             ASDropdown: (attributes: ASDropDownProps,) => `<ASDropdown${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
