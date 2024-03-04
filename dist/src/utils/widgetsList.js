@@ -1,10 +1,37 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ASWidgetsList = void 0;
-const widgetUtils_1 = require("./widgetUtils");
 class ASWidgetsList {
     constructor() {
     }
+    static generateValidationSchema(validationSchema) {
+        if (!validationSchema) {
+            return '';
+        }
+        const fieldValidations = [];
+        validationSchema.forEach((field) => {
+            const fieldName = Object.keys(field)[0];
+            const validations = field[fieldName];
+            const existingFieldIndex = fieldValidations.findIndex((value) => value.includes(`${fieldName}:`));
+            const fieldValidation = validations.map((validation) => {
+                const validationKey = Object.keys(validation)[0];
+                const validationValue = Array.isArray(validation[validationKey])
+                    ? `${validationKey}('${validation[validationKey].join(', ')}')`
+                    : `${validationKey}('${validation[validationKey]}')`;
+                return `${validationValue}`;
+            }).join('.');
+            if (existingFieldIndex !== -1) {
+                // Field already exists in fieldValidations, replace the existing entry
+                fieldValidations[existingFieldIndex] = `  ${fieldName}: Yup.string().trim().${fieldValidation}`;
+            }
+            else {
+                // Field doesn't exist, add it to fieldValidations
+                fieldValidations.push(`  ${fieldName}: Yup.string().trim().${fieldValidation}`);
+            }
+        });
+        return `{Yup.object().shape({\n${fieldValidations.join(',\n')}\n})}`;
+    }
+    ;
     static getWidgetAttributes(attributes) {
         let result = '';
         const atrributesObj = Object.assign({}, attributes);
@@ -14,7 +41,7 @@ class ASWidgetsList {
         for (let key in atrributesObj) {
             let attributeValue = atrributesObj[key];
             if (key === 'validationSchema') {
-                attributeValue = (0, widgetUtils_1.generateValidationSchema)(attributeValue);
+                attributeValue = ASWidgetsList.generateValidationSchema(attributeValue);
                 result += ` ${key}=${attributeValue}`;
                 continue;
             }
@@ -42,39 +69,45 @@ class ASWidgetsList {
         }
         return result;
     }
+    static getWidgetString(widgetName, attributes) {
+        if (widgetName === 'ASFormValidation') {
+            return `<ASFormValidation${ASWidgetsList.getWidgetAttributes(attributes)}>{(formikProps: FormikProps<any>)=>(<>${attributes === null || attributes === void 0 ? void 0 : attributes.children}</>)}</ASFormValidation>`;
+        }
+        return (attributes === null || attributes === void 0 ? void 0 : attributes.children) ? `<${widgetName}${ASWidgetsList.getWidgetAttributes(attributes)}>${attributes === null || attributes === void 0 ? void 0 : attributes.children}</${widgetName}>` : `<${widgetName}${ASWidgetsList.getWidgetAttributes(attributes)}/>`;
+    }
     getWidgets() {
         return {
-            ASContainer: (attributes) => `<ASContainer${ASWidgetsList.getWidgetAttributes(attributes)}>\n${attributes === null || attributes === void 0 ? void 0 : attributes.children}\n</ASContainer>`,
-            ASText: (attributes) => `<ASText${ASWidgetsList.getWidgetAttributes(attributes)}>${attributes === null || attributes === void 0 ? void 0 : attributes.children}</ASText>`,
-            ASButton: (attributes) => `<ASButton${ASWidgetsList.getWidgetAttributes(attributes)}>${attributes === null || attributes === void 0 ? void 0 : attributes.children}</ASButton>`,
-            ASTextField: (attributes) => `<ASTextField${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
-            ASColumn: (attributes) => `<ASColumn${ASWidgetsList.getWidgetAttributes(attributes)}>${attributes === null || attributes === void 0 ? void 0 : attributes.children}</ASColumn>`,
-            ASRow: (attributes) => `<ASRow${ASWidgetsList.getWidgetAttributes(attributes)}>${attributes === null || attributes === void 0 ? void 0 : attributes.children}</ASRow>`,
-            ASSpacer: (attributes) => `<ASSpacer${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
-            ASDivider: (attributes) => `<ASDivider${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
-            ASVerticalDivider: (attributes) => `<ASVerticalDivider${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
-            ASFormValidation: (attributes) => `<ASFormValidation${ASWidgetsList.getWidgetAttributes(attributes)}>{(formikProps: FormikProps<any>)=>(<>${attributes === null || attributes === void 0 ? void 0 : attributes.children}</>)}</ASFormValidation>`,
-            ASRichText: (attributes) => `<ASRichText${ASWidgetsList.getWidgetAttributes(attributes)}>${attributes === null || attributes === void 0 ? void 0 : attributes.children}</ASRichText>`,
-            ASImage: (attributes) => `<ASImage${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
-            ASDropdown: (attributes) => `<ASDropdown${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
-            ASExpandableText: (attributes) => `<ASExpandableText${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
-            ASWrap: (attributes) => `<ASWrap${ASWidgetsList.getWidgetAttributes(attributes)}>${attributes === null || attributes === void 0 ? void 0 : attributes.children}</ASWrap>`,
-            ASSwitch: (attributes) => `<ASSwitch${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
-            ASCheckBox: (attributes) => `<ASCheckBox${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
-            ASProgressBar: (attributes) => `<ASProgressBar${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
-            ASStack: (attributes) => `<ASStack${ASWidgetsList.getWidgetAttributes(attributes)}>${attributes === null || attributes === void 0 ? void 0 : attributes.children}</ASStack>`,
-            ASListView: (attributes) => `<ASListView${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
-            ASCircleChart: (attributes) => `<ASCircleChart${ASWidgetsList.getWidgetAttributes(attributes)}>${attributes === null || attributes === void 0 ? void 0 : attributes.children}</ASCircleChart>`,
-            ASBadge: (attributes) => `<ASBadge${ASWidgetsList.getWidgetAttributes(attributes)}>${attributes === null || attributes === void 0 ? void 0 : attributes.children}</ASBadge>`,
-            ASPageView: (attributes) => `<ASPageView${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
-            ASListTile: (attributes) => `<ASListTile${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
-            ASRadioButton: (attributes) => `<ASRadioButton${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
-            ASSlider: (attributes) => `<ASSlider${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
-            ASCounter: (attributes) => `<ASCounter${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
-            ASChoiceChips: (attributes) => `<ASChoiceChips${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
-            ASCalendar: (attributes) => `<ASCalendar${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
-            ASTimer: (attributes) => `<ASTimer${ASWidgetsList.getWidgetAttributes(attributes)}/>`,
-            ASPin: (attributes) => `<ASPin${ASWidgetsList.getWidgetAttributes(attributes)}>${attributes === null || attributes === void 0 ? void 0 : attributes.children}</ASCircleChart>`
+            ASContainer: (attributes) => ASWidgetsList.getWidgetString('ASContainer', attributes),
+            ASText: (attributes) => ASWidgetsList.getWidgetString('ASText', attributes),
+            ASButton: (attributes) => ASWidgetsList.getWidgetString('ASButton', attributes),
+            ASTextField: (attributes) => ASWidgetsList.getWidgetString('ASTextField', attributes),
+            ASColumn: (attributes) => ASWidgetsList.getWidgetString('ASColumn', attributes),
+            ASRow: (attributes) => ASWidgetsList.getWidgetString('ASRow', attributes),
+            ASSpacer: (attributes) => ASWidgetsList.getWidgetString('ASSpacer', attributes),
+            ASDivider: (attributes) => ASWidgetsList.getWidgetString('ASDivider', attributes),
+            ASVerticalDivider: (attributes) => ASWidgetsList.getWidgetString('ASVerticalDivider', attributes),
+            ASFormValidation: (attributes) => ASWidgetsList.getWidgetString('ASFormValidation', attributes),
+            ASRichText: (attributes) => ASWidgetsList.getWidgetString('ASRichText', attributes),
+            ASImage: (attributes) => ASWidgetsList.getWidgetString('ASImage', attributes),
+            ASDropdown: (attributes) => ASWidgetsList.getWidgetString('ASDropdown', attributes),
+            ASExpandableText: (attributes) => ASWidgetsList.getWidgetString('ASExpandableText', attributes),
+            ASWrap: (attributes) => ASWidgetsList.getWidgetString('ASWrap', attributes),
+            ASSwitch: (attributes) => ASWidgetsList.getWidgetString('ASSwitch', attributes),
+            ASCheckBox: (attributes) => ASWidgetsList.getWidgetString('ASCheckBox', attributes),
+            ASProgressBar: (attributes) => ASWidgetsList.getWidgetString('ASProgressBar', attributes),
+            ASStack: (attributes) => ASWidgetsList.getWidgetString('ASStack', attributes),
+            ASListView: (attributes) => ASWidgetsList.getWidgetString('ASListView', attributes),
+            ASCircleChart: (attributes) => ASWidgetsList.getWidgetString('ASCircleChart', attributes),
+            ASBadge: (attributes) => ASWidgetsList.getWidgetString('ASBadge', attributes),
+            ASPageView: (attributes) => ASWidgetsList.getWidgetString('ASPageView', attributes),
+            ASListTile: (attributes) => ASWidgetsList.getWidgetString('ASListTile', attributes),
+            ASRadioButton: (attributes) => ASWidgetsList.getWidgetString('ASRadioButton', attributes),
+            ASSlider: (attributes) => ASWidgetsList.getWidgetString('ASSlider', attributes),
+            ASCounter: (attributes) => ASWidgetsList.getWidgetString('ASCounter', attributes),
+            ASChoiceChips: (attributes) => ASWidgetsList.getWidgetString('ASChoiceChips', attributes),
+            ASCalendar: (attributes) => ASWidgetsList.getWidgetString('ASCalendar', attributes),
+            ASTimer: (attributes) => ASWidgetsList.getWidgetString('ASTimer', attributes),
+            ASPin: (attributes) => ASWidgetsList.getWidgetString('ASPin', attributes),
         };
     }
     getWidgetByName(name) {
