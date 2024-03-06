@@ -37,6 +37,7 @@ export type ASTextFieldProps = Omit<TextInputMaskProps, "type"> &
     formatError?: (error: string) => string;
     label?: string;
     type?: TextInputMaskTypeProp
+    isShowError?: boolean
 };
 
 const ASTextField = (props: ASTextFieldProps) => {
@@ -55,6 +56,7 @@ const ASTextField = (props: ASTextFieldProps) => {
         options,
         label,
         type = 'custom',
+        isShowError,
         ...restProps
     } = props;
     const [active, setActive] = useState(false);
@@ -128,7 +130,7 @@ const ASTextField = (props: ASTextFieldProps) => {
                     {suffixIcon}
                 </View>
             </View>
-            {meta?.error && meta?.touched && (
+            {isShowError && meta?.error && meta?.touched && (
                 <ASText style={styles.errorTextStyle}>{getErrorMessage(meta?.error)}</ASText>
             )}
         </>

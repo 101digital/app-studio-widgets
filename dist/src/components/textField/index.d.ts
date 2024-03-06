@@ -20,6 +20,7 @@ export type ASTextFieldProps = Omit<TextInputMaskProps, "type"> & TextInputProps
     formatError?: (error: string) => string;
     label?: string;
     type?: TextInputMaskTypeProp;
+    isShowError?: boolean;
 };
 declare const ASTextField: {
     (props: ASTextFieldProps): React.JSX.Element;

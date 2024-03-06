@@ -11,7 +11,7 @@ const colors_1 = require("../../utils/colors");
 const icon_1 = require("../../assets/icon");
 const row_1 = __importDefault(require("../row"));
 const ASRadioButton = (props) => {
-    const { options = [], name, radioButtonStyle, innerCircleStyle, color = colors_1.colors.primaryColor, labelStyle, type = 'default' } = props;
+    const { options = [], name, radioButtonStyle, innerCircleStyle, color = colors_1.colors.primaryColor, labelStyle, radioType = 'default' } = props;
     const [field, meta, helpers] = (0, formik_1.useField)(name);
     const { setValue } = helpers || {};
     const _onPressRadioButton = (item) => () => {
@@ -29,7 +29,7 @@ const ASRadioButton = (props) => {
             react_1.default.createElement(icon_1.TickIcon, { size: 24, color: (item === null || item === void 0 ? void 0 : item.value) === (field === null || field === void 0 ? void 0 : field.value) ? color : 'transparent' })));
     };
     const renderRadioButtonType = (item) => {
-        switch (type) {
+        switch (radioType) {
             case 'default':
                 return defaultRadioButtonType(item);
             case 'tick':

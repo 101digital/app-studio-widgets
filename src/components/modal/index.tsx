@@ -1,18 +1,16 @@
-import {StyleProp, StyleSheet, TouchableWithoutFeedback, View, ViewStyle} from "react-native";
+import {ColorValue, StyleProp, StyleSheet, TouchableWithoutFeedback, View, ViewStyle} from "react-native";
 import {colors} from "../../utils/colors";
 import React, {ReactNode} from "react";
 import ASButton from '../button'
-import ASContainer from '../container'
-import ASText from '../text'
+import ASText from "../text";
 
 export type ASModalProps = {
     children: ReactNode | ((onPressBackground?: () => void) => ReactNode);
     containerStyle?: StyleProp<ViewStyle>;
     isCloseOnBackground?: boolean
     isShowCloseIcon?: boolean
-    paddingVertical: number
-    paddingHorizontal: number
-    closeModal: () => void
+    closeModal?: () => void
+    overlayBackgroundColor?: ColorValue | string
 }
 
 const ASModal: React.FC<ASModalProps> = (props: ASModalProps) => {
@@ -20,10 +18,9 @@ const ASModal: React.FC<ASModalProps> = (props: ASModalProps) => {
         children,
         containerStyle,
         isCloseOnBackground = true,
-        isShowCloseIcon = true,
-        paddingVertical,
-        paddingHorizontal,
-        closeModal
+        isShowCloseIcon = false,
+        closeModal,
+        overlayBackgroundColor = 'rgba(0,0,0,0.5)'
     } = props
 
     const onPressBackground = () => {
@@ -35,33 +32,30 @@ const ASModal: React.FC<ASModalProps> = (props: ASModalProps) => {
     }
 
     return (
-        <TouchableWithoutFeedback style={styles.flex1} onPress={onPressBackground}>
-            <ASContainer disabledSafeArea isScrollable={false}
-                         style={[styles.container, {paddingVertical, paddingHorizontal}, containerStyle]}>
-                <TouchableWithoutFeedback style={styles.flex1} onPress={undefined}>
-                    <View style={styles.flex1}>
-                        {typeof children === 'function' ? children(_closeModal) : children}
-                    </View>
-                </TouchableWithoutFeedback>
-                {
-                    isShowCloseIcon && <ASButton style={styles.closeButton}
-                                                 onPress={_closeModal}>
-                        <ASText style={styles.closeIconText}>X</ASText>
-                    </ASButton>
-                }
-            </ASContainer>
-        </TouchableWithoutFeedback>
+        <View style={[styles.container, containerStyle]}>
+
+            <TouchableWithoutFeedback onPress={onPressBackground}>
+                <View style={[styles.modalOverlay, {backgroundColor: overlayBackgroundColor}]}/>
+            </TouchableWithoutFeedback>
+
+            {typeof children === 'function' ? children(_closeModal) : children}
+
+            {
+                isShowCloseIcon && <ASButton style={styles.closeButton}
+                                             onPress={_closeModal}>
+                    <ASText style={styles.closeIconText}>X</ASText>
+                </ASButton>
+            }
+
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
-    flex1: {
-        flex: 1,
-    },
     container: {
+        flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'rgba(0,0,0,0.5)',
+        alignItems: 'center'
     },
     closeButton: {
         backgroundColor: colors.white,
@@ -76,6 +70,13 @@ const styles = StyleSheet.create({
     },
     closeIconText: {
         fontSize: 18
+    },
+    modalOverlay: {
+        position: 'absolute',
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
     }
 })
 

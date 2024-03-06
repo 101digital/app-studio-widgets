@@ -18,7 +18,7 @@ export type ASRadioButtonProps = {
     innerCircleStyle?: StyleProp<ViewStyle>;
     color?: ColorValue
     labelStyle?: StyleProp<TextStyle>;
-    type?: 'default' | 'tick'
+    radioType?: 'default' | 'tick'
 }
 
 const ASRadioButton: React.FC<ASRadioButtonProps> = (props: ASRadioButtonProps) => {
@@ -29,7 +29,7 @@ const ASRadioButton: React.FC<ASRadioButtonProps> = (props: ASRadioButtonProps) 
         innerCircleStyle,
         color = colors.primaryColor,
         labelStyle,
-        type = 'default'
+        radioType = 'default'
     } = props;
     const [field, meta, helpers] = useField(name);
     const {setValue} = helpers || {};
@@ -60,7 +60,7 @@ const ASRadioButton: React.FC<ASRadioButtonProps> = (props: ASRadioButtonProps) 
     }
 
     const renderRadioButtonType = (item: ASRadioButtonItemProps) => {
-        switch (type) {
+        switch (radioType) {
             case 'default':
                 return defaultRadioButtonType(item)
             case 'tick':

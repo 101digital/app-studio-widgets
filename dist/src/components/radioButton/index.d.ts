@@ -12,7 +12,7 @@ export type ASRadioButtonProps = {
     innerCircleStyle?: StyleProp<ViewStyle>;
     color?: ColorValue;
     labelStyle?: StyleProp<TextStyle>;
-    type?: 'default' | 'tick';
+    radioType?: 'default' | 'tick';
 };
 declare const ASRadioButton: React.FC<ASRadioButtonProps>;
 export default ASRadioButton;
