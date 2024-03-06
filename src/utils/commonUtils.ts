@@ -1,4 +1,4 @@
-import {Dimensions, DimensionValue} from 'react-native';
+import {Dimensions, DimensionValue, Platform} from 'react-native';
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
@@ -18,4 +18,6 @@ const convertPercentageToPx = (percentage: number | string | DimensionValue | un
     }
 }
 
-export {screenWidth, screenHeight, convertPercentageToPx};
+const isAndroid = Platform.OS === 'android';
+
+export {screenWidth, screenHeight, convertPercentageToPx, isAndroid};

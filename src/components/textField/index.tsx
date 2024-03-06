@@ -1,7 +1,6 @@
 import React, {ReactNode, useState} from 'react';
 import {
     NativeSyntheticEvent,
-    Platform,
     StyleProp,
     StyleSheet,
     TextInput,
@@ -11,10 +10,11 @@ import {
     View,
     ViewStyle
 } from 'react-native';
-import {TextInputMask, TextInputMaskProps,TextInputMaskTypeProp} from 'react-native-masked-text';
+import {TextInputMask, TextInputMaskProps, TextInputMaskTypeProp} from 'react-native-masked-text';
 import {colors} from "../../utils/colors";
 import {useField} from 'formik';
 import ASText from "../text";
+import {isAndroid} from '../../utils/commonUtils'
 
 export type ASTextFieldStyles = {
     containerStyle?: StyleProp<ViewStyle>;
@@ -54,7 +54,7 @@ const ASTextField = (props: ASTextFieldProps) => {
         formatError,
         options,
         label,
-        type='custom',
+        type = 'custom',
         ...restProps
     } = props;
     const [active, setActive] = useState(false);
@@ -157,15 +157,15 @@ const styles = StyleSheet.create({
     },
     textInputStyle: {
         flex: 1,
-        fontSize: 12,
+        fontSize: isAndroid ? 10 : 12,
         color: colors.black700,
-        paddingVertical: 8,
+        paddingVertical: isAndroid ? 2 : 8,
         paddingHorizontal: 0
     },
     errorTextStyle: {
         fontSize: 12,
         color: 'red',
-        marginTop: Platform.OS === 'ios' ? 4 : 5,
+        marginTop: isAndroid ? 5 : 4,
     },
     labelStyle: {
         fontSize: 10,

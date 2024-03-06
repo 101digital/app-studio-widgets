@@ -4,6 +4,7 @@ import {Dropdown} from 'react-native-element-dropdown';
 import {DropdownProps} from 'react-native-element-dropdown/src/components/Dropdown/model';
 import ASText from "../text";
 import {colors} from "../../utils/colors";
+import {isAndroid} from "../../utils/commonUtils";
 import {FieldHookConfig, useField} from "formik";
 
 export type DropDownOptionsProps = {
@@ -84,11 +85,14 @@ export default ASDropDown;
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: colors.offWhite, borderRadius: 5, paddingTop: 5
+        backgroundColor: colors.offWhite,
+        borderRadius: 5,
+        justifyContent:'center',
+        paddingLeft:4
     },
     dropdown: {
-        marginVertical: 0,
         borderRadius: 5,
+        minWidth:isAndroid ? 60 : 'auto',
     },
     item: {
         padding: 15,
@@ -106,15 +110,14 @@ const styles = StyleSheet.create({
         paddingHorizontal: 15,
     },
     selectedTextStyle: {
-        fontSize: 12,
-        color: colors.black700,
-        paddingRight: 25,
-        paddingLeft: 10,
+        fontSize: isAndroid ? 12: 12,
+        color:  colors.black700,
+        paddingRight: isAndroid ? 0 :30,
+        alignSelf:'center',
     },
     iconStyle: {
         width: 20,
         height: 20,
-        marginRight: 14,
     },
     inputSearchStyle: {
         height: 40,

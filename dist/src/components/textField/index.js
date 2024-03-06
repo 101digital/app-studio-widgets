@@ -43,6 +43,7 @@ const react_native_masked_text_1 = require("react-native-masked-text");
 const colors_1 = require("../../utils/colors");
 const formik_1 = require("formik");
 const text_1 = __importDefault(require("../text"));
+const commonUtils_1 = require("../../utils/commonUtils");
 const ASTextField = (props) => {
     const { name, onFocus, onBlur, suffixIcon, prefixIcon, errorBorderColor, activeBorderColor, inactiveBorderColor, style, placeholderTextColor = '#C4C4C4', formatError, options, label, type = 'custom' } = props, restProps = __rest(props, ["name", "onFocus", "onBlur", "suffixIcon", "prefixIcon", "errorBorderColor", "activeBorderColor", "inactiveBorderColor", "style", "placeholderTextColor", "formatError", "options", "label", "type"]);
     const [active, setActive] = (0, react_1.useState)(false);
@@ -105,15 +106,15 @@ const styles = react_native_1.StyleSheet.create({
     },
     textInputStyle: {
         flex: 1,
-        fontSize: 12,
+        fontSize: commonUtils_1.isAndroid ? 10 : 12,
         color: colors_1.colors.black700,
-        paddingVertical: 8,
+        paddingVertical: commonUtils_1.isAndroid ? 2 : 8,
         paddingHorizontal: 0
     },
     errorTextStyle: {
         fontSize: 12,
         color: 'red',
-        marginTop: react_native_1.Platform.OS === 'ios' ? 4 : 5,
+        marginTop: commonUtils_1.isAndroid ? 5 : 4,
     },
     labelStyle: {
         fontSize: 10,

@@ -19,6 +19,7 @@ const react_native_1 = require("react-native");
 const react_native_element_dropdown_1 = require("react-native-element-dropdown");
 const text_1 = __importDefault(require("../text"));
 const colors_1 = require("../../utils/colors");
+const commonUtils_1 = require("../../utils/commonUtils");
 const formik_1 = require("formik");
 const ASDropDown = (props) => {
     const { options, renderLeftIcon, placeholder = "Please select item", onSelect, searchPlaceholder = 'Search...', search = false, label, name = '', containerStyle, iconStyles } = props, restProps = __rest(props, ["options", "renderLeftIcon", "placeholder", "onSelect", "searchPlaceholder", "search", "label", "name", "containerStyle", "iconStyles"]);
@@ -38,11 +39,14 @@ const ASDropDown = (props) => {
 exports.default = ASDropDown;
 const styles = react_native_1.StyleSheet.create({
     container: {
-        backgroundColor: colors_1.colors.offWhite, borderRadius: 5, paddingTop: 5
+        backgroundColor: colors_1.colors.offWhite,
+        borderRadius: 5,
+        justifyContent: 'center',
+        paddingLeft: 4
     },
     dropdown: {
-        marginVertical: 0,
         borderRadius: 5,
+        minWidth: commonUtils_1.isAndroid ? 60 : 'auto',
     },
     item: {
         padding: 15,
@@ -60,15 +64,14 @@ const styles = react_native_1.StyleSheet.create({
         paddingHorizontal: 15,
     },
     selectedTextStyle: {
-        fontSize: 12,
+        fontSize: commonUtils_1.isAndroid ? 12 : 12,
         color: colors_1.colors.black700,
-        paddingRight: 25,
-        paddingLeft: 10,
+        paddingRight: commonUtils_1.isAndroid ? 0 : 30,
+        alignSelf: 'center',
     },
     iconStyle: {
         width: 20,
         height: 20,
-        marginRight: 14,
     },
     inputSearchStyle: {
         height: 40,
