@@ -37,6 +37,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
         name = '',
         containerStyle,
         iconStyles,
+        selectedTextStyle,
         ...restProps
     } = props
     const [field, meta, helpers] = useField<string>(name);
@@ -61,7 +62,6 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
             <Dropdown
                 style={styles.dropdown}
                 placeholderStyle={styles.placeholderStyle}
-                selectedTextStyle={styles.selectedTextStyle}
                 inputSearchStyle={styles.inputSearchStyle}
                 iconStyle={[styles.iconStyle,iconStyles]}
                 search={search}
@@ -72,6 +72,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
                 renderItem={renderItem}
                 placeholder={placeholder}
                 {...restProps}
+                selectedTextStyle={[styles.selectedTextStyle,selectedTextStyle]}
                 data={options}
                 onChange={_onChangeDropDownField}
                 labelField="label"

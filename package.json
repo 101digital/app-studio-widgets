@@ -1,6 +1,6 @@
 {
   "name": "app-studio-widgets",
-  "version": "1.0.29",
+  "version": "1.0.30",
   "description": "Widgets for App Studio",
   "repository": "https://github.com/101digital/app-studio-widgets",
   "license": "MIT",
@@ -17,6 +17,7 @@
   "keywords": [],
   "author": "Hua Cat Luong",
   "dependencies": {
+    "@gorhom/bottom-sheet": "^4.6.1",
     "@react-native-community/checkbox": "^0.5.17",
     "@react-native-community/slider": "^4.5.0",
     "@types/xdate": "^0.8.32",
@@ -29,10 +30,12 @@
     "react-native": "0.72.6",
     "react-native-calendars": "^1.1303.0",
     "react-native-element-dropdown": "^2.10.1",
+    "react-native-gesture-handler": "^2.15.0",
     "react-native-masked-text": "^1.13.0",
     "react-native-mime-types": "^2.3.0",
     "react-native-modal": "^12.0.2",
     "react-native-parsed-text": "^0.0.22",
+    "react-native-reanimated": "^3.7.2",
     "react-native-safe-area-context": "^4.7.1",
     "react-native-swiper": "^1.6.0",
     "tsx": "^4.7.0",
@@ -61,7 +64,9 @@
     "@react-native-community/slider": "^4.5.0",
     "react-native-calendars": "^1.1303.0",
     "react-native-safe-area-context": "^4.7.1",
-    "react-native-swiper": "^1.6.0"
+    "react-native-swiper": "^1.6.0",
+    "react-native-gesture-handler": "^2.15.0",
+    "react-native-reanimated": "^3.7.2"
   },
   "resolutions": {
     "@types/react": "17.0.43"
