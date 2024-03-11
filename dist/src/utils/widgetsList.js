@@ -76,7 +76,12 @@ class ASWidgetsList {
         if (widgetName === 'ASText') {
             return `<ASText${ASWidgetsList.getWidgetAttributes(attributes)}>${(attributes === null || attributes === void 0 ? void 0 : attributes.label) || (attributes === null || attributes === void 0 ? void 0 : attributes.children)}</ASText>`;
         }
-        return (attributes === null || attributes === void 0 ? void 0 : attributes.children) ? `<${widgetName}${ASWidgetsList.getWidgetAttributes(attributes)}>${attributes === null || attributes === void 0 ? void 0 : attributes.children}</${widgetName}>` : `<${widgetName}${ASWidgetsList.getWidgetAttributes(attributes)}/>`;
+        if (attributes === null || attributes === void 0 ? void 0 : attributes.children) {
+            return `<${widgetName}${ASWidgetsList.getWidgetAttributes(attributes)}>${Array.isArray(attributes === null || attributes === void 0 ? void 0 : attributes.children) ? attributes === null || attributes === void 0 ? void 0 : attributes.children.join('') : attributes === null || attributes === void 0 ? void 0 : attributes.children}</${widgetName}>`;
+        }
+        else {
+            return `<${widgetName}${ASWidgetsList.getWidgetAttributes(attributes)}/>`;
+        }
     }
     getWidgets() {
         return {
@@ -126,10 +131,18 @@ exports.ASWidgetsList = ASWidgetsList;
 //     numberOfLines: 1,
 //     ellipsizeMode: "tail"
 // },)
-// const asContainer = a.getWidgetByName('ASContainer')({children: asText, style: {flex: 1}})
+// const spacer = a.getWidgets().ASSpacer({height: 10})
+// const column = a.getWidgets().ASColumn({
+//     children: [asText, spacer],
+// },)
+// const asContainer = a.getWidgetByName('ASContainer')({children: column, style: {flex: 1}})
 //
-// console.log('RESULT WIDGET:\n', asContainer , '\n')
+// console.log('RESULT WIDGET:\n', asContainer, '\n')
+//RESULT:
 // <ASContainer style={{"flex":1}}>
-// <ASText style={{"fontSize":12}} numberOfLines={1} ellipsizeMode={"tail"}>haha</ASText>
+//     <ASColumn>
+//         <ASText style={{"fontSize":12}} numberOfLines={1} ellipsizeMode={"tail"} label={"haha"}>haha</ASText>
+//         <ASSpacer height={10}/>
+//     </ASColumn>
 // </ASContainer>
 //  ts-node --esm  /Users/huacatluong/101digital/generator-app/app-studio-widgets/src/utils/WidgetsList.ts

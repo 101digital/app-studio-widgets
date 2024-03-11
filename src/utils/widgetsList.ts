@@ -149,17 +149,24 @@ export class ASWidgetsList {
             return `<ASFormValidation${ASWidgetsList.getWidgetAttributes(attributes)}>{(formikProps: FormikProps<any>)=>(<>${attributes?.children}</>)}</ASFormValidation>`
         }
 
-        if(widgetName === 'ASText'){
+        if (widgetName === 'ASText') {
             return `<ASText${ASWidgetsList.getWidgetAttributes(attributes)}>${attributes?.label || attributes?.children}</ASText>`
         }
 
-        return attributes?.children ? `<${widgetName}${ASWidgetsList.getWidgetAttributes(attributes)}>${attributes?.children}</${widgetName}>` : `<${widgetName}${ASWidgetsList.getWidgetAttributes(attributes)}/>`
+        if (attributes?.children) {
+            return `<${widgetName}${ASWidgetsList.getWidgetAttributes(attributes)}>${Array.isArray(attributes?.children) ? attributes?.children.join('') : attributes?.children}</${widgetName}>`
+        } else {
+            return `<${widgetName}${ASWidgetsList.getWidgetAttributes(attributes)}/>`
+        }
     }
 
     public getWidgets(): WidgetsList {
         return {
             ASContainer: (attributes: ASContainerProps) => ASWidgetsList.getWidgetString('ASContainer', attributes),
-            ASText: (attributes: ASTextProps) => ASWidgetsList.getWidgetString('ASText', {...attributes, label: attributes?.children}),
+            ASText: (attributes: ASTextProps) => ASWidgetsList.getWidgetString('ASText', {
+                ...attributes,
+                label: attributes?.children
+            }),
             ASButton: (attributes: ASButtonProps) => ASWidgetsList.getWidgetString('ASButton', attributes),
             ASTextField: (attributes: ASTextFieldProps) => ASWidgetsList.getWidgetString('ASTextField', attributes),
             ASColumn: (attributes: ASColumnProps) => ASWidgetsList.getWidgetString('ASColumn', attributes),
@@ -204,12 +211,20 @@ export class ASWidgetsList {
 //     numberOfLines: 1,
 //     ellipsizeMode: "tail"
 // },)
-// const asContainer = a.getWidgetByName('ASContainer')({children: asText, style: {flex: 1}})
+// const spacer = a.getWidgets().ASSpacer({height: 10})
+// const column = a.getWidgets().ASColumn({
+//     children: [asText, spacer],
+// },)
+// const asContainer = a.getWidgetByName('ASContainer')({children: column, style: {flex: 1}})
 //
-// console.log('RESULT WIDGET:\n', asContainer , '\n')
+// console.log('RESULT WIDGET:\n', asContainer, '\n')
 
+//RESULT:
 // <ASContainer style={{"flex":1}}>
-// <ASText style={{"fontSize":12}} numberOfLines={1} ellipsizeMode={"tail"}>haha</ASText>
+//     <ASColumn>
+//         <ASText style={{"fontSize":12}} numberOfLines={1} ellipsizeMode={"tail"} label={"haha"}>haha</ASText>
+//         <ASSpacer height={10}/>
+//     </ASColumn>
 // </ASContainer>
 
 
