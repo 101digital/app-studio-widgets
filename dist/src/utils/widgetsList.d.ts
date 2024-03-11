@@ -36,6 +36,7 @@ export type WidgetsList = {
 export declare class ASWidgetsList {
     constructor();
     private static generateValidationSchema;
+    private static getReturnValue;
     private static getWidgetAttributes;
     private static getWidgetString;
     getWidgets(): WidgetsList;

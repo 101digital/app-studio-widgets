@@ -100,12 +100,39 @@ export class ASWidgetsList {
         return `{Yup.object().shape({\n${fieldValidations.join(',\n')}\n})}`;
     };
 
+    private static getReturnValue(attributeValue: any): string {
+        let result:any
 
-    private static getWidgetAttributes(attributes: any): string {
+        switch (typeof attributeValue) {
+            case "function":
+            case 'boolean':
+            case 'number':
+                result = `{${attributeValue}}`
+                break
+            case 'string':
+                result = `{"${attributeValue}"}`
+                break
+            case 'object':
+                result = `{${JSON.stringify(attributeValue)}}`
+                break
+            default:
+                result = `{"${attributeValue}"}`
+                break
+        }
+
+        return result
+    }
+
+    private static getWidgetAttributes(attributes: any, widgetName?: string): string {
         let result: string = ''
         const atrributesObj = {...attributes}
         if (atrributesObj?.children) {
             delete atrributesObj['children']
+        }
+
+        //Remove the label attribute from ASText, because it's used as children
+        if(widgetName === 'ASText'){
+            delete atrributesObj['label']
         }
 
         for (let key in atrributesObj) {
@@ -122,22 +149,7 @@ export class ASWidgetsList {
                 continue
             }
 
-            switch (typeof attributeValue) {
-                case "function":
-                case 'boolean':
-                case 'number':
-                    attributeValue = `{${attributeValue}}`
-                    break
-                case 'string':
-                    attributeValue = `{"${attributeValue}"}`
-                    break
-                case 'object':
-                    attributeValue = `{${JSON.stringify(attributeValue)}}`
-                    break
-                default:
-                    attributeValue = `{"${attributeValue}"}`
-                    break
-            }
+            attributeValue = ASWidgetsList.getReturnValue(attributeValue)
             result += ` ${key}=${attributeValue}`
         }
 
@@ -150,7 +162,8 @@ export class ASWidgetsList {
         }
 
         if (widgetName === 'ASText') {
-            return `<ASText${ASWidgetsList.getWidgetAttributes(attributes)}>${attributes?.label || attributes?.children}</ASText>`
+            // ASText will use label:string as children
+            return `<ASText${ASWidgetsList.getWidgetAttributes(attributes,'ASText')}>${attributes?.label || attributes?.children}</ASText>`
         }
 
         if (attributes?.children) {
@@ -212,11 +225,8 @@ export class ASWidgetsList {
 //     ellipsizeMode: "tail"
 // },)
 // const spacer = a.getWidgets().ASSpacer({height: 10})
-// const column = a.getWidgets().ASColumn({
-//     children: [asText, spacer],
-// },)
+// const column = a.getWidgets().ASColumn({children: [asText, spacer]})
 // const asContainer = a.getWidgetByName('ASContainer')({children: column, style: {flex: 1}})
-//
 // console.log('RESULT WIDGET:\n', asContainer, '\n')
 
 //RESULT:

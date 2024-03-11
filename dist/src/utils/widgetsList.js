@@ -32,11 +32,35 @@ class ASWidgetsList {
         return `{Yup.object().shape({\n${fieldValidations.join(',\n')}\n})}`;
     }
     ;
-    static getWidgetAttributes(attributes) {
+    static getReturnValue(attributeValue) {
+        let result;
+        switch (typeof attributeValue) {
+            case "function":
+            case 'boolean':
+            case 'number':
+                result = `{${attributeValue}}`;
+                break;
+            case 'string':
+                result = `{"${attributeValue}"}`;
+                break;
+            case 'object':
+                result = `{${JSON.stringify(attributeValue)}}`;
+                break;
+            default:
+                result = `{"${attributeValue}"}`;
+                break;
+        }
+        return result;
+    }
+    static getWidgetAttributes(attributes, widgetName) {
         let result = '';
         const atrributesObj = Object.assign({}, attributes);
         if (atrributesObj === null || atrributesObj === void 0 ? void 0 : atrributesObj.children) {
             delete atrributesObj['children'];
+        }
+        //Remove the label attribute from ASText, because it's used as children
+        if (widgetName === 'ASText') {
+            delete atrributesObj['label'];
         }
         for (let key in atrributesObj) {
             let attributeValue = atrributesObj[key];
@@ -49,22 +73,7 @@ class ASWidgetsList {
                 result += ` ${attributeValue}`;
                 continue;
             }
-            switch (typeof attributeValue) {
-                case "function":
-                case 'boolean':
-                case 'number':
-                    attributeValue = `{${attributeValue}}`;
-                    break;
-                case 'string':
-                    attributeValue = `{"${attributeValue}"}`;
-                    break;
-                case 'object':
-                    attributeValue = `{${JSON.stringify(attributeValue)}}`;
-                    break;
-                default:
-                    attributeValue = `{"${attributeValue}"}`;
-                    break;
-            }
+            attributeValue = ASWidgetsList.getReturnValue(attributeValue);
             result += ` ${key}=${attributeValue}`;
         }
         return result;
@@ -74,7 +83,8 @@ class ASWidgetsList {
             return `<ASFormValidation${ASWidgetsList.getWidgetAttributes(attributes)}>{(formikProps: FormikProps<any>)=>(<>${attributes === null || attributes === void 0 ? void 0 : attributes.children}</>)}</ASFormValidation>`;
         }
         if (widgetName === 'ASText') {
-            return `<ASText${ASWidgetsList.getWidgetAttributes(attributes)}>${(attributes === null || attributes === void 0 ? void 0 : attributes.label) || (attributes === null || attributes === void 0 ? void 0 : attributes.children)}</ASText>`;
+            // ASText will use label:string as children
+            return `<ASText${ASWidgetsList.getWidgetAttributes(attributes, 'ASText')}>${(attributes === null || attributes === void 0 ? void 0 : attributes.label) || (attributes === null || attributes === void 0 ? void 0 : attributes.children)}</ASText>`;
         }
         if (attributes === null || attributes === void 0 ? void 0 : attributes.children) {
             return `<${widgetName}${ASWidgetsList.getWidgetAttributes(attributes)}>${Array.isArray(attributes === null || attributes === void 0 ? void 0 : attributes.children) ? attributes === null || attributes === void 0 ? void 0 : attributes.children.join('') : attributes === null || attributes === void 0 ? void 0 : attributes.children}</${widgetName}>`;
@@ -132,11 +142,8 @@ exports.ASWidgetsList = ASWidgetsList;
 //     ellipsizeMode: "tail"
 // },)
 // const spacer = a.getWidgets().ASSpacer({height: 10})
-// const column = a.getWidgets().ASColumn({
-//     children: [asText, spacer],
-// },)
+// const column = a.getWidgets().ASColumn({children: [asText, spacer]})
 // const asContainer = a.getWidgetByName('ASContainer')({children: column, style: {flex: 1}})
-//
 // console.log('RESULT WIDGET:\n', asContainer, '\n')
 //RESULT:
 // <ASContainer style={{"flex":1}}>
