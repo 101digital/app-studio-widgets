@@ -3,15 +3,16 @@ import {StyleProp, StyleSheet, Text, TextProps, TextStyle} from 'react-native'
 import {colors} from "../../utils/colors";
 
 export type ASTextProps = TextProps & {
-    children: string | undefined | number | React.ReactNode;
+    children?: string | undefined | number | React.ReactNode;
     style?: StyleProp<TextStyle>;
+    label?: string
 }
 
 const ASText: React.FC<ASTextProps> = (props: ASTextProps) => {
-    const {children, style, ...restProps} = props || {}
+    const {children, style, label, ...restProps} = props || {}
 
     return (
-        <Text {...restProps} style={[styles.textStyle, style]}>{children}</Text>
+        <Text {...restProps} style={[styles.textStyle, style]}>{label || children}</Text>
     )
 }
 

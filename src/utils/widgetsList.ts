@@ -149,13 +149,17 @@ export class ASWidgetsList {
             return `<ASFormValidation${ASWidgetsList.getWidgetAttributes(attributes)}>{(formikProps: FormikProps<any>)=>(<>${attributes?.children}</>)}</ASFormValidation>`
         }
 
+        if(widgetName === 'ASText'){
+            return `<ASText${ASWidgetsList.getWidgetAttributes(attributes)}>${attributes?.label || attributes?.children}</ASText>`
+        }
+
         return attributes?.children ? `<${widgetName}${ASWidgetsList.getWidgetAttributes(attributes)}>${attributes?.children}</${widgetName}>` : `<${widgetName}${ASWidgetsList.getWidgetAttributes(attributes)}/>`
     }
 
     public getWidgets(): WidgetsList {
         return {
             ASContainer: (attributes: ASContainerProps) => ASWidgetsList.getWidgetString('ASContainer', attributes),
-            ASText: (attributes: ASTextProps) => ASWidgetsList.getWidgetString('ASText', attributes),
+            ASText: (attributes: ASTextProps) => ASWidgetsList.getWidgetString('ASText', {...attributes, label: attributes?.children}),
             ASButton: (attributes: ASButtonProps) => ASWidgetsList.getWidgetString('ASButton', attributes),
             ASTextField: (attributes: ASTextFieldProps) => ASWidgetsList.getWidgetString('ASTextField', attributes),
             ASColumn: (attributes: ASColumnProps) => ASWidgetsList.getWidgetString('ASColumn', attributes),

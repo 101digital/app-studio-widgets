@@ -18,8 +18,8 @@ const react_1 = __importDefault(require("react"));
 const react_native_1 = require("react-native");
 const colors_1 = require("../../utils/colors");
 const ASText = (props) => {
-    const _a = props || {}, { children, style } = _a, restProps = __rest(_a, ["children", "style"]);
-    return (react_1.default.createElement(react_native_1.Text, Object.assign({}, restProps, { style: [styles.textStyle, style] }), children));
+    const _a = props || {}, { children, style, label } = _a, restProps = __rest(_a, ["children", "style", "label"]);
+    return (react_1.default.createElement(react_native_1.Text, Object.assign({}, restProps, { style: [styles.textStyle, style] }), label || children));
 };
 const styles = react_native_1.StyleSheet.create({
     textStyle: {

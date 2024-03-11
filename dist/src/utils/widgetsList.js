@@ -73,12 +73,15 @@ class ASWidgetsList {
         if (widgetName === 'ASFormValidation') {
             return `<ASFormValidation${ASWidgetsList.getWidgetAttributes(attributes)}>{(formikProps: FormikProps<any>)=>(<>${attributes === null || attributes === void 0 ? void 0 : attributes.children}</>)}</ASFormValidation>`;
         }
+        if (widgetName === 'ASText') {
+            return `<ASText${ASWidgetsList.getWidgetAttributes(attributes)}>${(attributes === null || attributes === void 0 ? void 0 : attributes.label) || (attributes === null || attributes === void 0 ? void 0 : attributes.children)}</ASText>`;
+        }
         return (attributes === null || attributes === void 0 ? void 0 : attributes.children) ? `<${widgetName}${ASWidgetsList.getWidgetAttributes(attributes)}>${attributes === null || attributes === void 0 ? void 0 : attributes.children}</${widgetName}>` : `<${widgetName}${ASWidgetsList.getWidgetAttributes(attributes)}/>`;
     }
     getWidgets() {
         return {
             ASContainer: (attributes) => ASWidgetsList.getWidgetString('ASContainer', attributes),
-            ASText: (attributes) => ASWidgetsList.getWidgetString('ASText', attributes),
+            ASText: (attributes) => ASWidgetsList.getWidgetString('ASText', Object.assign(Object.assign({}, attributes), { label: attributes === null || attributes === void 0 ? void 0 : attributes.children })),
             ASButton: (attributes) => ASWidgetsList.getWidgetString('ASButton', attributes),
             ASTextField: (attributes) => ASWidgetsList.getWidgetString('ASTextField', attributes),
             ASColumn: (attributes) => ASWidgetsList.getWidgetString('ASColumn', attributes),

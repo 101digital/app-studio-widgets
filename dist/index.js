@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ASPin = exports.ASModal = exports.ASTimer = exports.ASCalendar = exports.ASChoiceChips = exports.ASCounter = exports.ASSlider = exports.ASRadioButton = exports.ASListTile = exports.ASPageView = exports.ASBadge = exports.ASCircleChart = exports.ASListView = exports.ASStack = exports.ASProgressBar = exports.ASCheckBox = exports.ASSwitch = exports.ASWrap = exports.ASExpandableText = exports.ASDropDown = exports.ASImage = exports.ASRichText = exports.ASFormValidation = exports.ASVerticalDivider = exports.ASDivider = exports.ASSpacer = exports.ASRow = exports.ASColumn = exports.ASContainer = exports.ASTextField = exports.ASButton = exports.ASText = exports.ASWidgetsList = void 0;
+exports.ASBottomSheet = exports.ASPin = exports.ASModal = exports.ASTimer = exports.ASCalendar = exports.ASChoiceChips = exports.ASCounter = exports.ASSlider = exports.ASRadioButton = exports.ASListTile = exports.ASPageView = exports.ASBadge = exports.ASCircleChart = exports.ASListView = exports.ASStack = exports.ASProgressBar = exports.ASCheckBox = exports.ASSwitch = exports.ASWrap = exports.ASExpandableText = exports.ASDropDown = exports.ASImage = exports.ASRichText = exports.ASFormValidation = exports.ASVerticalDivider = exports.ASDivider = exports.ASSpacer = exports.ASRow = exports.ASColumn = exports.ASContainer = exports.ASTextField = exports.ASButton = exports.ASText = exports.ASWidgetsList = void 0;
 var widgetsList_1 = require("./src/utils/widgetsList");
 Object.defineProperty(exports, "ASWidgetsList", { enumerable: true, get: function () { return widgetsList_1.ASWidgetsList; } });
 var text_1 = require("./src/components/text");
@@ -70,3 +70,5 @@ var modal_1 = require("./src/components/modal");
 Object.defineProperty(exports, "ASModal", { enumerable: true, get: function () { return __importDefault(modal_1).default; } });
 var pin_1 = require("./src/components/pin");
 Object.defineProperty(exports, "ASPin", { enumerable: true, get: function () { return __importDefault(pin_1).default; } });
+var bottomSheet_1 = require("./src/components/bottomSheet");
+Object.defineProperty(exports, "ASBottomSheet", { enumerable: true, get: function () { return __importDefault(bottomSheet_1).default; } });

@@ -1,6 +1,5 @@
 import React, {ReactNode, useRef} from 'react';
 import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
-import ASText from "../text";
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
 
 export type ASBottomSheetProps = {
@@ -29,14 +28,14 @@ const ASBottomSheet: React.FC<ASBottomSheetProps> = (props: ASBottomSheetProps) 
 
     return (
         <View style={styles.container}>
-            <BottomSheet
-                ref={bottomSheetRef}
-                onChange={handleSheetChanges}
-            >
-                <BottomSheetView style={styles.contentContainer}>
-                    {children}
-                </BottomSheetView>
-            </BottomSheet>
+            {/*<BottomSheet*/}
+            {/*    ref={bottomSheetRef}*/}
+            {/*    onChange={handleSheetChanges}*/}
+            {/*>*/}
+            {/*    <BottomSheetView style={styles.contentContainer}>*/}
+            {/*        {children}*/}
+            {/*    </BottomSheetView>*/}
+            {/*</BottomSheet>*/}
         </View>
     )
 }
