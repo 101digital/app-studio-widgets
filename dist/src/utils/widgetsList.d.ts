@@ -38,6 +38,7 @@ export declare class ASWidgetsList {
     private static generateValidationSchema;
     private static getReturnValue;
     private static getWidgetAttributes;
+    private static returnWidgetArrayOrString;
     private static getWidgetString;
     getWidgets(): WidgetsList;
     getWidgetByName(name: WidgetsName): (attributes: any, children?: any) => string;

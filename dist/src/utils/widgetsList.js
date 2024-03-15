@@ -78,16 +78,27 @@ class ASWidgetsList {
         }
         return result;
     }
+    static returnWidgetArrayOrString(attributes) {
+        return Array.isArray(attributes === null || attributes === void 0 ? void 0 : attributes.children) ? attributes === null || attributes === void 0 ? void 0 : attributes.children.join('') : attributes === null || attributes === void 0 ? void 0 : attributes.children;
+    }
     static getWidgetString(widgetName, attributes) {
         if (widgetName === 'ASFormValidation') {
-            return `<ASFormValidation${ASWidgetsList.getWidgetAttributes(attributes)}>{(formikProps: FormikProps<any>)=>(<>${attributes === null || attributes === void 0 ? void 0 : attributes.children}</>)}</ASFormValidation>`;
+            return `<ASFormValidation${ASWidgetsList.getWidgetAttributes(attributes)}>
+                         {(formikProps: FormikProps<any>)=>(
+                            <>${ASWidgetsList.returnWidgetArrayOrString(attributes)}</>
+                         )}
+                    </ASFormValidation>`;
         }
         if (widgetName === 'ASText') {
             // ASText will use label:string as children
-            return `<ASText${ASWidgetsList.getWidgetAttributes(attributes, 'ASText')}>${(attributes === null || attributes === void 0 ? void 0 : attributes.label) || (attributes === null || attributes === void 0 ? void 0 : attributes.children)}</ASText>`;
+            return `<ASText${ASWidgetsList.getWidgetAttributes(attributes, 'ASText')}>
+                        ${(attributes === null || attributes === void 0 ? void 0 : attributes.label) || (attributes === null || attributes === void 0 ? void 0 : attributes.children)}
+                    </ASText>`;
         }
         if (attributes === null || attributes === void 0 ? void 0 : attributes.children) {
-            return `<${widgetName}${ASWidgetsList.getWidgetAttributes(attributes)}>${Array.isArray(attributes === null || attributes === void 0 ? void 0 : attributes.children) ? attributes === null || attributes === void 0 ? void 0 : attributes.children.join('') : attributes === null || attributes === void 0 ? void 0 : attributes.children}</${widgetName}>`;
+            return `<${widgetName}${ASWidgetsList.getWidgetAttributes(attributes)}>
+                        ${ASWidgetsList.returnWidgetArrayOrString(attributes)}
+                    </${widgetName}>`;
         }
         else {
             return `<${widgetName}${ASWidgetsList.getWidgetAttributes(attributes)}/>`;

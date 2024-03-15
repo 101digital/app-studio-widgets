@@ -156,18 +156,30 @@ export class ASWidgetsList {
         return result
     }
 
+    private static returnWidgetArrayOrString(attributes: any): string {
+        return Array.isArray(attributes?.children) ? attributes?.children.join('') : attributes?.children
+    }
+
     private static getWidgetString(widgetName: any, attributes: any): string {
         if (widgetName === 'ASFormValidation') {
-            return `<ASFormValidation${ASWidgetsList.getWidgetAttributes(attributes)}>{(formikProps: FormikProps<any>)=>(<>${attributes?.children}</>)}</ASFormValidation>`
+            return `<ASFormValidation${ASWidgetsList.getWidgetAttributes(attributes)}>
+                         {(formikProps: FormikProps<any>)=>(
+                            <>${ASWidgetsList.returnWidgetArrayOrString(attributes)}</>
+                         )}
+                    </ASFormValidation>`
         }
 
         if (widgetName === 'ASText') {
             // ASText will use label:string as children
-            return `<ASText${ASWidgetsList.getWidgetAttributes(attributes,'ASText')}>${attributes?.label || attributes?.children}</ASText>`
+            return `<ASText${ASWidgetsList.getWidgetAttributes(attributes,'ASText')}>
+                        ${attributes?.label || attributes?.children}
+                    </ASText>`
         }
 
         if (attributes?.children) {
-            return `<${widgetName}${ASWidgetsList.getWidgetAttributes(attributes)}>${Array.isArray(attributes?.children) ? attributes?.children.join('') : attributes?.children}</${widgetName}>`
+            return `<${widgetName}${ASWidgetsList.getWidgetAttributes(attributes)}>
+                        ${ASWidgetsList.returnWidgetArrayOrString(attributes)}
+                    </${widgetName}>`
         } else {
             return `<${widgetName}${ASWidgetsList.getWidgetAttributes(attributes)}/>`
         }
