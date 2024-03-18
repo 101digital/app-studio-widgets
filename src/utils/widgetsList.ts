@@ -157,10 +157,13 @@ export class ASWidgetsList {
     }
 
     private static returnWidgetArrayOrString(attributes: any): string {
+        // Return a string if children is an array joined by ''
+        // and a string if children is a string
         return Array.isArray(attributes?.children) ? attributes?.children.join('') : attributes?.children
     }
 
     private static getWidgetString(widgetName: any, attributes: any): string {
+        //Handle logic for ASFormValidation
         if (widgetName === 'ASFormValidation') {
             return `<ASFormValidation${ASWidgetsList.getWidgetAttributes(attributes)}>
                          {(formikProps: FormikProps<any>)=>(
@@ -169,6 +172,7 @@ export class ASWidgetsList {
                     </ASFormValidation>`
         }
 
+        //Handle logic for ASText
         if (widgetName === 'ASText') {
             // ASText will use label:string as children
             return `<ASText${ASWidgetsList.getWidgetAttributes(attributes,'ASText')}>
@@ -176,6 +180,7 @@ export class ASWidgetsList {
                     </ASText>`
         }
 
+        //If widgets has children then return a wrapper else return a tag
         if (attributes?.children) {
             return `<${widgetName}${ASWidgetsList.getWidgetAttributes(attributes)}>
                         ${ASWidgetsList.returnWidgetArrayOrString(attributes)}
@@ -189,8 +194,8 @@ export class ASWidgetsList {
         return {
             ASContainer: (attributes: ASContainerProps) => ASWidgetsList.getWidgetString('ASContainer', attributes),
             ASText: (attributes: ASTextProps) => ASWidgetsList.getWidgetString('ASText', {
+                label: attributes?.children,
                 ...attributes,
-                label: attributes?.children
             }),
             ASButton: (attributes: ASButtonProps) => ASWidgetsList.getWidgetString('ASButton', attributes),
             ASTextField: (attributes: ASTextFieldProps) => ASWidgetsList.getWidgetString('ASTextField', attributes),
@@ -231,7 +236,7 @@ export class ASWidgetsList {
 
 // const a = new ASWidgetsList()
 // const asText = a.getWidgets().ASText({
-//     children: 'haha',
+//     label: 'haha',
 //     style: {fontSize: 12},
 //     numberOfLines: 1,
 //     ellipsizeMode: "tail"

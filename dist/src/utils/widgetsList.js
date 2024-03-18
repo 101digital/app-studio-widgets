@@ -79,9 +79,12 @@ class ASWidgetsList {
         return result;
     }
     static returnWidgetArrayOrString(attributes) {
+        // Return a string if children is an array joined by ''
+        // and a string if children is a string
         return Array.isArray(attributes === null || attributes === void 0 ? void 0 : attributes.children) ? attributes === null || attributes === void 0 ? void 0 : attributes.children.join('') : attributes === null || attributes === void 0 ? void 0 : attributes.children;
     }
     static getWidgetString(widgetName, attributes) {
+        //Handle logic for ASFormValidation
         if (widgetName === 'ASFormValidation') {
             return `<ASFormValidation${ASWidgetsList.getWidgetAttributes(attributes)}>
                          {(formikProps: FormikProps<any>)=>(
@@ -89,12 +92,14 @@ class ASWidgetsList {
                          )}
                     </ASFormValidation>`;
         }
+        //Handle logic for ASText
         if (widgetName === 'ASText') {
             // ASText will use label:string as children
             return `<ASText${ASWidgetsList.getWidgetAttributes(attributes, 'ASText')}>
                         ${(attributes === null || attributes === void 0 ? void 0 : attributes.label) || (attributes === null || attributes === void 0 ? void 0 : attributes.children)}
                     </ASText>`;
         }
+        //If widgets has children then return a wrapper else return a tag
         if (attributes === null || attributes === void 0 ? void 0 : attributes.children) {
             return `<${widgetName}${ASWidgetsList.getWidgetAttributes(attributes)}>
                         ${ASWidgetsList.returnWidgetArrayOrString(attributes)}
@@ -107,7 +112,7 @@ class ASWidgetsList {
     getWidgets() {
         return {
             ASContainer: (attributes) => ASWidgetsList.getWidgetString('ASContainer', attributes),
-            ASText: (attributes) => ASWidgetsList.getWidgetString('ASText', Object.assign(Object.assign({}, attributes), { label: attributes === null || attributes === void 0 ? void 0 : attributes.children })),
+            ASText: (attributes) => ASWidgetsList.getWidgetString('ASText', Object.assign({ label: attributes === null || attributes === void 0 ? void 0 : attributes.children }, attributes)),
             ASButton: (attributes) => ASWidgetsList.getWidgetString('ASButton', attributes),
             ASTextField: (attributes) => ASWidgetsList.getWidgetString('ASTextField', attributes),
             ASColumn: (attributes) => ASWidgetsList.getWidgetString('ASColumn', attributes),
@@ -147,7 +152,7 @@ class ASWidgetsList {
 exports.ASWidgetsList = ASWidgetsList;
 // const a = new ASWidgetsList()
 // const asText = a.getWidgets().ASText({
-//     children: 'haha',
+//     label: 'haha',
 //     style: {fontSize: 12},
 //     numberOfLines: 1,
 //     ellipsizeMode: "tail"
