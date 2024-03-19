@@ -239,18 +239,18 @@ export class ASWidgetsList {
     }
 }
 
-const a = new ASWidgetsList()
-const asText = a.getWidgets().ASText({
-    label: 'haha',
-    style: {fontSize: 12},
-    numberOfLines: 1,
-    ellipsizeMode: "tail"
-},)
-const asButton = a.getWidgets().ASButton({label: 'button', onPress: () => "onPressButton"})
-const spacer = a.getWidgets().ASSpacer({height: 10})
-const column = a.getWidgets().ASColumn({children: [asText, spacer, asButton]})
-const asContainer = a.getWidgetByName('ASContainer')({children: column, style: {flex: 1}})
-console.log('RESULT WIDGET:\n', asContainer, '\n')
+// const a = new ASWidgetsList()
+// const asText = a.getWidgets().ASText({
+//     label: 'haha',
+//     style: {fontSize: 12},
+//     numberOfLines: 1,
+//     ellipsizeMode: "tail"
+// },)
+// const asButton = a.getWidgets().ASButton({label: 'button', onPress: () => "onPressButton"})
+// const spacer = a.getWidgets().ASSpacer({height: 10})
+// const column = a.getWidgets().ASColumn({children: [asText, spacer, asButton]})
+// const asContainer = a.getWidgetByName('ASContainer')({children: column, style: {flex: 1}})
+// console.log('RESULT WIDGET:\n', asContainer, '\n')
 
 //RESULT:
 // <ASContainer style={{"flex":1}}>
