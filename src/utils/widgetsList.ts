@@ -101,10 +101,16 @@ export class ASWidgetsList {
     };
 
     private static getReturnValue(attributeValue: any): string {
-        let result:any
+        let result: any
 
         switch (typeof attributeValue) {
-            case "function":
+            case 'function':
+                if (typeof attributeValue?.() === 'string') {
+                    result = `{${attributeValue?.()}}`
+                } else {
+                    result = `{${attributeValue}}`
+                }
+                break
             case 'boolean':
             case 'number':
                 result = `{${attributeValue}}`
@@ -131,7 +137,7 @@ export class ASWidgetsList {
         }
 
         //Remove the label attribute from ASText, because it's used as children
-        if(widgetName === 'ASText'){
+        if (widgetName === 'ASText') {
             delete atrributesObj['label']
         }
 
@@ -143,7 +149,6 @@ export class ASWidgetsList {
                 result += ` ${key}=${attributeValue}`
                 continue
             }
-
             if (key === 'initialValues') {
                 result += ` ${attributeValue}`
                 continue
@@ -175,7 +180,7 @@ export class ASWidgetsList {
         //Handle logic for ASText
         if (widgetName === 'ASText') {
             // ASText will use label:string as children
-            return `<ASText${ASWidgetsList.getWidgetAttributes(attributes,'ASText')}>
+            return `<ASText${ASWidgetsList.getWidgetAttributes(attributes, 'ASText')}>
                         ${attributes?.label || attributes?.children}
                     </ASText>`
         }
@@ -234,23 +239,25 @@ export class ASWidgetsList {
     }
 }
 
-// const a = new ASWidgetsList()
-// const asText = a.getWidgets().ASText({
-//     label: 'haha',
-//     style: {fontSize: 12},
-//     numberOfLines: 1,
-//     ellipsizeMode: "tail"
-// },)
-// const spacer = a.getWidgets().ASSpacer({height: 10})
-// const column = a.getWidgets().ASColumn({children: [asText, spacer]})
-// const asContainer = a.getWidgetByName('ASContainer')({children: column, style: {flex: 1}})
-// console.log('RESULT WIDGET:\n', asContainer, '\n')
+const a = new ASWidgetsList()
+const asText = a.getWidgets().ASText({
+    label: 'haha',
+    style: {fontSize: 12},
+    numberOfLines: 1,
+    ellipsizeMode: "tail"
+},)
+const asButton = a.getWidgets().ASButton({label: 'button', onPress: () => "onPressButton"})
+const spacer = a.getWidgets().ASSpacer({height: 10})
+const column = a.getWidgets().ASColumn({children: [asText, spacer, asButton]})
+const asContainer = a.getWidgetByName('ASContainer')({children: column, style: {flex: 1}})
+console.log('RESULT WIDGET:\n', asContainer, '\n')
 
 //RESULT:
 // <ASContainer style={{"flex":1}}>
 //     <ASColumn>
 //         <ASText style={{"fontSize":12}} numberOfLines={1} ellipsizeMode={"tail"} label={"haha"}>haha</ASText>
 //         <ASSpacer height={10}/>
+//          <ASButton label={"button"} onPress={onPressButton}/>
 //     </ASColumn>
 // </ASContainer>
 

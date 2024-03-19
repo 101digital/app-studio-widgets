@@ -35,7 +35,14 @@ class ASWidgetsList {
     static getReturnValue(attributeValue) {
         let result;
         switch (typeof attributeValue) {
-            case "function":
+            case 'function':
+                if (typeof (attributeValue === null || attributeValue === void 0 ? void 0 : attributeValue()) === 'string') {
+                    result = `{${attributeValue === null || attributeValue === void 0 ? void 0 : attributeValue()}}`;
+                }
+                else {
+                    result = `{${attributeValue}}`;
+                }
+                break;
             case 'boolean':
             case 'number':
                 result = `{${attributeValue}}`;
@@ -150,22 +157,24 @@ class ASWidgetsList {
     }
 }
 exports.ASWidgetsList = ASWidgetsList;
-// const a = new ASWidgetsList()
-// const asText = a.getWidgets().ASText({
-//     label: 'haha',
-//     style: {fontSize: 12},
-//     numberOfLines: 1,
-//     ellipsizeMode: "tail"
-// },)
-// const spacer = a.getWidgets().ASSpacer({height: 10})
-// const column = a.getWidgets().ASColumn({children: [asText, spacer]})
-// const asContainer = a.getWidgetByName('ASContainer')({children: column, style: {flex: 1}})
-// console.log('RESULT WIDGET:\n', asContainer, '\n')
+const a = new ASWidgetsList();
+const asText = a.getWidgets().ASText({
+    label: 'haha',
+    style: { fontSize: 12 },
+    numberOfLines: 1,
+    ellipsizeMode: "tail"
+});
+const asButton = a.getWidgets().ASButton({ label: 'button', onPress: () => "onPressButton" });
+const spacer = a.getWidgets().ASSpacer({ height: 10 });
+const column = a.getWidgets().ASColumn({ children: [asText, spacer, asButton] });
+const asContainer = a.getWidgetByName('ASContainer')({ children: column, style: { flex: 1 } });
+console.log('RESULT WIDGET:\n', asContainer, '\n');
 //RESULT:
 // <ASContainer style={{"flex":1}}>
 //     <ASColumn>
 //         <ASText style={{"fontSize":12}} numberOfLines={1} ellipsizeMode={"tail"} label={"haha"}>haha</ASText>
 //         <ASSpacer height={10}/>
+//          <ASButton label={"button"} onPress={onPressButton}/>
 //     </ASColumn>
 // </ASContainer>
 //  ts-node --esm  /Users/huacatluong/101digital/generator-app/app-studio-widgets/src/utils/WidgetsList.ts
