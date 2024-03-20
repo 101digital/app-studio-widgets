@@ -150,7 +150,7 @@ export class ASWidgetsList {
                 continue
             }
             if (key === 'initialValues') {
-                result += ` ${attributeValue}`
+                result += ` ${key}={ ${JSON.stringify(attributeValue) }}`
                 continue
             }
 
