@@ -78,7 +78,6 @@ class ASWidgetsList {
             }
             if (key === 'initialValues') {
                 result += ` ${key}={ ${JSON.stringify(attributeValue)}}`;
-                console.log('alijsdfhads', key, attributeValue);
                 continue;
             }
             attributeValue = ASWidgetsList.getReturnValue(attributeValue);
