@@ -73,33 +73,6 @@ export class ASWidgetsList {
     constructor() {
     }
 
-    private static generateValidationSchema(validationSchema: any): string {
-        if (!validationSchema) {
-            return '';
-        }
-        const fieldValidations: string[] = [];
-        validationSchema.forEach((field: any) => {
-            const fieldName = Object.keys(field)[0];
-            const validations = field[fieldName];
-            const existingFieldIndex = fieldValidations.findIndex((value) => value.includes(`${fieldName}:`));
-            const fieldValidation = validations.map((validation: any) => {
-                const validationKey = Object.keys(validation)[0];
-                const validationValue = Array.isArray(validation[validationKey])
-                    ? `${validationKey}('${validation[validationKey].join(', ')}')`
-                    : `${validationKey}('${validation[validationKey]}')`;
-                return `${validationValue}`;
-            }).join('.');
-            if (existingFieldIndex !== -1) {
-                // Field already exists in fieldValidations, replace the existing entry
-                fieldValidations[existingFieldIndex] = `  ${fieldName}: Yup.string().trim().${fieldValidation}`;
-            } else {
-                // Field doesn't exist, add it to fieldValidations
-                fieldValidations.push(`  ${fieldName}: Yup.string().trim().${fieldValidation}`);
-            }
-        });
-        return `{Yup.object().shape({\n${fieldValidations.join(',\n')}\n})}`;
-    };
-
     private static getReturnValue(attributeValue: any): string {
         let result: any
 
@@ -144,13 +117,26 @@ export class ASWidgetsList {
         for (let key in atrributesObj) {
             let attributeValue = atrributesObj[key]
 
-            if (key === 'validationSchema') {
-                attributeValue = ASWidgetsList.generateValidationSchema(attributeValue)
-                result += ` ${key}=${attributeValue}`
-                continue
-            }
-            if (key === 'initialValues') {
-                result += ` ${key}={ ${JSON.stringify(attributeValue) }}`
+            if(key === 'formWidgets'){
+                const formWidgetsList = attributeValue
+                const validationStringArray:any[] = []
+                const initialValues:any = {}
+
+                for (const formWidgetItem of formWidgetsList){
+                    let validation:string = `Yup`
+                    initialValues[formWidgetItem.name] = ''
+
+                    for (const validationRule of formWidgetItem.validationRules){
+                        validation += `.${validationRule.type}${validationRule.errorMessage ? `('${validationRule.errorMessage}')` : '()'}`
+                    }
+                    validationStringArray.push( `${formWidgetItem.name}:${validation}` )
+                }
+
+                const validationSchema = `Yup.object().shape({
+                    ${validationStringArray.join(',')}
+                })`
+                result += ` validationSchema={${validationSchema}}`
+                result += ` initialValues={ ${JSON.stringify(initialValues) }}`
                 continue
             }
 
