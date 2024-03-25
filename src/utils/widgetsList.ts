@@ -117,6 +117,10 @@ export class ASWidgetsList {
         for (let key in atrributesObj) {
             let attributeValue = atrributesObj[key]
 
+            if(key==='validationRule'){
+                continue
+            }
+
             if(key === 'formWidgets'){
                 const formWidgetsList = attributeValue
                 const validationStringArray:any[] = []
