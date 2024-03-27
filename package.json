@@ -1,6 +1,6 @@
 {
   "name": "app-studio-widgets",
-  "version": "1.0.41",
+  "version": "1.0.42",
   "description": "Widgets for App Studio",
   "repository": "https://github.com/101digital/app-studio-widgets",
   "license": "MIT",
@@ -12,7 +12,8 @@
   "scripts": {
     "build": "tsc",
     "lint": "tsc --noEmit && eslint src/ --ext .js,.jsx,.ts,.tsx",
-    "watch": "tsc -w"
+    "watch": "tsc -w",
+    "builds": "yarn install ; yarn build ; rm -rf node_modules ; say build finish"
   },
   "keywords": [],
   "author": "Hua Cat Luong",

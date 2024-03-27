@@ -53,6 +53,9 @@ class ASWidgetsList {
                 for (const formWidgetItem of formWidgetsList) {
                     let validation = `Yup`;
                     initialValues[formWidgetItem.name] = '';
+                    if (formWidgetItem.dataType) {
+                        validation += `.${formWidgetItem.dataType}()`;
+                    }
                     for (const validationRule of formWidgetItem.validationRules) {
                         validation += `.${validationRule.type}${validationRule.errorMessage ? `('${validationRule.errorMessage}')` : '()'}`;
                     }

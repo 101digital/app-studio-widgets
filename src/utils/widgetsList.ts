@@ -130,6 +130,10 @@ export class ASWidgetsList {
                     let validation:string = `Yup`
                     initialValues[formWidgetItem.name] = ''
 
+                    if(formWidgetItem.dataType){
+                        validation += `.${formWidgetItem.dataType}()`
+                    }
+
                     for (const validationRule of formWidgetItem.validationRules){
                         validation += `.${validationRule.type}${validationRule.errorMessage ? `('${validationRule.errorMessage}')` : '()'}`
                     }
