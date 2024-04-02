@@ -41,9 +41,10 @@ class ASWidgetsList {
         if (widgetName === 'ASText') {
             delete atrributesObj['label'];
         }
+        // Add properties / attributes to widget
         for (let key in atrributesObj) {
             let attributeValue = atrributesObj[key];
-            if (key === 'validationRule') {
+            if (key === 'validationRule' || key === 'initialValues') {
                 continue;
             }
             if (key === 'formWidgets') {
@@ -52,7 +53,8 @@ class ASWidgetsList {
                 const initialValues = {};
                 for (const formWidgetItem of formWidgetsList) {
                     let validation = `Yup`;
-                    initialValues[formWidgetItem.name] = '';
+                    const initialValueItem = atrributesObj.initialValues[formWidgetItem.name];
+                    initialValues[formWidgetItem.name] = initialValueItem ? `${initialValueItem} || ''` : `''`;
                     if (formWidgetItem.dataType) {
                         validation += `.${formWidgetItem.dataType}()`;
                     }
@@ -65,7 +67,7 @@ class ASWidgetsList {
                     ${validationStringArray.join(',')}
                 })`;
                 result += ` validationSchema={${validationSchema}}`;
-                result += ` initialValues={ ${JSON.stringify(initialValues)}}`;
+                result += ` initialValues={ ${JSON.stringify(initialValues).replace(/"/g, "")}}`;
                 continue;
             }
             attributeValue = ASWidgetsList.getReturnValue(attributeValue);

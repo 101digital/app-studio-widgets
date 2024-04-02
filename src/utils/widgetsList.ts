@@ -114,10 +114,11 @@ export class ASWidgetsList {
             delete atrributesObj['label']
         }
 
+        // Add properties / attributes to widget
         for (let key in atrributesObj) {
             let attributeValue = atrributesObj[key]
 
-            if(key==='validationRule'){
+            if(key==='validationRule' || key==='initialValues'){
                 continue
             }
 
@@ -128,7 +129,9 @@ export class ASWidgetsList {
 
                 for (const formWidgetItem of formWidgetsList){
                     let validation:string = `Yup`
-                    initialValues[formWidgetItem.name] = ''
+                    const initialValueItem = atrributesObj.initialValues[formWidgetItem.name]
+                    initialValues[formWidgetItem.name] = initialValueItem ?  `${initialValueItem} || ''` : `''`
+
 
                     if(formWidgetItem.dataType){
                         validation += `.${formWidgetItem.dataType}()`
@@ -144,7 +147,7 @@ export class ASWidgetsList {
                     ${validationStringArray.join(',')}
                 })`
                 result += ` validationSchema={${validationSchema}}`
-                result += ` initialValues={ ${JSON.stringify(initialValues) }}`
+                result += ` initialValues={ ${JSON.stringify(initialValues).replace(/"/g, "")}}`
                 continue
             }
 
