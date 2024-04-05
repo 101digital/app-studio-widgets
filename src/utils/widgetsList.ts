@@ -128,10 +128,13 @@ export class ASWidgetsList {
                 const initialValues:any = {}
 
                 for (const formWidgetItem of formWidgetsList){
+                    if(!Array.isArray(formWidgetItem.validationRules) || formWidgetItem?.validationRules?.length < 1 ){
+                        continue;
+                    }
+
                     let validation:string = `Yup`
                     const initialValueItem = atrributesObj.initialValues[formWidgetItem.name]
                     initialValues[formWidgetItem.name] = initialValueItem ?  `${initialValueItem} || ''` : `''`
-
 
                     if(formWidgetItem.dataType){
                         validation += `.${formWidgetItem.dataType}()`

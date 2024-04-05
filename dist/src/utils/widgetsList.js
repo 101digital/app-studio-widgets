@@ -32,6 +32,7 @@ class ASWidgetsList {
         return result;
     }
     static getWidgetAttributes(attributes, widgetName) {
+        var _a;
         let result = '';
         const atrributesObj = Object.assign({}, attributes);
         if (atrributesObj === null || atrributesObj === void 0 ? void 0 : atrributesObj.children) {
@@ -52,6 +53,9 @@ class ASWidgetsList {
                 const validationStringArray = [];
                 const initialValues = {};
                 for (const formWidgetItem of formWidgetsList) {
+                    if (!Array.isArray(formWidgetItem.validationRules) || ((_a = formWidgetItem === null || formWidgetItem === void 0 ? void 0 : formWidgetItem.validationRules) === null || _a === void 0 ? void 0 : _a.length) < 1) {
+                        continue;
+                    }
                     let validation = `Yup`;
                     const initialValueItem = atrributesObj.initialValues[formWidgetItem.name];
                     initialValues[formWidgetItem.name] = initialValueItem ? `${initialValueItem} || ''` : `''`;
