@@ -34,22 +34,29 @@ const ASPageView: (props: ASPageViewProps) => false | JSX.Element = (props: ASPa
         handleSetHeight(event.nativeEvent.layout.height)
     }
 
-    return (startSwiper && <Swiper
-        showsButtons={false}
-        loop={false}
-        dotStyle={styles.dot}
-        activeDotStyle={styles.activeDot}
-        {...restprops}
-        paginationStyle={[styles.paginationStyle, paginationStyle]}
-        style={[styles.wrapper, {height}, style]}
-    >
-        {children.map((page: React.ReactNode, index: number) => (
-            <View onLayout={onLayout}
-                  key={index} style={styles.slide}>
-                {page}
-            </View>
-        ))}
-    </Swiper>);
+    return (
+        startSwiper && <Swiper
+            showsButtons={false}
+            loop={false}
+            dotStyle={styles.dot}
+            activeDotStyle={styles.activeDot}
+            {...restprops}
+            paginationStyle={[styles.paginationStyle, paginationStyle]}
+            style={[styles.wrapper, {height}, style]}
+        >
+            {Array.isArray(children) ? children.map((page: React.ReactNode, index: number) => (
+                    <View onLayout={onLayout}
+                          key={index} style={styles.slide}>
+                        {page}
+                    </View>
+                )) :
+                <View onLayout={onLayout}
+                      style={styles.slide}>
+                    {children}
+                </View>
+            }
+        </Swiper>
+    );
 };
 
 const styles = StyleSheet.create({

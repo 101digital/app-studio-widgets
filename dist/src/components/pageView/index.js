@@ -61,7 +61,8 @@ const ASPageView = (props) => {
     const onLayout = (event) => {
         handleSetHeight(event.nativeEvent.layout.height);
     };
-    return (startSwiper && react_1.default.createElement(react_native_swiper_1.default, Object.assign({ showsButtons: false, loop: false, dotStyle: styles.dot, activeDotStyle: styles.activeDot }, restprops, { paginationStyle: [styles.paginationStyle, paginationStyle], style: [styles.wrapper, { height }, style] }), children.map((page, index) => (react_1.default.createElement(react_native_1.View, { onLayout: onLayout, key: index, style: styles.slide }, page)))));
+    return (startSwiper && react_1.default.createElement(react_native_swiper_1.default, Object.assign({ showsButtons: false, loop: false, dotStyle: styles.dot, activeDotStyle: styles.activeDot }, restprops, { paginationStyle: [styles.paginationStyle, paginationStyle], style: [styles.wrapper, { height }, style] }), Array.isArray(children) ? children.map((page, index) => (react_1.default.createElement(react_native_1.View, { onLayout: onLayout, key: index, style: styles.slide }, page))) :
+        react_1.default.createElement(react_native_1.View, { onLayout: onLayout, style: styles.slide }, children)));
 };
 const styles = react_native_1.StyleSheet.create({
     wrapper: {},
