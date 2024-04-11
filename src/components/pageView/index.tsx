@@ -3,14 +3,14 @@ import {LayoutChangeEvent, StyleProp, StyleSheet, View, ViewStyle} from 'react-n
 import Swiper, {SwiperProps} from 'react-native-swiper';
 
 export type ASPageViewProps = SwiperProps & {
-    pages: React.ReactNode[];
+    children: React.ReactNode[];
     style?: StyleProp<ViewStyle>;
     paginationStyle?: StyleProp<ViewStyle>;
     paginationBottomPosition?: number;
 }
 
 const ASPageView: (props: ASPageViewProps) => false | JSX.Element = (props: ASPageViewProps) => {
-    const {pages, style, paginationStyle, paginationBottomPosition = 15, ...restprops} = props
+    const {children, style, paginationStyle, paginationBottomPosition = 15, ...restprops} = props
     const [height, setHeight] = useState<number>(0)
     const [startSwiper, setStartSwiper] = useState<boolean>(false)
 
@@ -43,10 +43,10 @@ const ASPageView: (props: ASPageViewProps) => false | JSX.Element = (props: ASPa
         paginationStyle={[styles.paginationStyle, paginationStyle]}
         style={[styles.wrapper, {height}, style]}
     >
-        {pages.map((page: React.ReactNode, index: number) => (
+        {children.map((page: React.ReactNode, index: number) => (
             <View onLayout={onLayout}
                   key={index} style={styles.slide}>
-                {page}
+                {children}
             </View>
         ))}
     </Swiper>);

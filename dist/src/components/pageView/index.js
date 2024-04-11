@@ -41,7 +41,7 @@ const react_1 = __importStar(require("react"));
 const react_native_1 = require("react-native");
 const react_native_swiper_1 = __importDefault(require("react-native-swiper"));
 const ASPageView = (props) => {
-    const { pages, style, paginationStyle, paginationBottomPosition = 15 } = props, restprops = __rest(props, ["pages", "style", "paginationStyle", "paginationBottomPosition"]);
+    const { children, style, paginationStyle, paginationBottomPosition = 15 } = props, restprops = __rest(props, ["children", "style", "paginationStyle", "paginationBottomPosition"]);
     const [height, setHeight] = (0, react_1.useState)(0);
     const [startSwiper, setStartSwiper] = (0, react_1.useState)(false);
     (0, react_1.useState)(() => {
@@ -61,7 +61,7 @@ const ASPageView = (props) => {
     const onLayout = (event) => {
         handleSetHeight(event.nativeEvent.layout.height);
     };
-    return (startSwiper && react_1.default.createElement(react_native_swiper_1.default, Object.assign({ showsButtons: false, loop: false, dotStyle: styles.dot, activeDotStyle: styles.activeDot }, restprops, { paginationStyle: [styles.paginationStyle, paginationStyle], style: [styles.wrapper, { height }, style] }), pages.map((page, index) => (react_1.default.createElement(react_native_1.View, { onLayout: onLayout, key: index, style: styles.slide }, page)))));
+    return (startSwiper && react_1.default.createElement(react_native_swiper_1.default, Object.assign({ showsButtons: false, loop: false, dotStyle: styles.dot, activeDotStyle: styles.activeDot }, restprops, { paginationStyle: [styles.paginationStyle, paginationStyle], style: [styles.wrapper, { height }, style] }), children.map((page, index) => (react_1.default.createElement(react_native_1.View, { onLayout: onLayout, key: index, style: styles.slide }, children)))));
 };
 const styles = react_native_1.StyleSheet.create({
     wrapper: {},
