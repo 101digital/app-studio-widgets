@@ -46,7 +46,7 @@ const ASPageView: (props: ASPageViewProps) => false | JSX.Element = (props: ASPa
         {children.map((page: React.ReactNode, index: number) => (
             <View onLayout={onLayout}
                   key={index} style={styles.slide}>
-                {children}
+                {page}
             </View>
         ))}
     </Swiper>);
