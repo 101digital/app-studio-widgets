@@ -19,7 +19,7 @@ const react_native_1 = require("react-native");
 const ASListView = (props) => {
     const { data, renderItem } = props, restProps = __rest(props, ["data", "renderItem"]);
     const keyExtractor = (item, index) => {
-        return `${item.id || item.label || ''} - ${index}`;
+        return `${(item === null || item === void 0 ? void 0 : item.id) || (item === null || item === void 0 ? void 0 : item.label) || ''} - ${index}`;
     };
     return (react_1.default.createElement(react_native_1.FlatList, Object.assign({ data: data, renderItem: renderItem, keyExtractor: keyExtractor }, restProps)));
 };
