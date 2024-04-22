@@ -6,6 +6,7 @@ exports.colors = {
     primaryColor: '#0073F0',
     transparent: 'transparent',
     backgroundColor: '#DEDEDE',
+    borderColor: '#CCCCCC',
     // Colors
     black: '#000000',
     white: '#FFFFFF',
@@ -24,8 +25,8 @@ exports.colors = {
     disabledButtonColor: '#CCCCCC',
     disabledTextColor: '#666666',
     buttonTextColor: '#343434',
+    buttonSimpleTextColor: '#343434',
     // Textfield
-    inputColor: '#858585',
     textFieldTextColor: '#343434',
     placeholderTextColor: '#C4C4C4',
     textFieldBackgroundColor: '#FCFCFC',

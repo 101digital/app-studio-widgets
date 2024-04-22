@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {StyleProp, StyleSheet, TextStyle} from 'react-native'
-import {colors} from "../../utils/colors";
 import ParsedText from 'react-native-parsed-text';
+import {ThemeContext} from "../../context/theme-context";
 
 export type ASRichTextProps = {
     children: string;
@@ -11,14 +11,15 @@ export type ASRichTextProps = {
 }
 
 const ASRichText: React.FC<ASRichTextProps> = (props: ASRichTextProps) => {
+    const {colors} = useContext(ThemeContext);
     const {
         children, style, parse,
-        childrenProps={allowFontScaling: false}
+        childrenProps = {allowFontScaling: false}
     } = props || {}
 
     return (
         <ParsedText
-            style={[styles.textStyle, style]}
+            style={[styles.textStyle, {color: colors.textColor}, style]}
             parse={parse}
             childrenProps={childrenProps}
         >
@@ -30,7 +31,6 @@ const ASRichText: React.FC<ASRichTextProps> = (props: ASRichTextProps) => {
 const styles = StyleSheet.create({
     textStyle: {
         fontSize: 16,
-        color: colors.black,
     },
 });
 

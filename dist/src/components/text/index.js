@@ -40,7 +40,7 @@ const theme_context_1 = require("../../context/theme-context");
 const ASText = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
     const _a = props || {}, { children, style, label } = _a, restProps = __rest(_a, ["children", "style", "label"]);
-    return (react_1.default.createElement(react_native_1.Text, Object.assign({}, restProps, { style: [styles.textStyle, { color: colors.black, }, style] }), label || children));
+    return (react_1.default.createElement(react_native_1.Text, Object.assign({}, restProps, { style: [styles.textStyle, { color: colors.textColor }, style] }), label || children));
 };
 const styles = react_native_1.StyleSheet.create({
     textStyle: {

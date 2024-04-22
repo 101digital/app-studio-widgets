@@ -29,7 +29,7 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
 
     const getButtonBackgroundColor = () => {
         if (disabled) {
-            return colors.gray80
+            return colors.disabledButtonColor
         }
 
         if (style?.backgroundColor) {
@@ -43,9 +43,9 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
         return colors.buttonColor
     }
 
-    const getButtonTextBackgroundColor = () => {
+    const getButtonTextColor = () => {
         if (disabled) {
-            return colors.black500
+            return colors.disabledTextColor
         }
 
         if (textStyle?.color) {
@@ -53,7 +53,7 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
         }
 
         if (simpleTextButton) {
-            return colors.black700
+            return colors.buttonSimpleTextColor
         }
 
         return colors.white
@@ -79,7 +79,7 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
             {!!children ?
                 children
                 : <ASText
-                    style={[getButtonTextStyle(), textStyle, {color: getButtonTextBackgroundColor()}]}>{label}</ASText>
+                    style={[getButtonTextStyle(), textStyle, {color: getButtonTextColor()}]}>{label}</ASText>
             }
         </TouchableOpacity>
     );

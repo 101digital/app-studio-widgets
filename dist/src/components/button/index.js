@@ -46,7 +46,7 @@ const ASButton = (props) => {
     const { label = '', style, textStyle, onPress, disabled, children, simpleTextButton } = props, restProps = __rest(props, ["label", "style", "textStyle", "onPress", "disabled", "children", "simpleTextButton"]);
     const getButtonBackgroundColor = () => {
         if (disabled) {
-            return colors.gray80;
+            return colors.disabledButtonColor;
         }
         if (style === null || style === void 0 ? void 0 : style.backgroundColor) {
             return style === null || style === void 0 ? void 0 : style.backgroundColor;
@@ -56,15 +56,15 @@ const ASButton = (props) => {
         }
         return colors.buttonColor;
     };
-    const getButtonTextBackgroundColor = () => {
+    const getButtonTextColor = () => {
         if (disabled) {
-            return colors.black500;
+            return colors.disabledTextColor;
         }
         if (textStyle === null || textStyle === void 0 ? void 0 : textStyle.color) {
             return textStyle === null || textStyle === void 0 ? void 0 : textStyle.color;
         }
         if (simpleTextButton) {
-            return colors.black700;
+            return colors.buttonSimpleTextColor;
         }
         return colors.white;
     };
@@ -82,7 +82,7 @@ const ASButton = (props) => {
     };
     return (react_1.default.createElement(react_native_1.TouchableOpacity, Object.assign({}, restProps, { disabled: disabled, onPress: onPress, style: [getButtonStyle(), style, { backgroundColor: getButtonBackgroundColor() }] }), !!children ?
         children
-        : react_1.default.createElement(text_1.default, { style: [getButtonTextStyle(), textStyle, { color: getButtonTextBackgroundColor() }] }, label)));
+        : react_1.default.createElement(text_1.default, { style: [getButtonTextStyle(), textStyle, { color: getButtonTextColor() }] }, label)));
 };
 const styles = react_native_1.StyleSheet.create({
     buttonStyle: {

@@ -34,6 +34,7 @@ const button_1 = __importDefault(require("../button"));
 const row_1 = __importDefault(require("../row"));
 const column_1 = __importDefault(require("../column"));
 const icon_1 = require("../../assets/icon");
+const theme_context_1 = require("../../context/theme-context");
 const KEYBOARDS = [{ 'label': '1', 'value': '1' }, { 'label': '2', 'value': '2' }, {
         'label': '3',
         'value': '3'
@@ -45,12 +46,13 @@ const KEYBOARDS = [{ 'label': '1', 'value': '1' }, { 'label': '2', 'value': '2' 
         'value': '0'
     }, { 'label': 'continue', 'value': 'continue' }];
 const Keyboard = (props) => {
+    const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
     const { submitButtonIcon, submitButtonStyle, deleteButtonIcon, deleteButtonStyle, flatListProps, onKeyboardPress } = props;
     const _onKeyboardPress = (item) => () => {
         onKeyboardPress === null || onKeyboardPress === void 0 ? void 0 : onKeyboardPress(item);
     };
     const _renderItem = ({ item }) => {
-        return (react_1.default.createElement(button_1.default, { style: Object.assign(Object.assign(Object.assign({}, styles.keyboardButton), ((item === null || item === void 0 ? void 0 : item.value) === 'continue' && react_native_1.StyleSheet.flatten(submitButtonStyle))), ((item === null || item === void 0 ? void 0 : item.value) === 'delete' && react_native_1.StyleSheet.flatten(deleteButtonStyle))), onPress: _onKeyboardPress(item) },
+        return (react_1.default.createElement(button_1.default, { style: Object.assign(Object.assign(Object.assign(Object.assign({}, styles.keyboardButton), { borderColor: colors.borderColor }), ((item === null || item === void 0 ? void 0 : item.value) === 'continue' && react_native_1.StyleSheet.flatten(submitButtonStyle))), ((item === null || item === void 0 ? void 0 : item.value) === 'delete' && react_native_1.StyleSheet.flatten(deleteButtonStyle))), onPress: _onKeyboardPress(item) },
             (item === null || item === void 0 ? void 0 : item.value) !== 'delete' && (item === null || item === void 0 ? void 0 : item.value) !== 'continue' &&
                 react_1.default.createElement(text_1.default, { style: { fontWeight: 'bold', fontSize: 18 } }, item === null || item === void 0 ? void 0 : item.label),
             (item === null || item === void 0 ? void 0 : item.value) === 'delete' ? deleteButtonIcon ||
@@ -65,6 +67,7 @@ const PinInputList = (props) => {
     const PIN_SIZE = 45;
     return (react_1.default.createElement(row_1.default, { style: { justifyContent: 'space-between' } }, Array.from({ length: pinLength }, (_, index) => {
         return (react_1.default.createElement(column_1.default, { key: index, style: [styles.pinItemWrapper, {
+                    borderColor: colors_1.colors.borderColor,
                     width: PIN_SIZE,
                     height: PIN_SIZE,
                 }] },
@@ -108,11 +111,9 @@ const styles = react_native_1.StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderWidth: 1,
-        borderColor: colors_1.colors.gray80,
         borderRadius: 5
     },
     pinItemWrapper: {
-        borderColor: colors_1.colors.gray80,
         borderWidth: 1,
         justifyContent: 'center',
         alignItems: 'center',

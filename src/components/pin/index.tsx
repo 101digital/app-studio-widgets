@@ -1,4 +1,4 @@
-import React, {ReactNode, useEffect, useState} from "react";
+import React, {ReactNode, useEffect, useState,useContext} from "react";
 import ASText from "../text";
 import {FlatList, FlatListProps, StyleProp, StyleSheet, ViewStyle} from "react-native";
 import {colors} from "../../utils/colors";
@@ -6,6 +6,7 @@ import ASButton from '../button'
 import ASRow from "../row";
 import ASColumn from "../column"
 import {DeleteIcon, ForwardIcon} from '../../assets/icon'
+import {ThemeContext} from "../../context/theme-context";
 
 const KEYBOARDS = [{'label': '1', 'value': '1'}, {'label': '2', 'value': '2'}, {
     'label': '3',
@@ -45,6 +46,7 @@ export type PinInputListProps = {
 }
 
 const Keyboard: React.FC<KeyboardProps> = (props: KeyboardProps) => {
+    const {colors} = useContext(ThemeContext);
     const {
         submitButtonIcon,
         submitButtonStyle,
@@ -61,7 +63,7 @@ const Keyboard: React.FC<KeyboardProps> = (props: KeyboardProps) => {
     const _renderItem = ({item}: { item: KeyboardItemProps; }) => {
         return (
             <ASButton
-                style={{...styles.keyboardButton, ...(item?.value === 'continue' && StyleSheet.flatten(submitButtonStyle)), ...(item?.value === 'delete' && StyleSheet.flatten(deleteButtonStyle))}}
+                style={{...styles.keyboardButton, borderColor: colors.borderColor , ...(item?.value === 'continue' && StyleSheet.flatten(submitButtonStyle)), ...(item?.value === 'delete' && StyleSheet.flatten(deleteButtonStyle))}}
                 onPress={_onKeyboardPress(item)}>
                 {item?.value !== 'delete' && item?.value !== 'continue' &&
                     <ASText style={{fontWeight: 'bold', fontSize: 18}}>{item?.label}</ASText>}
@@ -101,6 +103,7 @@ const PinInputList: React.FC<PinInputListProps> = (props: PinInputListProps) => 
                     <ASColumn
                         key={index}
                         style={[styles.pinItemWrapper, {
+                            borderColor: colors.borderColor,
                             width: PIN_SIZE,
                             height: PIN_SIZE,
                         }]}
@@ -182,11 +185,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderWidth: 1,
-        borderColor: colors.gray80,
         borderRadius: 5
     },
     pinItemWrapper: {
-        borderColor: colors.gray80,
         borderWidth: 1,
         justifyContent: 'center',
         alignItems: 'center',

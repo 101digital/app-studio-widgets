@@ -13,7 +13,7 @@ const ASText: React.FC<ASTextProps> = (props: ASTextProps) => {
     const {children, style, label, ...restProps} = props || {}
 
     return (
-        <Text {...restProps} style={[styles.textStyle, {color: colors.black,}, style]}>{label || children}</Text>
+        <Text {...restProps} style={[styles.textStyle, {color: colors.textColor}, style]}>{label || children}</Text>
     )
 }
 
