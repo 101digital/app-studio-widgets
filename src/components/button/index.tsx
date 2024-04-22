@@ -40,7 +40,7 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
             return 'transparent'
         }
 
-        return colors.primaryColor
+        return colors.buttonColor
     }
 
     const getButtonTextBackgroundColor = () => {

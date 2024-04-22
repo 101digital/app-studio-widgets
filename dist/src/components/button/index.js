@@ -54,7 +54,7 @@ const ASButton = (props) => {
         if (simpleTextButton || !!children) {
             return 'transparent';
         }
-        return colors.primaryColor;
+        return colors.buttonColor;
     };
     const getButtonTextBackgroundColor = () => {
         if (disabled) {
