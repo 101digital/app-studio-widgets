@@ -36,9 +36,10 @@ var __rest = (this && this.__rest) || function (s, e) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importStar(require("react"));
 const react_native_1 = require("react-native");
-const colors_1 = require("../../utils/colors");
+const theme_context_1 = require("../../context/theme-context");
 const ASSwitch = (props) => {
-    const { enableThumbColor = colors_1.colors.offWhite, disabledThumbColor = colors_1.colors.offWhite, onChange } = props, restProps = __rest(props, ["enableThumbColor", "disabledThumbColor", "onChange"]);
+    const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
+    const { enableThumbColor = colors.offWhite, disabledThumbColor = colors.offWhite, onChange } = props, restProps = __rest(props, ["enableThumbColor", "disabledThumbColor", "onChange"]);
     const [isEnabled, setIsEnabled] = (0, react_1.useState)(false);
     const toggleSwitch = () => {
         setIsEnabled((previousState) => {
@@ -46,6 +47,6 @@ const ASSwitch = (props) => {
             return !previousState;
         });
     };
-    return (react_1.default.createElement(react_native_1.Switch, Object.assign({ trackColor: { false: colors_1.colors.gray400, true: colors_1.colors.green }, ios_backgroundColor: colors_1.colors.black500, onValueChange: toggleSwitch, value: isEnabled, thumbColor: isEnabled ? enableThumbColor : disabledThumbColor }, restProps)));
+    return (react_1.default.createElement(react_native_1.Switch, Object.assign({ trackColor: { false: colors.switchOffColor, true: colors.switchOnColor }, ios_backgroundColor: colors.black500, onValueChange: toggleSwitch, value: isEnabled, thumbColor: isEnabled ? enableThumbColor : disabledThumbColor }, restProps)));
 };
 exports.default = ASSwitch;

@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {ColorValue, StyleProp, StyleSheet, TextStyle, TouchableOpacity, View, ViewStyle} from 'react-native';
 import {FieldHookConfig, useField} from "formik";
 import ASText from "../text";
-import {colors} from "../../utils/colors";
 import {TickIcon} from "../../assets/icon";
 import ASRow from "../row";
+import {ThemeContext} from "../../context/theme-context";
 
 export type ASRadioButtonItemProps = {
     label: string;
@@ -22,6 +22,7 @@ export type ASRadioButtonProps = {
 }
 
 const ASRadioButton: React.FC<ASRadioButtonProps> = (props: ASRadioButtonProps) => {
+    const {colors} = useContext(ThemeContext);
     const {
         options = [],
         name,
@@ -52,7 +53,7 @@ const ASRadioButton: React.FC<ASRadioButtonProps> = (props: ASRadioButtonProps) 
 
     const tickRadioButtonType = (item: ASRadioButtonItemProps) => {
         return (
-            <ASRow style={styles.tickRadioBtn}>
+            <ASRow style={[styles.tickRadioBtn, {backgroundColor: colors.tickRadioButtonBackgroundColor}]}>
                 <ASText style={[styles.ticklabel, labelStyle]}>{item?.label}</ASText>
                 <TickIcon size={24} color={item?.value === field?.value ? color : 'transparent'}/>
             </ASRow>
@@ -117,7 +118,6 @@ const styles = StyleSheet.create({
     tickRadioBtn: {
         justifyContent: 'space-between',
         flex: 1,
-        backgroundColor: colors.offWhite2,
         padding: 18,
         borderRadius: 5,
         alignItems: 'center'

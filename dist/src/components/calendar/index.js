@@ -38,8 +38,9 @@ const react_1 = __importStar(require("react"));
 const react_native_1 = require("react-native");
 const react_native_calendars_1 = require("react-native-calendars");
 const date_fns_1 = require("date-fns");
-const colors_1 = require("../../utils/colors");
+const theme_context_1 = require("../../context/theme-context");
 const ASCalendar = (props) => {
+    const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
     const { style, markedDates, markingType, minDate, onChange } = props, restProps = __rest(props, ["style", "markedDates", "markingType", "minDate", "onChange"]);
     const [selected, setSelected] = (0, react_1.useState)('');
     const [markedDatesState, setMarkedDatesState] = (0, react_1.useState)();
@@ -71,9 +72,9 @@ const ASCalendar = (props) => {
             if (periodMarking === null || periodMarking === void 0 ? void 0 : periodMarking[0]) {
                 setMarkedDatesState({
                     [periodMarking[0]]: {
-                        color: colors_1.colors.primaryColor,
+                        color: colors.primaryColor,
                         startingDay: true,
-                        textColor: colors_1.colors.offWhite,
+                        textColor: colors.offWhite,
                     }
                 });
             }
@@ -82,10 +83,10 @@ const ASCalendar = (props) => {
                 const res = {};
                 for (let date of periodDateList) {
                     res[date] = {
-                        color: colors_1.colors.primaryColor,
+                        color: colors.primaryColor,
                         startingDay: periodDateList.indexOf(date) === 0,
                         endingDay: periodDateList.indexOf(date) === periodDateList.length - 1,
-                        textColor: colors_1.colors.offWhite,
+                        textColor: colors.offWhite,
                     };
                 }
                 setMarkedDatesState(res);
@@ -117,7 +118,7 @@ const ASCalendar = (props) => {
     return (react_1.default.createElement(react_native_calendars_1.Calendar, Object.assign({ onDayPress: _onDayPress, initialDate: new Date().toDateString(), allowSelectionOutOfRange: false, hideExtraDays: true }, restProps, { minDate: _getMinDate(), markedDates: Object.assign(Object.assign({ [selected]: {
                 selected: true,
                 disableTouchEvent: true,
-                selectedColor: colors_1.colors.primaryColor
+                selectedColor: colors.primaryColor
             } }, markedDatesState), markedDates), markingType: markingType, style: [styles.calendarStyles, style] })));
 };
 const styles = react_native_1.StyleSheet.create({

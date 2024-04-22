@@ -1,4 +1,4 @@
-import React, {ReactNode, useState} from 'react';
+import React, {ReactNode, useContext, useState} from 'react';
 import {
     NativeSyntheticEvent,
     StyleProp,
@@ -11,10 +11,10 @@ import {
     ViewStyle
 } from 'react-native';
 import {TextInputMask, TextInputMaskProps, TextInputMaskTypeProp} from 'react-native-masked-text';
-import {colors} from "../../utils/colors";
 import {useField} from 'formik';
 import ASText from "../text";
 import {isAndroid} from '../../utils/commonUtils'
+import {ThemeContext} from "../../context/theme-context";
 
 export type ASTextFieldStyles = {
     containerStyle?: StyleProp<ViewStyle>;
@@ -41,6 +41,7 @@ export type ASTextFieldProps = Omit<TextInputMaskProps, "type"> &
 };
 
 const ASTextField = (props: ASTextFieldProps) => {
+    const {colors} = useContext(ThemeContext);
     const {
         name,
         onFocus,
@@ -51,7 +52,7 @@ const ASTextField = (props: ASTextFieldProps) => {
         activeBorderColor,
         inactiveBorderColor,
         style,
-        placeholderTextColor = '#C4C4C4',
+        placeholderTextColor = colors.placeholderTextColor,
         formatError,
         options,
         label,
@@ -82,11 +83,11 @@ const ASTextField = (props: ASTextFieldProps) => {
     let separatorColor: string;
 
     if (meta?.error && meta?.touched) {
-        separatorColor = (errorBorderColor ?? colors.errorInputBorderColor)!;
+        separatorColor = (errorBorderColor ?? colors.textFieldErrorBorderColor)!;
     } else {
         separatorColor = active
-            ? (activeBorderColor ?? colors.activeInputBorderColor)!
-            : (inactiveBorderColor ?? colors.inActiveInputBorderColor)!;
+            ? (activeBorderColor ?? colors.textFieldActiveBorderColor)!
+            : (inactiveBorderColor ?? colors.textFieldInActiveBorderColor)!;
     }
 
     const getErrorMessage = (error: string) => {
@@ -95,8 +96,10 @@ const ASTextField = (props: ASTextFieldProps) => {
 
     return (
         <>
-            <View style={styles.containerStyle}>
-                <ASText style={styles.labelStyle}>{label}</ASText>
+            <View style={[styles.containerStyle, {backgroundColor: colors.textFieldBackgroundColor,}]}>
+                <ASText style={[styles.labelStyle, {
+                    color: colors.textFieldLabelColor
+                }]}>{label}</ASText>
                 <View style={[styles.contentContainerStyle, {borderColor: separatorColor}]}>
                     {prefixIcon}
                     <View style={styles.inputContainerStyle}>
@@ -106,7 +109,9 @@ const ASTextField = (props: ASTextFieldProps) => {
                                 onBlur={handleOnBlur}
                                 value={`${field?.value}`}
                                 onChangeText={field?.onChange(name)}
-                                style={styles.textInputStyle}
+                                style={[styles.textInputStyle, {
+                                    color: colors.textFieldTextColor,
+                                }]}
                                 placeholderTextColor={placeholderTextColor}
                                 options={options}
                                 type={type}
@@ -118,7 +123,9 @@ const ASTextField = (props: ASTextFieldProps) => {
                                 onBlur={handleOnBlur}
                                 value={`${field?.value}`}
                                 onChangeText={field?.onChange(name)}
-                                style={styles.textInputStyle}
+                                style={[styles.textInputStyle, {
+                                    color: colors.textFieldTextColor,
+                                }]}
                                 placeholderTextColor={placeholderTextColor}
                                 autoComplete={'off'}
                                 autoCorrect={false}
@@ -131,7 +138,9 @@ const ASTextField = (props: ASTextFieldProps) => {
                 </View>
             </View>
             {isShowError && meta?.error && meta?.touched && (
-                <ASText style={styles.errorTextStyle}>{getErrorMessage(meta?.error)}</ASText>
+                <ASText style={[styles.errorTextStyle, {
+                    color: colors.textFieldErrorColor,
+                }]}>{getErrorMessage(meta?.error)}</ASText>
             )}
         </>
     );
@@ -143,7 +152,6 @@ ASTextField.defaultProps = {
 
 const styles = StyleSheet.create({
     containerStyle: {
-        backgroundColor: colors.offWhite,
         paddingHorizontal: 15,
         paddingVertical: 5,
         borderRadius: 5
@@ -151,6 +159,9 @@ const styles = StyleSheet.create({
     contentContainerStyle: {
         alignItems: 'center',
         flexDirection: 'row',
+    },
+    labelStyle: {
+        fontSize: 10,
     },
     inputContainerStyle: {
         flex: 1,
@@ -160,19 +171,13 @@ const styles = StyleSheet.create({
     textInputStyle: {
         flex: 1,
         fontSize: isAndroid ? 10 : 12,
-        color: colors.black700,
         paddingVertical: isAndroid ? 2 : 8,
         paddingHorizontal: 0
     },
     errorTextStyle: {
         fontSize: 12,
-        color: 'red',
         marginTop: isAndroid ? 5 : 4,
     },
-    labelStyle: {
-        fontSize: 10,
-        color: colors.gray400
-    }
 });
 
 export default ASTextField;

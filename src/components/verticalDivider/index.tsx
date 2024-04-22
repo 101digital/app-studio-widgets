@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {DimensionValue, StyleProp, StyleSheet, View, ViewStyle} from 'react-native'
-import {colors} from "../../utils/colors";
+import {ThemeContext} from "../../context/theme-context";
 
 export type ASVerticalDividerProps = {
     style?: StyleProp<ViewStyle>;
@@ -9,16 +9,20 @@ export type ASVerticalDividerProps = {
 }
 
 const ASVerticalDivider: React.FC<ASVerticalDividerProps> = (props: ASVerticalDividerProps) => {
+    const {colors} = useContext(ThemeContext);
     const {style, marginHorizontal = 10, height = '100%'} = props || {}
 
     return (
-        <View style={[styles.verticalDividerStyle, {marginHorizontal, height}, style]}/>
+        <View style={[styles.verticalDividerStyle, {
+            marginHorizontal,
+            height,
+            backgroundColor: colors.dividerColor,
+        }, style]}/>
     )
 }
 
 const styles = StyleSheet.create({
     verticalDividerStyle: {
-        backgroundColor: colors.black50,
         width: 1,
     },
 });

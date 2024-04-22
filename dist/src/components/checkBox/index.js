@@ -39,8 +39,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importStar(require("react"));
 const checkbox_1 = __importDefault(require("@react-native-community/checkbox"));
-const colors_1 = require("../../utils/colors");
+const theme_context_1 = require("../../context/theme-context");
 const ASCheckBox = (props) => {
+    const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
     const { onChange } = props, restProps = __rest(props, ["onChange"]);
     const [toggleCheckBox, setToggleCheckBox] = (0, react_1.useState)(false);
     const onValueChange = (newValue) => {
@@ -49,8 +50,8 @@ const ASCheckBox = (props) => {
     };
     return (react_1.default.createElement(checkbox_1.default, Object.assign({ disabled: false, value: toggleCheckBox, onValueChange: onValueChange, 
         //IOS Only Props
-        tintColor: colors_1.colors.activeInputBorderColor, lineWidth: 2, 
+        tintColor: colors.checkboxTintColor, lineWidth: 2, 
         //Android Only Props
-        tintColors: { true: colors_1.colors.activeInputBorderColor, false: colors_1.colors.gray400 } }, restProps)));
+        tintColors: { true: colors.checkboxTintColor, false: colors.gray400 } }, restProps)));
 };
 exports.default = ASCheckBox;

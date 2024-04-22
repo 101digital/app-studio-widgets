@@ -1,14 +1,15 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState,useContext} from 'react';
 import {StyleSheet} from 'react-native';
 import {Calendar, CalendarProps, DateData} from 'react-native-calendars';
 import {addDays, format, isBefore, parseISO} from "date-fns";
-import {colors} from "../../utils/colors";
+import {ThemeContext} from "../../context/theme-context";
 
 export type  ASCalendarProps = CalendarProps & {
     onChange?: (dates:any)=> any
 }
 
 const ASCalendar: React.FC<ASCalendarProps> = (props: ASCalendarProps) => {
+    const {colors} = useContext(ThemeContext);
     const {
         style,
         markedDates,

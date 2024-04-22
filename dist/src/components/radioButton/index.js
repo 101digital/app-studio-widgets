@@ -1,17 +1,41 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importDefault(require("react"));
+const react_1 = __importStar(require("react"));
 const react_native_1 = require("react-native");
 const formik_1 = require("formik");
 const text_1 = __importDefault(require("../text"));
-const colors_1 = require("../../utils/colors");
 const icon_1 = require("../../assets/icon");
 const row_1 = __importDefault(require("../row"));
+const theme_context_1 = require("../../context/theme-context");
 const ASRadioButton = (props) => {
-    const { options = [], name, radioButtonStyle, innerCircleStyle, color = colors_1.colors.primaryColor, labelStyle, radioType = 'default' } = props;
+    const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
+    const { options = [], name, radioButtonStyle, innerCircleStyle, color = colors.primaryColor, labelStyle, radioType = 'default' } = props;
     const [field, meta, helpers] = (0, formik_1.useField)(name);
     const { setValue } = helpers || {};
     const _onPressRadioButton = (item) => () => {
@@ -24,7 +48,7 @@ const ASRadioButton = (props) => {
             react_1.default.createElement(text_1.default, { style: [styles.label, labelStyle] }, item === null || item === void 0 ? void 0 : item.label)));
     };
     const tickRadioButtonType = (item) => {
-        return (react_1.default.createElement(row_1.default, { style: styles.tickRadioBtn },
+        return (react_1.default.createElement(row_1.default, { style: [styles.tickRadioBtn, { backgroundColor: colors.tickRadioButtonBackgroundColor }] },
             react_1.default.createElement(text_1.default, { style: [styles.ticklabel, labelStyle] }, item === null || item === void 0 ? void 0 : item.label),
             react_1.default.createElement(icon_1.TickIcon, { size: 24, color: (item === null || item === void 0 ? void 0 : item.value) === (field === null || field === void 0 ? void 0 : field.value) ? color : 'transparent' })));
     };
@@ -72,7 +96,6 @@ const styles = react_native_1.StyleSheet.create({
     tickRadioBtn: {
         justifyContent: 'space-between',
         flex: 1,
-        backgroundColor: colors_1.colors.offWhite2,
         padding: 18,
         borderRadius: 5,
         alignItems: 'center'

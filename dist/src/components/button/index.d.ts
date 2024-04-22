@@ -4,7 +4,7 @@ export type ASButtonProps = TouchableOpacityProps & {
     label?: string;
     onPress: () => void;
     style?: ViewStyle;
-    textStyle?: TextStyle;
+    textStyle?: TextStyle | any;
     disabled?: boolean;
     children?: React.ReactNode;
     simpleTextButton?: boolean;

@@ -1,7 +1,8 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import {StyleSheet, View} from 'react-native';
 import Svg, {Circle, G} from 'react-native-svg';
 import {screenWidth} from "../../utils/commonUtils";
+import {ThemeContext} from "../../context/theme-context";
 
 export type ASCircleChartProps = {
     /**
@@ -26,6 +27,7 @@ export type ASCircleChartProps = {
 };
 
 const ASCircleChart: React.FC<ASCircleChartProps> = (props: ASCircleChartProps) => {
+    const {colors} = useContext(ThemeContext);
     const {
         progress = 0,
         color,
@@ -45,7 +47,7 @@ const ASCircleChart: React.FC<ASCircleChartProps> = (props: ASCircleChartProps) 
     const radius = diameter / 2;
     const viewBox = radius + circleStrokeWidth;
     const circleCircumference = 2 * Math.PI * radius;
-    const strokeColor = color || '#4F4F4F';
+    const strokeColor = color || colors.circleChartStrokeColor;
     const activeStrokeSizePercentage = (circleCircumference * (100 - progress)) / 100;
 
     return (

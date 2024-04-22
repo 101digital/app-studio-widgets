@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {StyleProp, StyleSheet, TextStyle, TouchableOpacity, View} from 'react-native';
-import {colors} from "../../utils/colors";
 import ASText from "../text";
+import {ThemeContext} from "../../context/theme-context";
 
-export type ASExpandableTextProps ={
+export type ASExpandableTextProps = {
     initialLines: number;
     text: string;
     textStyle?: StyleProp<TextStyle>;
@@ -11,6 +11,7 @@ export type ASExpandableTextProps ={
 }
 
 const ASExpandableText: React.FC<ASExpandableTextProps> = (props: ASExpandableTextProps) => {
+    const {colors} = useContext(ThemeContext);
     const {initialLines = 1, text, textStyle, readMoreTextStyles} = props
     const [isExpanded, setIsExpanded] = React.useState(false);
 
@@ -22,11 +23,15 @@ const ASExpandableText: React.FC<ASExpandableTextProps> = (props: ASExpandableTe
         <View>
             <ASText
                 numberOfLines={isExpanded ? undefined : initialLines}
-                style={[styles.textStyle, textStyle]}>{text}</ASText>
+                style={[styles.textStyle, {
+                    color: colors.black,
+                }, textStyle]}>{text}</ASText>
             {text.length > initialLines && (
                 <TouchableOpacity onPress={toggleExpansion}>
                     <ASText
-                        style={[styles.readMoreTextStyle, readMoreTextStyles]}>{isExpanded ? 'Read less' : 'Read more'}</ASText>
+                        style={[styles.readMoreTextStyle, {
+                            color: colors.gray400,
+                        }, readMoreTextStyles]}>{isExpanded ? 'Read less' : 'Read more'}</ASText>
                 </TouchableOpacity>
             )}
         </View>
@@ -34,11 +39,8 @@ const ASExpandableText: React.FC<ASExpandableTextProps> = (props: ASExpandableTe
 };
 
 const styles = StyleSheet.create({
-    textStyle: {
-        color: colors.black,
-    },
+    textStyle: {},
     readMoreTextStyle: {
-        color: colors.gray400,
         fontSize: 12
     }
 })

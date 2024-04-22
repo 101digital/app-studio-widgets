@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {colors} from "../../utils/colors";
 import {useField} from "formik";
 import ASRow from "../row";
 import ASButton from "../button";
 import ASText from "../text";
+import {ThemeContext} from "../../context/theme-context";
 
 export type ASCounterProps = {
     minValue?: number;
@@ -14,6 +14,7 @@ export type ASCounterProps = {
 }
 
 const ASCounter: React.FC<ASCounterProps> = (props: ASCounterProps) => {
+    const {colors} = useContext(ThemeContext);
     const {
         minValue = 0,
         maxValue,
@@ -42,16 +43,22 @@ const ASCounter: React.FC<ASCounterProps> = (props: ASCounterProps) => {
 
     return (
         <View style={styles.wrapper}>
-            <ASRow style={styles.container}>
+            <ASRow style={[styles.container, {borderColor: colors.gray400,}]}>
                 <ASButton simpleTextButton onPress={handleDecrement}
                           style={styles.button}
-                          textStyle={styles.buttonText}
+                          textStyle={[styles.buttonText, {
+                              color: colors.black700,
+                          }]}
                           hitSlop={{top: 5, bottom: 5, left: 5, right: 5}}
                           label={'−'}/>
-                <ASText style={styles.countText}>{count}</ASText>
+                <ASText style={[styles.countText, {color: colors.black700}]}>
+                    {count}
+                </ASText>
                 <ASButton simpleTextButton onPress={handleIncrement}
                           style={styles.button}
-                          textStyle={styles.buttonPlusText}
+                          textStyle={[styles.buttonPlusText, {
+                              color: colors.black700,
+                          }]}
                           hitSlop={{top: 5, bottom: 5, left: 5, right: 5}}
                           label={'＋'}/>
             </ASRow>
@@ -67,7 +74,6 @@ const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         borderWidth: 1,
-        borderColor: colors.gray400,
         borderRadius: 20,
         paddingHorizontal: 5,
         paddingVertical: 4,
@@ -77,17 +83,14 @@ const styles = StyleSheet.create({
         marginHorizontal: 8,
     },
     buttonText: {
-        color: colors.black700,
         fontSize: 21,
-        fontWeight:'bold'
+        fontWeight: 'bold'
     },
     buttonPlusText: {
-        color: colors.black700,
         fontSize: 18,
-        fontWeight:'bold'
+        fontWeight: 'bold'
     },
     countText: {
-        color: colors.black700,
         fontSize: 20,
         marginHorizontal: 8,
     },

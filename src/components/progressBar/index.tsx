@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {ColorValue, StyleProp, StyleSheet, TextStyle, View, ViewStyle} from 'react-native';
 import {screenWidth} from "../../utils/commonUtils";
-import {colors} from "../../utils/colors";
 import ASText from "../text";
+import {ThemeContext} from "../../context/theme-context";
 
 export type ASProgressBarProps = {
     progressBarTitle?: string,
@@ -15,6 +15,7 @@ export type ASProgressBarProps = {
 }
 
 const ASProgressBar: React.FC<ASProgressBarProps> = (props: ASProgressBarProps) => {
+    const {colors} = useContext(ThemeContext);
     const {
         progressBarTitle = '',
         progressValue,
@@ -29,19 +30,22 @@ const ASProgressBar: React.FC<ASProgressBarProps> = (props: ASProgressBarProps) 
         <View style={styles.progressBarContainer}>
             {!!progressBarTitle &&
                 <ASText style={[styles.progressBarText, progressTitleStyle]}>{progressBarTitle}</ASText>}
-            <View style={[styles.progressBar, progressBarStyle, {backgroundColor: inActiveColor}]}>
+            <View style={[styles.progressBar, {
+                backgroundColor: colors.offWhite,
+            }, progressBarStyle, {backgroundColor: inActiveColor}]}>
                 <View
                     style={[
                         styles.progressCurrent,
-                        {width: `${progressValue / 100 * 100}%`},
+                        {
+                            width: `${progressValue / 100 * 100}%`,
+                            backgroundColor: colors.progressBarCurrentColor
+                        },
                         progressCurrentStyle,
                         {backgroundColor: activeColor}
                     ]}
                 />
             </View>
         </View>
-
-
     )
 }
 
@@ -57,7 +61,6 @@ const styles = StyleSheet.create({
         lineHeight: 20
     },
     progressBar: {
-        backgroundColor: colors.offWhite,
         height: 5,
         borderRadius: 16,
         width: screenWidth / 1.8,
@@ -65,7 +68,6 @@ const styles = StyleSheet.create({
         marginTop: 5
     },
     progressCurrent: {
-        backgroundColor: '#00BA88',
         height: 5,
         borderRadius: 16,
     },

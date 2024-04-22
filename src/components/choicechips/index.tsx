@@ -1,8 +1,8 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {useField} from "formik";
 import ASWrap from "../wrap";
-import {colors} from "../../utils/colors";
+import {ThemeContext} from "../../context/theme-context";
 
 export type ChipProps = {
     id?: string;
@@ -18,6 +18,7 @@ export type ASChoiceChipsProps = {
 }
 
 const ASChoiceChips: React.FC<ASChoiceChipsProps> = (props: ASChoiceChipsProps) => {
+    const {colors} = useContext(ThemeContext);
     const {options, name} = props
     const [field, meta, helpers] = useField(name);
     const {setValue} = helpers || {};

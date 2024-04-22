@@ -22,15 +22,14 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importDefault(require("react"));
+const react_1 = __importStar(require("react"));
 const react_native_1 = require("react-native");
 const react_native_svg_1 = __importStar(require("react-native-svg"));
 const commonUtils_1 = require("../../utils/commonUtils");
+const theme_context_1 = require("../../context/theme-context");
 const ASCircleChart = (props) => {
+    const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
     const { progress = 0, color, diameter = commonUtils_1.screenWidth / 1.5, children, secondaryColor, inActiveStrokeOpacity = 1, circleStrokeWidth = 12 } = props;
     if (progress < 0 || progress > 100) {
         console.error('progress value must be between 0 and 100');
@@ -42,7 +41,7 @@ const ASCircleChart = (props) => {
     const radius = diameter / 2;
     const viewBox = radius + circleStrokeWidth;
     const circleCircumference = 2 * Math.PI * radius;
-    const strokeColor = color || '#4F4F4F';
+    const strokeColor = color || colors.circleChartStrokeColor;
     const activeStrokeSizePercentage = (circleCircumference * (100 - progress)) / 100;
     return (react_1.default.createElement(react_native_1.View, { style: styles.container },
         react_1.default.createElement(react_native_svg_1.default, { width: diameter, height: diameter, viewBox: `0 0 ${viewBox * 2} ${viewBox * 2}` },

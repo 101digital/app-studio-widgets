@@ -1,17 +1,18 @@
 import React from 'react';
-import {DimensionValue, Image, ImageStyle, StyleProp} from 'react-native';
+import {DimensionValue, Image,ImageProps , ImageStyle, StyleProp} from 'react-native';
 import {convertPercentageToPx} from '../../utils/commonUtils';
+import {ImageResizeMode} from "react-native/Libraries/Image/ImageResizeMode";
 
-export type ASImageProps = {
+export type ASImageProps = ImageProps & {
     source: any //ImageSourcePropType | string ;
     style?: StyleProp<ImageStyle>;
-    resizeMode?: 'cover' | 'contain' | 'stretch' | 'repeat' | 'center';
+    resizeMode?: ImageResizeMode
     height?: DimensionValue
     width?: DimensionValue
     roundImageSize?: string | number
 }
 
-const ASImage: React.FC<ASImageProps> = (props: ASImageProps) => {
+const ASImage: (props: ASImageProps) => JSX.Element = (props: ASImageProps) => {
     const {source, width = 100, height = 100, style, resizeMode = 'cover', roundImageSize = 0, ...restprops} = props
     const imageSource = typeof source === 'string' && source?.startsWith('http') || source?.startsWith('data:') ? {uri: source} : source
     const roundImageSizeValue = convertPercentageToPx(roundImageSize, true)

@@ -1,13 +1,13 @@
-import React from 'react';
-import {StyleProp, StyleSheet, TextStyle, TouchableOpacity, TouchableOpacityProps, ViewStyle} from 'react-native';
-import {colors} from "../../utils/colors";
+import React, {useContext} from 'react';
+import {StyleSheet, TextStyle, TouchableOpacity, TouchableOpacityProps, ViewStyle} from 'react-native';
 import ASText from "../text";
+import {ThemeContext} from '../../context/theme-context'
 
 export type  ASButtonProps = TouchableOpacityProps & {
     label?: string;
     onPress: () => void
     style?: ViewStyle;
-    textStyle?:TextStyle
+    textStyle?: TextStyle | any
     disabled?: boolean
     children?: React.ReactNode
     simpleTextButton?: boolean
@@ -15,7 +15,7 @@ export type  ASButtonProps = TouchableOpacityProps & {
 }
 
 const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
-
+    const {colors} = useContext(ThemeContext);
     const {
         label = '',
         style,
@@ -40,7 +40,7 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
             return 'transparent'
         }
 
-        return colors.primaryHifiColor
+        return colors.primaryColor
     }
 
     const getButtonTextBackgroundColor = () => {
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 0,
         paddingVertical: 0,
     },
-    touchableContainerStyles:{},
+    touchableContainerStyles: {},
     textStyle: {},
     simpleTextButtonTextStyle: {
         fontSize: 12

@@ -40,12 +40,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importStar(require("react"));
 const react_native_1 = require("react-native");
 const react_native_masked_text_1 = require("react-native-masked-text");
-const colors_1 = require("../../utils/colors");
 const formik_1 = require("formik");
 const text_1 = __importDefault(require("../text"));
 const commonUtils_1 = require("../../utils/commonUtils");
+const theme_context_1 = require("../../context/theme-context");
 const ASTextField = (props) => {
-    const { name, onFocus, onBlur, suffixIcon, prefixIcon, errorBorderColor, activeBorderColor, inactiveBorderColor, style, placeholderTextColor = '#C4C4C4', formatError, options, label, type = 'custom', isShowError } = props, restProps = __rest(props, ["name", "onFocus", "onBlur", "suffixIcon", "prefixIcon", "errorBorderColor", "activeBorderColor", "inactiveBorderColor", "style", "placeholderTextColor", "formatError", "options", "label", "type", "isShowError"]);
+    const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
+    const { name, onFocus, onBlur, suffixIcon, prefixIcon, errorBorderColor, activeBorderColor, inactiveBorderColor, style, placeholderTextColor = colors.placeholderTextColor, formatError, options, label, type = 'custom', isShowError } = props, restProps = __rest(props, ["name", "onFocus", "onBlur", "suffixIcon", "prefixIcon", "errorBorderColor", "activeBorderColor", "inactiveBorderColor", "style", "placeholderTextColor", "formatError", "options", "label", "type", "isShowError"]);
     const [active, setActive] = (0, react_1.useState)(false);
     const [field, meta, helpers] = (0, formik_1.useField)(name);
     const showMask = !!(options === null || options === void 0 ? void 0 : options.mask);
@@ -65,32 +66,39 @@ const ASTextField = (props) => {
     };
     let separatorColor;
     if ((meta === null || meta === void 0 ? void 0 : meta.error) && (meta === null || meta === void 0 ? void 0 : meta.touched)) {
-        separatorColor = (errorBorderColor !== null && errorBorderColor !== void 0 ? errorBorderColor : colors_1.colors.errorInputBorderColor);
+        separatorColor = (errorBorderColor !== null && errorBorderColor !== void 0 ? errorBorderColor : colors.textFieldErrorBorderColor);
     }
     else {
         separatorColor = active
-            ? (activeBorderColor !== null && activeBorderColor !== void 0 ? activeBorderColor : colors_1.colors.activeInputBorderColor)
-            : (inactiveBorderColor !== null && inactiveBorderColor !== void 0 ? inactiveBorderColor : colors_1.colors.inActiveInputBorderColor);
+            ? (activeBorderColor !== null && activeBorderColor !== void 0 ? activeBorderColor : colors.textFieldActiveBorderColor)
+            : (inactiveBorderColor !== null && inactiveBorderColor !== void 0 ? inactiveBorderColor : colors.textFieldInActiveBorderColor);
     }
     const getErrorMessage = (error) => {
         var _a;
         return (_a = formatError === null || formatError === void 0 ? void 0 : formatError(error)) !== null && _a !== void 0 ? _a : error;
     };
     return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement(react_native_1.View, { style: styles.containerStyle },
-            react_1.default.createElement(text_1.default, { style: styles.labelStyle }, label),
+        react_1.default.createElement(react_native_1.View, { style: [styles.containerStyle, { backgroundColor: colors.textFieldBackgroundColor, }] },
+            react_1.default.createElement(text_1.default, { style: [styles.labelStyle, {
+                        color: colors.textFieldLabelColor
+                    }] }, label),
             react_1.default.createElement(react_native_1.View, { style: [styles.contentContainerStyle, { borderColor: separatorColor }] },
                 prefixIcon,
-                react_1.default.createElement(react_native_1.View, { style: styles.inputContainerStyle }, showMask ? (react_1.default.createElement(react_native_masked_text_1.TextInputMask, Object.assign({ onFocus: handleOnFocus, onBlur: handleOnBlur, value: `${field === null || field === void 0 ? void 0 : field.value}`, onChangeText: field === null || field === void 0 ? void 0 : field.onChange(name), style: styles.textInputStyle, placeholderTextColor: placeholderTextColor, options: options, type: type }, restProps))) : (react_1.default.createElement(react_native_1.TextInput, Object.assign({ onFocus: handleOnFocus, onBlur: handleOnBlur, value: `${field === null || field === void 0 ? void 0 : field.value}`, onChangeText: field === null || field === void 0 ? void 0 : field.onChange(name), style: styles.textInputStyle, placeholderTextColor: placeholderTextColor, autoComplete: 'off', autoCorrect: false, underlineColorAndroid: 'transparent' }, restProps)))),
+                react_1.default.createElement(react_native_1.View, { style: styles.inputContainerStyle }, showMask ? (react_1.default.createElement(react_native_masked_text_1.TextInputMask, Object.assign({ onFocus: handleOnFocus, onBlur: handleOnBlur, value: `${field === null || field === void 0 ? void 0 : field.value}`, onChangeText: field === null || field === void 0 ? void 0 : field.onChange(name), style: [styles.textInputStyle, {
+                            color: colors.textFieldTextColor,
+                        }], placeholderTextColor: placeholderTextColor, options: options, type: type }, restProps))) : (react_1.default.createElement(react_native_1.TextInput, Object.assign({ onFocus: handleOnFocus, onBlur: handleOnBlur, value: `${field === null || field === void 0 ? void 0 : field.value}`, onChangeText: field === null || field === void 0 ? void 0 : field.onChange(name), style: [styles.textInputStyle, {
+                            color: colors.textFieldTextColor,
+                        }], placeholderTextColor: placeholderTextColor, autoComplete: 'off', autoCorrect: false, underlineColorAndroid: 'transparent' }, restProps)))),
                 suffixIcon)),
-        isShowError && (meta === null || meta === void 0 ? void 0 : meta.error) && (meta === null || meta === void 0 ? void 0 : meta.touched) && (react_1.default.createElement(text_1.default, { style: styles.errorTextStyle }, getErrorMessage(meta === null || meta === void 0 ? void 0 : meta.error)))));
+        isShowError && (meta === null || meta === void 0 ? void 0 : meta.error) && (meta === null || meta === void 0 ? void 0 : meta.touched) && (react_1.default.createElement(text_1.default, { style: [styles.errorTextStyle, {
+                    color: colors.textFieldErrorColor,
+                }] }, getErrorMessage(meta === null || meta === void 0 ? void 0 : meta.error)))));
 };
 ASTextField.defaultProps = {
     type: 'custom',
 };
 const styles = react_native_1.StyleSheet.create({
     containerStyle: {
-        backgroundColor: colors_1.colors.offWhite,
         paddingHorizontal: 15,
         paddingVertical: 5,
         borderRadius: 5
@@ -98,6 +106,9 @@ const styles = react_native_1.StyleSheet.create({
     contentContainerStyle: {
         alignItems: 'center',
         flexDirection: 'row',
+    },
+    labelStyle: {
+        fontSize: 10,
     },
     inputContainerStyle: {
         flex: 1,
@@ -107,18 +118,12 @@ const styles = react_native_1.StyleSheet.create({
     textInputStyle: {
         flex: 1,
         fontSize: commonUtils_1.isAndroid ? 10 : 12,
-        color: colors_1.colors.black700,
         paddingVertical: commonUtils_1.isAndroid ? 2 : 8,
         paddingHorizontal: 0
     },
     errorTextStyle: {
         fontSize: 12,
-        color: 'red',
         marginTop: commonUtils_1.isAndroid ? 5 : 4,
     },
-    labelStyle: {
-        fontSize: 10,
-        color: colors_1.colors.gray400
-    }
 });
 exports.default = ASTextField;

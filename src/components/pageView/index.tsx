@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {LayoutChangeEvent, StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
 import Swiper, {SwiperProps} from 'react-native-swiper';
+import {ThemeContext} from "../../context/theme-context";
 
 export type ASPageViewProps = SwiperProps & {
     children: React.ReactNode[];
@@ -10,11 +11,12 @@ export type ASPageViewProps = SwiperProps & {
 }
 
 const ASPageView: (props: ASPageViewProps) => false | JSX.Element = (props: ASPageViewProps) => {
+    const {colors} = useContext(ThemeContext);
     const {children, style, paginationStyle, paginationBottomPosition = 15, ...restprops} = props
     const [height, setHeight] = useState<number>(0)
     const [startSwiper, setStartSwiper] = useState<boolean>(false)
 
-    useState(() => {
+    useEffect(() => {
         const timeout = setTimeout(() => {
             setStartSwiper(true)
         }, 100)
@@ -38,8 +40,8 @@ const ASPageView: (props: ASPageViewProps) => false | JSX.Element = (props: ASPa
         startSwiper && <Swiper
             showsButtons={false}
             loop={false}
-            dotStyle={styles.dot}
-            activeDotStyle={styles.activeDot}
+            dotStyle={[styles.dot, {backgroundColor: colors.black500,}]}
+            activeDotStyle={[styles.activeDot, {backgroundColor: colors.white,}]}
             {...restprops}
             paginationStyle={[styles.paginationStyle, paginationStyle]}
             style={[styles.wrapper, {height}, style]}
@@ -63,14 +65,12 @@ const styles = StyleSheet.create({
     wrapper: {},
     slide: {},
     dot: {
-        backgroundColor: 'rgba(255,255,255,.3)',
         width: 8,
         height: 8,
         borderRadius: 4,
         margin: 3,
     },
     activeDot: {
-        backgroundColor: '#fff',
         width: 8,
         height: 8,
         borderRadius: 4,

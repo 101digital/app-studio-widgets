@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {StyleProp, StyleSheet, TextStyle, View, ViewStyle} from 'react-native';
 import ASText from "../text";
+import {ThemeContext} from "../../context/theme-context";
 
 export type ASBadgeProps = {
     children: React.ReactNode
@@ -11,6 +12,7 @@ export type ASBadgeProps = {
 }
 
 const ASBadge: React.FC<ASBadgeProps> = (props: ASBadgeProps) => {
+    const {colors} = useContext(ThemeContext);
     const {
         children,
         badgeNumber,
@@ -20,10 +22,13 @@ const ASBadge: React.FC<ASBadgeProps> = (props: ASBadgeProps) => {
     } = props
 
     return (
-        <View style={[styles.container,containerStyle]}>
+        <View style={[styles.container, containerStyle]}>
             <View>
                 {children}
-                {!!badgeNumber && <View style={[styles.badgeStyles, badgeStyles]}>
+                {!!badgeNumber && <View style={[styles.badgeStyles, {
+                    backgroundColor: colors.badgeBackgroundColor,
+                    borderColor: colors.badgeBorderColor
+                }, badgeStyles]}>
                     <ASText style={[styles.badgeTextStyle, badgeTextStyle]}>{badgeNumber}</ASText>
                 </View>}
             </View>
@@ -33,20 +38,18 @@ const ASBadge: React.FC<ASBadgeProps> = (props: ASBadgeProps) => {
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection:'row',
+        flexDirection: 'row',
     },
     badgeStyles: {
         position: 'absolute',
         top: -15,
         right: -12,
         borderRadius: 30,
-        backgroundColor: 'rgb(147,239,129)',
         height: 25,
         width: 25,
         justifyContent: 'center',
         alignItems: 'center',
         borderWidth: 2,
-        borderColor: 'rgb(108,199,91)',
         flex: 0
     },
     badgeTextStyle: {

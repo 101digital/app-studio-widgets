@@ -1,6 +1,7 @@
-import React, {ReactNode} from 'react';
+import React, {ReactNode, useContext} from 'react';
 import {ScrollView, ScrollViewProps, StyleProp, StyleSheet, ViewStyle} from 'react-native'
 import {SafeAreaView, SafeAreaViewProps} from 'react-native-safe-area-context';
+import {ThemeContext} from "../../context/theme-context";
 
 export type ASContainerProps = SafeAreaViewProps & {
     children: ReactNode;
@@ -12,6 +13,7 @@ export type ASContainerProps = SafeAreaViewProps & {
 }
 
 const ASContainer: React.FC<ASContainerProps> = (props: ASContainerProps) => {
+    const {colors} = useContext(ThemeContext);
     const {
         children,
         style,
@@ -24,7 +26,9 @@ const ASContainer: React.FC<ASContainerProps> = (props: ASContainerProps) => {
 
     return (
         <SafeAreaView edges={disabledSafeArea ? [] : ['right', 'left', 'top', "bottom"]} {...restProps}
-                      style={[styles.container, style]}>
+                      style={[styles.container, {
+                          backgroundColor: colors.backgroundColor
+                      }, style]}>
             {isScrollable ? (
                     <ScrollView showsVerticalScrollIndicator={false}
                                 showsHorizontalScrollIndicator={false} {...scrollViewProps}
@@ -40,7 +44,7 @@ const ASContainer: React.FC<ASContainerProps> = (props: ASContainerProps) => {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
     },
     scrollViewStyle: {
         flexGrow: 1

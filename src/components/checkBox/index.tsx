@@ -1,12 +1,13 @@
-import React, {useState} from 'react';
+import React, {useState,useContext} from 'react';
 import CheckBox from '@react-native-community/checkbox';
-import {colors} from "../../utils/colors";
+import {ThemeContext} from "../../context/theme-context";
 
 export type ASCheckBoxProps = {
     onChange?: (value: boolean) => void
 }
 
 const ASCheckBox: React.FC<ASCheckBoxProps> = (props: ASCheckBoxProps) => {
+    const {colors} = useContext(ThemeContext);
     const {onChange, ...restProps} = props
     const [toggleCheckBox, setToggleCheckBox] = useState<boolean>(false)
 
@@ -22,11 +23,11 @@ const ASCheckBox: React.FC<ASCheckBoxProps> = (props: ASCheckBoxProps) => {
             onValueChange={onValueChange}
 
             //IOS Only Props
-            tintColor={colors.activeInputBorderColor}
+            tintColor={colors.checkboxTintColor}
             lineWidth={2}
 
             //Android Only Props
-            tintColors={{ true: colors.activeInputBorderColor, false:colors.gray400 }}
+            tintColors={{ true: colors.checkboxTintColor, false:colors.gray400 }}
             {...restProps}
         />
     )

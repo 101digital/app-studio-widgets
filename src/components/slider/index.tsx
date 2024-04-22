@@ -1,9 +1,9 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import Slider, {SliderProps} from '@react-native-community/slider';
 import {useField} from "formik";
-import {colors} from "../../utils/colors";
 import ASText from "../text";
+import {ThemeContext} from "../../context/theme-context";
 
 export type ASSliderProps = SliderProps & {
     onChange?: (value: number) => void;
@@ -13,6 +13,7 @@ export type ASSliderProps = SliderProps & {
 }
 
 const ASSlider: React.FC<ASSliderProps> = (props: ASSliderProps) => {
+    const {colors} = useContext(ThemeContext);
     const {
         minimumValue,
         maximumValue,

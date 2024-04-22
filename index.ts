@@ -26,10 +26,12 @@ export {default as ASListTile, ASListTileProps} from './src/components/listTile'
 export {default as ASRadioButton, ASRadioButtonProps} from './src/components/radioButton';
 export {default as ASSlider, ASSliderProps} from './src/components/slider';
 export {default as ASCounter, ASCounterProps} from './src/components/counter';
-export {default as ASChoiceChips, ASChoiceChipsProps,ChipProps} from './src/components/choicechips';
+export {default as ASChoiceChips, ASChoiceChipsProps, ChipProps} from './src/components/choicechips';
 export {default as ASCalendar, ASCalendarProps} from './src/components/calendar';
 export {default as ASTimer, ASTimerProps} from './src/components/timer';
 export {default as ASModal, ASModalProps} from './src/components/modal';
 export {default as ASPin, ASPinProps} from './src/components/pin';
 export {default as ASBottomSheet, ASBottomSheetProps} from './src/components/bottomSheet';
-
+export {
+    ThemeContext, useThemeContextValue, ThemeProvider, createThemeData, useThemeColors, useThemeFonts
+} from './src/context/theme-context'

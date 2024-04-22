@@ -40,11 +40,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importStar(require("react"));
 const react_native_1 = require("react-native");
 const react_native_swiper_1 = __importDefault(require("react-native-swiper"));
+const theme_context_1 = require("../../context/theme-context");
 const ASPageView = (props) => {
+    const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
     const { children, style, paginationStyle, paginationBottomPosition = 15 } = props, restprops = __rest(props, ["children", "style", "paginationStyle", "paginationBottomPosition"]);
     const [height, setHeight] = (0, react_1.useState)(0);
     const [startSwiper, setStartSwiper] = (0, react_1.useState)(false);
-    (0, react_1.useState)(() => {
+    (0, react_1.useEffect)(() => {
         const timeout = setTimeout(() => {
             setStartSwiper(true);
         }, 100);
@@ -61,21 +63,19 @@ const ASPageView = (props) => {
     const onLayout = (event) => {
         handleSetHeight(event.nativeEvent.layout.height);
     };
-    return (startSwiper && react_1.default.createElement(react_native_swiper_1.default, Object.assign({ showsButtons: false, loop: false, dotStyle: styles.dot, activeDotStyle: styles.activeDot }, restprops, { paginationStyle: [styles.paginationStyle, paginationStyle], style: [styles.wrapper, { height }, style] }), Array.isArray(children) ? children.map((page, index) => (react_1.default.createElement(react_native_1.View, { onLayout: onLayout, key: index, style: styles.slide }, page))) :
+    return (startSwiper && react_1.default.createElement(react_native_swiper_1.default, Object.assign({ showsButtons: false, loop: false, dotStyle: [styles.dot, { backgroundColor: colors.black500, }], activeDotStyle: [styles.activeDot, { backgroundColor: colors.white, }] }, restprops, { paginationStyle: [styles.paginationStyle, paginationStyle], style: [styles.wrapper, { height }, style] }), Array.isArray(children) ? children.map((page, index) => (react_1.default.createElement(react_native_1.View, { onLayout: onLayout, key: index, style: styles.slide }, page))) :
         react_1.default.createElement(react_native_1.View, { onLayout: onLayout, style: styles.slide }, children)));
 };
 const styles = react_native_1.StyleSheet.create({
     wrapper: {},
     slide: {},
     dot: {
-        backgroundColor: 'rgba(255,255,255,.3)',
         width: 8,
         height: 8,
         borderRadius: 4,
         margin: 3,
     },
     activeDot: {
-        backgroundColor: '#fff',
         width: 8,
         height: 8,
         borderRadius: 4,

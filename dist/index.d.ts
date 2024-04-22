@@ -32,3 +32,4 @@ export { default as ASTimer, ASTimerProps } from './src/components/timer';
 export { default as ASModal, ASModalProps } from './src/components/modal';
 export { default as ASPin, ASPinProps } from './src/components/pin';
 export { default as ASBottomSheet, ASBottomSheetProps } from './src/components/bottomSheet';
+export { ThemeContext, useThemeContextValue, ThemeProvider, createThemeData, useThemeColors, useThemeFonts } from './src/context/theme-context';
