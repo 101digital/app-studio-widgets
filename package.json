@@ -1,6 +1,6 @@
 {
   "name": "app-studio-widgets",
-  "version": "1.0.53",
+  "version": "1.0.54",
   "description": "Widgets for App Studio",
   "repository": "https://github.com/101digital/app-studio-widgets",
   "license": "MIT",
@@ -31,7 +31,6 @@
     "react-native": "0.73.2",
     "react-native-calendars": "^1.1303.0",
     "react-native-element-dropdown": "^2.10.1",
-    "react-native-gesture-handler": "^2.15.0",
     "react-native-masked-text": "^1.13.0",
     "react-native-mime-types": "^2.3.0",
     "react-native-modal": "^12.0.2",
@@ -41,7 +40,8 @@
     "tsx": "^4.7.0",
     "xdate": "^0.8.2",
     "yarn": "^1.22.21",
-    "react-native-safe-area-context": "4.8.2"
+    "react-native-safe-area-context": "4.8.2",
+    "react-native-gesture-handler": "~2.14.0"
   },
   "devDependencies": {
     "@react-native-community/eslint-config": "^2.0.0",

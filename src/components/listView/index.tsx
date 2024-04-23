@@ -1,5 +1,6 @@
 import React from 'react';
-import {FlatList, FlatListProps, ListRenderItem} from 'react-native';
+import { FlatListProps, ListRenderItem} from 'react-native';
+import {FlatList } from 'react-native-gesture-handler'
 
 export type ASListViewProps = FlatListProps<any> & {
     data: any[]
