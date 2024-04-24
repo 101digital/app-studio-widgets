@@ -33,41 +33,59 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importStar(require("react"));
 const react_native_1 = require("react-native");
-const react_native_swiper_1 = __importDefault(require("react-native-swiper"));
 const theme_context_1 = require("../../context/theme-context");
+const react_native_gesture_handler_1 = require("react-native-gesture-handler");
 const ASPageView = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { children, style, paginationStyle, paginationBottomPosition = 15 } = props, restprops = __rest(props, ["children", "style", "paginationStyle", "paginationBottomPosition"]);
+    const { children, style, paginationStyle, paginationBottomPosition = 0, horizontal = true } = props, restprops = __rest(props, ["children", "style", "paginationStyle", "paginationBottomPosition", "horizontal"]);
     const [height, setHeight] = (0, react_1.useState)(0);
-    const [startSwiper, setStartSwiper] = (0, react_1.useState)(false);
-    (0, react_1.useEffect)(() => {
-        const timeout = setTimeout(() => {
-            setStartSwiper(true);
-        }, 100);
-        return () => {
-            clearTimeout(timeout);
-        };
-        // @ts-ignore
-    }, []);
-    const handleSetHeight = (value) => {
-        if (value > height) {
-            setHeight(value + paginationBottomPosition);
+    const [width, setWidth] = (0, react_1.useState)(0);
+    const onLayout = (event) => {
+        const heightValue = event.nativeEvent.layout.height;
+        const widthValue = event.nativeEvent.layout.width;
+        if (heightValue > height) {
+            setHeight(heightValue + paginationBottomPosition);
+        }
+        if (widthValue > width) {
+            setWidth(widthValue + paginationBottomPosition);
         }
     };
-    const onLayout = (event) => {
-        handleSetHeight(event.nativeEvent.layout.height);
-    };
-    return (startSwiper && react_1.default.createElement(react_native_swiper_1.default, Object.assign({ showsButtons: false, loop: false, dotStyle: [styles.dot, { backgroundColor: colors.black500, }], activeDotStyle: [styles.activeDot, { backgroundColor: colors.white, }] }, restprops, { paginationStyle: [styles.paginationStyle, paginationStyle], style: [styles.wrapper, { height }, style] }), Array.isArray(children) ? children.map((page, index) => (react_1.default.createElement(react_native_1.View, { onLayout: onLayout, key: index, style: styles.slide }, page))) :
+    const snapConfig = horizontal
+        ? { snapToOffsets: [0, width], horizontal: true }
+        : { snapToOffsets: [0, height] };
+    return (
+    // <PagerView
+    //     initialPage={0}
+    //     showsButtons={false}
+    //     orientation={"horizontal"}
+    //     loop={false}
+    //     dotStyle={[styles.dot, {backgroundColor: colors.black500,}]}
+    //     activeDotStyle={[styles.activeDot, {backgroundColor: colors.white,}]}
+    //     {...restprops}
+    //     style={[styles.wrapper, style]}
+    // >
+    //     {Array.isArray(children) ? children.map((page: React.ReactNode, index: number) => (
+    //             <View onLayout={onLayout}
+    //                   key={index} style={styles.slide}>
+    //                 {page}
+    //             </View>
+    //         )) :
+    //         <View onLayout={onLayout}
+    //               style={styles.slide}>
+    //             {children}
+    //         </View>
+    //     }
+    // </PagerView>
+    react_1.default.createElement(react_native_gesture_handler_1.ScrollView, Object.assign({ horizontal: horizontal, decelerationRate: 0, snapToInterval: width, snapToAlignment: "center", showsHorizontalScrollIndicator: false, showsVerticalScrollIndicator: false }, snapConfig, restprops), Array.isArray(children) ? children.map((page, index) => (react_1.default.createElement(react_native_1.View, { onLayout: onLayout, key: index, style: styles.slide }, page))) :
         react_1.default.createElement(react_native_1.View, { onLayout: onLayout, style: styles.slide }, children)));
 };
 const styles = react_native_1.StyleSheet.create({
-    wrapper: {},
+    wrapper: {
+        width: "100%",
+    },
     slide: {},
     dot: {
         width: 8,
@@ -79,7 +97,7 @@ const styles = react_native_1.StyleSheet.create({
         width: 8,
         height: 8,
         borderRadius: 4,
-        margin: 3,
+        margin: 3
     },
     paginationStyle: {
         bottom: 0

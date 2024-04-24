@@ -1,11 +1,10 @@
-import React from 'react';
-import { StyleProp, ViewStyle } from 'react-native';
-import { SwiperProps } from 'react-native-swiper';
-export type ASPageViewProps = SwiperProps & {
-    children: React.ReactNode[];
+import { ReactNode } from 'react';
+import { StyleProp, ViewStyle, ScrollViewProps } from 'react-native';
+export type ASPageViewProps = ScrollViewProps & {
+    children: ReactNode[];
     style?: StyleProp<ViewStyle>;
     paginationStyle?: StyleProp<ViewStyle>;
     paginationBottomPosition?: number;
 };
-declare const ASPageView: (props: ASPageViewProps) => false | JSX.Element;
+declare const ASPageView: (props: ASPageViewProps) => ReactNode;
 export default ASPageView;

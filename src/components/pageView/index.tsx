@@ -1,50 +1,70 @@
-import React, {useContext, useEffect, useState} from 'react';
-import {LayoutChangeEvent, StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
-import Swiper, {SwiperProps} from 'react-native-swiper';
+import React, {useContext, useState,ReactNode} from 'react';
+import {LayoutChangeEvent, StyleProp, StyleSheet, ViewStyle,View, ScrollViewProps} from 'react-native';
 import {ThemeContext} from "../../context/theme-context";
+import { ScrollView } from 'react-native-gesture-handler';
 
-export type ASPageViewProps = SwiperProps & {
-    children: React.ReactNode[];
+export type ASPageViewProps = ScrollViewProps & {
+    children: ReactNode[];
     style?: StyleProp<ViewStyle>;
     paginationStyle?: StyleProp<ViewStyle>;
     paginationBottomPosition?: number;
 }
 
-const ASPageView: (props: ASPageViewProps) => false | JSX.Element = (props: ASPageViewProps) => {
+const ASPageView: (props: ASPageViewProps) => ReactNode = (props: ASPageViewProps) => {
     const {colors} = useContext(ThemeContext);
-    const {children, style, paginationStyle, paginationBottomPosition = 15, ...restprops} = props
+    const {children, style, paginationStyle, paginationBottomPosition = 0, horizontal = true, ...restprops} = props
     const [height, setHeight] = useState<number>(0)
-    const [startSwiper, setStartSwiper] = useState<boolean>(false)
-
-    useEffect(() => {
-        const timeout = setTimeout(() => {
-            setStartSwiper(true)
-        }, 100)
-        return () => {
-            clearTimeout(timeout)
-        }
-        // @ts-ignore
-    }, [])
-
-    const handleSetHeight = (value: number) => {
-        if (value > height) {
-            setHeight(value + paginationBottomPosition);
-        }
-    };
+    const [width, setWidth] = useState<number>(0)
 
     const onLayout = (event: LayoutChangeEvent) => {
-        handleSetHeight(event.nativeEvent.layout.height)
+        const heightValue = event.nativeEvent.layout.height
+        const widthValue = event.nativeEvent.layout.width
+
+        if (heightValue > height) {
+            setHeight(heightValue + paginationBottomPosition);
+        }
+        if (widthValue > width) {
+            setWidth(widthValue + paginationBottomPosition);
+        }
     }
 
+    const snapConfig = horizontal
+        ? {snapToOffsets: [0, width], horizontal: true}
+        : {snapToOffsets: [0, height]};
+
     return (
-        startSwiper && <Swiper
-            showsButtons={false}
-            loop={false}
-            dotStyle={[styles.dot, {backgroundColor: colors.black500,}]}
-            activeDotStyle={[styles.activeDot, {backgroundColor: colors.white,}]}
+        // <PagerView
+        //     initialPage={0}
+        //     showsButtons={false}
+        //     orientation={"horizontal"}
+        //     loop={false}
+        //     dotStyle={[styles.dot, {backgroundColor: colors.black500,}]}
+        //     activeDotStyle={[styles.activeDot, {backgroundColor: colors.white,}]}
+        //     {...restprops}
+        //     style={[styles.wrapper, style]}
+        // >
+        //     {Array.isArray(children) ? children.map((page: React.ReactNode, index: number) => (
+        //             <View onLayout={onLayout}
+        //                   key={index} style={styles.slide}>
+        //                 {page}
+        //             </View>
+        //         )) :
+        //         <View onLayout={onLayout}
+        //               style={styles.slide}>
+        //             {children}
+        //         </View>
+        //     }
+        // </PagerView>
+
+        <ScrollView
+            horizontal={horizontal}
+            decelerationRate={0}
+            snapToInterval={width}
+            snapToAlignment={"center"}
+            showsHorizontalScrollIndicator={false}
+            showsVerticalScrollIndicator={false}
+            {...snapConfig}
             {...restprops}
-            paginationStyle={[styles.paginationStyle, paginationStyle]}
-            style={[styles.wrapper, {height}, style]}
         >
             {Array.isArray(children) ? children.map((page: React.ReactNode, index: number) => (
                     <View onLayout={onLayout}
@@ -57,12 +77,14 @@ const ASPageView: (props: ASPageViewProps) => false | JSX.Element = (props: ASPa
                     {children}
                 </View>
             }
-        </Swiper>
+        </ScrollView>
     );
 };
 
 const styles = StyleSheet.create({
-    wrapper: {},
+    wrapper: {
+        width: "100%",
+    },
     slide: {},
     dot: {
         width: 8,
@@ -74,7 +96,7 @@ const styles = StyleSheet.create({
         width: 8,
         height: 8,
         borderRadius: 4,
-        margin: 3,
+        margin: 3
     },
     paginationStyle: {
         bottom: 0
