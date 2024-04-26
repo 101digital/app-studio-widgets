@@ -23,10 +23,11 @@ const ASExpandableText: React.FC<ASExpandableTextProps> = (props: ASExpandableTe
         <View>
             <ASText
                 numberOfLines={isExpanded ? undefined : initialLines}
-                style={[styles.textStyle, {
-                    color: colors.black,
-                }, textStyle]}>{text}</ASText>
-            {text.length > initialLines && (
+                style={[styles.textStyle, {color: colors.black,}, textStyle]}>
+                {text}
+            </ASText>
+
+            {text?.length > initialLines && (
                 <TouchableOpacity onPress={toggleExpansion}>
                     <ASText
                         style={[styles.readMoreTextStyle, {
