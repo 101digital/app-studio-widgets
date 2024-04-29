@@ -1,4 +1,4 @@
-import React,{useContext} from 'react';
+import React, {useContext} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {useField} from "formik";
 import ASWrap from "../wrap";
@@ -14,37 +14,51 @@ export type ChipProps = {
 
 export type ASChoiceChipsProps = {
     options: ChipProps[];
-    name: string
+    name: string;
+    isSingleChoice?: boolean
+    returnedKey?: string;
 }
 
 const ASChoiceChips: React.FC<ASChoiceChipsProps> = (props: ASChoiceChipsProps) => {
     const {colors} = useContext(ThemeContext);
-    const {options, name} = props
+    const {options, name, isSingleChoice = true, returnedKey} = props
     const [field, meta, helpers] = useField(name);
     const {setValue} = helpers || {};
-    const selectedChoiceChips: ChipProps[] = field?.value
+    const selectedChoiceChips: ChipProps[] | string = field?.value
 
     const _onPressChoiceChip = (chip: ChipProps) => () => {
-        let _selectedChoiceChips: ChipProps[] = [...selectedChoiceChips]
-        let _choiceChipIndex: number | boolean = _selectedChoiceChips && Array.isArray(_selectedChoiceChips) && _selectedChoiceChips?.findIndex((c:ChipProps) => c?.value === chip?.value)
-        _choiceChipIndex = _choiceChipIndex === false ? -1 : _choiceChipIndex
+        if (Array.isArray(selectedChoiceChips)) {
+            let _selectedChoiceChips: ChipProps[] = [...selectedChoiceChips]
+            let _choiceChipIndex: number | boolean = _selectedChoiceChips && Array.isArray(_selectedChoiceChips) && _selectedChoiceChips?.findIndex((c: ChipProps) => c?.value === chip?.value)
+            _choiceChipIndex = _choiceChipIndex === false ? -1 : _choiceChipIndex
 
-        if (_choiceChipIndex > -1) {
-            _selectedChoiceChips = [..._selectedChoiceChips.slice(0, _choiceChipIndex), ..._selectedChoiceChips.slice(_choiceChipIndex + 1)];
-        } else {
-            _selectedChoiceChips.push(chip);
+            if (_choiceChipIndex > -1) {
+                _selectedChoiceChips = [..._selectedChoiceChips.slice(0, _choiceChipIndex), ..._selectedChoiceChips.slice(_choiceChipIndex + 1)];
+            } else {
+                _selectedChoiceChips.push(chip);
+            }
+            setValue(_selectedChoiceChips)
         }
-        setValue(_selectedChoiceChips)
     }
 
-    const findSelected = (value: string) => Array.isArray(selectedChoiceChips) && selectedChoiceChips?.find((item:ChipProps) => item?.value === value);
+    const _onPressSingleChoiceChip = (chip: ChipProps) => () => {
+        setValue(returnedKey ? chip?.[returnedKey] : chip?.value)
+    }
+
+    const findSelected = (value: string) => {
+        if (isSingleChoice) {
+            return selectedChoiceChips === value
+        } else {
+            return Array.isArray(selectedChoiceChips) && selectedChoiceChips?.find((item: ChipProps) => item?.value === value)
+        }
+    }
 
     return (
         <ASWrap style={styles.container}>
             {options.map((chip, index) => (
                 <TouchableOpacity
                     key={`${chip.value}${index}`}
-                    onPress={_onPressChoiceChip(chip)}
+                    onPress={isSingleChoice ? _onPressSingleChoiceChip(chip) : _onPressChoiceChip(chip)}
                     style={[
                         styles.chip,
                         {
@@ -86,3 +100,16 @@ const styles = StyleSheet.create({
 });
 
 export default ASChoiceChips;
+
+
+//
+
+// <ASChoiceChips options={[
+//                     {value: 'car', label: 'Car'},
+//                     {value: 'plane', label: 'Plane'},
+//                     {value: 'bike', label: 'Bike'},
+//                     {value: 'ship', label: 'Ship'},
+//                     {value: 'heli', label: 'Helicopter'},
+//                     {value: 'shuttle', label: 'Space shuttle'}
+//                 ]}
+//                name={'transport'}/>

@@ -38,10 +38,8 @@ const ASExpandableText = (props) => {
         setIsExpanded(!isExpanded);
     };
     return (react_1.default.createElement(react_native_1.View, null,
-        react_1.default.createElement(text_1.default, { numberOfLines: isExpanded ? undefined : initialLines, style: [styles.textStyle, {
-                    color: colors.black,
-                }, textStyle] }, text),
-        text.length > initialLines && (react_1.default.createElement(react_native_1.TouchableOpacity, { onPress: toggleExpansion },
+        react_1.default.createElement(text_1.default, { numberOfLines: isExpanded ? undefined : initialLines, style: [styles.textStyle, { color: colors.black, }, textStyle] }, text),
+        (text === null || text === void 0 ? void 0 : text.length) > initialLines && (react_1.default.createElement(react_native_1.TouchableOpacity, { onPress: toggleExpansion },
             react_1.default.createElement(text_1.default, { style: [styles.readMoreTextStyle, {
                         color: colors.gray400,
                     }, readMoreTextStyles] }, isExpanded ? 'Read less' : 'Read more')))));

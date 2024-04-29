@@ -9,6 +9,8 @@ export type ChipProps = {
 export type ASChoiceChipsProps = {
     options: ChipProps[];
     name: string;
+    isSingleChoice?: boolean;
+    returnedKey?: string;
 };
 declare const ASChoiceChips: React.FC<ASChoiceChipsProps>;
 export default ASChoiceChips;
