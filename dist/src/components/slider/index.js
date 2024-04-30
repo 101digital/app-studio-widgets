@@ -54,7 +54,7 @@ const ASSlider = (props) => {
         onChange === null || onChange === void 0 ? void 0 : onChange(value);
     };
     return (react_1.default.createElement(react_native_1.View, { style: styles.container },
-        react_1.default.createElement(slider_1.default, Object.assign({ style: styles.slider, value: sliderValue, minimumValue: minimumValue, maximumValue: maximumValue, step: step, thumbTintColor: colors.primaryColor, minimumTrackTintColor: colors.primaryColor, maximumTrackTintColor: colors.gray400 }, restProps, { onValueChange: _onValueChange })),
+        react_1.default.createElement(slider_1.default, Object.assign({ style: styles.slider, value: sliderValue, minimumValue: minimumValue, maximumValue: maximumValue, step: step, thumbTintColor: colors.primary, minimumTrackTintColor: colors.primary, maximumTrackTintColor: colors.onTertiary }, restProps, { onValueChange: _onValueChange })),
         !!sliderValue && react_1.default.createElement(text_1.default, { style: styles.valueText }, sliderValue)));
 };
 const styles = react_native_1.StyleSheet.create({

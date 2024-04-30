@@ -52,7 +52,7 @@ const Keyboard = (props) => {
         onKeyboardPress === null || onKeyboardPress === void 0 ? void 0 : onKeyboardPress(item);
     };
     const _renderItem = ({ item }) => {
-        return (react_1.default.createElement(button_1.default, { style: Object.assign(Object.assign(Object.assign(Object.assign({}, styles.keyboardButton), { borderColor: colors.borderColor }), ((item === null || item === void 0 ? void 0 : item.value) === 'continue' && react_native_1.StyleSheet.flatten(submitButtonStyle))), ((item === null || item === void 0 ? void 0 : item.value) === 'delete' && react_native_1.StyleSheet.flatten(deleteButtonStyle))), onPress: _onKeyboardPress(item) },
+        return (react_1.default.createElement(button_1.default, { style: Object.assign(Object.assign(Object.assign(Object.assign({}, styles.keyboardButton), { borderColor: colors.onSecondary }), ((item === null || item === void 0 ? void 0 : item.value) === 'continue' && react_native_1.StyleSheet.flatten(submitButtonStyle))), ((item === null || item === void 0 ? void 0 : item.value) === 'delete' && react_native_1.StyleSheet.flatten(deleteButtonStyle))), onPress: _onKeyboardPress(item) },
             (item === null || item === void 0 ? void 0 : item.value) !== 'delete' && (item === null || item === void 0 ? void 0 : item.value) !== 'continue' &&
                 react_1.default.createElement(text_1.default, { style: { fontWeight: 'bold', fontSize: 18 } }, item === null || item === void 0 ? void 0 : item.label),
             (item === null || item === void 0 ? void 0 : item.value) === 'delete' ? deleteButtonIcon ||
@@ -67,7 +67,7 @@ const PinInputList = (props) => {
     const PIN_SIZE = 45;
     return (react_1.default.createElement(row_1.default, { style: { justifyContent: 'space-between' } }, Array.from({ length: pinLength }, (_, index) => {
         return (react_1.default.createElement(column_1.default, { key: index, style: [styles.pinItemWrapper, {
-                    borderColor: colors_1.colors.borderColor,
+                    borderColor: colors_1.colors.onSecondary,
                     width: PIN_SIZE,
                     height: PIN_SIZE,
                 }] },

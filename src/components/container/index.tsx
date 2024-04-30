@@ -27,7 +27,7 @@ const ASContainer: React.FC<ASContainerProps> = (props: ASContainerProps) => {
     return (
         <SafeAreaView edges={disabledSafeArea ? [] : ['right', 'left', 'top', "bottom"]} {...restProps}
                       style={[styles.container, {
-                          backgroundColor: colors.backgroundColor
+                          backgroundColor: colors.background
                       }, style]}>
             {isScrollable ? (
                     <ScrollView showsVerticalScrollIndicator={false}

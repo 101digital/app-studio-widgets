@@ -26,8 +26,8 @@ const ASBadge: React.FC<ASBadgeProps> = (props: ASBadgeProps) => {
             <View>
                 {children}
                 {!!badgeNumber && <View style={[styles.badgeStyles, {
-                    backgroundColor: colors.badgeBackgroundColor,
-                    borderColor: colors.badgeBorderColor
+                    backgroundColor: colors.background,
+                    borderColor: colors.accent2
                 }, badgeStyles]}>
                     <ASText style={[styles.badgeTextStyle, badgeTextStyle]}>{badgeNumber}</ASText>
                 </View>}
@@ -65,7 +65,7 @@ export default ASBadge
                 <ASBadge badgeNumber={3}>
                     <ASRow>
                         <ASText>Badge</ASText>
-                        <Icon name="user-circle-o" size={30} color="theme.colors.primaryIconColor"/>
+                        <Icon name="user-circle-o" size={30} color="theme.colors.primary"/>
                     </ASRow>
                 </ASBadge>
 * */

@@ -10,7 +10,7 @@ export type ASSwitchProps = SwitchProps & {
 
 const ASSwitch: React.FC<ASSwitchProps> = (props: ASSwitchProps) => {
     const {colors} = useContext(ThemeContext);
-    const {enableThumbColor = colors.offWhite, disabledThumbColor = colors.offWhite, onChange,...restProps} = props
+    const {enableThumbColor = colors.secondaryFixed, disabledThumbColor = colors.secondaryFixed, onChange,...restProps} = props
     const [isEnabled, setIsEnabled] = useState(false);
 
     const toggleSwitch = () => {
@@ -22,8 +22,8 @@ const ASSwitch: React.FC<ASSwitchProps> = (props: ASSwitchProps) => {
 
     return (
         <Switch
-            trackColor={{false: colors.switchOffColor, true: colors.switchOnColor}}
-            ios_backgroundColor={colors.black500}
+            trackColor={{false: colors.onTertiary, true: colors.accent2}}
+            ios_backgroundColor={colors.onSurface}
             onValueChange={toggleSwitch}
             value={isEnabled}
             thumbColor={isEnabled ? enableThumbColor : disabledThumbColor}

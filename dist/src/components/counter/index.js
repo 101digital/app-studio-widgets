@@ -54,13 +54,13 @@ const ASCounter = (props) => {
         }
     };
     return (react_1.default.createElement(react_native_1.View, { style: styles.wrapper },
-        react_1.default.createElement(row_1.default, { style: [styles.container, { borderColor: colors.gray400, }] },
+        react_1.default.createElement(row_1.default, { style: [styles.container, { borderColor: colors.onSurface, }] },
             react_1.default.createElement(button_1.default, { simpleTextButton: true, onPress: handleDecrement, style: styles.button, textStyle: [styles.buttonText, {
-                        color: colors.black700,
+                        color: colors.surface,
                     }], hitSlop: { top: 5, bottom: 5, left: 5, right: 5 }, label: '−' }),
-            react_1.default.createElement(text_1.default, { style: [styles.countText, { color: colors.black700 }] }, count),
+            react_1.default.createElement(text_1.default, { style: [styles.countText, { color: colors.surface }] }, count),
             react_1.default.createElement(button_1.default, { simpleTextButton: true, onPress: handleIncrement, style: styles.button, textStyle: [styles.buttonPlusText, {
-                        color: colors.black700,
+                        color: colors.surface,
                     }], hitSlop: { top: 5, bottom: 5, left: 5, right: 5 }, label: '＋' }))));
 };
 const styles = react_native_1.StyleSheet.create({

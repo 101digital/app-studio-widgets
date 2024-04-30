@@ -28,7 +28,7 @@ const ASRadioButton: React.FC<ASRadioButtonProps> = (props: ASRadioButtonProps) 
         name,
         radioButtonStyle,
         innerCircleStyle,
-        color = colors.primaryColor,
+        color = colors.primary,
         labelStyle,
         radioType = 'default'
     } = props;
@@ -53,7 +53,7 @@ const ASRadioButton: React.FC<ASRadioButtonProps> = (props: ASRadioButtonProps) 
 
     const tickRadioButtonType = (item: ASRadioButtonItemProps) => {
         return (
-            <ASRow style={[styles.tickRadioBtn, {backgroundColor: colors.tickRadioButtonBackgroundColor}]}>
+            <ASRow style={[styles.tickRadioBtn, {backgroundColor: colors.surfaceVariant}]}>
                 <ASText style={[styles.ticklabel, labelStyle]}>{item?.label}</ASText>
                 <TickIcon size={24} color={item?.value === field?.value ? color : 'transparent'}/>
             </ASRow>

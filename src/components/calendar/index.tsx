@@ -55,9 +55,9 @@ const ASCalendar: React.FC<ASCalendarProps> = (props: ASCalendarProps) => {
             if(periodMarking?.[0]){
                 setMarkedDatesState({
                     [periodMarking[0]]:{
-                        color: colors.primaryColor,
+                        color: colors.primary,
                         startingDay: true,
-                        textColor: colors.offWhite,
+                        textColor: colors.secondaryFixed,
                     }
                 })
             }
@@ -68,10 +68,10 @@ const ASCalendar: React.FC<ASCalendarProps> = (props: ASCalendarProps) => {
 
                 for (let date of periodDateList) {
                     res[date] = {
-                        color: colors.primaryColor,
+                        color: colors.primary,
                         startingDay: periodDateList.indexOf(date) === 0,
                         endingDay: periodDateList.indexOf(date) === periodDateList.length - 1,
-                        textColor: colors.offWhite,
+                        textColor: colors.secondaryFixed,
                     }
                 }
                 setMarkedDatesState(res)
@@ -119,7 +119,7 @@ const ASCalendar: React.FC<ASCalendarProps> = (props: ASCalendarProps) => {
                 [selected]: {
                     selected: true,
                     disableTouchEvent: true,
-                    selectedColor: colors.primaryColor
+                    selectedColor: colors.primary
                 },
                 ...markedDatesState,
                 ...markedDates

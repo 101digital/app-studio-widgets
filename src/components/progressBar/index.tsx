@@ -31,14 +31,14 @@ const ASProgressBar: React.FC<ASProgressBarProps> = (props: ASProgressBarProps) 
             {!!progressBarTitle &&
                 <ASText style={[styles.progressBarText, progressTitleStyle]}>{progressBarTitle}</ASText>}
             <View style={[styles.progressBar, {
-                backgroundColor: colors.offWhite,
+                backgroundColor: colors.secondaryFixed,
             }, progressBarStyle, {backgroundColor: inActiveColor}]}>
                 <View
                     style={[
                         styles.progressCurrent,
                         {
                             width: `${progressValue / 100 * 100}%`,
-                            backgroundColor: colors.progressBarCurrentColor
+                            backgroundColor: colors.accent2
                         },
                         progressCurrentStyle,
                         {backgroundColor: activeColor}

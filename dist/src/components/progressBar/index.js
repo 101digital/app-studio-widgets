@@ -38,13 +38,13 @@ const ASProgressBar = (props) => {
         !!progressBarTitle &&
             react_1.default.createElement(text_1.default, { style: [styles.progressBarText, progressTitleStyle] }, progressBarTitle),
         react_1.default.createElement(react_native_1.View, { style: [styles.progressBar, {
-                    backgroundColor: colors.offWhite,
+                    backgroundColor: colors.secondaryFixed,
                 }, progressBarStyle, { backgroundColor: inActiveColor }] },
             react_1.default.createElement(react_native_1.View, { style: [
                     styles.progressCurrent,
                     {
                         width: `${progressValue / 100 * 100}%`,
-                        backgroundColor: colors.progressBarCurrentColor
+                        backgroundColor: colors.accent2
                     },
                     progressCurrentStyle,
                     { backgroundColor: activeColor }

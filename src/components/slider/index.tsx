@@ -39,9 +39,9 @@ const ASSlider: React.FC<ASSliderProps> = (props: ASSliderProps) => {
                 minimumValue={minimumValue}
                 maximumValue={maximumValue}
                 step={step}
-                thumbTintColor={colors.primaryColor}
-                minimumTrackTintColor={colors.primaryColor}
-                maximumTrackTintColor={colors.gray400}
+                thumbTintColor={colors.primary}
+                minimumTrackTintColor={colors.primary}
+                maximumTrackTintColor={colors.onTertiary}
                 {...restProps}
                 onValueChange={_onValueChange}
             />

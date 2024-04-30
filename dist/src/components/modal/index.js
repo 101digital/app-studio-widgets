@@ -4,7 +4,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_native_1 = require("react-native");
-const colors_1 = require("../../utils/colors");
 const react_1 = __importDefault(require("react"));
 const button_1 = __importDefault(require("../button"));
 const text_1 = __importDefault(require("../text"));
@@ -31,7 +30,7 @@ const styles = react_native_1.StyleSheet.create({
         alignItems: 'center'
     },
     closeButton: {
-        backgroundColor: colors_1.colors.white,
+        backgroundColor: '#fff',
         borderRadius: 50,
         position: 'absolute',
         top: 40,

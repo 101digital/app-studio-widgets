@@ -29,7 +29,7 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
 
     const getButtonBackgroundColor = () => {
         if (disabled) {
-            return colors.disabledButtonColor
+            return colors.tertiary
         }
 
         if (style?.backgroundColor) {
@@ -40,12 +40,12 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
             return 'transparent'
         }
 
-        return colors.buttonColor
+        return colors.primary
     }
 
     const getButtonTextColor = () => {
         if (disabled) {
-            return colors.disabledTextColor
+            return colors.onSurface
         }
 
         if (textStyle?.color) {
@@ -53,10 +53,10 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
         }
 
         if (simpleTextButton) {
-            return colors.buttonSimpleTextColor
+            return colors.accent4
         }
 
-        return colors.white
+        return colors.onPrimary
     }
 
     const getButtonStyle = () => {

@@ -52,20 +52,20 @@ const ASDropDown = (props) => {
     const renderItem = (item) => {
         return (react_1.default.createElement(react_native_1.View, { style: styles.item },
             react_1.default.createElement(react_native_1.Text, { style: [styles.textItem, {
-                        color: colors.black700,
+                        color: colors.surface,
                     }] }, item.label)));
     };
     const _onChangeDropDownField = (item) => {
         setValue === null || setValue === void 0 ? void 0 : setValue(item === null || item === void 0 ? void 0 : item.value);
     };
     return (react_1.default.createElement(react_native_1.View, { style: [styles.container, {
-                backgroundColor: colors.offWhite,
+                backgroundColor: colors.secondaryFixed,
             }, containerStyle] },
         !!label && react_1.default.createElement(text_1.default, { style: [styles.labelStyle, {
-                    color: colors.gray400,
+                    color: colors.onTertiary,
                 }] }, label),
         react_1.default.createElement(react_native_element_dropdown_1.Dropdown, Object.assign({ style: styles.dropdown, placeholderStyle: styles.placeholderStyle, inputSearchStyle: styles.inputSearchStyle, iconStyle: [styles.iconStyle, iconStyles], search: search, maxHeight: 300, value: `${field === null || field === void 0 ? void 0 : field.value}`, searchPlaceholder: searchPlaceholder, renderLeftIcon: renderLeftIcon, renderItem: renderItem, placeholder: placeholder }, restProps, { selectedTextStyle: [styles.selectedTextStyle, {
-                    color: colors.black700,
+                    color: colors.surface,
                 }, selectedTextStyle], data: options, onChange: _onChangeDropDownField, labelField: "label", valueField: "value" }))));
 };
 exports.default = ASDropDown;

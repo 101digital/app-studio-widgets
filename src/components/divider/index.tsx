@@ -14,7 +14,7 @@ const ASDivider: React.FC<ASDividerProps> = (props: ASDividerProps) => {
 
     return (
         <View style={[styles.dividerStyle, {
-            marginVertical, width, backgroundColor: colors.dividerColor,
+            marginVertical, width, backgroundColor: colors.onSurface,
         }, style]}/>
     )
 }

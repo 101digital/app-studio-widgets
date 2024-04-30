@@ -16,7 +16,7 @@ const ASVerticalDivider: React.FC<ASVerticalDividerProps> = (props: ASVerticalDi
         <View style={[styles.verticalDividerStyle, {
             marginHorizontal,
             height,
-            backgroundColor: colors.dividerColor,
+            backgroundColor: colors.onSurface,
         }, style]}/>
     )
 }

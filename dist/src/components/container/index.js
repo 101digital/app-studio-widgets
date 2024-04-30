@@ -42,7 +42,7 @@ const ASContainer = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
     const _a = props || {}, { children, style, isScrollable = true, scrollViewContentContainerStyle, scrollViewProps, disabledSafeArea } = _a, restProps = __rest(_a, ["children", "style", "isScrollable", "scrollViewContentContainerStyle", "scrollViewProps", "disabledSafeArea"]);
     return (react_1.default.createElement(react_native_safe_area_context_1.SafeAreaView, Object.assign({ edges: disabledSafeArea ? [] : ['right', 'left', 'top', "bottom"] }, restProps, { style: [styles.container, {
-                backgroundColor: colors.backgroundColor
+                backgroundColor: colors.background
             }, style] }), isScrollable ? (react_1.default.createElement(react_native_1.ScrollView, Object.assign({ showsVerticalScrollIndicator: false, showsHorizontalScrollIndicator: false }, scrollViewProps, { contentContainerStyle: [styles.scrollViewStyle, scrollViewContentContainerStyle] }), children)) :
         children));
 };

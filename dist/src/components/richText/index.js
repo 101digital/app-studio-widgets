@@ -33,7 +33,7 @@ const theme_context_1 = require("../../context/theme-context");
 const ASRichText = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
     const { children, style, parse, childrenProps = { allowFontScaling: false } } = props || {};
-    return (react_1.default.createElement(react_native_parsed_text_1.default, { style: [styles.textStyle, { color: colors.textColor }, style], parse: parse, childrenProps: childrenProps }, children));
+    return (react_1.default.createElement(react_native_parsed_text_1.default, { style: [styles.textStyle, { color: colors.primaryFixed }, style], parse: parse, childrenProps: childrenProps }, children));
 };
 const styles = react_native_1.StyleSheet.create({
     textStyle: {

@@ -23,11 +23,11 @@ const ASCheckBox: React.FC<ASCheckBoxProps> = (props: ASCheckBoxProps) => {
             onValueChange={onValueChange}
 
             //IOS Only Props
-            tintColor={colors.checkboxTintColor}
+            tintColor={colors.onSecondaryFixedVariant}
             lineWidth={2}
 
             //Android Only Props
-            tintColors={{ true: colors.checkboxTintColor, false:colors.gray400 }}
+            tintColors={{ true: colors.onSecondaryFixedVariant, false:colors.onSurface }}
             {...restProps}
         />
     )

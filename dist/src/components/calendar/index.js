@@ -72,9 +72,9 @@ const ASCalendar = (props) => {
             if (periodMarking === null || periodMarking === void 0 ? void 0 : periodMarking[0]) {
                 setMarkedDatesState({
                     [periodMarking[0]]: {
-                        color: colors.primaryColor,
+                        color: colors.primary,
                         startingDay: true,
-                        textColor: colors.offWhite,
+                        textColor: colors.secondaryFixed,
                     }
                 });
             }
@@ -83,10 +83,10 @@ const ASCalendar = (props) => {
                 const res = {};
                 for (let date of periodDateList) {
                     res[date] = {
-                        color: colors.primaryColor,
+                        color: colors.primary,
                         startingDay: periodDateList.indexOf(date) === 0,
                         endingDay: periodDateList.indexOf(date) === periodDateList.length - 1,
-                        textColor: colors.offWhite,
+                        textColor: colors.secondaryFixed,
                     };
                 }
                 setMarkedDatesState(res);
@@ -118,7 +118,7 @@ const ASCalendar = (props) => {
     return (react_1.default.createElement(react_native_calendars_1.Calendar, Object.assign({ onDayPress: _onDayPress, initialDate: new Date().toDateString(), allowSelectionOutOfRange: false, hideExtraDays: true }, restProps, { minDate: _getMinDate(), markedDates: Object.assign(Object.assign({ [selected]: {
                 selected: true,
                 disableTouchEvent: true,
-                selectedColor: colors.primaryColor
+                selectedColor: colors.primary
             } }, markedDatesState), markedDates), markingType: markingType, style: [styles.calendarStyles, style] })));
 };
 const styles = react_native_1.StyleSheet.create({

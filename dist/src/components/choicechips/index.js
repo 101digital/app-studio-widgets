@@ -65,12 +65,12 @@ const ASChoiceChips = (props) => {
     return (react_1.default.createElement(wrap_1.default, { style: styles.container }, options.map((chip, index) => (react_1.default.createElement(react_native_1.TouchableOpacity, { key: `${chip.value}${index}`, onPress: isSingleChoice ? _onPressSingleChoiceChip(chip) : _onPressChoiceChip(chip), style: [
             styles.chip,
             {
-                backgroundColor: findSelected(chip === null || chip === void 0 ? void 0 : chip.value) ? colors.primaryColor : colors.offWhite,
-                borderColor: findSelected(chip === null || chip === void 0 ? void 0 : chip.value) ? colors.primaryColor : colors.gray400,
+                backgroundColor: findSelected(chip === null || chip === void 0 ? void 0 : chip.value) ? colors.primary : colors.secondaryFixed,
+                borderColor: findSelected(chip === null || chip === void 0 ? void 0 : chip.value) ? colors.primary : colors.onSurface,
             },
         ] },
         !!(chip === null || chip === void 0 ? void 0 : chip.icon) && react_1.default.createElement(react_native_1.View, { style: styles.iconContainer }, chip.icon),
-        react_1.default.createElement(react_native_1.Text, { style: [styles.label, { color: findSelected(chip === null || chip === void 0 ? void 0 : chip.value) ? colors.offWhite : colors.black700 }] }, chip.label))))));
+        react_1.default.createElement(react_native_1.Text, { style: [styles.label, { color: findSelected(chip === null || chip === void 0 ? void 0 : chip.value) ? colors.secondaryFixed : colors.surface }] }, chip.label))))));
 };
 const styles = react_native_1.StyleSheet.create({
     container: {

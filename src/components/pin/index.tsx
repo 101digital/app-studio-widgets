@@ -63,7 +63,7 @@ const Keyboard: React.FC<KeyboardProps> = (props: KeyboardProps) => {
     const _renderItem = ({item}: { item: KeyboardItemProps; }) => {
         return (
             <ASButton
-                style={{...styles.keyboardButton, borderColor: colors.borderColor , ...(item?.value === 'continue' && StyleSheet.flatten(submitButtonStyle)), ...(item?.value === 'delete' && StyleSheet.flatten(deleteButtonStyle))}}
+                style={{...styles.keyboardButton, borderColor: colors.onSecondary , ...(item?.value === 'continue' && StyleSheet.flatten(submitButtonStyle)), ...(item?.value === 'delete' && StyleSheet.flatten(deleteButtonStyle))}}
                 onPress={_onKeyboardPress(item)}>
                 {item?.value !== 'delete' && item?.value !== 'continue' &&
                     <ASText style={{fontWeight: 'bold', fontSize: 18}}>{item?.label}</ASText>}
@@ -103,7 +103,7 @@ const PinInputList: React.FC<PinInputListProps> = (props: PinInputListProps) => 
                     <ASColumn
                         key={index}
                         style={[styles.pinItemWrapper, {
-                            borderColor: colors.borderColor,
+                            borderColor: colors.onSecondary,
                             width: PIN_SIZE,
                             height: PIN_SIZE,
                         }]}

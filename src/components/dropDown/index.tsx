@@ -48,7 +48,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
         return (
             <View style={styles.item}>
                 <Text style={[styles.textItem, {
-                    color: colors.black700,
+                    color: colors.surface,
                 }]}>{item.label}</Text>
             </View>
         );
@@ -60,10 +60,10 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
 
     return (
         <View style={[styles.container, {
-            backgroundColor: colors.offWhite,
+            backgroundColor: colors.secondaryFixed,
         }, containerStyle]}>
             {!!label && <ASText style={[styles.labelStyle, {
-                color: colors.gray400,
+                color: colors.onTertiary,
             }]}>{label}</ASText>}
 
             <Dropdown
@@ -80,7 +80,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
                 placeholder={placeholder}
                 {...restProps}
                 selectedTextStyle={[styles.selectedTextStyle, {
-                    color: colors.black700,
+                    color: colors.surface,
                 }, selectedTextStyle]}
                 data={options}
                 onChange={_onChangeDropDownField}

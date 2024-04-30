@@ -32,7 +32,7 @@ const ASVerticalDivider = (props) => {
     return (react_1.default.createElement(react_native_1.View, { style: [styles.verticalDividerStyle, {
                 marginHorizontal,
                 height,
-                backgroundColor: colors.dividerColor,
+                backgroundColor: colors.onSurface,
             }, style] }));
 };
 const styles = react_native_1.StyleSheet.create({

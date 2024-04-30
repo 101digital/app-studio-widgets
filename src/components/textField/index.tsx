@@ -52,7 +52,7 @@ const ASTextField = (props: ASTextFieldProps) => {
         activeBorderColor,
         inactiveBorderColor,
         style,
-        placeholderTextColor = colors.placeholderTextColor,
+        placeholderTextColor = colors.secondary,
         formatError,
         options,
         label,
@@ -83,11 +83,11 @@ const ASTextField = (props: ASTextFieldProps) => {
     let separatorColor: string;
 
     if (meta?.error && meta?.touched) {
-        separatorColor = (errorBorderColor ?? colors.textFieldErrorBorderColor)!;
+        separatorColor = (errorBorderColor ?? colors.errorContainer)!;
     } else {
         separatorColor = active
-            ? (activeBorderColor ?? colors.textFieldActiveBorderColor)!
-            : (inactiveBorderColor ?? colors.textFieldInActiveBorderColor)!;
+            ? (activeBorderColor ?? colors.onSecondaryFixedVariant)!
+            : (inactiveBorderColor ?? colors.onSecondary)!;
     }
 
     const getErrorMessage = (error: string) => {
@@ -96,9 +96,9 @@ const ASTextField = (props: ASTextFieldProps) => {
 
     return (
         <>
-            <View style={[styles.containerStyle, {backgroundColor: colors.textFieldBackgroundColor,}]}>
+            <View style={[styles.containerStyle, {backgroundColor: colors.secondaryFixed,}]}>
                 <ASText style={[styles.labelStyle, {
-                    color: colors.textFieldLabelColor
+                    color: colors.onTertiary
                 }]}>{label}</ASText>
                 <View style={[styles.contentContainerStyle, {borderColor: separatorColor}]}>
                     {prefixIcon}
@@ -110,7 +110,7 @@ const ASTextField = (props: ASTextFieldProps) => {
                                 value={`${field?.value}`}
                                 onChangeText={field?.onChange(name)}
                                 style={[styles.textInputStyle, {
-                                    color: colors.textFieldTextColor,
+                                    color: colors.surface,
                                 }]}
                                 placeholderTextColor={placeholderTextColor}
                                 options={options}
@@ -124,7 +124,7 @@ const ASTextField = (props: ASTextFieldProps) => {
                                 value={`${field?.value}`}
                                 onChangeText={field?.onChange(name)}
                                 style={[styles.textInputStyle, {
-                                    color: colors.textFieldTextColor,
+                                    color: colors.surface,
                                 }]}
                                 placeholderTextColor={placeholderTextColor}
                                 autoComplete={'off'}
@@ -139,7 +139,7 @@ const ASTextField = (props: ASTextFieldProps) => {
             </View>
             {isShowError && meta?.error && meta?.touched && (
                 <ASText style={[styles.errorTextStyle, {
-                    color: colors.textFieldErrorColor,
+                    color: colors.error,
                 }]}>{getErrorMessage(meta?.error)}</ASText>
             )}
         </>

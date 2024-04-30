@@ -37,8 +37,8 @@ const ASBadge = (props) => {
         react_1.default.createElement(react_native_1.View, null,
             children,
             !!badgeNumber && react_1.default.createElement(react_native_1.View, { style: [styles.badgeStyles, {
-                        backgroundColor: colors.badgeBackgroundColor,
-                        borderColor: colors.badgeBorderColor
+                        backgroundColor: colors.background,
+                        borderColor: colors.accent2
                     }, badgeStyles] },
                 react_1.default.createElement(text_1.default, { style: [styles.badgeTextStyle, badgeTextStyle] }, badgeNumber)))));
 };
@@ -69,7 +69,7 @@ exports.default = ASBadge;
                 <ASBadge badgeNumber={3}>
                     <ASRow>
                         <ASText>Badge</ASText>
-                        <Icon name="user-circle-o" size={30} color="theme.colors.primaryIconColor"/>
+                        <Icon name="user-circle-o" size={30} color="theme.colors.primary"/>
                     </ASRow>
                 </ASBadge>
 * */

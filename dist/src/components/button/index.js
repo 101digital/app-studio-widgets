@@ -46,7 +46,7 @@ const ASButton = (props) => {
     const { label = '', style, textStyle, onPress, disabled, children, simpleTextButton } = props, restProps = __rest(props, ["label", "style", "textStyle", "onPress", "disabled", "children", "simpleTextButton"]);
     const getButtonBackgroundColor = () => {
         if (disabled) {
-            return colors.disabledButtonColor;
+            return colors.tertiary;
         }
         if (style === null || style === void 0 ? void 0 : style.backgroundColor) {
             return style === null || style === void 0 ? void 0 : style.backgroundColor;
@@ -54,19 +54,19 @@ const ASButton = (props) => {
         if (simpleTextButton || !!children) {
             return 'transparent';
         }
-        return colors.buttonColor;
+        return colors.primary;
     };
     const getButtonTextColor = () => {
         if (disabled) {
-            return colors.disabledTextColor;
+            return colors.onSurface;
         }
         if (textStyle === null || textStyle === void 0 ? void 0 : textStyle.color) {
             return textStyle === null || textStyle === void 0 ? void 0 : textStyle.color;
         }
         if (simpleTextButton) {
-            return colors.buttonSimpleTextColor;
+            return colors.accent4;
         }
-        return colors.white;
+        return colors.onPrimary;
     };
     const getButtonStyle = () => {
         if (simpleTextButton)

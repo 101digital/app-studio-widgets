@@ -35,7 +35,7 @@ const row_1 = __importDefault(require("../row"));
 const theme_context_1 = require("../../context/theme-context");
 const ASRadioButton = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { options = [], name, radioButtonStyle, innerCircleStyle, color = colors.primaryColor, labelStyle, radioType = 'default' } = props;
+    const { options = [], name, radioButtonStyle, innerCircleStyle, color = colors.primary, labelStyle, radioType = 'default' } = props;
     const [field, meta, helpers] = (0, formik_1.useField)(name);
     const { setValue } = helpers || {};
     const _onPressRadioButton = (item) => () => {
@@ -48,7 +48,7 @@ const ASRadioButton = (props) => {
             react_1.default.createElement(text_1.default, { style: [styles.label, labelStyle] }, item === null || item === void 0 ? void 0 : item.label)));
     };
     const tickRadioButtonType = (item) => {
-        return (react_1.default.createElement(row_1.default, { style: [styles.tickRadioBtn, { backgroundColor: colors.tickRadioButtonBackgroundColor }] },
+        return (react_1.default.createElement(row_1.default, { style: [styles.tickRadioBtn, { backgroundColor: colors.surfaceVariant }] },
             react_1.default.createElement(text_1.default, { style: [styles.ticklabel, labelStyle] }, item === null || item === void 0 ? void 0 : item.label),
             react_1.default.createElement(icon_1.TickIcon, { size: 24, color: (item === null || item === void 0 ? void 0 : item.value) === (field === null || field === void 0 ? void 0 : field.value) ? color : 'transparent' })));
     };

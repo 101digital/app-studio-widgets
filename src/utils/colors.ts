@@ -36,9 +36,70 @@ export type ThemeColorProps = {
     switchOffColor?: string;
     tickRadioButtonBackgroundColor?: string;
     progressBarCurrentColor?: string;
+
+
+    ////////
+    primary?: string;
+    onPrimary?: string;
+    primaryFixed?: string;
+    onPrimaryFixedVariant?: string;
+    secondary?: string;
+    onSecondary?: string;
+    secondaryFixed?: string;
+    onSecondaryFixedVariant?: string;
+    tertiary?: string;
+    onTertiary?: string;
+    tertiaryFixed?: string;
+    onTertiaryFixedVariant?: string;
+    error?: string;
+    onError?: string;
+    errorContainer?: string;
+    outline?: string;
+    background?: string;
+    surface?: string;
+    onSurface?: string;
+    surfaceVariant?: string;
+    accent1?: string;
+    accent2?: string;
+    accent3?: string;
+    accent4?: string;
+    accent5?: string;
+
 };
 
 export const colors: ThemeColorProps = {
+    "primary": "#E4B700",
+    "onPrimary": "#FFFFFF",
+    "primaryFixed": "#000000",
+    "onPrimaryFixedVariant": "#F5F5F5",
+    "secondary": "#858585",
+    "onSecondary": "#CCCCCC",
+    "secondaryFixed": "#FCFCFC",
+    "onSecondaryFixedVariant": "#00B0FF",
+    "tertiary": "#CCCCCC",
+    "onTertiary": "#999999",
+    "tertiaryFixed": "#010101",
+    "onTertiaryFixedVariant": "#1A1A1A",
+    "error": "#FF0000",
+    "onError": "#D32F2F",
+    "errorContainer": "#FF0000",
+    "outline": "#4F4F4F",
+    "background": "#f3f3f3",
+    "surface": "#343434",
+    "onSurface": "#666666",
+    "surfaceVariant": "#FAF9F5",
+    "accent1": "transparent",
+    "accent2": "#00BA88",
+    "accent3": "transparent",
+    "accent4": "#696969",
+    "accent5": "#e1e1e1",
+
+
+
+
+
+
+    //////////////
     // Main colors
     primaryColor: '#0073F0',
     transparent: 'transparent',

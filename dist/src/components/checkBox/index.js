@@ -50,8 +50,8 @@ const ASCheckBox = (props) => {
     };
     return (react_1.default.createElement(checkbox_1.default, Object.assign({ disabled: false, value: toggleCheckBox, onValueChange: onValueChange, 
         //IOS Only Props
-        tintColor: colors.checkboxTintColor, lineWidth: 2, 
+        tintColor: colors.onSecondaryFixedVariant, lineWidth: 2, 
         //Android Only Props
-        tintColors: { true: colors.checkboxTintColor, false: colors.gray400 } }, restProps)));
+        tintColors: { true: colors.onSecondaryFixedVariant, false: colors.onSurface } }, restProps)));
 };
 exports.default = ASCheckBox;

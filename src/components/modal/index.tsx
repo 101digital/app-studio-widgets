@@ -1,5 +1,4 @@
 import {ColorValue, StyleProp, StyleSheet, TouchableWithoutFeedback, View, ViewStyle} from "react-native";
-import {colors} from "../../utils/colors";
 import React, {ReactNode} from "react";
 import ASButton from '../button'
 import ASText from "../text";
@@ -58,7 +57,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     closeButton: {
-        backgroundColor: colors.white,
+        backgroundColor: '#fff',
         borderRadius: 50,
         position: 'absolute',
         top: 40,

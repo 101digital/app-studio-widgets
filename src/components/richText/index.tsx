@@ -19,7 +19,7 @@ const ASRichText: React.FC<ASRichTextProps> = (props: ASRichTextProps) => {
 
     return (
         <ParsedText
-            style={[styles.textStyle, {color: colors.textColor}, style]}
+            style={[styles.textStyle, {color: colors.primaryFixed}, style]}
             parse={parse}
             childrenProps={childrenProps}
         >

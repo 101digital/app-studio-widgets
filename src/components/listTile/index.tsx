@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {colors} from "../../utils/colors";
+import {ThemeContext} from "../../context/theme-context";
 
 export type ASListTileProps = {
     title: string;
@@ -11,6 +11,7 @@ export type ASListTileProps = {
 }
 
 const ASListTile: React.FC<ASListTileProps> = (props: ASListTileProps) => {
+    const {colors} = useContext(ThemeContext);
     const {
         title,
         subtitle,
@@ -21,7 +22,7 @@ const ASListTile: React.FC<ASListTileProps> = (props: ASListTileProps) => {
 
     return (
         <TouchableOpacity onPress={onPress}>
-            <View style={styles.container}>
+            <View style={[styles.container, {borderBottomColor: colors.onSecondary}]}>
                 {leadingIcon && <View style={styles.leadingIcon}>{leadingIcon}</View>}
                 <View style={styles.textContainer}>
                     <Text style={styles.title}>{title}</Text>
@@ -41,7 +42,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingVertical: 16,
         borderBottomWidth: 1,
-        borderBottomColor: colors.gray80,
     },
     textContainer: {
         flex: 1,

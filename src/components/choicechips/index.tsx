@@ -62,14 +62,14 @@ const ASChoiceChips: React.FC<ASChoiceChipsProps> = (props: ASChoiceChipsProps) 
                     style={[
                         styles.chip,
                         {
-                            backgroundColor: findSelected(chip?.value) ? colors.primaryColor : colors.offWhite,
-                            borderColor: findSelected(chip?.value) ? colors.primaryColor : colors.gray400,
+                            backgroundColor: findSelected(chip?.value) ? colors.primary : colors.secondaryFixed,
+                            borderColor: findSelected(chip?.value) ? colors.primary : colors.onSurface,
                         },
                     ]}
                 >
                     {!!chip?.icon && <View style={styles.iconContainer}>{chip.icon}</View>}
                     <Text
-                        style={[styles.label, {color: findSelected(chip?.value) ? colors.offWhite : colors.black700}]}>
+                        style={[styles.label, {color: findSelected(chip?.value) ? colors.secondaryFixed : colors.surface}]}>
                         {chip.label}
                     </Text>
                 </TouchableOpacity>

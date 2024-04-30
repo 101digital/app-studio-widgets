@@ -43,21 +43,21 @@ const ASCounter: React.FC<ASCounterProps> = (props: ASCounterProps) => {
 
     return (
         <View style={styles.wrapper}>
-            <ASRow style={[styles.container, {borderColor: colors.gray400,}]}>
+            <ASRow style={[styles.container, {borderColor: colors.onSurface,}]}>
                 <ASButton simpleTextButton onPress={handleDecrement}
                           style={styles.button}
                           textStyle={[styles.buttonText, {
-                              color: colors.black700,
+                              color: colors.surface,
                           }]}
                           hitSlop={{top: 5, bottom: 5, left: 5, right: 5}}
                           label={'−'}/>
-                <ASText style={[styles.countText, {color: colors.black700}]}>
+                <ASText style={[styles.countText, {color: colors.surface}]}>
                     {count}
                 </ASText>
                 <ASButton simpleTextButton onPress={handleIncrement}
                           style={styles.button}
                           textStyle={[styles.buttonPlusText, {
-                              color: colors.black700,
+                              color: colors.surface,
                           }]}
                           hitSlop={{top: 5, bottom: 5, left: 5, right: 5}}
                           label={'＋'}/>
