@@ -118,32 +118,32 @@ export class ASWidgetsList {
         for (let key in atrributesObj) {
             let attributeValue = atrributesObj[key]
 
-            if(key==='validationRule' || key==='initialValues'){
+            if (key === 'validationRule' || key === 'initialValues') {
                 continue
             }
 
-            if(key === 'formWidgets'){
+            if (key === 'formWidgets') {
                 const formWidgetsList = attributeValue
-                const validationStringArray:any[] = []
-                const initialValues:any = {}
+                const validationStringArray: any[] = []
+                const initialValues: any = {}
 
-                for (const formWidgetItem of formWidgetsList){
-                    if(!Array.isArray(formWidgetItem.validationRules) || formWidgetItem?.validationRules?.length < 1 ){
+                for (const formWidgetItem of formWidgetsList) {
+                    if (!Array.isArray(formWidgetItem.validationRules) || formWidgetItem?.validationRules?.length < 1) {
                         continue;
                     }
 
-                    let validation:string = `Yup`
+                    let validation: string = `Yup`
                     const initialValueItem = atrributesObj.initialValues[formWidgetItem.name]
-                    initialValues[formWidgetItem.name] = initialValueItem ?  `${initialValueItem} || ''` : `''`
+                    initialValues[formWidgetItem.name] = initialValueItem ? `${initialValueItem} || ''` : `''`
 
-                    if(formWidgetItem.dataType){
+                    if (formWidgetItem.dataType) {
                         validation += `.${formWidgetItem.dataType}()`
                     }
 
-                    for (const validationRule of formWidgetItem.validationRules){
+                    for (const validationRule of formWidgetItem.validationRules) {
                         validation += `.${validationRule.type}${validationRule.errorMessage ? `('${validationRule.errorMessage}')` : '()'}`
                     }
-                    validationStringArray.push( `${formWidgetItem.name}:${validation}` )
+                    validationStringArray.push(`${formWidgetItem.name}:${validation}`)
                 }
 
                 const validationSchema = `Yup.object().shape({
@@ -154,6 +154,26 @@ export class ASWidgetsList {
                 continue
             }
 
+            if (key === 'style') {
+                if (!Array.isArray(attributeValue) || attributeValue?.length < 1) {
+                    continue
+                }
+
+                let styleResultString = `{`
+
+                for (const item of attributeValue) {
+                    const value = item?.value
+                    if (typeof item !== 'object' || !('key' in item) || !('value' in item)) {
+                        continue
+                    }
+                    styleResultString += `"${item?.key}": ${(typeof value === 'string' && value.includes('colors')) || typeof value !== 'string' ? value : `"${value}"`} ,`
+                }
+                styleResultString += `}`
+                result += ` style={${styleResultString}}`
+                continue
+            }
+
+            // Get the return value for each property
             attributeValue = ASWidgetsList.getReturnValue(attributeValue)
             result += ` ${key}=${attributeValue}`
         }
