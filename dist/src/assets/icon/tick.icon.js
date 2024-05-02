@@ -27,7 +27,7 @@ exports.TickIcon = void 0;
 const React = __importStar(require("react"));
 const react_native_svg_1 = __importStar(require("react-native-svg"));
 const colors_1 = require("../../utils/colors");
-const TickIcon = ({ size = 24, color = colors_1.colors.primaryColor }) => (
+const TickIcon = ({ size = 24, color = colors_1.colors.primary }) => (
 // @ts-ignore
 React.createElement(react_native_svg_1.default, { width: size, height: size, viewBox: "0 0 20 20", fill: "none", xmlns: "http://www.w3.org/2000/svg" },
     React.createElement(react_native_svg_1.Path, { d: "M3.25 10.625L8.65 15.625L16.75 4.375", stroke: color, "stroke-width": "5", "stroke-linecap": "round", "stroke-linejoin": "round" })));

@@ -56,7 +56,7 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
             return colors.accent4
         }
 
-        return colors.onPrimary
+        return colors.primaryFixed
     }
 
     const getButtonStyle = () => {
@@ -79,7 +79,7 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
             {!!children ?
                 children
                 : <ASText
-                    style={[getButtonTextStyle(), textStyle, {color: getButtonTextColor()}]}>{label}</ASText>
+                    style={[styles.textStyle, getButtonTextStyle(), textStyle, {color: getButtonTextColor()}]}>{label}</ASText>
             }
         </TouchableOpacity>
     );
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         paddingHorizontal: 20,
-        paddingVertical: 10,
+        paddingVertical: 12,
         borderRadius: 8
     },
     simpleTextButton: {
@@ -100,7 +100,9 @@ const styles = StyleSheet.create({
         paddingVertical: 0,
     },
     touchableContainerStyles: {},
-    textStyle: {},
+    textStyle: {
+        fontWeight: '600'
+    },
     simpleTextButtonTextStyle: {
         fontSize: 12
     }

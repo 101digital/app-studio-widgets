@@ -66,7 +66,7 @@ const ASButton = (props) => {
         if (simpleTextButton) {
             return colors.accent4;
         }
-        return colors.onPrimary;
+        return colors.primaryFixed;
     };
     const getButtonStyle = () => {
         if (simpleTextButton)
@@ -82,14 +82,14 @@ const ASButton = (props) => {
     };
     return (react_1.default.createElement(react_native_1.TouchableOpacity, Object.assign({}, restProps, { disabled: disabled, onPress: onPress, style: [getButtonStyle(), style, { backgroundColor: getButtonBackgroundColor() }] }), !!children ?
         children
-        : react_1.default.createElement(text_1.default, { style: [getButtonTextStyle(), textStyle, { color: getButtonTextColor() }] }, label)));
+        : react_1.default.createElement(text_1.default, { style: [styles.textStyle, getButtonTextStyle(), textStyle, { color: getButtonTextColor() }] }, label)));
 };
 const styles = react_native_1.StyleSheet.create({
     buttonStyle: {
         justifyContent: 'center',
         alignItems: 'center',
         paddingHorizontal: 20,
-        paddingVertical: 10,
+        paddingVertical: 12,
         borderRadius: 8
     },
     simpleTextButton: {
@@ -99,7 +99,9 @@ const styles = react_native_1.StyleSheet.create({
         paddingVertical: 0,
     },
     touchableContainerStyles: {},
-    textStyle: {},
+    textStyle: {
+        fontWeight: '600'
+    },
     simpleTextButtonTextStyle: {
         fontSize: 12
     }
