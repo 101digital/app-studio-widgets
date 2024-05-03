@@ -17,11 +17,12 @@ export type ASChoiceChipsProps = {
     name: string;
     isSingleChoice?: boolean
     returnedKey?: string;
+    contentLayout?: 'center' | 'space-around' | 'space-between' | 'space-evenly' | 'flex-start' | 'flex-end'
 }
 
 const ASChoiceChips: React.FC<ASChoiceChipsProps> = (props: ASChoiceChipsProps) => {
     const {colors} = useContext(ThemeContext);
-    const {options, name, isSingleChoice = true, returnedKey} = props
+    const {options, name, isSingleChoice = true, returnedKey, contentLayout = 'space-between'} = props
     const [field, meta, helpers] = useField(name);
     const {setValue} = helpers || {};
     const selectedChoiceChips: ChipProps[] | string = field?.value
@@ -54,7 +55,7 @@ const ASChoiceChips: React.FC<ASChoiceChipsProps> = (props: ASChoiceChipsProps) 
     }
 
     return (
-        <ASWrap style={styles.container}>
+        <ASWrap style={[styles.container, {justifyContent: contentLayout}]}>
             {options.map((chip, index) => (
                 <TouchableOpacity
                     key={`${chip.value}${index}`}
@@ -79,16 +80,14 @@ const ASChoiceChips: React.FC<ASChoiceChipsProps> = (props: ASChoiceChipsProps) 
 };
 
 const styles = StyleSheet.create({
-    container: {
-        justifyContent: 'center',
-    },
+    container: {},
     chip: {
         flexDirection: 'row',
         alignItems: 'center',
-        borderRadius: 20,
+        borderRadius: 10,
         borderWidth: 1,
-        paddingHorizontal: 12,
-        paddingVertical: 8,
+        paddingHorizontal: 14,
+        paddingVertical: 6,
         margin: 4,
     },
     iconContainer: {

@@ -11,6 +11,7 @@ export type ASChoiceChipsProps = {
     name: string;
     isSingleChoice?: boolean;
     returnedKey?: string;
+    contentLayout?: 'center' | 'space-around' | 'space-between' | 'space-evenly' | 'flex-start' | 'flex-end';
 };
 declare const ASChoiceChips: React.FC<ASChoiceChipsProps>;
 export default ASChoiceChips;
