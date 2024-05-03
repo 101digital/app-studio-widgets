@@ -12,6 +12,7 @@ const ASColumn = (props) => {
 const styles = react_native_1.StyleSheet.create({
     container: {
         flexDirection: 'column',
+        // TODO: Start adding justifyContent: 'flex-start', then remove this justifyContent: 'center'
         justifyContent: 'center'
     },
 });

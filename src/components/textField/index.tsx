@@ -38,6 +38,7 @@ export type ASTextFieldProps = Omit<TextInputMaskProps, "type"> &
     label?: string;
     type?: TextInputMaskTypeProp
     isShowError?: boolean
+    formatNumber?: 'comma' | 'dot' | undefined
 };
 
 const ASTextField = (props: ASTextFieldProps) => {
@@ -58,6 +59,7 @@ const ASTextField = (props: ASTextFieldProps) => {
         label,
         type = 'custom',
         isShowError,
+        formatNumber,
         ...restProps
     } = props;
     const [active, setActive] = useState(false);
@@ -71,14 +73,48 @@ const ASTextField = (props: ASTextFieldProps) => {
         }
     };
 
+    const handleFormat = () => {
+        let text = field.value
+        const numberValue = typeof text === 'string' ? parseFloat(text) : Number(text);
+
+        if (!isNaN(numberValue)) {
+            switch (formatNumber) {
+                case "comma":
+                    text = numberValue.toLocaleString('en-US', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    })
+                    break;
+                case "dot":
+                    text = numberValue.toLocaleString('de-DE', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    })
+                    break;
+
+                default:
+                    text = field.value
+                    break
+            }
+        }
+
+        field?.onChange(name)(text)
+    }
+
     const handleOnBlur = (event: NativeSyntheticEvent<TextInputFocusEventData>) => {
+        handleFormat()
         setActive(false);
         field?.onBlur(name);
         helpers?.setTouched(true);
+
         if (onBlur) {
             onBlur(event);
         }
     };
+
+    const handleOnChange = (e: string) => {
+        field?.onChange(name)(e)
+    }
 
     let separatorColor: string;
 
@@ -108,7 +144,7 @@ const ASTextField = (props: ASTextFieldProps) => {
                                 onFocus={handleOnFocus}
                                 onBlur={handleOnBlur}
                                 value={`${field?.value}`}
-                                onChangeText={field?.onChange(name)}
+                                onChangeText={handleOnChange}
                                 style={[styles.textInputStyle, {
                                     color: colors.surface,
                                 }]}
@@ -122,7 +158,7 @@ const ASTextField = (props: ASTextFieldProps) => {
                                 onFocus={handleOnFocus}
                                 onBlur={handleOnBlur}
                                 value={`${field?.value}`}
-                                onChangeText={field?.onChange(name)}
+                                onChangeText={handleOnChange}
                                 style={[styles.textInputStyle, {
                                     color: colors.surface,
                                 }]}

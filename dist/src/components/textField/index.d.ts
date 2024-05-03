@@ -21,6 +21,7 @@ export type ASTextFieldProps = Omit<TextInputMaskProps, "type"> & TextInputProps
     label?: string;
     type?: TextInputMaskTypeProp;
     isShowError?: boolean;
+    formatNumber?: 'comma' | 'dot' | undefined;
 };
 declare const ASTextField: {
     (props: ASTextFieldProps): React.JSX.Element;

@@ -46,7 +46,7 @@ const commonUtils_1 = require("../../utils/commonUtils");
 const theme_context_1 = require("../../context/theme-context");
 const ASTextField = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { name, onFocus, onBlur, suffixIcon, prefixIcon, errorBorderColor, activeBorderColor, inactiveBorderColor, style, placeholderTextColor = colors.secondary, formatError, options, label, type = 'custom', isShowError } = props, restProps = __rest(props, ["name", "onFocus", "onBlur", "suffixIcon", "prefixIcon", "errorBorderColor", "activeBorderColor", "inactiveBorderColor", "style", "placeholderTextColor", "formatError", "options", "label", "type", "isShowError"]);
+    const { name, onFocus, onBlur, suffixIcon, prefixIcon, errorBorderColor, activeBorderColor, inactiveBorderColor, style, placeholderTextColor = colors.secondary, formatError, options, label, type = 'custom', isShowError, formatNumber } = props, restProps = __rest(props, ["name", "onFocus", "onBlur", "suffixIcon", "prefixIcon", "errorBorderColor", "activeBorderColor", "inactiveBorderColor", "style", "placeholderTextColor", "formatError", "options", "label", "type", "isShowError", "formatNumber"]);
     const [active, setActive] = (0, react_1.useState)(false);
     const [field, meta, helpers] = (0, formik_1.useField)(name);
     const showMask = !!(options === null || options === void 0 ? void 0 : options.mask);
@@ -56,13 +56,41 @@ const ASTextField = (props) => {
             onFocus(event);
         }
     };
+    const handleFormat = () => {
+        let text = field.value;
+        const numberValue = typeof text === 'string' ? parseFloat(text) : Number(text);
+        if (!isNaN(numberValue)) {
+            switch (formatNumber) {
+                case "comma":
+                    text = numberValue.toLocaleString('en-US', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    });
+                    break;
+                case "dot":
+                    text = numberValue.toLocaleString('de-DE', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    });
+                    break;
+                default:
+                    text = field.value;
+                    break;
+            }
+        }
+        field === null || field === void 0 ? void 0 : field.onChange(name)(text);
+    };
     const handleOnBlur = (event) => {
+        handleFormat();
         setActive(false);
         field === null || field === void 0 ? void 0 : field.onBlur(name);
         helpers === null || helpers === void 0 ? void 0 : helpers.setTouched(true);
         if (onBlur) {
             onBlur(event);
         }
+    };
+    const handleOnChange = (e) => {
+        field === null || field === void 0 ? void 0 : field.onChange(name)(e);
     };
     let separatorColor;
     if ((meta === null || meta === void 0 ? void 0 : meta.error) && (meta === null || meta === void 0 ? void 0 : meta.touched)) {
@@ -84,9 +112,9 @@ const ASTextField = (props) => {
                     }] }, label),
             react_1.default.createElement(react_native_1.View, { style: [styles.contentContainerStyle, { borderColor: separatorColor }] },
                 prefixIcon,
-                react_1.default.createElement(react_native_1.View, { style: styles.inputContainerStyle }, showMask ? (react_1.default.createElement(react_native_masked_text_1.TextInputMask, Object.assign({ onFocus: handleOnFocus, onBlur: handleOnBlur, value: `${field === null || field === void 0 ? void 0 : field.value}`, onChangeText: field === null || field === void 0 ? void 0 : field.onChange(name), style: [styles.textInputStyle, {
+                react_1.default.createElement(react_native_1.View, { style: styles.inputContainerStyle }, showMask ? (react_1.default.createElement(react_native_masked_text_1.TextInputMask, Object.assign({ onFocus: handleOnFocus, onBlur: handleOnBlur, value: `${field === null || field === void 0 ? void 0 : field.value}`, onChangeText: handleOnChange, style: [styles.textInputStyle, {
                             color: colors.surface,
-                        }], placeholderTextColor: placeholderTextColor, options: options, type: type }, restProps))) : (react_1.default.createElement(react_native_1.TextInput, Object.assign({ onFocus: handleOnFocus, onBlur: handleOnBlur, value: `${field === null || field === void 0 ? void 0 : field.value}`, onChangeText: field === null || field === void 0 ? void 0 : field.onChange(name), style: [styles.textInputStyle, {
+                        }], placeholderTextColor: placeholderTextColor, options: options, type: type }, restProps))) : (react_1.default.createElement(react_native_1.TextInput, Object.assign({ onFocus: handleOnFocus, onBlur: handleOnBlur, value: `${field === null || field === void 0 ? void 0 : field.value}`, onChangeText: handleOnChange, style: [styles.textInputStyle, {
                             color: colors.surface,
                         }], placeholderTextColor: placeholderTextColor, autoComplete: 'off', autoCorrect: false, underlineColorAndroid: 'transparent' }, restProps)))),
                 suffixIcon)),

@@ -19,6 +19,7 @@ const ASColumn: React.FC<ASColumnProps> = (props: ASColumnProps) => {
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'column',
+        // TODO: Start adding justifyContent: 'flex-start', then remove this justifyContent: 'center'
         justifyContent: 'center'
     },
 });
