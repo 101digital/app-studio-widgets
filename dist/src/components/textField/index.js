@@ -58,17 +58,21 @@ const ASTextField = (props) => {
     };
     const handleFormat = () => {
         let text = field.value;
-        const numberValue = typeof text === 'string' ? parseFloat(text) : Number(text);
+        let numberValue = typeof text === 'string' ? parseFloat(text) : Number(text);
         if (!isNaN(numberValue)) {
             switch (formatNumber) {
                 case "comma":
-                    text = numberValue.toLocaleString('en-US', {
+                    // Remove comma in the number so when format the already formatted (Ex: 123,456.00) number it's still working
+                    // because can't parseFloat a string with comma into Number
+                    // For ex: 123456 -> 123,456.00 and 123,456.00 -> 123,456.00
+                    // The same apply for "dot"
+                    text = parseFloat(text.replace(',', '')).toLocaleString('en-US', {
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 2
                     });
                     break;
                 case "dot":
-                    text = numberValue.toLocaleString('de-DE', {
+                    text = parseFloat(text.replace('.', '')).toLocaleString('de-DE', {
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 2
                     });
