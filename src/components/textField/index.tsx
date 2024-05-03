@@ -38,7 +38,9 @@ export type ASTextFieldProps = Omit<TextInputMaskProps, "type"> &
     label?: string;
     type?: TextInputMaskTypeProp
     isShowError?: boolean
-    formatNumber?: 'comma' | 'dot' | undefined
+    formatNumber?: 'comma' | 'dot' | 'percentage' | undefined
+    prefixText?: string;
+    prefixTextStyle?: StyleProp<TextStyle>;
 };
 
 const ASTextField = (props: ASTextFieldProps) => {
@@ -49,6 +51,8 @@ const ASTextField = (props: ASTextFieldProps) => {
         onBlur,
         suffixIcon,
         prefixIcon,
+        prefixText,
+        prefixTextStyle,
         errorBorderColor,
         activeBorderColor,
         inactiveBorderColor,
@@ -90,6 +94,10 @@ const ASTextField = (props: ASTextFieldProps) => {
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 2
                     })
+                    break;
+                case "percentage":
+                    const percentage = (numberValue * 100).toFixed(2);
+                    text = `${percentage}%`
                     break;
 
                 default:
@@ -138,6 +146,10 @@ const ASTextField = (props: ASTextFieldProps) => {
                 }]}>{label}</ASText>
                 <View style={[styles.contentContainerStyle, {borderColor: separatorColor}]}>
                     {prefixIcon}
+                    {
+                        !!prefixText &&
+                        <ASText style={[{color: colors.tertiary}, prefixTextStyle]}>{prefixText}</ASText>
+                    }
                     <View style={styles.inputContainerStyle}>
                         {showMask ? (
                             <TextInputMask
