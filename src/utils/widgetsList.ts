@@ -16,6 +16,8 @@ import {
     ASListTileProps,
     ASListViewProps,
     ASPageViewProps,
+    ASPasswordTextField,
+    ASPasswordTextFieldProps,
     ASPinProps,
     ASProgressBarProps,
     ASRadioButtonProps,
@@ -66,6 +68,7 @@ export type WidgetsList = {
     ASCalendar: (attributes: ASCalendarProps) => string
     ASTimer: (attributes: ASTimerProps) => string
     ASPin: (attributes: ASPinProps) => string
+    ASPasswordTextField: (attributes: ASPasswordTextFieldProps) => string
 }
 
 export class ASWidgetsList {
@@ -251,6 +254,7 @@ export class ASWidgetsList {
             ASCalendar: (attributes: ASCalendarProps) => ASWidgetsList.getWidgetString('ASCalendar', attributes),
             ASTimer: (attributes: ASTimerProps) => ASWidgetsList.getWidgetString('ASTimer', attributes),
             ASPin: (attributes: ASPinProps) => ASWidgetsList.getWidgetString('ASPin', attributes),
+            ASPasswordTextField: (attributes: ASPasswordTextFieldProps) => ASWidgetsList.getWidgetString('ASPasswordTextField', attributes),
         }
     }
 

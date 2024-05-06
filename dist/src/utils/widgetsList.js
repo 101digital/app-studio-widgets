@@ -160,6 +160,7 @@ class ASWidgetsList {
             ASCalendar: (attributes) => ASWidgetsList.getWidgetString('ASCalendar', attributes),
             ASTimer: (attributes) => ASWidgetsList.getWidgetString('ASTimer', attributes),
             ASPin: (attributes) => ASWidgetsList.getWidgetString('ASPin', attributes),
+            ASPasswordTextField: (attributes) => ASWidgetsList.getWidgetString('ASPasswordTextField', attributes),
         };
     }
     getWidgetByName(name) {
