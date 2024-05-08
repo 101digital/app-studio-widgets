@@ -31,7 +31,8 @@ import {
     ASTextProps,
     ASTimerProps,
     ASVerticalDividerProps,
-    ASWrapProps
+    ASWrapProps,
+    ASPopUpProps
 } from "../../index";
 
 export type WidgetsName = keyof WidgetsList
@@ -69,6 +70,7 @@ export type WidgetsList = {
     ASTimer: (attributes: ASTimerProps) => string
     ASPin: (attributes: ASPinProps) => string
     ASPasswordTextField: (attributes: ASPasswordTextFieldProps) => string
+    ASPopUp: (attributes: ASPopUpProps) => string
 }
 
 export class ASWidgetsList {
@@ -107,21 +109,28 @@ export class ASWidgetsList {
 
     private static getWidgetAttributes(attributes: any, widgetName?: string): string {
         let result: string = ''
-        const atrributesObj = {...attributes}
+        const atrributesObj:any = {...attributes}
         if (atrributesObj?.children) {
             delete atrributesObj['children']
         }
 
-        //Remove the label attribute from ASText, because it's used as children
+        // Remove the label attribute from ASText, because it's used as children
         if (widgetName === 'ASText') {
             delete atrributesObj['label']
         }
 
-        // Add properties / attributes to widget
+        // ASPopUp always have these 2 properties because user doesn't need to define or
+        // know about it's existence for it to work
+        if (widgetName === 'ASPopUp') {
+            atrributesObj.visible = ()=> 'visible'
+            atrributesObj.onClose = ()=> 'onClosePopup'
+        }
+
+        // Loop through attributes list and add properties / attributes to widget
         for (let key in atrributesObj) {
             let attributeValue = atrributesObj[key]
 
-            if (key === 'validationRule' || key === 'initialValues') {
+            if (key === 'validationRules' || key === 'validationRule' || key === 'initialValues') {
                 continue
             }
 
@@ -131,7 +140,7 @@ export class ASWidgetsList {
                 const initialValues: any = {}
 
                 for (const formWidgetItem of formWidgetsList) {
-                    if (!Array.isArray(formWidgetItem.validationRules) || formWidgetItem?.validationRules?.length < 1) {
+                    if (!Array.isArray(formWidgetItem?.validationRules) || formWidgetItem?.validationRules?.length < 1) {
                         continue;
                     }
 
@@ -139,8 +148,8 @@ export class ASWidgetsList {
                     const initialValueItem = atrributesObj.initialValues[formWidgetItem.name]
                     initialValues[formWidgetItem.name] = initialValueItem ? `${initialValueItem} || ''` : `''`
 
-                    if (formWidgetItem.dataType) {
-                        validation += `.${formWidgetItem.dataType}()`
+                    if (formWidgetItem?.dataType) {
+                        validation += `.${formWidgetItem?.dataType}()`
                     }
 
                     for (const validationRule of formWidgetItem.validationRules) {
@@ -193,7 +202,7 @@ export class ASWidgetsList {
     private static getWidgetString(widgetName: any, attributes: any): string {
         //Handle logic for ASFormValidation
         if (widgetName === 'ASFormValidation') {
-            return `<ASFormValidation${ASWidgetsList.getWidgetAttributes(attributes)}>
+            return `<ASFormValidation${ASWidgetsList.getWidgetAttributes(attributes,'ASFormValidation')}>
                          {(formikProps: FormikProps<any>)=>(
                             <>${ASWidgetsList.returnWidgetArrayOrString(attributes)}</>
                          )}
@@ -210,11 +219,11 @@ export class ASWidgetsList {
 
         //If widgets has children then return a wrapper else return a tag
         if (attributes?.children) {
-            return `<${widgetName}${ASWidgetsList.getWidgetAttributes(attributes)}>
+            return `<${widgetName}${ASWidgetsList.getWidgetAttributes(attributes,widgetName)}>
                         ${ASWidgetsList.returnWidgetArrayOrString(attributes)}
                     </${widgetName}>`
         } else {
-            return `<${widgetName}${ASWidgetsList.getWidgetAttributes(attributes)}/>`
+            return `<${widgetName}${ASWidgetsList.getWidgetAttributes(attributes,widgetName)}/>`
         }
     }
 
@@ -255,6 +264,7 @@ export class ASWidgetsList {
             ASTimer: (attributes: ASTimerProps) => ASWidgetsList.getWidgetString('ASTimer', attributes),
             ASPin: (attributes: ASPinProps) => ASWidgetsList.getWidgetString('ASPin', attributes),
             ASPasswordTextField: (attributes: ASPasswordTextFieldProps) => ASWidgetsList.getWidgetString('ASPasswordTextField', attributes),
+            ASPopUp: (attributes: ASPopUpProps) => ASWidgetsList.getWidgetString('ASPopUp', attributes),
         }
     }
 

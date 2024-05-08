@@ -1,5 +1,5 @@
-import React from 'react';
+import { FC } from 'react';
 import { ASTextFieldProps } from "../textField";
 export type ASPasswordTextFieldProps = ASTextFieldProps & {};
-declare const ASPasswordTextField: (props: ASPasswordTextFieldProps) => React.JSX.Element;
+declare const ASPasswordTextField: FC<ASPasswordTextFieldProps>;
 export default ASPasswordTextField;

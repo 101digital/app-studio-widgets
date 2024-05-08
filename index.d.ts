@@ -36,4 +36,5 @@ export {
     ThemeContext, useThemeContextValue, ThemeProvider, createThemeData, useThemeColors, useThemeFonts
 } from './src/context/theme-context'
 export {default as ASPasswordTextField, ASPasswordTextFieldProps} from './src/components/passwordTextField';
+export {default as ASPopUp, ASPopUpProps} from './src/components/popUp';
 

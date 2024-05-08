@@ -42,10 +42,14 @@ class ASWidgetsList {
         if (widgetName === 'ASText') {
             delete atrributesObj['label'];
         }
-        // Add properties / attributes to widget
+        if (widgetName === 'ASPopUp') {
+            atrributesObj.visible = () => 'visible';
+            atrributesObj.onClose = () => 'onClosePopup';
+        }
+        // Loop through attributes list and add properties / attributes to widget
         for (let key in atrributesObj) {
             let attributeValue = atrributesObj[key];
-            if (key === 'validationRule' || key === 'initialValues') {
+            if (key === 'validationRules' || key === 'validationRule' || key === 'initialValues') {
                 continue;
             }
             if (key === 'formWidgets') {
@@ -53,14 +57,14 @@ class ASWidgetsList {
                 const validationStringArray = [];
                 const initialValues = {};
                 for (const formWidgetItem of formWidgetsList) {
-                    if (!Array.isArray(formWidgetItem.validationRules) || ((_a = formWidgetItem === null || formWidgetItem === void 0 ? void 0 : formWidgetItem.validationRules) === null || _a === void 0 ? void 0 : _a.length) < 1) {
+                    if (!Array.isArray(formWidgetItem === null || formWidgetItem === void 0 ? void 0 : formWidgetItem.validationRules) || ((_a = formWidgetItem === null || formWidgetItem === void 0 ? void 0 : formWidgetItem.validationRules) === null || _a === void 0 ? void 0 : _a.length) < 1) {
                         continue;
                     }
                     let validation = `Yup`;
                     const initialValueItem = atrributesObj.initialValues[formWidgetItem.name];
                     initialValues[formWidgetItem.name] = initialValueItem ? `${initialValueItem} || ''` : `''`;
-                    if (formWidgetItem.dataType) {
-                        validation += `.${formWidgetItem.dataType}()`;
+                    if (formWidgetItem === null || formWidgetItem === void 0 ? void 0 : formWidgetItem.dataType) {
+                        validation += `.${formWidgetItem === null || formWidgetItem === void 0 ? void 0 : formWidgetItem.dataType}()`;
                     }
                     for (const validationRule of formWidgetItem.validationRules) {
                         validation += `.${validationRule.type}${validationRule.errorMessage ? `('${validationRule.errorMessage}')` : '()'}`;
@@ -104,7 +108,7 @@ class ASWidgetsList {
     static getWidgetString(widgetName, attributes) {
         //Handle logic for ASFormValidation
         if (widgetName === 'ASFormValidation') {
-            return `<ASFormValidation${ASWidgetsList.getWidgetAttributes(attributes)}>
+            return `<ASFormValidation${ASWidgetsList.getWidgetAttributes(attributes, 'ASFormValidation')}>
                          {(formikProps: FormikProps<any>)=>(
                             <>${ASWidgetsList.returnWidgetArrayOrString(attributes)}</>
                          )}
@@ -119,12 +123,12 @@ class ASWidgetsList {
         }
         //If widgets has children then return a wrapper else return a tag
         if (attributes === null || attributes === void 0 ? void 0 : attributes.children) {
-            return `<${widgetName}${ASWidgetsList.getWidgetAttributes(attributes)}>
+            return `<${widgetName}${ASWidgetsList.getWidgetAttributes(attributes, widgetName)}>
                         ${ASWidgetsList.returnWidgetArrayOrString(attributes)}
                     </${widgetName}>`;
         }
         else {
-            return `<${widgetName}${ASWidgetsList.getWidgetAttributes(attributes)}/>`;
+            return `<${widgetName}${ASWidgetsList.getWidgetAttributes(attributes, widgetName)}/>`;
         }
     }
     getWidgets() {
@@ -161,6 +165,7 @@ class ASWidgetsList {
             ASTimer: (attributes) => ASWidgetsList.getWidgetString('ASTimer', attributes),
             ASPin: (attributes) => ASWidgetsList.getWidgetString('ASPin', attributes),
             ASPasswordTextField: (attributes) => ASWidgetsList.getWidgetString('ASPasswordTextField', attributes),
+            ASPopUp: (attributes) => ASWidgetsList.getWidgetString('ASPopUp', attributes),
         };
     }
     getWidgetByName(name) {

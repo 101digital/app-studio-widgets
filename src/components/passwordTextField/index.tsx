@@ -1,9 +1,9 @@
-import React from 'react'
+import React, {FC} from 'react'
 import ASTextField, {ASTextFieldProps} from "../textField";
 
 export type ASPasswordTextFieldProps = ASTextFieldProps & {}
 
-const ASPasswordTextField = (props: ASPasswordTextFieldProps) => {
+const ASPasswordTextField: FC<ASPasswordTextFieldProps> = (props: ASPasswordTextFieldProps) => {
     const {} = props
 
     return (

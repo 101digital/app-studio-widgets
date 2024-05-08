@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ASPasswordTextField = exports.useThemeFonts = exports.useThemeColors = exports.createThemeData = exports.ThemeProvider = exports.useThemeContextValue = exports.ThemeContext = exports.ASBottomSheet = exports.ASPin = exports.ASModal = exports.ASTimer = exports.ASCalendar = exports.ASChoiceChips = exports.ASCounter = exports.ASSlider = exports.ASRadioButton = exports.ASListTile = exports.ASPageView = exports.ASBadge = exports.ASCircleChart = exports.ASListView = exports.ASStack = exports.ASProgressBar = exports.ASCheckBox = exports.ASSwitch = exports.ASWrap = exports.ASExpandableText = exports.ASDropDown = exports.ASImage = exports.ASRichText = exports.ASFormValidation = exports.ASVerticalDivider = exports.ASDivider = exports.ASSpacer = exports.ASRow = exports.ASColumn = exports.ASContainer = exports.ASTextField = exports.ASButton = exports.ASText = exports.ASWidgetsList = void 0;
+exports.ASPopUp = exports.ASPasswordTextField = exports.useThemeFonts = exports.useThemeColors = exports.createThemeData = exports.ThemeProvider = exports.useThemeContextValue = exports.ThemeContext = exports.ASBottomSheet = exports.ASPin = exports.ASModal = exports.ASTimer = exports.ASCalendar = exports.ASChoiceChips = exports.ASCounter = exports.ASSlider = exports.ASRadioButton = exports.ASListTile = exports.ASPageView = exports.ASBadge = exports.ASCircleChart = exports.ASListView = exports.ASStack = exports.ASProgressBar = exports.ASCheckBox = exports.ASSwitch = exports.ASWrap = exports.ASExpandableText = exports.ASDropDown = exports.ASImage = exports.ASRichText = exports.ASFormValidation = exports.ASVerticalDivider = exports.ASDivider = exports.ASSpacer = exports.ASRow = exports.ASColumn = exports.ASContainer = exports.ASTextField = exports.ASButton = exports.ASText = exports.ASWidgetsList = void 0;
 var widgetsList_1 = require("./src/utils/widgetsList");
 Object.defineProperty(exports, "ASWidgetsList", { enumerable: true, get: function () { return widgetsList_1.ASWidgetsList; } });
 var text_1 = require("./src/components/text");
@@ -81,3 +81,5 @@ Object.defineProperty(exports, "useThemeColors", { enumerable: true, get: functi
 Object.defineProperty(exports, "useThemeFonts", { enumerable: true, get: function () { return theme_context_1.useThemeFonts; } });
 var passwordTextField_1 = require("./src/components/passwordTextField");
 Object.defineProperty(exports, "ASPasswordTextField", { enumerable: true, get: function () { return __importDefault(passwordTextField_1).default; } });
+var popUp_1 = require("./src/components/popUp");
+Object.defineProperty(exports, "ASPopUp", { enumerable: true, get: function () { return __importDefault(popUp_1).default; } });

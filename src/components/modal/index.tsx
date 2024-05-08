@@ -32,7 +32,6 @@ const ASModal: React.FC<ASModalProps> = (props: ASModalProps) => {
 
     return (
         <View style={[styles.container, containerStyle]}>
-
             <TouchableWithoutFeedback onPress={onPressBackground}>
                 <View style={[styles.modalOverlay, {backgroundColor: overlayBackgroundColor}]}/>
             </TouchableWithoutFeedback>
@@ -45,7 +44,6 @@ const ASModal: React.FC<ASModalProps> = (props: ASModalProps) => {
                     <ASText style={styles.closeIconText}>X</ASText>
                 </ASButton>
             }
-
         </View>
     )
 }
