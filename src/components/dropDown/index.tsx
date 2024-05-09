@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext,useState} from 'react';
 import {ImageStyle, StyleProp, StyleSheet, Text, View, ViewStyle} from 'react-native';
 import {Dropdown} from 'react-native-element-dropdown';
 import {DropdownProps} from 'react-native-element-dropdown/src/components/Dropdown/model';
@@ -8,19 +8,20 @@ import {FieldHookConfig, useField} from "formik";
 import {ThemeContext} from "../../context/theme-context";
 
 export type DropDownOptionsProps = {
-    label: string;
-    value: string;
+    [key :string]: any
 }
 
 export type ASDropDownProps =
     Omit<DropdownProps<any>, 'labelField' | 'valueField' | 'onChange' | 'data'>
     & {
     options: DropDownOptionsProps[]
+    name: string | FieldHookConfig<any>
+    labelField:string
+    valueField:string
     onSelect?: (item: DropDownOptionsProps) => void
     renderLeftIcon?: () => React.ReactNode
     onChangeItem?: (item: DropDownOptionsProps) => void
     label?: string
-    name: string | FieldHookConfig<any>
     containerStyle?: StyleProp<ViewStyle>
     iconStyles?: StyleProp<ImageStyle>
 }
@@ -35,28 +36,34 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
         searchPlaceholder = 'Search...',
         search = false,
         label,
-        name = '',
+        name,
         containerStyle,
         iconStyles,
         selectedTextStyle,
+        labelField,
+        valueField,
         ...restProps
     } = props
     const [field, meta, helpers] = useField<string>(name);
     const {setValue} = helpers || {};
+    const [isFocus, setIsFocus] = useState(false);
 
-    const renderItem = (item: { label: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }) => {
+    const renderItem = (item:DropDownOptionsProps) => {
         return (
             <View style={styles.item}>
                 <Text style={[styles.textItem, {
                     color: colors.surface,
-                }]}>{item.label}</Text>
+                }]}>
+                    { item[labelField]}</Text>
             </View>
         );
     };
 
-    const _onChangeDropDownField = (item: DropDownOptionsProps) => {
-        setValue?.(item?.value)
+    const _onChangeDropDownField = (item:DropDownOptionsProps) => {
+        setValue?.(item?.[valueField] )
     }
+
+    console.log('lisdufghg=====',field?.value)
 
     return (
         <View style={[styles.container, {
@@ -73,19 +80,21 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
                 iconStyle={[styles.iconStyle, iconStyles]}
                 search={search}
                 maxHeight={300}
-                value={`${field?.value}`}
+                value={field?.value}
                 searchPlaceholder={searchPlaceholder}
                 renderLeftIcon={renderLeftIcon}
                 renderItem={renderItem}
                 placeholder={placeholder}
+                onFocus={() => setIsFocus(true)}
+                onBlur={() => setIsFocus(false)}
                 {...restProps}
                 selectedTextStyle={[styles.selectedTextStyle, {
                     color: colors.surface,
                 }, selectedTextStyle]}
                 data={options}
                 onChange={_onChangeDropDownField}
-                labelField="label"
-                valueField="value"
+                labelField={labelField}
+                valueField={valueField}
             />
         </View>
     );

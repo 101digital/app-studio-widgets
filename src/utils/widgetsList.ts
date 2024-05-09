@@ -50,7 +50,7 @@ export type WidgetsList = {
     ASFormValidation: (attributes: ASFormValidationProps) => string
     ASRichText: (attributes: ASRichTextProps) => string
     ASImage: (attributes: ASImageProps) => string
-    ASDropdown: (attributes: ASDropDownProps) => string
+    ASDropDown: (attributes: ASDropDownProps) => string
     ASExpandableText: (attributes: ASExpandableTextProps) => string
     ASWrap: (attributes: ASWrapProps) => string
     ASSwitch: (attributes: ASSwitchProps) => string
@@ -244,7 +244,7 @@ export class ASWidgetsList {
             ASFormValidation: (attributes: ASFormValidationProps) => ASWidgetsList.getWidgetString('ASFormValidation', attributes),
             ASRichText: (attributes: ASRichTextProps) => ASWidgetsList.getWidgetString('ASRichText', attributes),
             ASImage: (attributes: ASImageProps) => ASWidgetsList.getWidgetString('ASImage', attributes),
-            ASDropdown: (attributes: ASDropDownProps,) => ASWidgetsList.getWidgetString('ASDropdown', attributes),
+            ASDropDown: (attributes: ASDropDownProps) => ASWidgetsList.getWidgetString('ASDropDown', attributes),
             ASExpandableText: (attributes: ASExpandableTextProps) => ASWidgetsList.getWidgetString('ASExpandableText', attributes),
             ASWrap: (attributes: ASWrapProps) => ASWidgetsList.getWidgetString('ASWrap', attributes),
             ASSwitch: (attributes: ASSwitchProps) => ASWidgetsList.getWidgetString('ASSwitch', attributes),

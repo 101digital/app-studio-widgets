@@ -38,10 +38,12 @@ class ASWidgetsList {
         if (atrributesObj === null || atrributesObj === void 0 ? void 0 : atrributesObj.children) {
             delete atrributesObj['children'];
         }
-        //Remove the label attribute from ASText, because it's used as children
+        // Remove the label attribute from ASText, because it's used as children
         if (widgetName === 'ASText') {
             delete atrributesObj['label'];
         }
+        // ASPopUp always have these 2 properties because user doesn't need to define or
+        // know about it's existence for it to work
         if (widgetName === 'ASPopUp') {
             atrributesObj.visible = () => 'visible';
             atrributesObj.onClose = () => 'onClosePopup';
@@ -145,7 +147,7 @@ class ASWidgetsList {
             ASFormValidation: (attributes) => ASWidgetsList.getWidgetString('ASFormValidation', attributes),
             ASRichText: (attributes) => ASWidgetsList.getWidgetString('ASRichText', attributes),
             ASImage: (attributes) => ASWidgetsList.getWidgetString('ASImage', attributes),
-            ASDropdown: (attributes) => ASWidgetsList.getWidgetString('ASDropdown', attributes),
+            ASDropDown: (attributes) => ASWidgetsList.getWidgetString('ASDropDown', attributes),
             ASExpandableText: (attributes) => ASWidgetsList.getWidgetString('ASExpandableText', attributes),
             ASWrap: (attributes) => ASWidgetsList.getWidgetString('ASWrap', attributes),
             ASSwitch: (attributes) => ASWidgetsList.getWidgetString('ASSwitch', attributes),
