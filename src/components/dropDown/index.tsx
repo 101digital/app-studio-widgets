@@ -63,8 +63,6 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
         setValue?.(item?.[valueField] )
     }
 
-    console.log('lisdufghg=====',field?.value)
-
     return (
         <View style={[styles.container, {
             backgroundColor: colors.secondaryFixed,
