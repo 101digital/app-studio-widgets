@@ -119,12 +119,13 @@ export class ASWidgetsList {
             delete atrributesObj['label']
         }
 
+        // TODO: Remove this hardcode
         // ASPopUp always have these 2 properties because user doesn't need to define or
         // know about it's existence for it to work
-        if (widgetName === 'ASPopUp') {
-            atrributesObj.visible = ()=> 'visible'
-            atrributesObj.onClose = ()=> 'onClosePopup'
-        }
+        // if (widgetName === 'ASPopUp') {
+        //     atrributesObj.visible = ()=> 'visible'
+        //     atrributesObj.onClose = ()=> 'onClosePopup'
+        // }
 
         // Loop through attributes list and add properties / attributes to widget
         for (let key in atrributesObj) {
