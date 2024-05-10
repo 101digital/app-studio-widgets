@@ -59,7 +59,6 @@ const ASDropDown = (props) => {
     const _onChangeDropDownField = (item) => {
         setValue === null || setValue === void 0 ? void 0 : setValue(item === null || item === void 0 ? void 0 : item[valueField]);
     };
-    console.log('lisdufghg=====', field === null || field === void 0 ? void 0 : field.value);
     return (react_1.default.createElement(react_native_1.View, { style: [styles.container, {
                 backgroundColor: colors.secondaryFixed,
             }, containerStyle] },
