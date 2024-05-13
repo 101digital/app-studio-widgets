@@ -162,6 +162,7 @@ class ASWidgetsList {
             ASPin: (attributes) => ASWidgetsList.getWidgetString('ASPin', attributes),
             ASPasswordTextField: (attributes) => ASWidgetsList.getWidgetString('ASPasswordTextField', attributes),
             ASPopUp: (attributes) => ASWidgetsList.getWidgetString('ASPopUp', attributes),
+            ASLoadingScreen: (attributes) => ASWidgetsList.getWidgetString('ASLoadingScreen', attributes),
         };
     }
     getWidgetByName(name) {

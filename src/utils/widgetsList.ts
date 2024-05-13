@@ -32,8 +32,10 @@ import {
     ASTimerProps,
     ASVerticalDividerProps,
     ASWrapProps,
-    ASPopUpProps
+    ASPopUpProps,
+    ASLoadingScreenProps
 } from "../../index";
+import ASLoadingScreen from "../components/loadingScreen";
 
 export type WidgetsName = keyof WidgetsList
 
@@ -71,6 +73,7 @@ export type WidgetsList = {
     ASPin: (attributes: ASPinProps) => string
     ASPasswordTextField: (attributes: ASPasswordTextFieldProps) => string
     ASPopUp: (attributes: ASPopUpProps) => string
+    ASLoadingScreen: (attributes: ASLoadingScreenProps) => string
 }
 
 export class ASWidgetsList {
@@ -258,6 +261,7 @@ export class ASWidgetsList {
             ASPin: (attributes: ASPinProps) => ASWidgetsList.getWidgetString('ASPin', attributes),
             ASPasswordTextField: (attributes: ASPasswordTextFieldProps) => ASWidgetsList.getWidgetString('ASPasswordTextField', attributes),
             ASPopUp: (attributes: ASPopUpProps) => ASWidgetsList.getWidgetString('ASPopUp', attributes),
+            ASLoadingScreen: (attributes: ASLoadingScreenProps) => ASWidgetsList.getWidgetString('ASLoadingScreen', attributes),
         }
     }
 

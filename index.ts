@@ -37,4 +37,5 @@ export {
 } from './src/context/theme-context'
 export {default as ASPasswordTextField, ASPasswordTextFieldProps} from './src/components/passwordTextField';
 export {default as ASPopUp, ASPopUpProps} from './src/components/popUp';
+export {default as ASLoadingScreen, ASLoadingScreenProps} from './src/components/loadingScreen';
 

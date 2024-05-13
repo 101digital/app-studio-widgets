@@ -131,7 +131,6 @@ const styles = StyleSheet.create({
     labelContainer: {
         flexDirection: 'row'
     }
-
 });
 
 export default ASButton;
