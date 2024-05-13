@@ -43,7 +43,7 @@ const text_1 = __importDefault(require("../text"));
 const theme_context_1 = require("../../context/theme-context");
 const ASButton = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { label = '', style, textStyle, onPress, disabled, children, simpleTextButton } = props, restProps = __rest(props, ["label", "style", "textStyle", "onPress", "disabled", "children", "simpleTextButton"]);
+    const { label = '', style, textStyle, onPress, disabled, children, simpleTextButton, isLoading = false } = props, restProps = __rest(props, ["label", "style", "textStyle", "onPress", "disabled", "children", "simpleTextButton", "isLoading"]);
     const getButtonBackgroundColor = () => {
         if (disabled) {
             return colors.tertiary;
@@ -82,7 +82,10 @@ const ASButton = (props) => {
     };
     return (react_1.default.createElement(react_native_1.TouchableOpacity, Object.assign({}, restProps, { disabled: disabled, onPress: onPress, style: [getButtonStyle(), style, { backgroundColor: getButtonBackgroundColor() }] }), !!children ?
         children
-        : react_1.default.createElement(text_1.default, { style: [styles.textStyle, getButtonTextStyle(), textStyle, { color: getButtonTextColor() }] }, label)));
+        :
+            react_1.default.createElement(react_native_1.View, { style: styles.labelContainer },
+                react_1.default.createElement(text_1.default, { style: [styles.textStyle, getButtonTextStyle(), textStyle, { color: getButtonTextColor() }] }, label),
+                isLoading && react_1.default.createElement(react_native_1.ActivityIndicator, { animating: isLoading, size: 'small', hidesWhenStopped: true, style: styles.loadingIndicator }))));
 };
 const styles = react_native_1.StyleSheet.create({
     buttonStyle: {
@@ -90,7 +93,7 @@ const styles = react_native_1.StyleSheet.create({
         alignItems: 'center',
         paddingHorizontal: 20,
         paddingVertical: 12,
-        borderRadius: 8
+        borderRadius: 8,
     },
     simpleTextButton: {
         justifyContent: 'flex-start',
@@ -104,6 +107,16 @@ const styles = react_native_1.StyleSheet.create({
     },
     simpleTextButtonTextStyle: {
         fontSize: 12
+    },
+    loadingIndicator: {
+        marginLeft: 10,
+        height: 16,
+        width: 16,
+        position: 'absolute',
+        right: -28
+    },
+    labelContainer: {
+        flexDirection: 'row'
     }
 });
 exports.default = ASButton;

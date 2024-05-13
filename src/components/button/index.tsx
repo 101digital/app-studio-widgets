@@ -1,5 +1,13 @@
 import React, {useContext} from 'react';
-import {StyleSheet, TextStyle, TouchableOpacity, TouchableOpacityProps, ViewStyle} from 'react-native';
+import {
+    ActivityIndicator,
+    StyleSheet,
+    TextStyle,
+    TouchableOpacity,
+    TouchableOpacityProps,
+    View,
+    ViewStyle
+} from 'react-native';
 import ASText from "../text";
 import {ThemeContext} from '../../context/theme-context'
 
@@ -12,6 +20,7 @@ export type  ASButtonProps = TouchableOpacityProps & {
     children?: React.ReactNode
     simpleTextButton?: boolean
     touchableContainer?: boolean
+    isLoading?: boolean
 }
 
 const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
@@ -24,6 +33,7 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
         disabled,
         children,
         simpleTextButton,
+        isLoading = false,
         ...restProps
     } = props
 
@@ -78,8 +88,13 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
                           style={[getButtonStyle(), style, {backgroundColor: getButtonBackgroundColor()}]}>
             {!!children ?
                 children
-                : <ASText
-                    style={[styles.textStyle, getButtonTextStyle(), textStyle, {color: getButtonTextColor()}]}>{label}</ASText>
+                :
+                <View style={styles.labelContainer}>
+                    <ASText
+                        style={[styles.textStyle, getButtonTextStyle(), textStyle, {color: getButtonTextColor()}]}>{label}</ASText>
+                    {isLoading && <ActivityIndicator animating={isLoading} size={'small'} hidesWhenStopped
+                                                     style={styles.loadingIndicator}/>}
+                </View>
             }
         </TouchableOpacity>
     );
@@ -91,7 +106,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingHorizontal: 20,
         paddingVertical: 12,
-        borderRadius: 8
+        borderRadius: 8,
     },
     simpleTextButton: {
         justifyContent: 'flex-start',
@@ -105,7 +120,18 @@ const styles = StyleSheet.create({
     },
     simpleTextButtonTextStyle: {
         fontSize: 12
+    },
+    loadingIndicator: {
+        marginLeft: 10,
+        height: 16,
+        width: 16,
+        position: 'absolute',
+        right: -28
+    },
+    labelContainer: {
+        flexDirection: 'row'
     }
+
 });
 
 export default ASButton;
