@@ -26,8 +26,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importStar(require("react"));
 const react_native_1 = require("react-native");
 const ASLoadingScreen = (props) => {
-    const { visible, size = 'large', backgroundColor = "rgba(0,0,0,0.5)", timeout = 60000 } = props;
+    const { loading, size = 'large', backgroundColor = "rgba(0,0,0,0.5)", timeout = 60000 } = props;
     const [isShow, setIsShow] = (0, react_1.useState)(true);
+    // Handle multiple loading. If any of the workflow loading is true => Show loading
+    const isLoading = loading && Array.isArray(loading) ? loading.some((item) => item) : loading;
     // This timeout to make sure loading will turn off after some time
     // To prevent indefinite loading
     (0, react_1.useEffect)(() => {
@@ -40,7 +42,7 @@ const ASLoadingScreen = (props) => {
     }, []);
     if (!isShow)
         return null;
-    return (react_1.default.createElement(react_native_1.Modal, { style: styles.modalContainer, animationType: "fade", transparent: true, visible: visible, onRequestClose: () => {
+    return (react_1.default.createElement(react_native_1.Modal, { style: styles.modalContainer, animationType: "fade", transparent: true, visible: isLoading, onRequestClose: () => {
         } },
         react_1.default.createElement(react_native_1.View, { style: [styles.container, { backgroundColor }] },
             react_1.default.createElement(react_native_1.ActivityIndicator, { animating: true, size: size, hidesWhenStopped: true, style: styles.loadingIndicator }))));

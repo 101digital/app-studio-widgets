@@ -43,7 +43,11 @@ const text_1 = __importDefault(require("../text"));
 const theme_context_1 = require("../../context/theme-context");
 const ASButton = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { label = '', style, textStyle, onPress, disabled, children, simpleTextButton, isLoading = false } = props, restProps = __rest(props, ["label", "style", "textStyle", "onPress", "disabled", "children", "simpleTextButton", "isLoading"]);
+    const { label = '', style, textStyle, onPress, disabled, children, simpleTextButton, loading } = props, restProps = __rest(props
+    // Handle multiple loading. If any of the workflow loading is true => Show loading
+    , ["label", "style", "textStyle", "onPress", "disabled", "children", "simpleTextButton", "loading"]);
+    // Handle multiple loading. If any of the workflow loading is true => Show loading
+    const isLoading = loading && Array.isArray(loading) ? loading.some((item) => item) : loading;
     const getButtonBackgroundColor = () => {
         if (disabled) {
             return colors.tertiary;

@@ -20,7 +20,7 @@ export type  ASButtonProps = TouchableOpacityProps & {
     children?: React.ReactNode
     simpleTextButton?: boolean
     touchableContainer?: boolean
-    isLoading?: boolean
+    loading?: boolean | boolean[]
 }
 
 const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
@@ -33,9 +33,11 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
         disabled,
         children,
         simpleTextButton,
-        isLoading = false,
+        loading,
         ...restProps
     } = props
+    // Handle multiple loading. If any of the workflow loading is true => Show loading
+    const isLoading = loading && Array.isArray(loading) ? loading.some((item: boolean) => item) : loading
 
     const getButtonBackgroundColor = () => {
         if (disabled) {

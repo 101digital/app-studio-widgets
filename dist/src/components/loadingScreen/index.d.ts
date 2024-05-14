@@ -1,7 +1,7 @@
 import React from "react";
 import { ActivityIndicatorProps, ColorValue } from "react-native";
 export type ASLoadingScreenProps = ActivityIndicatorProps & {
-    visible: boolean;
+    loading: boolean | boolean[];
     backgroundColor?: ColorValue | undefined;
     timeout?: number;
 };
