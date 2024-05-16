@@ -38,9 +38,29 @@ const react_1 = __importStar(require("react"));
 const react_native_1 = require("react-native");
 const theme_context_1 = require("../../context/theme-context");
 const ASText = (props) => {
+    var _a;
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const _a = props || {}, { children, style, label } = _a, restProps = __rest(_a, ["children", "style", "label"]);
-    return (react_1.default.createElement(react_native_1.Text, Object.assign({}, restProps, { style: [styles.textStyle, { color: colors.primaryFixed }, style] }), label || children));
+    const _b = props || {}, { children, style, label, labelType } = _b, restProps = __rest(_b, ["children", "style", "label", "labelType"]);
+    let labelValue = label || children;
+    if (labelType === 'number' && (typeof labelValue === "string" || typeof labelValue === "number")) {
+        labelValue = parseFloat((_a = labelValue === null || labelValue === void 0 ? void 0 : labelValue.toString()) === null || _a === void 0 ? void 0 : _a.replace(',', '')).toLocaleString('en-US', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+    }
+    else if (labelType === 'datetime' && typeof labelValue === "number") {
+        const date = new Date(labelValue);
+        // Define options for formatting
+        const options = {
+            weekday: 'short',
+            day: '2-digit',
+            month: 'short',
+            year: 'numeric'
+        };
+        // Use the locale 'en-US' to format the date according to the desired pattern
+        labelValue = date.toLocaleDateString('en-US', options);
+    }
+    return (react_1.default.createElement(react_native_1.Text, Object.assign({}, restProps, { style: [styles.textStyle, { color: colors.primaryFixed }, style] }), labelValue));
 };
 const styles = react_native_1.StyleSheet.create({
     textStyle: {
