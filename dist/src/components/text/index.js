@@ -67,6 +67,7 @@ const ASText = (props) => {
     }
     const getTextColor = () => {
         let color = colors.primaryFixed;
+        // TODO: REMOVE THIS LOGIC LATER
         if (labelType === "number") {
             if (typeof children === 'number') {
                 if (children >= 0) {

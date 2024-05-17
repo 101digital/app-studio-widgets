@@ -66,6 +66,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
     return (
         <View style={[styles.container, {
             backgroundColor: colors.secondaryFixed,
+            borderColor: colors.onTertiary
         }, containerStyle]}>
             {!!label && <ASText style={[styles.labelStyle, {
                 color: colors.onTertiary,
@@ -104,7 +105,8 @@ const styles = StyleSheet.create({
     container: {
         borderRadius: 5,
         justifyContent: 'center',
-        paddingLeft: 4
+        paddingLeft: 4,
+        borderWidth:1
     },
     dropdown: {
         borderRadius: 5,

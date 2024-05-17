@@ -61,6 +61,7 @@ const ASDropDown = (props) => {
     };
     return (react_1.default.createElement(react_native_1.View, { style: [styles.container, {
                 backgroundColor: colors.secondaryFixed,
+                borderColor: colors.onTertiary
             }, containerStyle] },
         !!label && react_1.default.createElement(text_1.default, { style: [styles.labelStyle, {
                     color: colors.onTertiary,
@@ -74,7 +75,8 @@ const styles = react_native_1.StyleSheet.create({
     container: {
         borderRadius: 5,
         justifyContent: 'center',
-        paddingLeft: 4
+        paddingLeft: 4,
+        borderWidth: 1
     },
     dropdown: {
         borderRadius: 5,
