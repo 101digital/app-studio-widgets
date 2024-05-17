@@ -74,6 +74,7 @@ class ASWidgetsList {
                 result += ` initialValues={ ${JSON.stringify(initialValues).replace(/"/g, "")}}`;
                 continue;
             }
+            // Handle style object
             if (key === 'style') {
                 if (!Array.isArray(attributeValue) || (attributeValue === null || attributeValue === void 0 ? void 0 : attributeValue.length) < 1) {
                     continue;
@@ -84,7 +85,8 @@ class ASWidgetsList {
                     if (typeof item !== 'object' || !('key' in item) || !('value' in item)) {
                         continue;
                     }
-                    styleResultString += `"${item === null || item === void 0 ? void 0 : item.key}": ${(typeof value === 'string' && value.includes('colors')) || typeof value !== 'string' ? value : `"${value}"`} ,`;
+                    console.log('aisduyfghasdif', value);
+                    styleResultString += `"${item === null || item === void 0 ? void 0 : item.key}": ${(typeof value === 'string' && value.includes('colors')) || typeof value !== 'string' ? JSON.stringify(value) : `"${value}"`} ,`;
                 }
                 styleResultString += `}`;
                 result += ` style={${styleResultString}}`;

@@ -162,6 +162,7 @@ export class ASWidgetsList {
                 continue
             }
 
+            // Handle style object
             if (key === 'style') {
                 if (!Array.isArray(attributeValue) || attributeValue?.length < 1) {
                     continue
@@ -174,7 +175,9 @@ export class ASWidgetsList {
                     if (typeof item !== 'object' || !('key' in item) || !('value' in item)) {
                         continue
                     }
-                    styleResultString += `"${item?.key}": ${(typeof value === 'string' && value.includes('colors')) || typeof value !== 'string' ? value : `"${value}"`} ,`
+
+                    console.log('aisduyfghasdif', value )
+                    styleResultString += `"${item?.key}": ${(typeof value === 'string' && value.includes('colors')) || typeof value !== 'string' ? JSON.stringify(value) : `"${value}"`} ,`
                 }
                 styleResultString += `}`
                 result += ` style={${styleResultString}}`
