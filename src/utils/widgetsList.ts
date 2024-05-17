@@ -15,10 +15,12 @@ import {
     ASImageProps,
     ASListTileProps,
     ASListViewProps,
+    ASLoadingScreenProps,
     ASPageViewProps,
     ASPasswordTextField,
     ASPasswordTextFieldProps,
     ASPinProps,
+    ASPopUpProps,
     ASProgressBarProps,
     ASRadioButtonProps,
     ASRichTextProps,
@@ -31,9 +33,7 @@ import {
     ASTextProps,
     ASTimerProps,
     ASVerticalDividerProps,
-    ASWrapProps,
-    ASPopUpProps,
-    ASLoadingScreenProps
+    ASWrapProps
 } from "../../index";
 import ASLoadingScreen from "../components/loadingScreen";
 
@@ -112,7 +112,7 @@ export class ASWidgetsList {
 
     private static getWidgetAttributes(attributes: any, widgetName?: string): string {
         let result: string = ''
-        const atrributesObj:any = {...attributes}
+        const atrributesObj: any = {...attributes}
         if (atrributesObj?.children) {
             delete atrributesObj['children']
         }
@@ -176,8 +176,20 @@ export class ASWidgetsList {
                         continue
                     }
 
-                    console.log('aisduyfghasdif', value )
-                    styleResultString += `"${item?.key}": ${(typeof value === 'string' && value.includes('colors')) || typeof value !== 'string' ? JSON.stringify(value) : `"${value}"`} ,`
+                    // Check if style value is string wrap it with ""
+                    // If start with colors return the same value. Ex: colors.primary
+                    // If style value is object JSON.stringify it. Ex: widget.addStyle('shadowOffset', {width: 0, height: 4})
+                    let _valueResult: any = ''
+                    if (typeof value === 'string') {
+                        _valueResult = `"${value}"`
+                        if (value.startsWith('colors')) {
+                            _valueResult = value
+                        }
+                    } else {
+                        _valueResult = JSON.stringify(value)
+                    }
+
+                    styleResultString += `"${item?.key}": ${_valueResult} ,`
                 }
                 styleResultString += `}`
                 result += ` style={${styleResultString}}`
@@ -201,7 +213,7 @@ export class ASWidgetsList {
     private static getWidgetString(widgetName: any, attributes: any): string {
         //Handle logic for ASFormValidation
         if (widgetName === 'ASFormValidation') {
-            return `<ASFormValidation${ASWidgetsList.getWidgetAttributes(attributes,'ASFormValidation')}>
+            return `<ASFormValidation${ASWidgetsList.getWidgetAttributes(attributes, 'ASFormValidation')}>
                          {(formikProps: FormikProps<any>)=>(
                             <>${ASWidgetsList.returnWidgetArrayOrString(attributes)}</>
                          )}
@@ -218,11 +230,11 @@ export class ASWidgetsList {
 
         //If widgets has children then return a wrapper else return a tag
         if (attributes?.children) {
-            return `<${widgetName}${ASWidgetsList.getWidgetAttributes(attributes,widgetName)}>
+            return `<${widgetName}${ASWidgetsList.getWidgetAttributes(attributes, widgetName)}>
                         ${ASWidgetsList.returnWidgetArrayOrString(attributes)}
                     </${widgetName}>`
         } else {
-            return `<${widgetName}${ASWidgetsList.getWidgetAttributes(attributes,widgetName)}/>`
+            return `<${widgetName}${ASWidgetsList.getWidgetAttributes(attributes, widgetName)}/>`
         }
     }
 

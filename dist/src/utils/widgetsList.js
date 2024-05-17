@@ -86,7 +86,17 @@ class ASWidgetsList {
                         continue;
                     }
                     console.log('aisduyfghasdif', value);
-                    styleResultString += `"${item === null || item === void 0 ? void 0 : item.key}": ${(typeof value === 'string' && value.includes('colors')) || typeof value !== 'string' ? JSON.stringify(value) : `"${value}"`} ,`;
+                    let _valueResult;
+                    if (typeof value === 'string') {
+                        _valueResult = `"${value}"`;
+                        if (value.startsWith('colors')) {
+                            _valueResult = value;
+                        }
+                    }
+                    else {
+                        _valueResult = JSON.stringify(value);
+                    }
+                    styleResultString += `"${item === null || item === void 0 ? void 0 : item.key}": ${_valueResult} ,`;
                 }
                 styleResultString += `}`;
                 result += ` style={${styleResultString}}`;
