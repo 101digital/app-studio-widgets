@@ -41,6 +41,7 @@ const ASText: React.FC<ASTextProps> = (props: ASTextProps) => {
     const getTextColor = (): { color: string | undefined | ColorValue } => {
         let color: string | undefined | ColorValue = colors.primaryFixed
 
+        // TODO: REMOVE THIS LOGIC LATER
         if (labelType === "number") {
             if (typeof children === 'number') {
                 if (children >= 0) {
