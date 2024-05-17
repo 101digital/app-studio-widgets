@@ -128,15 +128,14 @@ const ASTextField = (props: ASTextFieldProps) => {
         field?.onChange(name)(e)
     }
 
-    let separatorColor: string;
-
-    if (meta?.error && meta?.touched) {
-        separatorColor = (errorBorderColor ?? colors.errorContainer)!;
-    } else {
-        separatorColor = active
-            ? (activeBorderColor ?? colors.onSecondaryFixedVariant)!
-            : (inactiveBorderColor ?? colors.onSecondary)!;
-    }
+    // let separatorColor: string;
+    // if (meta?.error && meta?.touched) {
+    //     separatorColor = (errorBorderColor ?? colors.errorContainer)!;
+    // } else {
+    //     separatorColor = active
+    //         ? (activeBorderColor ?? colors.onSecondaryFixedVariant)!
+    //         : (inactiveBorderColor ?? colors.onSecondary)!;
+    // }
 
     const getErrorMessage = (error: string) => {
         return formatError?.(error) ?? error;
@@ -144,11 +143,19 @@ const ASTextField = (props: ASTextFieldProps) => {
 
     return (
         <>
-            <View style={[styles.containerStyle, {backgroundColor: colors.secondaryFixed,}]}>
+            <View style={[styles.containerStyle, {
+                backgroundColor: colors.background,
+                borderColor: colors.onSecondary,
+            }]}>
                 <ASText style={[styles.labelStyle, {
-                    color: colors.onTertiary
-                }]}>{label}</ASText>
-                <View style={[styles.contentContainerStyle, {borderColor: separatorColor}]}>
+                    color: colors.onTertiary,
+                    backgroundColor: colors.background,
+                }]}>
+                    {label}
+                </ASText>
+                <View style={[styles.contentContainerStyle,
+                    // {borderColor: separatorColor,}
+                ]}>
                     {prefixIcon}
                     {
                         !!prefixText &&
@@ -163,6 +170,7 @@ const ASTextField = (props: ASTextFieldProps) => {
                                 onChangeText={handleOnChange}
                                 style={[styles.textInputStyle, {
                                     color: colors.surface,
+                                    backgroundColor: colors.background
                                 }]}
                                 placeholderTextColor={placeholderTextColor}
                                 options={options}
@@ -177,6 +185,7 @@ const ASTextField = (props: ASTextFieldProps) => {
                                 onChangeText={handleOnChange}
                                 style={[styles.textInputStyle, {
                                     color: colors.surface,
+                                    backgroundColor: colors.background
                                 }]}
                                 placeholderTextColor={placeholderTextColor}
                                 autoComplete={'off'}
@@ -204,26 +213,32 @@ ASTextField.defaultProps = {
 
 const styles = StyleSheet.create({
     containerStyle: {
-        paddingHorizontal: 15,
         paddingVertical: 5,
-        borderRadius: 5
+        borderRadius: 5,
+        borderWidth: 1
     },
     contentContainerStyle: {
         alignItems: 'center',
         flexDirection: 'row',
+        paddingRight: 15,
     },
     labelStyle: {
         fontSize: 10,
+        marginTop: -12,
+        paddingHorizontal: 4,
+        alignSelf: 'flex-start',
+        marginLeft: 12
     },
     inputContainerStyle: {
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
+        paddingHorizontal: 15,
     },
     textInputStyle: {
         flex: 1,
         fontSize: isAndroid ? 10 : 12,
-        paddingVertical: isAndroid ? 2 : 8,
+        paddingVertical: isAndroid ? 4 : 10,
         paddingHorizontal: 0
     },
     errorTextStyle: {

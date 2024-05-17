@@ -1,9 +1,8 @@
 import React from 'react';
-import { StyleProp, TextProps, TextStyle } from 'react-native';
+import { TextProps, TextStyle } from 'react-native';
 export type ASTextProps = TextProps & {
     children?: string | undefined | number | React.ReactNode;
-    style?: StyleProp<TextStyle>;
-    label?: string;
+    style?: TextStyle;
     labelType?: 'number' | 'datetime';
 };
 declare const ASText: React.FC<ASTextProps>;

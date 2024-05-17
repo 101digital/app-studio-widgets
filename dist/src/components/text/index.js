@@ -38,10 +38,10 @@ const react_1 = __importStar(require("react"));
 const react_native_1 = require("react-native");
 const theme_context_1 = require("../../context/theme-context");
 const ASText = (props) => {
-    var _a;
+    var _a, _b, _c, _d, _e;
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const _b = props || {}, { children, style, label, labelType } = _b, restProps = __rest(_b, ["children", "style", "label", "labelType"]);
-    let labelValue = label || children;
+    const _f = props || {}, { children, style, labelType } = _f, restProps = __rest(_f, ["children", "style", "labelType"]);
+    let labelValue = children;
     if (labelType === 'number' && (typeof labelValue === "string" || typeof labelValue === "number")) {
         labelValue = parseFloat((_a = labelValue === null || labelValue === void 0 ? void 0 : labelValue.toString()) === null || _a === void 0 ? void 0 : _a.replace(',', '')).toLocaleString('en-US', {
             minimumFractionDigits: 2,
@@ -57,10 +57,32 @@ const ASText = (props) => {
             month: 'short',
             year: 'numeric'
         };
-        // Use the locale 'en-US' to format the date according to the desired pattern
-        labelValue = date.toLocaleDateString('en-US', options);
+        const dateFormatter = new Intl.DateTimeFormat('en-US', options);
+        const parts = dateFormatter.formatToParts(date);
+        // Construct the desired format from parts
+        labelValue = `${(_b = parts === null || parts === void 0 ? void 0 : parts.find((part) => part.type === 'weekday')) === null || _b === void 0 ? void 0 : _b.value}, `
+            + `${(_c = parts === null || parts === void 0 ? void 0 : parts.find((part) => part.type === 'day')) === null || _c === void 0 ? void 0 : _c.value} `
+            + `${(_d = parts === null || parts === void 0 ? void 0 : parts.find((part) => part.type === 'month')) === null || _d === void 0 ? void 0 : _d.value} `
+            + `${(_e = parts === null || parts === void 0 ? void 0 : parts.find((part) => part.type === 'year')) === null || _e === void 0 ? void 0 : _e.value}`;
     }
-    return (react_1.default.createElement(react_native_1.Text, Object.assign({}, restProps, { style: [styles.textStyle, { color: colors.primaryFixed }, style] }), labelValue));
+    const getTextColor = () => {
+        let color = colors.primaryFixed;
+        if (labelType === "number") {
+            if (typeof children === 'number') {
+                if (children >= 0) {
+                    color = '#29ce0e';
+                }
+                else {
+                    color = '#e32929';
+                }
+            }
+        }
+        if (style === null || style === void 0 ? void 0 : style.color) {
+            color = style === null || style === void 0 ? void 0 : style.color;
+        }
+        return { color };
+    };
+    return (react_1.default.createElement(react_native_1.Text, Object.assign({}, restProps, { style: [styles.textStyle, style, getTextColor()] }), labelValue));
 };
 const styles = react_native_1.StyleSheet.create({
     textStyle: {

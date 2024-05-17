@@ -100,32 +100,39 @@ const ASTextField = (props) => {
     const handleOnChange = (e) => {
         field === null || field === void 0 ? void 0 : field.onChange(name)(e);
     };
-    let separatorColor;
-    if ((meta === null || meta === void 0 ? void 0 : meta.error) && (meta === null || meta === void 0 ? void 0 : meta.touched)) {
-        separatorColor = (errorBorderColor !== null && errorBorderColor !== void 0 ? errorBorderColor : colors.errorContainer);
-    }
-    else {
-        separatorColor = active
-            ? (activeBorderColor !== null && activeBorderColor !== void 0 ? activeBorderColor : colors.onSecondaryFixedVariant)
-            : (inactiveBorderColor !== null && inactiveBorderColor !== void 0 ? inactiveBorderColor : colors.onSecondary);
-    }
+    // let separatorColor: string;
+    // if (meta?.error && meta?.touched) {
+    //     separatorColor = (errorBorderColor ?? colors.errorContainer)!;
+    // } else {
+    //     separatorColor = active
+    //         ? (activeBorderColor ?? colors.onSecondaryFixedVariant)!
+    //         : (inactiveBorderColor ?? colors.onSecondary)!;
+    // }
     const getErrorMessage = (error) => {
         var _a;
         return (_a = formatError === null || formatError === void 0 ? void 0 : formatError(error)) !== null && _a !== void 0 ? _a : error;
     };
     return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement(react_native_1.View, { style: [styles.containerStyle, { backgroundColor: colors.secondaryFixed, }] },
+        react_1.default.createElement(react_native_1.View, { style: [styles.containerStyle, {
+                    backgroundColor: colors.background,
+                    borderColor: colors.onSecondary,
+                }] },
             react_1.default.createElement(text_1.default, { style: [styles.labelStyle, {
-                        color: colors.onTertiary
+                        color: colors.onTertiary,
+                        backgroundColor: colors.background,
                     }] }, label),
-            react_1.default.createElement(react_native_1.View, { style: [styles.contentContainerStyle, { borderColor: separatorColor }] },
+            react_1.default.createElement(react_native_1.View, { style: [styles.contentContainerStyle,
+                    // {borderColor: separatorColor,}
+                ] },
                 prefixIcon,
                 !!prefixText &&
                     react_1.default.createElement(text_1.default, { style: [{ color: colors.tertiary }, prefixTextStyle] }, prefixText),
                 react_1.default.createElement(react_native_1.View, { style: styles.inputContainerStyle }, showMask ? (react_1.default.createElement(react_native_masked_text_1.TextInputMask, Object.assign({ onFocus: handleOnFocus, onBlur: handleOnBlur, value: `${field === null || field === void 0 ? void 0 : field.value}`, onChangeText: handleOnChange, style: [styles.textInputStyle, {
                             color: colors.surface,
+                            backgroundColor: colors.background
                         }], placeholderTextColor: placeholderTextColor, options: options, type: type }, restProps))) : (react_1.default.createElement(react_native_1.TextInput, Object.assign({ onFocus: handleOnFocus, onBlur: handleOnBlur, value: `${field === null || field === void 0 ? void 0 : field.value}`, onChangeText: handleOnChange, style: [styles.textInputStyle, {
                             color: colors.surface,
+                            backgroundColor: colors.background
                         }], placeholderTextColor: placeholderTextColor, autoComplete: 'off', autoCorrect: false, underlineColorAndroid: 'transparent' }, restProps)))),
                 suffixIcon)),
         isShowError && (meta === null || meta === void 0 ? void 0 : meta.error) && (meta === null || meta === void 0 ? void 0 : meta.touched) && (react_1.default.createElement(text_1.default, { style: [styles.errorTextStyle, {
@@ -137,26 +144,32 @@ ASTextField.defaultProps = {
 };
 const styles = react_native_1.StyleSheet.create({
     containerStyle: {
-        paddingHorizontal: 15,
         paddingVertical: 5,
-        borderRadius: 5
+        borderRadius: 5,
+        borderWidth: 1
     },
     contentContainerStyle: {
         alignItems: 'center',
         flexDirection: 'row',
+        paddingRight: 15,
     },
     labelStyle: {
         fontSize: 10,
+        marginTop: -12,
+        paddingHorizontal: 4,
+        alignSelf: 'flex-start',
+        marginLeft: 12
     },
     inputContainerStyle: {
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
+        paddingHorizontal: 15,
     },
     textInputStyle: {
         flex: 1,
         fontSize: commonUtils_1.isAndroid ? 10 : 12,
-        paddingVertical: commonUtils_1.isAndroid ? 2 : 8,
+        paddingVertical: commonUtils_1.isAndroid ? 4 : 10,
         paddingHorizontal: 0
     },
     errorTextStyle: {
