@@ -19,7 +19,6 @@ export type  ASButtonProps = TouchableOpacityProps & {
     disabled?: boolean
     children?: React.ReactNode
     simpleTextButton?: boolean
-    touchableContainer?: boolean
     loading?: boolean | boolean[]
 }
 
