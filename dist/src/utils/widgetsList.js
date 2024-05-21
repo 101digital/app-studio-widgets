@@ -85,8 +85,10 @@ class ASWidgetsList {
                     if (typeof item !== 'object' || !('key' in item) || !('value' in item)) {
                         continue;
                     }
-
-                    let _valueResult;
+                    // Check if style value is string wrap it with ""
+                    // If start with colors return the same value. Ex: colors.primary
+                    // If style value is object JSON.stringify it. Ex: widget.addStyle('shadowOffset', {width: 0, height: 4})
+                    let _valueResult = '';
                     if (typeof value === 'string') {
                         _valueResult = `"${value}"`;
                         if (value.startsWith('colors')) {
@@ -94,7 +96,6 @@ class ASWidgetsList {
                         }
                     }
                     else {
-                        // If style is an object, stringifyit
                         _valueResult = JSON.stringify(value);
                     }
                     styleResultString += `"${item === null || item === void 0 ? void 0 : item.key}": ${_valueResult} ,`;

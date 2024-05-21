@@ -20,4 +20,10 @@ const convertPercentageToPx = (percentage: number | string | DimensionValue | un
 
 const isAndroid = Platform.OS === 'android';
 
-export {screenWidth, screenHeight, convertPercentageToPx, isAndroid};
+// Handle multiple loading. If any of the workflow loading is true => Show loading
+const getLoadingStatus = (loading: boolean | boolean[] | undefined): boolean => {
+    if (!loading) return false
+    return loading && Array.isArray(loading) ? loading.some((item: boolean) => item) : loading
+}
+
+export {screenWidth, screenHeight, convertPercentageToPx, isAndroid, getLoadingStatus};

@@ -15,15 +15,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(require("react"));
+const react_native_1 = require("react-native");
 const react_native_gesture_handler_1 = require("react-native-gesture-handler");
+const loadingIndicator_1 = __importDefault(require("../loadingIndicator"));
 const ASListView = (props) => {
-    const { data, renderItem } = props, restProps = __rest(props, ["data", "renderItem"]);
+    const { data, renderItem, loading } = props, restProps = __rest(props, ["data", "renderItem", "loading"]);
     const keyExtractor = (item, index) => {
         return `${(item === null || item === void 0 ? void 0 : item.id) || (item === null || item === void 0 ? void 0 : item.label) || ''} - ${index}`;
     };
-    return (react_1.default.createElement(react_native_gesture_handler_1.FlatList, Object.assign({ data: data, renderItem: renderItem, keyExtractor: keyExtractor }, restProps)));
+    return (react_1.default.createElement(react_1.default.Fragment, null,
+        react_1.default.createElement(loadingIndicator_1.default, { style: styles.loadingIndicator, loading: loading }),
+        react_1.default.createElement(react_native_gesture_handler_1.FlatList, Object.assign({ data: data, renderItem: renderItem, keyExtractor: keyExtractor }, restProps))));
 };
 exports.default = ASListView;
+const styles = react_native_1.StyleSheet.create({
+    loadingIndicator: {
+        marginVertical: 8
+    }
+});
 // Note: ASListView example
 /*
              <ASListView data={[{id: '1', title: 'Item 1'},

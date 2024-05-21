@@ -1,15 +1,8 @@
 import React, {useContext} from 'react';
-import {
-    ActivityIndicator,
-    StyleSheet,
-    TextStyle,
-    TouchableOpacity,
-    TouchableOpacityProps,
-    View,
-    ViewStyle
-} from 'react-native';
+import {StyleSheet, TextStyle, TouchableOpacity, TouchableOpacityProps, View, ViewStyle} from 'react-native';
 import ASText from "../text";
 import {ThemeContext} from '../../context/theme-context'
+import LoadingIndicator from "../loadingIndicator";
 
 export type  ASButtonProps = TouchableOpacityProps & {
     label?: string;
@@ -19,7 +12,7 @@ export type  ASButtonProps = TouchableOpacityProps & {
     disabled?: boolean
     children?: React.ReactNode
     simpleTextButton?: boolean
-    loading?: boolean | boolean[]
+    loading?: boolean | boolean[] | undefined
 }
 
 const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
@@ -35,8 +28,6 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
         loading,
         ...restProps
     } = props
-    // Handle multiple loading. If any of the workflow loading is true => Show loading
-    const isLoading = loading && Array.isArray(loading) ? loading.some((item: boolean) => item) : loading
 
     const getButtonBackgroundColor = () => {
         if (disabled) {
@@ -93,8 +84,7 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
                 <View style={styles.labelContainer}>
                     <ASText
                         style={[styles.textStyle, getButtonTextStyle(), textStyle, {color: getButtonTextColor()}]}>{label}</ASText>
-                    {isLoading && <ActivityIndicator animating={isLoading} size={'small'} hidesWhenStopped
-                                                     style={styles.loadingIndicator}/>}
+                    <LoadingIndicator loading={loading} style={styles.loadingIndicator}/>
                 </View>
             }
         </TouchableOpacity>

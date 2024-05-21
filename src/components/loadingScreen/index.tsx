@@ -1,5 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {ActivityIndicator, ActivityIndicatorProps, ColorValue, Modal, StyleSheet, View} from "react-native";
+import {getLoadingStatus} from "../../utils/commonUtils";
+import {useIsTimeoutLoading} from "../../utils/hook";
 
 export type ASLoadingScreenProps = ActivityIndicatorProps & {
     loading: boolean | boolean[]
@@ -12,26 +14,14 @@ const ASLoadingScreen: React.FC<ASLoadingScreenProps> = (props: ASLoadingScreenP
         loading,
         size = 'large',
         backgroundColor = "rgba(0,0,0,0.5)",
-        timeout = 60000
+        timeout = 40000
     } = props
-    const [isShow, setIsShow] = useState<boolean>(true);
     // Handle multiple loading. If any of the workflow loading is true => Show loading
-    const isLoading = loading && Array.isArray(loading) ? loading.some((item: boolean) => item) : loading
+    const isLoading = getLoadingStatus(loading)
+    // If timeout stop loading screen to prevent indefinite loading
+    const isTimeout = useIsTimeoutLoading(timeout,isLoading)
 
-    // This timeout to make sure loading will turn off after some time
-    // To prevent indefinite loading
-    useEffect(() => {
-        const timeoutLoading = setTimeout(() => {
-            setIsShow(false)
-        }, timeout)
-
-        return () => {
-            !!timeoutLoading && clearTimeout(timeoutLoading)
-        }
-    }, [])
-
-    if (!isShow) return null
-
+    if (isTimeout) return null
 
     return (
         <Modal

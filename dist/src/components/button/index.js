@@ -41,13 +41,10 @@ const react_1 = __importStar(require("react"));
 const react_native_1 = require("react-native");
 const text_1 = __importDefault(require("../text"));
 const theme_context_1 = require("../../context/theme-context");
+const loadingIndicator_1 = __importDefault(require("../loadingIndicator"));
 const ASButton = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { label = '', style, textStyle, onPress, disabled, children, simpleTextButton, loading } = props, restProps = __rest(props
-    // Handle multiple loading. If any of the workflow loading is true => Show loading
-    , ["label", "style", "textStyle", "onPress", "disabled", "children", "simpleTextButton", "loading"]);
-    // Handle multiple loading. If any of the workflow loading is true => Show loading
-    const isLoading = loading && Array.isArray(loading) ? loading.some((item) => item) : loading;
+    const { label = '', style, textStyle, onPress, disabled, children, simpleTextButton, loading } = props, restProps = __rest(props, ["label", "style", "textStyle", "onPress", "disabled", "children", "simpleTextButton", "loading"]);
     const getButtonBackgroundColor = () => {
         if (disabled) {
             return colors.tertiary;
@@ -89,7 +86,7 @@ const ASButton = (props) => {
         :
             react_1.default.createElement(react_native_1.View, { style: styles.labelContainer },
                 react_1.default.createElement(text_1.default, { style: [styles.textStyle, getButtonTextStyle(), textStyle, { color: getButtonTextColor() }] }, label),
-                isLoading && react_1.default.createElement(react_native_1.ActivityIndicator, { animating: isLoading, size: 'small', hidesWhenStopped: true, style: styles.loadingIndicator }))));
+                react_1.default.createElement(loadingIndicator_1.default, { loading: loading, style: styles.loadingIndicator }))));
 };
 const styles = react_native_1.StyleSheet.create({
     buttonStyle: {
