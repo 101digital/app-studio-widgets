@@ -62,7 +62,7 @@ const E6TransactionHistoryListView = (props) => {
         }
         return () => {
         };
-    }, []);
+    }, [data]);
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement(loadingIndicator_1.default, { style: styles.loadingIndicator, loading: loading }),
         react_1.default.createElement(react_native_gesture_handler_1.FlatList, Object.assign({ data: transactionList, renderItem: renderItem, keyExtractor: keyExtractor }, restProps))));
