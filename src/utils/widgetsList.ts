@@ -35,10 +35,8 @@ import {
     ASTimerProps,
     ASVerticalDividerProps,
     ASWrapProps,
-    E6TransactionHistoryListViewProps
+    E6TransactionHistoryListViewProps,
 } from "../../index";
-import ASLoadingScreen from "../components/loadingScreen";
-import ASLoadingIndicator from "../components/loadingIndicator";
 
 export type WidgetsName = keyof WidgetsList
 
