@@ -14,7 +14,8 @@ import {
     ASFormValidationProps,
     ASImageProps,
     ASListTileProps,
-    ASListViewProps, ASLoadingIndicatorProps,
+    ASListViewProps,
+    ASLoadingIndicatorProps,
     ASLoadingScreenProps,
     ASPageViewProps,
     ASPasswordTextField,
@@ -33,7 +34,8 @@ import {
     ASTextProps,
     ASTimerProps,
     ASVerticalDividerProps,
-    ASWrapProps
+    ASWrapProps,
+    E6TransactionHistoryListViewProps
 } from "../../index";
 import ASLoadingScreen from "../components/loadingScreen";
 import ASLoadingIndicator from "../components/loadingIndicator";
@@ -75,7 +77,10 @@ export type WidgetsList = {
     ASPasswordTextField: (attributes: ASPasswordTextFieldProps) => string
     ASPopUp: (attributes: ASPopUpProps) => string
     ASLoadingScreen: (attributes: ASLoadingScreenProps) => string
-    ASLoadingIndicator:  (attributes: ASLoadingIndicatorProps) => string
+    ASLoadingIndicator: (attributes: ASLoadingIndicatorProps) => string
+
+    // E6 custom widget
+    E6TransactionHistoryListView: (attributes: E6TransactionHistoryListViewProps) => string
 }
 
 export class ASWidgetsList {
@@ -217,7 +222,6 @@ export class ASWidgetsList {
 
         // Handle logic for ASFormValidation
         if (widgetName === 'ASFormValidation') {
-            console.log('ijshas9uhdfsif', attributes?.initialValues)
             const keys = Object.keys(attributes?.initialValues);
             const destructuredValueString = `const {${keys.join(', ')}} = values`;
             return `<ASFormValidation${ASWidgetsList.getWidgetAttributes(attributes, 'ASFormValidation')}>
@@ -235,7 +239,7 @@ export class ASWidgetsList {
         // Handle logic for ASText
         if (widgetName === 'ASText') {
             // ASText will use label:string as children
-            const _textValue= attributes?.label || attributes?.children
+            const _textValue = attributes?.label || attributes?.children
             // Text value is not a string (by checking startsWith character) then return object. EX: `${value}`
             // else return a string. Ex: `value`
             /*
@@ -298,7 +302,10 @@ export class ASWidgetsList {
             ASPasswordTextField: (attributes: ASPasswordTextFieldProps) => ASWidgetsList.getWidgetString('ASPasswordTextField', attributes),
             ASPopUp: (attributes: ASPopUpProps) => ASWidgetsList.getWidgetString('ASPopUp', attributes),
             ASLoadingScreen: (attributes: ASLoadingScreenProps) => ASWidgetsList.getWidgetString('ASLoadingScreen', attributes),
-            ASLoadingIndicator:  (attributes: ASLoadingIndicatorProps) => ASWidgetsList.getWidgetString('ASLoadingIndicator', attributes),
+            ASLoadingIndicator: (attributes: ASLoadingIndicatorProps) => ASWidgetsList.getWidgetString('ASLoadingIndicator', attributes),
+
+            // E6 custom widget
+            E6TransactionHistoryListView: (attributes: E6TransactionHistoryListViewProps) => ASWidgetsList.getWidgetString('E6TransactionHistoryListView', attributes),
         }
     }
 

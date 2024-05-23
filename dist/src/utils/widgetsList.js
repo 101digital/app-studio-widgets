@@ -119,7 +119,6 @@ class ASWidgetsList {
         // Handle custom logic for widget that has children
         // Handle logic for ASFormValidation
         if (widgetName === 'ASFormValidation') {
-            console.log('ijshas9uhdfsif', attributes === null || attributes === void 0 ? void 0 : attributes.initialValues);
             const keys = Object.keys(attributes === null || attributes === void 0 ? void 0 : attributes.initialValues);
             const destructuredValueString = `const {${keys.join(', ')}} = values`;
             return `<ASFormValidation${ASWidgetsList.getWidgetAttributes(attributes, 'ASFormValidation')}>
@@ -196,6 +195,8 @@ class ASWidgetsList {
             ASPopUp: (attributes) => ASWidgetsList.getWidgetString('ASPopUp', attributes),
             ASLoadingScreen: (attributes) => ASWidgetsList.getWidgetString('ASLoadingScreen', attributes),
             ASLoadingIndicator: (attributes) => ASWidgetsList.getWidgetString('ASLoadingIndicator', attributes),
+            // E6 custom widget
+            E6TransactionHistoryListView: (attributes) => ASWidgetsList.getWidgetString('E6TransactionHistoryListView', attributes),
         };
     }
     getWidgetByName(name) {
