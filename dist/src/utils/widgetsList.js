@@ -116,19 +116,37 @@ class ASWidgetsList {
         return Array.isArray(attributes === null || attributes === void 0 ? void 0 : attributes.children) ? attributes === null || attributes === void 0 ? void 0 : attributes.children.join('') : attributes === null || attributes === void 0 ? void 0 : attributes.children;
     }
     static getWidgetString(widgetName, attributes) {
-        //Handle logic for ASFormValidation
+        // Handle custom logic for widget that has children
+        // Handle logic for ASFormValidation
         if (widgetName === 'ASFormValidation') {
+            console.log('ijshas9uhdfsif', attributes === null || attributes === void 0 ? void 0 : attributes.initialValues);
+            const keys = Object.keys(attributes === null || attributes === void 0 ? void 0 : attributes.initialValues);
+            const destructuredValueString = `const {${keys.join(', ')}} = values`;
             return `<ASFormValidation${ASWidgetsList.getWidgetAttributes(attributes, 'ASFormValidation')}>
-                         {(formikProps: FormikProps<any>)=>(
-                            <>${ASWidgetsList.returnWidgetArrayOrString(attributes)}</>
-                         )}
+                         {(formikProps: FormikProps<any>)=> {
+                             const {values, handleSubmit} = formikProps
+                             ${destructuredValueString}
+                                return (
+                                    <>${ASWidgetsList.returnWidgetArrayOrString(attributes)}</>
+                                 )
+                             }
+                         }
                     </ASFormValidation>`;
         }
-        //Handle logic for ASText
+        // Handle logic for ASText
         if (widgetName === 'ASText') {
             // ASText will use label:string as children
+            const _textValue = (attributes === null || attributes === void 0 ? void 0 : attributes.label) || (attributes === null || attributes === void 0 ? void 0 : attributes.children);
+            // Text value is not a string (by checking startsWith character) then return object. EX: `${value}`
+            // else return a string. Ex: `value`
+            /*
+            *    ${value} => value
+            *    value => `value`
+            *    This is ${value} => `This is ${value}`
+            * */
+            const labelValue = (_textValue === null || _textValue === void 0 ? void 0 : _textValue.startsWith('${')) || (_textValue === null || _textValue === void 0 ? void 0 : _textValue.startsWith('{')) ? `${_textValue.replace(/[$\{\}]/g, '')}` : `\`${_textValue}\``;
             return `<ASText${ASWidgetsList.getWidgetAttributes(attributes, 'ASText')}>
-                        ${(attributes === null || attributes === void 0 ? void 0 : attributes.label) || (attributes === null || attributes === void 0 ? void 0 : attributes.children)}
+                        {${labelValue}}
                     </ASText>`;
         }
         //If widgets has children then return a wrapper else return a tag
@@ -177,6 +195,7 @@ class ASWidgetsList {
             ASPasswordTextField: (attributes) => ASWidgetsList.getWidgetString('ASPasswordTextField', attributes),
             ASPopUp: (attributes) => ASWidgetsList.getWidgetString('ASPopUp', attributes),
             ASLoadingScreen: (attributes) => ASWidgetsList.getWidgetString('ASLoadingScreen', attributes),
+            ASLoadingIndicator: (attributes) => ASWidgetsList.getWidgetString('ASLoadingIndicator', attributes),
         };
     }
     getWidgetByName(name) {

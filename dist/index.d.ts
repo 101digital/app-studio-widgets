@@ -36,3 +36,5 @@ export { ThemeContext, useThemeContextValue, ThemeProvider, createThemeData, use
 export { default as ASPasswordTextField, ASPasswordTextFieldProps } from './src/components/passwordTextField';
 export { default as ASPopUp, ASPopUpProps } from './src/components/popUp';
 export { default as ASLoadingScreen, ASLoadingScreenProps } from './src/components/loadingScreen';
+export { default as ASLoadingIndicator, ASLoadingIndicatorProps } from './src/components/loadingIndicator';
+export { default as E6TransactionHistoryListView, E6TransactionHistoryListViewProps } from './src/customComponent/e6TransactionHistoryListView';

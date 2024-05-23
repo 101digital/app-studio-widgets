@@ -18,7 +18,7 @@ const react_1 = __importDefault(require("react"));
 const react_native_1 = require("react-native");
 const commonUtils_1 = require("../../utils/commonUtils");
 const hook_1 = require("../../utils/hook");
-const LoadingIndicator = (props) => {
+const ASLoadingIndicator = (props) => {
     const { loading, size = 'small', timeout = 40000 } = props, restProps = __rest(props
     // Handle multiple loading. If any of the workflow loading is true => Show loading
     , ["loading", "size", "timeout"]);
@@ -33,4 +33,4 @@ const LoadingIndicator = (props) => {
 const styles = react_native_1.StyleSheet.create({
     loadingIndicator: {},
 });
-exports.default = LoadingIndicator;
+exports.default = ASLoadingIndicator;

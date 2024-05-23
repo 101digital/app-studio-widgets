@@ -14,7 +14,7 @@ import {
     ASFormValidationProps,
     ASImageProps,
     ASListTileProps,
-    ASListViewProps,
+    ASListViewProps, ASLoadingIndicatorProps,
     ASLoadingScreenProps,
     ASPageViewProps,
     ASPasswordTextField,
@@ -36,6 +36,7 @@ import {
     ASWrapProps
 } from "../../index";
 import ASLoadingScreen from "../components/loadingScreen";
+import ASLoadingIndicator from "../components/loadingIndicator";
 
 export type WidgetsName = keyof WidgetsList
 
@@ -74,6 +75,7 @@ export type WidgetsList = {
     ASPasswordTextField: (attributes: ASPasswordTextFieldProps) => string
     ASPopUp: (attributes: ASPopUpProps) => string
     ASLoadingScreen: (attributes: ASLoadingScreenProps) => string
+    ASLoadingIndicator:  (attributes: ASLoadingIndicatorProps) => string
 }
 
 export class ASWidgetsList {
@@ -211,20 +213,39 @@ export class ASWidgetsList {
     }
 
     private static getWidgetString(widgetName: any, attributes: any): string {
-        //Handle logic for ASFormValidation
+        // Handle custom logic for widget that has children
+
+        // Handle logic for ASFormValidation
         if (widgetName === 'ASFormValidation') {
+            console.log('ijshas9uhdfsif', attributes?.initialValues)
+            const keys = Object.keys(attributes?.initialValues);
+            const destructuredValueString = `const {${keys.join(', ')}} = values`;
             return `<ASFormValidation${ASWidgetsList.getWidgetAttributes(attributes, 'ASFormValidation')}>
-                         {(formikProps: FormikProps<any>)=>(
-                            <>${ASWidgetsList.returnWidgetArrayOrString(attributes)}</>
-                         )}
+                         {(formikProps: FormikProps<any>)=> {
+                             const {values, handleSubmit} = formikProps
+                             ${destructuredValueString}
+                                return (
+                                    <>${ASWidgetsList.returnWidgetArrayOrString(attributes)}</>
+                                 )
+                             }
+                         }
                     </ASFormValidation>`
         }
 
-        //Handle logic for ASText
+        // Handle logic for ASText
         if (widgetName === 'ASText') {
             // ASText will use label:string as children
+            const _textValue= attributes?.label || attributes?.children
+            // Text value is not a string (by checking startsWith character) then return object. EX: `${value}`
+            // else return a string. Ex: `value`
+            /*
+            *    ${value} => value
+            *    value => `value`
+            *    This is ${value} => `This is ${value}`
+            * */
+            const labelValue = _textValue?.startsWith('${') || _textValue?.startsWith('{') ? `${_textValue.replace(/[$\{\}]/g, '')}` : `\`${_textValue}\``
             return `<ASText${ASWidgetsList.getWidgetAttributes(attributes, 'ASText')}>
-                        ${attributes?.label || attributes?.children}
+                        {${labelValue}}
                     </ASText>`
         }
 
@@ -277,6 +298,7 @@ export class ASWidgetsList {
             ASPasswordTextField: (attributes: ASPasswordTextFieldProps) => ASWidgetsList.getWidgetString('ASPasswordTextField', attributes),
             ASPopUp: (attributes: ASPopUpProps) => ASWidgetsList.getWidgetString('ASPopUp', attributes),
             ASLoadingScreen: (attributes: ASLoadingScreenProps) => ASWidgetsList.getWidgetString('ASLoadingScreen', attributes),
+            ASLoadingIndicator:  (attributes: ASLoadingIndicatorProps) => ASWidgetsList.getWidgetString('ASLoadingIndicator', attributes),
         }
     }
 

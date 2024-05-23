@@ -3,12 +3,12 @@ import {ActivityIndicator, ActivityIndicatorProps, StyleSheet} from "react-nativ
 import {getLoadingStatus} from "../../utils/commonUtils";
 import {useIsTimeoutLoading} from "../../utils/hook";
 
-export type LoadingIndicatorProps = ActivityIndicatorProps & {
+export type ASLoadingIndicatorProps = ActivityIndicatorProps & {
     loading?: boolean | boolean[] | undefined
     timeout?: number
 }
 
-const LoadingIndicator: React.FC<LoadingIndicatorProps> = (props: LoadingIndicatorProps) => {
+const ASLoadingIndicator: React.FC<ASLoadingIndicatorProps> = (props: ASLoadingIndicatorProps) => {
     const {
         loading,
         size = 'small',
@@ -29,7 +29,6 @@ const LoadingIndicator: React.FC<LoadingIndicatorProps> = (props: LoadingIndicat
             hidesWhenStopped
             style={styles.loadingIndicator}
             {...restProps}/>
-
     )
 }
 
@@ -37,4 +36,4 @@ const styles = StyleSheet.create({
     loadingIndicator: {},
 })
 
-export default LoadingIndicator
+export default ASLoadingIndicator

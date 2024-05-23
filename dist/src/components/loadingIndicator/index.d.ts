@@ -1,8 +1,8 @@
 import React from "react";
 import { ActivityIndicatorProps } from "react-native";
-export type LoadingIndicatorProps = ActivityIndicatorProps & {
+export type ASLoadingIndicatorProps = ActivityIndicatorProps & {
     loading?: boolean | boolean[] | undefined;
     timeout?: number;
 };
-declare const LoadingIndicator: React.FC<LoadingIndicatorProps>;
-export default LoadingIndicator;
+declare const ASLoadingIndicator: React.FC<ASLoadingIndicatorProps>;
+export default ASLoadingIndicator;
