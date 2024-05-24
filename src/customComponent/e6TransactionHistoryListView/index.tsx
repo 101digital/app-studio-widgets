@@ -35,8 +35,8 @@ const E6TransactionHistoryListView: React.FC<E6TransactionHistoryListViewProps> 
         }
 
         return () => {
-
         };
+
     }, [data]);
 
     return (

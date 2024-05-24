@@ -49,13 +49,14 @@ const ASTextField = (props) => {
     const { name, onFocus, onBlur, suffixIcon, prefixIcon, prefixText, prefixTextStyle, errorBorderColor, activeBorderColor, inactiveBorderColor, style, placeholderTextColor = colors.secondary, formatError, options, label, type = 'custom', isShowError, formatNumber } = props, restProps = __rest(props, ["name", "onFocus", "onBlur", "suffixIcon", "prefixIcon", "prefixText", "prefixTextStyle", "errorBorderColor", "activeBorderColor", "inactiveBorderColor", "style", "placeholderTextColor", "formatError", "options", "label", "type", "isShowError", "formatNumber"]);
     const [active, setActive] = (0, react_1.useState)(false);
     const [field, meta, helpers] = (0, formik_1.useField)(name);
-    const showMask = !!(options === null || options === void 0 ? void 0 : options.mask);
+    const showMask = options && Object.keys(options).length > 0;
     const handleOnFocus = (event) => {
         setActive(true);
         if (onFocus) {
             onFocus(event);
         }
     };
+    // Triger this in onBlur envent
     const handleFormat = () => {
         let text = field.value;
         let numberValue = typeof text === 'string' ? parseFloat(text) : Number(text);
@@ -100,14 +101,6 @@ const ASTextField = (props) => {
     const handleOnChange = (e) => {
         field === null || field === void 0 ? void 0 : field.onChange(name)(e);
     };
-    // let separatorColor: string;
-    // if (meta?.error && meta?.touched) {
-    //     separatorColor = (errorBorderColor ?? colors.errorContainer)!;
-    // } else {
-    //     separatorColor = active
-    //         ? (activeBorderColor ?? colors.onSecondaryFixedVariant)!
-    //         : (inactiveBorderColor ?? colors.onSecondary)!;
-    // }
     const getErrorMessage = (error) => {
         var _a;
         return (_a = formatError === null || formatError === void 0 ? void 0 : formatError(error)) !== null && _a !== void 0 ? _a : error;

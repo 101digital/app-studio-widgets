@@ -68,7 +68,7 @@ const ASTextField = (props: ASTextFieldProps) => {
     } = props;
     const [active, setActive] = useState(false);
     const [field, meta, helpers] = useField(name);
-    const showMask = !!options?.mask;
+    const showMask = options && Object.keys(options).length > 0
 
     const handleOnFocus = (event: NativeSyntheticEvent<TextInputFocusEventData>) => {
         setActive(true);
@@ -76,7 +76,8 @@ const ASTextField = (props: ASTextFieldProps) => {
             onFocus(event);
         }
     };
-
+    
+    // Triger this in onBlur envent
     const handleFormat = () => {
         let text = field.value
         let numberValue = typeof text === 'string' ? parseFloat(text) : Number(text);
@@ -127,15 +128,6 @@ const ASTextField = (props: ASTextFieldProps) => {
     const handleOnChange = (e: string) => {
         field?.onChange(name)(e)
     }
-
-    // let separatorColor: string;
-    // if (meta?.error && meta?.touched) {
-    //     separatorColor = (errorBorderColor ?? colors.errorContainer)!;
-    // } else {
-    //     separatorColor = active
-    //         ? (activeBorderColor ?? colors.onSecondaryFixedVariant)!
-    //         : (inactiveBorderColor ?? colors.onSecondary)!;
-    // }
 
     const getErrorMessage = (error: string) => {
         return formatError?.(error) ?? error;
