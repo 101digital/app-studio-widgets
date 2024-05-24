@@ -36,7 +36,7 @@ export type ASTextFieldProps = Omit<TextInputMaskProps, "type"> &
     style?: ASTextFieldStyles;
     formatError?: (error: string) => string;
     label?: string;
-    type?: TextInputMaskTypeProp
+    textFieldType?: TextInputMaskTypeProp
     isShowError?: boolean
     formatNumber?: 'comma' | 'dot' | 'percentage' | undefined
     prefixText?: string;
@@ -61,7 +61,7 @@ const ASTextField = (props: ASTextFieldProps) => {
         formatError,
         options,
         label,
-        type = 'custom',
+        textFieldType = 'custom',
         isShowError,
         formatNumber,
         ...restProps
@@ -76,7 +76,7 @@ const ASTextField = (props: ASTextFieldProps) => {
             onFocus(event);
         }
     };
-    
+
     // Triger this in onBlur envent
     const handleFormat = () => {
         let text = field.value
@@ -166,7 +166,7 @@ const ASTextField = (props: ASTextFieldProps) => {
                                 }]}
                                 placeholderTextColor={placeholderTextColor}
                                 options={options}
-                                type={type}
+                                type={textFieldType}
                                 {...restProps}
                             />
                         ) : (

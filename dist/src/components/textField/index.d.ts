@@ -19,7 +19,7 @@ export type ASTextFieldProps = Omit<TextInputMaskProps, "type"> & TextInputProps
     style?: ASTextFieldStyles;
     formatError?: (error: string) => string;
     label?: string;
-    type?: TextInputMaskTypeProp;
+    textFieldType?: TextInputMaskTypeProp;
     isShowError?: boolean;
     formatNumber?: 'comma' | 'dot' | 'percentage' | undefined;
     prefixText?: string;
