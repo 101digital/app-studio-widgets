@@ -165,9 +165,9 @@ const ASTextField = (props: ASTextFieldProps) => {
                                     backgroundColor: colors.background
                                 }]}
                                 placeholderTextColor={placeholderTextColor}
+                                {...restProps}
                                 options={options}
                                 type={textFieldType}
-                                {...restProps}
                             />
                         ) : (
                             <TextInput
