@@ -85,7 +85,7 @@ const ASButton = (props) => {
         children
         :
             react_1.default.createElement(react_native_1.View, { style: styles.labelContainer },
-                react_1.default.createElement(text_1.default, { style: [styles.textStyle, getButtonTextStyle(), textStyle, { color: getButtonTextColor() }] }, label),
+                react_1.default.createElement(text_1.default, { style: Object.assign(Object.assign(Object.assign(Object.assign({}, styles.textStyle), getButtonTextStyle()), textStyle), { color: getButtonTextColor() }) }, label),
                 react_1.default.createElement(loadingIndicator_1.default, { loading: loading, style: styles.loadingIndicator }))));
 };
 const styles = react_native_1.StyleSheet.create({

@@ -83,7 +83,12 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
                 :
                 <View style={styles.labelContainer}>
                     <ASText
-                        style={[styles.textStyle, getButtonTextStyle(), textStyle, {color: getButtonTextColor()}]}>{label}</ASText>
+                        style={{
+                            ...styles.textStyle, ...getButtonTextStyle(), ...textStyle,
+                            color: getButtonTextColor()
+                        }}>
+                        {label}
+                    </ASText>
                     <LoadingIndicator loading={loading} style={styles.loadingIndicator}/>
                 </View>
             }
