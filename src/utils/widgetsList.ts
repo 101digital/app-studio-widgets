@@ -36,6 +36,7 @@ import {
     ASVerticalDividerProps,
     ASWrapProps,
     E6TransactionHistoryListViewProps,
+    ASSwipeButtonProps
 } from "../../index";
 
 export type WidgetsName = keyof WidgetsList
@@ -76,7 +77,7 @@ export type WidgetsList = {
     ASPopUp: (attributes: ASPopUpProps) => string
     ASLoadingScreen: (attributes: ASLoadingScreenProps) => string
     ASLoadingIndicator: (attributes: ASLoadingIndicatorProps) => string
-
+    ASSwipeButton: (attributes: ASSwipeButtonProps) => string
     // E6 custom widget
     E6TransactionHistoryListView: (attributes: E6TransactionHistoryListViewProps) => string
 }
@@ -301,7 +302,7 @@ export class ASWidgetsList {
             ASPopUp: (attributes: ASPopUpProps) => ASWidgetsList.getWidgetString('ASPopUp', attributes),
             ASLoadingScreen: (attributes: ASLoadingScreenProps) => ASWidgetsList.getWidgetString('ASLoadingScreen', attributes),
             ASLoadingIndicator: (attributes: ASLoadingIndicatorProps) => ASWidgetsList.getWidgetString('ASLoadingIndicator', attributes),
-
+            ASSwipeButton: (attributes: ASSwipeButtonProps) => ASWidgetsList.getWidgetString('ASSwipeButton', attributes),
             // E6 custom widget
             E6TransactionHistoryListView: (attributes: E6TransactionHistoryListViewProps) => ASWidgetsList.getWidgetString('E6TransactionHistoryListView', attributes),
         }

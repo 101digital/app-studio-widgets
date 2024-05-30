@@ -195,6 +195,7 @@ class ASWidgetsList {
             ASPopUp: (attributes) => ASWidgetsList.getWidgetString('ASPopUp', attributes),
             ASLoadingScreen: (attributes) => ASWidgetsList.getWidgetString('ASLoadingScreen', attributes),
             ASLoadingIndicator: (attributes) => ASWidgetsList.getWidgetString('ASLoadingIndicator', attributes),
+            ASSwipeButton: (attributes) => ASWidgetsList.getWidgetString('ASSwipeButton', attributes),
             // E6 custom widget
             E6TransactionHistoryListView: (attributes) => ASWidgetsList.getWidgetString('E6TransactionHistoryListView', attributes),
         };

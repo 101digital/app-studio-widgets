@@ -1,4 +1,4 @@
-import { ASBadgeProps, ASButtonProps, ASCalendarProps, ASCheckBoxProps, ASChoiceChipsProps, ASCircleChartProps, ASColumnProps, ASContainerProps, ASCounterProps, ASDividerProps, ASDropDownProps, ASExpandableTextProps, ASFormValidationProps, ASImageProps, ASListTileProps, ASListViewProps, ASLoadingIndicatorProps, ASLoadingScreenProps, ASPageViewProps, ASPasswordTextFieldProps, ASPinProps, ASPopUpProps, ASProgressBarProps, ASRadioButtonProps, ASRichTextProps, ASRowProps, ASSliderProps, ASSpacerProps, ASStackProps, ASSwitchProps, ASTextFieldProps, ASTextProps, ASTimerProps, ASVerticalDividerProps, ASWrapProps, E6TransactionHistoryListViewProps } from "../../index";
+import { ASBadgeProps, ASButtonProps, ASCalendarProps, ASCheckBoxProps, ASChoiceChipsProps, ASCircleChartProps, ASColumnProps, ASContainerProps, ASCounterProps, ASDividerProps, ASDropDownProps, ASExpandableTextProps, ASFormValidationProps, ASImageProps, ASListTileProps, ASListViewProps, ASLoadingIndicatorProps, ASLoadingScreenProps, ASPageViewProps, ASPasswordTextFieldProps, ASPinProps, ASPopUpProps, ASProgressBarProps, ASRadioButtonProps, ASRichTextProps, ASRowProps, ASSliderProps, ASSpacerProps, ASStackProps, ASSwitchProps, ASTextFieldProps, ASTextProps, ASTimerProps, ASVerticalDividerProps, ASWrapProps, E6TransactionHistoryListViewProps, ASSwipeButtonProps } from "../../index";
 export type WidgetsName = keyof WidgetsList;
 export type WidgetsList = {
     ASContainer: (attributes: ASContainerProps) => string;
@@ -36,6 +36,7 @@ export type WidgetsList = {
     ASPopUp: (attributes: ASPopUpProps) => string;
     ASLoadingScreen: (attributes: ASLoadingScreenProps) => string;
     ASLoadingIndicator: (attributes: ASLoadingIndicatorProps) => string;
+    ASSwipeButton: (attributes: ASSwipeButtonProps) => string;
     E6TransactionHistoryListView: (attributes: E6TransactionHistoryListViewProps) => string;
 };
 export declare class ASWidgetsList {
