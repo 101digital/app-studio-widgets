@@ -42,13 +42,16 @@ const ASText = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
     const _f = props || {}, { children, style, labelType } = _f, restProps = __rest(_f, ["children", "style", "labelType"]);
     let labelValue = children;
+    //TODO: Remove this temeraly code and defnine this in DB
     if (labelType === 'number' && (typeof labelValue === "string" || typeof labelValue === "number")) {
+        //Format number 1234 -> 1,234.00
         labelValue = parseFloat((_a = labelValue === null || labelValue === void 0 ? void 0 : labelValue.toString()) === null || _a === void 0 ? void 0 : _a.replace(',', '')).toLocaleString('en-US', {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2
         });
     }
     else if (labelType === 'datetime' && typeof labelValue === "number") {
+        // Format date from timestamp
         const date = new Date(labelValue);
         // Define options for formatting
         const options = {
@@ -64,6 +67,9 @@ const ASText = (props) => {
             + `${(_c = parts === null || parts === void 0 ? void 0 : parts.find((part) => part.type === 'day')) === null || _c === void 0 ? void 0 : _c.value} `
             + `${(_d = parts === null || parts === void 0 ? void 0 : parts.find((part) => part.type === 'month')) === null || _d === void 0 ? void 0 : _d.value} `
             + `${(_e = parts === null || parts === void 0 ? void 0 : parts.find((part) => part.type === 'year')) === null || _e === void 0 ? void 0 : _e.value}`;
+    }
+    else if (labelType === 'e6ExpiryDate' && labelValue) {
+        labelValue = `${labelValue === null || labelValue === void 0 ? void 0 : labelValue.toString().slice(4)}/${labelValue === null || labelValue === void 0 ? void 0 : labelValue.toString().slice(0, 4)}`;
     }
     const getTextColor = () => {
         let color = colors.primaryFixed;

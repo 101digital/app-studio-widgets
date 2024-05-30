@@ -5,7 +5,7 @@ import {ThemeContext} from "../../context/theme-context";
 export type ASTextProps = TextProps & {
     children?: string | undefined | number | React.ReactNode;
     style?: TextStyle;
-    labelType?: 'number' | 'datetime'
+    labelType?: 'number' | 'datetime' | 'e6ExpiryDate'
 }
 
 const ASText: React.FC<ASTextProps> = (props: ASTextProps) => {
@@ -13,14 +13,16 @@ const ASText: React.FC<ASTextProps> = (props: ASTextProps) => {
     const {children, style, labelType, ...restProps} = props || {}
     let labelValue = children
 
+    //TODO: Remove this temeraly code and defnine this in DB
     if (labelType === 'number' && (typeof labelValue === "string" || typeof labelValue === "number")) {
+        //Format number 1234 -> 1,234.00
         labelValue = parseFloat(labelValue?.toString()?.replace(',', '')).toLocaleString('en-US', {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2
         })
     } else if (labelType === 'datetime' && typeof labelValue === "number") {
+        // Format date from timestamp
         const date = new Date(labelValue);
-
         // Define options for formatting
         const options: { [key: string]: string } = {
             weekday: 'short',
@@ -35,7 +37,8 @@ const ASText: React.FC<ASTextProps> = (props: ASTextProps) => {
             + `${parts?.find((part: any) => part.type === 'day')?.value} `
             + `${parts?.find((part: any) => part.type === 'month')?.value} `
             + `${parts?.find((part: any) => part.type === 'year')?.value}`;
-
+    } else if (labelType === 'e6ExpiryDate' && labelValue) {
+        labelValue = `${labelValue?.toString().slice(4)}/${labelValue?.toString().slice(0, 4)}`
     }
 
     const getTextColor = (): { color: string | undefined | ColorValue } => {

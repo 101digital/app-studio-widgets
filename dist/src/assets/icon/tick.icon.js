@@ -24,11 +24,13 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TickIcon = void 0;
-const React = __importStar(require("react"));
+const react_1 = __importStar(require("react"));
 const react_native_svg_1 = __importStar(require("react-native-svg"));
-const colors_1 = require("../../utils/colors");
-const TickIcon = ({ size = 24, color = colors_1.colors.primary }) => (
-// @ts-ignore
-React.createElement(react_native_svg_1.default, { width: size, height: size, viewBox: `0 0 ${size} ${size}`, fill: "none", xmlns: "http://www.w3.org/2000/svg" },
-    React.createElement(react_native_svg_1.Path, { d: "M3.25 10.625L8.65 15.625L16.75 4.375", stroke: color, "stroke-width": "5", "stroke-linecap": "round", "stroke-linejoin": "round" })));
+const theme_context_1 = require("../../context/theme-context");
+const TickIcon = (props) => {
+    const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
+    const { size = 24, color = colors.primary } = props;
+    return (react_1.default.createElement(react_native_svg_1.default, { width: size, height: size, viewBox: `0 0 ${size} ${size}`, fill: "none" },
+        react_1.default.createElement(react_native_svg_1.Path, { d: "M3.25 10.625L8.65 15.625L16.75 4.375", stroke: color, "stroke-width": "5", "stroke-linecap": "round", "stroke-linejoin": "round" })));
+};
 exports.TickIcon = TickIcon;
