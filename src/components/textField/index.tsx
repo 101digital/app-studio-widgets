@@ -1,5 +1,6 @@
 import React, {ReactNode, useContext, useState} from 'react';
 import {
+    ColorValue,
     NativeSyntheticEvent,
     StyleProp,
     StyleSheet,
@@ -41,6 +42,9 @@ export type ASTextFieldProps = Omit<TextInputMaskProps, "type"> &
     formatNumber?: 'comma' | 'dot' | 'percentage' | undefined
     prefixText?: string;
     prefixTextStyle?: StyleProp<TextStyle>;
+    titleTextStyle?: StyleProp<TextStyle>;
+    textFieldBackgroundColor?: string | ColorValue
+    textFieldTextColor?: string | ColorValue
 };
 
 const ASTextField = (props: ASTextFieldProps) => {
@@ -64,6 +68,9 @@ const ASTextField = (props: ASTextFieldProps) => {
         textFieldType = 'custom',
         isShowError,
         formatNumber,
+        titleTextStyle,
+        textFieldBackgroundColor = colors.background,
+        textFieldTextColor = colors.surface,
         ...restProps
     } = props;
     const [active, setActive] = useState(false);
@@ -136,17 +143,16 @@ const ASTextField = (props: ASTextFieldProps) => {
     return (
         <>
             <View style={[styles.containerStyle, {
-                backgroundColor: colors.background,
+                backgroundColor: textFieldBackgroundColor,
                 borderColor: colors.onSecondary,
             }]}>
                 <ASText style={[styles.labelStyle, {
                     color: colors.onTertiary,
-                    backgroundColor: colors.background,
-                }]}>
+                    backgroundColor: textFieldBackgroundColor,
+                }, titleTextStyle]}>
                     {label}
                 </ASText>
                 <View style={[styles.contentContainerStyle,
-                    // {borderColor: separatorColor,}
                 ]}>
                     {prefixIcon}
                     {
@@ -161,8 +167,8 @@ const ASTextField = (props: ASTextFieldProps) => {
                                 value={`${field?.value}`}
                                 onChangeText={handleOnChange}
                                 style={[styles.textInputStyle, {
-                                    color: colors.surface,
-                                    backgroundColor: colors.background
+                                    color: textFieldTextColor,
+                                    backgroundColor: textFieldBackgroundColor
                                 }]}
                                 placeholderTextColor={placeholderTextColor}
                                 {...restProps}
@@ -176,8 +182,8 @@ const ASTextField = (props: ASTextFieldProps) => {
                                 value={`${field?.value}`}
                                 onChangeText={handleOnChange}
                                 style={[styles.textInputStyle, {
-                                    color: colors.surface,
-                                    backgroundColor: colors.background
+                                    color: textFieldTextColor,
+                                    backgroundColor: textFieldBackgroundColor
                                 }]}
                                 placeholderTextColor={placeholderTextColor}
                                 autoComplete={'off'}

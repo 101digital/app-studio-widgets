@@ -52,8 +52,9 @@ const ASText: React.FC<ASTextProps> = (props: ASTextProps) => {
             }
         }
 
-        if (style?.color) {
-            color = style?.color
+        const textStyleObj = Array.isArray(style) ? Object.assign({}, ...style) : style
+        if (textStyleObj?.color) {
+            color = textStyleObj?.color
         }
 
         return {color}

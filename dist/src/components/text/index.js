@@ -78,8 +78,9 @@ const ASText = (props) => {
                 }
             }
         }
-        if (style === null || style === void 0 ? void 0 : style.color) {
-            color = style === null || style === void 0 ? void 0 : style.color;
+        const textStyleObj = Array.isArray(style) ? Object.assign({}, ...style) : style;
+        if (textStyleObj === null || textStyleObj === void 0 ? void 0 : textStyleObj.color) {
+            color = textStyleObj === null || textStyleObj === void 0 ? void 0 : textStyleObj.color;
         }
         return { color };
     };

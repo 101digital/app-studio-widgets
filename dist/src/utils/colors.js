@@ -22,11 +22,11 @@ exports.colors = {
     "surface": "#343434",
     "onSurface": "#666666",
     "surfaceVariant": "#FAF9F5",
-    "accent1": "transparent",
+    "accent1": "#919090",
     "accent2": "#00BA88",
     "accent3": "#0579cc",
     "accent4": "#696969",
-    "accent5": "#919090",
+    "accent5": "transparent",
 };
 const rgbToHex = (color) => {
     const a = color.replace(/[^\d,]/g, '').split(',');

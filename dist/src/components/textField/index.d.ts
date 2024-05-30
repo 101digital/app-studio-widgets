@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { StyleProp, TextInputProps, TextStyle, ViewStyle } from 'react-native';
+import { ColorValue, StyleProp, TextInputProps, TextStyle, ViewStyle } from 'react-native';
 import { TextInputMaskProps, TextInputMaskTypeProp } from 'react-native-masked-text';
 export type ASTextFieldStyles = {
     containerStyle?: StyleProp<ViewStyle>;
@@ -24,6 +24,9 @@ export type ASTextFieldProps = Omit<TextInputMaskProps, "type"> & TextInputProps
     formatNumber?: 'comma' | 'dot' | 'percentage' | undefined;
     prefixText?: string;
     prefixTextStyle?: StyleProp<TextStyle>;
+    titleTextStyle?: StyleProp<TextStyle>;
+    textFieldBackgroundColor?: string | ColorValue;
+    textFieldTextColor?: string | ColorValue;
 };
 declare const ASTextField: {
     (props: ASTextFieldProps): React.JSX.Element;
