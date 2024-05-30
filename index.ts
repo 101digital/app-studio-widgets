@@ -115,6 +115,7 @@ export {
   default as ASDualIconRowButton,
   ASDualIconButtonProps,
 } from "./src/components/dualIconRowButton";
+export { default as ASSwipeButton, ASSwipeButtonProps } from './src/components/swipeButton';
 
 // E6 custom widget
 export {

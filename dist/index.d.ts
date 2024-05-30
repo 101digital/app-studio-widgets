@@ -38,4 +38,5 @@ export { default as ASPopUp, ASPopUpProps } from "./src/components/popUp";
 export { default as ASLoadingScreen, ASLoadingScreenProps, } from "./src/components/loadingScreen";
 export { default as ASLoadingIndicator, ASLoadingIndicatorProps, } from "./src/components/loadingIndicator";
 export { default as ASDualIconRowButton, ASDualIconButtonProps, } from "./src/components/dualIconRowButton";
+export { default as ASSwipeButton, ASSwipeButtonProps } from './src/components/swipeButton';
 export { default as E6TransactionHistoryListView, E6TransactionHistoryListViewProps, } from "./src/customComponent/e6TransactionHistoryListView";
