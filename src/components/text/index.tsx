@@ -38,6 +38,7 @@ const ASText: React.FC<ASTextProps> = (props: ASTextProps) => {
             + `${parts?.find((part: any) => part.type === 'month')?.value} `
             + `${parts?.find((part: any) => part.type === 'year')?.value}`;
     } else if (labelType === 'e6ExpiryDate' && labelValue) {
+        // TODO: Remove this logic only for E6
         labelValue = `${labelValue?.toString().slice(4)}/${labelValue?.toString().slice(0, 4)}`
     }
 
