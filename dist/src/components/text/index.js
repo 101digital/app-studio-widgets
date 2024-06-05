@@ -69,6 +69,7 @@ const ASText = (props) => {
             + `${(_e = parts === null || parts === void 0 ? void 0 : parts.find((part) => part.type === 'year')) === null || _e === void 0 ? void 0 : _e.value}`;
     }
     else if (labelType === 'e6ExpiryDate' && labelValue) {
+        // TODO: Remove this logic only for E6
         labelValue = `${labelValue === null || labelValue === void 0 ? void 0 : labelValue.toString().slice(4)}/${labelValue === null || labelValue === void 0 ? void 0 : labelValue.toString().slice(0, 4)}`;
     }
     const getTextColor = () => {

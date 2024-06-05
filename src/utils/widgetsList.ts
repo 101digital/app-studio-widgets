@@ -89,7 +89,6 @@ export class ASWidgetsList {
 
     private static getReturnValue(attributeValue: any): string {
         let result: any
-
         switch (typeof attributeValue) {
             case 'function':
                 if (typeof attributeValue?.() === 'string') {
@@ -106,7 +105,11 @@ export class ASWidgetsList {
                 result = `{"${attributeValue}"}`
                 break
             case 'object':
-                result = `{${JSON.stringify(attributeValue)}}`
+                if(Array.isArray(attributeValue)){
+                    result = `{[${JSON.stringify(attributeValue)}]}`
+                }else{
+                    result = `{${JSON.stringify(attributeValue)}}`
+                }
                 break
             default:
                 result = `{"${attributeValue}"}`
@@ -119,6 +122,7 @@ export class ASWidgetsList {
     private static getWidgetAttributes(attributes: any, widgetName?: string): string {
         let result: string = ''
         const atrributesObj: any = {...attributes}
+
         if (atrributesObj?.children) {
             delete atrributesObj['children']
         }
@@ -131,11 +135,11 @@ export class ASWidgetsList {
         // Loop through attributes list and add properties / attributes to widget
         for (let key in atrributesObj) {
             let attributeValue = atrributesObj[key]
-
             if (key === 'validationRules' || key === 'validationRule' || key === 'initialValues') {
                 continue
             }
 
+            // All the widgets inside ASFormValidation
             if (key === 'formWidgets') {
                 const formWidgetsList = attributeValue
                 const validationStringArray: any[] = []
@@ -165,40 +169,7 @@ export class ASWidgetsList {
                 })`
                 result += ` validationSchema={${validationSchema}}`
                 result += ` initialValues={ ${JSON.stringify(initialValues).replace(/"/g, "")}}`
-                continue
-            }
-
-            // Handle style object
-            if (key === 'style') {
-                if (!Array.isArray(attributeValue) || attributeValue?.length < 1) {
-                    continue
-                }
-
-                let styleResultString = `{`
-
-                for (const item of attributeValue) {
-                    const value = item?.value
-                    if (typeof item !== 'object' || !('key' in item) || !('value' in item)) {
-                        continue
-                    }
-
-                    // Check if style value is string wrap it with ""
-                    // If start with colors return the same value. Ex: colors.primary
-                    // If style value is object JSON.stringify it. Ex: widget.addStyle('shadowOffset', {width: 0, height: 4})
-                    let _valueResult: any = ''
-                    if (typeof value === 'string') {
-                        _valueResult = `"${value}"`
-                        if (value.startsWith('colors')) {
-                            _valueResult = value
-                        }
-                    } else {
-                        _valueResult = JSON.stringify(value)
-                    }
-
-                    styleResultString += `"${item?.key}": ${_valueResult} ,`
-                }
-                styleResultString += `}`
-                result += ` style={${styleResultString}}`
+                console.log('\nklsjhjbhiybfg----',  JSON.stringify(validationSchema), '\n++++++', JSON.stringify(initialValues) , '\n-----', JSON.stringify(formWidgetsList))
                 continue
             }
 
@@ -221,7 +192,7 @@ export class ASWidgetsList {
 
         // Handle logic for ASFormValidation
         if (widgetName === 'ASFormValidation') {
-            const keys = Object.keys(attributes?.initialValues);
+            const keys = Object.keys(attributes?.initialValues || {});
             const destructuredValueString = `const {${keys.join(', ')}} = values`;
             return `<ASFormValidation${ASWidgetsList.getWidgetAttributes(attributes, 'ASFormValidation')}>
                          {(formikProps: FormikProps<any>)=> {
@@ -266,7 +237,7 @@ export class ASWidgetsList {
         return {
             ASContainer: (attributes: ASContainerProps) => ASWidgetsList.getWidgetString('ASContainer', attributes),
             ASText: (attributes: ASTextProps) => ASWidgetsList.getWidgetString('ASText', {
-                label: attributes?.children,
+                label: attributes?.children || "",
                 ...attributes,
             }),
             ASButton: (attributes: ASButtonProps) => ASWidgetsList.getWidgetString('ASButton', attributes),

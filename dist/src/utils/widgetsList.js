@@ -23,7 +23,12 @@ class ASWidgetsList {
                 result = `{"${attributeValue}"}`;
                 break;
             case 'object':
-                result = `{${JSON.stringify(attributeValue)}}`;
+                if (Array.isArray(attributeValue)) {
+                    result = `{[${JSON.stringify(attributeValue)}]}`;
+                }
+                else {
+                    result = `{${JSON.stringify(attributeValue)}}`;
+                }
                 break;
             default:
                 result = `{"${attributeValue}"}`;
@@ -48,6 +53,7 @@ class ASWidgetsList {
             if (key === 'validationRules' || key === 'validationRule' || key === 'initialValues') {
                 continue;
             }
+            // All the widgets inside ASFormValidation
             if (key === 'formWidgets') {
                 const formWidgetsList = attributeValue;
                 const validationStringArray = [];
@@ -72,36 +78,7 @@ class ASWidgetsList {
                 })`;
                 result += ` validationSchema={${validationSchema}}`;
                 result += ` initialValues={ ${JSON.stringify(initialValues).replace(/"/g, "")}}`;
-                continue;
-            }
-            // Handle style object
-            if (key === 'style') {
-                if (!Array.isArray(attributeValue) || (attributeValue === null || attributeValue === void 0 ? void 0 : attributeValue.length) < 1) {
-                    continue;
-                }
-                let styleResultString = `{`;
-                for (const item of attributeValue) {
-                    const value = item === null || item === void 0 ? void 0 : item.value;
-                    if (typeof item !== 'object' || !('key' in item) || !('value' in item)) {
-                        continue;
-                    }
-                    // Check if style value is string wrap it with ""
-                    // If start with colors return the same value. Ex: colors.primary
-                    // If style value is object JSON.stringify it. Ex: widget.addStyle('shadowOffset', {width: 0, height: 4})
-                    let _valueResult = '';
-                    if (typeof value === 'string') {
-                        _valueResult = `"${value}"`;
-                        if (value.startsWith('colors')) {
-                            _valueResult = value;
-                        }
-                    }
-                    else {
-                        _valueResult = JSON.stringify(value);
-                    }
-                    styleResultString += `"${item === null || item === void 0 ? void 0 : item.key}": ${_valueResult} ,`;
-                }
-                styleResultString += `}`;
-                result += ` style={${styleResultString}}`;
+                console.log('\nklsjhjbhiybfg----', JSON.stringify(validationSchema), '\n++++++', JSON.stringify(initialValues), '\n-----', JSON.stringify(formWidgetsList));
                 continue;
             }
             // Get the return value for each property
@@ -119,7 +96,7 @@ class ASWidgetsList {
         // Handle custom logic for widget that has children
         // Handle logic for ASFormValidation
         if (widgetName === 'ASFormValidation') {
-            const keys = Object.keys(attributes === null || attributes === void 0 ? void 0 : attributes.initialValues);
+            const keys = Object.keys((attributes === null || attributes === void 0 ? void 0 : attributes.initialValues) || {});
             const destructuredValueString = `const {${keys.join(', ')}} = values`;
             return `<ASFormValidation${ASWidgetsList.getWidgetAttributes(attributes, 'ASFormValidation')}>
                          {(formikProps: FormikProps<any>)=> {
@@ -161,7 +138,7 @@ class ASWidgetsList {
     getWidgets() {
         return {
             ASContainer: (attributes) => ASWidgetsList.getWidgetString('ASContainer', attributes),
-            ASText: (attributes) => ASWidgetsList.getWidgetString('ASText', Object.assign({ label: attributes === null || attributes === void 0 ? void 0 : attributes.children }, attributes)),
+            ASText: (attributes) => ASWidgetsList.getWidgetString('ASText', Object.assign({ label: (attributes === null || attributes === void 0 ? void 0 : attributes.children) || "" }, attributes)),
             ASButton: (attributes) => ASWidgetsList.getWidgetString('ASButton', attributes),
             ASTextField: (attributes) => ASWidgetsList.getWidgetString('ASTextField', attributes),
             ASColumn: (attributes) => ASWidgetsList.getWidgetString('ASColumn', attributes),
