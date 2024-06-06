@@ -5,7 +5,7 @@ import {ThemeContext} from "../../context/theme-context";
 export type ASTextProps = TextProps & {
     children?: string | undefined | number | React.ReactNode;
     style?: TextStyle;
-    labelType?: 'number' | 'datetime' | 'e6ExpiryDate'
+    labelType?: 'number' | 'datetime' | 'card-number' | 'e6ExpiryDate'
 }
 
 const ASText: React.FC<ASTextProps> = (props: ASTextProps) => {
@@ -40,6 +40,10 @@ const ASText: React.FC<ASTextProps> = (props: ASTextProps) => {
     } else if (labelType === 'e6ExpiryDate' && labelValue) {
         // TODO: Remove this logic only for E6
         labelValue = `${labelValue?.toString().slice(4)}/${labelValue?.toString().slice(0, 4)}`
+    } else if (labelType === 'card-number' && labelValue && (typeof labelValue === 'string' || typeof labelValue === 'number')) {
+        let cardNumberString = labelValue?.toString()
+        cardNumberString = cardNumberString?.toString()?.replace(/\D/g, '');
+        labelValue = cardNumberString?.replace(/(.{4})/g, '$1 ').trim();
     }
 
     const getTextColor = (): { color: string | undefined | ColorValue } => {
