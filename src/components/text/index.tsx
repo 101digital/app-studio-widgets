@@ -6,12 +6,13 @@ export type ASTextProps = TextProps & {
     children?: string | undefined | number | React.ReactNode;
     style?: TextStyle;
     labelType?: 'number' | 'datetime' | 'card-number' | 'e6ExpiryDate'
+    label?: string
 }
 
 const ASText: React.FC<ASTextProps> = (props: ASTextProps) => {
     const {colors} = useContext(ThemeContext);
-    const {children, style, labelType, ...restProps} = props || {}
-    let labelValue = children
+    const {children, style, labelType, label, ...restProps} = props || {}
+    let labelValue = children || label
 
     //TODO: Remove this temeraly code and defnine this in DB
     if (labelType === 'number' && (typeof labelValue === "string" || typeof labelValue === "number")) {

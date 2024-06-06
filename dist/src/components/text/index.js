@@ -40,8 +40,8 @@ const theme_context_1 = require("../../context/theme-context");
 const ASText = (props) => {
     var _a, _b, _c, _d, _e, _f;
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const _g = props || {}, { children, style, labelType } = _g, restProps = __rest(_g, ["children", "style", "labelType"]);
-    let labelValue = children;
+    const _g = props || {}, { children, style, labelType, label } = _g, restProps = __rest(_g, ["children", "style", "labelType", "label"]);
+    let labelValue = children || label;
     //TODO: Remove this temeraly code and defnine this in DB
     if (labelType === 'number' && (typeof labelValue === "string" || typeof labelValue === "number")) {
         //Format number 1234 -> 1,234.00

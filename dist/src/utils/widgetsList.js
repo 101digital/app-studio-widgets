@@ -23,12 +23,11 @@ class ASWidgetsList {
                 result = `{"${attributeValue}"}`;
                 break;
             case 'object':
-                if (Array.isArray(attributeValue)) {
-                    result = `{[${JSON.stringify(attributeValue)}]}`;
-                }
-                else {
-                    result = `{${JSON.stringify(attributeValue)}}`;
-                }
+                // if(Array.isArray(attributeValue)){
+                //     result = `{[${JSON.stringify(attributeValue)}]}`
+                // }else{
+                result = `{${JSON.stringify(attributeValue)}}`;
+                // }
                 break;
             default:
                 result = `{"${attributeValue}"}`;
