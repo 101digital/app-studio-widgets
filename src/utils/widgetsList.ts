@@ -169,7 +169,7 @@ export class ASWidgetsList {
                 })`
                 result += ` validationSchema={${validationSchema}}`
                 result += ` initialValues={ ${JSON.stringify(initialValues).replace(/"/g, "")}}`
-                console.log('\nklsjhjbhiybfg----',  JSON.stringify(validationSchema), '\n++++++', JSON.stringify(initialValues) , '\n-----', JSON.stringify(formWidgetsList))
+                //console.log('\nklsjhjbhiybfg----',  JSON.stringify(validationSchema), '\n++++++', JSON.stringify(initialValues) , '\n-----', JSON.stringify(formWidgetsList))
                 continue
             }
 
