@@ -38,9 +38,9 @@ const react_1 = __importStar(require("react"));
 const react_native_1 = require("react-native");
 const theme_context_1 = require("../../context/theme-context");
 const ASText = (props) => {
-    var _a, _b, _c, _d, _e;
+    var _a, _b, _c, _d, _e, _f;
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const _f = props || {}, { children, style, labelType } = _f, restProps = __rest(_f, ["children", "style", "labelType"]);
+    const _g = props || {}, { children, style, labelType } = _g, restProps = __rest(_g, ["children", "style", "labelType"]);
     let labelValue = children;
     //TODO: Remove this temeraly code and defnine this in DB
     if (labelType === 'number' && (typeof labelValue === "string" || typeof labelValue === "number")) {
@@ -69,7 +69,13 @@ const ASText = (props) => {
             + `${(_e = parts === null || parts === void 0 ? void 0 : parts.find((part) => part.type === 'year')) === null || _e === void 0 ? void 0 : _e.value}`;
     }
     else if (labelType === 'e6ExpiryDate' && labelValue) {
+        // TODO: Remove this logic only for E6
         labelValue = `${labelValue === null || labelValue === void 0 ? void 0 : labelValue.toString().slice(4)}/${labelValue === null || labelValue === void 0 ? void 0 : labelValue.toString().slice(0, 4)}`;
+    }
+    else if (labelType === 'card-number' && labelValue && (typeof labelValue === 'string' || typeof labelValue === 'number')) {
+        let cardNumberString = labelValue === null || labelValue === void 0 ? void 0 : labelValue.toString();
+        cardNumberString = (_f = cardNumberString === null || cardNumberString === void 0 ? void 0 : cardNumberString.toString()) === null || _f === void 0 ? void 0 : _f.replace(/\D/g, '');
+        labelValue = cardNumberString === null || cardNumberString === void 0 ? void 0 : cardNumberString.replace(/(.{4})/g, '$1 ').trim();
     }
     const getTextColor = () => {
         let color = colors.primaryFixed;
