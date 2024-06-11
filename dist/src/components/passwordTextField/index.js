@@ -36,7 +36,7 @@ const ASPasswordTextField = (props) => {
     const onPressSecureTextEntry = () => {
         setIsSecureTextEntry((prev) => !prev);
     };
-    return (react_1.default.createElement(textField_1.default, Object.assign({ secureTextEntry: isSecureTextEntry, suffixIcon: react_1.default.createElement(react_native_1.TouchableOpacity, { onPress: onPressSecureTextEntry },
-            react_1.default.createElement(icon_1.ShowPasswordIcon, null)) }, props)));
+    return (react_1.default.createElement(textField_1.default, Object.assign({ suffixIcon: react_1.default.createElement(react_native_1.TouchableOpacity, { onPress: onPressSecureTextEntry },
+            react_1.default.createElement(icon_1.ShowPasswordIcon, null)) }, props, { secureTextEntry: isSecureTextEntry })));
 };
 exports.default = ASPasswordTextField;

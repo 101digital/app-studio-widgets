@@ -15,7 +15,6 @@ const ASPasswordTextField: FC<ASPasswordTextFieldProps> = (props: ASPasswordText
 
     return (
         <ASTextField
-            secureTextEntry={isSecureTextEntry}
             suffixIcon={
                 <TouchableOpacity
                     onPress={onPressSecureTextEntry}>
@@ -23,6 +22,7 @@ const ASPasswordTextField: FC<ASPasswordTextFieldProps> = (props: ASPasswordText
                 </TouchableOpacity>
             }
             {...props}
+            secureTextEntry={isSecureTextEntry}
         />
     )
 }
