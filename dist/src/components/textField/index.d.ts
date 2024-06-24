@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 import { ColorValue, StyleProp, TextInputProps, TextStyle, ViewStyle } from "react-native";
 import { TextInputMaskProps, TextInputMaskTypeProp } from "react-native-masked-text";
 export type ASTextFieldStyles = {
@@ -29,7 +29,7 @@ export type ASTextFieldProps = Omit<TextInputMaskProps, "type"> & TextInputProps
     textFieldTextColor?: string | ColorValue;
 };
 declare const ASTextField: {
-    (props: ASTextFieldProps): any;
+    (props: ASTextFieldProps): React.JSX.Element;
     defaultProps: {
         type: string;
     };

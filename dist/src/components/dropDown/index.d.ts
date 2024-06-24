@@ -6,7 +6,7 @@ export type DropDownOptionsProps = {
     [key: string]: any;
 };
 export type ASDropDownProps = Omit<DropdownProps<any>, 'labelField' | 'valueField' | 'onChange' | 'data'> & {
-    options: DropDownOptionsProps[];
+    options: DropDownOptionsProps[] | undefined;
     name: string | FieldHookConfig<any>;
     labelField: string;
     valueField: string;
