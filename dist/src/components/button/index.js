@@ -44,16 +44,16 @@ const theme_context_1 = require("../../context/theme-context");
 const loadingIndicator_1 = __importDefault(require("../loadingIndicator"));
 const ASButton = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { label = '', style, textStyle, onPress, disabled, children, simpleTextButton, loading } = props, restProps = __rest(props, ["label", "style", "textStyle", "onPress", "disabled", "children", "simpleTextButton", "loading"]);
+    const { label = "", style, textStyle, onPress, disabled, children, simpleTextButton, loading } = props, restProps = __rest(props, ["label", "style", "textStyle", "onPress", "disabled", "children", "simpleTextButton", "loading"]);
     const getButtonBackgroundColor = () => {
         if (disabled) {
             return colors.tertiary;
         }
-        if (style === null || style === void 0 ? void 0 : style.backgroundColor) {
+        if ((style === null || style === void 0 ? void 0 : style.backgroundColor) && !simpleTextButton) {
             return style === null || style === void 0 ? void 0 : style.backgroundColor;
         }
         if (simpleTextButton || !!children) {
-            return 'transparent';
+            return "transparent";
         }
         return colors.primary;
     };
@@ -81,43 +81,44 @@ const ASButton = (props) => {
             return styles.simpleTextButtonTextStyle;
         return styles.textStyle;
     };
-    return (react_1.default.createElement(react_native_1.TouchableOpacity, Object.assign({}, restProps, { disabled: disabled, onPress: onPress, style: [getButtonStyle(), style, { backgroundColor: getButtonBackgroundColor() }] }), !!children ?
-        children
-        :
-            react_1.default.createElement(react_native_1.View, { style: styles.labelContainer },
-                react_1.default.createElement(text_1.default, { style: Object.assign(Object.assign(Object.assign(Object.assign({}, styles.textStyle), getButtonTextStyle()), textStyle), { color: getButtonTextColor() }) }, label),
-                react_1.default.createElement(loadingIndicator_1.default, { loading: loading, style: styles.loadingIndicator }))));
+    return (react_1.default.createElement(react_native_1.TouchableOpacity, Object.assign({}, restProps, { disabled: disabled, onPress: onPress, style: [
+            getButtonStyle(),
+            style,
+            { backgroundColor: getButtonBackgroundColor() },
+        ] }), !!children ? (children) : (react_1.default.createElement(react_native_1.View, { style: styles.labelContainer },
+        react_1.default.createElement(text_1.default, { style: Object.assign(Object.assign(Object.assign(Object.assign({}, styles.textStyle), getButtonTextStyle()), textStyle), { color: getButtonTextColor() }) }, label),
+        react_1.default.createElement(loadingIndicator_1.default, { loading: loading, style: styles.loadingIndicator })))));
 };
 const styles = react_native_1.StyleSheet.create({
     buttonStyle: {
-        justifyContent: 'center',
-        alignItems: 'center',
+        justifyContent: "center",
+        alignItems: "center",
         paddingHorizontal: 20,
         paddingVertical: 12,
         borderRadius: 8,
     },
     simpleTextButton: {
-        justifyContent: 'flex-start',
-        alignItems: 'flex-start',
+        justifyContent: "flex-start",
+        alignItems: "flex-start",
         paddingHorizontal: 0,
         paddingVertical: 0,
     },
     touchableContainerStyles: {},
     textStyle: {
-        fontWeight: '600'
+        fontWeight: "600",
     },
     simpleTextButtonTextStyle: {
-        fontSize: 12
+        fontSize: 12,
     },
     loadingIndicator: {
         marginLeft: 10,
         height: 16,
         width: 16,
-        position: 'absolute',
-        right: -28
+        position: "absolute",
+        right: -28,
     },
     labelContainer: {
-        flexDirection: 'row'
-    }
+        flexDirection: "row",
+    },
 });
 exports.default = ASButton;

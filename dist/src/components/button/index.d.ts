@@ -1,5 +1,5 @@
-import React from 'react';
-import { TextStyle, TouchableOpacityProps, ViewStyle } from 'react-native';
+import React from "react";
+import { TextStyle, TouchableOpacityProps, ViewStyle } from "react-native";
 export type ASButtonProps = TouchableOpacityProps & {
     label?: string;
     onPress: () => void;
