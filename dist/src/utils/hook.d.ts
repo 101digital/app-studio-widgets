@@ -1,2 +1,2 @@
-declare const useIsTimeoutLoading: (timeout: number | undefined, loading: boolean) => any;
+declare const useIsTimeoutLoading: (timeout: number | undefined, loading: boolean) => boolean;
 export { useIsTimeoutLoading };

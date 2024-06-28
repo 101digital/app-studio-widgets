@@ -68,7 +68,7 @@ const ASDropDown = (props) => {
                 }] }, label),
         react_1.default.createElement(react_native_element_dropdown_1.Dropdown, Object.assign({ style: styles.dropdown, placeholderStyle: styles.placeholderStyle, inputSearchStyle: styles.inputSearchStyle, iconStyle: [styles.iconStyle, iconStyles], search: search, maxHeight: 300, value: field === null || field === void 0 ? void 0 : field.value, searchPlaceholder: searchPlaceholder, renderLeftIcon: renderLeftIcon, renderItem: renderItem, placeholder: placeholder, onFocus: () => setIsFocus(true), onBlur: () => setIsFocus(false) }, restProps, { selectedTextStyle: [styles.selectedTextStyle, {
                     color: colors.surface,
-                }, selectedTextStyle], data: options, onChange: _onChangeDropDownField, labelField: labelField, valueField: valueField }))));
+                }, selectedTextStyle], data: options || [], onChange: _onChangeDropDownField, labelField: labelField, valueField: valueField }))));
 };
 exports.default = ASDropDown;
 const styles = react_native_1.StyleSheet.create({

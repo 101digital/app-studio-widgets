@@ -14,7 +14,7 @@ export type DropDownOptionsProps = {
 export type ASDropDownProps =
     Omit<DropdownProps<any>, 'labelField' | 'valueField' | 'onChange' | 'data'>
     & {
-    options: DropDownOptionsProps[]
+    options: DropDownOptionsProps[] | undefined
     name: string | FieldHookConfig<any>
     labelField:string
     valueField:string
@@ -90,7 +90,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
                 selectedTextStyle={[styles.selectedTextStyle, {
                     color: colors.surface,
                 }, selectedTextStyle]}
-                data={options}
+                data={options || []}
                 onChange={_onChangeDropDownField}
                 labelField={labelField}
                 valueField={valueField}
