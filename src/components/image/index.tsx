@@ -14,7 +14,7 @@ export type ASImageProps = ImageProps & {
 
 const ASImage: (props: ASImageProps) => JSX.Element = (props: ASImageProps) => {
     const {source, width = 100, height = 100, style, resizeMode = 'cover', roundImageSize = 0, ...restprops} = props
-    const imageSource = typeof source === 'string' && source?.startsWith('http') || source?.startsWith('data:') ? {uri: `${source}`} : source
+    const imageSource = typeof source === 'string' && source?.startsWith('http') || source?.startsWith('data:') ? {uri: source} : source
     const roundImageSizeValue = convertPercentageToPx(roundImageSize, true)
 
     return (
