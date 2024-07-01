@@ -8,7 +8,7 @@ export {default as ASRow, ASRowProps} from './components/row';
 export {default as ASSpacer, ASSpacerProps} from './components/spacer';
 export {default as ASDivider, ASDividerProps} from './components/divider';
 export {default as ASVerticalDivider, ASVerticalDividerProps} from './components/verticalDivider';
-export {default as ASFormValidation, ASFormValidationProps} from './components/formValidation';
+export {default as ASForm, ASFormProps} from './components/form';
 export {default as ASRichText, ASRichTextProps} from './components/richText';
 export {default as ASImage, ASImageProps} from './components/image';
 export {default as ASDropDown, DropDownOptionsProps, ASDropDownProps} from './components/dropDown';

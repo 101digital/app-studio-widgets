@@ -11,7 +11,7 @@ import {
     ASDividerProps,
     ASDropDownProps,
     ASExpandableTextProps,
-    ASFormValidationProps,
+    ASFormProps,
     ASImageProps,
     ASListTileProps,
     ASListViewProps,
@@ -50,7 +50,7 @@ export type WidgetsList = {
     ASSpacer: (attributes: ASSpacerProps) => string
     ASDivider: (attributes: ASDividerProps) => string
     ASVerticalDivider: (attributes: ASVerticalDividerProps) => string
-    ASFormValidation: (attributes: ASFormValidationProps) => string
+    ASForm: (attributes: ASFormProps) => string
     ASRichText: (attributes: ASRichTextProps) => string
     ASImage: (attributes: ASImageProps) => string
     ASDropDown: (attributes: ASDropDownProps) => string
@@ -218,11 +218,11 @@ export class ASWidgetsList {
     private static getWidgetString(widgetName: any, attributes: any): string {
         // Handle custom logic for widget that has children
 
-        // Handle logic for ASFormValidation
-        if (widgetName === 'ASFormValidation') {
+        // Handle logic for ASForm
+        if (widgetName === 'ASForm') {
             const keys = Object.keys(attributes?.initialValues);
             const destructuredValueString = `const {${keys.join(', ')}} = values`;
-            return `<ASFormValidation${ASWidgetsList.getWidgetAttributes(attributes, 'ASFormValidation')}>
+            return `<ASForm${ASWidgetsList.getWidgetAttributes(attributes, 'ASForm')}>
                          {(formikProps: FormikProps<any>)=> {
                              const {values, handleSubmit} = formikProps
                              ${destructuredValueString}
@@ -231,7 +231,7 @@ export class ASWidgetsList {
                                  )
                              }
                          }
-                    </ASFormValidation>`
+                    </ASForm>`
         }
 
         // Handle logic for ASText
@@ -275,7 +275,7 @@ export class ASWidgetsList {
             ASSpacer: (attributes: ASSpacerProps) => ASWidgetsList.getWidgetString('ASSpacer', attributes),
             ASDivider: (attributes: ASDividerProps) => ASWidgetsList.getWidgetString('ASDivider', attributes),
             ASVerticalDivider: (attributes: ASVerticalDividerProps) => ASWidgetsList.getWidgetString('ASVerticalDivider', attributes),
-            ASFormValidation: (attributes: ASFormValidationProps) => ASWidgetsList.getWidgetString('ASFormValidation', attributes),
+            ASForm: (attributes: ASFormProps) => ASWidgetsList.getWidgetString('ASForm', attributes),
             ASRichText: (attributes: ASRichTextProps) => ASWidgetsList.getWidgetString('ASRichText', attributes),
             ASImage: (attributes: ASImageProps) => ASWidgetsList.getWidgetString('ASImage', attributes),
             ASDropDown: (attributes: ASDropDownProps) => ASWidgetsList.getWidgetString('ASDropDown', attributes),

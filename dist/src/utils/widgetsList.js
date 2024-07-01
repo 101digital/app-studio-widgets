@@ -52,7 +52,7 @@ class ASWidgetsList {
             if (key === 'validationRules' || key === 'validationRule' || key === 'initialValues') {
                 continue;
             }
-            // All the widgets inside ASFormValidation
+            // All the widgets inside ASForm
             if (key === 'formWidgets') {
                 const formWidgetsList = attributeValue;
                 const validationStringArray = [];
@@ -93,11 +93,11 @@ class ASWidgetsList {
     }
     static getWidgetString(widgetName, attributes) {
         // Handle custom logic for widget that has children
-        // Handle logic for ASFormValidation
-        if (widgetName === 'ASFormValidation') {
+        // Handle logic for ASForm
+        if (widgetName === 'ASForm') {
             const keys = Object.keys((attributes === null || attributes === void 0 ? void 0 : attributes.initialValues) || {});
             const destructuredValueString = `const {${keys.join(', ')}} = values`;
-            return `<ASFormValidation${ASWidgetsList.getWidgetAttributes(attributes, 'ASFormValidation')}>
+            return `<ASForm${ASWidgetsList.getWidgetAttributes(attributes, 'ASForm')}>
                          {(formikProps: FormikProps<any>)=> {
                              const {values, handleSubmit} = formikProps
                              ${destructuredValueString}
@@ -106,7 +106,7 @@ class ASWidgetsList {
                                  )
                              }
                          }
-                    </ASFormValidation>`;
+                    </ASForm>`;
         }
         // Handle logic for ASText
         if (widgetName === 'ASText') {
@@ -145,7 +145,7 @@ class ASWidgetsList {
             ASSpacer: (attributes) => ASWidgetsList.getWidgetString('ASSpacer', attributes),
             ASDivider: (attributes) => ASWidgetsList.getWidgetString('ASDivider', attributes),
             ASVerticalDivider: (attributes) => ASWidgetsList.getWidgetString('ASVerticalDivider', attributes),
-            ASFormValidation: (attributes) => ASWidgetsList.getWidgetString('ASFormValidation', attributes),
+            ASForm: (attributes) => ASWidgetsList.getWidgetString('ASForm', attributes),
             ASRichText: (attributes) => ASWidgetsList.getWidgetString('ASRichText', attributes),
             ASImage: (attributes) => ASWidgetsList.getWidgetString('ASImage', attributes),
             ASDropDown: (attributes) => ASWidgetsList.getWidgetString('ASDropDown', attributes),

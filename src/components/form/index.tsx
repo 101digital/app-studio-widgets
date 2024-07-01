@@ -2,14 +2,14 @@ import React, {ReactNode} from 'react';
 import {View} from 'react-native'
 import {Formik, FormikConfig, FormikHelpers, FormikProps} from 'formik';
 
-export type ASFormValidationProps = FormikConfig<any> & {
+export type ASFormProps = FormikConfig<any> & {
     children: (formikProps: FormikProps<any>) => ReactNode;
     onSubmit: (values: any, formikHelpers: FormikHelpers<any>) => void | Promise<any>;
     initialValues?: any;
     validationSchema?: any;
 }
 
-const ASFormValidation: React.FC<ASFormValidationProps> = (props: ASFormValidationProps) => {
+const ASForm: React.FC<ASFormProps> = (props: ASFormProps) => {
     const {children, onSubmit, initialValues, validationSchema, ...restProps} = props || {}
 
     return (
@@ -30,4 +30,4 @@ const ASFormValidation: React.FC<ASFormValidationProps> = (props: ASFormValidati
 }
 
 
-export default ASFormValidation
+export default ASForm

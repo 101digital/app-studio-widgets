@@ -19,9 +19,9 @@ export {
   ASVerticalDividerProps,
 } from "./src/components/verticalDivider";
 export {
-  default as ASFormValidation,
-  ASFormValidationProps,
-} from "./src/components/formValidation";
+  default as ASForm,
+  ASFormProps,
+} from "./src/components/form";
 export {
   default as ASRichText,
   ASRichTextProps,
