@@ -46,60 +46,78 @@ const formik_1 = require("formik");
 const theme_context_1 = require("../../context/theme-context");
 const ASDropDown = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { options, renderLeftIcon, placeholder = "Please select item", onSelect, searchPlaceholder = 'Search...', search = false, label, name, containerStyle, iconStyles, selectedTextStyle, labelField, valueField } = props, restProps = __rest(props, ["options", "renderLeftIcon", "placeholder", "onSelect", "searchPlaceholder", "search", "label", "name", "containerStyle", "iconStyles", "selectedTextStyle", "labelField", "valueField"]);
+    const { options, renderLeftIcon, placeholder = "Please select item", onSelect, searchPlaceholder = "Search...", search = false, label, name, containerStyle, iconStyles, selectedTextStyle, labelField, valueField } = props, restProps = __rest(props, ["options", "renderLeftIcon", "placeholder", "onSelect", "searchPlaceholder", "search", "label", "name", "containerStyle", "iconStyles", "selectedTextStyle", "labelField", "valueField"]);
     const [field, meta, helpers] = (0, formik_1.useField)(name);
     const { setValue } = helpers || {};
     const [isFocus, setIsFocus] = (0, react_1.useState)(false);
     const renderItem = (item) => {
         return (react_1.default.createElement(react_native_1.View, { style: styles.item },
-            react_1.default.createElement(react_native_1.Text, { style: [styles.textItem, {
+            react_1.default.createElement(react_native_1.Text, { style: [
+                    styles.textItem,
+                    {
                         color: colors.surface,
-                    }] }, item[labelField])));
+                    },
+                ] }, item[labelField])));
     };
     const _onChangeDropDownField = (item) => {
         setValue === null || setValue === void 0 ? void 0 : setValue(item === null || item === void 0 ? void 0 : item[valueField]);
     };
-    return (react_1.default.createElement(react_native_1.View, { style: [styles.container, {
+    return (react_1.default.createElement(react_native_1.View, { style: [
+            styles.container,
+            {
                 backgroundColor: colors.secondaryFixed,
-                borderColor: colors.onTertiary
-            }, containerStyle] },
-        !!label && react_1.default.createElement(text_1.default, { style: [styles.labelStyle, {
+                borderColor: colors.onTertiary,
+            },
+            containerStyle,
+        ] },
+        !!label && (react_1.default.createElement(text_1.default, { style: [
+                styles.labelStyle,
+                {
                     color: colors.onTertiary,
-                }] }, label),
-        react_1.default.createElement(react_native_element_dropdown_1.Dropdown, Object.assign({ style: styles.dropdown, placeholderStyle: styles.placeholderStyle, inputSearchStyle: styles.inputSearchStyle, iconStyle: [styles.iconStyle, iconStyles], search: search, maxHeight: 300, value: field === null || field === void 0 ? void 0 : field.value, searchPlaceholder: searchPlaceholder, renderLeftIcon: renderLeftIcon, renderItem: renderItem, placeholder: placeholder, onFocus: () => setIsFocus(true), onBlur: () => setIsFocus(false) }, restProps, { selectedTextStyle: [styles.selectedTextStyle, {
+                },
+            ] }, label)),
+        react_1.default.createElement(react_native_element_dropdown_1.Dropdown, Object.assign({ style: styles.dropdown, placeholderStyle: styles.placeholderStyle, inputSearchStyle: styles.inputSearchStyle, iconStyle: [styles.iconStyle, iconStyles], search: search, maxHeight: 300, value: field === null || field === void 0 ? void 0 : field.value, searchPlaceholder: searchPlaceholder, renderLeftIcon: renderLeftIcon, renderItem: renderItem, placeholder: placeholder, onFocus: () => setIsFocus(true), onBlur: () => setIsFocus(false) }, restProps, { selectedTextStyle: [
+                styles.selectedTextStyle,
+                {
                     color: colors.surface,
-                }, selectedTextStyle], data: options || [], onChange: _onChangeDropDownField, labelField: labelField, valueField: valueField }))));
+                },
+                selectedTextStyle,
+            ], data: options || [], onChange: _onChangeDropDownField, labelField: labelField, valueField: valueField }))));
 };
 exports.default = ASDropDown;
 const styles = react_native_1.StyleSheet.create({
     container: {
         borderRadius: 5,
-        justifyContent: 'center',
-        paddingLeft: 4,
-        borderWidth: 1
+        justifyContent: "center",
+        paddingHorizontal: 4,
+        borderWidth: 1,
+        paddingVertical: 10,
     },
     dropdown: {
         borderRadius: 5,
-        minWidth: commonUtils_1.isAndroid ? 60 : 'auto',
+        minWidth: commonUtils_1.isAndroid ? 60 : "auto",
     },
     item: {
         padding: 15,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
     },
     textItem: {
         flex: 1,
         fontSize: 12,
     },
     placeholderStyle: {
-        fontSize: 12,
-        paddingHorizontal: 15,
+        fontSize: 10,
+        paddingHorizontal: 13,
     },
     selectedTextStyle: {
-        fontSize: commonUtils_1.isAndroid ? 12 : 12,
+        flex: 1,
+        fontSize: commonUtils_1.isAndroid ? 10 : 12,
         paddingRight: commonUtils_1.isAndroid ? 0 : 30,
-        alignSelf: 'center',
+        alignSelf: "center",
+        paddingHorizontal: 13,
+        paddingVertical: commonUtils_1.isAndroid ? 4 : 10,
     },
     iconStyle: {
         width: 20,
@@ -111,8 +129,8 @@ const styles = react_native_1.StyleSheet.create({
     },
     labelStyle: {
         fontSize: 10,
-        paddingHorizontal: 15
-    }
+        paddingHorizontal: 15,
+    },
 });
 // Note: ASDropdown Example
 /*
