@@ -18,10 +18,7 @@ export {
   default as ASVerticalDivider,
   ASVerticalDividerProps,
 } from "./src/components/verticalDivider";
-export {
-  default as ASForm,
-  ASFormProps,
-} from "./src/components/form";
+export { default as ASForm, ASFormProps } from "./src/components/form";
 export {
   default as ASRichText,
   ASRichTextProps,
@@ -115,10 +112,18 @@ export {
   default as ASDualIconRowButton,
   ASDualIconButtonProps,
 } from "./src/components/dualIconRowButton";
-export { default as ASSwipeButton, ASSwipeButtonProps } from './src/components/swipeButton';
+export {
+  default as ASSwipeButton,
+  ASSwipeButtonProps,
+} from "./src/components/swipeButton";
 
 // E6 custom widget
 export {
   default as E6TransactionHistoryListView,
   E6TransactionHistoryListViewProps,
 } from "./src/customComponent/e6TransactionHistoryListView";
+
+export {
+  default as ASIconButton,
+  ASIconButtonProps,
+} from "./src/components/iconButton";

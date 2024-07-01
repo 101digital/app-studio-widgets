@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ASSwipeButton = exports.ASPin = exports.ASModal = exports.ASTimer = exports.ASCalendar = exports.ASChoiceChips = exports.ASCounter = exports.ASSlider = exports.ASRadioButton = exports.ASListTile = exports.ASPageView = exports.ASBadge = exports.ASCircleChart = exports.ASListView = exports.ASStack = exports.ASProgressBar = exports.ASCheckBox = exports.ASSwitch = exports.ASWrap = exports.ASExpandableText = exports.ASDropDown = exports.ASImage = exports.ASRichText = exports.ASForm = exports.ASVerticalDivider = exports.ASDivider = exports.ASSpacer = exports.ASRow = exports.ASColumn = exports.ASContainer = exports.ASTextField = exports.ASButton = exports.ASText = exports.ASWidgetsList = void 0;
+exports.ASIconButton = exports.ASSwipeButton = exports.ASPin = exports.ASModal = exports.ASTimer = exports.ASCalendar = exports.ASChoiceChips = exports.ASCounter = exports.ASSlider = exports.ASRadioButton = exports.ASListTile = exports.ASPageView = exports.ASBadge = exports.ASCircleChart = exports.ASListView = exports.ASStack = exports.ASProgressBar = exports.ASCheckBox = exports.ASSwitch = exports.ASWrap = exports.ASExpandableText = exports.ASDropDown = exports.ASImage = exports.ASRichText = exports.ASForm = exports.ASVerticalDivider = exports.ASDivider = exports.ASSpacer = exports.ASRow = exports.ASColumn = exports.ASContainer = exports.ASTextField = exports.ASButton = exports.ASText = exports.ASWidgetsList = void 0;
 var widgetsList_1 = require("./utils/widgetsList");
 Object.defineProperty(exports, "ASWidgetsList", { enumerable: true, get: function () { return widgetsList_1.ASWidgetsList; } });
 var text_1 = require("./components/text");
@@ -72,3 +72,5 @@ var pin_1 = require("./components/pin");
 Object.defineProperty(exports, "ASPin", { enumerable: true, get: function () { return __importDefault(pin_1).default; } });
 var swipeButton_1 = require("./components/swipeButton");
 Object.defineProperty(exports, "ASSwipeButton", { enumerable: true, get: function () { return __importDefault(swipeButton_1).default; } });
+var iconButton_1 = require("./components/iconButton");
+Object.defineProperty(exports, "ASIconButton", { enumerable: true, get: function () { return __importDefault(iconButton_1).default; } });
