@@ -82,8 +82,8 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
       style={[
         styles.container,
         {
-          backgroundColor: colors.secondaryFixed,
-          borderColor: colors.onTertiary,
+          backgroundColor: colors.background,
+          borderColor: colors.onSecondary,
         },
         containerStyle,
       ]}
