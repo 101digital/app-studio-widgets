@@ -19,13 +19,9 @@ const styles = react_native_1.StyleSheet.create({
         justifyContent: "center",
     },
     backgroundStyle: {
-        resizeMode: "cover",
-        height: "100%",
+        height: '100%',
+        width: '100%',
         position: "absolute",
-        width: "100%",
-        aspectRatio: 1,
-        alignSelf: "center",
-        flex: 1,
     },
 });
 exports.default = ASColumn;

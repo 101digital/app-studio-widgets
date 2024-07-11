@@ -65,8 +65,8 @@ const ASDropDown = (props) => {
     return (react_1.default.createElement(react_native_1.View, { style: [
             styles.container,
             {
-                backgroundColor: colors.secondaryFixed,
-                borderColor: colors.onTertiary,
+                backgroundColor: colors.background,
+                borderColor: colors.onSecondary,
             },
             containerStyle,
         ] },
