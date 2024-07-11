@@ -1,6 +1,6 @@
 import { ColorValue } from "react-native";
-declare const ShowPasswordIcon: (props: {
+declare const HidePasswordIcon: (props: {
     size?: number;
     color?: ColorValue;
 }) => any;
-export { ShowPasswordIcon };
+export { HidePasswordIcon };

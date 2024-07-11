@@ -29,14 +29,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importStar(require("react"));
 const react_native_1 = require("react-native");
 const textField_1 = __importDefault(require("../textField"));
-const icon_1 = require("../../assets/icon");
+const showPassword_icon_1 = require("../../assets/icon/showPassword.icon");
+const hidePassword_icon_1 = require("../../assets/icon/hidePassword.icon");
 const ASPasswordTextField = (props) => {
-    const {} = props;
+    const { suffixIconSize = 22, suffixIconColor } = props;
     const [isSecureTextEntry, setIsSecureTextEntry] = (0, react_1.useState)(true);
     const onPressSecureTextEntry = () => {
         setIsSecureTextEntry((prev) => !prev);
     };
-    return (react_1.default.createElement(textField_1.default, Object.assign({ suffixIcon: react_1.default.createElement(react_native_1.TouchableOpacity, { onPress: onPressSecureTextEntry },
-            react_1.default.createElement(icon_1.ShowPasswordIcon, null)) }, props, { secureTextEntry: isSecureTextEntry })));
+    return (react_1.default.createElement(textField_1.default, Object.assign({ suffixIcon: react_1.default.createElement(react_native_1.TouchableOpacity, { onPress: onPressSecureTextEntry }, isSecureTextEntry ? (react_1.default.createElement(showPassword_icon_1.ShowPasswordIcon, { size: suffixIconSize, color: suffixIconColor })) : (react_1.default.createElement(hidePassword_icon_1.HidePasswordIcon, { size: suffixIconSize, color: suffixIconColor }))) }, props, { secureTextEntry: isSecureTextEntry })));
 };
 exports.default = ASPasswordTextField;
