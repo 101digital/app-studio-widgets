@@ -21,34 +21,24 @@ import ASText from "../text";
 import { isAndroid } from "../../utils/commonUtils";
 import { ThemeContext } from "../../context/theme-context";
 
-export type ASTextFieldStyles = {
-  containerStyle?: StyleProp<ViewStyle>;
-  contentContainerStyle?: StyleProp<ViewStyle>;
-  inputContainerStyle?: StyleProp<ViewStyle>;
-  textInputStyle?: StyleProp<TextStyle>;
-  errorTextStyle?: StyleProp<TextStyle>;
-};
-
 export type ASTextFieldProps = Omit<TextInputMaskProps, "type"> &
   TextInputProps & {
     name: string;
     prefixIcon?: ReactNode;
     suffixIcon?: ReactNode;
-    errorBorderColor?: string;
-    activeBorderColor?: string;
-    inactiveBorderColor?: string;
-    placeholderTextColor?: string;
-    style?: ASTextFieldStyles;
     formatError?: (error: string) => string;
     label?: string;
     textFieldType?: TextInputMaskTypeProp;
-    isShowError?: boolean;
     formatNumber?: "comma" | "dot" | "percentage" | undefined;
     prefixText?: string;
     prefixTextStyle?: StyleProp<TextStyle>;
-    titleTextStyle?: StyleProp<TextStyle>;
-    textFieldBackgroundColor?: string | ColorValue;
-    textFieldTextColor?: string | ColorValue;
+    labelTextStyle?: StyleProp<TextStyle>;
+    inputTextStyle?: StyleProp<TextStyle>;
+    errorMessageTextStyle?: StyleProp<TextStyle>;
+    borderErrorColor?: string;
+    borderActiveColor?: string;
+    placeholderTextColor?: string;
+    style?: StyleProp<ViewStyle>;
   };
 
 const ASTextField = (props: ASTextFieldProps) => {
@@ -61,26 +51,29 @@ const ASTextField = (props: ASTextFieldProps) => {
     prefixIcon,
     prefixText,
     prefixTextStyle,
-    errorBorderColor,
-    activeBorderColor,
-    inactiveBorderColor,
-    style,
-    placeholderTextColor = colors.secondary,
     formatError,
     options,
     label,
     textFieldType = "custom",
-    isShowError,
     formatNumber,
-    titleTextStyle,
-    textFieldBackgroundColor = colors.background,
-    textFieldTextColor = colors.surface,
+    labelTextStyle,
+    inputTextStyle,
+    borderErrorColor,
+    borderActiveColor,
+    style,
+    errorMessageTextStyle,
+    placeholderTextColor = colors.secondary,
     ...restProps
   } = props;
   const [active, setActive] = useState(false);
   const [field, meta, helpers] = useField(name);
   const showMask = options && Object.keys(options).length > 0;
 
+  const flattenedStyle = StyleSheet.flatten(style) as ViewStyle;
+  const flattenedLabelStyle = StyleSheet.flatten(labelTextStyle) || {};
+  const labelFontSize =
+    flattenedLabelStyle.fontSize || styles.labelStyle.fontSize;
+  const labelTopPosition = -labelFontSize * 0.8;
   const handleOnFocus = (
     event: NativeSyntheticEvent<TextInputFocusEventData>
   ) => {
@@ -149,34 +142,40 @@ const ASTextField = (props: ASTextFieldProps) => {
     return formatError?.(error) ?? error;
   };
 
+  const getBorderColor = () => {
+    if (meta.error && meta.touched) {
+      return borderErrorColor;
+    }
+    return active ? borderActiveColor : flattenedStyle?.borderColor;
+  };
+
   return (
-    <>
+    <View style={[styles.wrapperStyle, style]}>
       <View
         style={[
           styles.containerStyle,
           {
-            backgroundColor: textFieldBackgroundColor,
-            borderColor: colors.onSecondary,
+            borderColor: getBorderColor() || flattenedStyle?.borderColor,
           },
-          style,
         ]}
       >
         <ASText
           style={[
             styles.labelStyle,
             {
+              backgroundColor: flattenedStyle?.backgroundColor,
               color: colors.onTertiary,
-              backgroundColor: textFieldBackgroundColor,
+              top: labelTopPosition,
             },
-            titleTextStyle,
+            labelTextStyle,
           ]}
         >
           {label}
         </ASText>
         <View style={[styles.contentContainerStyle]}>
-          {prefixIcon}
+          {prefixIcon && <View style={styles.prefixIcon}>{prefixIcon}</View>}
           {!!prefixText && (
-            <ASText style={[{ color: colors.tertiary }, prefixTextStyle]}>
+            <ASText style={[styles.prefixText, prefixTextStyle]}>
               {prefixText}
             </ASText>
           )}
@@ -187,13 +186,7 @@ const ASTextField = (props: ASTextFieldProps) => {
                 onBlur={handleOnBlur}
                 value={`${field?.value}`}
                 onChangeText={handleOnChange}
-                style={[
-                  styles.textInputStyle,
-                  {
-                    color: textFieldTextColor,
-                    backgroundColor: textFieldBackgroundColor,
-                  },
-                ]}
+                style={[styles.textInputStyle, inputTextStyle]}
                 placeholderTextColor={placeholderTextColor}
                 {...restProps}
                 options={options}
@@ -205,13 +198,7 @@ const ASTextField = (props: ASTextFieldProps) => {
                 onBlur={handleOnBlur}
                 value={`${field?.value}`}
                 onChangeText={handleOnChange}
-                style={[
-                  styles.textInputStyle,
-                  {
-                    color: textFieldTextColor,
-                    backgroundColor: textFieldBackgroundColor,
-                  },
-                ]}
+                style={[styles.textInputStyle, inputTextStyle]}
                 placeholderTextColor={placeholderTextColor}
                 autoComplete={"off"}
                 autoCorrect={false}
@@ -220,22 +207,15 @@ const ASTextField = (props: ASTextFieldProps) => {
               />
             )}
           </View>
-          {suffixIcon}
+          {suffixIcon && <View style={styles.suffixIcon}>{suffixIcon}</View>}
         </View>
       </View>
-      {isShowError && meta?.error && meta?.touched && (
-        <ASText
-          style={[
-            styles.errorTextStyle,
-            {
-              color: colors.error,
-            },
-          ]}
-        >
+      {meta?.error && meta?.touched && (
+        <ASText style={[styles.errorTextStyle, errorMessageTextStyle]}>
           {getErrorMessage(meta?.error)}
         </ASText>
       )}
-    </>
+    </View>
   );
 };
 
@@ -244,38 +224,47 @@ ASTextField.defaultProps = {
 };
 
 const styles = StyleSheet.create({
+  wrapperStyle: {
+    position: "relative",
+    width: "100%",
+  },
   containerStyle: {
-    paddingVertical: 5,
     borderRadius: 5,
     borderWidth: 1,
+    paddingHorizontal: 16,
+    justifyContent: "center",
+    marginBottom: 2,
   },
   contentContainerStyle: {
     alignItems: "center",
     flexDirection: "row",
-    paddingRight: 15,
   },
   labelStyle: {
     fontSize: 10,
-    marginTop: -12,
-    paddingHorizontal: 4,
-    alignSelf: "flex-start",
-    marginLeft: 12,
+    marginLeft: 16,
+    position: "absolute",
   },
   inputContainerStyle: {
     flex: 1,
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: 15,
   },
   textInputStyle: {
     flex: 1,
     fontSize: isAndroid ? 10 : 12,
-    paddingVertical: isAndroid ? 4 : 10,
-    paddingHorizontal: 0,
   },
   errorTextStyle: {
     fontSize: 12,
-    marginTop: isAndroid ? 5 : 4,
+    marginLeft: 16,
+  },
+  prefixIcon: {
+    marginRight: 4,
+  },
+  suffixIcon: {
+    marginLeft: 4,
+  },
+  prefixText: {
+    marginRight: 4,
   },
 });
 
