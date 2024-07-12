@@ -42,7 +42,6 @@ const react_native_1 = require("react-native");
 const react_native_masked_text_1 = require("react-native-masked-text");
 const formik_1 = require("formik");
 const text_1 = __importDefault(require("../text"));
-const commonUtils_1 = require("../../utils/commonUtils");
 const theme_context_1 = require("../../context/theme-context");
 const ASTextField = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
@@ -54,6 +53,7 @@ const ASTextField = (props) => {
     const flattenedLabelStyle = react_native_1.StyleSheet.flatten(labelTextStyle) || {};
     const labelFontSize = flattenedLabelStyle.fontSize || styles.labelStyle.fontSize;
     const labelTopPosition = -labelFontSize * 0.8;
+    const flattenedHeight = (flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.height) || 56;
     const handleOnFocus = (event) => {
         setActive(true);
         if (onFocus) {
@@ -115,11 +115,12 @@ const ASTextField = (props) => {
         }
         return active ? borderActiveColor : flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderColor;
     };
-    return (react_1.default.createElement(react_native_1.View, { style: [styles.wrapperStyle, style] },
+    return (react_1.default.createElement(react_native_1.View, { style: [styles.wrapperStyle, style, { height: "auto" }] },
         react_1.default.createElement(react_native_1.View, { style: [
                 styles.containerStyle,
                 {
                     borderColor: getBorderColor() || (flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderColor),
+                    height: flattenedHeight,
                 },
             ] },
             react_1.default.createElement(text_1.default, { style: [
@@ -150,6 +151,7 @@ const styles = react_native_1.StyleSheet.create({
         borderRadius: 5,
         borderWidth: 1,
         paddingHorizontal: 16,
+        paddingVertical: 2,
         justifyContent: "center",
         marginBottom: 2,
     },
@@ -169,7 +171,7 @@ const styles = react_native_1.StyleSheet.create({
     },
     textInputStyle: {
         flex: 1,
-        fontSize: commonUtils_1.isAndroid ? 10 : 12,
+        fontSize: 12,
     },
     errorTextStyle: {
         fontSize: 12,

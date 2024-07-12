@@ -74,6 +74,7 @@ const ASTextField = (props: ASTextFieldProps) => {
   const labelFontSize =
     flattenedLabelStyle.fontSize || styles.labelStyle.fontSize;
   const labelTopPosition = -labelFontSize * 0.8;
+  const flattenedHeight = flattenedStyle?.height || 56;
   const handleOnFocus = (
     event: NativeSyntheticEvent<TextInputFocusEventData>
   ) => {
@@ -150,12 +151,13 @@ const ASTextField = (props: ASTextFieldProps) => {
   };
 
   return (
-    <View style={[styles.wrapperStyle, style]}>
+    <View style={[styles.wrapperStyle, style, { height: "auto" }]}>
       <View
         style={[
           styles.containerStyle,
           {
             borderColor: getBorderColor() || flattenedStyle?.borderColor,
+            height: flattenedHeight,
           },
         ]}
       >
@@ -232,6 +234,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderWidth: 1,
     paddingHorizontal: 16,
+    paddingVertical: 2,
     justifyContent: "center",
     marginBottom: 2,
   },
@@ -251,7 +254,7 @@ const styles = StyleSheet.create({
   },
   textInputStyle: {
     flex: 1,
-    fontSize: isAndroid ? 10 : 12,
+    fontSize: 12,
   },
   errorTextStyle: {
     fontSize: 12,
