@@ -62,7 +62,7 @@ const ASTextField = (props: ASTextFieldProps) => {
     borderActiveColor,
     style,
     errorMessageTextStyle,
-    placeholderTextColor = colors.secondary,
+    placeholderTextColor,
     ...restProps
   } = props;
   const [active, setActive] = useState(false);

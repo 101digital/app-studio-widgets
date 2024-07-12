@@ -6,6 +6,7 @@ import {
   Text,
   View,
   ViewStyle,
+  TextStyle,
 } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
 import { DropdownProps } from "react-native-element-dropdown/src/components/Dropdown/model";
@@ -32,6 +33,8 @@ export type ASDropDownProps = Omit<
   label?: string;
   containerStyle?: StyleProp<ViewStyle>;
   iconStyles?: StyleProp<ImageStyle>;
+  placeholderTextStyles?: StyleProp<TextStyle>;
+  dropdownTextStyles?: StyleProp<TextStyle>;
 };
 
 const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
@@ -50,6 +53,8 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
     selectedTextStyle,
     labelField,
     valueField,
+    placeholderTextStyles,
+    dropdownTextStyles,
     ...restProps
   } = props;
   const [field, meta, helpers] = useField<string>(name);
@@ -65,6 +70,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
             {
               color: colors.surface,
             },
+            dropdownTextStyles,
           ]}
         >
           {item[labelField]}
@@ -83,7 +89,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
         styles.container,
         {
           backgroundColor: colors.background,
-          borderColor: colors.onSecondary,
+          borderColor: colors.secondary,
         },
         containerStyle,
       ]}
@@ -103,7 +109,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
 
       <Dropdown
         style={styles.dropdown}
-        placeholderStyle={styles.placeholderStyle}
+        placeholderStyle={[styles.placeholderStyle, placeholderTextStyles]}
         inputSearchStyle={styles.inputSearchStyle}
         iconStyle={[styles.iconStyle, iconStyles]}
         search={search}

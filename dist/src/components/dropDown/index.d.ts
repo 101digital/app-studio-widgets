@@ -1,5 +1,5 @@
 import React from "react";
-import { ImageStyle, StyleProp, ViewStyle } from "react-native";
+import { ImageStyle, StyleProp, ViewStyle, TextStyle } from "react-native";
 import { DropdownProps } from "react-native-element-dropdown/src/components/Dropdown/model";
 import { FieldHookConfig } from "formik";
 export type DropDownOptionsProps = {
@@ -16,6 +16,8 @@ export type ASDropDownProps = Omit<DropdownProps<any>, "labelField" | "valueFiel
     label?: string;
     containerStyle?: StyleProp<ViewStyle>;
     iconStyles?: StyleProp<ImageStyle>;
+    placeholderTextStyles?: StyleProp<TextStyle>;
+    dropdownTextStyles?: StyleProp<TextStyle>;
 };
 declare const ASDropDown: React.FC<ASDropDownProps>;
 export default ASDropDown;

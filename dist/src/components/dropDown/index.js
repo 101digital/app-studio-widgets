@@ -46,7 +46,7 @@ const formik_1 = require("formik");
 const theme_context_1 = require("../../context/theme-context");
 const ASDropDown = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { options, renderLeftIcon, placeholder = "Please select item", onSelect, searchPlaceholder = "Search...", search = false, label, name, containerStyle, iconStyles, selectedTextStyle, labelField, valueField } = props, restProps = __rest(props, ["options", "renderLeftIcon", "placeholder", "onSelect", "searchPlaceholder", "search", "label", "name", "containerStyle", "iconStyles", "selectedTextStyle", "labelField", "valueField"]);
+    const { options, renderLeftIcon, placeholder = "Please select item", onSelect, searchPlaceholder = "Search...", search = false, label, name, containerStyle, iconStyles, selectedTextStyle, labelField, valueField, placeholderTextStyles, dropdownTextStyles } = props, restProps = __rest(props, ["options", "renderLeftIcon", "placeholder", "onSelect", "searchPlaceholder", "search", "label", "name", "containerStyle", "iconStyles", "selectedTextStyle", "labelField", "valueField", "placeholderTextStyles", "dropdownTextStyles"]);
     const [field, meta, helpers] = (0, formik_1.useField)(name);
     const { setValue } = helpers || {};
     const [isFocus, setIsFocus] = (0, react_1.useState)(false);
@@ -57,6 +57,7 @@ const ASDropDown = (props) => {
                     {
                         color: colors.surface,
                     },
+                    dropdownTextStyles,
                 ] }, item[labelField])));
     };
     const _onChangeDropDownField = (item) => {
@@ -66,7 +67,7 @@ const ASDropDown = (props) => {
             styles.container,
             {
                 backgroundColor: colors.background,
-                borderColor: colors.onSecondary,
+                borderColor: colors.secondary,
             },
             containerStyle,
         ] },
@@ -76,7 +77,7 @@ const ASDropDown = (props) => {
                     color: colors.onTertiary,
                 },
             ] }, label)),
-        react_1.default.createElement(react_native_element_dropdown_1.Dropdown, Object.assign({ style: styles.dropdown, placeholderStyle: styles.placeholderStyle, inputSearchStyle: styles.inputSearchStyle, iconStyle: [styles.iconStyle, iconStyles], search: search, maxHeight: 300, value: field === null || field === void 0 ? void 0 : field.value, searchPlaceholder: searchPlaceholder, renderLeftIcon: renderLeftIcon, renderItem: renderItem, placeholder: placeholder, onFocus: () => setIsFocus(true), onBlur: () => setIsFocus(false) }, restProps, { selectedTextStyle: [
+        react_1.default.createElement(react_native_element_dropdown_1.Dropdown, Object.assign({ style: styles.dropdown, placeholderStyle: [styles.placeholderStyle, placeholderTextStyles], inputSearchStyle: styles.inputSearchStyle, iconStyle: [styles.iconStyle, iconStyles], search: search, maxHeight: 300, value: field === null || field === void 0 ? void 0 : field.value, searchPlaceholder: searchPlaceholder, renderLeftIcon: renderLeftIcon, renderItem: renderItem, placeholder: placeholder, onFocus: () => setIsFocus(true), onBlur: () => setIsFocus(false) }, restProps, { selectedTextStyle: [
                 styles.selectedTextStyle,
                 {
                     color: colors.surface,
