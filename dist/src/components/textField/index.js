@@ -150,7 +150,7 @@ const styles = react_native_1.StyleSheet.create({
     containerStyle: {
         borderRadius: 5,
         borderWidth: 1,
-        paddingHorizontal: 16,
+        // paddingHorizontal: 16,
         paddingVertical: 2,
         justifyContent: "center",
         marginBottom: 2,
@@ -158,10 +158,12 @@ const styles = react_native_1.StyleSheet.create({
     contentContainerStyle: {
         alignItems: "center",
         flexDirection: "row",
+        marginHorizontal: 16,
     },
     labelStyle: {
         fontSize: 10,
-        marginLeft: 16,
+        // marginLeft: 16,
+        marginHorizontal: 16,
         position: "absolute",
     },
     inputContainerStyle: {
@@ -176,6 +178,7 @@ const styles = react_native_1.StyleSheet.create({
     errorTextStyle: {
         fontSize: 12,
         marginLeft: 16,
+        marginHorizontal: 16,
     },
     prefixIcon: {
         marginRight: 4,
