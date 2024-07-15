@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import { StyleProp, TextStyle, ViewStyle } from "react-native";
 export type ChipProps = {
     id?: string;
     label: string;
@@ -11,7 +12,12 @@ export type ASChoiceChipsProps = {
     name: string;
     isSingleChoice?: boolean;
     returnedKey?: string;
-    contentLayout?: 'center' | 'space-around' | 'space-between' | 'space-evenly' | 'flex-start' | 'flex-end';
+    contentLayout?: "center" | "space-around" | "space-between" | "space-evenly" | "flex-start" | "flex-end";
+    choiceChipTextStyles?: StyleProp<TextStyle>;
+    selectedChipTextColor?: string;
+    selectedChipBackgroundColor?: string;
+    selectedChipBorderColor?: string;
+    choiceChipStyles?: StyleProp<ViewStyle>;
 };
 declare const ASChoiceChips: React.FC<ASChoiceChipsProps>;
 export default ASChoiceChips;
