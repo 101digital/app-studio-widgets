@@ -131,6 +131,7 @@ const styles = StyleSheet.create({
   touchableContainerStyles: {},
   textStyle: {
     fontWeight: "600",
+    textAlign: "center",
   },
   simpleTextButtonTextStyle: {
     fontSize: 12,

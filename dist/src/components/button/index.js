@@ -106,6 +106,7 @@ const styles = react_native_1.StyleSheet.create({
     touchableContainerStyles: {},
     textStyle: {
         fontWeight: "600",
+        textAlign: "center",
     },
     simpleTextButtonTextStyle: {
         fontSize: 12,
