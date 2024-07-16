@@ -4,7 +4,6 @@ export { default as ASButton, ASButtonProps } from "./components/button";
 export {
   default as ASTextField,
   ASTextFieldProps,
-  ASTextFieldStyles,
 } from "./components/textField";
 export {
   default as ASContainer,

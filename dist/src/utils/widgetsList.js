@@ -68,6 +68,9 @@ class ASWidgetsList {
                     initialValues[formWidgetItem.name] = initialValueItem
                         ? `${initialValueItem} || ''`
                         : `''`;
+                    // this._initialValues = this._initialValues ? [...this._initialValues,formWidgetItem.name] : [formWidgetItem.name]
+                    this._initialValues.push(formWidgetItem.name);
+                    console.log('aoiusdhfoidg', this._initialValues);
                     if (formWidgetItem === null || formWidgetItem === void 0 ? void 0 : formWidgetItem.dataType) {
                         validation += `.${formWidgetItem === null || formWidgetItem === void 0 ? void 0 : formWidgetItem.dataType}()`;
                     }
@@ -82,8 +85,7 @@ class ASWidgetsList {
                     ${validationStringArray.join(",")}
                 })`;
                 result += ` validationSchema={${validationSchema}}`;
-                result += ` initialValues={ ${JSON.stringify(initialValues).replace(/"/g, "")}}`;
-                //console.log('\nklsjhjbhiybfg----',  JSON.stringify(validationSchema), '\n++++++', JSON.stringify(initialValues) , '\n-----', JSON.stringify(formWidgetsList))
+                result += ` initialValues={ ${JSON.stringify(initialValues).replace(/"/g, "")} }`;
                 continue;
             }
             // Get the return value for each property
@@ -104,8 +106,11 @@ class ASWidgetsList {
         // Handle logic for ASForm
         if (widgetName === "ASForm") {
             const keys = Object.keys((attributes === null || attributes === void 0 ? void 0 : attributes.initialValues) || {});
-            const destructuredValueString = `const {${keys.join(", ")}} = values`;
-            return `<ASForm${ASWidgetsList.getWidgetAttributes(attributes, "ASForm")}>
+            const widgetAttributes = ASWidgetsList.getWidgetAttributes(attributes, "ASForm");
+            console.log('kbhkudfhj++++', `const {   ${this._initialValues.join(', ')}  } = values`);
+            const destructuredValueString = `const { ${this._initialValues.join(', ')} } = values`;
+            this._initialValues = [];
+            return `<ASForm${widgetAttributes}>
                          {(formikProps: FormikProps<any>)=> {
                              const {values, handleSubmit} = formikProps
                              ${destructuredValueString}
@@ -193,6 +198,7 @@ class ASWidgetsList {
     }
 }
 exports.ASWidgetsList = ASWidgetsList;
+ASWidgetsList._initialValues = [];
 // const a = new ASWidgetsList()
 // const asText = a.getWidgets().ASText({
 //     label: 'haha',

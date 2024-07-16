@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 import { StyleProp, TextInputProps, TextStyle, ViewStyle } from "react-native";
 import { TextInputMaskProps, TextInputMaskTypeProp } from "react-native-masked-text";
 export type ASTextFieldProps = Omit<TextInputMaskProps, "type"> & TextInputProps & {
@@ -20,7 +20,7 @@ export type ASTextFieldProps = Omit<TextInputMaskProps, "type"> & TextInputProps
     style?: StyleProp<ViewStyle>;
 };
 declare const ASTextField: {
-    (props: ASTextFieldProps): any;
+    (props: ASTextFieldProps): React.JSX.Element;
     defaultProps: {
         type: string;
     };
