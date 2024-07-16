@@ -25,7 +25,7 @@ export type ASSwipeButtonProps = {
     swipeSuccessThreshold?: number;
     thumbIconBackgroundColor?: string;
     thumbIconBorderColor?: string;
-    thumbIconComponent?: React.ReactNode;
+    thumbIconComponent?: React.ReactNode | any;
     thumbIconImageSource?: string | number;
     thumbIconStyles?: ViewStyle;
     thumbIconWidth?: number;
