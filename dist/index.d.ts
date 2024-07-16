@@ -1,7 +1,7 @@
 export { ASWidgetsList, WidgetsList } from "./src/utils/widgetsList";
 export { default as ASText, ASTextProps } from "./src/components/text";
 export { default as ASButton, ASButtonProps } from "./src/components/button";
-export { default as ASTextField, ASTextFieldProps, ASTextFieldStyles, } from "./src/components/textField";
+export { default as ASTextField, ASTextFieldProps, } from "./src/components/textField";
 export { default as ASContainer, ASContainerProps, } from "./src/components/container";
 export { default as ASColumn, ASColumnProps } from "./src/components/column";
 export { default as ASRow, ASRowProps } from "./src/components/row";
