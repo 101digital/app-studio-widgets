@@ -68,9 +68,7 @@ class ASWidgetsList {
                     initialValues[formWidgetItem.name] = initialValueItem
                         ? `${initialValueItem} || ''`
                         : `''`;
-                    // this._initialValues = this._initialValues ? [...this._initialValues,formWidgetItem.name] : [formWidgetItem.name]
                     this._initialValues.push(formWidgetItem.name);
-                    console.log('aoiusdhfoidg', this._initialValues);
                     if (formWidgetItem === null || formWidgetItem === void 0 ? void 0 : formWidgetItem.dataType) {
                         validation += `.${formWidgetItem === null || formWidgetItem === void 0 ? void 0 : formWidgetItem.dataType}()`;
                     }
@@ -105,9 +103,7 @@ class ASWidgetsList {
         // Handle custom logic for widget that has children
         // Handle logic for ASForm
         if (widgetName === "ASForm") {
-            const keys = Object.keys((attributes === null || attributes === void 0 ? void 0 : attributes.initialValues) || {});
             const widgetAttributes = ASWidgetsList.getWidgetAttributes(attributes, "ASForm");
-            console.log('kbhkudfhj++++', `const {   ${this._initialValues.join(', ')}  } = values`);
             const destructuredValueString = `const { ${this._initialValues.join(', ')} } = values`;
             this._initialValues = [];
             return `<ASForm${widgetAttributes}>
