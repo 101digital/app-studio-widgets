@@ -32,36 +32,39 @@ const text_1 = __importDefault(require("../text"));
 const theme_context_1 = require("../../context/theme-context");
 const ASBadge = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { children, badgeNumber, badgeStyles, badgeTextStyle, containerStyle } = props;
+    const { children, label, badgeStyles, badgeTextStyle, containerStyle } = props;
     return (react_1.default.createElement(react_native_1.View, { style: [styles.container, containerStyle] },
         react_1.default.createElement(react_native_1.View, null,
             children,
-            !!badgeNumber && react_1.default.createElement(react_native_1.View, { style: [styles.badgeStyles, {
+            !!label && (react_1.default.createElement(react_native_1.View, { style: [
+                    styles.badgeStyles,
+                    {
                         backgroundColor: colors.background,
-                        borderColor: colors.accent2
-                    }, badgeStyles] },
-                react_1.default.createElement(text_1.default, { style: [styles.badgeTextStyle, badgeTextStyle] }, badgeNumber)))));
+                        borderColor: colors.accent2,
+                    },
+                    badgeStyles,
+                ] },
+                react_1.default.createElement(text_1.default, { style: [styles.badgeTextStyle, badgeTextStyle] }, label))))));
 };
 const styles = react_native_1.StyleSheet.create({
     container: {
-        flexDirection: 'row',
+        flexDirection: "row",
     },
     badgeStyles: {
-        position: 'absolute',
         top: -15,
         right: -12,
         borderRadius: 30,
         height: 25,
         width: 25,
-        justifyContent: 'center',
-        alignItems: 'center',
+        justifyContent: "center",
+        alignItems: "center",
         borderWidth: 2,
-        flex: 0
+        flex: 0,
     },
     badgeTextStyle: {
-        fontWeight: 'bold',
-        fontSize: 12
-    }
+        fontWeight: "bold",
+        fontSize: 12,
+    },
 });
 exports.default = ASBadge;
 // Note: ASBadge example

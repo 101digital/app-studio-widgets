@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
-import { StyleSheet, TextStyle, View, ViewStyle,Text } from 'react-native';
-import SwipeButton from 'rn-swipe-button';
-import { ThemeContext } from '../../context/theme-context';
+import React, { useContext } from "react";
+import { StyleSheet, TextStyle, View, ViewStyle, Text } from "react-native";
+import SwipeButton from "rn-swipe-button";
+import { ThemeContext } from "../../context/theme-context";
 
 export type ASSwipeButtonProps = {
   containerStyles?: ViewStyle;
@@ -15,7 +15,7 @@ export type ASSwipeButtonProps = {
   height?: number | string;
   onSwipeFail?: () => void;
   onSwipeStart?: () => void;
-  onSwipeSuccess?: () => void;
+  onPress?: () => void;
   railBackgroundColor?: string;
   railBorderColor?: string;
   railFillBackgroundColor?: string;
@@ -54,7 +54,7 @@ const ASSwipeButton: React.FC<ASSwipeButtonProps> = (props) => {
     height,
     onSwipeFail,
     onSwipeStart,
-    onSwipeSuccess,
+    onPress,
     railBackgroundColor,
     railBorderColor,
     railFillBackgroundColor,
@@ -79,9 +79,15 @@ const ASSwipeButton: React.FC<ASSwipeButtonProps> = (props) => {
     width,
   } = props;
 
+  const onSwipeSuccess = () => {
+    if (onPress && typeof onPress === "function") {
+      onPress();
+    }
+  };
+
   return (
     <SwipeButton
-      containerStyles={styles.containerStyles || containerStyles}
+      containerStyles={containerStyles}
       disabled={disabled}
       disableResetOnTap={disableResetOnTap}
       disabledRailBackgroundColor={disabledRailBackgroundColor}
@@ -93,11 +99,11 @@ const ASSwipeButton: React.FC<ASSwipeButtonProps> = (props) => {
       onSwipeFail={onSwipeFail}
       onSwipeStart={onSwipeStart}
       onSwipeSuccess={onSwipeSuccess}
-      railBackgroundColor={railBackgroundColor || colors.primary}
-      railBorderColor={railBorderColor || colors.primary}
-      railFillBackgroundColor={railFillBackgroundColor || '#a62e19'}
+      railBackgroundColor={railBackgroundColor}
+      railBorderColor={railBorderColor}
+      railFillBackgroundColor={railFillBackgroundColor}
       railFillBorderColor={railFillBorderColor}
-      railStyles={styles.railStyles|| railStyles}
+      railStyles={railStyles}
       resetAfterSuccessAnimDelay={resetAfterSuccessAnimDelay}
       resetAfterSuccessAnimDuration={resetAfterSuccessAnimDuration}
       screenReaderEnabled={screenReaderEnabled}
@@ -107,11 +113,9 @@ const ASSwipeButton: React.FC<ASSwipeButtonProps> = (props) => {
       thumbIconBorderColor={thumbIconBorderColor}
       thumbIconComponent={thumbIconComponent}
       thumbIconImageSource={thumbIconImageSource}
-      thumbIconStyles={styles.thumbIconStyles || thumbIconStyles}
+      thumbIconStyles={thumbIconStyles}
       thumbIconWidth={thumbIconWidth}
       title={label}
-      titleColor={titleColor || colors.title}
-      titleFontSize={titleFontSize}
       titleMaxFontScale={titleMaxFontScale}
       titleStyles={labelStyles}
       width={width}

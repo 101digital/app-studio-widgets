@@ -32,15 +32,26 @@ const rn_swipe_button_1 = __importDefault(require("rn-swipe-button"));
 const theme_context_1 = require("../../context/theme-context");
 const ASSwipeButton = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { onSwipeSuccess, title, style, disabled, thumbIconBackgroundColor, railBackgroundColor, railBorderColor, railFillBackgroundColor, thumbIconComponent, } = props;
-    return (react_1.default.createElement(rn_swipe_button_1.default, { disabled: disabled, onSwipeSuccess: onSwipeSuccess, title: title, thumbIconBackgroundColor: thumbIconBackgroundColor || colors.primary, railBackgroundColor: railBackgroundColor || colors.tertiary, railBorderColor: railBorderColor || colors.onSurface, railFillBackgroundColor: railFillBackgroundColor || colors.primaryFixed, 
-        //   thumbIconComponent={thumbIconComponent}
-        containerStyles: [styles.container, style] }));
+    const { containerStyles, disabled, disableResetOnTap, disabledRailBackgroundColor, disabledThumbIconBackgroundColor, disabledThumbIconBorderColor, enableReverseSwipe, forceReset, height, onSwipeFail, onSwipeStart, onPress, railBackgroundColor, railBorderColor, railFillBackgroundColor, railFillBorderColor, railStyles, resetAfterSuccessAnimDelay, resetAfterSuccessAnimDuration, screenReaderEnabled, shouldResetAfterSuccess, swipeSuccessThreshold, thumbIconBackgroundColor, thumbIconBorderColor, thumbIconComponent, thumbIconImageSource, thumbIconStyles, thumbIconWidth, label, titleColor, titleFontSize, titleMaxFontScale, labelStyles, width, } = props;
+    const onSwipeSuccess = () => {
+        if (onPress && typeof onPress === "function") {
+            onPress();
+        }
+    };
+    return (react_1.default.createElement(rn_swipe_button_1.default, { containerStyles: containerStyles, disabled: disabled, disableResetOnTap: disableResetOnTap, disabledRailBackgroundColor: disabledRailBackgroundColor, disabledThumbIconBackgroundColor: disabledThumbIconBackgroundColor, disabledThumbIconBorderColor: disabledThumbIconBorderColor, enableReverseSwipe: enableReverseSwipe, forceReset: forceReset, height: height, onSwipeFail: onSwipeFail, onSwipeStart: onSwipeStart, onSwipeSuccess: onSwipeSuccess, railBackgroundColor: railBackgroundColor, railBorderColor: railBorderColor, railFillBackgroundColor: railFillBackgroundColor, railFillBorderColor: railFillBorderColor, railStyles: railStyles, resetAfterSuccessAnimDelay: resetAfterSuccessAnimDelay, resetAfterSuccessAnimDuration: resetAfterSuccessAnimDuration, screenReaderEnabled: screenReaderEnabled, shouldResetAfterSuccess: shouldResetAfterSuccess, swipeSuccessThreshold: swipeSuccessThreshold, thumbIconBackgroundColor: thumbIconBackgroundColor || colors.secondary, thumbIconBorderColor: thumbIconBorderColor, thumbIconComponent: thumbIconComponent, thumbIconImageSource: thumbIconImageSource, thumbIconStyles: thumbIconStyles, thumbIconWidth: thumbIconWidth, title: label, titleMaxFontScale: titleMaxFontScale, titleStyles: labelStyles, width: width }));
 };
 const styles = react_native_1.StyleSheet.create({
-    container: {
-        borderRadius: 8,
-        overflow: 'hidden',
+    containerStyles: {
+        borderRadius: 5,
+    },
+    railStyles: {
+        borderRadius: 5,
+    },
+    thumbIconStyles: {
+        borderRadius: 5,
+    },
+    titleStyles: {
+        fontSize: 16,
     },
 });
 exports.default = ASSwipeButton;
