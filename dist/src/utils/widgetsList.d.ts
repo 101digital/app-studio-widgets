@@ -41,6 +41,7 @@ export type WidgetsList = {
     ASIconButton: (attributes: ASIconButtonProps) => string;
 };
 export declare class ASWidgetsList {
+    private static _initialValues;
     constructor();
     private static getReturnValue;
     private static getWidgetAttributes;
