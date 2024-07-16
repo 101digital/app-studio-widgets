@@ -32,11 +32,11 @@ export type ASSwipeButtonProps = {
   thumbIconImageSource?: string | number;
   thumbIconStyles?: ViewStyle;
   thumbIconWidth?: number;
-  lebel?: string;
+  label?: string;
   titleColor?: string;
   titleFontSize?: number;
   titleMaxFontScale?: number;
-  titleStyles?: TextStyle;
+  labelStyles?: TextStyle;
   width?: number | string;
 };
 
@@ -71,11 +71,11 @@ const ASSwipeButton: React.FC<ASSwipeButtonProps> = (props) => {
     thumbIconImageSource,
     thumbIconStyles,
     thumbIconWidth,
-    lebel,
+    label,
     titleColor,
     titleFontSize,
     titleMaxFontScale,
-    titleStyles,
+    labelStyles,
     width,
   } = props;
 
@@ -109,11 +109,11 @@ const ASSwipeButton: React.FC<ASSwipeButtonProps> = (props) => {
       thumbIconImageSource={thumbIconImageSource}
       thumbIconStyles={styles.thumbIconStyles || thumbIconStyles}
       thumbIconWidth={thumbIconWidth}
-      title={lebel}
+      title={label}
       titleColor={titleColor || colors.title}
       titleFontSize={titleFontSize}
       titleMaxFontScale={titleMaxFontScale}
-      titleStyles={styles.titleStyles|| titleStyles}
+      titleStyles={labelStyles}
       width={width}
     />
   );
