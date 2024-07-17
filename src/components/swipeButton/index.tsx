@@ -1,7 +1,8 @@
-import React, { useContext } from "react";
+import React, { ReactElement, useContext } from "react";
 import { StyleSheet, TextStyle, View, ViewStyle, Text } from "react-native";
 import SwipeButton from "rn-swipe-button";
 import { ThemeContext } from "../../context/theme-context";
+import ASLoadingIndicator from "../loadingIndicator";
 
 export type ASSwipeButtonProps = {
   containerStyles?: ViewStyle;
@@ -39,6 +40,7 @@ export type ASSwipeButtonProps = {
   labelStyles?: TextStyle;
   width?: number | string;
   accessibilityLabel?: string;
+  loading?: boolean;
 };
 
 const ASSwipeButton: React.FC<ASSwipeButtonProps> = (props) => {
@@ -79,12 +81,25 @@ const ASSwipeButton: React.FC<ASSwipeButtonProps> = (props) => {
     labelStyles,
     width,
     accessibilityLabel,
+    loading,
   } = props;
 
   const onSwipeSuccess = () => {
     if (onPress && typeof onPress === "function") {
       onPress();
     }
+  };
+
+  const renderThumbIcon = (): ReactElement => {
+    return (
+      <View>
+        {loading ? (
+          <ASLoadingIndicator loading={loading} />
+        ) : (
+          thumbIconComponent
+        )}
+      </View>
+    );
   };
 
   return (
@@ -114,7 +129,8 @@ const ASSwipeButton: React.FC<ASSwipeButtonProps> = (props) => {
         swipeSuccessThreshold={swipeSuccessThreshold}
         thumbIconBackgroundColor={thumbIconBackgroundColor || colors.secondary}
         thumbIconBorderColor={thumbIconBorderColor}
-        thumbIconComponent={thumbIconComponent}
+        // @ts-ignore
+        thumbIconComponent={renderThumbIcon}
         thumbIconImageSource={thumbIconImageSource}
         thumbIconStyles={thumbIconStyles}
         thumbIconWidth={thumbIconWidth}
