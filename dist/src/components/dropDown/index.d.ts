@@ -18,6 +18,7 @@ export type ASDropDownProps = Omit<DropdownProps<any>, "labelField" | "valueFiel
     iconStyles?: StyleProp<ImageStyle>;
     placeholderTextStyles?: StyleProp<TextStyle>;
     dropdownTextStyles?: StyleProp<TextStyle>;
+    labelTextStyle?: StyleProp<TextStyle>;
 };
 declare const ASDropDown: React.FC<ASDropDownProps>;
 export default ASDropDown;

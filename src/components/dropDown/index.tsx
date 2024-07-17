@@ -35,6 +35,7 @@ export type ASDropDownProps = Omit<
   iconStyles?: StyleProp<ImageStyle>;
   placeholderTextStyles?: StyleProp<TextStyle>;
   dropdownTextStyles?: StyleProp<TextStyle>;
+  labelTextStyle?: StyleProp<TextStyle>;
 };
 
 const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
@@ -55,11 +56,18 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
     valueField,
     placeholderTextStyles,
     dropdownTextStyles,
+    labelTextStyle,
     ...restProps
   } = props;
   const [field, meta, helpers] = useField<string>(name);
   const { setValue } = helpers || {};
   const [isFocus, setIsFocus] = useState(false);
+
+  const flattenedLabelStyle = StyleSheet.flatten(labelTextStyle) || {};
+  const labelFontSize =
+    flattenedLabelStyle.fontSize || styles.labelStyle.fontSize;
+  const labelTopPosition = -labelFontSize * 0.8;
+  const flatttenedContainerStyle = StyleSheet.flatten(containerStyle) || {};
 
   const renderItem = (item: DropDownOptionsProps) => {
     return (
@@ -100,7 +108,10 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
             styles.labelStyle,
             {
               color: colors.onTertiary,
+              top: labelTopPosition,
+              backgroundColor: flatttenedContainerStyle?.backgroundColor,
             },
+            labelTextStyle,
           ]}
         >
           {label}
@@ -184,7 +195,9 @@ const styles = StyleSheet.create({
   },
   labelStyle: {
     fontSize: 10,
-    paddingHorizontal: 15,
+    // paddingHorizontal: 15,
+    marginHorizontal: 16,
+    position: "absolute",
   },
 });
 
