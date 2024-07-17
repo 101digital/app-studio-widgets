@@ -38,6 +38,7 @@ export type ASSwipeButtonProps = {
   titleMaxFontScale?: number;
   labelStyles?: TextStyle;
   width?: number | string;
+  accessibilityLabel?: string;
 };
 
 const ASSwipeButton: React.FC<ASSwipeButtonProps> = (props) => {
@@ -77,6 +78,7 @@ const ASSwipeButton: React.FC<ASSwipeButtonProps> = (props) => {
     titleMaxFontScale,
     labelStyles,
     width,
+    accessibilityLabel,
   } = props;
 
   const onSwipeSuccess = () => {
@@ -86,40 +88,42 @@ const ASSwipeButton: React.FC<ASSwipeButtonProps> = (props) => {
   };
 
   return (
-    <SwipeButton
-      containerStyles={containerStyles}
-      disabled={disabled}
-      disableResetOnTap={disableResetOnTap}
-      disabledRailBackgroundColor={disabledRailBackgroundColor}
-      disabledThumbIconBackgroundColor={disabledThumbIconBackgroundColor}
-      disabledThumbIconBorderColor={disabledThumbIconBorderColor}
-      enableReverseSwipe={enableReverseSwipe}
-      forceReset={forceReset}
-      height={height}
-      onSwipeFail={onSwipeFail}
-      onSwipeStart={onSwipeStart}
-      onSwipeSuccess={onSwipeSuccess}
-      railBackgroundColor={railBackgroundColor}
-      railBorderColor={railBorderColor}
-      railFillBackgroundColor={railFillBackgroundColor}
-      railFillBorderColor={railFillBorderColor}
-      railStyles={railStyles}
-      resetAfterSuccessAnimDelay={resetAfterSuccessAnimDelay}
-      resetAfterSuccessAnimDuration={resetAfterSuccessAnimDuration}
-      screenReaderEnabled={screenReaderEnabled}
-      shouldResetAfterSuccess={shouldResetAfterSuccess}
-      swipeSuccessThreshold={swipeSuccessThreshold}
-      thumbIconBackgroundColor={thumbIconBackgroundColor || colors.secondary}
-      thumbIconBorderColor={thumbIconBorderColor}
-      thumbIconComponent={thumbIconComponent}
-      thumbIconImageSource={thumbIconImageSource}
-      thumbIconStyles={thumbIconStyles}
-      thumbIconWidth={thumbIconWidth}
-      title={label}
-      titleMaxFontScale={titleMaxFontScale}
-      titleStyles={labelStyles}
-      width={width}
-    />
+    <View accessibilityLabel={accessibilityLabel}>
+      <SwipeButton
+        containerStyles={containerStyles}
+        disabled={disabled}
+        disableResetOnTap={disableResetOnTap}
+        disabledRailBackgroundColor={disabledRailBackgroundColor}
+        disabledThumbIconBackgroundColor={disabledThumbIconBackgroundColor}
+        disabledThumbIconBorderColor={disabledThumbIconBorderColor}
+        enableReverseSwipe={enableReverseSwipe}
+        forceReset={forceReset}
+        height={height}
+        onSwipeFail={onSwipeFail}
+        onSwipeStart={onSwipeStart}
+        onSwipeSuccess={onSwipeSuccess}
+        railBackgroundColor={railBackgroundColor}
+        railBorderColor={railBorderColor}
+        railFillBackgroundColor={railFillBackgroundColor}
+        railFillBorderColor={railFillBorderColor}
+        railStyles={railStyles}
+        resetAfterSuccessAnimDelay={resetAfterSuccessAnimDelay}
+        resetAfterSuccessAnimDuration={resetAfterSuccessAnimDuration}
+        screenReaderEnabled={screenReaderEnabled}
+        shouldResetAfterSuccess={shouldResetAfterSuccess}
+        swipeSuccessThreshold={swipeSuccessThreshold}
+        thumbIconBackgroundColor={thumbIconBackgroundColor || colors.secondary}
+        thumbIconBorderColor={thumbIconBorderColor}
+        thumbIconComponent={thumbIconComponent}
+        thumbIconImageSource={thumbIconImageSource}
+        thumbIconStyles={thumbIconStyles}
+        thumbIconWidth={thumbIconWidth}
+        title={label}
+        titleMaxFontScale={titleMaxFontScale}
+        titleStyles={labelStyles}
+        width={width}
+      />
+    </View>
   );
 };
 

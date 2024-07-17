@@ -35,6 +35,7 @@ export type ASSwipeButtonProps = {
     titleMaxFontScale?: number;
     labelStyles?: TextStyle;
     width?: number | string;
+    accessibilityLabel?: string;
 };
 declare const ASSwipeButton: React.FC<ASSwipeButtonProps>;
 export default ASSwipeButton;
