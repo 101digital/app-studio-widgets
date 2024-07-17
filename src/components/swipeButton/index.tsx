@@ -3,6 +3,7 @@ import { StyleSheet, TextStyle, View, ViewStyle, Text } from "react-native";
 import SwipeButton from "rn-swipe-button";
 import { ThemeContext } from "../../context/theme-context";
 import ASLoadingIndicator from "../loadingIndicator";
+import { ArrowForwardIcon } from "../../assets/icon/arrow-forward.icon";
 
 export type ASSwipeButtonProps = {
   containerStyles?: ViewStyle;
@@ -95,8 +96,10 @@ const ASSwipeButton: React.FC<ASSwipeButtonProps> = (props) => {
       <View>
         {loading ? (
           <ASLoadingIndicator loading={loading} />
-        ) : (
+        ) : thumbIconComponent ? (
           thumbIconComponent
+        ) : (
+          <ArrowForwardIcon />
         )}
       </View>
     );

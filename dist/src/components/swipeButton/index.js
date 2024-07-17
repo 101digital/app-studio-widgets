@@ -31,6 +31,7 @@ const react_native_1 = require("react-native");
 const rn_swipe_button_1 = __importDefault(require("rn-swipe-button"));
 const theme_context_1 = require("../../context/theme-context");
 const loadingIndicator_1 = __importDefault(require("../loadingIndicator"));
+const arrow_forward_icon_1 = require("../../assets/icon/arrow-forward.icon");
 const ASSwipeButton = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
     const { containerStyles, disabled, disableResetOnTap, disabledRailBackgroundColor, disabledThumbIconBackgroundColor, disabledThumbIconBorderColor, enableReverseSwipe, forceReset, height, onSwipeFail, onSwipeStart, onPress, railBackgroundColor, railBorderColor, railFillBackgroundColor, railFillBorderColor, railStyles, resetAfterSuccessAnimDelay, resetAfterSuccessAnimDuration, screenReaderEnabled, shouldResetAfterSuccess, swipeSuccessThreshold, thumbIconBackgroundColor, thumbIconBorderColor, thumbIconComponent, thumbIconImageSource, thumbIconStyles, thumbIconWidth, label, titleColor, titleFontSize, titleMaxFontScale, labelStyles, width, accessibilityLabel, loading, } = props;
@@ -40,7 +41,7 @@ const ASSwipeButton = (props) => {
         }
     };
     const renderThumbIcon = () => {
-        return (react_1.default.createElement(react_native_1.View, null, loading ? (react_1.default.createElement(loadingIndicator_1.default, { loading: loading })) : (thumbIconComponent)));
+        return (react_1.default.createElement(react_native_1.View, null, loading ? (react_1.default.createElement(loadingIndicator_1.default, { loading: loading })) : thumbIconComponent ? (thumbIconComponent) : (react_1.default.createElement(arrow_forward_icon_1.ArrowForwardIcon, null))));
     };
     return (react_1.default.createElement(react_native_1.View, { accessibilityLabel: accessibilityLabel },
         react_1.default.createElement(rn_swipe_button_1.default, { containerStyles: containerStyles, disabled: disabled, disableResetOnTap: disableResetOnTap, disabledRailBackgroundColor: disabledRailBackgroundColor, disabledThumbIconBackgroundColor: disabledThumbIconBackgroundColor, disabledThumbIconBorderColor: disabledThumbIconBorderColor, enableReverseSwipe: enableReverseSwipe, forceReset: forceReset, height: height, onSwipeFail: onSwipeFail, onSwipeStart: onSwipeStart, onSwipeSuccess: onSwipeSuccess, railBackgroundColor: railBackgroundColor, railBorderColor: railBorderColor, railFillBackgroundColor: railFillBackgroundColor, railFillBorderColor: railFillBorderColor, railStyles: railStyles, resetAfterSuccessAnimDelay: resetAfterSuccessAnimDelay, resetAfterSuccessAnimDuration: resetAfterSuccessAnimDuration, screenReaderEnabled: screenReaderEnabled, shouldResetAfterSuccess: shouldResetAfterSuccess, swipeSuccessThreshold: swipeSuccessThreshold, thumbIconBackgroundColor: thumbIconBackgroundColor || colors.secondary, thumbIconBorderColor: thumbIconBorderColor, 
