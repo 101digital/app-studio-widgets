@@ -38,20 +38,34 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importStar(require("react"));
-const checkbox_1 = __importDefault(require("@react-native-community/checkbox"));
+const react_native_bouncy_checkbox_1 = __importDefault(require("react-native-bouncy-checkbox"));
+const formik_1 = require("formik");
 const theme_context_1 = require("../../context/theme-context");
 const ASCheckBox = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { onChange } = props, restProps = __rest(props, ["onChange"]);
+    const { label, labelStyles, unFillColor = "transparent", fillColor, iconStyles, innerIconStyles, disabled, onChange, accessibilityLabel, size = 25, iconSize = 12, name } = props, restProps = __rest(props, ["label", "labelStyles", "unFillColor", "fillColor", "iconStyles", "innerIconStyles", "disabled", "onChange", "accessibilityLabel", "size", "iconSize", "name"]);
+    const formikContext = (0, formik_1.useFormikContext)();
     const [toggleCheckBox, setToggleCheckBox] = (0, react_1.useState)(false);
+    let field;
+    let meta;
+    let helpers;
+    if (formikContext && name) {
+        [field, meta, helpers] = (0, formik_1.useField)(name);
+    }
+    (0, react_1.useEffect)(() => {
+        if (formikContext && name && field) {
+            setToggleCheckBox(field.value);
+        }
+    }, [formikContext, name, field]);
     const onValueChange = (newValue) => {
         setToggleCheckBox(newValue);
+        if (formikContext && name && helpers) {
+            helpers.setValue(newValue);
+        }
         onChange === null || onChange === void 0 ? void 0 : onChange(newValue);
     };
-    return (react_1.default.createElement(checkbox_1.default, Object.assign({ disabled: false, value: toggleCheckBox, onValueChange: onValueChange, 
-        //IOS Only Props
-        tintColor: colors.onSecondaryFixedVariant, lineWidth: 2, 
-        //Android Only Props
-        tintColors: { true: colors.onSecondaryFixedVariant, false: colors.onSurface } }, restProps)));
+    return (react_1.default.createElement(react_native_bouncy_checkbox_1.default, Object.assign({ size: size, fillColor: fillColor, unFillColor: unFillColor, text: label, iconStyle: iconStyles, innerIconStyle: innerIconStyles, textStyle: labelStyles, onPress: (isChecked) => {
+            onValueChange(isChecked);
+        }, isChecked: toggleCheckBox, iconImageStyle: { width: iconSize, height: iconSize }, disabled: disabled, accessibilityLabel: accessibilityLabel }, restProps)));
 };
 exports.default = ASCheckBox;
