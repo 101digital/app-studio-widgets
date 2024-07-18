@@ -1,5 +1,5 @@
 import React, {ReactNode, useContext} from 'react';
-import {ScrollView, ScrollViewProps, StyleProp, StyleSheet, ViewStyle} from 'react-native'
+import {Platform, ScrollView, ScrollViewProps, StyleProp, StyleSheet, ViewStyle} from 'react-native'
 import {SafeAreaView, SafeAreaViewProps} from 'react-native-safe-area-context';
 import {ThemeContext} from "../../context/theme-context";
 
@@ -23,9 +23,10 @@ const ASContainer: React.FC<ASContainerProps> = (props: ASContainerProps) => {
         disabledSafeArea,
         ...restProps
     } = props || {}
+    const edges:any = disabledSafeArea ? [] : ['right', 'left', 'bottom', ...(Platform.OS === 'ios' ? [] : ['top'])];
 
     return (
-        <SafeAreaView edges={disabledSafeArea ? [] : ['right', 'left', 'top', "bottom"]} {...restProps}
+        <SafeAreaView edges={edges} {...restProps}
                       style={[styles.container, {
                           backgroundColor: colors.background
                       }, style]}>
