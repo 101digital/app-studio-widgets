@@ -35,10 +35,14 @@ const text_1 = __importDefault(require("../text"));
 const theme_context_1 = require("../../context/theme-context");
 const ASCounter = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { minValue = 0, maxValue, onValueChange, name } = props;
+    const { minValue = 0, maxValue, onValueChange, name, labelTypography, decrementIconSize, decrementIconColor, incrementIconSize, incrementIconColor, } = props;
+    console.log("decrementIconSize --> ", decrementIconSize);
+    console.log("decrementIconColor --> ", decrementIconColor);
+    console.log("incrementIconSize --> ", incrementIconSize);
+    console.log("incrementIconColor --> ", incrementIconColor);
     const [field, meta, helpers] = (0, formik_1.useField)(name);
     const { setValue } = helpers || {};
-    const count = parseInt(field === null || field === void 0 ? void 0 : field.value);
+    const count = parseInt((field === null || field === void 0 ? void 0 : field.value) || 1);
     const handleIncrement = () => {
         const newValue = count + 1;
         if (maxValue === undefined || newValue <= maxValue) {
@@ -54,38 +58,29 @@ const ASCounter = (props) => {
         }
     };
     return (react_1.default.createElement(react_native_1.View, { style: styles.wrapper },
-        react_1.default.createElement(row_1.default, { style: [styles.container, { borderColor: colors.onSurface, }] },
-            react_1.default.createElement(button_1.default, { simpleTextButton: true, onPress: handleDecrement, style: styles.button, textStyle: [styles.buttonText, {
-                        color: colors.surface,
-                    }], hitSlop: { top: 5, bottom: 5, left: 5, right: 5 }, label: '−' }),
-            react_1.default.createElement(text_1.default, { style: [styles.countText, { color: colors.surface }] }, count),
-            react_1.default.createElement(button_1.default, { simpleTextButton: true, onPress: handleIncrement, style: styles.button, textStyle: [styles.buttonPlusText, {
-                        color: colors.surface,
-                    }], hitSlop: { top: 5, bottom: 5, left: 5, right: 5 }, label: '＋' }))));
+        react_1.default.createElement(row_1.default, { style: [styles.container, { borderColor: colors.onSurface }] },
+            react_1.default.createElement(button_1.default, { simpleTextButton: true, onPress: handleDecrement, style: styles.button, textStyle: Object.assign(Object.assign({}, styles.buttonText), { color: decrementIconColor, fontSize: decrementIconSize }), hitSlop: { top: 5, bottom: 5, left: 5, right: 5 }, label: "−" }),
+            react_1.default.createElement(text_1.default, { style: labelTypography }, count),
+            react_1.default.createElement(button_1.default, { simpleTextButton: true, onPress: handleIncrement, style: styles.button, textStyle: Object.assign(Object.assign({}, styles.buttonText), { color: incrementIconColor, fontSize: incrementIconSize }), hitSlop: { top: 5, bottom: 5, left: 5, right: 5 }, label: "＋" }))));
 };
 const styles = react_native_1.StyleSheet.create({
     wrapper: {
-        flexDirection: 'column',
-        alignItems: 'flex-start'
+        flexDirection: "column",
+        alignItems: "flex-start",
     },
     container: {
-        alignItems: 'center',
+        alignItems: "center",
         borderWidth: 1,
         borderRadius: 20,
         paddingHorizontal: 5,
         paddingVertical: 4,
-        flex: 1
+        flex: 1,
     },
     button: {
         marginHorizontal: 8,
     },
     buttonText: {
-        fontSize: 21,
-        fontWeight: 'bold'
-    },
-    buttonPlusText: {
-        fontSize: 18,
-        fontWeight: 'bold'
+        fontWeight: "bold",
     },
     countText: {
         fontSize: 20,
