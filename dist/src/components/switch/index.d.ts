@@ -1,5 +1,5 @@
-import React from 'react';
-import { SwitchProps } from 'react-native';
+import React from "react";
+import { SwitchProps } from "react-native";
 export type ASSwitchProps = SwitchProps & {
     enableThumbColor?: string;
     disabledThumbColor?: string;

@@ -31,8 +31,7 @@ const ASBadge: React.FC<ASBadgeProps> = (props: ASBadgeProps) => {
             style={[
               styles.badgeStyles,
               {
-                backgroundColor: colors.background,
-                borderColor: colors.accent2,
+                backgroundColor: colors.primary,
               },
               badgeStyles,
             ]}
@@ -49,18 +48,15 @@ const ASBadge: React.FC<ASBadgeProps> = (props: ASBadgeProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
+    flexDirection: "column",
   },
   badgeStyles: {
-    top: -15,
-    right: -12,
     borderRadius: 30,
     height: 25,
     width: 25,
     justifyContent: "center",
     alignItems: "center",
     borderWidth: 2,
-    flex: 0,
   },
   badgeTextStyle: {
     fontWeight: "bold",

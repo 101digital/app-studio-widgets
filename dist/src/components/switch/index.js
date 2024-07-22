@@ -39,7 +39,7 @@ const react_native_1 = require("react-native");
 const theme_context_1 = require("../../context/theme-context");
 const ASSwitch = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { enableThumbColor = colors.secondaryFixed, disabledThumbColor = colors.secondaryFixed, onChange } = props, restProps = __rest(props, ["enableThumbColor", "disabledThumbColor", "onChange"]);
+    const { enableThumbColor, disabledThumbColor, onChange } = props, restProps = __rest(props, ["enableThumbColor", "disabledThumbColor", "onChange"]);
     const [isEnabled, setIsEnabled] = (0, react_1.useState)(false);
     const toggleSwitch = () => {
         setIsEnabled((previousState) => {

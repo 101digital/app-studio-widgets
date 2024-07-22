@@ -152,12 +152,12 @@ const ASChoiceChips: React.FC<ASChoiceChipsProps> = (
 const styles = StyleSheet.create({
   container: {},
   chip: {
-    flexDirection: "row",
+    flexDirection: "column",
     alignItems: "center",
     borderRadius: 10,
     borderWidth: 1,
-    paddingHorizontal: 14,
-    paddingVertical: 6,
+    paddingHorizontal: 4,
+    paddingVertical: 4,
   },
   iconContainer: {
     marginRight: 8,

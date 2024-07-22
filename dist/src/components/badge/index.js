@@ -39,8 +39,7 @@ const ASBadge = (props) => {
             !!label && (react_1.default.createElement(react_native_1.View, { style: [
                     styles.badgeStyles,
                     {
-                        backgroundColor: colors.background,
-                        borderColor: colors.accent2,
+                        backgroundColor: colors.primary,
                     },
                     badgeStyles,
                 ] },
@@ -48,18 +47,15 @@ const ASBadge = (props) => {
 };
 const styles = react_native_1.StyleSheet.create({
     container: {
-        flexDirection: "row",
+        flexDirection: "column",
     },
     badgeStyles: {
-        top: -15,
-        right: -12,
         borderRadius: 30,
         height: 25,
         width: 25,
         justifyContent: "center",
         alignItems: "center",
         borderWidth: 2,
-        flex: 0,
     },
     badgeTextStyle: {
         fontWeight: "bold",
