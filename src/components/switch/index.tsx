@@ -5,13 +5,21 @@ import { ThemeContext } from "../../context/theme-context";
 export type ASSwitchProps = SwitchProps & {
   enableThumbColor?: string;
   disabledThumbColor?: string;
+  enableTrackColor?: string;
+  disabledTrackColor?: string;
   onChange: (value: boolean) => void;
 };
 
 const ASSwitch: React.FC<ASSwitchProps> = (props: ASSwitchProps) => {
   const { colors } = useContext(ThemeContext);
-  const { enableThumbColor, disabledThumbColor, onChange, ...restProps } =
-    props;
+  const {
+    enableThumbColor,
+    disabledThumbColor,
+    onChange,
+    enableTrackColor,
+    disabledTrackColor,
+    ...restProps
+  } = props;
   const [isEnabled, setIsEnabled] = useState(false);
 
   const toggleSwitch = () => {
@@ -23,7 +31,7 @@ const ASSwitch: React.FC<ASSwitchProps> = (props: ASSwitchProps) => {
 
   return (
     <Switch
-      trackColor={{ false: colors.onTertiary, true: colors.accent2 }}
+      trackColor={{ true: enableTrackColor, false: disabledTrackColor }}
       ios_backgroundColor={colors.onSurface}
       onValueChange={toggleSwitch}
       value={isEnabled}

@@ -41,21 +41,21 @@ const date_fns_1 = require("date-fns");
 const theme_context_1 = require("../../context/theme-context");
 const ASCalendar = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { style, markedDates, markingType, minDate, onChange } = props, restProps = __rest(props, ["style", "markedDates", "markingType", "minDate", "onChange"]);
-    const [selected, setSelected] = (0, react_1.useState)('');
+    const { style, markedDates, markingType, minDate, onChange, selectedDayBackgroundColor, selectedDayTextColor, todayTextColor, arrowColor, dayTextColor, calendarBackground, textSectionTitleColor } = props, restProps = __rest(props, ["style", "markedDates", "markingType", "minDate", "onChange", "selectedDayBackgroundColor", "selectedDayTextColor", "todayTextColor", "arrowColor", "dayTextColor", "calendarBackground", "textSectionTitleColor"]);
+    const [selected, setSelected] = (0, react_1.useState)("");
     const [markedDatesState, setMarkedDatesState] = (0, react_1.useState)();
     const [periodMarking, setPeriodMarking] = (0, react_1.useState)([]);
-    const isMarkingTypePeriod = markingType === 'period';
+    const isMarkingTypePeriod = markingType === "period";
     const generateDateList = (startDateStr, endDateStr) => {
         const startDate = (0, date_fns_1.parseISO)(startDateStr);
         const endDate = (0, date_fns_1.parseISO)(endDateStr);
         const dates = [];
         let currentDate = startDate;
         while ((0, date_fns_1.isBefore)(currentDate, endDate)) {
-            dates.push((0, date_fns_1.format)(currentDate, 'yyyy-MM-dd'));
+            dates.push((0, date_fns_1.format)(currentDate, "yyyy-MM-dd"));
             currentDate = (0, date_fns_1.addDays)(currentDate, 1);
         }
-        dates.push((0, date_fns_1.format)(endDate, 'yyyy-MM-dd'));
+        dates.push((0, date_fns_1.format)(endDate, "yyyy-MM-dd"));
         return dates;
     };
     const _getMinDate = () => {
@@ -72,10 +72,8 @@ const ASCalendar = (props) => {
             if (periodMarking === null || periodMarking === void 0 ? void 0 : periodMarking[0]) {
                 setMarkedDatesState({
                     [periodMarking[0]]: {
-                        color: colors.primary,
                         startingDay: true,
-                        textColor: colors.secondaryFixed,
-                    }
+                    },
                 });
             }
             if (periodMarking.length === 2) {
@@ -83,7 +81,6 @@ const ASCalendar = (props) => {
                 const res = {};
                 for (let date of periodDateList) {
                     res[date] = {
-                        color: colors.primary,
                         startingDay: periodDateList.indexOf(date) === 0,
                         endingDay: periodDateList.indexOf(date) === periodDateList.length - 1,
                         textColor: colors.secondaryFixed,
@@ -115,13 +112,20 @@ const ASCalendar = (props) => {
             onChange === null || onChange === void 0 ? void 0 : onChange(day.dateString);
         }
     };
-    return (react_1.default.createElement(react_native_calendars_1.Calendar, Object.assign({ onDayPress: _onDayPress, initialDate: new Date().toDateString(), allowSelectionOutOfRange: false, hideExtraDays: true }, restProps, { minDate: _getMinDate(), markedDates: Object.assign(Object.assign({ [selected]: {
+    return (react_1.default.createElement(react_native_calendars_1.Calendar, Object.assign({ onDayPress: _onDayPress, initialDate: new Date().toDateString(), allowSelectionOutOfRange: false, hideExtraDays: true, minDate: _getMinDate(), theme: {
+            selectedDayBackgroundColor: selectedDayBackgroundColor,
+            selectedDayTextColor: selectedDayTextColor,
+            todayTextColor: todayTextColor,
+            arrowColor: arrowColor,
+            dayTextColor: dayTextColor,
+            calendarBackground: calendarBackground,
+            textSectionTitleColor: textSectionTitleColor,
+        }, markedDates: Object.assign(Object.assign({ [selected]: {
                 selected: true,
                 disableTouchEvent: true,
-                selectedColor: colors.primary
-            } }, markedDatesState), markedDates), markingType: markingType, style: [styles.calendarStyles, style] })));
+            } }, markedDatesState), markedDates), markingType: markingType, style: [styles.calendarStyles, style] }, restProps)));
 };
 const styles = react_native_1.StyleSheet.create({
-    calendarStyles: {}
+    calendarStyles: {},
 });
 exports.default = ASCalendar;
