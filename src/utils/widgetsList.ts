@@ -177,11 +177,8 @@ export class ASWidgetsList {
           }
 
           for (const validationRule of formWidgetItem.validationRules) {
-            validation += `.${validationRule.type}${
-              validationRule.errorMessage
-                ? `('${validationRule.errorMessage}')`
-                : "()"
-            }`;
+            validation += `.${validationRule.type}(${validationRule.rule ? validationRule.rule + (validationRule.errorMessage ? `, '${validationRule.errorMessage}'` : '') : validationRule.errorMessage ? `'${validationRule.errorMessage}'` : ''})`;
+
           }
           validationStringArray.push(`${formWidgetItem.name}:${validation}`);
         }

@@ -31,7 +31,7 @@ const ASContainer: React.FC<ASContainerProps> = (props: ASContainerProps) => {
     const route = useRoute();
 
     // Check if the current screen has a header
-    const hasHeader = navigation.getParent()?.getState().routes.some((r) => r.name === route.name && r.params?.headerShown !== false);
+    const hasHeader = navigation.getParent()?.getState().routes.some((r:any) => r.name === route.name && r.params?.headerShown !== false);
 
     // Set hasHeader to false if it is undefined
     const isHeaderVisible = hasHeader === undefined ? true : false;

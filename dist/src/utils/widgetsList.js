@@ -73,9 +73,7 @@ class ASWidgetsList {
                         validation += `.${formWidgetItem === null || formWidgetItem === void 0 ? void 0 : formWidgetItem.dataType}()`;
                     }
                     for (const validationRule of formWidgetItem.validationRules) {
-                        validation += `.${validationRule.type}${validationRule.errorMessage
-                            ? `('${validationRule.errorMessage}')`
-                            : "()"}`;
+                        validation += `.${validationRule.type}(${validationRule.rule ? validationRule.rule + (validationRule.errorMessage ? `, '${validationRule.errorMessage}'` : '') : validationRule.errorMessage ? `'${validationRule.errorMessage}'` : ''})`;
                     }
                     validationStringArray.push(`${formWidgetItem.name}:${validation}`);
                 }
