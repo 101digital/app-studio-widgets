@@ -31,7 +31,6 @@ export { default as ASCalendar, ASCalendarProps, } from "./src/components/calend
 export { default as ASTimer, ASTimerProps } from "./src/components/timer";
 export { default as ASModal, ASModalProps } from "./src/components/modal";
 export { default as ASPin, ASPinProps } from "./src/components/pin";
-export { default as ASBottomSheet, ASBottomSheetProps, } from "./src/components/bottomSheet";
 export { ThemeContext, useThemeContextValue, ThemeProvider, createThemeData, useThemeColors, useThemeFonts, } from "./src/context/theme-context";
 export { default as ASPasswordTextField, ASPasswordTextFieldProps, } from "./src/components/passwordTextField";
 export { default as ASPopUp, ASPopUpProps } from "./src/components/popUp";
@@ -41,3 +40,6 @@ export { default as ASDualIconRowButton, ASDualIconButtonProps, } from "./src/co
 export { default as ASSwipeButton, ASSwipeButtonProps, } from "./src/components/swipeButton";
 export { default as E6TransactionHistoryListView, E6TransactionHistoryListViewProps, } from "./src/customComponent/e6TransactionHistoryListView";
 export { default as ASIconButton, ASIconButtonProps, } from "./src/components/iconButton";
+export { default as ASBottomSheet, BottomSheetModalProps } from "./src/components/bottomSheet";
+export { default as ASTabs } from './src/components/tab';
+export { default as ASTabView } from './src/components/tabView';

@@ -1,10 +1,12 @@
-import React, { ReactNode, useEffect, useState, useContext } from "react";
+import React, { ReactNode, useEffect, useState, useContext, useRef } from "react";
 import ASText from "../text";
 import {
   FlatList,
   FlatListProps,
   StyleProp,
   StyleSheet,
+  TextInput,
+  TextInputKeyPressEventData,
   TextStyle,
   View,
   ViewStyle,
@@ -48,6 +50,14 @@ export type ASPinProps = KeyboardProps & {
   keyboardTypography?: TextStyle;
   inputTypography?: TextStyle;
   gap?: number;
+  keyboardButtonRadius?: number;
+  enableNativeKeyboard?: boolean;
+  pinBoxRadius?: number;
+  pinBoxSize?: number;
+  pinBoxBorderColor?: string;
+  pinBoxBackgroundColor?: string;
+  keyboardButtonBorderColor?: string;
+  keyboardButtonBackgroundColor?: string;
 };
 
 export type KeyboardProps = {
@@ -58,6 +68,9 @@ export type KeyboardProps = {
   flatListProps?: FlatListProps<KeyboardItemProps>;
   onKeyboardPress?: (item: KeyboardItemProps) => void;
   typography?: TextStyle;
+  keyboardButtonRadius?: number;
+  keyboardButtonBorderColor?: string;
+  keyboardButtonBackgroundColor?: string;
 };
 
 export type KeyboardItemProps = {
@@ -69,6 +82,13 @@ export type PinInputListProps = {
   pinLength: number;
   pin: string[];
   inputTypography?: TextStyle;
+  onKeyboardPress: (item: KeyboardItemProps) => void
+  enableNativeKeyboard?: boolean;
+  pinBoxRadius?: number;
+  pinBoxSize?: number;
+  pinBoxBorderColor?: string;
+  pinBoxBackgroundColor?: string;
+  onSubmit: (item: string) => void;
 };
 
 const Keyboard: React.FC<KeyboardProps> = (props: KeyboardProps) => {
@@ -81,6 +101,9 @@ const Keyboard: React.FC<KeyboardProps> = (props: KeyboardProps) => {
     flatListProps,
     onKeyboardPress,
     typography,
+    keyboardButtonRadius,
+    keyboardButtonBorderColor,
+    keyboardButtonBackgroundColor,
   } = props;
 
   const _onKeyboardPress = (item: KeyboardItemProps) => () => {
@@ -92,11 +115,13 @@ const Keyboard: React.FC<KeyboardProps> = (props: KeyboardProps) => {
       <ASButton
         style={{
           ...styles.keyboardButton,
-          borderColor: colors.onSecondary,
+          borderColor: keyboardButtonBorderColor || colors.onSecondary,
+          backgroundColor: keyboardButtonBackgroundColor,
           ...(item?.value === "continue" &&
             StyleSheet.flatten(submitButtonStyle)),
           ...(item?.value === "delete" &&
             StyleSheet.flatten(deleteButtonStyle)),
+            borderRadius: keyboardButtonRadius,
         }}
         onPress={_onKeyboardPress(item)}
       >
@@ -132,31 +157,102 @@ const Keyboard: React.FC<KeyboardProps> = (props: KeyboardProps) => {
 const PinInputList: React.FC<PinInputListProps> = (
   props: PinInputListProps
 ) => {
-  const { pinLength, pin, inputTypography } = props;
-  const PIN_SIZE = 45;
+  const { pinLength, 
+    pin, 
+    inputTypography, 
+    onKeyboardPress, 
+    enableNativeKeyboard, 
+    pinBoxRadius, 
+    pinBoxSize, 
+    pinBoxBackgroundColor, 
+    pinBoxBorderColor,
+    onSubmit
+  } = props;
+  const PIN_SIZE = 50;
+
+  // References for each TextInput
+  const inputRefs = useRef<TextInput[]>([]);
+
+  const handleInputChange = (text: string, index: number) => {
+    if (text) {
+      // Update the pin state
+      onKeyboardPress({ label: text, value: text });
+  
+      // Focus the next input if available
+      if (index < pinLength - 1) {
+        inputRefs.current[index + 1]?.focus();
+      }
+    }
+  };
+
+  const handleKeyPress = (e: any, index: number) => {
+    const key = e.nativeEvent.key;
+  
+    if (key === 'Backspace') {
+      if (!pin[index] && index > 0) {
+        // If backspace is pressed and current input is empty, focus the previous input
+        inputRefs.current[index - 1]?.focus();
+      }
+      onKeyboardPress({ label: 'delete', value: 'delete' });
+    }
+  
+    if (key === 'Enter' || key === 'Submit') {
+      // Prevent the keyboard from hiding
+      e.preventDefault();
+  
+      // Focus the previous input if available
+      if (index > 0) {
+        inputRefs.current[index - 1]?.focus();
+      }
+  
+      // You can also trigger the submit action if needed
+      if (pin.length === pinLength) {
+        //trigger submit
+        onSubmit?.(pin.join(""));
+      }
+    }
+  };
 
   return (
     <ASRow style={{ justifyContent: "space-between" }}>
-      {Array.from({ length: pinLength }, (_, index) => {
-        return (
-          <ASColumn
-            key={index}
-            style={[
-              styles.pinItemWrapper,
-              {
-                borderColor: colors.onSecondary,
-                width: PIN_SIZE,
-                height: PIN_SIZE,
-              },
-            ]}
-          >
-            <ASText style={inputTypography}>{pin?.[index] || ""}</ASText>
-          </ASColumn>
-        );
-      })}
+      {Array.from({ length: pinLength }, (_, index) => (
+        <ASColumn
+          key={index}
+          style={[
+            styles.pinItemWrapper,
+            {
+              borderColor: pinBoxBorderColor || colors.onSecondary,
+              backgroundColor: pinBoxBackgroundColor,
+              width: pinBoxSize || PIN_SIZE,
+              height: pinBoxSize || PIN_SIZE,
+              borderRadius: pinBoxRadius
+            },
+          ]}
+        >
+          {!enableNativeKeyboard ? (
+            <ASText style={inputTypography}>{pin[index] || ""}</ASText>
+          ) : (
+            <TextInput
+            ref={(el) => (inputRefs.current[index] = el!)}
+            style={[inputTypography, styles.textInputStyle]}
+            value={pin[index] || ""}
+            keyboardType="number-pad"
+            onChangeText={(text) => handleInputChange(text, index)}
+            onKeyPress={(e) => handleKeyPress(e, index)}
+            maxLength={1}
+            autoFocus={index === 0}
+            caretHidden={true}         // Hide caret (cursor)
+            showSoftInputOnFocus={true} // Ensure the keyboard opens
+            focusable={false}          // Prevent focus by clicking
+            selectTextOnFocus={false}
+            />
+          )}
+        </ASColumn>
+      ))}
     </ASRow>
   );
 };
+
 
 const ASPin: React.FC<ASPinProps> = (props: ASPinProps) => {
   const {
@@ -172,6 +268,14 @@ const ASPin: React.FC<ASPinProps> = (props: ASPinProps) => {
     keyboardTypography,
     inputTypography,
     gap,
+    keyboardButtonRadius,
+    enableNativeKeyboard,
+    pinBoxRadius,
+    pinBoxSize,
+    keyboardButtonBackgroundColor,
+    keyboardButtonBorderColor,
+    pinBoxBackgroundColor,
+    pinBoxBorderColor
   } = props;
   const [pin, setPin] = useState<string[]>([]);
 
@@ -202,18 +306,25 @@ const ASPin: React.FC<ASPinProps> = (props: ASPinProps) => {
   };
 
   return (
-    <ASColumn style={styles.flex1}>
+    <ASColumn style={[styles.flex1, !enableNativeKeyboard && {position: 'absolute', flex: 1} ]}>
       <View style={{ marginBottom: gap || 24 }}>
         <PinInputList
           pinLength={pinLength}
           pin={pin}
           inputTypography={inputTypography}
+          onKeyboardPress= {onKeyboardItemPress}
+          enableNativeKeyboard={enableNativeKeyboard}
+          pinBoxRadius={pinBoxRadius}
+          pinBoxSize={pinBoxSize}
+          pinBoxBackgroundColor={pinBoxBackgroundColor}
+          pinBoxBorderColor={pinBoxBorderColor}
+          onSubmit={onSubmit}
         />
       </View>
 
       {children}
 
-      <Keyboard
+      {!enableNativeKeyboard && <Keyboard
         submitButtonIcon={submitButtonIcon}
         submitButtonStyle={submitButtonStyle}
         deleteButtonIcon={deleteButtonIcon}
@@ -221,7 +332,10 @@ const ASPin: React.FC<ASPinProps> = (props: ASPinProps) => {
         flatListProps={flatListProps}
         onKeyboardPress={onKeyboardItemPress}
         typography={keyboardTypography}
-      />
+        keyboardButtonRadius={keyboardButtonRadius}
+        keyboardButtonBackgroundColor={keyboardButtonBackgroundColor}
+        keyboardButtonBorderColor={keyboardButtonBorderColor}
+      />}
     </ASColumn>
   );
 };
@@ -230,7 +344,8 @@ export default ASPin;
 
 const styles = StyleSheet.create({
   flex1: {
-    flex: 1,
+    bottom: 5,
+    width: '100%'
   },
   keyboardButton: {
     paddingVertical: 23,
@@ -246,5 +361,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 5,
   },
-  flatListContainerStyles: { gap: 15, justifyContent: "flex-end", flexGrow: 1 },
+  textInputStyle: {
+    textAlign: "center",
+  },
+  flatListContainerStyles: { gap: 15, justifyContent: "flex-end" },
 });
