@@ -164,7 +164,10 @@ export class ASWidgetsList {
           initialValues[formWidgetItem.name] = initialValueItem
           ? `${initialValueItem} || ''`
           : `''`; 
-          this._initialValues.push(formWidgetItem.name); 
+          
+          if (!this._initialValues.includes(formWidgetItem.name)) {
+            this._initialValues.push(formWidgetItem.name);
+          } 
 
 
           if (
