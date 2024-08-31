@@ -154,23 +154,28 @@ export class ASWidgetsList {
       if (key === "formWidgets") {
         const formWidgetsList = attributeValue;
         const validationStringArray: any[] = [];
-        const initialValues: any = {}; 
-        
+        const initialValues: any = {};
+
         for (const formWidgetItem of formWidgetsList) {
 
-       
+
           const initialValueItem = atrributesObj.initialValues[formWidgetItem.name];
 
-          if (!Array.isArray(formWidgetItem?.validationRules) || formWidgetItem.validationRules.length < 1) {
-            initialValues[formWidgetItem.name] = initialValueItem
-            ? `${initialValueItem} || ''`
-            : `''`; 
-            this._initialValues.push(formWidgetItem.name);
+          initialValues[formWidgetItem.name] = initialValueItem
+          ? `${initialValueItem} || ''`
+          : `''`; 
+          this._initialValues.push(formWidgetItem.name); 
+
+
+          if (
+            !Array.isArray(formWidgetItem?.validationRules) ||
+            formWidgetItem?.validationRules?.length < 1
+          ) {
             continue;
           }
 
-          let validation: string = `Yup`;
-          
+          let validation: string = `Yup`; 
+
           if (formWidgetItem?.dataType) {
             validation += `.${formWidgetItem?.dataType}()`;
           }
