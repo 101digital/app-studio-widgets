@@ -150,7 +150,7 @@ const ASPin = (props) => {
             });
         }
     };
-    return (react_1.default.createElement(column_1.default, { style: [styles.flex1, !enableNativeKeyboard && { position: 'absolute', flex: 1 }] },
+    return (react_1.default.createElement(column_1.default, { style: [styles.flex1, !enableNativeKeyboard && { position: 'relative' }] },
         react_1.default.createElement(react_native_1.View, { style: { marginBottom: gap || 24 } },
             react_1.default.createElement(PinInputList, { pinLength: pinLength, pin: pin, inputTypography: inputTypography, onKeyboardPress: onKeyboardItemPress, enableNativeKeyboard: enableNativeKeyboard, pinBoxRadius: pinBoxRadius, pinBoxSize: pinBoxSize, pinBoxBackgroundColor: pinBoxBackgroundColor, pinBoxBorderColor: pinBoxBorderColor, onSubmit: onSubmit })),
         children,
@@ -159,7 +159,6 @@ const ASPin = (props) => {
 exports.default = ASPin;
 const styles = react_native_1.StyleSheet.create({
     flex1: {
-        bottom: 5,
         width: '100%'
     },
     keyboardButton: {

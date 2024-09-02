@@ -306,7 +306,7 @@ const ASPin: React.FC<ASPinProps> = (props: ASPinProps) => {
   };
 
   return (
-    <ASColumn style={[styles.flex1, !enableNativeKeyboard && {position: 'absolute', flex: 1} ]}>
+    <ASColumn style={[styles.flex1, !enableNativeKeyboard && {position: 'relative'} ]}>
       <View style={{ marginBottom: gap || 24 }}>
         <PinInputList
           pinLength={pinLength}
@@ -344,7 +344,6 @@ export default ASPin;
 
 const styles = StyleSheet.create({
   flex1: {
-    bottom: 5,
     width: '100%'
   },
   keyboardButton: {

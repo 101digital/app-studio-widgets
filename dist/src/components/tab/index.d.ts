@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { TextStyle } from 'react-native';
+import { TextStyle, ViewStyle } from 'react-native';
 type TabProps = {
     name: string;
     title: string;
@@ -13,7 +13,8 @@ type TabsProps = {
     activeTabBorderColor?: string;
     tabHeaderTypography?: TextStyle;
     tabViewBackgroundColor?: string;
-    tabHeaderBackgroundColor?: string;
+    tabHeaderStyle: ViewStyle;
+    enableShadow?: boolean;
 };
 declare const ASTabs: React.FC<TabsProps>;
 export default ASTabs;

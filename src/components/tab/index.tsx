@@ -1,5 +1,6 @@
 import React, { ReactNode, useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView, TextStyle } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView, TextStyle, ViewStyle } from 'react-native';
+import { HorizontalLine } from "../../assets/icon/horizontalLine.icon";
 
 type TabProps = {
   name: string;
@@ -15,18 +16,20 @@ type TabsProps = {
   activeTabBorderColor?: string;
   tabHeaderTypography? : TextStyle;
   tabViewBackgroundColor?: string;
-  tabHeaderBackgroundColor?: string;
+  tabHeaderStyle: ViewStyle;
+  enableShadow?: boolean;
 };
 
 const ASTabs: React.FC<TabsProps> = ({
   children,
   activeTabName,
   onTabPress,
-  activeTabTextColor = '#007AFF',
-  activeTabBorderColor = '#007AFF',
+  activeTabTextColor,
+  activeTabBorderColor = "white",
   tabHeaderTypography,
   tabViewBackgroundColor,
-  tabHeaderBackgroundColor
+  tabHeaderStyle,
+  enableShadow = true,
 }) => {
   const [activeTab, setActiveTab] = useState<string>(activeTabName || children[0]?.props?.name);
 
@@ -35,6 +38,12 @@ const ASTabs: React.FC<TabsProps> = ({
     if (onTabPress) onTabPress(name);
   };
 
+  const flattenedTabHeaderStyle = StyleSheet.flatten(tabHeaderStyle);
+  const backgroundColor = flattenedTabHeaderStyle?.backgroundColor || "white";
+  const maxHeight = flattenedTabHeaderStyle?.maxHeight || 40;
+  const borderRadius = flattenedTabHeaderStyle?.borderRadius || 8;
+  const width = flattenedTabHeaderStyle?.width || "90%";
+
   return (
     <View style={styles.container}>
       {/* Scrollable Tab Headers */}
@@ -42,14 +51,13 @@ const ASTabs: React.FC<TabsProps> = ({
         horizontal
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.scrollContainer}
-        style={[styles.tabHeaderScroll, {backgroundColor: tabHeaderBackgroundColor}]}
+        style={[styles.tabHeaderScroll, enableShadow && styles.shadow, {backgroundColor: backgroundColor, maxHeight: maxHeight, borderRadius: borderRadius, width: width}]}
       >
         {children.map((child) => (
           <TouchableOpacity
             key={child.props.name}
             style={[
               styles.tab,
-              activeTab === child.props.name && { borderBottomColor: activeTabBorderColor },
             ]}
             onPress={() => handleTabPress(child.props.name)}
           >
@@ -62,6 +70,7 @@ const ASTabs: React.FC<TabsProps> = ({
             >
               {child.props.title}
             </Text>
+            {activeTab === child.props.name && <HorizontalLine color={activeTabBorderColor} width={child.props.title.length * 5} height={2} />}
           </TouchableOpacity>
         ))}
       </ScrollView>
@@ -89,19 +98,24 @@ const styles = StyleSheet.create({
   },
   scrollContainer: {
     flexDirection: 'row',
+    verticalAlign: "middle",
+    alignItems: "center",
+    paddingHorizontal: 15,
   },
   tabHeaderScroll: {
-    maxHeight: 50,
+    alignSelf: "center",
+    verticalAlign: "middle",
+    alignContent: "center",
   },
   tab: {
     paddingHorizontal: 20,
-    paddingVertical: 10,
     alignItems: 'center',
+    textAlign: "center",
     borderBottomWidth: 2,
     borderBottomColor: 'transparent', // Default border color for inactive tabs
   },
   tabText: {
-    fontSize: 16,
+    fontSize: 12,
     color: '#333',
   },
   contentContainer: {
@@ -111,6 +125,13 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
   },
+  shadow: {
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.5,
+    shadowRadius: 6,
+    elevation: 8,
+  }
 });
 
 export default ASTabs;

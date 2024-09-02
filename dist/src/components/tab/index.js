@@ -25,7 +25,8 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importStar(require("react"));
 const react_native_1 = require("react-native");
-const ASTabs = ({ children, activeTabName, onTabPress, activeTabTextColor = '#007AFF', activeTabBorderColor = '#007AFF', tabHeaderTypography, tabViewBackgroundColor, tabHeaderBackgroundColor }) => {
+const horizontalLine_icon_1 = require("../../assets/icon/horizontalLine.icon");
+const ASTabs = ({ children, activeTabName, onTabPress, activeTabTextColor, activeTabBorderColor = "white", tabHeaderTypography, tabViewBackgroundColor, tabHeaderStyle, enableShadow = true, }) => {
     var _a, _b;
     const [activeTab, setActiveTab] = (0, react_1.useState)(activeTabName || ((_b = (_a = children[0]) === null || _a === void 0 ? void 0 : _a.props) === null || _b === void 0 ? void 0 : _b.name));
     const handleTabPress = (name) => {
@@ -33,16 +34,21 @@ const ASTabs = ({ children, activeTabName, onTabPress, activeTabTextColor = '#00
         if (onTabPress)
             onTabPress(name);
     };
+    const flattenedTabHeaderStyle = react_native_1.StyleSheet.flatten(tabHeaderStyle);
+    const backgroundColor = (flattenedTabHeaderStyle === null || flattenedTabHeaderStyle === void 0 ? void 0 : flattenedTabHeaderStyle.backgroundColor) || "white";
+    const maxHeight = (flattenedTabHeaderStyle === null || flattenedTabHeaderStyle === void 0 ? void 0 : flattenedTabHeaderStyle.maxHeight) || 40;
+    const borderRadius = (flattenedTabHeaderStyle === null || flattenedTabHeaderStyle === void 0 ? void 0 : flattenedTabHeaderStyle.borderRadius) || 8;
+    const width = (flattenedTabHeaderStyle === null || flattenedTabHeaderStyle === void 0 ? void 0 : flattenedTabHeaderStyle.width) || "90%";
     return (react_1.default.createElement(react_native_1.View, { style: styles.container },
-        react_1.default.createElement(react_native_1.ScrollView, { horizontal: true, showsHorizontalScrollIndicator: false, contentContainerStyle: styles.scrollContainer, style: [styles.tabHeaderScroll, { backgroundColor: tabHeaderBackgroundColor }] }, children.map((child) => (react_1.default.createElement(react_native_1.TouchableOpacity, { key: child.props.name, style: [
+        react_1.default.createElement(react_native_1.ScrollView, { horizontal: true, showsHorizontalScrollIndicator: false, contentContainerStyle: styles.scrollContainer, style: [styles.tabHeaderScroll, enableShadow && styles.shadow, { backgroundColor: backgroundColor, maxHeight: maxHeight, borderRadius: borderRadius, width: width }] }, children.map((child) => (react_1.default.createElement(react_native_1.TouchableOpacity, { key: child.props.name, style: [
                 styles.tab,
-                activeTab === child.props.name && { borderBottomColor: activeTabBorderColor },
             ], onPress: () => handleTabPress(child.props.name) },
             react_1.default.createElement(react_native_1.Text, { style: [
                     styles.tabText,
                     activeTab === child.props.name && { color: activeTabTextColor },
                     tabHeaderTypography
-                ] }, child.props.title))))),
+                ] }, child.props.title),
+            activeTab === child.props.name && react_1.default.createElement(horizontalLine_icon_1.HorizontalLine, { color: activeTabBorderColor, width: child.props.title.length * 5, height: 2 }))))),
         react_1.default.createElement(react_native_1.View, { style: [styles.contentContainer, { backgroundColor: tabViewBackgroundColor }] }, children.map((child) => {
             if (child.props.name === activeTab) {
                 return (react_1.default.createElement(react_native_1.View, { key: child.props.name, style: styles.content }, child.props.children));
@@ -56,19 +62,24 @@ const styles = react_native_1.StyleSheet.create({
     },
     scrollContainer: {
         flexDirection: 'row',
+        verticalAlign: "middle",
+        alignItems: "center",
+        paddingHorizontal: 15,
     },
     tabHeaderScroll: {
-        maxHeight: 50,
+        alignSelf: "center",
+        verticalAlign: "middle",
+        alignContent: "center",
     },
     tab: {
         paddingHorizontal: 20,
-        paddingVertical: 10,
         alignItems: 'center',
+        textAlign: "center",
         borderBottomWidth: 2,
         borderBottomColor: 'transparent', // Default border color for inactive tabs
     },
     tabText: {
-        fontSize: 16,
+        fontSize: 12,
         color: '#333',
     },
     contentContainer: {
@@ -78,5 +89,12 @@ const styles = react_native_1.StyleSheet.create({
         flex: 1,
         padding: 20,
     },
+    shadow: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.5,
+        shadowRadius: 6,
+        elevation: 8,
+    }
 });
 exports.default = ASTabs;
