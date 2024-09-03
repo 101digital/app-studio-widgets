@@ -10,10 +10,11 @@ export type ASImageProps = ImageProps & {
     height?: DimensionValue
     width?: DimensionValue
     roundImageSize?: string | number
+    accessibilityLabel?: string
 }
 
 const ASImage: (props: ASImageProps) => JSX.Element = (props: ASImageProps) => {
-    const {source, width = 100, height = 100, style, resizeMode = 'cover', roundImageSize = 0, ...restprops} = props
+    const {source, width = 100, height = 100, style, resizeMode = 'cover', roundImageSize = 0, ...restProps} = props
     const imageSource = typeof source === 'string' && source?.startsWith('http') || source?.startsWith('data:') ? {uri: source} : source
     const roundImageSizeValue = convertPercentageToPx(roundImageSize, true)
 
@@ -26,7 +27,7 @@ const ASImage: (props: ASImageProps) => JSX.Element = (props: ASImageProps) => {
                 borderRadius: roundImageSizeValue
             }, style]} // Default to full width and height
             resizeMode={resizeMode} // Default to 'cover'
-            {...restprops}
+            {...restProps}
         />
     );
 };

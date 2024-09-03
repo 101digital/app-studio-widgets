@@ -7,8 +7,8 @@ const react_1 = __importDefault(require("react"));
 const react_native_1 = require("react-native");
 const image_1 = __importDefault(require("../image"));
 const ASColumn = (props) => {
-    const { children, style, backgroundImage } = props || {};
-    return (react_1.default.createElement(react_native_1.View, { style: [styles.container, style] },
+    const { children, style, backgroundImage, accessibilityLabel } = props || {};
+    return (react_1.default.createElement(react_native_1.View, { style: [styles.container, style], accessibilityLabel: accessibilityLabel },
         backgroundImage && (react_1.default.createElement(image_1.default, { source: backgroundImage, style: styles.backgroundStyle })),
         children));
 };

@@ -7,6 +7,7 @@ export type ASImageProps = ImageProps & {
     height?: DimensionValue;
     width?: DimensionValue;
     roundImageSize?: string | number;
+    accessibilityLabel?: string;
 };
 declare const ASImage: (props: ASImageProps) => JSX.Element;
 export default ASImage;

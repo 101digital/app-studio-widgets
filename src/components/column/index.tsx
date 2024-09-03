@@ -6,13 +6,14 @@ export type ASColumnProps = {
   children: ReactNode;
   style?: StyleProp<ViewStyle>;
   backgroundImage?: any;
+  accessibilityLabel?: string;
 };
 
 const ASColumn: React.FC<ASColumnProps> = (props: ASColumnProps) => {
-  const { children, style, backgroundImage } = props || {};
+  const { children, style, backgroundImage, accessibilityLabel } = props || {};
 
   return (
-    <View style={[styles.container, style]}>
+    <View style={[styles.container, style]} accessibilityLabel={accessibilityLabel}>
       {backgroundImage && (
         <ASImage source={backgroundImage} style={styles.backgroundStyle} />
       )}

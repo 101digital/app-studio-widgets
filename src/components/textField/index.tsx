@@ -20,6 +20,7 @@ import { useField } from "formik";
 import ASText from "../text";
 import { isAndroid } from "../../utils/commonUtils";
 import { ThemeContext } from "../../context/theme-context";
+import { constants } from "../../utils/constants";
 
 export type ASTextFieldProps = Omit<TextInputMaskProps, "type"> &
   TextInputProps & {
@@ -39,6 +40,7 @@ export type ASTextFieldProps = Omit<TextInputMaskProps, "type"> &
     borderActiveColor?: string;
     placeholderTextColor?: string;
     style?: StyleProp<ViewStyle>;
+    accessibilityLabel?: string
   };
 
 const ASTextField = (props: ASTextFieldProps) => {
@@ -63,6 +65,7 @@ const ASTextField = (props: ASTextFieldProps) => {
     style,
     errorMessageTextStyle,
     placeholderTextColor,
+    accessibilityLabel,
     ...restProps
   } = props;
   const [active, setActive] = useState(false);
@@ -83,6 +86,7 @@ const ASTextField = (props: ASTextFieldProps) => {
       onFocus(event);
     }
   };
+
 
   // Triger this in onBlur envent
   const handleFormat = () => {
@@ -174,7 +178,7 @@ const ASTextField = (props: ASTextFieldProps) => {
         >
           {label}
         </ASText>
-        <View style={[styles.contentContainerStyle]}>
+        <View style={[styles.contentContainerStyle, !suffixIcon && {marginRight: 16}]}>
           {prefixIcon && <View style={styles.prefixIcon}>{prefixIcon}</View>}
           {!!prefixText && (
             <ASText style={[styles.prefixText, prefixTextStyle]}>
@@ -189,10 +193,11 @@ const ASTextField = (props: ASTextFieldProps) => {
                 value={`${field?.value}`}
                 onChangeText={handleOnChange}
                 style={[styles.textInputStyle, inputTextStyle]}
-                placeholderTextColor={placeholderTextColor}
+                placeholderTextColor={placeholderTextColor || constants.defaultPlaceholderColor}
                 {...restProps}
                 options={options}
                 type={textFieldType}
+                accessibilityLabel={accessibilityLabel}
               />
             ) : (
               <TextInput
@@ -201,10 +206,11 @@ const ASTextField = (props: ASTextFieldProps) => {
                 value={`${field?.value}`}
                 onChangeText={handleOnChange}
                 style={[styles.textInputStyle, inputTextStyle]}
-                placeholderTextColor={placeholderTextColor}
+                placeholderTextColor={placeholderTextColor || constants.defaultPlaceholderColor}
                 autoComplete={"off"}
                 autoCorrect={false}
                 underlineColorAndroid="transparent"
+                accessibilityLabel={accessibilityLabel}
                 {...restProps}
               />
             )}
@@ -241,7 +247,8 @@ const styles = StyleSheet.create({
   contentContainerStyle: {
     alignItems: "center",
     flexDirection: "row",
-    marginHorizontal: 16,
+    marginLeft: 16
+    // marginHorizontal: 16,
   },
   labelStyle: {
     fontSize: 10,
@@ -268,6 +275,11 @@ const styles = StyleSheet.create({
   },
   suffixIcon: {
     marginLeft: 4,
+    marginRight: 8,
+    height: "100%",
+    minWidth: 52,
+    alignItems: 'center',  
+    justifyContent: 'center',
   },
   prefixText: {
     marginRight: 4,

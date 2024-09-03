@@ -18,6 +18,7 @@ export type ASTextFieldProps = Omit<TextInputMaskProps, "type"> & TextInputProps
     borderActiveColor?: string;
     placeholderTextColor?: string;
     style?: StyleProp<ViewStyle>;
+    accessibilityLabel?: string;
 };
 declare const ASTextField: {
     (props: ASTextFieldProps): React.JSX.Element;

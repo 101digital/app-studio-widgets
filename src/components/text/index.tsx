@@ -6,7 +6,8 @@ export type ASTextProps = TextProps & {
     children?: string | undefined | number | React.ReactNode;
     style?: TextStyle;
     labelType?: 'number' | 'datetime' | 'card-number' | 'e6ExpiryDate'
-    label?: string
+    label?: string;
+    accessibilityLabel?: string
 }
 
 const ASText: React.FC<ASTextProps> = (props: ASTextProps) => {

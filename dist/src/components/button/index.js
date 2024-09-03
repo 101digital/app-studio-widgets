@@ -96,6 +96,7 @@ const styles = react_native_1.StyleSheet.create({
         paddingHorizontal: 20,
         paddingVertical: 12,
         borderRadius: 8,
+        minHeight: 48
     },
     simpleTextButton: {
         justifyContent: "flex-start",
@@ -107,6 +108,7 @@ const styles = react_native_1.StyleSheet.create({
     textStyle: {
         fontWeight: "600",
         textAlign: "center",
+        padding: 4
     },
     simpleTextButtonTextStyle: {
         fontSize: 12,
