@@ -37,7 +37,7 @@ const ASPasswordTextField = (props) => {
     const onPressSecureTextEntry = () => {
         setIsSecureTextEntry((prev) => !prev);
     };
-    const suffixIconAccessibility = accessibilityLabel + "-icon";
+    const suffixIconAccessibility = accessibilityLabel ? accessibilityLabel + "-icon" : "";
     return (react_1.default.createElement(textField_1.default, Object.assign({ suffixIcon: react_1.default.createElement(react_native_1.TouchableOpacity, { onPress: onPressSecureTextEntry, style: styles.suffixIconContainer, accessibilityLabel: suffixIconAccessibility }, isSecureTextEntry ? (react_1.default.createElement(showPassword_icon_1.ShowPasswordIcon, { size: suffixIconSize, color: suffixIconColor })) : (react_1.default.createElement(hidePassword_icon_1.HidePasswordIcon, { size: suffixIconSize, color: suffixIconColor }))) }, props, { secureTextEntry: isSecureTextEntry })));
 };
 const styles = react_native_1.StyleSheet.create({

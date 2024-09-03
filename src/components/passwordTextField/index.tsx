@@ -20,7 +20,7 @@ const ASPasswordTextField: FC<ASPasswordTextFieldProps> = (
     setIsSecureTextEntry((prev: boolean) => !prev);
   };
 
-  const suffixIconAccessibility = accessibilityLabel + "-icon"
+  const suffixIconAccessibility = accessibilityLabel ? accessibilityLabel + "-icon" : ""
 
   return (
     <ASTextField
