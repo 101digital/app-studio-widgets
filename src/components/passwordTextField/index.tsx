@@ -20,10 +20,12 @@ const ASPasswordTextField: FC<ASPasswordTextFieldProps> = (
     setIsSecureTextEntry((prev: boolean) => !prev);
   };
 
+  const suffixIconAccessibility = accessibilityLabel + "-icon"
+
   return (
     <ASTextField
       suffixIcon={
-        <TouchableOpacity onPress={onPressSecureTextEntry} style={styles.suffixIconContainer} accessibilityLabel={accessibilityLabel}>
+        <TouchableOpacity onPress={onPressSecureTextEntry} style={styles.suffixIconContainer} accessibilityLabel={suffixIconAccessibility}>
           {isSecureTextEntry ? (
             <ShowPasswordIcon size={suffixIconSize} color={suffixIconColor} />
           ) : (

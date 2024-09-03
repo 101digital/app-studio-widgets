@@ -155,7 +155,7 @@ const ASTextField = (props: ASTextFieldProps) => {
   };
 
   return (
-    <View style={[styles.wrapperStyle, style, { height: "auto" }]}>
+    <View style={[styles.wrapperStyle, style, { height: "auto" }]} accessibilityLabel={accessibilityLabel}>
       <View
         style={[
           styles.containerStyle,
@@ -197,7 +197,7 @@ const ASTextField = (props: ASTextFieldProps) => {
                 {...restProps}
                 options={options}
                 type={textFieldType}
-                accessibilityLabel={accessibilityLabel}
+
               />
             ) : (
               <TextInput
@@ -210,7 +210,6 @@ const ASTextField = (props: ASTextFieldProps) => {
                 autoComplete={"off"}
                 autoCorrect={false}
                 underlineColorAndroid="transparent"
-                accessibilityLabel={accessibilityLabel}
                 {...restProps}
               />
             )}
