@@ -264,6 +264,7 @@ const styles = StyleSheet.create({
   textInputStyle: {
     flex: 1,
     fontSize: 12,
+    minHeight: 48
   },
   errorTextStyle: {
     fontSize: 12,

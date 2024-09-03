@@ -1,3 +1,3 @@
 export const constants = {
-    defaultPlaceholderColor: "#7d7d7d"
+    defaultPlaceholderColor: "#707070"
 }

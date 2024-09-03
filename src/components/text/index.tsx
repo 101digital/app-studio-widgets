@@ -57,7 +57,7 @@ const ASText: React.FC<ASTextProps> = (props: ASTextProps) => {
                 if (children >= 0) {
                     color = '#29ce0e'
                 } else {
-                    color = '#e32929'
+                    color = '#D22424'
                 }
             }
         }

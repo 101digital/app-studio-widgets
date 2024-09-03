@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
   textStyle: {
     fontWeight: "600",
     textAlign: "center",
-    padding: 4
+    // padding: 4
   },
   simpleTextButtonTextStyle: {
     fontSize: 12,
