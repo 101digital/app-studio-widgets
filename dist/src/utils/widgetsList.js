@@ -59,16 +59,18 @@ class ASWidgetsList {
                 const validationStringArray = [];
                 const initialValues = {};
                 for (const formWidgetItem of formWidgetsList) {
+                    const initialValueItem = atrributesObj.initialValues[formWidgetItem.name];
+                    initialValues[formWidgetItem.name] = initialValueItem
+                        ? `${initialValueItem} || ''`
+                        : `''`;
+                    if (!this._initialValues.includes(formWidgetItem.name)) {
+                        this._initialValues.push(formWidgetItem.name);
+                    }
                     if (!Array.isArray(formWidgetItem === null || formWidgetItem === void 0 ? void 0 : formWidgetItem.validationRules) ||
                         ((_a = formWidgetItem === null || formWidgetItem === void 0 ? void 0 : formWidgetItem.validationRules) === null || _a === void 0 ? void 0 : _a.length) < 1) {
                         continue;
                     }
                     let validation = `Yup`;
-                    const initialValueItem = atrributesObj.initialValues[formWidgetItem.name];
-                    initialValues[formWidgetItem.name] = initialValueItem
-                        ? `${initialValueItem} || ''`
-                        : `''`;
-                    this._initialValues.push(formWidgetItem.name);
                     if (formWidgetItem === null || formWidgetItem === void 0 ? void 0 : formWidgetItem.dataType) {
                         validation += `.${formWidgetItem === null || formWidgetItem === void 0 ? void 0 : formWidgetItem.dataType}()`;
                     }
