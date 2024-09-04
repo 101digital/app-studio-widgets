@@ -7,6 +7,7 @@ export type ASListViewProps = FlatListProps<any> & {
     data: any[]
     renderItem: ListRenderItem<React.ReactNode>
     loading?: boolean | boolean[] | undefined
+    accessibilityLabel?: string;
 }
 
 const ASListView: React.FC<ASListViewProps> = (props: ASListViewProps) => {

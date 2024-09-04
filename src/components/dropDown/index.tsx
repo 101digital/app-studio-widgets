@@ -14,6 +14,7 @@ import ASText from "../text";
 import { isAndroid } from "../../utils/commonUtils";
 import { FieldHookConfig, useField } from "formik";
 import { ThemeContext } from "../../context/theme-context";
+import { constants } from "../../utils/constants";
 
 export type DropDownOptionsProps = {
   [key: string]: any;
@@ -120,7 +121,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
 
       <Dropdown
         style={styles.dropdown}
-        placeholderStyle={[styles.placeholderStyle, placeholderTextStyles]}
+        placeholderStyle={[styles.placeholderStyle, {color: constants.defaultPlaceholderColor}, placeholderTextStyles]}
         inputSearchStyle={styles.inputSearchStyle}
         iconStyle={[styles.iconStyle, iconStyles]}
         search={search}

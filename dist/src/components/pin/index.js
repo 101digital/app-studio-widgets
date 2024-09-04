@@ -60,14 +60,14 @@ const KEYBOARDS = [
 ];
 const Keyboard = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { submitButtonIcon, submitButtonStyle, deleteButtonIcon, deleteButtonStyle, flatListProps, onKeyboardPress, typography, } = props;
+    const { submitButtonIcon, submitButtonStyle, deleteButtonIcon, deleteButtonStyle, flatListProps, onKeyboardPress, typography, keyboardButtonRadius, keyboardButtonBorderColor, keyboardButtonBackgroundColor, } = props;
     const _onKeyboardPress = (item) => () => {
         onKeyboardPress === null || onKeyboardPress === void 0 ? void 0 : onKeyboardPress(item);
     };
     const _renderItem = ({ item }) => {
-        return (react_1.default.createElement(button_1.default, { style: Object.assign(Object.assign(Object.assign(Object.assign({}, styles.keyboardButton), { borderColor: colors.onSecondary }), ((item === null || item === void 0 ? void 0 : item.value) === "continue" &&
+        return (react_1.default.createElement(button_1.default, { style: Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({}, styles.keyboardButton), { borderColor: keyboardButtonBorderColor || colors.onSecondary, backgroundColor: keyboardButtonBackgroundColor }), ((item === null || item === void 0 ? void 0 : item.value) === "continue" &&
                 react_native_1.StyleSheet.flatten(submitButtonStyle))), ((item === null || item === void 0 ? void 0 : item.value) === "delete" &&
-                react_native_1.StyleSheet.flatten(deleteButtonStyle))), onPress: _onKeyboardPress(item) },
+                react_native_1.StyleSheet.flatten(deleteButtonStyle))), { borderRadius: keyboardButtonRadius }), onPress: _onKeyboardPress(item) },
             (item === null || item === void 0 ? void 0 : item.value) !== "delete" && (item === null || item === void 0 ? void 0 : item.value) !== "continue" && (react_1.default.createElement(text_1.default, { style: [{ fontWeight: "bold", fontSize: 18 }, typography] }, item === null || item === void 0 ? void 0 : item.label)),
             (item === null || item === void 0 ? void 0 : item.value) === "delete" ? deleteButtonIcon || react_1.default.createElement(icon_1.DeleteIcon, null) : null,
             (item === null || item === void 0 ? void 0 : item.value) === "continue"
@@ -77,22 +77,58 @@ const Keyboard = (props) => {
     return (react_1.default.createElement(react_native_1.FlatList, Object.assign({ scrollEnabled: false, contentContainerStyle: styles.flatListContainerStyles, columnWrapperStyle: { gap: 15 } }, flatListProps, { data: KEYBOARDS, renderItem: _renderItem, numColumns: 3, keyExtractor: (item, index) => `${(item === null || item === void 0 ? void 0 : item.toString()) + index}` })));
 };
 const PinInputList = (props) => {
-    const { pinLength, pin, inputTypography } = props;
-    const PIN_SIZE = 45;
-    return (react_1.default.createElement(row_1.default, { style: { justifyContent: "space-between" } }, Array.from({ length: pinLength }, (_, index) => {
-        return (react_1.default.createElement(column_1.default, { key: index, style: [
-                styles.pinItemWrapper,
-                {
-                    borderColor: colors_1.colors.onSecondary,
-                    width: PIN_SIZE,
-                    height: PIN_SIZE,
-                },
-            ] },
-            react_1.default.createElement(text_1.default, { style: inputTypography }, (pin === null || pin === void 0 ? void 0 : pin[index]) || "")));
-    })));
+    const { pinLength, pin, inputTypography, onKeyboardPress, enableNativeKeyboard, pinBoxRadius, pinBoxSize, pinBoxBackgroundColor, pinBoxBorderColor, onSubmit } = props;
+    const PIN_SIZE = 50;
+    // References for each TextInput
+    const inputRefs = (0, react_1.useRef)([]);
+    const handleInputChange = (text, index) => {
+        var _a;
+        if (text) {
+            // Update the pin state
+            onKeyboardPress({ label: text, value: text });
+            // Focus the next input if available
+            if (index < pinLength - 1) {
+                (_a = inputRefs.current[index + 1]) === null || _a === void 0 ? void 0 : _a.focus();
+            }
+        }
+    };
+    const handleKeyPress = (e, index) => {
+        var _a, _b;
+        const key = e.nativeEvent.key;
+        if (key === 'Backspace') {
+            if (!pin[index] && index > 0) {
+                // If backspace is pressed and current input is empty, focus the previous input
+                (_a = inputRefs.current[index - 1]) === null || _a === void 0 ? void 0 : _a.focus();
+            }
+            onKeyboardPress({ label: 'delete', value: 'delete' });
+        }
+        if (key === 'Enter' || key === 'Submit') {
+            // Prevent the keyboard from hiding
+            e.preventDefault();
+            // Focus the previous input if available
+            if (index > 0) {
+                (_b = inputRefs.current[index - 1]) === null || _b === void 0 ? void 0 : _b.focus();
+            }
+            // You can also trigger the submit action if needed
+            if (pin.length === pinLength) {
+                //trigger submit
+                onSubmit === null || onSubmit === void 0 ? void 0 : onSubmit(pin.join(""));
+            }
+        }
+    };
+    return (react_1.default.createElement(row_1.default, { style: { justifyContent: "space-between" } }, Array.from({ length: pinLength }, (_, index) => (react_1.default.createElement(column_1.default, { key: index, style: [
+            styles.pinItemWrapper,
+            {
+                borderColor: pinBoxBorderColor || colors_1.colors.onSecondary,
+                backgroundColor: pinBoxBackgroundColor,
+                width: pinBoxSize || PIN_SIZE,
+                height: pinBoxSize || PIN_SIZE,
+                borderRadius: pinBoxRadius
+            },
+        ] }, !enableNativeKeyboard ? (react_1.default.createElement(text_1.default, { style: inputTypography }, pin[index] || "")) : (react_1.default.createElement(react_native_1.TextInput, { ref: (el) => (inputRefs.current[index] = el), style: [inputTypography, styles.textInputStyle], value: pin[index] || "", keyboardType: "number-pad", onChangeText: (text) => handleInputChange(text, index), onKeyPress: (e) => handleKeyPress(e, index), maxLength: 1, autoFocus: index === 0, caretHidden: true, showSoftInputOnFocus: true, focusable: false, selectTextOnFocus: false })))))));
 };
 const ASPin = (props) => {
-    const { submitButtonIcon, submitButtonStyle, deleteButtonIcon, deleteButtonStyle, flatListProps, pinLength = 6, onSubmit, children, onChange, keyboardTypography, inputTypography, gap, } = props;
+    const { submitButtonIcon, submitButtonStyle, deleteButtonIcon, deleteButtonStyle, flatListProps, pinLength = 6, onSubmit, children, onChange, keyboardTypography, inputTypography, gap, keyboardButtonRadius, enableNativeKeyboard, pinBoxRadius, pinBoxSize, keyboardButtonBackgroundColor, keyboardButtonBorderColor, pinBoxBackgroundColor, pinBoxBorderColor } = props;
     const [pin, setPin] = (0, react_1.useState)([]);
     (0, react_1.useEffect)(() => {
         onChange === null || onChange === void 0 ? void 0 : onChange(pin.join(""));
@@ -114,16 +150,16 @@ const ASPin = (props) => {
             });
         }
     };
-    return (react_1.default.createElement(column_1.default, { style: styles.flex1 },
+    return (react_1.default.createElement(column_1.default, { style: [styles.flex1, !enableNativeKeyboard && { position: 'relative' }] },
         react_1.default.createElement(react_native_1.View, { style: { marginBottom: gap || 24 } },
-            react_1.default.createElement(PinInputList, { pinLength: pinLength, pin: pin, inputTypography: inputTypography })),
+            react_1.default.createElement(PinInputList, { pinLength: pinLength, pin: pin, inputTypography: inputTypography, onKeyboardPress: onKeyboardItemPress, enableNativeKeyboard: enableNativeKeyboard, pinBoxRadius: pinBoxRadius, pinBoxSize: pinBoxSize, pinBoxBackgroundColor: pinBoxBackgroundColor, pinBoxBorderColor: pinBoxBorderColor, onSubmit: onSubmit })),
         children,
-        react_1.default.createElement(Keyboard, { submitButtonIcon: submitButtonIcon, submitButtonStyle: submitButtonStyle, deleteButtonIcon: deleteButtonIcon, deleteButtonStyle: deleteButtonStyle, flatListProps: flatListProps, onKeyboardPress: onKeyboardItemPress, typography: keyboardTypography })));
+        !enableNativeKeyboard && react_1.default.createElement(Keyboard, { submitButtonIcon: submitButtonIcon, submitButtonStyle: submitButtonStyle, deleteButtonIcon: deleteButtonIcon, deleteButtonStyle: deleteButtonStyle, flatListProps: flatListProps, onKeyboardPress: onKeyboardItemPress, typography: keyboardTypography, keyboardButtonRadius: keyboardButtonRadius, keyboardButtonBackgroundColor: keyboardButtonBackgroundColor, keyboardButtonBorderColor: keyboardButtonBorderColor })));
 };
 exports.default = ASPin;
 const styles = react_native_1.StyleSheet.create({
     flex1: {
-        flex: 1,
+        width: '100%'
     },
     keyboardButton: {
         paddingVertical: 23,
@@ -139,5 +175,8 @@ const styles = react_native_1.StyleSheet.create({
         alignItems: "center",
         borderRadius: 5,
     },
-    flatListContainerStyles: { gap: 15, justifyContent: "flex-end", flexGrow: 1 },
+    textInputStyle: {
+        textAlign: "center",
+    },
+    flatListContainerStyles: { gap: 15, justifyContent: "flex-end" },
 });

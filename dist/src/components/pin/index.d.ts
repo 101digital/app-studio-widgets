@@ -8,6 +8,14 @@ export type ASPinProps = KeyboardProps & {
     keyboardTypography?: TextStyle;
     inputTypography?: TextStyle;
     gap?: number;
+    keyboardButtonRadius?: number;
+    enableNativeKeyboard?: boolean;
+    pinBoxRadius?: number;
+    pinBoxSize?: number;
+    pinBoxBorderColor?: string;
+    pinBoxBackgroundColor?: string;
+    keyboardButtonBorderColor?: string;
+    keyboardButtonBackgroundColor?: string;
 };
 export type KeyboardProps = {
     submitButtonIcon?: ReactNode;
@@ -17,6 +25,9 @@ export type KeyboardProps = {
     flatListProps?: FlatListProps<KeyboardItemProps>;
     onKeyboardPress?: (item: KeyboardItemProps) => void;
     typography?: TextStyle;
+    keyboardButtonRadius?: number;
+    keyboardButtonBorderColor?: string;
+    keyboardButtonBackgroundColor?: string;
 };
 export type KeyboardItemProps = {
     label: string;
@@ -26,6 +37,13 @@ export type PinInputListProps = {
     pinLength: number;
     pin: string[];
     inputTypography?: TextStyle;
+    onKeyboardPress: (item: KeyboardItemProps) => void;
+    enableNativeKeyboard?: boolean;
+    pinBoxRadius?: number;
+    pinBoxSize?: number;
+    pinBoxBorderColor?: string;
+    pinBoxBackgroundColor?: string;
+    onSubmit: (item: string) => void;
 };
 declare const ASPin: React.FC<ASPinProps>;
 export default ASPin;

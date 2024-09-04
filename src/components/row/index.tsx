@@ -4,13 +4,14 @@ import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native'
 export type ASRowProps = {
     children: ReactNode;
     style?: StyleProp<ViewStyle>;
+    accessibilityLabel?: string;
 }
 
 const ASRow: React.FC<ASRowProps> = (props: ASRowProps) => {
-    const {children, style} = props || {}
+    const {children, style, accessibilityLabel} = props || {}
 
     return (
-        <View style={[styles.container, style]}>
+        <View style={[styles.container, style]} accessibilityLabel={accessibilityLabel}>
             {children}
         </View>
     )

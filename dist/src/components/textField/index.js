@@ -43,9 +43,10 @@ const react_native_masked_text_1 = require("react-native-masked-text");
 const formik_1 = require("formik");
 const text_1 = __importDefault(require("../text"));
 const theme_context_1 = require("../../context/theme-context");
+const constants_1 = require("../../utils/constants");
 const ASTextField = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { name, onFocus, onBlur, suffixIcon, prefixIcon, prefixText, prefixTextStyle, formatError, options, label, textFieldType = "custom", formatNumber, labelTextStyle, inputTextStyle, borderErrorColor, borderActiveColor, style, errorMessageTextStyle, placeholderTextColor } = props, restProps = __rest(props, ["name", "onFocus", "onBlur", "suffixIcon", "prefixIcon", "prefixText", "prefixTextStyle", "formatError", "options", "label", "textFieldType", "formatNumber", "labelTextStyle", "inputTextStyle", "borderErrorColor", "borderActiveColor", "style", "errorMessageTextStyle", "placeholderTextColor"]);
+    const { name, onFocus, onBlur, suffixIcon, prefixIcon, prefixText, prefixTextStyle, formatError, options, label, textFieldType = "custom", formatNumber, labelTextStyle, inputTextStyle, borderErrorColor, borderActiveColor, style, errorMessageTextStyle, placeholderTextColor, accessibilityLabel } = props, restProps = __rest(props, ["name", "onFocus", "onBlur", "suffixIcon", "prefixIcon", "prefixText", "prefixTextStyle", "formatError", "options", "label", "textFieldType", "formatNumber", "labelTextStyle", "inputTextStyle", "borderErrorColor", "borderActiveColor", "style", "errorMessageTextStyle", "placeholderTextColor", "accessibilityLabel"]);
     const [active, setActive] = (0, react_1.useState)(false);
     const [field, meta, helpers] = (0, formik_1.useField)(name);
     const showMask = options && Object.keys(options).length > 0;
@@ -115,7 +116,7 @@ const ASTextField = (props) => {
         }
         return active ? borderActiveColor : flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderColor;
     };
-    return (react_1.default.createElement(react_native_1.View, { style: [styles.wrapperStyle, style, { height: "auto" }] },
+    return (react_1.default.createElement(react_native_1.View, { style: [styles.wrapperStyle, style, { height: "auto" }], accessibilityLabel: accessibilityLabel },
         react_1.default.createElement(react_native_1.View, { style: [
                 styles.containerStyle,
                 {
@@ -132,10 +133,10 @@ const ASTextField = (props) => {
                     },
                     labelTextStyle,
                 ] }, label),
-            react_1.default.createElement(react_native_1.View, { style: [styles.contentContainerStyle] },
+            react_1.default.createElement(react_native_1.View, { style: [styles.contentContainerStyle, !suffixIcon && { marginRight: 16 }] },
                 prefixIcon && react_1.default.createElement(react_native_1.View, { style: styles.prefixIcon }, prefixIcon),
                 !!prefixText && (react_1.default.createElement(text_1.default, { style: [styles.prefixText, prefixTextStyle] }, prefixText)),
-                react_1.default.createElement(react_native_1.View, { style: styles.inputContainerStyle }, showMask ? (react_1.default.createElement(react_native_masked_text_1.TextInputMask, Object.assign({ onFocus: handleOnFocus, onBlur: handleOnBlur, value: `${field === null || field === void 0 ? void 0 : field.value}`, onChangeText: handleOnChange, style: [styles.textInputStyle, inputTextStyle], placeholderTextColor: placeholderTextColor }, restProps, { options: options, type: textFieldType }))) : (react_1.default.createElement(react_native_1.TextInput, Object.assign({ onFocus: handleOnFocus, onBlur: handleOnBlur, value: `${field === null || field === void 0 ? void 0 : field.value}`, onChangeText: handleOnChange, style: [styles.textInputStyle, inputTextStyle], placeholderTextColor: placeholderTextColor, autoComplete: "off", autoCorrect: false, underlineColorAndroid: "transparent" }, restProps)))),
+                react_1.default.createElement(react_native_1.View, { style: styles.inputContainerStyle }, showMask ? (react_1.default.createElement(react_native_masked_text_1.TextInputMask, Object.assign({ onFocus: handleOnFocus, onBlur: handleOnBlur, value: `${field === null || field === void 0 ? void 0 : field.value}`, onChangeText: handleOnChange, style: [styles.textInputStyle, inputTextStyle], placeholderTextColor: placeholderTextColor || constants_1.constants.defaultPlaceholderColor }, restProps, { options: options, type: textFieldType }))) : (react_1.default.createElement(react_native_1.TextInput, Object.assign({ onFocus: handleOnFocus, onBlur: handleOnBlur, value: `${field === null || field === void 0 ? void 0 : field.value}`, onChangeText: handleOnChange, style: [styles.textInputStyle, inputTextStyle], placeholderTextColor: placeholderTextColor || constants_1.constants.defaultPlaceholderColor, autoComplete: "off", autoCorrect: false, underlineColorAndroid: "transparent" }, restProps)))),
                 suffixIcon && react_1.default.createElement(react_native_1.View, { style: styles.suffixIcon }, suffixIcon))),
         (meta === null || meta === void 0 ? void 0 : meta.error) && (meta === null || meta === void 0 ? void 0 : meta.touched) && (react_1.default.createElement(text_1.default, { style: [styles.errorTextStyle, errorMessageTextStyle] }, getErrorMessage(meta === null || meta === void 0 ? void 0 : meta.error)))));
 };
@@ -158,7 +159,8 @@ const styles = react_native_1.StyleSheet.create({
     contentContainerStyle: {
         alignItems: "center",
         flexDirection: "row",
-        marginHorizontal: 16,
+        marginLeft: 16
+        // marginHorizontal: 16,
     },
     labelStyle: {
         fontSize: 10,
@@ -174,6 +176,7 @@ const styles = react_native_1.StyleSheet.create({
     textInputStyle: {
         flex: 1,
         fontSize: 12,
+        minHeight: 48
     },
     errorTextStyle: {
         fontSize: 12,
@@ -185,6 +188,11 @@ const styles = react_native_1.StyleSheet.create({
     },
     suffixIcon: {
         marginLeft: 4,
+        marginRight: 8,
+        height: "100%",
+        minWidth: 52,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     prefixText: {
         marginRight: 4,

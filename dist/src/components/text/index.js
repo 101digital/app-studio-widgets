@@ -86,7 +86,7 @@ const ASText = (props) => {
                     color = '#29ce0e';
                 }
                 else {
-                    color = '#e32929';
+                    color = '#D22424';
                 }
             }
         }
