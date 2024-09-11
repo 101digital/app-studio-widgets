@@ -100,7 +100,8 @@ const styles = react_native_1.StyleSheet.create({
         justifyContent: "center",
         paddingHorizontal: 4,
         borderWidth: 1,
-        paddingVertical: 10,
+        paddingVertical: 2,
+        minHeight: 56
     },
     dropdown: {
         borderRadius: 5,
