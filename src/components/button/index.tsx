@@ -90,7 +90,7 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
       style={[
         getButtonStyle(),
         style,
-        { backgroundColor: getButtonBackgroundColor() },
+        { backgroundColor: getButtonBackgroundColor()},
       ]}
     >
       {!!children ? (
@@ -119,13 +119,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     paddingHorizontal: 20,
-    paddingVertical: 12,
+    // paddingVertical: 12,
     borderRadius: 8,
-    minHeight: 48
   },
   simpleTextButton: {
-    justifyContent: "flex-start",
-    alignItems: "flex-start",
+    justifyContent: "center",
+    alignItems: "center",
     paddingHorizontal: 0,
     paddingVertical: 0,
   },
@@ -133,10 +132,10 @@ const styles = StyleSheet.create({
   textStyle: {
     fontWeight: "600",
     textAlign: "center",
-    // padding: 4
   },
   simpleTextButtonTextStyle: {
-    fontSize: 12,
+    fontSize: 14,
+    textAlign: "center"
   },
   loadingIndicator: {
     marginLeft: 10,

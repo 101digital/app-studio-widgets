@@ -28,12 +28,14 @@ const react_native_1 = require("react-native");
 const theme_context_1 = require("../../context/theme-context");
 const ASVerticalDivider = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { style, marginHorizontal = 10, height = '100%' } = props || {};
-    return (react_1.default.createElement(react_native_1.View, { style: [styles.verticalDividerStyle, {
-                marginHorizontal,
-                height,
+    const { style } = props || {};
+    return (react_1.default.createElement(react_native_1.View, { style: [
+            styles.verticalDividerStyle,
+            {
                 backgroundColor: colors.onSurface,
-            }, style] }));
+            },
+            style,
+        ] }));
 };
 const styles = react_native_1.StyleSheet.create({
     verticalDividerStyle: {

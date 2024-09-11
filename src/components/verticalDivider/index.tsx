@@ -1,30 +1,40 @@
-import React, {useContext} from 'react';
-import {DimensionValue, StyleProp, StyleSheet, View, ViewStyle} from 'react-native'
-import {ThemeContext} from "../../context/theme-context";
+import React, { useContext } from "react";
+import {
+  DimensionValue,
+  StyleProp,
+  StyleSheet,
+  View,
+  ViewStyle,
+} from "react-native";
+import { ThemeContext } from "../../context/theme-context";
 
 export type ASVerticalDividerProps = {
-    style?: StyleProp<ViewStyle>;
-    marginHorizontal?: DimensionValue
-    height?: DimensionValue
-}
+  style?: StyleProp<ViewStyle>;
+};
 
-const ASVerticalDivider: React.FC<ASVerticalDividerProps> = (props: ASVerticalDividerProps) => {
-    const {colors} = useContext(ThemeContext);
-    const {style, marginHorizontal = 10, height = '100%'} = props || {}
+const ASVerticalDivider: React.FC<ASVerticalDividerProps> = (
+  props: ASVerticalDividerProps
+) => {
+  const { colors } = useContext(ThemeContext);
+  const { style } = props || {};
 
-    return (
-        <View style={[styles.verticalDividerStyle, {
-            marginHorizontal,
-            height,
-            backgroundColor: colors.onSurface,
-        }, style]}/>
-    )
-}
+  return (
+    <View
+      style={[
+        styles.verticalDividerStyle,
+        {
+          backgroundColor: colors.onSurface,
+        },
+        style,
+      ]}
+    />
+  );
+};
 
 const styles = StyleSheet.create({
-    verticalDividerStyle: {
-        width: 1,
-    },
+  verticalDividerStyle: {
+    width: 1,
+  },
 });
 
-export default ASVerticalDivider
+export default ASVerticalDivider;

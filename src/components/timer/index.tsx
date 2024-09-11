@@ -9,7 +9,7 @@ export type ASTimerProps = {
 }
 
 const ASTimer: React.FC<ASTimerProps> = (props: ASTimerProps) => {
-    const {initialTime, textStyle, onFinish} = props || {}
+    const {initialTime, textStyle, onFinish, ...restProps} = props || {}
     const [timeRemaining, setTimeRemaining] = useState(initialTime);
 
     useEffect(() => {
@@ -31,7 +31,7 @@ const ASTimer: React.FC<ASTimerProps> = (props: ASTimerProps) => {
     };
 
     return (
-        <ASText style={[styles.timerStyle, textStyle]}>{formatTime(timeRemaining)}</ASText>
+        <ASText style={[styles.timerStyle, textStyle]} {...restProps}>{formatTime(timeRemaining)}</ASText>
     );
 }
 
