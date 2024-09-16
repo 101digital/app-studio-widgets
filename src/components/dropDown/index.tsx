@@ -14,7 +14,6 @@ import ASText from "../text";
 import { isAndroid } from "../../utils/commonUtils";
 import { FieldHookConfig, useField } from "formik";
 import { ThemeContext } from "../../context/theme-context";
-import { constants } from "../../utils/constants";
 
 export type DropDownOptionsProps = {
   [key: string]: any;
@@ -90,6 +89,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
 
   const _onChangeDropDownField = (item: DropDownOptionsProps) => {
     setValue?.(item?.[valueField]);
+    onSelect?.(item); // Trigger the onSelect callback if provided
   };
 
   return (
@@ -121,7 +121,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
 
       <Dropdown
         style={styles.dropdown}
-        placeholderStyle={[styles.placeholderStyle, {color: constants.defaultPlaceholderColor}, placeholderTextStyles]}
+        placeholderStyle={[styles.placeholderStyle, placeholderTextStyles]}
         inputSearchStyle={styles.inputSearchStyle}
         iconStyle={[styles.iconStyle, iconStyles]}
         search={search}
@@ -158,8 +158,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingHorizontal: 4,
     borderWidth: 1,
-    paddingVertical: 2,
-    minHeight: 56
+    paddingVertical: 10,
   },
   dropdown: {
     borderRadius: 5,

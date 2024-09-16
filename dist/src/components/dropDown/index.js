@@ -44,7 +44,6 @@ const text_1 = __importDefault(require("../text"));
 const commonUtils_1 = require("../../utils/commonUtils");
 const formik_1 = require("formik");
 const theme_context_1 = require("../../context/theme-context");
-const constants_1 = require("../../utils/constants");
 const ASDropDown = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
     const { options, renderLeftIcon, placeholder = "Please select item", onSelect, searchPlaceholder = "Search...", search = false, label, name, containerStyle, iconStyles, selectedTextStyle, labelField, valueField, placeholderTextStyles, dropdownTextStyles, labelTextStyle } = props, restProps = __rest(props, ["options", "renderLeftIcon", "placeholder", "onSelect", "searchPlaceholder", "search", "label", "name", "containerStyle", "iconStyles", "selectedTextStyle", "labelField", "valueField", "placeholderTextStyles", "dropdownTextStyles", "labelTextStyle"]);
@@ -67,6 +66,7 @@ const ASDropDown = (props) => {
     };
     const _onChangeDropDownField = (item) => {
         setValue === null || setValue === void 0 ? void 0 : setValue(item === null || item === void 0 ? void 0 : item[valueField]);
+        onSelect === null || onSelect === void 0 ? void 0 : onSelect(item); // Trigger the onSelect callback if provided
     };
     return (react_1.default.createElement(react_native_1.View, { style: [
             styles.container,
@@ -85,7 +85,7 @@ const ASDropDown = (props) => {
                 },
                 labelTextStyle,
             ] }, label)),
-        react_1.default.createElement(react_native_element_dropdown_1.Dropdown, Object.assign({ style: styles.dropdown, placeholderStyle: [styles.placeholderStyle, { color: constants_1.constants.defaultPlaceholderColor }, placeholderTextStyles], inputSearchStyle: styles.inputSearchStyle, iconStyle: [styles.iconStyle, iconStyles], search: search, maxHeight: 300, value: field === null || field === void 0 ? void 0 : field.value, searchPlaceholder: searchPlaceholder, renderLeftIcon: renderLeftIcon, renderItem: renderItem, placeholder: placeholder, onFocus: () => setIsFocus(true), onBlur: () => setIsFocus(false) }, restProps, { selectedTextStyle: [
+        react_1.default.createElement(react_native_element_dropdown_1.Dropdown, Object.assign({ style: styles.dropdown, placeholderStyle: [styles.placeholderStyle, placeholderTextStyles], inputSearchStyle: styles.inputSearchStyle, iconStyle: [styles.iconStyle, iconStyles], search: search, maxHeight: 300, value: field === null || field === void 0 ? void 0 : field.value, searchPlaceholder: searchPlaceholder, renderLeftIcon: renderLeftIcon, renderItem: renderItem, placeholder: placeholder, onFocus: () => setIsFocus(true), onBlur: () => setIsFocus(false) }, restProps, { selectedTextStyle: [
                 styles.selectedTextStyle,
                 {
                     color: colors.surface,
@@ -100,8 +100,7 @@ const styles = react_native_1.StyleSheet.create({
         justifyContent: "center",
         paddingHorizontal: 4,
         borderWidth: 1,
-        paddingVertical: 2,
-        minHeight: 56
+        paddingVertical: 10,
     },
     dropdown: {
         borderRadius: 5,
