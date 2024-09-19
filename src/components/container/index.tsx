@@ -27,11 +27,11 @@ const ASContainer: React.FC<ASContainerProps> = (props: ASContainerProps) => {
     } = props;
 
     const insets = disabledSafeArea?{top:0,bottom:0,left:0,right:0} :useSafeAreaInsets();
-    const navigation = useNavigation();
-    const route = useRoute();
+    // const navigation = useNavigation();
+    // const route = useRoute();
 
     // Check if the current screen has a header
-    const hasHeader = navigation.getParent()?.getState().routes.some((r:any) => r.name === route.name && r.params?.headerShown !== false);
+    const hasHeader = undefined;//navigation.getParent()?.getState().routes.some((r:any) => r.name === route.name && r.params?.headerShown !== false);
 
     // Set hasHeader to false if it is undefined
     const isHeaderVisible = hasHeader === undefined ? true : false;
