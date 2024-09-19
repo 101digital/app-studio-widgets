@@ -43,7 +43,7 @@ const ASContainer = (props) => {
     var _a;
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
     const { children, style, isScrollable = true, scrollViewContentContainerStyle, scrollViewProps, disabledSafeArea } = props, restProps = __rest(props, ["children", "style", "isScrollable", "scrollViewContentContainerStyle", "scrollViewProps", "disabledSafeArea"]);
-    const insets = (0, react_native_safe_area_context_1.useSafeAreaInsets)();
+    const insets = disabledSafeArea ? { top: 0, bottom: 0, left: 0, right: 0 } : (0, react_native_safe_area_context_1.useSafeAreaInsets)();
     const navigation = (0, native_1.useNavigation)();
     const route = (0, native_1.useRoute)();
     // Check if the current screen has a header

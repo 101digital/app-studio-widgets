@@ -26,7 +26,7 @@ const ASContainer: React.FC<ASContainerProps> = (props: ASContainerProps) => {
         ...restProps
     } = props;
 
-    const insets = useSafeAreaInsets();
+    const insets = disabledSafeArea?{top:0,bottom:0,left:0,right:0} :useSafeAreaInsets();
     const navigation = useNavigation();
     const route = useRoute();
 
