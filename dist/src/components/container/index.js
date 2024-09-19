@@ -42,12 +42,12 @@ const theme_context_1 = require("../../context/theme-context");
 const ASContainer = (props) => {
     var _a;
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { children, style, isScrollable = true, scrollViewContentContainerStyle, scrollViewProps, disabledSafeArea } = props, restProps = __rest(props, ["children", "style", "isScrollable", "scrollViewContentContainerStyle", "scrollViewProps", "disabledSafeArea"]);
+    const { children, style, isScrollable = true, scrollViewContentContainerStyle, scrollViewProps, disabledSafeArea, isPreview = false } = props, restProps = __rest(props, ["children", "style", "isScrollable", "scrollViewContentContainerStyle", "scrollViewProps", "disabledSafeArea", "isPreview"]);
     const insets = disabledSafeArea ? { top: 0, bottom: 0, left: 0, right: 0 } : (0, react_native_safe_area_context_1.useSafeAreaInsets)();
-    const navigation = (0, native_1.useNavigation)();
-    const route = (0, native_1.useRoute)();
+    const navigation = isPreview ? false : (0, native_1.useNavigation)();
+    const route = isPreview ? { name: false } : (0, native_1.useRoute)();
     // Check if the current screen has a header
-    const hasHeader = (_a = navigation.getParent()) === null || _a === void 0 ? void 0 : _a.getState().routes.some((r) => { var _a; return r.name === route.name && ((_a = r.params) === null || _a === void 0 ? void 0 : _a.headerShown) !== false; });
+    const hasHeader = (!isPreview && navigation !== false && route.name !== false) ? (_a = navigation.getParent()) === null || _a === void 0 ? void 0 : _a.getState().routes.some((r) => { var _a; return r.name === route.name && ((_a = r.params) === null || _a === void 0 ? void 0 : _a.headerShown) !== false; }) : undefined;
     // Set hasHeader to false if it is undefined
     const isHeaderVisible = hasHeader === undefined ? true : false;
     const safeAreaStyle = disabledSafeArea

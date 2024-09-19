@@ -7,6 +7,7 @@ export type ASContainerProps = {
     scrollViewContentContainerStyle?: StyleProp<ViewStyle>;
     scrollViewProps?: ScrollViewProps;
     disabledSafeArea?: boolean;
+    isPreview?: boolean;
 };
 declare const ASContainer: React.FC<ASContainerProps>;
 export default ASContainer;
