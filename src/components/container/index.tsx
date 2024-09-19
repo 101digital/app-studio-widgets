@@ -12,6 +12,7 @@ export type ASContainerProps = {
     scrollViewContentContainerStyle?: StyleProp<ViewStyle>;
     scrollViewProps?: ScrollViewProps;
     disabledSafeArea?: boolean;
+    isPreview?: boolean;
 };
 
 const ASContainer: React.FC<ASContainerProps> = (props: ASContainerProps) => {
@@ -23,15 +24,16 @@ const ASContainer: React.FC<ASContainerProps> = (props: ASContainerProps) => {
         scrollViewContentContainerStyle,
         scrollViewProps,
         disabledSafeArea,
+        isPreview = false,
         ...restProps
     } = props;
 
     const insets = disabledSafeArea?{top:0,bottom:0,left:0,right:0} :useSafeAreaInsets();
-    // const navigation = useNavigation();
-    // const route = useRoute();
+    const navigation = isPreview?false:useNavigation();
+    const route = isPreview ?{name:false}:useRoute();
 
     // Check if the current screen has a header
-    const hasHeader = undefined;//navigation.getParent()?.getState().routes.some((r:any) => r.name === route.name && r.params?.headerShown !== false);
+    const hasHeader = (!isPreview && navigation !== false && route.name !== false) ? navigation.getParent()?.getState().routes.some((r:any) => r.name === route.name && r.params?.headerShown !== false) :undefined;
 
     // Set hasHeader to false if it is undefined
     const isHeaderVisible = hasHeader === undefined ? true : false;
