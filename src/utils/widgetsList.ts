@@ -9,7 +9,6 @@ import {
   ASContainerProps,
   ASCounterProps,
   ASDividerProps,
-  ASDropDownProps,
   ASExpandableTextProps,
   ASFormProps,
   ASImageProps,
@@ -56,7 +55,6 @@ export type WidgetsList = {
   ASForm: (attributes: ASFormProps) => string;
   ASRichText: (attributes: ASRichTextProps) => string;
   ASImage: (attributes: ASImageProps) => string;
-  ASDropDown: (attributes: ASDropDownProps) => string;
   ASExpandableText: (attributes: ASExpandableTextProps) => string;
   ASWrap: (attributes: ASWrapProps) => string;
   ASSwitch: (attributes: ASSwitchProps) => string;
@@ -88,7 +86,7 @@ export type WidgetsList = {
 };
 
 export class ASWidgetsList {
-  private static _initialValues: string[] = [] ;
+  private static _initialValues: string[] = [];
   constructor() {}
 
   private static getReturnValue(attributeValue: any): string {
@@ -157,18 +155,16 @@ export class ASWidgetsList {
         const initialValues: any = {};
 
         for (const formWidgetItem of formWidgetsList) {
-
-
-          const initialValueItem = atrributesObj.initialValues[formWidgetItem.name];
+          const initialValueItem =
+            atrributesObj.initialValues[formWidgetItem.name];
 
           initialValues[formWidgetItem.name] = initialValueItem
-          ? `${initialValueItem} || ''`
-          : `''`; 
-          
+            ? `${initialValueItem} || ''`
+            : `''`;
+
           if (!this._initialValues.includes(formWidgetItem.name)) {
             this._initialValues.push(formWidgetItem.name);
-          } 
-
+          }
 
           if (
             !Array.isArray(formWidgetItem?.validationRules) ||
@@ -177,15 +173,23 @@ export class ASWidgetsList {
             continue;
           }
 
-          let validation: string = `Yup`; 
+          let validation: string = `Yup`;
 
           if (formWidgetItem?.dataType) {
             validation += `.${formWidgetItem?.dataType}()`;
           }
 
           for (const validationRule of formWidgetItem.validationRules) {
-            validation += `.${validationRule.type}(${validationRule.rule ? validationRule.rule + (validationRule.errorMessage ? `, '${validationRule.errorMessage}'` : '') : validationRule.errorMessage ? `'${validationRule.errorMessage}'` : ''})`;
-
+            validation += `.${validationRule.type}(${
+              validationRule.rule
+                ? validationRule.rule +
+                  (validationRule.errorMessage
+                    ? `, '${validationRule.errorMessage}'`
+                    : "")
+                : validationRule.errorMessage
+                ? `'${validationRule.errorMessage}'`
+                : ""
+            })`;
           }
           validationStringArray.push(`${formWidgetItem.name}:${validation}`);
         }
@@ -195,8 +199,8 @@ export class ASWidgetsList {
                 })`;
         result += ` validationSchema={${validationSchema}}`;
         result += ` initialValues={ ${JSON.stringify(initialValues).replace(
-            /"/g,
-            ""
+          /"/g,
+          ""
         )} }`;
         continue;
       }
@@ -222,9 +226,14 @@ export class ASWidgetsList {
 
     // Handle logic for ASForm
     if (widgetName === "ASForm") {
-      const widgetAttributes = ASWidgetsList.getWidgetAttributes(attributes, "ASForm")
-      const destructuredValueString = `const { ${ this._initialValues.join(', ') } } = values`;
-      this._initialValues = []
+      const widgetAttributes = ASWidgetsList.getWidgetAttributes(
+        attributes,
+        "ASForm"
+      );
+      const destructuredValueString = `const { ${this._initialValues.join(
+        ", "
+      )} } = values`;
+      this._initialValues = [];
       return `<ASForm${widgetAttributes}>
                          {(formikProps: FormikProps<any>)=> {
                              const {values, handleSubmit} = formikProps
@@ -304,8 +313,7 @@ export class ASWidgetsList {
         ASWidgetsList.getWidgetString("ASRichText", attributes),
       ASImage: (attributes: ASImageProps) =>
         ASWidgetsList.getWidgetString("ASImage", attributes),
-      ASDropDown: (attributes: ASDropDownProps) =>
-        ASWidgetsList.getWidgetString("ASDropDown", attributes),
+
       ASExpandableText: (attributes: ASExpandableTextProps) =>
         ASWidgetsList.getWidgetString("ASExpandableText", attributes),
       ASWrap: (attributes: ASWrapProps) =>

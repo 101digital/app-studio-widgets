@@ -11,7 +11,6 @@ export { default as ASVerticalDivider, ASVerticalDividerProps, } from "./src/com
 export { default as ASForm, ASFormProps } from "./src/components/form";
 export { default as ASRichText, ASRichTextProps, } from "./src/components/richText";
 export { default as ASImage, ASImageProps } from "./src/components/image";
-export { default as ASDropDown, DropDownOptionsProps, ASDropDownProps, } from "./src/components/dropDown";
 export { default as ASExpandableText, ASExpandableTextProps, } from "./src/components/expandableText";
 export { default as ASWrap, ASWrapProps, ASWrapperDirection, } from "./src/components/wrap";
 export { default as ASSwitch, ASSwitchProps } from "./src/components/switch";
@@ -40,6 +39,6 @@ export { default as ASDualIconRowButton, ASDualIconButtonProps, } from "./src/co
 export { default as ASSwipeButton, ASSwipeButtonProps, } from "./src/components/swipeButton";
 export { default as E6TransactionHistoryListView, E6TransactionHistoryListViewProps, } from "./src/customComponent/e6TransactionHistoryListView";
 export { default as ASIconButton, ASIconButtonProps, } from "./src/components/iconButton";
-export { default as ASBottomSheet, BottomSheetModalProps } from "./src/components/bottomSheet";
-export { default as ASTabs } from './src/components/tab';
-export { default as ASTabView } from './src/components/tabView';
+export { default as ASBottomSheet, BottomSheetModalProps, } from "./src/components/bottomSheet";
+export { default as ASTabs } from "./src/components/tab";
+export { default as ASTabView } from "./src/components/tabView";

@@ -21,11 +21,6 @@ export { default as ASForm, ASFormProps } from "./components/form";
 export { default as ASRichText, ASRichTextProps } from "./components/richText";
 export { default as ASImage, ASImageProps } from "./components/image";
 export {
-  default as ASDropDown,
-  DropDownOptionsProps,
-  ASDropDownProps,
-} from "./components/dropDown";
-export {
   default as ASExpandableText,
   ASExpandableTextProps,
 } from "./components/expandableText";
@@ -72,6 +67,9 @@ export {
   default as ASIconButton,
   ASIconButtonProps,
 } from "./components/iconButton";
-export { default as ASBottomSheet, BottomSheetModalProps } from "./components/bottomSheet";
-export { default as ASTabs } from "./components/tab"
-export { default as ASTabView } from "./components/tabView"
+export {
+  default as ASBottomSheet,
+  BottomSheetModalProps,
+} from "./components/bottomSheet";
+export { default as ASTabs } from "./components/tab";
+export { default as ASTabView } from "./components/tabView";

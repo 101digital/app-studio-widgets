@@ -11,7 +11,6 @@ export { default as ASVerticalDivider, ASVerticalDividerProps, } from "./compone
 export { default as ASForm, ASFormProps } from "./components/form";
 export { default as ASRichText, ASRichTextProps } from "./components/richText";
 export { default as ASImage, ASImageProps } from "./components/image";
-export { default as ASDropDown, DropDownOptionsProps, ASDropDownProps, } from "./components/dropDown";
 export { default as ASExpandableText, ASExpandableTextProps, } from "./components/expandableText";
 export { default as ASWrap, ASWrapProps, ASWrapperDirection, } from "./components/wrap";
 export { default as ASSwitch, ASSwitchProps } from "./components/switch";
@@ -33,6 +32,6 @@ export { default as ASModal, ASModalProps } from "./components/modal";
 export { default as ASPin, ASPinProps } from "./components/pin";
 export { default as ASSwipeButton, ASSwipeButtonProps, } from "./components/swipeButton";
 export { default as ASIconButton, ASIconButtonProps, } from "./components/iconButton";
-export { default as ASBottomSheet, BottomSheetModalProps } from "./components/bottomSheet";
+export { default as ASBottomSheet, BottomSheetModalProps, } from "./components/bottomSheet";
 export { default as ASTabs } from "./components/tab";
 export { default as ASTabView } from "./components/tabView";

@@ -75,7 +75,14 @@ class ASWidgetsList {
                         validation += `.${formWidgetItem === null || formWidgetItem === void 0 ? void 0 : formWidgetItem.dataType}()`;
                     }
                     for (const validationRule of formWidgetItem.validationRules) {
-                        validation += `.${validationRule.type}(${validationRule.rule ? validationRule.rule + (validationRule.errorMessage ? `, '${validationRule.errorMessage}'` : '') : validationRule.errorMessage ? `'${validationRule.errorMessage}'` : ''})`;
+                        validation += `.${validationRule.type}(${validationRule.rule
+                            ? validationRule.rule +
+                                (validationRule.errorMessage
+                                    ? `, '${validationRule.errorMessage}'`
+                                    : "")
+                            : validationRule.errorMessage
+                                ? `'${validationRule.errorMessage}'`
+                                : ""})`;
                     }
                     validationStringArray.push(`${formWidgetItem.name}:${validation}`);
                 }
@@ -104,7 +111,7 @@ class ASWidgetsList {
         // Handle logic for ASForm
         if (widgetName === "ASForm") {
             const widgetAttributes = ASWidgetsList.getWidgetAttributes(attributes, "ASForm");
-            const destructuredValueString = `const { ${this._initialValues.join(', ')} } = values`;
+            const destructuredValueString = `const { ${this._initialValues.join(", ")} } = values`;
             this._initialValues = [];
             return `<ASForm${widgetAttributes}>
                          {(formikProps: FormikProps<any>)=> {
@@ -159,7 +166,6 @@ class ASWidgetsList {
             ASForm: (attributes) => ASWidgetsList.getWidgetString("ASForm", attributes),
             ASRichText: (attributes) => ASWidgetsList.getWidgetString("ASRichText", attributes),
             ASImage: (attributes) => ASWidgetsList.getWidgetString("ASImage", attributes),
-            ASDropDown: (attributes) => ASWidgetsList.getWidgetString("ASDropDown", attributes),
             ASExpandableText: (attributes) => ASWidgetsList.getWidgetString("ASExpandableText", attributes),
             ASWrap: (attributes) => ASWidgetsList.getWidgetString("ASWrap", attributes),
             ASSwitch: (attributes) => ASWidgetsList.getWidgetString("ASSwitch", attributes),
