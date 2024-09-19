@@ -1,5 +1,5 @@
-import React, { ReactNode } from 'react';
-import { ScrollViewProps, StyleProp, ViewStyle } from 'react-native';
+import React, { ReactNode } from "react";
+import { ScrollViewProps, StyleProp, ViewStyle } from "react-native";
 export type ASTabViewProps = {
     children: ReactNode;
     style?: StyleProp<ViewStyle>;
