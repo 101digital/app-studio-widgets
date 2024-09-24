@@ -90,7 +90,7 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
       style={[
         getButtonStyle(),
         style,
-        { backgroundColor: getButtonBackgroundColor()},
+        { backgroundColor: getButtonBackgroundColor() },
       ]}
     >
       {!!children ? (
@@ -98,12 +98,18 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
       ) : (
         <View style={styles.labelContainer}>
           <ASText
-            style={{
-              ...styles.textStyle,
-              ...getButtonTextStyle(),
-              ...textStyle,
-              color: getButtonTextColor(),
-            }}
+            // style={{
+            //   ...styles.textStyle,
+            //   ...getButtonTextStyle(),
+            //   ...textStyle,
+            //   color: getButtonTextColor(),
+            // }}
+            style={[
+              styles.textStyle, // Base text style
+              getButtonTextStyle(), // Dynamic button text style
+              ...(Array.isArray(textStyle) ? textStyle : [textStyle]), // Spread array or wrap single object
+              { color: getButtonTextColor() }, // Text color logic
+            ]}
           >
             {label}
           </ASText>
@@ -135,7 +141,7 @@ const styles = StyleSheet.create({
   },
   simpleTextButtonTextStyle: {
     fontSize: 14,
-    textAlign: "center"
+    textAlign: "center",
   },
   loadingIndicator: {
     marginLeft: 10,
