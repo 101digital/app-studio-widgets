@@ -5,14 +5,21 @@ export type ASRowProps = {
     children: ReactNode;
     style?: StyleProp<ViewStyle>;
     accessibilityLabel?: string;
+    spacing?: number
 }
 
 const ASRow: React.FC<ASRowProps> = (props: ASRowProps) => {
-    const {children, style, accessibilityLabel} = props || {}
+    const {children, style, accessibilityLabel, spacing} = props || {}
 
     return (
         <View style={[styles.container, style]} accessibilityLabel={accessibilityLabel}>
-            {children}
+            {spacing && Array.isArray(children) ? children.map((child: any, index: number) => {
+                return (
+                    <View style={{marginRight: children.length - 1 === index ? 0 : spacing}}>
+                        {child}
+                    </View>
+                )
+            }) : children}
         </View>
     )
 }

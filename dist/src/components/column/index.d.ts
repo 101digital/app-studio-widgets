@@ -5,6 +5,7 @@ export type ASColumnProps = {
     style?: StyleProp<ViewStyle>;
     backgroundImage?: any;
     accessibilityLabel?: string;
+    spacing?: number;
 };
 declare const ASColumn: React.FC<ASColumnProps>;
 export default ASColumn;

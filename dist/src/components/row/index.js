@@ -6,8 +6,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(require("react"));
 const react_native_1 = require("react-native");
 const ASRow = (props) => {
-    const { children, style, accessibilityLabel } = props || {};
-    return (react_1.default.createElement(react_native_1.View, { style: [styles.container, style], accessibilityLabel: accessibilityLabel }, children));
+    const { children, style, accessibilityLabel, spacing } = props || {};
+    return (react_1.default.createElement(react_native_1.View, { style: [styles.container, style], accessibilityLabel: accessibilityLabel }, spacing && Array.isArray(children) ? children.map((child, index) => {
+        return (react_1.default.createElement(react_native_1.View, { style: { marginRight: children.length - 1 === index ? 0 : spacing } }, child));
+    }) : children));
 };
 const styles = react_native_1.StyleSheet.create({
     container: {
