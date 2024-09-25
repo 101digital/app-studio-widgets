@@ -1,4 +1,4 @@
-import React, {ReactNode} from "react";
+import React, {ReactNode, useState} from "react";
 import {StyleProp, StyleSheet, View, ViewStyle} from "react-native";
 import ASImage from "../image";
 
@@ -12,11 +12,19 @@ export type ASColumnProps = {
 
 const ASColumn: React.FC<ASColumnProps> = (props: ASColumnProps) => {
     const {children, style, backgroundImage, accessibilityLabel, spacing} = props || {};
+    const [imageSize, setImageSize] = useState({})
+
+    const onLayout = (event) => {
+        const {x, y, width, height} = event.nativeEvent.layout;
+        setImageSize({width, height})
+    }
 
     return (
-        <View style={[styles.container, style]} accessibilityLabel={accessibilityLabel}>
+        <View style={[styles.container, style]}
+              accessibilityLabel={accessibilityLabel}
+              onLayout={onLayout}>
             {backgroundImage && (
-                <ASImage source={backgroundImage} style={styles.backgroundStyle}/>
+                <ASImage source={backgroundImage} style={[styles.backgroundStyle, {...imageSize}]}/>
             )}
             {spacing && Array.isArray(children) ? children.map((child: any, index: number) => {
                 return (
@@ -32,7 +40,6 @@ const ASColumn: React.FC<ASColumnProps> = (props: ASColumnProps) => {
 const styles = StyleSheet.create({
     container: {
         flexDirection: "column",
-        // TODO: Start adding justifyContent: 'flex-start', then remove this justifyContent: 'center'
         justifyContent: "center",
     },
     backgroundStyle: {
