@@ -16,7 +16,6 @@ export type ASContainerProps = {
 };
 
 const ASContainer: React.FC<ASContainerProps> = (props: ASContainerProps) => {
-    const { colors } = useContext(ThemeContext);
     const {
         children,
         style,
@@ -50,7 +49,7 @@ const ASContainer: React.FC<ASContainerProps> = (props: ASContainerProps) => {
     return (
         <View
             {...restProps}
-            style={[styles.container, safeAreaStyle, { backgroundColor: colors.background }, style]}
+            style={[styles.container, safeAreaStyle, style]}
         >
             {isScrollable ? (
                 <ScrollView

@@ -18,7 +18,6 @@ export type ASBadgeProps = {
 };
 
 const ASBadge: React.FC<ASBadgeProps> = (props: ASBadgeProps) => {
-  const { colors } = useContext(ThemeContext);
   const { children, label, badgeStyles, badgeTextStyle, containerStyle } =
     props;
 
@@ -30,9 +29,6 @@ const ASBadge: React.FC<ASBadgeProps> = (props: ASBadgeProps) => {
           <View
             style={[
               styles.badgeStyles,
-              {
-                backgroundColor: colors.primary,
-              },
               badgeStyles,
             ]}
           >

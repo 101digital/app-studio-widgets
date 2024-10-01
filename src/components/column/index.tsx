@@ -14,7 +14,7 @@ const ASColumn: React.FC<ASColumnProps> = (props: ASColumnProps) => {
     const {children, style, backgroundImage, accessibilityLabel, spacing} = props || {};
     const [imageSize, setImageSize] = useState({})
 
-    const onLayout = (event) => {
+    const onLayout = (event: any) => {
         const {x, y, width, height} = event.nativeEvent.layout;
         setImageSize({width, height})
     }

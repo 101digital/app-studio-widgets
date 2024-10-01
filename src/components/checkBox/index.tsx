@@ -26,7 +26,6 @@ export type ASCheckBoxProps = {
 };
 
 const ASCheckBox: React.FC<ASCheckBoxProps> = (props: ASCheckBoxProps) => {
-  const { colors } = useContext(ThemeContext);
   const {
     label,
     labelStyles,

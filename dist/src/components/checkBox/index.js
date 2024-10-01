@@ -40,9 +40,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importStar(require("react"));
 const react_native_bouncy_checkbox_1 = __importDefault(require("react-native-bouncy-checkbox"));
 const formik_1 = require("formik");
-const theme_context_1 = require("../../context/theme-context");
 const ASCheckBox = (props) => {
-    const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
     const { label, labelStyles, unFillColor = "transparent", fillColor, iconStyles, innerIconStyles, disabled, onChange, accessibilityLabel, size = 25, iconSize = 12, name } = props, restProps = __rest(props, ["label", "labelStyles", "unFillColor", "fillColor", "iconStyles", "innerIconStyles", "disabled", "onChange", "accessibilityLabel", "size", "iconSize", "name"]);
     const formikContext = (0, formik_1.useFormikContext)();
     const [toggleCheckBox, setToggleCheckBox] = (0, react_1.useState)(false);
