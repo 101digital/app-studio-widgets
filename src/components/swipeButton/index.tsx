@@ -6,7 +6,7 @@ import ASLoadingIndicator from "../loadingIndicator";
 import { ArrowForwardIcon } from "../../assets/icon/arrow-forward.icon";
 
 export type ASSwipeButtonProps = {
-  containerStyles?: ViewStyle;
+  containerStyles?: ViewStyle | ViewStyle[];
   disabled?: boolean;
   disableResetOnTap?: boolean;
   disabledRailBackgroundColor?: string;
@@ -22,7 +22,7 @@ export type ASSwipeButtonProps = {
   railBorderColor?: string;
   railFillBackgroundColor?: string;
   railFillBorderColor?: string;
-  railStyles?: ViewStyle;
+  railStyles?: ViewStyle | ViewStyle[];
   resetAfterSuccessAnimDelay?: number;
   resetAfterSuccessAnimDuration?: number;
   screenReaderEnabled?: boolean;
@@ -32,13 +32,13 @@ export type ASSwipeButtonProps = {
   thumbIconBorderColor?: string;
   thumbIconComponent?: React.ReactElement;
   thumbIconImageSource?: string | number;
-  thumbIconStyles?: ViewStyle;
+  thumbIconStyles?: ViewStyle | ViewStyle[];
   thumbIconWidth?: number;
   label?: string;
   titleColor?: string;
   titleFontSize?: number;
   titleMaxFontScale?: number;
-  labelStyles?: TextStyle;
+  labelStyles?: any;
   width?: number | string;
   accessibilityLabel?: string;
   loading?: boolean;
@@ -105,10 +105,15 @@ const ASSwipeButton: React.FC<ASSwipeButtonProps> = (props) => {
     );
   };
 
+  // Helper function to flatten styles or return empty object if undefined
+  const flattenStyles = (
+    styles: ViewStyle | ViewStyle[] | TextStyle | TextStyle[] | undefined
+  ) => (styles ? StyleSheet.flatten(styles) : {});
+
   return (
     <View accessibilityLabel={accessibilityLabel}>
       <SwipeButton
-        containerStyles={containerStyles}
+        containerStyles={flattenStyles(containerStyles)}
         disabled={disabled}
         disableResetOnTap={disableResetOnTap}
         disabledRailBackgroundColor={disabledRailBackgroundColor}
@@ -124,7 +129,7 @@ const ASSwipeButton: React.FC<ASSwipeButtonProps> = (props) => {
         railBorderColor={railBorderColor}
         railFillBackgroundColor={railFillBackgroundColor}
         railFillBorderColor={railFillBorderColor}
-        railStyles={railStyles}
+        railStyles={flattenStyles(railStyles)}
         resetAfterSuccessAnimDelay={resetAfterSuccessAnimDelay}
         resetAfterSuccessAnimDuration={resetAfterSuccessAnimDuration}
         screenReaderEnabled={screenReaderEnabled}
@@ -135,11 +140,11 @@ const ASSwipeButton: React.FC<ASSwipeButtonProps> = (props) => {
         // @ts-ignore
         thumbIconComponent={renderThumbIcon}
         thumbIconImageSource={thumbIconImageSource}
-        thumbIconStyles={thumbIconStyles}
+        thumbIconStyles={flattenStyles(thumbIconStyles)}
         thumbIconWidth={thumbIconWidth}
         title={label}
         titleMaxFontScale={titleMaxFontScale}
-        titleStyles={labelStyles}
+        titleStyles={flattenStyles(labelStyles)}
         width={width}
       />
     </View>
