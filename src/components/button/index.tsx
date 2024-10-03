@@ -14,12 +14,12 @@ import LoadingIndicator from "../loadingIndicator";
 export type ASButtonProps = TouchableOpacityProps & {
   label?: string;
   onPress: () => void;
-  style?: ViewStyle;
+  style?: ViewStyle | ViewStyle[];
   textStyle?: TextStyle | any;
   disabled?: boolean;
   children?: React.ReactNode;
   simpleTextButton?: boolean;
-  loading?: boolean | boolean[] | undefined;
+  loading?: boolean | undefined;
 };
 
 const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
@@ -36,13 +36,21 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
     ...restProps
   } = props;
 
+  // Ensure that style is a single object
+  const flattenedStyle = StyleSheet.flatten(style);
+
+  // Ensure that textStyle is a single object
+  const flattenedTextStyle = StyleSheet.flatten(textStyle);
+
   const getButtonBackgroundColor = () => {
     if (disabled) {
       return colors.tertiary;
     }
 
-    if (style?.backgroundColor && !simpleTextButton) {
-      return style?.backgroundColor;
+    // @ts-ignore
+    if (flattenedStyle?.backgroundColor && !simpleTextButton) {
+      // @ts-ignore
+      return flattenedStyle?.backgroundColor;
     }
 
     if (simpleTextButton || !!children) {
@@ -57,8 +65,8 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
       return colors.onSurface;
     }
 
-    if (textStyle?.color) {
-      return textStyle?.color;
+    if (flattenedTextStyle?.color) {
+      return flattenedTextStyle?.color;
     }
 
     if (simpleTextButton) {
@@ -89,7 +97,7 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
       onPress={onPress}
       style={[
         getButtonStyle(),
-        style,
+        flattenedStyle,
         { backgroundColor: getButtonBackgroundColor() },
       ]}
     >
@@ -98,16 +106,10 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
       ) : (
         <View style={styles.labelContainer}>
           <ASText
-            // style={{
-            //   ...styles.textStyle,
-            //   ...getButtonTextStyle(),
-            //   ...textStyle,
-            //   color: getButtonTextColor(),
-            // }}
             style={[
               styles.textStyle, // Base text style
               getButtonTextStyle(), // Dynamic button text style
-              ...(Array.isArray(textStyle) ? textStyle : [textStyle]), // Spread array or wrap single object
+              flattenedTextStyle, // Flattened user-provided styles
               { color: getButtonTextColor() }, // Text color logic
             ]}
           >
@@ -125,7 +127,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     paddingHorizontal: 20,
-    // paddingVertical: 12,
     borderRadius: 8,
   },
   simpleTextButton: {

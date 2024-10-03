@@ -45,12 +45,18 @@ const loadingIndicator_1 = __importDefault(require("../loadingIndicator"));
 const ASButton = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
     const { label = "", style, textStyle, onPress, disabled, children, simpleTextButton, loading } = props, restProps = __rest(props, ["label", "style", "textStyle", "onPress", "disabled", "children", "simpleTextButton", "loading"]);
+    // Ensure that style is a single object
+    const flattenedStyle = react_native_1.StyleSheet.flatten(style);
+    // Ensure that textStyle is a single object
+    const flattenedTextStyle = react_native_1.StyleSheet.flatten(textStyle);
     const getButtonBackgroundColor = () => {
         if (disabled) {
             return colors.tertiary;
         }
-        if ((style === null || style === void 0 ? void 0 : style.backgroundColor) && !simpleTextButton) {
-            return style === null || style === void 0 ? void 0 : style.backgroundColor;
+        // @ts-ignore
+        if ((flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.backgroundColor) && !simpleTextButton) {
+            // @ts-ignore
+            return flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.backgroundColor;
         }
         if (simpleTextButton || !!children) {
             return "transparent";
@@ -61,8 +67,8 @@ const ASButton = (props) => {
         if (disabled) {
             return colors.onSurface;
         }
-        if (textStyle === null || textStyle === void 0 ? void 0 : textStyle.color) {
-            return textStyle === null || textStyle === void 0 ? void 0 : textStyle.color;
+        if (flattenedTextStyle === null || flattenedTextStyle === void 0 ? void 0 : flattenedTextStyle.color) {
+            return flattenedTextStyle === null || flattenedTextStyle === void 0 ? void 0 : flattenedTextStyle.color;
         }
         if (simpleTextButton) {
             return colors.accent4;
@@ -83,27 +89,13 @@ const ASButton = (props) => {
     };
     return (react_1.default.createElement(react_native_1.TouchableOpacity, Object.assign({}, restProps, { disabled: disabled, onPress: onPress, style: [
             getButtonStyle(),
-            style,
+            flattenedStyle,
             { backgroundColor: getButtonBackgroundColor() },
         ] }), !!children ? (children) : (react_1.default.createElement(react_native_1.View, { style: styles.labelContainer },
-        react_1.default.createElement(text_1.default
-        // style={{
-        //   ...styles.textStyle,
-        //   ...getButtonTextStyle(),
-        //   ...textStyle,
-        //   color: getButtonTextColor(),
-        // }}
-        , { 
-            // style={{
-            //   ...styles.textStyle,
-            //   ...getButtonTextStyle(),
-            //   ...textStyle,
-            //   color: getButtonTextColor(),
-            // }}
-            style: [
+        react_1.default.createElement(text_1.default, { style: [
                 styles.textStyle, // Base text style
                 getButtonTextStyle(), // Dynamic button text style
-                ...(Array.isArray(textStyle) ? textStyle : [textStyle]), // Spread array or wrap single object
+                flattenedTextStyle, // Flattened user-provided styles
                 { color: getButtonTextColor() }, // Text color logic
             ] }, label),
         react_1.default.createElement(loadingIndicator_1.default, { loading: loading, style: styles.loadingIndicator })))));
@@ -113,7 +105,6 @@ const styles = react_native_1.StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         paddingHorizontal: 20,
-        // paddingVertical: 12,
         borderRadius: 8,
     },
     simpleTextButton: {
