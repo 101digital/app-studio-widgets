@@ -18,18 +18,18 @@ const react_1 = __importDefault(require("react"));
 const react_native_1 = require("react-native");
 const commonUtils_1 = require("../../utils/commonUtils");
 const ASImage = (props) => {
-    const { source, width = 100, height = 100, style, resizeMode = 'cover', roundImageSize = 0 } = props, restProps = __rest(props, ["source", "width", "height", "style", "resizeMode", "roundImageSize"]);
+    const { source, style, resizeMode = 'cover', roundImageSize = 0 } = props, restProps = __rest(props, ["source", "style", "resizeMode", "roundImageSize"]);
+    // Get device dimensions to use for responsiveness
+    const { width: screenWidth, height: screenHeight } = react_native_1.Dimensions.get('window');
     const imageSource = typeof source === 'string' && (source === null || source === void 0 ? void 0 : source.startsWith('http')) || (source === null || source === void 0 ? void 0 : source.startsWith('data:')) ? { uri: source } : source;
-    const roundImageSizeValue = (0, commonUtils_1.convertPercentageToPx)(roundImageSize, true);
-    return (react_1.default.createElement(react_native_1.Image, Object.assign({ source: imageSource, style: [{
-                width: roundImageSizeValue || width,
-                height: roundImageSizeValue || height,
-                borderRadius: roundImageSizeValue
-            }, style], resizeMode: resizeMode }, restProps)));
+    const roundImageSizeValue = (0, commonUtils_1.convertPercentageToPx)(roundImageSize, true) || 0;
+    return (react_1.default.createElement(react_native_1.Image, Object.assign({ source: imageSource, style: [
+            {
+                width: roundImageSizeValue || '100%',
+                height: roundImageSizeValue || '100%',
+                borderRadius: roundImageSizeValue || 0,
+            },
+            style
+        ], resizeMode: resizeMode }, restProps)));
 };
 exports.default = ASImage;
-//Note: ASImage example
-/*
-                        <ASImage source={'https:i.imgur.com/oLgjoWx.png'} style={{width: '35%', height: '20%'}}
-                         resizeMode={'contain'}/>
-* */

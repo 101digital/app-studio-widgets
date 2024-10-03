@@ -1,5 +1,5 @@
-import React, { ReactNode } from "react";
-import { StyleProp, ViewStyle } from "react-native";
+import React, { ReactNode } from 'react';
+import { StyleProp, ViewStyle } from 'react-native';
 export type ASColumnProps = {
     children: ReactNode;
     style?: StyleProp<ViewStyle>;
