@@ -39,7 +39,11 @@ const ASColumn = (props) => {
     return (react_1.default.createElement(react_native_1.View, { style: [styles.container, style], accessibilityLabel: accessibilityLabel, onLayout: onLayout },
         backgroundImage && (react_1.default.createElement(image_1.default, { source: backgroundImage, style: [styles.backgroundStyle, Object.assign({}, imageSize)] })),
         spacing && Array.isArray(children) ? children.map((child, index) => {
-            return (react_1.default.createElement(react_native_1.View, { style: { marginBottom: children.length - 1 === index ? 0 : spacing } }, child));
+            var _a, _b;
+            return (react_1.default.createElement(react_native_1.View, { style: {
+                    marginBottom: children.length - 1 === index ? 0 : spacing,
+                    flex: ((_b = (_a = child.props) === null || _a === void 0 ? void 0 : _a.style) === null || _b === void 0 ? void 0 : _b.flex) || 0
+                } }, child));
         }) : children));
 };
 const styles = react_native_1.StyleSheet.create({

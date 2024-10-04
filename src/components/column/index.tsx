@@ -28,7 +28,10 @@ const ASColumn: React.FC<ASColumnProps> = (props: ASColumnProps) => {
             )}
             {spacing && Array.isArray(children) ? children.map((child: any, index: number) => {
                 return (
-                    <View style={{marginBottom: children.length - 1 === index ? 0 : spacing}}>
+                    <View style={{
+                        marginBottom: children.length - 1 === index ? 0 : spacing,
+                        flex: child.props?.style?.flex || 0
+                    }}>
                         {child}
                     </View>
                 )

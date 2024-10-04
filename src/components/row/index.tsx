@@ -15,7 +15,10 @@ const ASRow: React.FC<ASRowProps> = (props: ASRowProps) => {
         <View style={[styles.container, style]} accessibilityLabel={accessibilityLabel}>
             {spacing && Array.isArray(children) ? children.map((child: any, index: number) => {
                 return (
-                    <View style={{marginRight: children.length - 1 === index ? 0 : spacing}}>
+                    <View style={{
+                        marginRight: children.length - 1 === index ? 0 : spacing,
+                        flex: child.props?.style?.flex || 0
+                    }}>
                         {child}
                     </View>
                 )
