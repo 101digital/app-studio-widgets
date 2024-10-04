@@ -1,7 +1,7 @@
 import React from "react";
-import { TextStyle, ViewStyle } from "react-native";
+import { ViewStyle } from "react-native";
 export type ASSwipeButtonProps = {
-    containerStyles?: ViewStyle;
+    containerStyles?: ViewStyle | ViewStyle[];
     disabled?: boolean;
     disableResetOnTap?: boolean;
     disabledRailBackgroundColor?: string;
@@ -17,7 +17,7 @@ export type ASSwipeButtonProps = {
     railBorderColor?: string;
     railFillBackgroundColor?: string;
     railFillBorderColor?: string;
-    railStyles?: ViewStyle;
+    railStyles?: ViewStyle | ViewStyle[];
     resetAfterSuccessAnimDelay?: number;
     resetAfterSuccessAnimDuration?: number;
     screenReaderEnabled?: boolean;
@@ -27,13 +27,13 @@ export type ASSwipeButtonProps = {
     thumbIconBorderColor?: string;
     thumbIconComponent?: React.ReactElement;
     thumbIconImageSource?: string | number;
-    thumbIconStyles?: ViewStyle;
+    thumbIconStyles?: ViewStyle | ViewStyle[];
     thumbIconWidth?: number;
     label?: string;
     titleColor?: string;
     titleFontSize?: number;
     titleMaxFontScale?: number;
-    labelStyles?: TextStyle;
+    labelStyles?: any;
     width?: number | string;
     accessibilityLabel?: string;
     loading?: boolean;
