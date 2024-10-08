@@ -7,8 +7,9 @@ const react_1 = __importDefault(require("react"));
 const react_native_1 = require("react-native");
 const formik_1 = require("formik");
 const wrap_1 = __importDefault(require("../wrap"));
+const overlay_1 = __importDefault(require("components/overlay"));
 const ASChoiceChips = (props) => {
-    const { options, name, isSingleChoice = true, returnedKey, contentLayout = "space-between", choiceChipTextStyles, choiceChipStyles, selectedChipBackgroundColor, selectedChipBorderColor, selectedChipTextColor, } = props;
+    const { options, name, isSingleChoice = true, returnedKey, contentLayout = "space-between", choiceChipTextStyles, choiceChipStyles, selectedChipBackgroundColor, selectedChipBorderColor, selectedChipTextColor, isOverlayEnabled } = props;
     const [field, meta, helpers] = (0, formik_1.useField)(name);
     const { setValue } = helpers || {};
     const selectedChoiceChips = field === null || field === void 0 ? void 0 : field.value;
@@ -47,30 +48,32 @@ const ASChoiceChips = (props) => {
                 (selectedChoiceChips === null || selectedChoiceChips === void 0 ? void 0 : selectedChoiceChips.find((item) => (item === null || item === void 0 ? void 0 : item.value) === value)));
         }
     };
-    return (react_1.default.createElement(wrap_1.default, { style: [styles.container, { justifyContent: contentLayout }] }, options.map((chip, index) => (react_1.default.createElement(react_native_1.TouchableOpacity, { key: `${chip.value}${index}`, onPress: isSingleChoice
-            ? _onPressSingleChoiceChip(chip)
-            : _onPressChoiceChip(chip), style: [
-            styles.chip,
-            choiceChipStyles,
-            {
-                backgroundColor: findSelected(chip === null || chip === void 0 ? void 0 : chip.value)
-                    ? selectedChipBackgroundColor
-                    : flattenedBackgroundColor,
-                borderColor: findSelected(chip === null || chip === void 0 ? void 0 : chip.value)
-                    ? selectedChipBorderColor
-                    : flattenedBorderColor,
-            },
-        ] },
-        !!(chip === null || chip === void 0 ? void 0 : chip.icon) && (react_1.default.createElement(react_native_1.View, { style: styles.iconContainer }, chip.icon)),
-        react_1.default.createElement(react_native_1.Text, { style: [
-                styles.label,
-                choiceChipTextStyles,
+    return (react_1.default.createElement(wrap_1.default, { style: [styles.container, { justifyContent: contentLayout }] },
+        options.map((chip, index) => (react_1.default.createElement(react_native_1.TouchableOpacity, { key: `${chip.value}${index}`, onPress: isSingleChoice
+                ? _onPressSingleChoiceChip(chip)
+                : _onPressChoiceChip(chip), style: [
+                styles.chip,
+                choiceChipStyles,
                 {
-                    color: findSelected(chip === null || chip === void 0 ? void 0 : chip.value)
-                        ? selectedChipTextColor
-                        : flattenedTextColor === null || flattenedTextColor === void 0 ? void 0 : flattenedTextColor.color,
+                    backgroundColor: findSelected(chip === null || chip === void 0 ? void 0 : chip.value)
+                        ? selectedChipBackgroundColor
+                        : flattenedBackgroundColor,
+                    borderColor: findSelected(chip === null || chip === void 0 ? void 0 : chip.value)
+                        ? selectedChipBorderColor
+                        : flattenedBorderColor,
                 },
-            ] }, chip.label))))));
+            ] },
+            !!(chip === null || chip === void 0 ? void 0 : chip.icon) && (react_1.default.createElement(react_native_1.View, { style: styles.iconContainer }, chip.icon)),
+            react_1.default.createElement(react_native_1.Text, { style: [
+                    styles.label,
+                    choiceChipTextStyles,
+                    {
+                        color: findSelected(chip === null || chip === void 0 ? void 0 : chip.value)
+                            ? selectedChipTextColor
+                            : flattenedTextColor === null || flattenedTextColor === void 0 ? void 0 : flattenedTextColor.color,
+                    },
+                ] }, chip.label)))),
+        isOverlayEnabled && react_1.default.createElement(overlay_1.default, null)));
 };
 const styles = react_native_1.StyleSheet.create({
     container: {},
@@ -87,6 +90,15 @@ const styles = react_native_1.StyleSheet.create({
     },
     label: {
         fontSize: 16,
+    },
+    overlay: {
+        position: "absolute",
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: "transparent", // Fully transparent overlay
+        zIndex: 1, // Ensures the overlay appears above the content
     },
 });
 exports.default = ASChoiceChips;

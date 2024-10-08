@@ -15,6 +15,7 @@ import {useField} from "formik";
 import ASText from "../text";
 import {ThemeContext} from "../../context/theme-context";
 import {constants} from "../../utils/constants";
+import ASOverlay from "components/overlay";
 
 export type ASTextFieldProps = Omit<TextInputMaskProps, "type"> &
     TextInputProps & {
@@ -34,7 +35,8 @@ export type ASTextFieldProps = Omit<TextInputMaskProps, "type"> &
     borderActiveColor?: string;
     placeholderTextColor?: string;
     style?: StyleProp<ViewStyle>;
-    accessibilityLabel?: string
+    accessibilityLabel?: string;
+    isOverlayEnabled?: boolean;
 };
 
 const ASTextField = (props: ASTextFieldProps) => {
@@ -60,6 +62,7 @@ const ASTextField = (props: ASTextFieldProps) => {
         errorMessageTextStyle,
         placeholderTextColor,
         accessibilityLabel,
+        isOverlayEnabled,
         ...restProps
     } = props;
     const [active, setActive] = useState(false);
@@ -221,6 +224,7 @@ const ASTextField = (props: ASTextFieldProps) => {
                     {getErrorMessage(meta?.error)}
                 </ASText>
             )}
+            {isOverlayEnabled && <ASOverlay />}
         </View>
     );
 };

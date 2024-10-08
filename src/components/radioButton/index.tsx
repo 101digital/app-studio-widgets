@@ -5,6 +5,7 @@ import ASText from "../text";
 import {TickIcon} from "../../assets/icon";
 import ASRow from "../row";
 import {ThemeContext} from "../../context/theme-context";
+import ASOverlay from 'components/overlay';
 
 export type ASRadioButtonItemProps = {
     label: string;
@@ -18,7 +19,8 @@ export type ASRadioButtonProps = {
     innerCircleStyle?: StyleProp<ViewStyle>;
     color?: ColorValue
     labelStyle?: StyleProp<TextStyle>;
-    radioType?: 'default' | 'tick'
+    radioType?: 'default' | 'tick';
+    isOverlayEnabled?: boolean;
 }
 
 const ASRadioButton: React.FC<ASRadioButtonProps> = (props: ASRadioButtonProps) => {
@@ -30,7 +32,8 @@ const ASRadioButton: React.FC<ASRadioButtonProps> = (props: ASRadioButtonProps) 
         innerCircleStyle,
         color = colors.primary,
         labelStyle,
-        radioType = 'default'
+        radioType = 'default',
+        isOverlayEnabled
     } = props;
     const [field, meta, helpers] = useField(name);
     const {setValue} = helpers || {};
@@ -85,6 +88,7 @@ const ASRadioButton: React.FC<ASRadioButtonProps> = (props: ASRadioButtonProps) 
             {
                 options?.map(mapRadioButton)
             }
+            {isOverlayEnabled && <ASOverlay />}
         </>)
 };
 

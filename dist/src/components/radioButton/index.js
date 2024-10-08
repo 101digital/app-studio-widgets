@@ -33,9 +33,10 @@ const text_1 = __importDefault(require("../text"));
 const icon_1 = require("../../assets/icon");
 const row_1 = __importDefault(require("../row"));
 const theme_context_1 = require("../../context/theme-context");
+const overlay_1 = __importDefault(require("components/overlay"));
 const ASRadioButton = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { options = [], name, radioButtonStyle, innerCircleStyle, color = colors.primary, labelStyle, radioType = 'default' } = props;
+    const { options = [], name, radioButtonStyle, innerCircleStyle, color = colors.primary, labelStyle, radioType = 'default', isOverlayEnabled } = props;
     const [field, meta, helpers] = (0, formik_1.useField)(name);
     const { setValue } = helpers || {};
     const _onPressRadioButton = (item) => () => {
@@ -65,7 +66,9 @@ const ASRadioButton = (props) => {
     const mapRadioButton = (item, index) => {
         return (react_1.default.createElement(react_native_1.TouchableOpacity, { key: `${index}${item === null || item === void 0 ? void 0 : item.label}`, onPress: _onPressRadioButton(item), style: styles.container }, renderRadioButtonType(item)));
     };
-    return (react_1.default.createElement(react_1.default.Fragment, null, options === null || options === void 0 ? void 0 : options.map(mapRadioButton)));
+    return (react_1.default.createElement(react_1.default.Fragment, null, options === null || options === void 0 ? void 0 :
+        options.map(mapRadioButton),
+        isOverlayEnabled && react_1.default.createElement(overlay_1.default, null)));
 };
 exports.default = ASRadioButton;
 const styles = react_native_1.StyleSheet.create({

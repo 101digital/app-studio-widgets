@@ -8,12 +8,13 @@ export type ASPasswordTextFieldProps = ASTextFieldProps & {
   suffixIconSize: number;
   suffixIconColor: string;
   accessibilityLabel?: string;
+  isOverlayEnabled?: boolean;
 };
 
 const ASPasswordTextField: FC<ASPasswordTextFieldProps> = (
   props: ASPasswordTextFieldProps
 ) => {
-  const { suffixIconSize = 22, suffixIconColor, accessibilityLabel } = props;
+  const { suffixIconSize = 22, suffixIconColor, accessibilityLabel, isOverlayEnabled } = props;
   const [isSecureTextEntry, setIsSecureTextEntry] = useState<boolean>(true);
 
   const onPressSecureTextEntry = () => {
@@ -35,6 +36,7 @@ const ASPasswordTextField: FC<ASPasswordTextFieldProps> = (
       }
       {...props}
       secureTextEntry={isSecureTextEntry}
+      isOverlayEnabled={isOverlayEnabled}
     />
   );
 };
