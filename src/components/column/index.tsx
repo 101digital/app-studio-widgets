@@ -17,8 +17,8 @@ const ASColumn: React.FC<ASColumnProps> = (props: ASColumnProps) => {
     const [containerHeight, setContainerHeight] = useState(0); // State to hold container height
 
     return (
-        <View 
-            style={[styles.container, style]} 
+        <View
+            style={[styles.container, style]}
             accessibilityLabel={accessibilityLabel}
             onLayout={(event) => {
                 const { height } = event.nativeEvent.layout; // Get height after layout
@@ -26,22 +26,22 @@ const ASColumn: React.FC<ASColumnProps> = (props: ASColumnProps) => {
             }}
         >
             {backgroundImage && (
-                <ASImage 
-                    source={backgroundImage} 
-                    style={[styles.backgroundStyle, { height: containerHeight }]} 
+                <ASImage
+                    source={backgroundImage}
+                    style={[styles.backgroundStyle, { height: containerHeight }]}
                     resizeMode="stretch" // Ensure image covers the entire area
                 />
             )}
-            {childrenArray.map((child, index) => (
-                <View
-                    key={index}
-                    style={{
-                        marginBottom: index === childrenArray.length - 1 ? 0 : spacing,
-                    }}
-                >
-                    {child}
-                </View>
-            ))}
+            {spacing && Array.isArray(children) ? children.map((child: any, index: number) => {
+                return (
+                    <View style={{
+                        marginBottom: children.length - 1 === index ? 0 : spacing,
+                        flex: child.props?.style?.flex || 0
+                    }}>
+                        {child}
+                    </View>
+                )
+            }) : children}
         </View>
     );
 };

@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import { FlatListProps, StyleProp, TextStyle, ViewStyle } from "react-native";
 export type ASPinProps = KeyboardProps & {
     pinLength?: number;
-    onSubmit: (item: string) => void;
+    onPress: (item: string) => void;
     children?: ReactNode;
     onChange?: (item: string) => void;
     keyboardTypography?: TextStyle;
@@ -44,7 +44,7 @@ export type PinInputListProps = {
     pinBoxSize?: number;
     pinBoxBorderColor?: string;
     pinBoxBackgroundColor?: string;
-    onSubmit: (item: string) => void;
+    onPress: (item: string) => void;
 };
 declare const ASPin: React.FC<ASPinProps>;
 export default ASPin;

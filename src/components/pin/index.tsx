@@ -45,7 +45,7 @@ const KEYBOARDS = [
 
 export type ASPinProps = KeyboardProps & {
   pinLength?: number;
-  onSubmit: (item: string) => void;
+  onPress: (item: string) => void;
   children?: ReactNode;
   onChange?: (item: string) => void;
   keyboardTypography?: TextStyle;
@@ -90,7 +90,7 @@ export type PinInputListProps = {
   pinBoxSize?: number;
   pinBoxBorderColor?: string;
   pinBoxBackgroundColor?: string;
-  onSubmit: (item: string) => void;
+  onPress: (item: string) => void;
 };
 
 const Keyboard: React.FC<KeyboardProps> = (props: KeyboardProps) => {
@@ -159,16 +159,16 @@ const Keyboard: React.FC<KeyboardProps> = (props: KeyboardProps) => {
 const PinInputList: React.FC<PinInputListProps> = (
   props: PinInputListProps
 ) => {
-  const { pinLength, 
-    pin, 
-    inputTypography, 
-    onKeyboardPress, 
-    enableNativeKeyboard, 
-    pinBoxRadius, 
-    pinBoxSize, 
-    pinBoxBackgroundColor, 
+  const { pinLength,
+    pin,
+    inputTypography,
+    onKeyboardPress,
+    enableNativeKeyboard,
+    pinBoxRadius,
+    pinBoxSize,
+    pinBoxBackgroundColor,
     pinBoxBorderColor,
-    onSubmit
+    onPress
   } = props;
   const PIN_SIZE = 50;
 
@@ -179,7 +179,7 @@ const PinInputList: React.FC<PinInputListProps> = (
     if (text) {
       // Update the pin state
       onKeyboardPress({ label: text, value: text });
-  
+
       // Focus the next input if available
       if (index < pinLength - 1) {
         inputRefs.current[index + 1]?.focus();
@@ -189,7 +189,7 @@ const PinInputList: React.FC<PinInputListProps> = (
 
   const handleKeyPress = (e: any, index: number) => {
     const key = e.nativeEvent.key;
-  
+
     if (key === 'Backspace') {
       if (!pin[index] && index > 0) {
         // If backspace is pressed and current input is empty, focus the previous input
@@ -197,20 +197,20 @@ const PinInputList: React.FC<PinInputListProps> = (
       }
       onKeyboardPress({ label: 'delete', value: 'delete' });
     }
-  
+
     if (key === 'Enter' || key === 'Submit') {
       // Prevent the keyboard from hiding
       e.preventDefault();
-  
+
       // Focus the previous input if available
       if (index > 0) {
         inputRefs.current[index - 1]?.focus();
       }
-  
+
       // You can also trigger the submit action if needed
       if (pin.length === pinLength) {
         //trigger submit
-        onSubmit?.(pin.join(""));
+        onPress?.(pin.join(""));
       }
     }
   };
@@ -264,7 +264,7 @@ const ASPin: React.FC<ASPinProps> = (props: ASPinProps) => {
     deleteButtonStyle,
     flatListProps,
     pinLength = 6,
-    onSubmit,
+    onPress,
     children,
     onChange,
     keyboardTypography,
@@ -294,7 +294,7 @@ const ASPin: React.FC<ASPinProps> = (props: ASPinProps) => {
     }
 
     if (item?.value === "continue" && pin.length === pinLength) {
-      onSubmit?.(pin.join(""));
+      onPress?.(pin.join(""));
     }
 
     if (
@@ -321,7 +321,7 @@ const ASPin: React.FC<ASPinProps> = (props: ASPinProps) => {
           pinBoxSize={pinBoxSize}
           pinBoxBackgroundColor={pinBoxBackgroundColor}
           pinBoxBorderColor={pinBoxBorderColor}
-          onSubmit={onSubmit}
+          onPress={onPress}
         />
       </View>
 
