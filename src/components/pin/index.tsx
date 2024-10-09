@@ -17,7 +17,7 @@ import ASRow from "../row";
 import ASColumn from "../column";
 import { DeleteIcon, ForwardIcon } from "../../assets/icon";
 import { ThemeContext } from "../../context/theme-context";
-import ASOverlay from "components/overlay";
+import ASOverlay from "../overlay";
 
 const KEYBOARDS = [
   { label: "1", value: "1" },

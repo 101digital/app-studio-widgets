@@ -14,7 +14,7 @@ import ASText from "../text";
 import { isAndroid } from "../../utils/commonUtils";
 import { FieldHookConfig, useField } from "formik";
 import { ThemeContext } from "../../context/theme-context";
-import ASOverlay from "components/overlay";
+import ASOverlay from "../overlay";
 
 export type DropDownOptionsProps = {
   [key: string]: any;

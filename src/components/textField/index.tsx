@@ -15,7 +15,7 @@ import {useField} from "formik";
 import ASText from "../text";
 import {ThemeContext} from "../../context/theme-context";
 import {constants} from "../../utils/constants";
-import ASOverlay from "components/overlay";
+import ASOverlay from "../overlay";
 
 export type ASTextFieldProps = Omit<TextInputMaskProps, "type"> &
     TextInputProps & {

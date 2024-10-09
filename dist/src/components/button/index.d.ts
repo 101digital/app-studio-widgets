@@ -9,6 +9,7 @@ export type ASButtonProps = TouchableOpacityProps & {
     children?: React.ReactNode;
     simpleTextButton?: boolean;
     loading?: boolean | undefined;
+    isOverlayEnabled?: boolean;
 };
 declare const ASButton: React.FC<ASButtonProps>;
 export default ASButton;

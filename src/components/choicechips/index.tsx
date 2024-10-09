@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { useField } from "formik";
 import ASWrap from "../wrap";
-import ASOverlay from "components/overlay";
+import ASOverlay from "../overlay";
 
 export type ChipProps = {
   id?: string;

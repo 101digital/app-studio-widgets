@@ -33,7 +33,7 @@ const text_1 = __importDefault(require("../text"));
 const icon_1 = require("../../assets/icon");
 const row_1 = __importDefault(require("../row"));
 const theme_context_1 = require("../../context/theme-context");
-const overlay_1 = __importDefault(require("components/overlay"));
+const overlay_1 = __importDefault(require("../overlay"));
 const ASRadioButton = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
     const { options = [], name, radioButtonStyle, innerCircleStyle, color = colors.primary, labelStyle, radioType = 'default', isOverlayEnabled } = props;

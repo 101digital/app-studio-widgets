@@ -7,7 +7,7 @@ const react_1 = __importDefault(require("react"));
 const react_native_1 = require("react-native");
 const formik_1 = require("formik");
 const wrap_1 = __importDefault(require("../wrap"));
-const overlay_1 = __importDefault(require("components/overlay"));
+const overlay_1 = __importDefault(require("../overlay"));
 const ASChoiceChips = (props) => {
     const { options, name, isSingleChoice = true, returnedKey, contentLayout = "space-between", choiceChipTextStyles, choiceChipStyles, selectedChipBackgroundColor, selectedChipBorderColor, selectedChipTextColor, isOverlayEnabled } = props;
     const [field, meta, helpers] = (0, formik_1.useField)(name);

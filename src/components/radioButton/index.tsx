@@ -5,7 +5,7 @@ import ASText from "../text";
 import {TickIcon} from "../../assets/icon";
 import ASRow from "../row";
 import {ThemeContext} from "../../context/theme-context";
-import ASOverlay from 'components/overlay';
+import ASOverlay from '../overlay';
 
 export type ASRadioButtonItemProps = {
     label: string;

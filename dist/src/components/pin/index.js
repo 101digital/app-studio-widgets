@@ -35,7 +35,7 @@ const row_1 = __importDefault(require("../row"));
 const column_1 = __importDefault(require("../column"));
 const icon_1 = require("../../assets/icon");
 const theme_context_1 = require("../../context/theme-context");
-const overlay_1 = __importDefault(require("components/overlay"));
+const overlay_1 = __importDefault(require("../overlay"));
 const KEYBOARDS = [
     { label: "1", value: "1" },
     { label: "2", value: "2" },
