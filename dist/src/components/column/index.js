@@ -40,11 +40,8 @@ const ASColumn = (props) => {
         backgroundImage && (react_1.default.createElement(image_1.default, { source: backgroundImage, style: [styles.backgroundStyle, { height: containerHeight }], resizeMode: "stretch" // Ensure image covers the entire area
          })),
         spacing && Array.isArray(children) ? children.map((child, index) => {
-            var _a, _b;
-            return (react_1.default.createElement(react_native_1.View, { style: {
-                    marginBottom: children.length - 1 === index ? 0 : spacing,
-                    flex: ((_b = (_a = child.props) === null || _a === void 0 ? void 0 : _a.style) === null || _b === void 0 ? void 0 : _b.flex) || 0
-                } }, child));
+            var _a, _b, _c, _d;
+            return (react_1.default.createElement(react_native_1.View, { style: Object.assign({ marginBottom: children.length - 1 === index ? 0 : spacing }, (((_b = (_a = child.props) === null || _a === void 0 ? void 0 : _a.style) === null || _b === void 0 ? void 0 : _b.flex) !== undefined && ((_d = (_c = child.props) === null || _c === void 0 ? void 0 : _c.style) === null || _d === void 0 ? void 0 : _d.flex) !== 0 && { flex: child.props.style.flex })) }, child));
         }) : children));
 };
 const styles = react_native_1.StyleSheet.create({

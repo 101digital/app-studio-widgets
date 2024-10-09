@@ -36,7 +36,7 @@ const ASColumn: React.FC<ASColumnProps> = (props: ASColumnProps) => {
                 return (
                     <View style={{
                         marginBottom: children.length - 1 === index ? 0 : spacing,
-                        flex: child.props?.style?.flex || 0
+                        ...(child.props?.style?.flex !== undefined && child.props?.style?.flex !== 0 && { flex: child.props.style.flex } ),
                     }}>
                         {child}
                     </View>
