@@ -17,6 +17,7 @@ import ASRow from "../row";
 import ASColumn from "../column";
 import { DeleteIcon, ForwardIcon } from "../../assets/icon";
 import { ThemeContext } from "../../context/theme-context";
+import ASOverlay from "../overlay";
 
 const KEYBOARDS = [
   { label: "1", value: "1" },
@@ -58,6 +59,7 @@ export type ASPinProps = KeyboardProps & {
   pinBoxBackgroundColor?: string;
   keyboardButtonBorderColor?: string;
   keyboardButtonBackgroundColor?: string;
+  isOverlayEnabled?: boolean;
 };
 
 export type KeyboardProps = {
@@ -275,7 +277,8 @@ const ASPin: React.FC<ASPinProps> = (props: ASPinProps) => {
     keyboardButtonBackgroundColor,
     keyboardButtonBorderColor,
     pinBoxBackgroundColor,
-    pinBoxBorderColor
+    pinBoxBorderColor,
+    isOverlayEnabled
   } = props;
   const [pin, setPin] = useState<string[]>([]);
 
@@ -336,6 +339,7 @@ const ASPin: React.FC<ASPinProps> = (props: ASPinProps) => {
         keyboardButtonBackgroundColor={keyboardButtonBackgroundColor}
         keyboardButtonBorderColor={keyboardButtonBorderColor}
       />}
+      {isOverlayEnabled && <ASOverlay />}
     </ASColumn>
   );
 };

@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { useField } from "formik";
 import ASWrap from "../wrap";
+import ASOverlay from "../overlay";
 
 export type ChipProps = {
   id?: string;
@@ -36,6 +37,7 @@ export type ASChoiceChipsProps = {
   selectedChipBackgroundColor?: string;
   selectedChipBorderColor?: string;
   choiceChipStyles?: StyleProp<ViewStyle>;
+  isOverlayEnabled?: boolean;
 };
 
 const ASChoiceChips: React.FC<ASChoiceChipsProps> = (
@@ -52,6 +54,7 @@ const ASChoiceChips: React.FC<ASChoiceChipsProps> = (
     selectedChipBackgroundColor,
     selectedChipBorderColor,
     selectedChipTextColor,
+    isOverlayEnabled
   } = props;
   const [field, meta, helpers] = useField(name);
   const { setValue } = helpers || {};
@@ -145,6 +148,8 @@ const ASChoiceChips: React.FC<ASChoiceChipsProps> = (
           </Text>
         </TouchableOpacity>
       ))}
+      {/* Render overlay on top to block interactions if overlay is enabled */}
+      {isOverlayEnabled && <ASOverlay />}
     </ASWrap>
   );
 };
@@ -164,6 +169,15 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 16,
+  },
+  overlay: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: "transparent", // Fully transparent overlay
+    zIndex: 1, // Ensures the overlay appears above the content
   },
 });
 

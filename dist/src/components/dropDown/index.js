@@ -44,9 +44,10 @@ const text_1 = __importDefault(require("../text"));
 const commonUtils_1 = require("../../utils/commonUtils");
 const formik_1 = require("formik");
 const theme_context_1 = require("../../context/theme-context");
+const overlay_1 = __importDefault(require("../overlay"));
 const ASDropDown = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { options, renderLeftIcon, placeholder = "Please select item", onSelect, searchPlaceholder = "Search...", search = false, label, name, containerStyle, iconStyles, selectedTextStyle, labelField, valueField, placeholderTextStyles, dropdownTextStyles, labelTextStyle } = props, restProps = __rest(props, ["options", "renderLeftIcon", "placeholder", "onSelect", "searchPlaceholder", "search", "label", "name", "containerStyle", "iconStyles", "selectedTextStyle", "labelField", "valueField", "placeholderTextStyles", "dropdownTextStyles", "labelTextStyle"]);
+    const { options, renderLeftIcon, placeholder = "Please select item", onSelect, searchPlaceholder = "Search...", search = false, label, name, containerStyle, iconStyles, selectedTextStyle, labelField, valueField, placeholderTextStyles, dropdownTextStyles, labelTextStyle, isOverlayEnabled } = props, restProps = __rest(props, ["options", "renderLeftIcon", "placeholder", "onSelect", "searchPlaceholder", "search", "label", "name", "containerStyle", "iconStyles", "selectedTextStyle", "labelField", "valueField", "placeholderTextStyles", "dropdownTextStyles", "labelTextStyle", "isOverlayEnabled"]);
     const [field, meta, helpers] = (0, formik_1.useField)(name);
     const { setValue } = helpers || {};
     const [isFocus, setIsFocus] = (0, react_1.useState)(false);
@@ -91,7 +92,8 @@ const ASDropDown = (props) => {
                     color: colors.surface,
                 },
                 selectedTextStyle,
-            ], data: options || [], onChange: _onChangeDropDownField, labelField: labelField, valueField: valueField }))));
+            ], data: options || [], onChange: _onChangeDropDownField, labelField: labelField, valueField: valueField })),
+        isOverlayEnabled && react_1.default.createElement(overlay_1.default, null)));
 };
 exports.default = ASDropDown;
 const styles = react_native_1.StyleSheet.create({

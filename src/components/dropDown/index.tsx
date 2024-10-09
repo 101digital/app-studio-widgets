@@ -14,6 +14,7 @@ import ASText from "../text";
 import { isAndroid } from "../../utils/commonUtils";
 import { FieldHookConfig, useField } from "formik";
 import { ThemeContext } from "../../context/theme-context";
+import ASOverlay from "../overlay";
 
 export type DropDownOptionsProps = {
   [key: string]: any;
@@ -36,6 +37,7 @@ export type ASDropDownProps = Omit<
   placeholderTextStyles?: StyleProp<TextStyle>;
   dropdownTextStyles?: StyleProp<TextStyle>;
   labelTextStyle?: StyleProp<TextStyle>;
+  isOverlayEnabled?: boolean;
 };
 
 const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
@@ -57,6 +59,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
     placeholderTextStyles,
     dropdownTextStyles,
     labelTextStyle,
+    isOverlayEnabled,
     ...restProps
   } = props;
   const [field, meta, helpers] = useField<string>(name);
@@ -146,6 +149,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
         labelField={labelField}
         valueField={valueField}
       />
+      {isOverlayEnabled && <ASOverlay />}
     </View>
   );
 };

@@ -16,6 +16,7 @@ export type ASPinProps = KeyboardProps & {
     pinBoxBackgroundColor?: string;
     keyboardButtonBorderColor?: string;
     keyboardButtonBackgroundColor?: string;
+    isOverlayEnabled?: boolean;
 };
 export type KeyboardProps = {
     submitButtonIcon?: ReactNode;
