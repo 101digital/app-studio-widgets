@@ -42,10 +42,9 @@ const react_native_1 = require("react-native");
 const text_1 = __importDefault(require("../text"));
 const theme_context_1 = require("../../context/theme-context");
 const loadingIndicator_1 = __importDefault(require("../loadingIndicator"));
-const overlay_1 = __importDefault(require("../overlay"));
 const ASButton = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { label = "", style, textStyle, onPress, disabled, children, simpleTextButton, loading, isOverlayEnabled } = props, restProps = __rest(props, ["label", "style", "textStyle", "onPress", "disabled", "children", "simpleTextButton", "loading", "isOverlayEnabled"]);
+    const { label = "", style, textStyle, onPress, disabled, children, simpleTextButton, loading } = props, restProps = __rest(props, ["label", "style", "textStyle", "onPress", "disabled", "children", "simpleTextButton", "loading"]);
     // Ensure that style is a single object
     const flattenedStyle = react_native_1.StyleSheet.flatten(style);
     // Ensure that textStyle is a single object
@@ -100,8 +99,7 @@ const ASButton = (props) => {
                     flattenedTextStyle, // Flattened user-provided styles
                     { color: getButtonTextColor() }, // Text color logic
                 ] }, label),
-            react_1.default.createElement(loadingIndicator_1.default, { loading: loading, style: styles.loadingIndicator })))),
-        isOverlayEnabled && react_1.default.createElement(overlay_1.default, null)));
+            react_1.default.createElement(loadingIndicator_1.default, { loading: loading, style: styles.loadingIndicator }))))));
 };
 const styles = react_native_1.StyleSheet.create({
     buttonStyle: {

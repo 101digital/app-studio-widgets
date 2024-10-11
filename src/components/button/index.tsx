@@ -10,7 +10,6 @@ import {
 import ASText from "../text";
 import { ThemeContext } from "../../context/theme-context";
 import LoadingIndicator from "../loadingIndicator";
-import ASOverlay from "../overlay";
 
 export type ASButtonProps = TouchableOpacityProps & {
   label?: string;
@@ -21,7 +20,6 @@ export type ASButtonProps = TouchableOpacityProps & {
   children?: React.ReactNode;
   simpleTextButton?: boolean;
   loading?: boolean | undefined;
-  isOverlayEnabled?: boolean;
 };
 
 const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
@@ -35,7 +33,6 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
     children,
     simpleTextButton,
     loading,
-    isOverlayEnabled,
     ...restProps
   } = props;
 
@@ -123,7 +120,6 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
         </View>
       )}
     </TouchableOpacity>
-    {isOverlayEnabled && <ASOverlay />}
     </>
   );
 };
