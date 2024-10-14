@@ -13,17 +13,24 @@ export type ASIconButtonProps = TouchableOpacityProps & {
   width: number;
   height: number;
   icon: any;
+  crossOrigin?: "anonymous" | "use-credentials";
 };
 
 const ASIconButton: React.FC<ASIconButtonProps> = (
   props: ASIconButtonProps
 ) => {
-  const { onPress, width = 20, height = 20, icon } = props;
+  const { onPress, width = 20, height = 20, icon, crossOrigin } = props;
 
   const renderIcon = () => {
     if (typeof icon === "string") {
       if (icon.startsWith("data:") || icon.startsWith("http")) {
-        return <Image source={{ uri: icon }} style={{ width, height }} />;
+        return (
+          <Image
+            source={{ uri: icon }}
+            style={{ width, height }}
+            crossOrigin={crossOrigin}
+          />
+        );
       }
     }
     return <View style={{ width, height }}>{icon}</View>;
