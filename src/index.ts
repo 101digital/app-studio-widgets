@@ -73,5 +73,5 @@ export {
   ASIconButtonProps,
 } from "./components/iconButton";
 export { default as ASBottomSheet, BottomSheetModalProps } from "./components/bottomSheet";
-export { default as ASTabs } from "./components/tab"
-export { default as ASTabView } from "./components/tabView"
+export { default as ASTabs, TabsProps } from "./components/tab"
+export { default as ASTabView, ASTabViewProps } from "./components/tabView"

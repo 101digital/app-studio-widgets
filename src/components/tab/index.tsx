@@ -8,7 +8,7 @@ type TabProps = {
   children: ReactNode;
 };
 
-type TabsProps = {
+export type TabsProps = {
   children: React.ReactElement<TabProps>[];
   activeTabName: string;
   onTabPress?: (name: string) => void;

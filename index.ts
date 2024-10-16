@@ -123,5 +123,5 @@ export {
   ASIconButtonProps,
 } from "./src/components/iconButton";
 export { default as ASBottomSheet, BottomSheetModalProps } from "./src/components/bottomSheet";
-export { default as ASTabs } from './src/components/tab';
-export { default as ASTabView } from './src/components/tabView';
+export { default as ASTabs, TabsProps } from './src/components/tab';
+export { default as ASTabView, ASTabViewProps } from './src/components/tabView';
