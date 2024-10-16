@@ -1,6 +1,7 @@
-import React, { ReactNode, useRef, useState } from 'react';
-import { StyleProp, StyleSheet, View, ViewStyle, ImageSourcePropType } from 'react-native';
+import React, {ReactNode, useState} from 'react';
+import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
 import ASImage from '../image';
+import {normalizeStyle} from "../../utils/commonUtils";
 
 export type ASColumnProps = {
     children: ReactNode;
@@ -11,32 +12,39 @@ export type ASColumnProps = {
 };
 
 const ASColumn: React.FC<ASColumnProps> = (props: ASColumnProps) => {
-    const { children, style, backgroundImage, accessibilityLabel, spacing = 0 } = props;
-
-    const childrenArray = React.Children.toArray(children);
+    const {children, style, backgroundImage, accessibilityLabel, spacing = 0} = props;
     const [containerHeight, setContainerHeight] = useState(0); // State to hold container height
+    const flexValue = Array.isArray(children) && children.reduce((acc: number | undefined, child: any) => {
+        const {flex} = normalizeStyle(child.props?.style);
+        if (flex !== undefined && flex !== 0) {         // If flex is defined and not zero, return it
+            return flex; // Return the first non-zero flex value found
+        }
+        return acc; // Keep the previous value if none found
+    }, undefined);
 
     return (
         <View
-            style={[styles.container, style]}
+            style={[styles.container, {...(flexValue && {flex: flexValue})}, style]}
             accessibilityLabel={accessibilityLabel}
             onLayout={(event) => {
-                const { height } = event.nativeEvent.layout; // Get height after layout
+                const {height} = event.nativeEvent.layout; // Get height after layout
                 setContainerHeight(height); // Update state with the container height
             }}
         >
             {backgroundImage && (
                 <ASImage
                     source={backgroundImage}
-                    style={[styles.backgroundStyle, { height: containerHeight }]}
+                    style={[styles.backgroundStyle, {height: containerHeight}]}
                     resizeMode="stretch" // Ensure image covers the entire area
                 />
             )}
             {spacing && Array.isArray(children) ? children.map((child: any, index: number) => {
+                const {flex, height} = normalizeStyle(child.props?.style)
                 return (
                     <View style={{
                         marginBottom: children.length - 1 === index ? 0 : spacing,
-                        ...(child.props?.style?.flex !== undefined && child.props?.style?.flex !== 0 && { flex: child.props.style.flex } ),
+                        ...(flex !== undefined && flex !== 0 && {flex: flex}),
+                        // ...(height && { height: height } ),
                     }}>
                         {child}
                     </View>

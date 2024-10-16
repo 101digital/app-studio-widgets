@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getLoadingStatus = exports.isAndroid = exports.convertPercentageToPx = exports.screenHeight = exports.screenWidth = void 0;
+exports.normalizeStyle = exports.getLoadingStatus = exports.isAndroid = exports.convertPercentageToPx = exports.screenHeight = exports.screenWidth = void 0;
 const react_native_1 = require("react-native");
 const screenWidth = react_native_1.Dimensions.get('window').width;
 exports.screenWidth = screenWidth;
@@ -28,3 +28,12 @@ const getLoadingStatus = (loading) => {
     return loading && Array.isArray(loading) ? loading.some((item) => item) : loading;
 };
 exports.getLoadingStatus = getLoadingStatus;
+function normalizeStyle(style) {
+    if (Array.isArray(style)) {
+        return Object.assign({}, ...style); // Merge all styles from the array into one object
+    }
+    else if (typeof style === 'object' && style !== null)
+        return style; // If the style is already an object, return it
+    return {}; // If style is null, undefined, or any other invalid type, return an empty object
+}
+exports.normalizeStyle = normalizeStyle;

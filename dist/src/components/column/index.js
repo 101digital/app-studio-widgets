@@ -29,19 +29,28 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importStar(require("react"));
 const react_native_1 = require("react-native");
 const image_1 = __importDefault(require("../image"));
+const commonUtils_1 = require("../../utils/commonUtils");
 const ASColumn = (props) => {
     const { children, style, backgroundImage, accessibilityLabel, spacing = 0 } = props;
-    const childrenArray = react_1.default.Children.toArray(children);
     const [containerHeight, setContainerHeight] = (0, react_1.useState)(0); // State to hold container height
-    return (react_1.default.createElement(react_native_1.View, { style: [styles.container, style], accessibilityLabel: accessibilityLabel, onLayout: (event) => {
+    const flexValue = Array.isArray(children) && children.reduce((acc, child) => {
+        var _a;
+        const { flex } = (0, commonUtils_1.normalizeStyle)((_a = child.props) === null || _a === void 0 ? void 0 : _a.style);
+        if (flex !== undefined && flex !== 0) { // If flex is defined and not zero, return it
+            return flex; // Return the first non-zero flex value found
+        }
+        return acc; // Keep the previous value if none found
+    }, undefined);
+    return (react_1.default.createElement(react_native_1.View, { style: [styles.container, Object.assign({}, (flexValue && { flex: flexValue })), style], accessibilityLabel: accessibilityLabel, onLayout: (event) => {
             const { height } = event.nativeEvent.layout; // Get height after layout
             setContainerHeight(height); // Update state with the container height
         } },
         backgroundImage && (react_1.default.createElement(image_1.default, { source: backgroundImage, style: [styles.backgroundStyle, { height: containerHeight }], resizeMode: "stretch" // Ensure image covers the entire area
          })),
         spacing && Array.isArray(children) ? children.map((child, index) => {
-            var _a, _b, _c, _d;
-            return (react_1.default.createElement(react_native_1.View, { style: Object.assign({ marginBottom: children.length - 1 === index ? 0 : spacing }, (((_b = (_a = child.props) === null || _a === void 0 ? void 0 : _a.style) === null || _b === void 0 ? void 0 : _b.flex) !== undefined && ((_d = (_c = child.props) === null || _c === void 0 ? void 0 : _c.style) === null || _d === void 0 ? void 0 : _d.flex) !== 0 && { flex: child.props.style.flex })) }, child));
+            var _a;
+            const { flex, height } = (0, commonUtils_1.normalizeStyle)((_a = child.props) === null || _a === void 0 ? void 0 : _a.style);
+            return (react_1.default.createElement(react_native_1.View, { style: Object.assign({ marginBottom: children.length - 1 === index ? 0 : spacing }, (flex !== undefined && flex !== 0 && { flex: flex })) }, child));
         }) : children));
 };
 const styles = react_native_1.StyleSheet.create({
