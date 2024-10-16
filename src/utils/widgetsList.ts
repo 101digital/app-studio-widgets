@@ -39,6 +39,10 @@ import {
   ASSwipeButtonProps,
   ASIconButton,
   ASIconButtonProps,
+  ASTabView,
+  ASTabs,
+  TabsProps,
+  ASTabViewProps
 } from "../../index";
 
 export type WidgetsName = keyof WidgetsList;
@@ -85,6 +89,8 @@ export type WidgetsList = {
     attributes: E6TransactionHistoryListViewProps
   ) => string;
   ASIconButton: (attributes: ASIconButtonProps) => string;
+  ASTabs: (attributes: TabsProps) => string;
+  ASTabView: (attributes: ASTabViewProps) => string;
 };
 
 export class ASWidgetsList {
@@ -362,6 +368,8 @@ export class ASWidgetsList {
         ),
       ASIconButton: (attributes: ASIconButtonProps) =>
         ASWidgetsList.getWidgetString("ASIconButton", attributes),
+      ASTabs: (attributes: TabsProps) => ASWidgetsList.getWidgetString("ASTabs", attributes),
+      ASTabView: (attributes: ASTabViewProps) => ASWidgetsList.getWidgetString("ASTabView", attributes)
     };
   }
 

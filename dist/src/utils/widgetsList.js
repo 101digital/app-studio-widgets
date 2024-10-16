@@ -186,6 +186,8 @@ class ASWidgetsList {
             // E6 custom widget
             E6TransactionHistoryListView: (attributes) => ASWidgetsList.getWidgetString("E6TransactionHistoryListView", attributes),
             ASIconButton: (attributes) => ASWidgetsList.getWidgetString("ASIconButton", attributes),
+            ASTabs: (attributes) => ASWidgetsList.getWidgetString("ASTabs", attributes),
+            ASTabView: (attributes) => ASWidgetsList.getWidgetString("ASTabView", attributes)
         };
     }
     getWidgetByName(name) {
