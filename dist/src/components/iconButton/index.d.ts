@@ -6,6 +6,7 @@ export type ASIconButtonProps = TouchableOpacityProps & {
     height: number;
     icon: any;
     crossOrigin?: "anonymous" | "use-credentials";
+    id?: string;
 };
 declare const ASIconButton: React.FC<ASIconButtonProps>;
 export default ASIconButton;

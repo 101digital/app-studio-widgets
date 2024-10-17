@@ -11,7 +11,7 @@ export type ASColumnProps = {
 };
 
 const ASColumn: React.FC<ASColumnProps> = (props: ASColumnProps) => {
-    const {children, style, backgroundImage, accessibilityLabel, spacing = 0} = props;
+    const {children, style, backgroundImage, accessibilityLabel, spacing = 0, ...restProps} = props;
     const [containerHeight, setContainerHeight] = useState(0); // State to hold container height
     const flexValue = Array.isArray(children) && children.length > 0 ?
         children.reduce((acc: number | undefined, child: any) => {
@@ -29,6 +29,7 @@ const ASColumn: React.FC<ASColumnProps> = (props: ASColumnProps) => {
                 const {height} = event.nativeEvent.layout; // Get height after layout
                 setContainerHeight(height); // Update state with the container height
             }}
+            {...restProps}
         >
             {backgroundImage && (
                 <ASImage

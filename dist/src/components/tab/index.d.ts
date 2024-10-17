@@ -15,6 +15,7 @@ export type TabsProps = {
     tabViewBackgroundColor?: string;
     tabHeaderStyle: ViewStyle;
     enableShadow?: boolean;
+    id?: string;
 };
 declare const ASTabs: React.FC<TabsProps>;
 export default ASTabs;

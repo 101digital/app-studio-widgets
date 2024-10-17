@@ -18,6 +18,7 @@ export type TabsProps = {
   tabViewBackgroundColor?: string;
   tabHeaderStyle: ViewStyle;
   enableShadow?: boolean;
+  id?: string;
 };
 
 const ASTabs: React.FC<TabsProps> = ({
@@ -30,6 +31,7 @@ const ASTabs: React.FC<TabsProps> = ({
   tabViewBackgroundColor,
   tabHeaderStyle,
   enableShadow = true,
+  id
 }) => {
   const [activeTab, setActiveTab] = useState<string>(activeTabName || children[0]?.props?.name);
 
@@ -45,7 +47,7 @@ const ASTabs: React.FC<TabsProps> = ({
   const width = flattenedTabHeaderStyle?.width || "90%";
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} id={id}>
       {/* Scrollable Tab Headers */}
       <ScrollView
         horizontal

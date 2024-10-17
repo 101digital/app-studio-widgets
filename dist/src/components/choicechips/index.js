@@ -9,7 +9,7 @@ const formik_1 = require("formik");
 const wrap_1 = __importDefault(require("../wrap"));
 const overlay_1 = __importDefault(require("../overlay"));
 const ASChoiceChips = (props) => {
-    const { options, name, isSingleChoice = true, returnedKey, contentLayout = "space-between", choiceChipTextStyles, choiceChipStyles, selectedChipBackgroundColor, selectedChipBorderColor, selectedChipTextColor, isOverlayEnabled } = props;
+    const { options, name, isSingleChoice = true, returnedKey, contentLayout = "space-between", choiceChipTextStyles, choiceChipStyles, selectedChipBackgroundColor, selectedChipBorderColor, selectedChipTextColor, isOverlayEnabled, id } = props;
     const [field, meta, helpers] = (0, formik_1.useField)(name);
     const { setValue } = helpers || {};
     const selectedChoiceChips = field === null || field === void 0 ? void 0 : field.value;
@@ -48,7 +48,7 @@ const ASChoiceChips = (props) => {
                 (selectedChoiceChips === null || selectedChoiceChips === void 0 ? void 0 : selectedChoiceChips.find((item) => (item === null || item === void 0 ? void 0 : item.value) === value)));
         }
     };
-    return (react_1.default.createElement(wrap_1.default, { style: [styles.container, { justifyContent: contentLayout }] },
+    return (react_1.default.createElement(wrap_1.default, { style: [styles.container, { justifyContent: contentLayout }], id: id },
         options.map((chip, index) => (react_1.default.createElement(react_native_1.TouchableOpacity, { key: `${chip.value}${index}`, onPress: isSingleChoice
                 ? _onPressSingleChoiceChip(chip)
                 : _onPressChoiceChip(chip), style: [

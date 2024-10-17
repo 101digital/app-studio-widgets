@@ -15,14 +15,15 @@ export type ASBadgeProps = {
   badgeStyles?: StyleProp<ViewStyle>;
   badgeTextStyle?: StyleProp<TextStyle>;
   containerStyle?: StyleProp<ViewStyle>;
+  id?: string; 
 };
 
 const ASBadge: React.FC<ASBadgeProps> = (props: ASBadgeProps) => {
-  const { children, label, badgeStyles, badgeTextStyle, containerStyle } =
+  const { children, label, badgeStyles, badgeTextStyle, containerStyle, id } =
     props;
 
   return (
-    <View style={[styles.container, containerStyle]}>
+    <View style={[styles.container, containerStyle]} id={id}>
       <View>
         {children}
         {!!label && (

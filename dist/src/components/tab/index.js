@@ -26,7 +26,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importStar(require("react"));
 const react_native_1 = require("react-native");
 const horizontalLine_icon_1 = require("../../assets/icon/horizontalLine.icon");
-const ASTabs = ({ children, activeTabName, onTabPress, activeTabTextColor, activeTabBorderColor = "white", tabHeaderTypography, tabViewBackgroundColor, tabHeaderStyle, enableShadow = true, }) => {
+const ASTabs = ({ children, activeTabName, onTabPress, activeTabTextColor, activeTabBorderColor = "white", tabHeaderTypography, tabViewBackgroundColor, tabHeaderStyle, enableShadow = true, id }) => {
     var _a, _b;
     const [activeTab, setActiveTab] = (0, react_1.useState)(activeTabName || ((_b = (_a = children[0]) === null || _a === void 0 ? void 0 : _a.props) === null || _b === void 0 ? void 0 : _b.name));
     const handleTabPress = (name) => {
@@ -39,7 +39,7 @@ const ASTabs = ({ children, activeTabName, onTabPress, activeTabTextColor, activ
     const maxHeight = (flattenedTabHeaderStyle === null || flattenedTabHeaderStyle === void 0 ? void 0 : flattenedTabHeaderStyle.maxHeight) || 40;
     const borderRadius = (flattenedTabHeaderStyle === null || flattenedTabHeaderStyle === void 0 ? void 0 : flattenedTabHeaderStyle.borderRadius) || 8;
     const width = (flattenedTabHeaderStyle === null || flattenedTabHeaderStyle === void 0 ? void 0 : flattenedTabHeaderStyle.width) || "90%";
-    return (react_1.default.createElement(react_native_1.View, { style: styles.container },
+    return (react_1.default.createElement(react_native_1.View, { style: styles.container, id: id },
         react_1.default.createElement(react_native_1.ScrollView, { horizontal: true, showsHorizontalScrollIndicator: false, contentContainerStyle: styles.scrollContainer, style: [styles.tabHeaderScroll, enableShadow && styles.shadow, { backgroundColor: backgroundColor, maxHeight: maxHeight, borderRadius: borderRadius, width: width }] }, children.map((child) => (react_1.default.createElement(react_native_1.TouchableOpacity, { key: child.props.name, style: [
                 styles.tab,
             ], onPress: () => handleTabPress(child.props.name) },

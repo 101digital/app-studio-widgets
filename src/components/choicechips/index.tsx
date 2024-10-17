@@ -38,6 +38,7 @@ export type ASChoiceChipsProps = {
   selectedChipBorderColor?: string;
   choiceChipStyles?: StyleProp<ViewStyle>;
   isOverlayEnabled?: boolean;
+  id?: string;
 };
 
 const ASChoiceChips: React.FC<ASChoiceChipsProps> = (
@@ -54,7 +55,8 @@ const ASChoiceChips: React.FC<ASChoiceChipsProps> = (
     selectedChipBackgroundColor,
     selectedChipBorderColor,
     selectedChipTextColor,
-    isOverlayEnabled
+    isOverlayEnabled,
+    id
   } = props;
   const [field, meta, helpers] = useField(name);
   const { setValue } = helpers || {};
@@ -108,7 +110,7 @@ const ASChoiceChips: React.FC<ASChoiceChipsProps> = (
   };
 
   return (
-    <ASWrap style={[styles.container, { justifyContent: contentLayout }]}>
+    <ASWrap style={[styles.container, { justifyContent: contentLayout }]} id={id}>
       {options.map((chip, index) => (
         <TouchableOpacity
           key={`${chip.value}${index}`}

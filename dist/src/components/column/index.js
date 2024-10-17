@@ -22,6 +22,17 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -30,7 +41,7 @@ const react_1 = __importStar(require("react"));
 const react_native_1 = require("react-native");
 const image_1 = __importDefault(require("../image"));
 const ASColumn = (props) => {
-    const { children, style, backgroundImage, accessibilityLabel, spacing = 0 } = props;
+    const { children, style, backgroundImage, accessibilityLabel, spacing = 0 } = props, restProps = __rest(props, ["children", "style", "backgroundImage", "accessibilityLabel", "spacing"]);
     const [containerHeight, setContainerHeight] = (0, react_1.useState)(0); // State to hold container height
     const flexValue = Array.isArray(children) && children.length > 0 ?
         children.reduce((acc, child) => {
@@ -41,10 +52,10 @@ const ASColumn = (props) => {
                 return flex; // Return the first non-zero flex value found
             return acc; // Keep the previous value if none found
         }, undefined) : undefined;
-    return (react_1.default.createElement(react_native_1.View, { style: [styles.container, Object.assign({}, (flexValue && { flex: flexValue })), style], accessibilityLabel: accessibilityLabel, onLayout: (event) => {
+    return (react_1.default.createElement(react_native_1.View, Object.assign({ style: [styles.container, Object.assign({}, (flexValue && { flex: flexValue })), style], accessibilityLabel: accessibilityLabel, onLayout: (event) => {
             const { height } = event.nativeEvent.layout; // Get height after layout
             setContainerHeight(height); // Update state with the container height
-        } },
+        } }, restProps),
         backgroundImage && (react_1.default.createElement(image_1.default, { source: backgroundImage, style: [styles.backgroundStyle, { height: containerHeight }], resizeMode: "stretch" // Ensure image covers the entire area
          })),
         spacing && Array.isArray(children) ? children.map((child, index) => {

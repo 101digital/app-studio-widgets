@@ -6,6 +6,7 @@ export type ASBadgeProps = {
     badgeStyles?: StyleProp<ViewStyle>;
     badgeTextStyle?: StyleProp<TextStyle>;
     containerStyle?: StyleProp<ViewStyle>;
+    id?: string;
 };
 declare const ASBadge: React.FC<ASBadgeProps>;
 export default ASBadge;

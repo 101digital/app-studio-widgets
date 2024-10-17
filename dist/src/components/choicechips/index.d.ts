@@ -19,6 +19,7 @@ export type ASChoiceChipsProps = {
     selectedChipBorderColor?: string;
     choiceChipStyles?: StyleProp<ViewStyle>;
     isOverlayEnabled?: boolean;
+    id?: string;
 };
 declare const ASChoiceChips: React.FC<ASChoiceChipsProps>;
 export default ASChoiceChips;

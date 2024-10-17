@@ -9,10 +9,10 @@ export type ASRowProps = {
 }
 
 const ASRow: React.FC<ASRowProps> = (props: ASRowProps) => {
-    const {children, style, accessibilityLabel, spacing} = props || {}
+    const {children, style, accessibilityLabel, spacing, ...restProps} = props || {}
 
     return (
-        <View style={[styles.container, style]} accessibilityLabel={accessibilityLabel}>
+        <View style={[styles.container, style]} accessibilityLabel={accessibilityLabel} {...restProps}>
             {spacing && Array.isArray(children) ? children.map((child: any, index: number) => {
                 const {flex} = StyleSheet.flatten(child.props?.style)
                 return (

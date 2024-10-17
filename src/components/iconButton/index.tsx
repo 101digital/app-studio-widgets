@@ -14,12 +14,13 @@ export type ASIconButtonProps = TouchableOpacityProps & {
   height: number;
   icon: any;
   crossOrigin?: "anonymous" | "use-credentials";
+  id?: string;
 };
 
 const ASIconButton: React.FC<ASIconButtonProps> = (
   props: ASIconButtonProps
 ) => {
-  const { onPress, width = 20, height = 20, icon, crossOrigin } = props;
+  const { onPress, width = 20, height = 20, icon, crossOrigin, id } = props;
 
   const renderIcon = () => {
     if (typeof icon === "string") {
@@ -37,7 +38,7 @@ const ASIconButton: React.FC<ASIconButtonProps> = (
   };
 
   return (
-    <TouchableOpacity onPress={onPress} style={styles.button}>
+    <TouchableOpacity onPress={onPress} style={styles.button} id={id}>
       {renderIcon()}
     </TouchableOpacity>
   );

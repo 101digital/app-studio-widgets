@@ -8,13 +8,14 @@ export type ASWrapProps = {
     direction?: ASWrapperDirection;
     style?: StyleProp<ViewStyle>;
     itemMargin?: DimensionValue
+    id?: string;
 }
 
 const ASWrap: React.FC<ASWrapProps> = (props: ASWrapProps) => {
-    const {children, direction = 'row', style, itemMargin} = props
+    const {children, direction = 'row', style, itemMargin, ...restProps} = props
 
     return (
-        <View style={[styles.container, {flexDirection: direction}, style]}>
+        <View style={[styles.container, {flexDirection: direction}, style]} {...restProps}>
             {!!itemMargin ? React.Children.map(children, (child: React.ReactNode, index: number) => (
                 <View key={index} style={[styles.item, {margin: itemMargin || 5}]}>
                     {child}

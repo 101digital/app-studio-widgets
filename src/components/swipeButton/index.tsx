@@ -42,6 +42,7 @@ export type ASSwipeButtonProps = {
   width?: number | string;
   accessibilityLabel?: string;
   loading?: boolean;
+  id?: string;
 };
 
 const ASSwipeButton: React.FC<ASSwipeButtonProps> = (props) => {
@@ -83,6 +84,7 @@ const ASSwipeButton: React.FC<ASSwipeButtonProps> = (props) => {
     width,
     accessibilityLabel,
     loading,
+    id
   } = props;
 
   const onSwipeSuccess = () => {
@@ -111,7 +113,7 @@ const ASSwipeButton: React.FC<ASSwipeButtonProps> = (props) => {
   ) => (styles ? StyleSheet.flatten(styles) : {});
 
   return (
-    <View accessibilityLabel={accessibilityLabel}>
+    <View accessibilityLabel={accessibilityLabel} id={id}>
       <SwipeButton
         containerStyles={flattenStyles(containerStyles)}
         disabled={disabled}
