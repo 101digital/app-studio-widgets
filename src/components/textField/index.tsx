@@ -68,7 +68,6 @@ const ASTextField = (props: ASTextFieldProps) => {
     const [active, setActive] = useState(false);
     const [field, meta, helpers] = useField(name);
     const showMask = options && Object.keys(options).length > 0;
-
     const flattenedStyle = StyleSheet.flatten(style) as ViewStyle;
     const flattenedLabelStyle = StyleSheet.flatten(labelTextStyle) || {};
     const labelFontSize =
@@ -164,7 +163,7 @@ const ASTextField = (props: ASTextFieldProps) => {
                         borderRightWidth: flattenedStyle?.borderRightWidth,
                         borderBottomWidth: flattenedStyle?.borderBottomWidth,
                         borderLeftWidth: flattenedStyle?.borderLeftWidth,
-                        ...(style && 'borderRadius' in style && style.borderRadius !== undefined && {borderRadius: style.borderRadius})
+                        ...(flattenedStyle && 'borderRadius' in flattenedStyle && flattenedStyle.borderRadius !== undefined && {borderRadius: flattenedStyle.borderRadius})
                     },
                 ]}
             >

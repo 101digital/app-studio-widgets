@@ -26,11 +26,4 @@ const getLoadingStatus = (loading: boolean | boolean[] | undefined): boolean => 
     return loading && Array.isArray(loading) ? loading.some((item: boolean) => item) : loading
 }
 
-function normalizeStyle(style: object | object[]): object | any { // Turn style obj or array into style obj:  style={{}} | style={[]} -> style={{}}
-    if (Array.isArray(style)) {
-        return Object.assign({}, ...style);         // Merge all styles from the array into one object
-    } else if (typeof style === 'object' && style !== null) return style;          // If the style is already an object, return it
-    return {}; // If style is null, undefined, or any other invalid type, return an empty object
-}
-
-export {screenWidth, screenHeight, convertPercentageToPx, isAndroid, getLoadingStatus, normalizeStyle};
+export {screenWidth, screenHeight, convertPercentageToPx, isAndroid, getLoadingStatus};

@@ -1,7 +1,6 @@
 import React, {ReactNode, useState} from 'react';
 import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
 import ASImage from '../image';
-import {normalizeStyle} from "../../utils/commonUtils";
 
 export type ASColumnProps = {
     children: ReactNode;
@@ -17,7 +16,7 @@ const ASColumn: React.FC<ASColumnProps> = (props: ASColumnProps) => {
     const flexValue = Array.isArray(children) && children.length > 0 ?
         children.reduce((acc: number | undefined, child: any) => {
             if (!child || !child.props || !child.props.style) return acc; // Ensure child and its props exist
-            const {flex} = normalizeStyle(child.props.style);
+            const {flex} = StyleSheet.flatten(child.props.style);
             if (flex !== undefined && flex !== 0) return flex; // Return the first non-zero flex value found
             return acc; // Keep the previous value if none found
         }, undefined) : undefined;
@@ -39,7 +38,7 @@ const ASColumn: React.FC<ASColumnProps> = (props: ASColumnProps) => {
                 />
             )}
             {spacing && Array.isArray(children) ? children.map((child: any, index: number) => {
-                const {flex, height} = normalizeStyle(child.props?.style)
+                const {flex, height} = StyleSheet.flatten(child.props?.style)
                 return (
                     <View style={{
                         marginBottom: children.length - 1 === index ? 0 : spacing,

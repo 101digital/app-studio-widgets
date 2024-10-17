@@ -5,12 +5,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(require("react"));
 const react_native_1 = require("react-native");
-const commonUtils_1 = require("../../utils/commonUtils");
 const ASRow = (props) => {
     const { children, style, accessibilityLabel, spacing } = props || {};
     return (react_1.default.createElement(react_native_1.View, { style: [styles.container, style], accessibilityLabel: accessibilityLabel }, spacing && Array.isArray(children) ? children.map((child, index) => {
         var _a;
-        const { flex } = (0, commonUtils_1.normalizeStyle)((_a = child.props) === null || _a === void 0 ? void 0 : _a.style);
+        const { flex } = react_native_1.StyleSheet.flatten((_a = child.props) === null || _a === void 0 ? void 0 : _a.style);
         return (react_1.default.createElement(react_native_1.View, { style: Object.assign({ marginRight: children.length - 1 === index ? 0 : spacing }, (flex !== undefined && flex !== 0 && { flex: flex })) }, child));
     }) : children));
 };

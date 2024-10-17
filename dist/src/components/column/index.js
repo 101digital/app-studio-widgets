@@ -29,7 +29,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importStar(require("react"));
 const react_native_1 = require("react-native");
 const image_1 = __importDefault(require("../image"));
-const commonUtils_1 = require("../../utils/commonUtils");
 const ASColumn = (props) => {
     const { children, style, backgroundImage, accessibilityLabel, spacing = 0 } = props;
     const [containerHeight, setContainerHeight] = (0, react_1.useState)(0); // State to hold container height
@@ -37,7 +36,7 @@ const ASColumn = (props) => {
         children.reduce((acc, child) => {
             if (!child || !child.props || !child.props.style)
                 return acc; // Ensure child and its props exist
-            const { flex } = (0, commonUtils_1.normalizeStyle)(child.props.style);
+            const { flex } = react_native_1.StyleSheet.flatten(child.props.style);
             if (flex !== undefined && flex !== 0)
                 return flex; // Return the first non-zero flex value found
             return acc; // Keep the previous value if none found
@@ -50,7 +49,7 @@ const ASColumn = (props) => {
          })),
         spacing && Array.isArray(children) ? children.map((child, index) => {
             var _a;
-            const { flex, height } = (0, commonUtils_1.normalizeStyle)((_a = child.props) === null || _a === void 0 ? void 0 : _a.style);
+            const { flex, height } = react_native_1.StyleSheet.flatten((_a = child.props) === null || _a === void 0 ? void 0 : _a.style);
             return (react_1.default.createElement(react_native_1.View, { style: Object.assign({ marginBottom: children.length - 1 === index ? 0 : spacing }, (flex !== undefined && flex !== 0 && { flex: flex })) }, child));
         }) : children));
 };

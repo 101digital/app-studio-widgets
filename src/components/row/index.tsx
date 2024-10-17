@@ -1,6 +1,5 @@
 import React, {ReactNode} from 'react';
 import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native'
-import {normalizeStyle} from "../../utils/commonUtils";
 
 export type ASRowProps = {
     children: ReactNode;
@@ -15,7 +14,7 @@ const ASRow: React.FC<ASRowProps> = (props: ASRowProps) => {
     return (
         <View style={[styles.container, style]} accessibilityLabel={accessibilityLabel}>
             {spacing && Array.isArray(children) ? children.map((child: any, index: number) => {
-                const {flex} = normalizeStyle(child.props?.style)
+                const {flex} = StyleSheet.flatten(child.props?.style)
                 return (
                     <View style={{
                         marginRight: children.length - 1 === index ? 0 : spacing,
