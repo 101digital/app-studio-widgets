@@ -14,13 +14,13 @@ export type ASColumnProps = {
 const ASColumn: React.FC<ASColumnProps> = (props: ASColumnProps) => {
     const {children, style, backgroundImage, accessibilityLabel, spacing = 0} = props;
     const [containerHeight, setContainerHeight] = useState(0); // State to hold container height
-    const flexValue = Array.isArray(children) && children.reduce((acc: number | undefined, child: any) => {
-        const {flex} = normalizeStyle(child.props?.style);
-        if (flex !== undefined && flex !== 0) {         // If flex is defined and not zero, return it
-            return flex; // Return the first non-zero flex value found
-        }
-        return acc; // Keep the previous value if none found
-    }, undefined);
+    const flexValue = Array.isArray(children) && children.length > 0 ?
+        children.reduce((acc: number | undefined, child: any) => {
+            if (!child || !child.props || !child.props.style) return acc; // Ensure child and its props exist
+            const {flex} = normalizeStyle(child.props.style);
+            if (flex !== undefined && flex !== 0) return flex; // Return the first non-zero flex value found
+            return acc; // Keep the previous value if none found
+        }, undefined) : undefined;
 
     return (
         <View

@@ -33,14 +33,15 @@ const commonUtils_1 = require("../../utils/commonUtils");
 const ASColumn = (props) => {
     const { children, style, backgroundImage, accessibilityLabel, spacing = 0 } = props;
     const [containerHeight, setContainerHeight] = (0, react_1.useState)(0); // State to hold container height
-    const flexValue = Array.isArray(children) && children.reduce((acc, child) => {
-        var _a;
-        const { flex } = (0, commonUtils_1.normalizeStyle)((_a = child.props) === null || _a === void 0 ? void 0 : _a.style);
-        if (flex !== undefined && flex !== 0) { // If flex is defined and not zero, return it
-            return flex; // Return the first non-zero flex value found
-        }
-        return acc; // Keep the previous value if none found
-    }, undefined);
+    const flexValue = Array.isArray(children) && children.length > 0 ?
+        children.reduce((acc, child) => {
+            if (!child || !child.props || !child.props.style)
+                return acc; // Ensure child and its props exist
+            const { flex } = (0, commonUtils_1.normalizeStyle)(child.props.style);
+            if (flex !== undefined && flex !== 0)
+                return flex; // Return the first non-zero flex value found
+            return acc; // Keep the previous value if none found
+        }, undefined) : undefined;
     return (react_1.default.createElement(react_native_1.View, { style: [styles.container, Object.assign({}, (flexValue && { flex: flexValue })), style], accessibilityLabel: accessibilityLabel, onLayout: (event) => {
             const { height } = event.nativeEvent.layout; // Get height after layout
             setContainerHeight(height); // Update state with the container height
