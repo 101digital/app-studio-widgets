@@ -47,7 +47,7 @@ const constants_1 = require("../../utils/constants");
 const overlay_1 = __importDefault(require("../overlay"));
 const ASTextField = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { name, onFocus, onBlur, suffixIcon, prefixIcon, prefixText, prefixTextStyle, formatError, options, label, textFieldType = "custom", formatNumber, labelTextStyle, inputTextStyle, borderErrorColor, borderActiveColor, style, errorMessageTextStyle, placeholderTextColor, accessibilityLabel, isOverlayEnabled } = props, restProps = __rest(props, ["name", "onFocus", "onBlur", "suffixIcon", "prefixIcon", "prefixText", "prefixTextStyle", "formatError", "options", "label", "textFieldType", "formatNumber", "labelTextStyle", "inputTextStyle", "borderErrorColor", "borderActiveColor", "style", "errorMessageTextStyle", "placeholderTextColor", "accessibilityLabel", "isOverlayEnabled"]);
+    const { name, onFocus, onBlur, suffixIcon, prefixIcon, prefixText, prefixTextStyle, formatError, options, label, textFieldType = "custom", formatNumber, labelTextStyle, inputTextStyle, borderErrorColor, borderActiveColor, style, errorMessageTextStyle, placeholderTextColor, accessibilityLabel, isOverlayEnabled, id } = props, restProps = __rest(props, ["name", "onFocus", "onBlur", "suffixIcon", "prefixIcon", "prefixText", "prefixTextStyle", "formatError", "options", "label", "textFieldType", "formatNumber", "labelTextStyle", "inputTextStyle", "borderErrorColor", "borderActiveColor", "style", "errorMessageTextStyle", "placeholderTextColor", "accessibilityLabel", "isOverlayEnabled", "id"]);
     const [active, setActive] = (0, react_1.useState)(false);
     const [field, meta, helpers] = (0, formik_1.useField)(name);
     const showMask = options && Object.keys(options).length > 0;
@@ -117,7 +117,7 @@ const ASTextField = (props) => {
         }
         return active ? borderActiveColor : flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderColor;
     };
-    return (react_1.default.createElement(react_native_1.View, { style: [styles.wrapperStyle, style, { height: "auto", borderColor: 'transparent' }], accessibilityLabel: accessibilityLabel },
+    return (react_1.default.createElement(react_native_1.View, { style: [styles.wrapperStyle, style, { height: "auto", borderColor: 'transparent' }], accessibilityLabel: accessibilityLabel, id: id },
         react_1.default.createElement(react_native_1.View, { style: [
                 styles.containerStyle,
                 Object.assign({ borderColor: getBorderColor() || (flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderColor), height: flattenedHeight, borderTopWidth: flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderTopWidth, borderRightWidth: flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderRightWidth, borderBottomWidth: flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderBottomWidth, borderLeftWidth: flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderLeftWidth }, (flattenedStyle && 'borderRadius' in flattenedStyle && flattenedStyle.borderRadius !== undefined && { borderRadius: flattenedStyle.borderRadius })),

@@ -38,6 +38,7 @@ export type ASDropDownProps = Omit<
   dropdownTextStyles?: StyleProp<TextStyle>;
   labelTextStyle?: StyleProp<TextStyle>;
   isOverlayEnabled?: boolean;
+  id?: string;
 };
 
 const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
@@ -60,6 +61,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
     dropdownTextStyles,
     labelTextStyle,
     isOverlayEnabled,
+    id,
     ...restProps
   } = props;
   const [field, meta, helpers] = useField<string>(name);
@@ -105,6 +107,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
         },
         containerStyle,
       ]}
+      id={id}
     >
       {!!label && (
         <ASText

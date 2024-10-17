@@ -47,7 +47,7 @@ const theme_context_1 = require("../../context/theme-context");
 const overlay_1 = __importDefault(require("../overlay"));
 const ASDropDown = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { options, renderLeftIcon, placeholder = "Please select item", onSelect, searchPlaceholder = "Search...", search = false, label, name, containerStyle, iconStyles, selectedTextStyle, labelField, valueField, placeholderTextStyles, dropdownTextStyles, labelTextStyle, isOverlayEnabled } = props, restProps = __rest(props, ["options", "renderLeftIcon", "placeholder", "onSelect", "searchPlaceholder", "search", "label", "name", "containerStyle", "iconStyles", "selectedTextStyle", "labelField", "valueField", "placeholderTextStyles", "dropdownTextStyles", "labelTextStyle", "isOverlayEnabled"]);
+    const { options, renderLeftIcon, placeholder = "Please select item", onSelect, searchPlaceholder = "Search...", search = false, label, name, containerStyle, iconStyles, selectedTextStyle, labelField, valueField, placeholderTextStyles, dropdownTextStyles, labelTextStyle, isOverlayEnabled, id } = props, restProps = __rest(props, ["options", "renderLeftIcon", "placeholder", "onSelect", "searchPlaceholder", "search", "label", "name", "containerStyle", "iconStyles", "selectedTextStyle", "labelField", "valueField", "placeholderTextStyles", "dropdownTextStyles", "labelTextStyle", "isOverlayEnabled", "id"]);
     const [field, meta, helpers] = (0, formik_1.useField)(name);
     const { setValue } = helpers || {};
     const [isFocus, setIsFocus] = (0, react_1.useState)(false);
@@ -76,7 +76,7 @@ const ASDropDown = (props) => {
                 borderColor: colors.secondary,
             },
             containerStyle,
-        ] },
+        ], id: id },
         !!label && (react_1.default.createElement(text_1.default, { style: [
                 styles.labelStyle,
                 {

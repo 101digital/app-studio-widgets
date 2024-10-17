@@ -37,6 +37,7 @@ export type ASTextFieldProps = Omit<TextInputMaskProps, "type"> &
     style?: StyleProp<ViewStyle>;
     accessibilityLabel?: string;
     isOverlayEnabled?: boolean;
+    id?: string;
 };
 
 const ASTextField = (props: ASTextFieldProps) => {
@@ -63,6 +64,7 @@ const ASTextField = (props: ASTextFieldProps) => {
         placeholderTextColor,
         accessibilityLabel,
         isOverlayEnabled,
+        id,
         ...restProps
     } = props;
     const [active, setActive] = useState(false);
@@ -152,7 +154,7 @@ const ASTextField = (props: ASTextFieldProps) => {
 
     return (
         <View style={[styles.wrapperStyle, style, {height: "auto", borderColor: 'transparent'}]}
-              accessibilityLabel={accessibilityLabel}>
+              accessibilityLabel={accessibilityLabel} id={id}>
             <View
                 style={[
                     styles.containerStyle,
