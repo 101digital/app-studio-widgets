@@ -163,7 +163,8 @@ const ASTextField = (props: ASTextFieldProps) => {
                         borderTopWidth: flattenedStyle?.borderTopWidth,
                         borderRightWidth: flattenedStyle?.borderRightWidth,
                         borderBottomWidth: flattenedStyle?.borderBottomWidth,
-                        borderLeftWidth: flattenedStyle?.borderLeftWidth
+                        borderLeftWidth: flattenedStyle?.borderLeftWidth,
+                        ...(style && 'borderRadius' in style && style.borderRadius !== undefined && {borderRadius: style.borderRadius})
                     },
                 ]}
             >
@@ -224,7 +225,7 @@ const ASTextField = (props: ASTextFieldProps) => {
                     {getErrorMessage(meta?.error)}
                 </ASText>
             )}
-            {isOverlayEnabled && <ASOverlay />}
+            {isOverlayEnabled && <ASOverlay/>}
         </View>
     );
 };
@@ -241,7 +242,6 @@ const styles = StyleSheet.create({
     containerStyle: {
         borderRadius: 5,
         borderWidth: 1,
-        // paddingHorizontal: 16,
         paddingVertical: 2,
         justifyContent: "center",
         marginBottom: 2,
@@ -250,7 +250,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         flexDirection: "row",
         marginLeft: 16
-        // marginHorizontal: 16,
     },
     labelStyle: {
         fontSize: 10,
