@@ -29,6 +29,6 @@ const ASImage = (props) => {
                 borderRadius: roundImageSizeValue || 0,
             },
             style
-        ], resizeMode: (props === null || props === void 0 ? void 0 : props.resizeMode) || 'contain' }, restProps)));
+        ] }, restProps, { resizeMode: (props === null || props === void 0 ? void 0 : props.resizeMode) || 'contain' })));
 };
 exports.default = ASImage;
