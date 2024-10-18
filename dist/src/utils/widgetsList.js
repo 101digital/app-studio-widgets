@@ -121,18 +121,8 @@ class ASWidgetsList {
         if (widgetName === "ASText") {
             // ASText will use label:string as children
             const _textValue = (attributes === null || attributes === void 0 ? void 0 : attributes.label) || (attributes === null || attributes === void 0 ? void 0 : attributes.children);
-            // Text value is not a string (by checking startsWith character) then return object. EX: `${value}`
-            // else return a string. Ex: `value`
-            /*
-             *    ${value} => value
-             *    value => `value`
-             *    This is ${value} => `This is ${value}`
-             * */
-            const labelValue = (_textValue === null || _textValue === void 0 ? void 0 : _textValue.startsWith("${")) || (_textValue === null || _textValue === void 0 ? void 0 : _textValue.startsWith("{"))
-                ? `${_textValue.replace(/[$\{\}]/g, "")}`
-                : `\`${_textValue}\``;
             return `<ASText${ASWidgetsList.getWidgetAttributes(attributes, "ASText")}>
-                        {${labelValue}}
+                        {${`\`\${${_textValue}}\``}}
                     </ASText>`;
         }
         //If widgets has children then return a wrapper else return a tag

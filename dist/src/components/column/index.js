@@ -60,8 +60,8 @@ const ASColumn = (props) => {
          })),
         spacing && Array.isArray(children) ? children.map((child, index) => {
             var _a;
-            const { flex, height } = react_native_1.StyleSheet.flatten((_a = child.props) === null || _a === void 0 ? void 0 : _a.style);
-            return (react_1.default.createElement(react_native_1.View, { style: Object.assign({ marginBottom: children.length - 1 === index ? 0 : spacing }, (flex !== undefined && flex !== 0 && { flex: flex })) }, child));
+            const { flex, width, height } = react_native_1.StyleSheet.flatten((_a = child.props) === null || _a === void 0 ? void 0 : _a.style);
+            return (react_1.default.createElement(react_native_1.View, { style: Object.assign(Object.assign({ marginBottom: children.length - 1 === index ? 0 : spacing }, (flex !== undefined && flex !== 0 && { flex: flex })), (width !== undefined && width !== 0 && { width: width })) }, child));
         }) : children));
 };
 const styles = react_native_1.StyleSheet.create({

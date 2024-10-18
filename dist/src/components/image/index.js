@@ -18,9 +18,8 @@ const react_1 = __importDefault(require("react"));
 const react_native_1 = require("react-native");
 const commonUtils_1 = require("../../utils/commonUtils");
 const ASImage = (props) => {
-    const { source, style, resizeMode = 'cover', roundImageSize = 0 } = props, restProps = __rest(props, ["source", "style", "resizeMode", "roundImageSize"]);
-    // Get device dimensions to use for responsiveness
-    const { width: screenWidth, height: screenHeight } = react_native_1.Dimensions.get('window');
+    const { source, style, roundImageSize = 0 } = props, restProps = __rest(props, ["source", "style", "roundImageSize"]);
+    const { width: screenWidth, height: screenHeight } = react_native_1.Dimensions.get('window'); // Get device dimensions to use for responsiveness
     const imageSource = typeof source === 'string' && (source === null || source === void 0 ? void 0 : source.startsWith('http')) || (source === null || source === void 0 ? void 0 : source.startsWith('data:')) ? { uri: source } : source;
     const roundImageSizeValue = (0, commonUtils_1.convertPercentageToPx)(roundImageSize, true) || 0;
     return (react_1.default.createElement(react_native_1.Image, Object.assign({ source: imageSource, style: [
@@ -30,6 +29,6 @@ const ASImage = (props) => {
                 borderRadius: roundImageSizeValue || 0,
             },
             style
-        ], resizeMode: resizeMode }, restProps)));
+        ], resizeMode: (props === null || props === void 0 ? void 0 : props.resizeMode) || 'contain' }, restProps)));
 };
 exports.default = ASImage;

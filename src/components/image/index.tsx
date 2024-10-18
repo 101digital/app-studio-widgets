@@ -14,12 +14,9 @@ export type ASImageProps = ImageProps & {
 };
 
 const ASImage: React.FC<ASImageProps> = (props: ASImageProps) => {
-    const { source, style, resizeMode = 'cover', roundImageSize = 0, ...restProps } = props;
-
-    // Get device dimensions to use for responsiveness
-    const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
+    const { source, style, roundImageSize = 0, ...restProps } = props;
+    const { width: screenWidth, height: screenHeight } = Dimensions.get('window');     // Get device dimensions to use for responsiveness
     const imageSource = typeof source === 'string' && source?.startsWith('http') || source?.startsWith('data:') ? {uri: source} : source
-
     const roundImageSizeValue = convertPercentageToPx(roundImageSize, true) || 0;
 
     return (
@@ -33,8 +30,8 @@ const ASImage: React.FC<ASImageProps> = (props: ASImageProps) => {
                 },
                 style
             ]}
-            resizeMode={resizeMode}
             {...restProps}
+            resizeMode={props?.resizeMode || 'contain'}
         />
     );
 };
