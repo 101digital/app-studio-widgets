@@ -249,19 +249,8 @@ export class ASWidgetsList {
     if (widgetName === "ASText") {
       // ASText will use label:string as children
       const _textValue = attributes?.label || attributes?.children;
-      // Text value is not a string (by checking startsWith character) then return object. EX: `${value}`
-      // else return a string. Ex: `value`
-      /*
-       *    ${value} => value
-       *    value => `value`
-       *    This is ${value} => `This is ${value}`
-       * */
-      const labelValue =
-        _textValue?.startsWith("${") || _textValue?.startsWith("{")
-          ? `${_textValue.replace(/[$\{\}]/g, "")}`
-          : `\`${_textValue}\``;
       return `<ASText${ASWidgetsList.getWidgetAttributes(attributes, "ASText")}>
-                        {${labelValue}}
+                        {${`\`\${${_textValue}}\``}}
                     </ASText>`;
     }
 
