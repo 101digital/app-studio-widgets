@@ -159,7 +159,7 @@ const Keyboard: React.FC<KeyboardProps> = (props: KeyboardProps) => {
 const PinInputList: React.FC<PinInputListProps> = (
   props: PinInputListProps
 ) => {
-  const { pinLength,
+  const {
     pin,
     inputTypography,
     onKeyboardPress,
@@ -171,6 +171,7 @@ const PinInputList: React.FC<PinInputListProps> = (
     onPress
   } = props;
   const PIN_SIZE = 50;
+  const pinLength = props?.pinLength || 6
 
   // References for each TextInput
   const inputRefs = useRef<TextInput[]>([]);

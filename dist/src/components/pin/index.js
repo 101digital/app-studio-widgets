@@ -78,8 +78,9 @@ const Keyboard = (props) => {
     return (react_1.default.createElement(react_native_1.FlatList, Object.assign({ scrollEnabled: false, contentContainerStyle: styles.flatListContainerStyles, columnWrapperStyle: { gap: 15 } }, flatListProps, { data: KEYBOARDS, renderItem: _renderItem, numColumns: 3, keyExtractor: (item, index) => `${(item === null || item === void 0 ? void 0 : item.toString()) + index}` })));
 };
 const PinInputList = (props) => {
-    const { pinLength, pin, inputTypography, onKeyboardPress, enableNativeKeyboard, pinBoxRadius, pinBoxSize, pinBoxBackgroundColor, pinBoxBorderColor, onPress } = props;
+    const { pin, inputTypography, onKeyboardPress, enableNativeKeyboard, pinBoxRadius, pinBoxSize, pinBoxBackgroundColor, pinBoxBorderColor, onPress } = props;
     const PIN_SIZE = 50;
+    const pinLength = (props === null || props === void 0 ? void 0 : props.pinLength) || 6;
     // References for each TextInput
     const inputRefs = (0, react_1.useRef)([]);
     const handleInputChange = (text, index) => {
