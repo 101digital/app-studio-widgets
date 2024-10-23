@@ -71,7 +71,7 @@ const ASText: React.FC<ASTextProps> = (props: ASTextProps) => {
     }
 
     return (
-        <Text {...restProps} style={[styles.textStyle, style, getTextColor()]}>
+        <Text {...restProps} style={[styles.textStyle, StyleSheet.flatten(style), getTextColor()]}>
             {labelValue}
         </Text>
     )
