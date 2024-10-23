@@ -38,7 +38,6 @@ export type ASChoiceChipsProps = {
   selectedChipBorderColor?: string;
   choiceChipStyles?: StyleProp<ViewStyle>;
   isOverlayEnabled?: boolean;
-  onChange?: (value: any) => void;
   id?: string;
 };
 
@@ -57,7 +56,6 @@ const ASChoiceChips: React.FC<ASChoiceChipsProps> = (
     selectedChipBorderColor,
     selectedChipTextColor,
     isOverlayEnabled,
-    onChange,
     id
   } = props;
   const [field, meta, helpers] = useField(name);
@@ -93,13 +91,11 @@ const ASChoiceChips: React.FC<ASChoiceChipsProps> = (
         _selectedChoiceChips.push(chip);
       }
       setValue(_selectedChoiceChips);
-      onChange?.(_selectedChoiceChips);
     }
   };
 
   const _onPressSingleChoiceChip = (chip: ChipProps) => () => {
     setValue(returnedKey ? chip?.[returnedKey] : chip?.value);
-    onChange?.(returnedKey ? chip?.[returnedKey] : chip?.value);
   };
 
   const findSelected = (value: string) => {

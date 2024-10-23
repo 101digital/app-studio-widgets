@@ -9,7 +9,7 @@ const formik_1 = require("formik");
 const wrap_1 = __importDefault(require("../wrap"));
 const overlay_1 = __importDefault(require("../overlay"));
 const ASChoiceChips = (props) => {
-    const { options, name, isSingleChoice = true, returnedKey, contentLayout = "space-between", choiceChipTextStyles, choiceChipStyles, selectedChipBackgroundColor, selectedChipBorderColor, selectedChipTextColor, isOverlayEnabled, onChange, id } = props;
+    const { options, name, isSingleChoice = true, returnedKey, contentLayout = "space-between", choiceChipTextStyles, choiceChipStyles, selectedChipBackgroundColor, selectedChipBorderColor, selectedChipTextColor, isOverlayEnabled, id } = props;
     const [field, meta, helpers] = (0, formik_1.useField)(name);
     const { setValue } = helpers || {};
     const selectedChoiceChips = field === null || field === void 0 ? void 0 : field.value;
@@ -34,12 +34,10 @@ const ASChoiceChips = (props) => {
                 _selectedChoiceChips.push(chip);
             }
             setValue(_selectedChoiceChips);
-            onChange === null || onChange === void 0 ? void 0 : onChange(_selectedChoiceChips);
         }
     };
     const _onPressSingleChoiceChip = (chip) => () => {
         setValue(returnedKey ? chip === null || chip === void 0 ? void 0 : chip[returnedKey] : chip === null || chip === void 0 ? void 0 : chip.value);
-        onChange === null || onChange === void 0 ? void 0 : onChange(returnedKey ? chip === null || chip === void 0 ? void 0 : chip[returnedKey] : chip === null || chip === void 0 ? void 0 : chip.value);
     };
     const findSelected = (value) => {
         if (isSingleChoice) {
