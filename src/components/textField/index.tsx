@@ -196,7 +196,7 @@ const ASTextField = (props: ASTextFieldProps) => {
                                 onBlur={handleOnBlur}
                                 value={`${field?.value}`}
                                 onChangeText={handleOnChange}
-                                style={[styles.textInputStyle, inputTextStyle]}
+                                style={[styles.textInputStyle, !!flattenedStyle?.width && {width: flattenedStyle.width} , inputTextStyle]}
                                 placeholderTextColor={placeholderTextColor || constants.defaultPlaceholderColor}
                                 {...restProps}
                                 options={options}
@@ -209,7 +209,7 @@ const ASTextField = (props: ASTextFieldProps) => {
                                 onBlur={handleOnBlur}
                                 value={`${field?.value}`}
                                 onChangeText={handleOnChange}
-                                style={[styles.textInputStyle, inputTextStyle]}
+                                style={[styles.textInputStyle, !!flattenedStyle?.width && {width: flattenedStyle.width} , inputTextStyle]}
                                 placeholderTextColor={placeholderTextColor || constants.defaultPlaceholderColor}
                                 autoComplete={"off"}
                                 autoCorrect={false}
