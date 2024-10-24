@@ -154,7 +154,7 @@ const ASTextField = (props: ASTextFieldProps) => {
     };
 
     return (
-        <View style={[styles.wrapperStyle, style, {height: "auto", borderColor: 'transparent'}]}
+        <View style={[styles.wrapperStyle, style, {height: "auto", borderColor: 'transparent'}, {paddingTop: 8}]}
               accessibilityLabel={accessibilityLabel} id={id}>
             <View
                 style={[
