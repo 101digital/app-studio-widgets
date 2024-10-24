@@ -1,4 +1,4 @@
-import React, { ReactElement, useContext } from "react";
+import React, { ReactElement, useContext, useEffect } from "react";
 import { StyleSheet, TextStyle, View, ViewStyle, Text } from "react-native";
 import SwipeButton from "rn-swipe-button";
 import { ThemeContext } from "../../context/theme-context";
@@ -84,7 +84,7 @@ const ASSwipeButton: React.FC<ASSwipeButtonProps> = (props) => {
     width,
     accessibilityLabel,
     loading,
-    id
+    id,
   } = props;
 
   const onSwipeSuccess = () => {
@@ -106,6 +106,30 @@ const ASSwipeButton: React.FC<ASSwipeButtonProps> = (props) => {
       </View>
     );
   };
+
+  useEffect(() => {
+    try {
+      setTimeout(() => {
+        if (document) {
+          const swipeIcon = document.getElementById("swipe-icon");
+          if (swipeIcon) {
+            swipeIcon.addEventListener("mouseup", (event) => {
+              const currentMouse = event.clientX;
+              const width =
+                document.getElementById("swipe-background")?.clientWidth;
+              if (width && currentMouse + 10 > width) {
+                if (onPress && typeof onPress === "function") {
+                  onPress();
+                  // console.log('move to left');
+                  // swipeIcon.style.left = '0px';
+                }
+              }
+            });
+          }
+        }
+      }, 1500);
+    } catch (error) {}
+  }, []);
 
   // Helper function to flatten styles or return empty object if undefined
   const flattenStyles = (

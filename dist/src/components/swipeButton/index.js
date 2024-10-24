@@ -34,7 +34,7 @@ const loadingIndicator_1 = __importDefault(require("../loadingIndicator"));
 const arrow_forward_icon_1 = require("../../assets/icon/arrow-forward.icon");
 const ASSwipeButton = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { containerStyles, disabled, disableResetOnTap, disabledRailBackgroundColor, disabledThumbIconBackgroundColor, disabledThumbIconBorderColor, enableReverseSwipe, forceReset, height, onSwipeFail, onSwipeStart, onPress, railBackgroundColor, railBorderColor, railFillBackgroundColor, railFillBorderColor, railStyles, resetAfterSuccessAnimDelay, resetAfterSuccessAnimDuration, screenReaderEnabled, shouldResetAfterSuccess, swipeSuccessThreshold, thumbIconBackgroundColor, thumbIconBorderColor, thumbIconComponent, thumbIconImageSource, thumbIconStyles, thumbIconWidth, label, titleColor, titleFontSize, titleMaxFontScale, labelStyles, width, accessibilityLabel, loading, id } = props;
+    const { containerStyles, disabled, disableResetOnTap, disabledRailBackgroundColor, disabledThumbIconBackgroundColor, disabledThumbIconBorderColor, enableReverseSwipe, forceReset, height, onSwipeFail, onSwipeStart, onPress, railBackgroundColor, railBorderColor, railFillBackgroundColor, railFillBorderColor, railStyles, resetAfterSuccessAnimDelay, resetAfterSuccessAnimDuration, screenReaderEnabled, shouldResetAfterSuccess, swipeSuccessThreshold, thumbIconBackgroundColor, thumbIconBorderColor, thumbIconComponent, thumbIconImageSource, thumbIconStyles, thumbIconWidth, label, titleColor, titleFontSize, titleMaxFontScale, labelStyles, width, accessibilityLabel, loading, id, } = props;
     const onSwipeSuccess = () => {
         if (onPress && typeof onPress === "function") {
             onPress();
@@ -43,6 +43,30 @@ const ASSwipeButton = (props) => {
     const renderThumbIcon = () => {
         return (react_1.default.createElement(react_native_1.View, null, loading ? (react_1.default.createElement(loadingIndicator_1.default, { loading: loading })) : thumbIconComponent ? (thumbIconComponent) : (react_1.default.createElement(arrow_forward_icon_1.ArrowForwardIcon, null))));
     };
+    (0, react_1.useEffect)(() => {
+        try {
+            setTimeout(() => {
+                if (document) {
+                    const swipeIcon = document.getElementById("swipe-icon");
+                    if (swipeIcon) {
+                        swipeIcon.addEventListener("mouseup", (event) => {
+                            var _a;
+                            const currentMouse = event.clientX;
+                            const width = (_a = document.getElementById("swipe-background")) === null || _a === void 0 ? void 0 : _a.clientWidth;
+                            if (width && currentMouse + 10 > width) {
+                                if (onPress && typeof onPress === "function") {
+                                    onPress();
+                                    // console.log('move to left');
+                                    // swipeIcon.style.left = '0px';
+                                }
+                            }
+                        });
+                    }
+                }
+            }, 1500);
+        }
+        catch (error) { }
+    }, []);
     // Helper function to flatten styles or return empty object if undefined
     const flattenStyles = (styles) => (styles ? react_native_1.StyleSheet.flatten(styles) : {});
     return (react_1.default.createElement(react_native_1.View, { accessibilityLabel: accessibilityLabel, id: id },
