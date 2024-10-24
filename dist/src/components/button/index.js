@@ -107,6 +107,8 @@ const styles = react_native_1.StyleSheet.create({
         alignItems: "center",
         paddingHorizontal: 20,
         borderRadius: 8,
+        position: "relative",
+        width: "100%",
     },
     simpleTextButton: {
         justifyContent: "center",

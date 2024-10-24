@@ -103,6 +103,8 @@ const styles = react_native_1.StyleSheet.create({
         paddingHorizontal: 4,
         borderWidth: 1,
         paddingVertical: 10,
+        position: "relative",
+        width: "100%",
     },
     dropdown: {
         borderRadius: 5,
