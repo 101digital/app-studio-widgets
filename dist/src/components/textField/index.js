@@ -45,6 +45,7 @@ const text_1 = __importDefault(require("../text"));
 const theme_context_1 = require("../../context/theme-context");
 const constants_1 = require("../../utils/constants");
 const overlay_1 = __importDefault(require("../overlay"));
+const image_1 = __importDefault(require("../image"));
 const ASTextField = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
     const { name, onFocus, onBlur, suffixIcon, prefixIcon, prefixText, prefixTextStyle, formatError, options, label, textFieldType = "custom", formatNumber, labelTextStyle, inputTextStyle, borderErrorColor, borderActiveColor, style, errorMessageTextStyle, placeholderTextColor, accessibilityLabel, isOverlayEnabled, id } = props, restProps = __rest(props, ["name", "onFocus", "onBlur", "suffixIcon", "prefixIcon", "prefixText", "prefixTextStyle", "formatError", "options", "label", "textFieldType", "formatNumber", "labelTextStyle", "inputTextStyle", "borderErrorColor", "borderActiveColor", "style", "errorMessageTextStyle", "placeholderTextColor", "accessibilityLabel", "isOverlayEnabled", "id"]);
@@ -132,7 +133,9 @@ const ASTextField = (props) => {
                     labelTextStyle,
                 ] }, label !== 'null' ? label : null),
             react_1.default.createElement(react_native_1.View, { style: [styles.contentContainerStyle, !suffixIcon && { marginRight: 16 }] },
-                prefixIcon && react_1.default.createElement(react_native_1.View, { style: styles.prefixIcon }, prefixIcon),
+                prefixIcon && react_1.default.createElement(react_native_1.View, { style: styles.prefixIcon }, typeof prefixIcon === 'string' ?
+                    react_1.default.createElement(image_1.default, { style: { width: 20, height: 20 }, source: prefixIcon })
+                    : prefixIcon),
                 !!prefixText && (react_1.default.createElement(text_1.default, { style: [styles.prefixText, prefixTextStyle] }, prefixText)),
                 react_1.default.createElement(react_native_1.View, { style: styles.inputContainerStyle }, showMask ? (react_1.default.createElement(react_native_masked_text_1.TextInputMask, Object.assign({ onFocus: handleOnFocus, onBlur: handleOnBlur, value: `${field === null || field === void 0 ? void 0 : field.value}`, onChangeText: handleOnChange, style: [styles.textInputStyle, !!(flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.width) && { width: flattenedStyle.width }, inputTextStyle], placeholderTextColor: placeholderTextColor || constants_1.constants.defaultPlaceholderColor }, restProps, { options: options, type: textFieldType }))) : (react_1.default.createElement(react_native_1.TextInput, Object.assign({ onFocus: handleOnFocus, onBlur: handleOnBlur, value: `${field === null || field === void 0 ? void 0 : field.value}`, onChangeText: handleOnChange, style: [styles.textInputStyle, !!(flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.width) && { width: flattenedStyle.width }, inputTextStyle], placeholderTextColor: placeholderTextColor || constants_1.constants.defaultPlaceholderColor, autoComplete: "off", autoCorrect: false, underlineColorAndroid: "transparent" }, restProps)))),
                 suffixIcon && react_1.default.createElement(react_native_1.View, { style: styles.suffixIcon }, suffixIcon))),

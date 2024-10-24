@@ -16,6 +16,7 @@ import ASText from "../text";
 import {ThemeContext} from "../../context/theme-context";
 import {constants} from "../../utils/constants";
 import ASOverlay from "../overlay";
+import ASImage from "../image";
 
 export type ASTextFieldProps = Omit<TextInputMaskProps, "type"> &
     TextInputProps & {
@@ -183,7 +184,12 @@ const ASTextField = (props: ASTextFieldProps) => {
                     {label !== 'null' ? label : null}
                 </ASText>
                 <View style={[styles.contentContainerStyle, !suffixIcon && {marginRight: 16}]}>
-                    {prefixIcon && <View style={styles.prefixIcon}>{prefixIcon}</View>}
+                    {prefixIcon && <View style={styles.prefixIcon}>{typeof prefixIcon === 'string' ?
+                        <ASImage
+                            style={{width: 20, height: 20}}
+                            source={prefixIcon}
+                        />
+                        : prefixIcon}</View>}
                     {!!prefixText && (
                         <ASText style={[styles.prefixText, prefixTextStyle]}>
                             {prefixText}
@@ -196,7 +202,7 @@ const ASTextField = (props: ASTextFieldProps) => {
                                 onBlur={handleOnBlur}
                                 value={`${field?.value}`}
                                 onChangeText={handleOnChange}
-                                style={[styles.textInputStyle, !!flattenedStyle?.width && {width: flattenedStyle.width} , inputTextStyle]}
+                                style={[styles.textInputStyle, !!flattenedStyle?.width && {width: flattenedStyle.width}, inputTextStyle]}
                                 placeholderTextColor={placeholderTextColor || constants.defaultPlaceholderColor}
                                 {...restProps}
                                 options={options}
@@ -209,7 +215,7 @@ const ASTextField = (props: ASTextFieldProps) => {
                                 onBlur={handleOnBlur}
                                 value={`${field?.value}`}
                                 onChangeText={handleOnChange}
-                                style={[styles.textInputStyle, !!flattenedStyle?.width && {width: flattenedStyle.width} , inputTextStyle]}
+                                style={[styles.textInputStyle, !!flattenedStyle?.width && {width: flattenedStyle.width}, inputTextStyle]}
                                 placeholderTextColor={placeholderTextColor || constants.defaultPlaceholderColor}
                                 autoComplete={"off"}
                                 autoCorrect={false}
