@@ -49,11 +49,13 @@ const styles = StyleSheet.create({
   },
   badgeStyles: {
     borderRadius: 30,
-    height: 25,
-    width: 25,
     justifyContent: "center",
     alignItems: "center",
     borderWidth: 2,
+    minWidth: 30,
+    minHeight: 30,
+    top: 0,
+    right: 0,
   },
   badgeTextStyle: {
     fontWeight: "bold",
