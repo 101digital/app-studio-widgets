@@ -62,7 +62,7 @@ const ASSwipeButton = (props) => {
                                         (0, jquery_1.default)(".swipe-icon").animate({
                                             left: "0px",
                                         }, 300);
-                                    }, 2000);
+                                    }, 500);
                                     // console.log('move to left');
                                     // swipeIcon.style.left = '0px';
                                 }

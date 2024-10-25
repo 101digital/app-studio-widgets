@@ -1,5 +1,5 @@
 import React from "react";
-import { TouchableOpacityProps } from "react-native";
+import { TouchableOpacity, TouchableOpacityProps, StyleProp } from "react-native";
 export type ASIconButtonProps = TouchableOpacityProps & {
     onPress: () => void;
     width: number;
@@ -7,6 +7,7 @@ export type ASIconButtonProps = TouchableOpacityProps & {
     icon: any;
     crossOrigin?: "anonymous" | "use-credentials";
     id?: string;
+    style?: StyleProp<TouchableOpacity>;
 };
 declare const ASIconButton: React.FC<ASIconButtonProps>;
 export default ASIconButton;

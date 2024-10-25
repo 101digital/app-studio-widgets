@@ -6,6 +6,7 @@ import {
   StyleSheet,
   View,
   Image,
+  StyleProp,
 } from "react-native";
 
 export type ASIconButtonProps = TouchableOpacityProps & {
@@ -15,12 +16,13 @@ export type ASIconButtonProps = TouchableOpacityProps & {
   icon: any;
   crossOrigin?: "anonymous" | "use-credentials";
   id?: string;
+  style?: StyleProp<TouchableOpacity>
 };
 
 const ASIconButton: React.FC<ASIconButtonProps> = (
   props: ASIconButtonProps
 ) => {
-  const { onPress, width = 20, height = 20, icon, crossOrigin, id } = props;
+  const { onPress, width = 20, height = 20, icon, crossOrigin, id, style } = props;
 
   const renderIcon = () => {
     if (typeof icon === "string") {
@@ -38,7 +40,7 @@ const ASIconButton: React.FC<ASIconButtonProps> = (
   };
 
   return (
-    <TouchableOpacity onPress={onPress} style={styles.button} id={id}>
+    <TouchableOpacity onPress={onPress} style={[styles.button, style]} id={id}>
       {renderIcon()}
     </TouchableOpacity>
   );
