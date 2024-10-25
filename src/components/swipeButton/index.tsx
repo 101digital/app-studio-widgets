@@ -129,7 +129,7 @@ const ASSwipeButton: React.FC<ASSwipeButtonProps> = (props) => {
                       },
                       300
                     );
-                  }, 2000);
+                  }, 300);
                   // console.log('move to left');
                   // swipeIcon.style.left = '0px';
                 }
