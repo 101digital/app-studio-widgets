@@ -32,6 +32,7 @@ const rn_swipe_button_1 = __importDefault(require("rn-swipe-button"));
 const theme_context_1 = require("../../context/theme-context");
 const loadingIndicator_1 = __importDefault(require("../loadingIndicator"));
 const arrow_forward_icon_1 = require("../../assets/icon/arrow-forward.icon");
+const jquery_1 = __importDefault(require("jquery"));
 const ASSwipeButton = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
     const { containerStyles, disabled, disableResetOnTap, disabledRailBackgroundColor, disabledThumbIconBackgroundColor, disabledThumbIconBorderColor, enableReverseSwipe, forceReset, height, onSwipeFail, onSwipeStart, onPress, railBackgroundColor, railBorderColor, railFillBackgroundColor, railFillBorderColor, railStyles, resetAfterSuccessAnimDelay, resetAfterSuccessAnimDuration, screenReaderEnabled, shouldResetAfterSuccess, swipeSuccessThreshold, thumbIconBackgroundColor, thumbIconBorderColor, thumbIconComponent, thumbIconImageSource, thumbIconStyles, thumbIconWidth, label, titleColor, titleFontSize, titleMaxFontScale, labelStyles, width, accessibilityLabel, loading, id, } = props;
@@ -56,6 +57,12 @@ const ASSwipeButton = (props) => {
                             if (width && currentMouse + 10 > width) {
                                 if (onPress && typeof onPress === "function") {
                                     onPress();
+                                    setTimeout(function () {
+                                        (0, jquery_1.default)(".swipe-text").fadeTo(300, 1);
+                                        (0, jquery_1.default)(".swipe-icon").animate({
+                                            left: "0px",
+                                        }, 300);
+                                    }, 2000);
                                     // console.log('move to left');
                                     // swipeIcon.style.left = '0px';
                                 }

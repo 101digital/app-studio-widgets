@@ -4,6 +4,7 @@ import SwipeButton from "rn-swipe-button";
 import { ThemeContext } from "../../context/theme-context";
 import ASLoadingIndicator from "../loadingIndicator";
 import { ArrowForwardIcon } from "../../assets/icon/arrow-forward.icon";
+import $ from "jquery";
 
 export type ASSwipeButtonProps = {
   containerStyles?: ViewStyle | ViewStyle[];
@@ -120,6 +121,15 @@ const ASSwipeButton: React.FC<ASSwipeButtonProps> = (props) => {
               if (width && currentMouse + 10 > width) {
                 if (onPress && typeof onPress === "function") {
                   onPress();
+                  setTimeout(function () {
+                    $(".swipe-text").fadeTo(300, 1);
+                    $(".swipe-icon").animate(
+                      {
+                        left: "0px",
+                      },
+                      300
+                    );
+                  }, 2000);
                   // console.log('move to left');
                   // swipeIcon.style.left = '0px';
                 }
