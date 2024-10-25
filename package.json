@@ -1,6 +1,6 @@
 {
   "name": "app-studio-widgets",
-  "version": "1.0.168",
+  "version": "1.0.169",
   "description": "Widgets for App Studio",
   "repository": "https://github.com/101digital/app-studio-widgets",
   "license": "MIT",
@@ -28,6 +28,7 @@
     "currency.js": "^2.0.4",
     "date-fns": "^3.3.1",
     "formik": "^2.4.5",
+    "jquery": "^3.7.1",
     "lodash": "^4.17.21",
     "patch-package": "^8.0.0",
     "react": "18.2.0",
@@ -52,6 +53,7 @@
   "devDependencies": {
     "@react-native-community/eslint-config": "^2.0.0",
     "@types/express": "^4.17.21",
+    "@types/jquery": "^3.5.32",
     "@types/lodash": "^4.14.170",
     "@types/node": "^20.11.20",
     "@types/react": "^16.9.48",
