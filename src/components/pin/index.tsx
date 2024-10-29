@@ -73,6 +73,7 @@ export type KeyboardProps = {
   keyboardButtonRadius?: number;
   keyboardButtonBorderColor?: string;
   keyboardButtonBackgroundColor?: string;
+  keyboardStyle?: StyleProp<ViewStyle>
 };
 
 export type KeyboardItemProps = {
@@ -106,6 +107,7 @@ const Keyboard: React.FC<KeyboardProps> = (props: KeyboardProps) => {
     keyboardButtonRadius,
     keyboardButtonBorderColor,
     keyboardButtonBackgroundColor,
+    keyboardStyle
   } = props;
 
   const _onKeyboardPress = (item: KeyboardItemProps) => () => {
@@ -113,51 +115,53 @@ const Keyboard: React.FC<KeyboardProps> = (props: KeyboardProps) => {
   };
 
   const _renderItem = ({ item }: { item: KeyboardItemProps }) => {
+    const {backgroundColor,borderColor,borderRadius} = StyleSheet.flatten(keyboardStyle)
     return (
-      <ASButton
-        style={{
-          ...styles.keyboardButton,
-          borderColor: keyboardButtonBorderColor || colors.onSecondary,
-          backgroundColor: keyboardButtonBackgroundColor,
-          ...(item?.value === "continue" &&
-            StyleSheet.flatten(submitButtonStyle)),
-          ...(item?.value === "delete" &&
-            StyleSheet.flatten(deleteButtonStyle)),
-            borderRadius: keyboardButtonRadius,
-        }}
-        onPress={_onKeyboardPress(item)}
-      >
-        {item?.value !== "delete" && item?.value !== "continue" && (
-          <ASText style={[{ fontWeight: "bold", fontSize: 18 }, typography]}>
-            {item?.label}
-          </ASText>
-        )}
-        {item?.value === "delete" ? deleteButtonIcon || <DeleteIcon /> : null}
-        {item?.value === "continue"
-          ? submitButtonIcon || <ForwardIcon />
-          : null}
-      </ASButton>
+        <ASButton
+            style={{
+              ...styles.keyboardButton,
+              ...StyleSheet.flatten(keyboardStyle),
+              borderColor: borderColor || keyboardButtonBorderColor || colors.onSecondary,
+              ...(item?.value === "continue" &&
+                  StyleSheet.flatten(submitButtonStyle)),
+              backgroundColor: backgroundColor || keyboardButtonBackgroundColor,
+              ...(item?.value === "delete" &&
+                  StyleSheet.flatten(deleteButtonStyle)),
+              borderRadius: borderRadius || keyboardButtonRadius,
+            }}
+            onPress={_onKeyboardPress(item)}
+        >
+          {item?.value !== "delete" && item?.value !== "continue" && (
+              <ASText style={[{ fontWeight: "bold", fontSize: 18 }, typography]}>
+                {item?.label}
+              </ASText>
+          )}
+          {item?.value === "delete" ? deleteButtonIcon || <DeleteIcon /> : null}
+          {item?.value === "continue"
+              ? submitButtonIcon || <ForwardIcon />
+              : null}
+        </ASButton>
     );
   };
 
   return (
-    <FlatList
-      scrollEnabled={false}
-      contentContainerStyle={styles.flatListContainerStyles}
-      columnWrapperStyle={{ gap: 15 }}
-      {...flatListProps}
-      data={KEYBOARDS}
-      renderItem={_renderItem}
-      numColumns={3}
-      keyExtractor={(item: KeyboardItemProps, index: number) =>
-        `${item?.toString() + index}`
-      }
-    />
+      <FlatList
+          scrollEnabled={false}
+          contentContainerStyle={styles.flatListContainerStyles}
+          columnWrapperStyle={{ paddingHorizontal:50, justifyContent:'space-around' }}
+          {...flatListProps}
+          data={KEYBOARDS}
+          renderItem={_renderItem}
+          numColumns={3}
+          keyExtractor={(item: KeyboardItemProps, index: number) =>
+              `${item?.toString() + index}`
+          }
+      />
   );
 };
 
 const PinInputList: React.FC<PinInputListProps> = (
-  props: PinInputListProps
+    props: PinInputListProps
 ) => {
   const {
     pin,
@@ -217,42 +221,42 @@ const PinInputList: React.FC<PinInputListProps> = (
   };
 
   return (
-    <ASRow style={{ justifyContent: "space-between" }}>
-      {Array.from({ length: pinLength }, (_, index) => (
-        <ASColumn
-          key={index}
-          style={[
-            styles.pinItemWrapper,
-            {
-              borderColor: pinBoxBorderColor || colors.onSecondary,
-              backgroundColor: pinBoxBackgroundColor,
-              width: pinBoxSize || PIN_SIZE,
-              height: pinBoxSize || PIN_SIZE,
-              borderRadius: pinBoxRadius
-            },
-          ]}
-        >
-          {!enableNativeKeyboard ? (
-            <ASText style={inputTypography}>{pin[index] || ""}</ASText>
-          ) : (
-            <TextInput
-            ref={(el) => (inputRefs.current[index] = el!)}
-            style={[inputTypography, styles.textInputStyle]}
-            value={pin[index] || ""}
-            keyboardType="number-pad"
-            onChangeText={(text) => handleInputChange(text, index)}
-            onKeyPress={(e) => handleKeyPress(e, index)}
-            maxLength={1}
-            autoFocus={index === 0}
-            caretHidden={true}         // Hide caret (cursor)
-            showSoftInputOnFocus={true} // Ensure the keyboard opens
-            focusable={false}          // Prevent focus by clicking
-            selectTextOnFocus={false}
-            />
-          )}
-        </ASColumn>
-      ))}
-    </ASRow>
+      <ASRow style={{ justifyContent: "space-between" }}>
+        {Array.from({ length: pinLength }, (_, index) => (
+            <ASColumn
+                key={index}
+                style={[
+                  styles.pinItemWrapper,
+                  {
+                    borderColor: pinBoxBorderColor || colors.onSecondary,
+                    backgroundColor: pinBoxBackgroundColor,
+                    width: pinBoxSize || PIN_SIZE,
+                    height: pinBoxSize || PIN_SIZE,
+                    borderRadius: pinBoxRadius
+                  },
+                ]}
+            >
+              {!enableNativeKeyboard ? (
+                  <ASText style={inputTypography}>{pin[index] || ""}</ASText>
+              ) : (
+                  <TextInput
+                      ref={(el) => (inputRefs.current[index] = el!)}
+                      style={[inputTypography, styles.textInputStyle]}
+                      value={pin[index] || ""}
+                      keyboardType="number-pad"
+                      onChangeText={(text) => handleInputChange(text, index)}
+                      onKeyPress={(e) => handleKeyPress(e, index)}
+                      maxLength={1}
+                      autoFocus={index === 0}
+                      caretHidden={true}         // Hide caret (cursor)
+                      showSoftInputOnFocus={true} // Ensure the keyboard opens
+                      focusable={false}          // Prevent focus by clicking
+                      selectTextOnFocus={false}
+                  />
+              )}
+            </ASColumn>
+        ))}
+      </ASRow>
   );
 };
 
@@ -279,7 +283,8 @@ const ASPin: React.FC<ASPinProps> = (props: ASPinProps) => {
     keyboardButtonBorderColor,
     pinBoxBackgroundColor,
     pinBoxBorderColor,
-    isOverlayEnabled
+    isOverlayEnabled,
+    keyboardStyle
   } = props;
   const [pin, setPin] = useState<string[]>([]);
 
@@ -299,9 +304,9 @@ const ASPin: React.FC<ASPinProps> = (props: ASPinProps) => {
     }
 
     if (
-      pin.length < pinLength &&
-      item?.value !== "delete" &&
-      item?.value !== "continue"
+        pin.length < pinLength &&
+        item?.value !== "delete" &&
+        item?.value !== "continue"
     ) {
       setPin((prevState: KeyboardItemProps[] | any[]) => {
         return [...prevState, item?.value];
@@ -310,38 +315,39 @@ const ASPin: React.FC<ASPinProps> = (props: ASPinProps) => {
   };
 
   return (
-    <ASColumn style={[styles.flex1, !enableNativeKeyboard && {position: 'relative'} ]}>
-      <View style={{ marginBottom: gap || 24 }}>
-        <PinInputList
-          pinLength={pinLength}
-          pin={pin}
-          inputTypography={inputTypography}
-          onKeyboardPress= {onKeyboardItemPress}
-          enableNativeKeyboard={enableNativeKeyboard}
-          pinBoxRadius={pinBoxRadius}
-          pinBoxSize={pinBoxSize}
-          pinBoxBackgroundColor={pinBoxBackgroundColor}
-          pinBoxBorderColor={pinBoxBorderColor}
-          onPress={onPress}
-        />
-      </View>
+      <ASColumn style={[styles.flex1, !enableNativeKeyboard && {position: 'relative'} ]}>
+        <View style={{ marginBottom: gap || 24 }}>
+          <PinInputList
+              pinLength={pinLength}
+              pin={pin}
+              inputTypography={inputTypography}
+              onKeyboardPress= {onKeyboardItemPress}
+              enableNativeKeyboard={enableNativeKeyboard}
+              pinBoxRadius={pinBoxRadius}
+              pinBoxSize={pinBoxSize}
+              pinBoxBackgroundColor={pinBoxBackgroundColor}
+              pinBoxBorderColor={pinBoxBorderColor}
+              onPress={onPress}
+          />
+        </View>
 
-      {children}
+        {children}
 
-      {!enableNativeKeyboard && <Keyboard
-        submitButtonIcon={submitButtonIcon}
-        submitButtonStyle={submitButtonStyle}
-        deleteButtonIcon={deleteButtonIcon}
-        deleteButtonStyle={deleteButtonStyle}
-        flatListProps={flatListProps}
-        onKeyboardPress={onKeyboardItemPress}
-        typography={keyboardTypography}
-        keyboardButtonRadius={keyboardButtonRadius}
-        keyboardButtonBackgroundColor={keyboardButtonBackgroundColor}
-        keyboardButtonBorderColor={keyboardButtonBorderColor}
-      />}
-      {isOverlayEnabled && <ASOverlay />}
-    </ASColumn>
+        {!enableNativeKeyboard && <Keyboard
+            keyboardStyle={keyboardStyle}
+            submitButtonIcon={submitButtonIcon}
+            submitButtonStyle={submitButtonStyle}
+            deleteButtonIcon={deleteButtonIcon}
+            deleteButtonStyle={deleteButtonStyle}
+            flatListProps={flatListProps}
+            onKeyboardPress={onKeyboardItemPress}
+            typography={keyboardTypography}
+            keyboardButtonRadius={keyboardButtonRadius}
+            keyboardButtonBackgroundColor={keyboardButtonBackgroundColor}
+            keyboardButtonBorderColor={keyboardButtonBorderColor}
+        />}
+        {isOverlayEnabled && <ASOverlay />}
+      </ASColumn>
   );
 };
 
@@ -353,11 +359,12 @@ const styles = StyleSheet.create({
   },
   keyboardButton: {
     paddingVertical: 23,
-    flex: 1,
     justifyContent: "center",
     alignItems: "center",
     borderWidth: 1,
     borderRadius: 5,
+    width:60,
+    height:60
   },
   pinItemWrapper: {
     borderWidth: 1,
@@ -370,199 +377,3 @@ const styles = StyleSheet.create({
   },
   flatListContainerStyles: { gap: 15, justifyContent: "flex-end" },
 });
-
-
-
-
-
-// import { useNavigation } from '@react-navigation/native';
-// import { typographyTextStyle } from '@/assets';
-// import {
-//   ASContainer,
-//   ASRow,
-//   ASIconButton,
-//   ASColumn,
-//   ASText,
-//   ASPin,
-//   ASButton,
-// } from 'app-studio-widgets';
-// import { StyleSheet } from 'react-native';
-//
-// import Route from '@/navigation/routes';
-//
-// const PassCode: React.FC<any> = ({ route }) => {
-//   const navigation = useNavigation();
-//
-//   const onPressaSPin7913245 = async () => {
-//     navigation.navigate(Route.TRANSFER_STATUS, {});
-//   };
-//
-//   return (
-//       <>
-//         <ASContainer
-//             style={styles.class_e0sogefj7}
-//             isScrollable={true}
-//             disabledSafeArea={false}
-//             name={'ASContainer-467412'}
-//         >
-//           <ASRow
-//               style={styles.class_t1cb0k7l6}
-//               spacing={10}
-//               name={'ASRow7913181'}
-//           >
-//             <ASIconButton
-//                 width={20}
-//                 height={20}
-//                 name={'ASIconButton7913182'}
-//                 crossOrigin={'anonymous'}
-//             />
-//           </ASRow>
-//           <ASColumn
-//               style={styles.class_1wag5ay6m}
-//               spacing={32}
-//               name={'ASColumn7913277'}
-//           >
-//             <ASText
-//                 style={Object.assign(
-//                     {},
-//                     typographyTextStyle.class_labelMedium,
-//                     styles.class_7cz648cmi,
-//                 )}
-//                 accessibilityLabel={'Enter your passcode'}
-//                 name={'ASText7913183'}
-//             >
-//               {`Enter your passcode`}
-//             </ASText>
-//             <ASPin
-//                 onPress={() => {
-//                   onPressaSPin7913245({});
-//                 }}
-//                 submitButtonStyle={styles.class_d2uoxq4j0}
-//                 keyboardButtonStyles={styles.class_ar6qzpmsq}
-//                 contentContainerStyle={styles.class_0f4aprioe}
-//                 keyboardTypography={Object.assign(
-//                     {},
-//                     typographyTextStyle.class_labelMedium,
-//                     styles.class_31hdpe3t8,
-//                 )}
-//                 inputTypography={Object.assign(
-//                     {},
-//                     typographyTextStyle.class_labelMedium,
-//                     styles.class_037z4llg8,
-//                 )}
-//                 scrollEnabled={true}
-//                 keyboardDismissMode={'interactive'}
-//                 gap={80}
-//                 name={'ASPin7913245'}
-//             />
-//             <ASButton
-//                 style={styles.class_qk58rkfs8}
-//                 textStyle={Object.assign(
-//                     {},
-//                     typographyTextStyle.class_titleSmall,
-//                     styles.class_cjngnqwaz,
-//                 )}
-//                 accessibilityLabel={'Forgot your Passcode?'}
-//                 simpleTextButton={false}
-//                 label={'Forgot your Passcode?'}
-//                 name={'ASButton7913185'}
-//             />
-//           </ASColumn>
-//         </ASContainer>
-//       </>
-//   );
-// };
-//
-// const styles = StyleSheet.create({
-//   class_e0sogefj7: {
-//     paddingLeft: 0,
-//     paddingRight: 0,
-//     backgroundColor: '#ffffffff',
-//     height: '100%',
-//     paddingVertical: 0,
-//     paddingHorizontal: 16,
-//   },
-//   class_t1cb0k7l6: {
-//     backgroundColor: 'transparent',
-//     borderRadius: 0,
-//     flexDirection: 'row',
-//     overflow: 'visible',
-//     paddingTop: 14,
-//     paddingRight: 16,
-//     alignItems: 'center',
-//     width: '100%',
-//     paddingBottom: 14,
-//     paddingLeft: 16,
-//     justifyContent: 'flex-end',
-//   },
-//   class_1wag5ay6m: {
-//     overflow: 'visible',
-//     backgroundColor: 'transparent',
-//     width: '100%',
-//     alignItems: 'center',
-//     borderRadius: 0,
-//     flexDirection: 'column',
-//     justifyContent: 'flex-start',
-//   },
-//   class_7cz648cmi: {
-//     fontWeight: 700,
-//     marginVertical: 4,
-//     typography: 'LabelMedium',
-//     color: '#111827ff',
-//     fontFamily: 'Larken DEMO',
-//     fontSize: 28,
-//     textAlign: 'center',
-//   },
-//   class_d2uoxq4j0: { flexDirection: 'column', overflow: 'visible' },
-//   class_ar6qzpmsq: {
-//     paddingLeft: 14,
-//     paddingRight: 14,
-//     backgroundColor: '#f8fcfcff',
-//     borderRadius: 9999,
-//     flexDirection: 'column',
-//     overflow: 'visible',
-//     paddingTop: 12,
-//     // flex: 1,
-//     justifyContent: 'center',
-//     paddingBottom: 12,
-//     alignItems: 'center',
-//   },
-//   class_0f4aprioe: { alignItems: 'center' },
-//   class_31hdpe3t8: {
-//     keyboardTypography: 'LabelMedium',
-//     fontSize: 24,
-//     fontFamily: 'Larken DEMO',
-//     color: '#6b7280ff',
-//     fontWeight: 700,
-//   },
-//   class_037z4llg8: { inputTypography: 'LabelMedium' },
-//   class_qk58rkfs8: {
-//     paddingRight: 16,
-//     borderRadius: 9999,
-//     width: 'auto',
-//     borderColor: '#d1d5dbff',
-//     height: 32,
-//     marginVertical: 10,
-//     borderStyle: 'solid',
-//     flexDirection: 'column',
-//     alignItems: 'center',
-//     backgroundColor: '#ffffffff',
-//     paddingTop: 6,
-//     paddingBottom: 6,
-//     paddingLeft: 16,
-//     borderWidth: 1,
-//     minHeight: 48,
-//     overflow: 'visible',
-//     justifyContent: 'center',
-//     alignSelf: 'flex-start',
-//   },
-//   class_cjngnqwaz: {
-//     fontFamily: 'SF Pro Display',
-//     fontWeight: 500,
-//     color: '#374151ff',
-//     buttonLabelTypography: 'TitleSmall',
-//     fontSize: 14,
-//   },
-// });
-//
-// export default PassCode;

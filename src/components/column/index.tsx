@@ -39,17 +39,12 @@ const ASColumn: React.FC<ASColumnProps> = (props: ASColumnProps) => {
                 />
             )}
             {spacing && Array.isArray(children) ? children.map((child: any, index: number) => {
-                const {flex, width,height} = StyleSheet.flatten(child.props?.style)
-                return (
-                    <View style={{
-                        marginBottom: children.length - 1 === index ? 0 : spacing,
-                        ...(flex !== undefined && flex !== 0 && {flex: flex}),
-                        ...(width !== undefined && width !== 0 && {width: width}),
-                        // ...(height && { height: height } ),
-                    }}>
-                        {child}
-                    </View>
-                )
+                const isLastChild = children.length - 1 === index;
+                const marginBottomStyle = { marginBottom: isLastChild ? 0 : spacing };
+                // Clone the child with updated marginBottom style
+                return React.cloneElement(child, {
+                    style: [StyleSheet.flatten(child.props.style), marginBottomStyle],
+                })
             }) : children}
         </View>
     );

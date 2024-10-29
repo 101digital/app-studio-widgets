@@ -19,15 +19,18 @@ const react_native_1 = require("react-native");
 const ASRow = (props) => {
     const _a = props || {}, { children, style, accessibilityLabel, spacing } = _a, restProps = __rest(_a, ["children", "style", "accessibilityLabel", "spacing"]);
     return (react_1.default.createElement(react_native_1.View, Object.assign({ style: [styles.container, style], accessibilityLabel: accessibilityLabel }, restProps), spacing && Array.isArray(children) ? children.map((child, index) => {
-        var _a;
-        const { flex } = react_native_1.StyleSheet.flatten((_a = child.props) === null || _a === void 0 ? void 0 : _a.style);
-        return (react_1.default.createElement(react_native_1.View, { style: Object.assign({ marginRight: children.length - 1 === index ? 0 : spacing }, (flex !== undefined && flex !== 0 && { flex: flex })) }, child));
+        const isLastChild = children.length - 1 === index;
+        const marginRightStyle = { marginRight: isLastChild ? 0 : spacing };
+        // Clone the child with updated marginRight style
+        return react_1.default.cloneElement(child, {
+            style: [react_native_1.StyleSheet.flatten(child.props.style), marginRightStyle],
+        });
     }) : children));
 };
 const styles = react_native_1.StyleSheet.create({
     container: {
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
     },
 });
 exports.default = ASRow;

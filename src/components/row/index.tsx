@@ -14,15 +14,12 @@ const ASRow: React.FC<ASRowProps> = (props: ASRowProps) => {
     return (
         <View style={[styles.container, style]} accessibilityLabel={accessibilityLabel} {...restProps}>
             {spacing && Array.isArray(children) ? children.map((child: any, index: number) => {
-                const {flex} = StyleSheet.flatten(child.props?.style)
-                return (
-                    <View style={{
-                        marginRight: children.length - 1 === index ? 0 : spacing,
-                        ...(flex !== undefined && flex !== 0 && {flex: flex}),
-                    }}>
-                        {child}
-                    </View>
-                )
+                const isLastChild = children.length - 1 === index;
+                const marginRightStyle = { marginRight: isLastChild ? 0 : spacing };
+                // Clone the child with updated marginRight style
+                return React.cloneElement(child, {
+                    style: [StyleSheet.flatten(child.props.style), marginRightStyle],
+                })
             }) : children}
         </View>
     )
@@ -31,7 +28,7 @@ const ASRow: React.FC<ASRowProps> = (props: ASRowProps) => {
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
     },
 });
 

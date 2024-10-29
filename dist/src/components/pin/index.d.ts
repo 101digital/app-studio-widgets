@@ -29,6 +29,7 @@ export type KeyboardProps = {
     keyboardButtonRadius?: number;
     keyboardButtonBorderColor?: string;
     keyboardButtonBackgroundColor?: string;
+    keyboardStyle?: StyleProp<ViewStyle>;
 };
 export type KeyboardItemProps = {
     label: string;
