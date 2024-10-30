@@ -17,6 +17,7 @@ import ASRow from "../row";
 import ASColumn from "../column";
 import { DeleteIcon, ForwardIcon } from "../../assets/icon";
 import { ThemeContext } from "../../context/theme-context";
+import { FieldHookConfig, useField } from "formik";
 import ASOverlay from "../overlay";
 
 const KEYBOARDS = [
@@ -60,6 +61,7 @@ export type ASPinProps = KeyboardProps & {
   keyboardButtonBorderColor?: string;
   keyboardButtonBackgroundColor?: string;
   isOverlayEnabled?: boolean;
+  name: string;
 };
 
 export type KeyboardProps = {
@@ -287,6 +289,9 @@ const ASPin: React.FC<ASPinProps> = (props: ASPinProps) => {
     keyboardStyle
   } = props;
   const [pin, setPin] = useState<string[]>([]);
+  const [field, meta, helpers] = useField<string>(name);
+  const { setValue } = helpers || {};
+
 
   useEffect(() => {
     onChange?.(pin.join(""));
@@ -300,7 +305,9 @@ const ASPin: React.FC<ASPinProps> = (props: ASPinProps) => {
     }
 
     if (item?.value === "continue" && pin.length === pinLength) {
-      onPress?.(pin.join(""));
+      const pinValue = pin.join("");
+      onPress?.(pinValue);
+      setValue?.(pinValue);
     }
 
     if (
