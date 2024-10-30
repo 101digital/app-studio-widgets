@@ -111,7 +111,7 @@ const ASSwipeButton: React.FC<ASSwipeButtonProps> = (props) => {
   useEffect(() => {
     try {
       setTimeout(() => {
-        if (document) {
+        if (typeof document !== "undefined" && document) {
           const swipeIcon = document.getElementById("swipe-icon");
           if (swipeIcon) {
             swipeIcon.addEventListener("mouseup", (event) => {

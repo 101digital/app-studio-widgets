@@ -47,7 +47,7 @@ const ASSwipeButton = (props) => {
     (0, react_1.useEffect)(() => {
         try {
             setTimeout(() => {
-                if (document) {
+                if (typeof document !== "undefined" && document) {
                     const swipeIcon = document.getElementById("swipe-icon");
                     if (swipeIcon) {
                         swipeIcon.addEventListener("mouseup", (event) => {
