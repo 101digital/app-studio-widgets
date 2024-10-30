@@ -286,7 +286,8 @@ const ASPin: React.FC<ASPinProps> = (props: ASPinProps) => {
     pinBoxBackgroundColor,
     pinBoxBorderColor,
     isOverlayEnabled,
-    keyboardStyle
+    keyboardStyle,
+    name
   } = props;
   const [pin, setPin] = useState<string[]>([]);
   const [field, meta, helpers] = useField<string>(name);

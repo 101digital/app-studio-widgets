@@ -35,6 +35,7 @@ const row_1 = __importDefault(require("../row"));
 const column_1 = __importDefault(require("../column"));
 const icon_1 = require("../../assets/icon");
 const theme_context_1 = require("../../context/theme-context");
+const formik_1 = require("formik");
 const overlay_1 = __importDefault(require("../overlay"));
 const KEYBOARDS = [
     { label: "1", value: "1" },
@@ -131,8 +132,10 @@ const PinInputList = (props) => {
         ] }, !enableNativeKeyboard ? (react_1.default.createElement(text_1.default, { style: inputTypography }, pin[index] || "")) : (react_1.default.createElement(react_native_1.TextInput, { ref: (el) => (inputRefs.current[index] = el), style: [inputTypography, styles.textInputStyle], value: pin[index] || "", keyboardType: "number-pad", onChangeText: (text) => handleInputChange(text, index), onKeyPress: (e) => handleKeyPress(e, index), maxLength: 1, autoFocus: index === 0, caretHidden: true, showSoftInputOnFocus: true, focusable: false, selectTextOnFocus: false })))))));
 };
 const ASPin = (props) => {
-    const { submitButtonIcon, submitButtonStyle, deleteButtonIcon, deleteButtonStyle, flatListProps, pinLength = 6, onPress, children, onChange, keyboardTypography, inputTypography, gap, keyboardButtonRadius, enableNativeKeyboard, pinBoxRadius, pinBoxSize, keyboardButtonBackgroundColor, keyboardButtonBorderColor, pinBoxBackgroundColor, pinBoxBorderColor, isOverlayEnabled, keyboardStyle } = props;
+    const { submitButtonIcon, submitButtonStyle, deleteButtonIcon, deleteButtonStyle, flatListProps, pinLength = 6, onPress, children, onChange, keyboardTypography, inputTypography, gap, keyboardButtonRadius, enableNativeKeyboard, pinBoxRadius, pinBoxSize, keyboardButtonBackgroundColor, keyboardButtonBorderColor, pinBoxBackgroundColor, pinBoxBorderColor, isOverlayEnabled, keyboardStyle, name } = props;
     const [pin, setPin] = (0, react_1.useState)([]);
+    const [field, meta, helpers] = (0, formik_1.useField)(name);
+    const { setValue } = helpers || {};
     (0, react_1.useEffect)(() => {
         onChange === null || onChange === void 0 ? void 0 : onChange(pin.join(""));
     }, [pin]);
@@ -143,7 +146,9 @@ const ASPin = (props) => {
             });
         }
         if ((item === null || item === void 0 ? void 0 : item.value) === "continue" && pin.length === pinLength) {
-            onPress === null || onPress === void 0 ? void 0 : onPress(pin.join(""));
+            const pinValue = pin.join("");
+            onPress === null || onPress === void 0 ? void 0 : onPress(pinValue);
+            setValue === null || setValue === void 0 ? void 0 : setValue(pinValue);
         }
         if (pin.length < pinLength &&
             (item === null || item === void 0 ? void 0 : item.value) !== "delete" &&
