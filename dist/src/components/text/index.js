@@ -77,6 +77,9 @@ const ASText = (props) => {
         cardNumberString = (_f = cardNumberString === null || cardNumberString === void 0 ? void 0 : cardNumberString.toString()) === null || _f === void 0 ? void 0 : _f.replace(/\D/g, '');
         labelValue = cardNumberString === null || cardNumberString === void 0 ? void 0 : cardNumberString.replace(/(.{4})/g, '$1 ').trim();
     }
+    else {
+        labelValue = `${labelValue === null || labelValue === void 0 ? void 0 : labelValue.toString()}`;
+    }
     const getTextColor = () => {
         let color = colors.primaryFixed;
         // TODO: REMOVE THIS LOGIC LATER

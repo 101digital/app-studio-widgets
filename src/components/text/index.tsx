@@ -46,6 +46,8 @@ const ASText: React.FC<ASTextProps> = (props: ASTextProps) => {
         let cardNumberString = labelValue?.toString()
         cardNumberString = cardNumberString?.toString()?.replace(/\D/g, '');
         labelValue = cardNumberString?.replace(/(.{4})/g, '$1 ').trim();
+    }else{
+        labelValue = `${labelValue?.toString()}`
     }
 
     const getTextColor = (): { color: string | undefined | ColorValue } => {
