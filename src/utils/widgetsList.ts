@@ -42,8 +42,10 @@ import {
   ASTabView,
   ASTabs,
   TabsProps,
-  ASTabViewProps
+  ASTabViewProps,
+  ASAppBarProps
 } from "../../index";
+import ASAppBar from "../components/appbar";
 
 export type WidgetsName = keyof WidgetsList;
 
@@ -91,6 +93,7 @@ export type WidgetsList = {
   ASIconButton: (attributes: ASIconButtonProps) => string;
   ASTabs: (attributes: TabsProps) => string;
   ASTabView: (attributes: ASTabViewProps) => string;
+  ASAppBar: (attributes: ASAppBarProps) => string;
 };
 
 export class ASWidgetsList {
@@ -169,11 +172,11 @@ export class ASWidgetsList {
 
           initialValues[formWidgetItem.name] = initialValueItem
           ? `${initialValueItem} || ''`
-          : `''`; 
-          
+          : `''`;
+
           if (!this._initialValues.includes(formWidgetItem.name)) {
             this._initialValues.push(formWidgetItem.name);
-          } 
+          }
 
 
           if (
@@ -183,7 +186,7 @@ export class ASWidgetsList {
             continue;
           }
 
-          let validation: string = `Yup`; 
+          let validation: string = `Yup`;
 
           if (formWidgetItem?.dataType) {
             validation += `.${formWidgetItem?.dataType}()`;
@@ -369,7 +372,8 @@ export class ASWidgetsList {
       ASIconButton: (attributes: ASIconButtonProps) =>
         ASWidgetsList.getWidgetString("ASIconButton", attributes),
       ASTabs: (attributes: TabsProps) => ASWidgetsList.getWidgetString("ASTabs", attributes),
-      ASTabView: (attributes: ASTabViewProps) => ASWidgetsList.getWidgetString("ASTabView", attributes)
+      ASTabView: (attributes: ASTabViewProps) => ASWidgetsList.getWidgetString("ASTabView", attributes),
+      ASAppBar: (attributes: ASAppBarProps) => ASWidgetsList.getWidgetString("ASAppBar", attributes)
     };
   }
 

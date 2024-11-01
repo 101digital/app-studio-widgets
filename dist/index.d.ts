@@ -43,3 +43,4 @@ export { default as ASIconButton, ASIconButtonProps, } from "./src/components/ic
 export { default as ASBottomSheet, BottomSheetModalProps } from "./src/components/bottomSheet";
 export { default as ASTabs, TabsProps } from './src/components/tab';
 export { default as ASTabView, ASTabViewProps } from './src/components/tabView';
+export { default as ASAppBar, ASAppBarProps } from './src/components/appbar';
