@@ -67,7 +67,7 @@ const Keyboard = (props) => {
         onKeyboardPress === null || onKeyboardPress === void 0 ? void 0 : onKeyboardPress(item);
     };
     const _renderItem = ({ item }) => {
-        const { backgroundColor, borderColor, borderRadius } = react_native_1.StyleSheet.flatten(keyboardStyle);
+        const { backgroundColor, borderColor, borderRadius } = react_native_1.StyleSheet.flatten(keyboardStyle) || {};
         return (react_1.default.createElement(button_1.default, { style: Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({}, styles.keyboardButton), react_native_1.StyleSheet.flatten(keyboardStyle)), { borderColor: borderColor || keyboardButtonBorderColor || colors.onSecondary }), ((item === null || item === void 0 ? void 0 : item.value) === "continue" &&
                 react_native_1.StyleSheet.flatten(submitButtonStyle))), { backgroundColor: backgroundColor || keyboardButtonBackgroundColor }), ((item === null || item === void 0 ? void 0 : item.value) === "delete" &&
                 react_native_1.StyleSheet.flatten(deleteButtonStyle))), { borderRadius: borderRadius || keyboardButtonRadius }), onPress: _onKeyboardPress(item) },

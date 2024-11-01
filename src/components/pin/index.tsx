@@ -117,7 +117,7 @@ const Keyboard: React.FC<KeyboardProps> = (props: KeyboardProps) => {
   };
 
   const _renderItem = ({ item }: { item: KeyboardItemProps }) => {
-    const {backgroundColor,borderColor,borderRadius} = StyleSheet.flatten(keyboardStyle)
+    const {backgroundColor,borderColor,borderRadius} = StyleSheet.flatten(keyboardStyle) || {}
     return (
         <ASButton
             style={{

@@ -99,6 +99,9 @@ const ASText = (props) => {
         }
         return { color };
     };
+    if (labelValue == null || labelValue === "undefined" || labelValue === "null" || labelValue === undefined) {
+        return null;
+    }
     return (react_1.default.createElement(react_native_1.Text, Object.assign({}, restProps, { style: [styles.textStyle, react_native_1.StyleSheet.flatten(style), getTextColor()] }), labelValue));
 };
 const styles = react_native_1.StyleSheet.create({

@@ -72,6 +72,10 @@ const ASText: React.FC<ASTextProps> = (props: ASTextProps) => {
         return {color}
     }
 
+    if (labelValue == null || labelValue === "undefined" || labelValue === "null" || labelValue === undefined) {
+        return null;
+    }
+
     return (
         <Text {...restProps} style={[styles.textStyle, StyleSheet.flatten(style), getTextColor()]}>
             {labelValue}

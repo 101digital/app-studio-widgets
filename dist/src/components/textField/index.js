@@ -131,7 +131,7 @@ const ASTextField = (props) => {
                         top: labelTopPosition,
                     },
                     labelTextStyle,
-                ] }, label !== 'null' ? label : null),
+                ] }, label),
             react_1.default.createElement(react_native_1.View, { style: [styles.contentContainerStyle, !suffixIcon && { marginRight: 16 }] },
                 prefixIcon && react_1.default.createElement(react_native_1.View, { style: styles.prefixIcon }, typeof prefixIcon === 'string' ?
                     react_1.default.createElement(image_1.default, { style: { width: 20, height: 20 }, source: prefixIcon })

@@ -181,7 +181,7 @@ const ASTextField = (props: ASTextFieldProps) => {
                         labelTextStyle,
                     ]}
                 >
-                    {label !== 'null' ? label : null}
+                    {label}
                 </ASText>
                 <View style={[styles.contentContainerStyle, !suffixIcon && {marginRight: 16}]}>
                     {prefixIcon && <View style={styles.prefixIcon}>{typeof prefixIcon === 'string' ?
