@@ -42,7 +42,7 @@ export {default as ASLoadingIndicator, ASLoadingIndicatorProps} from './src/comp
 export { default as ASSwipeButton, ASSwipeButtonProps } from './src/components/swipeButton';
 export { default as ASTabs, TabsProps } from './src/components/tab';
 export { default as ASTabView, ASTabViewProps } from './src/components/tabView';
-
+export { default as ASAppBar, ASAppBarProps } from './src/components/appbar';
 
 // E6 custom widget
 export {default as E6TransactionHistoryListView, E6TransactionHistoryListViewProps} from './src/customComponent/e6TransactionHistoryListView';

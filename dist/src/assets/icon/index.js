@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.IncrementIcon = exports.DecrementIcon = exports.ShowPasswordIcon = exports.ForwardIcon = exports.DeleteIcon = exports.TickIcon = void 0;
+exports.ArrowBackIcon = exports.ShowPasswordIcon = exports.ForwardIcon = exports.DeleteIcon = exports.TickIcon = void 0;
 var tick_icon_1 = require("./tick.icon");
 Object.defineProperty(exports, "TickIcon", { enumerable: true, get: function () { return tick_icon_1.TickIcon; } });
 var delete_icon_1 = require("./delete.icon");
@@ -13,3 +14,5 @@ var decrement_icon_1 = require("./decrement.icon");
 Object.defineProperty(exports, "DecrementIcon", { enumerable: true, get: function () { return decrement_icon_1.DecrementIcon; } });
 var increment_icon_1 = require("./increment.icon");
 Object.defineProperty(exports, "IncrementIcon", { enumerable: true, get: function () { return increment_icon_1.IncrementIcon; } });
+var arrow_back_icon_1 = require("./arrow-back.icon");
+Object.defineProperty(exports, "ArrowBackIcon", { enumerable: true, get: function () { return arrow_back_icon_1.ArrowBackIcon; } });
