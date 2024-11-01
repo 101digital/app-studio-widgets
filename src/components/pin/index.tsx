@@ -298,6 +298,10 @@ const ASPin: React.FC<ASPinProps> = (props: ASPinProps) => {
     onChange?.(pin.join(""));
   }, [pin]);
 
+  useEffect(() => {
+    setValue?.(pin.join(""));
+  }, [pin])
+
   const onKeyboardItemPress = (item: KeyboardItemProps) => {
     if (item?.value === "delete") {
       setPin((prevState: string[]) => {

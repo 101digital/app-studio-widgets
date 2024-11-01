@@ -1,44 +1,48 @@
-import React, { useContext } from "react";
-import { StyleSheet, TextStyle, View } from "react-native";
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  StyleProp,
+  TextStyle,
+  ViewStyle,
+} from "react-native";
 import { useField } from "formik";
-import ASRow from "../row";
-import ASButton from "../button";
-import ASText from "../text";
-import { ThemeContext } from "../../context/theme-context";
+import { DecrementIcon, IncrementIcon } from "../../assets/icon";
 
+// Define the type for component props
 export type ASCounterProps = {
+  initialValue?: number;
   minValue?: number;
   maxValue?: number;
   onValueChange?: (value: number) => void;
-  name: string;
   incrementIconColor?: string;
-  incrementIconSize?: number;
   decrementIconColor?: string;
+  incrementIconSize?: number;
   decrementIconSize?: number;
   labelTypography?: TextStyle;
-};
+  style?: ViewStyle;
+  name: string;
+}
 
-const ASCounter: React.FC<ASCounterProps> = (props: ASCounterProps) => {
-  const { colors } = useContext(ThemeContext);
-  const {
-    minValue = 0,
-    maxValue,
-    onValueChange,
-    name,
-    labelTypography,
-    decrementIconSize,
-    decrementIconColor,
-    incrementIconSize,
-    incrementIconColor,
-  } = props;
-
-  console.log("decrementIconSize --> ", decrementIconSize);
-  console.log("decrementIconColor --> ", decrementIconColor);
-  console.log("incrementIconSize --> ", incrementIconSize);
-  console.log("incrementIconColor --> ", incrementIconColor);
+// ASCounter component with typed props
+const ASCounter: React.FC<ASCounterProps> = ({
+  initialValue = 0,
+  onValueChange,
+  incrementIconColor = "#007AFF",
+  decrementIconColor = "#007AFF",
+  incrementIconSize = 24,
+  decrementIconSize = 24,
+  minValue = 0,
+  maxValue,
+  style,
+  name,
+  labelTypography
+}) => {
   const [field, meta, helpers] = useField(name);
   const { setValue } = helpers || {};
-  const count = parseInt(field?.value || 1);
+  const count = parseInt(field?.value || initialValue);
 
   const handleIncrement = () => {
     const newValue = count + 1;
@@ -57,60 +61,29 @@ const ASCounter: React.FC<ASCounterProps> = (props: ASCounterProps) => {
   };
 
   return (
-    <View style={styles.wrapper}>
-      <ASRow style={[styles.container, { borderColor: colors.onSurface }]}>
-        <ASButton
-          simpleTextButton
-          onPress={handleDecrement}
-          style={styles.button}
-          textStyle={{
-            ...styles.buttonText,
-            color: decrementIconColor,
-            fontSize: decrementIconSize,
-          }}
-          hitSlop={{ top: 5, bottom: 5, left: 5, right: 5 }}
-          label={"−"}
-        />
-        <ASText style={labelTypography}>{count}</ASText>
-        <ASButton
-          simpleTextButton
-          onPress={handleIncrement}
-          style={styles.button}
-          textStyle={{
-            ...styles.buttonText,
-            color: incrementIconColor,
-            fontSize: incrementIconSize,
-          }}
-          hitSlop={{ top: 5, bottom: 5, left: 5, right: 5 }}
-          label={"＋"}
-        />
-      </ASRow>
+    <View style={[styles.container, style]}>
+      <TouchableOpacity onPress={handleDecrement}>
+        <DecrementIcon color={decrementIconColor} size={decrementIconSize}/>
+      </TouchableOpacity>
+      <Text style={[styles.countText, labelTypography]}>{count}</Text>
+      <TouchableOpacity onPress={handleIncrement}>
+        <IncrementIcon color={incrementIconColor} size={incrementIconSize}/>
+      </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  wrapper: {
-    flexDirection: "column",
-    alignItems: "flex-start",
-  },
   container: {
+    flexDirection: "row",
     alignItems: "center",
-    borderWidth: 1,
-    borderRadius: 20,
-    paddingHorizontal: 5,
-    paddingVertical: 4,
-    flex: 1,
-  },
-  button: {
-    marginHorizontal: 8,
-  },
-  buttonText: {
-    fontWeight: "bold",
+    justifyContent: "space-around",
+    paddingHorizontal: 10,
   },
   countText: {
-    fontSize: 20,
-    marginHorizontal: 8,
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#000",
   },
 });
 

@@ -139,6 +139,9 @@ const ASPin = (props) => {
     (0, react_1.useEffect)(() => {
         onChange === null || onChange === void 0 ? void 0 : onChange(pin.join(""));
     }, [pin]);
+    (0, react_1.useEffect)(() => {
+        setValue === null || setValue === void 0 ? void 0 : setValue(pin.join(""));
+    }, [pin]);
     const onKeyboardItemPress = (item) => {
         if ((item === null || item === void 0 ? void 0 : item.value) === "delete") {
             setPin((prevState) => {
