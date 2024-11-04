@@ -12,10 +12,12 @@ export type TabsProps = {
     activeTabTextColor?: string;
     activeTabBorderColor?: string;
     tabHeaderTypography?: TextStyle;
-    tabViewBackgroundColor?: string;
     tabHeaderStyle: ViewStyle;
     enableShadow?: boolean;
     id?: string;
+    contentOffset: number;
+    tabViewStyle: ViewStyle;
+    style: ViewStyle;
 };
 declare const ASTabs: React.FC<TabsProps>;
 export default ASTabs;

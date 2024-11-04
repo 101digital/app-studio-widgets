@@ -40,14 +40,11 @@ const theme_context_1 = require("../../context/theme-context");
 const ASTabView = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
     const { children, style, isScrollable = true, scrollViewContentContainerStyle, scrollViewProps, title, name } = props, restProps = __rest(props, ["children", "style", "isScrollable", "scrollViewContentContainerStyle", "scrollViewProps", "title", "name"]);
-    return (react_1.default.createElement(react_native_1.View, Object.assign({}, restProps, { style: [styles.container, { backgroundColor: colors.background }, style] }), isScrollable ? (react_1.default.createElement(react_native_1.ScrollView, Object.assign({ showsVerticalScrollIndicator: false, showsHorizontalScrollIndicator: false }, scrollViewProps, { contentContainerStyle: [styles.scrollViewStyle, scrollViewContentContainerStyle] }), children)) : (children)));
+    return (react_1.default.createElement(react_native_1.View, Object.assign({}, restProps, { style: [styles.container, style] }), isScrollable ? (react_1.default.createElement(react_native_1.ScrollView, Object.assign({ style: { flex: 1 }, showsVerticalScrollIndicator: false, showsHorizontalScrollIndicator: false }, scrollViewProps, { contentContainerStyle: [scrollViewContentContainerStyle, { paddingBottom: 50 }], nestedScrollEnabled: true }), children)) : (children)));
 };
 const styles = react_native_1.StyleSheet.create({
     container: {
         flex: 1,
-    },
-    scrollViewStyle: {
-        flexGrow: 1,
     },
 });
 exports.default = ASTabView;
