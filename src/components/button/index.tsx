@@ -129,9 +129,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     paddingHorizontal: 20,
-    borderRadius: 8,
-    position: "relative",
-    width: "100%",
+    borderRadius: 8
   },
   simpleTextButton: {
     justifyContent: "center",
