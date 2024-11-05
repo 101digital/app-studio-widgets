@@ -21,6 +21,7 @@ export type TabsProps = {
   contentOffset: number;
   tabViewStyle: ViewStyle;
   style: ViewStyle;
+  tabTitleOffset?: number;
 };
 
 const ASTabs: React.FC<TabsProps> = ({
@@ -35,7 +36,8 @@ const ASTabs: React.FC<TabsProps> = ({
   contentOffset = 1,
   tabViewStyle,
   style,
-  id
+  id,
+  tabTitleOffset = 20
 }) => {
   const [activeTab, setActiveTab] = useState<string>(activeTabName || children[0]?.props?.name);
 
@@ -64,7 +66,7 @@ const ASTabs: React.FC<TabsProps> = ({
           <TouchableOpacity
             key={child.props.name}
             style={[
-              styles.tab,
+              styles.tab, {paddingHorizontal: tabTitleOffset}
             ]}
             onPress={() => handleTabPress(child.props.name)}
           >
@@ -115,7 +117,7 @@ const styles = StyleSheet.create({
     alignContent: "center",
   },
   tab: {
-    paddingHorizontal: 20,
+    // paddingHorizontal: 20,
     alignItems: 'center',
     textAlign: "center",
     borderBottomWidth: 2,

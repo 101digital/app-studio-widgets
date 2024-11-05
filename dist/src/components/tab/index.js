@@ -26,7 +26,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importStar(require("react"));
 const react_native_1 = require("react-native");
 const horizontalLine_icon_1 = require("../../assets/icon/horizontalLine.icon");
-const ASTabs = ({ children, activeTabName, onTabPress, activeTabTextColor, activeTabBorderColor = "white", tabHeaderTypography, tabHeaderStyle, enableShadow = true, contentOffset = 1, tabViewStyle, style, id }) => {
+const ASTabs = ({ children, activeTabName, onTabPress, activeTabTextColor, activeTabBorderColor = "white", tabHeaderTypography, tabHeaderStyle, enableShadow = true, contentOffset = 1, tabViewStyle, style, id, tabTitleOffset = 20 }) => {
     var _a, _b;
     const [activeTab, setActiveTab] = (0, react_1.useState)(activeTabName || ((_b = (_a = children[0]) === null || _a === void 0 ? void 0 : _a.props) === null || _b === void 0 ? void 0 : _b.name));
     const handleTabPress = (name) => {
@@ -42,7 +42,7 @@ const ASTabs = ({ children, activeTabName, onTabPress, activeTabTextColor, activ
     const height = (flattenedTabHeaderStyle === null || flattenedTabHeaderStyle === void 0 ? void 0 : flattenedTabHeaderStyle.height) || 50;
     return (react_1.default.createElement(react_native_1.View, { style: [styles.container, style, { backgroundColor: "rgba(52, 52, 52, alpha)" }], id: id },
         react_1.default.createElement(react_native_1.ScrollView, { horizontal: true, showsHorizontalScrollIndicator: false, contentContainerStyle: styles.scrollContainer, style: [styles.tabHeaderScroll, enableShadow && styles.shadow, { backgroundColor: hedaerBackgroundColor, borderRadius: borderRadius, width: width, maxHeight: maxHeight, height: height }] }, children.map((child) => (react_1.default.createElement(react_native_1.TouchableOpacity, { key: child.props.name, style: [
-                styles.tab,
+                styles.tab, { paddingHorizontal: tabTitleOffset }
             ], onPress: () => handleTabPress(child.props.name) },
             react_1.default.createElement(react_native_1.Text, { style: [
                     styles.tabText,
@@ -73,7 +73,7 @@ const styles = react_native_1.StyleSheet.create({
         alignContent: "center",
     },
     tab: {
-        paddingHorizontal: 20,
+        // paddingHorizontal: 20,
         alignItems: 'center',
         textAlign: "center",
         borderBottomWidth: 2,

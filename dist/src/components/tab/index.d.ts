@@ -18,6 +18,7 @@ export type TabsProps = {
     contentOffset: number;
     tabViewStyle: ViewStyle;
     style: ViewStyle;
+    tabTitleOffset?: number;
 };
 declare const ASTabs: React.FC<TabsProps>;
 export default ASTabs;
