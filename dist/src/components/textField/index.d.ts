@@ -3,7 +3,7 @@ import { StyleProp, TextInputProps, TextStyle, ViewStyle } from "react-native";
 import { TextInputMaskProps, TextInputMaskTypeProp } from "react-native-masked-text";
 export type ASTextFieldProps = Omit<TextInputMaskProps, "type"> & TextInputProps & {
     name: string;
-    prefixIcon?: ReactNode;
+    prefixIcon?: ReactNode | string;
     suffixIcon?: ReactNode;
     formatError?: (error: string) => string;
     label?: string;

@@ -21,7 +21,7 @@ import ASImage from "../image";
 export type ASTextFieldProps = Omit<TextInputMaskProps, "type"> &
     TextInputProps & {
     name: string;
-    prefixIcon?: ReactNode;
+    prefixIcon?: ReactNode | string;
     suffixIcon?: ReactNode;
     formatError?: (error: string) => string;
     label?: string;

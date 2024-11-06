@@ -46,6 +46,7 @@ import {
   ASAppBarProps
 } from "../../index";
 import ASAppBar from "../components/appbar";
+import ASFloatingActionButton, {ASFloatingActionButtonProps} from "../components/floatingActionButton";
 
 export type WidgetsName = keyof WidgetsList;
 
@@ -94,6 +95,7 @@ export type WidgetsList = {
   ASTabs: (attributes: TabsProps) => string;
   ASTabView: (attributes: ASTabViewProps) => string;
   ASAppBar: (attributes: ASAppBarProps) => string;
+  ASFloatingActionButton: (attributes: ASFloatingActionButtonProps) => string;
 };
 
 export class ASWidgetsList {
@@ -373,7 +375,8 @@ export class ASWidgetsList {
         ASWidgetsList.getWidgetString("ASIconButton", attributes),
       ASTabs: (attributes: TabsProps) => ASWidgetsList.getWidgetString("ASTabs", attributes),
       ASTabView: (attributes: ASTabViewProps) => ASWidgetsList.getWidgetString("ASTabView", attributes),
-      ASAppBar: (attributes: ASAppBarProps) => ASWidgetsList.getWidgetString("ASAppBar", attributes)
+      ASAppBar: (attributes: ASAppBarProps) => ASWidgetsList.getWidgetString("ASAppBar", attributes),
+      ASFloatingActionButton: (attributes: ASFloatingActionButtonProps) => ASWidgetsList.getWidgetString("ASFloatingActionButton", attributes)
     };
   }
 

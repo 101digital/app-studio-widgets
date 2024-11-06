@@ -34,5 +34,6 @@ export {default as ASPin, ASPinProps} from './components/pin';
 export { default as ASSwipeButton, ASSwipeButtonProps } from './components/swipeButton';
 export { default as ASTabs, TabsProps } from "./components/tab"
 export { default as ASTabView, ASTabViewProps } from "./components/tabView"
+export { default as ASFloatingActionButton, ASFloatingActionButtonProps } from "./components/floatingActionButton"
 
 

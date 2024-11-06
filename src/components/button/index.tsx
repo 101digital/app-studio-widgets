@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import {
+  GestureResponderEvent,
   StyleSheet,
   TextStyle,
   TouchableOpacity,
@@ -13,7 +14,7 @@ import LoadingIndicator from "../loadingIndicator";
 
 export type ASButtonProps = TouchableOpacityProps & {
   label?: string;
-  onPress: () => void;
+  onPress: (event: GestureResponderEvent) => void | undefined
   style?: ViewStyle | ViewStyle[];
   textStyle?: TextStyle | any;
   disabled?: boolean;

@@ -188,7 +188,8 @@ class ASWidgetsList {
             ASIconButton: (attributes) => ASWidgetsList.getWidgetString("ASIconButton", attributes),
             ASTabs: (attributes) => ASWidgetsList.getWidgetString("ASTabs", attributes),
             ASTabView: (attributes) => ASWidgetsList.getWidgetString("ASTabView", attributes),
-            ASAppBar: (attributes) => ASWidgetsList.getWidgetString("ASAppBar", attributes)
+            ASAppBar: (attributes) => ASWidgetsList.getWidgetString("ASAppBar", attributes),
+            ASFloatingActionButton: (attributes) => ASWidgetsList.getWidgetString("ASFloatingActionButton", attributes)
         };
     }
     getWidgetByName(name) {
