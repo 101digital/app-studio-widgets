@@ -59,7 +59,7 @@ const ASFloatingActionButton: React.FC<ASFloatingActionButtonProps> = (props: AS
         <ASButton
             style={[styles.container, {...floatingButtonPosition}, {
                 backgroundColor: colors?.primary || '#fff',
-                ...(icon && label && {flexDirection: 'row', aspectRatio: undefined})
+                ...(label && {flexDirection: 'row', aspectRatio: undefined})
             }, style]}
             onPress={onPress}>
             {icon && typeof icon === 'string' ?

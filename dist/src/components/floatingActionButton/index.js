@@ -69,7 +69,7 @@ const ASFloatingActionButton = (props) => {
     };
     if (!floatingButtonPosition || (!icon && !label))
         return null;
-    return (react_1.default.createElement(button_1.default, { style: [styles.container, Object.assign({}, floatingButtonPosition), Object.assign({ backgroundColor: (colors === null || colors === void 0 ? void 0 : colors.primary) || '#fff' }, (icon && label && { flexDirection: 'row', aspectRatio: undefined })), style], onPress: onPress },
+    return (react_1.default.createElement(button_1.default, { style: [styles.container, Object.assign({}, floatingButtonPosition), Object.assign({ backgroundColor: (colors === null || colors === void 0 ? void 0 : colors.primary) || '#fff' }, (label && { flexDirection: 'row', aspectRatio: undefined })), style], onPress: onPress },
         icon && typeof icon === 'string' ?
             react_1.default.createElement(image_1.default, { style: { width: 18, height: 18, marginRight: !!label ? 8 : 0 }, source: icon })
             : icon,
