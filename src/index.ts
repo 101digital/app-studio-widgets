@@ -75,4 +75,5 @@ export {
 export { default as ASBottomSheet, BottomSheetModalProps } from "./components/bottomSheet";
 export { default as ASTabs, TabsProps } from "./components/tab"
 export { default as ASTabView, ASTabViewProps } from "./components/tabView"
+export { default as ASAppBar, ASAppBarProps } from './components/appbar';
 export { default as ASFloatingActionButton, ASFloatingActionButtonProps } from "./components/floatingActionButton"

@@ -43,6 +43,7 @@ export { default as ASSwipeButton, ASSwipeButtonProps } from './src/components/s
 export { default as ASTabs, TabsProps } from './src/components/tab';
 export { default as ASTabView, ASTabViewProps } from './src/components/tabView';
 export { default as ASAppBar, ASAppBarProps } from './src/components/appbar';
+export { default as ASFloatingActionButton, ASFloatingActionButtonProps } from "./src/components/floatingActionButton"
 
 // E6 custom widget
 export {default as E6TransactionHistoryListView, E6TransactionHistoryListViewProps} from './src/customComponent/e6TransactionHistoryListView';
