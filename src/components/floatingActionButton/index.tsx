@@ -1,5 +1,5 @@
 import React, {memo, ReactNode, useContext, useEffect, useState} from 'react';
-import {GestureResponderEvent, StyleProp, StyleSheet, TextStyle, ViewStyle,} from 'react-native';
+import {StyleProp, StyleSheet, TextStyle, ViewStyle,GestureResponderEvent} from 'react-native';
 import ASText from "../text";
 import {ThemeContext} from "../../context/theme-context";
 import ASImage from "../image";
@@ -18,7 +18,7 @@ const VERTICAL_POSITION = 40
 const HORIZONTAL_POSITION = 20
 
 const ASFloatingActionButton: React.FC<ASFloatingActionButtonProps> = (props: ASFloatingActionButtonProps) => {
-    const {colors} = useContext(ThemeContext);
+    const {colors,} = useContext(ThemeContext);
     const {style, label, textStyle, icon, onPress, position = 'bottom-right'} = props
     const [floatingButtonPosition, setFloatingButtonPosition] = useState<any>(null);
 
@@ -53,15 +53,18 @@ const ASFloatingActionButton: React.FC<ASFloatingActionButtonProps> = (props: AS
         setFloatingButtonPosition({...vPosition, ...hPosition})
     }
 
-    if (!floatingButtonPosition) return null
+    if (!floatingButtonPosition || (!icon && !label)) return null
 
     return (
         <ASButton
-            style={[styles.container, {...floatingButtonPosition}, {backgroundColor: colors?.primary || '#fff'}, style]}
+            style={[styles.container, {...floatingButtonPosition}, {
+                backgroundColor: colors?.primary || '#fff',
+                ...(icon && label && {flexDirection: 'row', aspectRatio: undefined})
+            }, style]}
             onPress={onPress}>
             {icon && typeof icon === 'string' ?
                 <ASImage
-                    style={{width: 20, height: 20, marginBottom: !!label ? 5 : 0}}
+                    style={{width: 18, height: 18, marginRight: !!label ? 8 : 0}}
                     source={icon}
                 />
                 : icon}
@@ -72,16 +75,16 @@ const ASFloatingActionButton: React.FC<ASFloatingActionButtonProps> = (props: AS
 
 const styles = StyleSheet.create({
     container: {
-        borderRadius: 999,
+        borderRadius: 16,
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 20,
+        padding: 16,
         aspectRatio: 1,
         alignSelf: 'flex-start',
         position: 'absolute',
     },
     textStyle: {
-        fontWeight: 'bold'
+        fontWeight: '600'
     }
 })
 

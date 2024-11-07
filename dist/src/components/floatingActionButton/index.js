@@ -35,7 +35,7 @@ const button_1 = __importDefault(require("../button"));
 const VERTICAL_POSITION = 40;
 const HORIZONTAL_POSITION = 20;
 const ASFloatingActionButton = (props) => {
-    const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
+    const { colors, } = (0, react_1.useContext)(theme_context_1.ThemeContext);
     const { style, label, textStyle, icon, onPress, position = 'bottom-right' } = props;
     const [floatingButtonPosition, setFloatingButtonPosition] = (0, react_1.useState)(null);
     (0, react_1.useEffect)(() => {
@@ -67,26 +67,26 @@ const ASFloatingActionButton = (props) => {
         }
         setFloatingButtonPosition(Object.assign(Object.assign({}, vPosition), hPosition));
     };
-    if (!floatingButtonPosition)
+    if (!floatingButtonPosition || (!icon && !label))
         return null;
-    return (react_1.default.createElement(button_1.default, { style: [styles.container, Object.assign({}, floatingButtonPosition), { backgroundColor: (colors === null || colors === void 0 ? void 0 : colors.primary) || '#fff' }, style], onPress: onPress },
+    return (react_1.default.createElement(button_1.default, { style: [styles.container, Object.assign({}, floatingButtonPosition), Object.assign({ backgroundColor: (colors === null || colors === void 0 ? void 0 : colors.primary) || '#fff' }, (icon && label && { flexDirection: 'row', aspectRatio: undefined })), style], onPress: onPress },
         icon && typeof icon === 'string' ?
-            react_1.default.createElement(image_1.default, { style: { width: 20, height: 20, marginBottom: !!label ? 5 : 0 }, source: icon })
+            react_1.default.createElement(image_1.default, { style: { width: 18, height: 18, marginRight: !!label ? 8 : 0 }, source: icon })
             : icon,
         !!label && react_1.default.createElement(text_1.default, { style: [styles.textStyle, textStyle] }, label)));
 };
 const styles = react_native_1.StyleSheet.create({
     container: {
-        borderRadius: 999,
+        borderRadius: 16,
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 20,
+        padding: 16,
         aspectRatio: 1,
         alignSelf: 'flex-start',
         position: 'absolute',
     },
     textStyle: {
-        fontWeight: 'bold'
+        fontWeight: '600'
     }
 });
 exports.default = (0, react_1.memo)(ASFloatingActionButton);
