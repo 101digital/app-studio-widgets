@@ -40,8 +40,9 @@ const theme_context_1 = require("../../context/theme-context");
 const ASText = (props) => {
     var _a, _b, _c, _d, _e, _f;
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const _g = props || {}, { children, style, labelType, label } = _g, restProps = __rest(_g, ["children", "style", "labelType", "label"]);
+    const _g = props || {}, { children, labelType, label } = _g, restProps = __rest(_g, ["children", "labelType", "label"]);
     let labelValue = children || label;
+    const style = react_native_1.StyleSheet.flatten(props === null || props === void 0 ? void 0 : props.style);
     //TODO: Remove this temeraly code and defnine this in DB
     if (labelType === 'number' && (typeof labelValue === "string" || typeof labelValue === "number")) {
         //Format number 1234 -> 1,234.00
@@ -93,16 +94,15 @@ const ASText = (props) => {
                 }
             }
         }
-        const textStyleObj = Array.isArray(style) ? Object.assign({}, ...style) : style;
-        if (textStyleObj === null || textStyleObj === void 0 ? void 0 : textStyleObj.color) {
-            color = textStyleObj === null || textStyleObj === void 0 ? void 0 : textStyleObj.color;
+        if (style === null || style === void 0 ? void 0 : style.color) {
+            color = style === null || style === void 0 ? void 0 : style.color;
         }
         return { color };
     };
     if (labelValue == null || labelValue === "undefined" || labelValue === "null" || labelValue === undefined) {
         return null;
     }
-    return (react_1.default.createElement(react_native_1.Text, Object.assign({}, restProps, { style: [styles.textStyle, react_native_1.StyleSheet.flatten(style), getTextColor()] }), labelValue));
+    return (react_1.default.createElement(react_native_1.Text, Object.assign({}, restProps, { style: [styles.textStyle, style, getTextColor()] }), labelValue));
 };
 const styles = react_native_1.StyleSheet.create({
     textStyle: {
