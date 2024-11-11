@@ -13,7 +13,7 @@ export type ASTextProps = TextProps & {
 const ASText: React.FC<ASTextProps> = (props: ASTextProps) => {
     const {colors} = useContext(ThemeContext);
     const {children, labelType, label, ...restProps} = props || {}
-    let labelValue = children || label
+    let labelValue = labelType === 'number' ? (children ?? label) : (children || label);
     const style = StyleSheet.flatten(props?.style)
 
     //TODO: Remove this temeraly code and defnine this in DB
