@@ -46,10 +46,12 @@ const ASText = (props) => {
     //TODO: Remove this temeraly code and defnine this in DB
     if (labelType === 'number' && (typeof labelValue === "string" || typeof labelValue === "number")) {
         //Format number 1234 -> 1,234.00
+        console.log('labelValue ---------  ', labelValue);
         labelValue = parseFloat((_a = labelValue === null || labelValue === void 0 ? void 0 : labelValue.toString()) === null || _a === void 0 ? void 0 : _a.replace(',', '')).toLocaleString('en-US', {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2
         });
+        console.log('labelValue  ++++++++++ ', labelValue);
     }
     else if (labelType === 'datetime' && typeof labelValue === "number") {
         // Format date from timestamp
