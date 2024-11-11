@@ -13,20 +13,16 @@ export type ASTextProps = TextProps & {
 const ASText: React.FC<ASTextProps> = (props: ASTextProps) => {
     const {colors} = useContext(ThemeContext);
     const {children, labelType, label, ...restProps} = props || {}
-    let labelValue = children || label
+    let labelValue = labelType === 'number' ? (children ?? label) : (children || label);
     const style = StyleSheet.flatten(props?.style)
 
-    console.log('typeof ---------  ',typeof labelValue);
     //TODO: Remove this temeraly code and defnine this in DB
     if (labelType === 'number' && (typeof labelValue === "string" || typeof labelValue === "number")) {
         //Format number 1234 -> 1,234.00
-        console.log('labelValue ---------  ',labelValue);
         labelValue = parseFloat(labelValue?.toString()?.replace(',', '')).toLocaleString('en-US', {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2
         })
-        console.log('labelValue  ++++++++++ ',labelValue);
-        
     } else if (labelType === 'datetime' && typeof labelValue === "number") {
         // Format date from timestamp
         const date = new Date(labelValue);

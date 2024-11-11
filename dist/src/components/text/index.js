@@ -41,18 +41,15 @@ const ASText = (props) => {
     var _a, _b, _c, _d, _e, _f;
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
     const _g = props || {}, { children, labelType, label } = _g, restProps = __rest(_g, ["children", "labelType", "label"]);
-    let labelValue = children || label;
+    let labelValue = labelType === 'number' ? (children !== null && children !== void 0 ? children : label) : (children || label);
     const style = react_native_1.StyleSheet.flatten(props === null || props === void 0 ? void 0 : props.style);
-    console.log('typeof ---------  ', typeof labelValue);
     //TODO: Remove this temeraly code and defnine this in DB
     if (labelType === 'number' && (typeof labelValue === "string" || typeof labelValue === "number")) {
         //Format number 1234 -> 1,234.00
-        console.log('labelValue ---------  ', labelValue);
         labelValue = parseFloat((_a = labelValue === null || labelValue === void 0 ? void 0 : labelValue.toString()) === null || _a === void 0 ? void 0 : _a.replace(',', '')).toLocaleString('en-US', {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2
         });
-        console.log('labelValue  ++++++++++ ', labelValue);
     }
     else if (labelType === 'datetime' && typeof labelValue === "number") {
         // Format date from timestamp
