@@ -43,6 +43,7 @@ const ASText = (props) => {
     const _g = props || {}, { children, labelType, label } = _g, restProps = __rest(_g, ["children", "labelType", "label"]);
     let labelValue = children || label;
     const style = react_native_1.StyleSheet.flatten(props === null || props === void 0 ? void 0 : props.style);
+    console.log('typeof ---------  ', typeof labelValue);
     //TODO: Remove this temeraly code and defnine this in DB
     if (labelType === 'number' && (typeof labelValue === "string" || typeof labelValue === "number")) {
         //Format number 1234 -> 1,234.00

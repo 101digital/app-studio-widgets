@@ -16,6 +16,7 @@ const ASText: React.FC<ASTextProps> = (props: ASTextProps) => {
     let labelValue = children || label
     const style = StyleSheet.flatten(props?.style)
 
+    console.log('typeof ---------  ',typeof labelValue);
     //TODO: Remove this temeraly code and defnine this in DB
     if (labelType === 'number' && (typeof labelValue === "string" || typeof labelValue === "number")) {
         //Format number 1234 -> 1,234.00
