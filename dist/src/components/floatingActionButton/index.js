@@ -36,15 +36,15 @@ const VERTICAL_POSITION = 40;
 const HORIZONTAL_POSITION = 20;
 const ASFloatingActionButton = (props) => {
     const { colors, } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { style, label, textStyle, icon, onPress, position = 'bottom-right' } = props;
+    const { style, label, textStyle, icon, onPress, floatingPosition = 'bottom-right' } = props;
     const [floatingButtonPosition, setFloatingButtonPosition] = (0, react_1.useState)(null);
     (0, react_1.useEffect)(() => {
         calculatePosition();
         return () => {
         };
-    }, [position]);
+    }, [floatingPosition]);
     const calculatePosition = () => {
-        const [verticalPosition, horizontalPosition] = position === null || position === void 0 ? void 0 : position.split('-');
+        const [verticalPosition, horizontalPosition] = floatingPosition === null || floatingPosition === void 0 ? void 0 : floatingPosition.split('-');
         let vPosition = {};
         let hPosition = {};
         switch (verticalPosition) {

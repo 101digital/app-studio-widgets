@@ -11,7 +11,7 @@ export type ASFloatingActionButtonProps = {
     style?: StyleProp<ViewStyle>;
     icon?: ReactNode | string;
     onPress: (event: GestureResponderEvent) => void | undefined
-    position: 'bottom-right' | 'bottom-center' | 'bottom-left' | 'center-left' | 'center-center' | 'center-right' | 'top-right' | 'top-center' | 'top-left'
+    floatingPosition: 'bottom-right' | 'bottom-center' | 'bottom-left' | 'center-left' | 'center-center' | 'center-right' | 'top-right' | 'top-center' | 'top-left'
 }
 
 const VERTICAL_POSITION = 40
@@ -19,17 +19,17 @@ const HORIZONTAL_POSITION = 20
 
 const ASFloatingActionButton: React.FC<ASFloatingActionButtonProps> = (props: ASFloatingActionButtonProps) => {
     const {colors,} = useContext(ThemeContext);
-    const {style, label, textStyle, icon, onPress, position = 'bottom-right'} = props
+    const {style, label, textStyle, icon, onPress, floatingPosition = 'bottom-right'} = props
     const [floatingButtonPosition, setFloatingButtonPosition] = useState<any>(null);
 
     useEffect(() => {
         calculatePosition()
         return () => {
         };
-    }, [position]);
+    }, [floatingPosition]);
 
     const calculatePosition = () => {
-        const [verticalPosition, horizontalPosition] = position?.split('-')
+        const [verticalPosition, horizontalPosition] = floatingPosition?.split('-')
         let vPosition = {}
         let hPosition = {}
         switch (verticalPosition) {
