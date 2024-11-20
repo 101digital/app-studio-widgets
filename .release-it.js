@@ -8,4 +8,7 @@ module.exports = {
     }`,
     requireUpstream: false,
   },
+  npm: {
+    publish: false,
+  },
 };
