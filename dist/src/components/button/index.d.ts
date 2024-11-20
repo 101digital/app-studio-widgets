@@ -1,8 +1,8 @@
 import React from "react";
-import { TextStyle, TouchableOpacityProps, ViewStyle } from "react-native";
+import { GestureResponderEvent, TextStyle, TouchableOpacityProps, ViewStyle } from "react-native";
 export type ASButtonProps = TouchableOpacityProps & {
     label?: string;
-    onPress: () => void;
+    onPress: (event: GestureResponderEvent) => void | undefined;
     style?: ViewStyle | ViewStyle[];
     textStyle?: TextStyle | any;
     disabled?: boolean;

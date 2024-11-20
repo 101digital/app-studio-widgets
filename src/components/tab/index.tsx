@@ -15,10 +15,13 @@ export type TabsProps = {
   activeTabTextColor?: string;
   activeTabBorderColor?: string;
   tabHeaderTypography? : TextStyle;
-  tabViewBackgroundColor?: string;
   tabHeaderStyle: ViewStyle;
   enableShadow?: boolean;
   id?: string;
+  contentOffset: number;
+  tabViewStyle: ViewStyle;
+  style: ViewStyle;
+  tabTitleOffset?: number;
 };
 
 const ASTabs: React.FC<TabsProps> = ({
@@ -28,10 +31,13 @@ const ASTabs: React.FC<TabsProps> = ({
   activeTabTextColor,
   activeTabBorderColor = "white",
   tabHeaderTypography,
-  tabViewBackgroundColor,
   tabHeaderStyle,
   enableShadow = true,
-  id
+  contentOffset = 1,
+  tabViewStyle,
+  style,
+  id,
+  tabTitleOffset = 20
 }) => {
   const [activeTab, setActiveTab] = useState<string>(activeTabName || children[0]?.props?.name);
 
@@ -41,25 +47,26 @@ const ASTabs: React.FC<TabsProps> = ({
   };
 
   const flattenedTabHeaderStyle = StyleSheet.flatten(tabHeaderStyle);
-  const backgroundColor = flattenedTabHeaderStyle?.backgroundColor || "white";
-  const maxHeight = flattenedTabHeaderStyle?.maxHeight || 40;
+  const hedaerBackgroundColor = flattenedTabHeaderStyle?.backgroundColor || "white";
   const borderRadius = flattenedTabHeaderStyle?.borderRadius || 8;
   const width = flattenedTabHeaderStyle?.width || "90%";
+  const maxHeight = flattenedTabHeaderStyle?.height || 50;
+  const height = flattenedTabHeaderStyle?.height || 50;
 
   return (
-    <View style={styles.container} id={id}>
+    <View style={[styles.container, style, {backgroundColor: "rgba(52, 52, 52, alpha)"}]} id={id}>
       {/* Scrollable Tab Headers */}
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.scrollContainer}
-        style={[styles.tabHeaderScroll, enableShadow && styles.shadow, {backgroundColor: backgroundColor, maxHeight: maxHeight, borderRadius: borderRadius, width: width}]}
+        style={[styles.tabHeaderScroll, enableShadow && styles.shadow, {backgroundColor: hedaerBackgroundColor, borderRadius: borderRadius, width: width, maxHeight: maxHeight, height: height}]}
       >
         {children.map((child) => (
           <TouchableOpacity
             key={child.props.name}
             style={[
-              styles.tab,
+              styles.tab, {paddingHorizontal: tabTitleOffset}
             ]}
             onPress={() => handleTabPress(child.props.name)}
           >
@@ -72,18 +79,18 @@ const ASTabs: React.FC<TabsProps> = ({
             >
               {child.props.title}
             </Text>
-            {activeTab === child.props.name && <HorizontalLine color={activeTabBorderColor} width={child.props.title.length * 5} height={2} />}
+            {activeTab === child.props.name && <HorizontalLine color={activeTabBorderColor} width={child.props.title.length * 6 } height={2} />}
           </TouchableOpacity>
         ))}
       </ScrollView>
 
       {/* Tab Content */}
-      <View style={[styles.contentContainer, {backgroundColor: tabViewBackgroundColor}]}>
+      <View style={[styles.contentContainer, tabViewStyle, {marginTop: contentOffset}]}>
         {children.map((child) => {
           if (child.props.name === activeTab) {
             return (
-              <View key={child.props.name} style={styles.content}>
-                {child.props.children}
+              <View key={child.props.name} style={[styles.content]}>
+                {child}
               </View>
             );
           }
@@ -97,6 +104,7 @@ const ASTabs: React.FC<TabsProps> = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "transparent"
   },
   scrollContainer: {
     flexDirection: 'row',
@@ -106,11 +114,10 @@ const styles = StyleSheet.create({
   },
   tabHeaderScroll: {
     alignSelf: "center",
-    verticalAlign: "middle",
     alignContent: "center",
   },
   tab: {
-    paddingHorizontal: 20,
+    // paddingHorizontal: 20,
     alignItems: 'center',
     textAlign: "center",
     borderBottomWidth: 2,
@@ -122,10 +129,11 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     flex: 1,
+    minHeight: 50,
+    marginTop: 1
   },
   content: {
     flex: 1,
-    padding: 20,
   },
   shadow: {
     shadowColor: '#000',

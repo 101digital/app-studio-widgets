@@ -1,4 +1,5 @@
-import { ASBadgeProps, ASButtonProps, ASCalendarProps, ASCheckBoxProps, ASChoiceChipsProps, ASCircleChartProps, ASColumnProps, ASContainerProps, ASCounterProps, ASDividerProps, ASDropDownProps, ASExpandableTextProps, ASFormProps, ASImageProps, ASListTileProps, ASListViewProps, ASLoadingIndicatorProps, ASLoadingScreenProps, ASPageViewProps, ASPasswordTextFieldProps, ASPinProps, ASPopUpProps, ASProgressBarProps, ASRadioButtonProps, ASRichTextProps, ASRowProps, ASSliderProps, ASSpacerProps, ASStackProps, ASSwitchProps, ASTextFieldProps, ASTextProps, ASTimerProps, ASVerticalDividerProps, ASWrapProps, E6TransactionHistoryListViewProps, ASSwipeButtonProps, ASIconButtonProps, TabsProps, ASTabViewProps } from "../../index";
+import { ASBadgeProps, ASButtonProps, ASCalendarProps, ASCheckBoxProps, ASChoiceChipsProps, ASCircleChartProps, ASColumnProps, ASContainerProps, ASCounterProps, ASDividerProps, ASDropDownProps, ASExpandableTextProps, ASFormProps, ASImageProps, ASListTileProps, ASListViewProps, ASLoadingIndicatorProps, ASLoadingScreenProps, ASPageViewProps, ASPasswordTextFieldProps, ASPinProps, ASPopUpProps, ASProgressBarProps, ASRadioButtonProps, ASRichTextProps, ASRowProps, ASSliderProps, ASSpacerProps, ASStackProps, ASSwitchProps, ASTextFieldProps, ASTextProps, ASTimerProps, ASVerticalDividerProps, ASWrapProps, E6TransactionHistoryListViewProps, ASSwipeButtonProps, ASIconButtonProps, TabsProps, ASTabViewProps, ASAppBarProps } from "../../index";
+import { ASFloatingActionButtonProps } from "../components/floatingActionButton";
 export type WidgetsName = keyof WidgetsList;
 export type WidgetsList = {
     ASContainer: (attributes: ASContainerProps) => string;
@@ -41,6 +42,8 @@ export type WidgetsList = {
     ASIconButton: (attributes: ASIconButtonProps) => string;
     ASTabs: (attributes: TabsProps) => string;
     ASTabView: (attributes: ASTabViewProps) => string;
+    ASAppBar: (attributes: ASAppBarProps) => string;
+    ASFloatingActionButton: (attributes: ASFloatingActionButtonProps) => string;
 };
 export declare class ASWidgetsList {
     private static _initialValues;

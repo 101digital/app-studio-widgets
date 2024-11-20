@@ -117,7 +117,7 @@ const Keyboard: React.FC<KeyboardProps> = (props: KeyboardProps) => {
   };
 
   const _renderItem = ({ item }: { item: KeyboardItemProps }) => {
-    const {backgroundColor,borderColor,borderRadius} = StyleSheet.flatten(keyboardStyle)
+    const {backgroundColor,borderColor,borderRadius} = StyleSheet.flatten(keyboardStyle) || {}
     return (
         <ASButton
             style={{
@@ -297,6 +297,10 @@ const ASPin: React.FC<ASPinProps> = (props: ASPinProps) => {
   useEffect(() => {
     onChange?.(pin.join(""));
   }, [pin]);
+
+  useEffect(() => {
+    setValue?.(pin.join(""));
+  }, [pin])
 
   const onKeyboardItemPress = (item: KeyboardItemProps) => {
     if (item?.value === "delete") {

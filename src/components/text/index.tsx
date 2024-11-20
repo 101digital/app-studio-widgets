@@ -12,8 +12,9 @@ export type ASTextProps = TextProps & {
 
 const ASText: React.FC<ASTextProps> = (props: ASTextProps) => {
     const {colors} = useContext(ThemeContext);
-    const {children, style, labelType, label, ...restProps} = props || {}
-    let labelValue = children || label
+    const {children, labelType, label, ...restProps} = props || {}
+    let labelValue = labelType === 'number' ? (children ?? label) : (children || label);
+    const style = StyleSheet.flatten(props?.style)
 
     //TODO: Remove this temeraly code and defnine this in DB
     if (labelType === 'number' && (typeof labelValue === "string" || typeof labelValue === "number")) {
@@ -46,6 +47,8 @@ const ASText: React.FC<ASTextProps> = (props: ASTextProps) => {
         let cardNumberString = labelValue?.toString()
         cardNumberString = cardNumberString?.toString()?.replace(/\D/g, '');
         labelValue = cardNumberString?.replace(/(.{4})/g, '$1 ').trim();
+    }else{
+        labelValue = `${labelValue?.toString()}`
     }
 
     const getTextColor = (): { color: string | undefined | ColorValue } => {
@@ -62,16 +65,19 @@ const ASText: React.FC<ASTextProps> = (props: ASTextProps) => {
             }
         }
 
-        const textStyleObj = Array.isArray(style) ? Object.assign({}, ...style) : style
-        if (textStyleObj?.color) {
-            color = textStyleObj?.color
+        if (style?.color) {
+            color = style?.color
         }
 
         return {color}
     }
 
+    if (labelValue == null || labelValue === "undefined" || labelValue === "null" || labelValue === undefined) {
+        return null;
+    }
+
     return (
-        <Text {...restProps} style={[styles.textStyle, StyleSheet.flatten(style), getTextColor()]}>
+        <Text {...restProps} style={[styles.textStyle, style, getTextColor()]}>
             {labelValue}
         </Text>
     )

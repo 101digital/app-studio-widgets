@@ -1,15 +1,17 @@
 import React from "react";
-import { TextStyle } from "react-native";
+import { TextStyle, ViewStyle } from "react-native";
 export type ASCounterProps = {
+    initialValue?: number;
     minValue?: number;
     maxValue?: number;
     onValueChange?: (value: number) => void;
-    name: string;
     incrementIconColor?: string;
-    incrementIconSize?: number;
     decrementIconColor?: string;
+    incrementIconSize?: number;
     decrementIconSize?: number;
     labelTypography?: TextStyle;
+    style?: ViewStyle;
+    name: string;
 };
 declare const ASCounter: React.FC<ASCounterProps>;
 export default ASCounter;

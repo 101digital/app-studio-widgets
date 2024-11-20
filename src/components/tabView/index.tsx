@@ -1,8 +1,5 @@
 import React, { ReactNode, useContext } from 'react';
 import { ScrollView, ScrollViewProps, StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import DeviceInfo from 'react-native-device-info';
-import { useNavigation, useRoute } from '@react-navigation/native';
 import { ThemeContext } from "../../context/theme-context";
 
 export type ASTabViewProps = {
@@ -31,14 +28,16 @@ const ASTabView: React.FC<ASTabViewProps> = (props: ASTabViewProps) => {
     return (
         <View
             {...restProps}
-            style={[styles.container, { backgroundColor: colors.background }, style]}
+            style={[styles.container, style]}
         >
             {isScrollable ? (
                 <ScrollView
+                    style={{ flex: 1 }}
                     showsVerticalScrollIndicator={false}
                     showsHorizontalScrollIndicator={false}
                     {...scrollViewProps}
-                    contentContainerStyle={[styles.scrollViewStyle, scrollViewContentContainerStyle]}
+                    contentContainerStyle={[scrollViewContentContainerStyle, { paddingBottom: 50 }]}
+                    nestedScrollEnabled={true}
                 >
                     {children}
                 </ScrollView>
@@ -53,9 +52,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    scrollViewStyle: {
-        flexGrow: 1,
-    },
 });
 
 export default ASTabView;
+

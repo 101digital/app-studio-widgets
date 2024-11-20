@@ -21,7 +21,7 @@ import ASImage from "../image";
 export type ASTextFieldProps = Omit<TextInputMaskProps, "type"> &
     TextInputProps & {
     name: string;
-    prefixIcon?: ReactNode;
+    prefixIcon?: ReactNode | string;
     suffixIcon?: ReactNode;
     formatError?: (error: string) => string;
     label?: string;
@@ -181,7 +181,7 @@ const ASTextField = (props: ASTextFieldProps) => {
                         labelTextStyle,
                     ]}
                 >
-                    {label !== 'null' ? label : null}
+                    {label}
                 </ASText>
                 <View style={[styles.contentContainerStyle, !suffixIcon && {marginRight: 16}]}>
                     {prefixIcon && <View style={styles.prefixIcon}>{typeof prefixIcon === 'string' ?
