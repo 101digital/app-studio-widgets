@@ -1,5 +1,5 @@
 import React, {memo, ReactNode, useContext, useEffect, useState} from 'react';
-import {StyleProp, StyleSheet, TextStyle, ViewStyle,GestureResponderEvent} from 'react-native';
+import {GestureResponderEvent, StyleProp, StyleSheet, TextStyle, ViewStyle} from 'react-native';
 import ASText from "../text";
 import {ThemeContext} from "../../context/theme-context";
 import ASImage from "../image";
@@ -14,24 +14,25 @@ export type ASFloatingActionButtonProps = {
     floatingPosition: 'bottom-right' | 'bottom-center' | 'bottom-left' | 'center-left' | 'center-center' | 'center-right' | 'top-right' | 'top-center' | 'top-left'
 }
 
-const VERTICAL_POSITION = 40
+const VERTICAL_POSITION = 30
 const HORIZONTAL_POSITION = 20
 
 const ASFloatingActionButton: React.FC<ASFloatingActionButtonProps> = (props: ASFloatingActionButtonProps) => {
     const {colors,} = useContext(ThemeContext);
     const {style, label, textStyle, icon, onPress, floatingPosition = 'bottom-right'} = props
     const [floatingButtonPosition, setFloatingButtonPosition] = useState<any>(null);
+    const [widgetSize, setWidgetSize] = useState({width: 0, height: 0});
 
     useEffect(() => {
         calculatePosition()
         return () => {
         };
-    }, [floatingPosition]);
+    }, [floatingPosition, widgetSize]);
 
     const calculatePosition = () => {
         const [verticalPosition, horizontalPosition] = floatingPosition?.split('-')
-        let vPosition = {}
-        let hPosition = {}
+        let vPosition:any = {}
+        let hPosition:any = {}
         switch (verticalPosition) {
             case 'top':
             case 'bottom':
@@ -47,7 +48,10 @@ const ASFloatingActionButton: React.FC<ASFloatingActionButtonProps> = (props: AS
                 hPosition = {[horizontalPosition]: HORIZONTAL_POSITION}
                 break
             case 'center':
-                hPosition = {alignSelf: 'center'}
+                hPosition = {
+                    left: '50%',
+                    transform: [{translateX: -(widgetSize?.width / 2)}, ...(vPosition.transform ? vPosition.transform : [])]
+                }
                 break
         }
         setFloatingButtonPosition({...vPosition, ...hPosition})
@@ -57,6 +61,10 @@ const ASFloatingActionButton: React.FC<ASFloatingActionButtonProps> = (props: AS
 
     return (
         <ASButton
+            onLayout={(event) => setWidgetSize({
+                width: event.nativeEvent.layout.width,
+                height: event.nativeEvent.layout.height
+            })}
             style={[styles.container, {...floatingButtonPosition}, {
                 backgroundColor: colors?.primary || '#fff',
                 ...(label && {flexDirection: 'row', aspectRatio: undefined})
