@@ -40,8 +40,8 @@ const DefaultBackButton = (props) => {
 };
 exports.DefaultBackButton = DefaultBackButton;
 const ASAppBar = (props) => {
-    const { backIconColor, backIconSize, onPressBackButton, title, traillingIcon, isPreviewScreen } = props || {};
-    return (react_1.default.createElement(react_native_1.View, { style: [styles.container, { paddingTop: isPreviewScreen ? 22 : 0 }] },
+    const { backIconColor, backIconSize, onPressBackButton, title, traillingIcon, isPreviewScreen, style } = props || {};
+    return (react_1.default.createElement(react_native_1.View, { style: [styles.container, { paddingTop: isPreviewScreen ? 22 : 0 }, react_native_1.StyleSheet.flatten(style)] },
         react_1.default.createElement(exports.DefaultBackButton, { backIconColor: backIconColor, backIconSize: backIconSize, onPressBackButton: onPressBackButton }),
         react_1.default.createElement(text_1.default, { style: styles.titleTextStyle }, title),
         traillingIcon ? traillingIcon : react_1.default.createElement(react_native_1.View, { style: { flex: 1 } })));
