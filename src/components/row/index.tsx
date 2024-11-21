@@ -19,6 +19,7 @@ const ASRow: React.FC<ASRowProps> = (props: ASRowProps) => {
                 // Clone the child with updated marginRight style
                 return React.cloneElement(child, {
                     style: [StyleSheet.flatten(child.props.style), marginRightStyle],
+                    key: `row-${child.name}-${index}`
                 })
             }) : children}
         </View>

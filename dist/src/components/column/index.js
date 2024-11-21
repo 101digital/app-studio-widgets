@@ -64,6 +64,7 @@ const ASColumn = (props) => {
             // Clone the child with updated marginBottom style
             return react_1.default.cloneElement(child, {
                 style: [react_native_1.StyleSheet.flatten(child.props.style), marginBottomStyle],
+                key: `column-${child.name}-${index}`
             });
         }) : children));
 };
