@@ -36,11 +36,12 @@ const theme_context_1 = require("../../context/theme-context");
 const overlay_1 = __importDefault(require("../overlay"));
 const ASRadioButton = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { options = [], name, radioButtonStyle, innerCircleStyle, color = colors.primary, labelStyle, radioType = 'default', isOverlayEnabled } = props;
+    const { options = [], name, radioButtonStyle, innerCircleStyle, color = colors.primary, labelStyle, radioType = 'default', isOverlayEnabled, onChange } = props;
     const [field, meta, helpers] = (0, formik_1.useField)(name);
     const { setValue } = helpers || {};
     const _onPressRadioButton = (item) => () => {
         setValue === null || setValue === void 0 ? void 0 : setValue(item === null || item === void 0 ? void 0 : item.value);
+        onChange === null || onChange === void 0 ? void 0 : onChange(item === null || item === void 0 ? void 0 : item.value);
     };
     const defaultRadioButtonType = (item) => {
         return (react_1.default.createElement(react_1.default.Fragment, null,

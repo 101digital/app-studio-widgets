@@ -12,6 +12,7 @@ export type ASCounterProps = {
     labelTypography?: TextStyle;
     style?: ViewStyle;
     name: string;
+    onChange?: (item: number) => void;
 };
 declare const ASCounter: React.FC<ASCounterProps>;
 export default ASCounter;

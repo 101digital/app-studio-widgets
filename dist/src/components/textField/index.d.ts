@@ -21,6 +21,7 @@ export type ASTextFieldProps = Omit<TextInputMaskProps, "type"> & TextInputProps
     accessibilityLabel?: string;
     isOverlayEnabled?: boolean;
     id?: string;
+    onChange?: (text: any) => void;
 };
 declare const ASTextField: {
     (props: ASTextFieldProps): React.JSX.Element;

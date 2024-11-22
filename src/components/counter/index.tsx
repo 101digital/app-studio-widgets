@@ -24,6 +24,7 @@ export type ASCounterProps = {
   labelTypography?: TextStyle;
   style?: ViewStyle;
   name: string;
+  onChange?: (item: number) => void;
 }
 
 // ASCounter component with typed props
@@ -38,7 +39,8 @@ const ASCounter: React.FC<ASCounterProps> = ({
   maxValue,
   style,
   name,
-  labelTypography
+  labelTypography,
+  onChange
 }) => {
   const [field, meta, helpers] = useField(name);
   const { setValue } = helpers || {};
@@ -49,6 +51,7 @@ const ASCounter: React.FC<ASCounterProps> = ({
     if (maxValue === undefined || newValue <= maxValue) {
       setValue(newValue);
       onValueChange?.(newValue);
+      onChange?.(newValue);
     }
   };
 
@@ -57,6 +60,7 @@ const ASCounter: React.FC<ASCounterProps> = ({
     if (newValue >= minValue) {
       setValue(newValue);
       onValueChange?.(newValue);
+      onChange?.(newValue);
     }
   };
 

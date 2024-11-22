@@ -21,6 +21,7 @@ export type ASRadioButtonProps = {
     labelStyle?: StyleProp<TextStyle>;
     radioType?: 'default' | 'tick';
     isOverlayEnabled?: boolean;
+    onChange?: (item: any) => void;
 }
 
 const ASRadioButton: React.FC<ASRadioButtonProps> = (props: ASRadioButtonProps) => {
@@ -33,13 +34,15 @@ const ASRadioButton: React.FC<ASRadioButtonProps> = (props: ASRadioButtonProps) 
         color = colors.primary,
         labelStyle,
         radioType = 'default',
-        isOverlayEnabled
+        isOverlayEnabled,
+        onChange
     } = props;
     const [field, meta, helpers] = useField(name);
     const {setValue} = helpers || {};
 
     const _onPressRadioButton = (item: ASRadioButtonItemProps) => () => {
         setValue?.(item?.value)
+        onChange?.(item?.value);
     }
 
     const defaultRadioButtonType = (item: ASRadioButtonItemProps) => {
