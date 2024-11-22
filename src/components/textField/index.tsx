@@ -39,6 +39,7 @@ export type ASTextFieldProps = Omit<TextInputMaskProps, "type"> &
     accessibilityLabel?: string;
     isOverlayEnabled?: boolean;
     id?: string;
+    onChange?: (text: any) => void;
 };
 
 const ASTextField = (props: ASTextFieldProps) => {
@@ -66,6 +67,7 @@ const ASTextField = (props: ASTextFieldProps) => {
         accessibilityLabel,
         isOverlayEnabled,
         id,
+        onChange,
         ...restProps
     } = props;
     const [active, setActive] = useState(false);
@@ -140,6 +142,9 @@ const ASTextField = (props: ASTextFieldProps) => {
 
     const handleOnChange = (e: string) => {
         field?.onChange(name)(e);
+        if (onChange) {
+            onChange(e); 
+        }
     };
 
     const getErrorMessage = (error: string) => {

@@ -38,6 +38,7 @@ export type ASDropDownProps = Omit<
   dropdownTextStyles?: StyleProp<TextStyle>;
   labelTextStyle?: StyleProp<TextStyle>;
   isOverlayEnabled?: boolean;
+  onChange?: (item: any) => void;
   id?: string;
 };
 
@@ -62,6 +63,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
     labelTextStyle,
     isOverlayEnabled,
     id,
+    onChange,
     ...restProps
   } = props;
   const [field, meta, helpers] = useField<string>(name);
@@ -95,6 +97,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
   const _onChangeDropDownField = (item: DropDownOptionsProps) => {
     setValue?.(item?.[valueField]);
     onSelect?.(item); // Trigger the onSelect callback if provided
+    onChange?.(item?.[valueField]); // Trigger onChange event if provided
   };
 
   return (

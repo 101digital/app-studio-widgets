@@ -47,7 +47,7 @@ const theme_context_1 = require("../../context/theme-context");
 const overlay_1 = __importDefault(require("../overlay"));
 const ASDropDown = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { options, renderLeftIcon, placeholder = "Please select item", onSelect, searchPlaceholder = "Search...", search = false, label, name, containerStyle, iconStyles, selectedTextStyle, labelField, valueField, placeholderTextStyles, dropdownTextStyles, labelTextStyle, isOverlayEnabled, id } = props, restProps = __rest(props, ["options", "renderLeftIcon", "placeholder", "onSelect", "searchPlaceholder", "search", "label", "name", "containerStyle", "iconStyles", "selectedTextStyle", "labelField", "valueField", "placeholderTextStyles", "dropdownTextStyles", "labelTextStyle", "isOverlayEnabled", "id"]);
+    const { options, renderLeftIcon, placeholder = "Please select item", onSelect, searchPlaceholder = "Search...", search = false, label, name, containerStyle, iconStyles, selectedTextStyle, labelField, valueField, placeholderTextStyles, dropdownTextStyles, labelTextStyle, isOverlayEnabled, id, onChange } = props, restProps = __rest(props, ["options", "renderLeftIcon", "placeholder", "onSelect", "searchPlaceholder", "search", "label", "name", "containerStyle", "iconStyles", "selectedTextStyle", "labelField", "valueField", "placeholderTextStyles", "dropdownTextStyles", "labelTextStyle", "isOverlayEnabled", "id", "onChange"]);
     const [field, meta, helpers] = (0, formik_1.useField)(name);
     const { setValue } = helpers || {};
     const [isFocus, setIsFocus] = (0, react_1.useState)(false);
@@ -68,6 +68,7 @@ const ASDropDown = (props) => {
     const _onChangeDropDownField = (item) => {
         setValue === null || setValue === void 0 ? void 0 : setValue(item === null || item === void 0 ? void 0 : item[valueField]);
         onSelect === null || onSelect === void 0 ? void 0 : onSelect(item); // Trigger the onSelect callback if provided
+        onChange === null || onChange === void 0 ? void 0 : onChange(item === null || item === void 0 ? void 0 : item[valueField]); // Trigger onChange event if provided
     };
     return (react_1.default.createElement(react_native_1.View, { style: [
             styles.container,
