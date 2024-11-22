@@ -19,7 +19,7 @@ const HORIZONTAL_POSITION = 20
 
 const ASFloatingActionButton: React.FC<ASFloatingActionButtonProps> = (props: ASFloatingActionButtonProps) => {
     const {colors,} = useContext(ThemeContext);
-    const {style, label, textStyle, icon, onPress, floatingPosition = 'bottom-right'} = props
+    const {style, label, textStyle, icon, onPress, floatingPosition = 'bottom-right',...restProps} = props
     const [floatingButtonPosition, setFloatingButtonPosition] = useState<any>(null);
     const [widgetSize, setWidgetSize] = useState({width: 0, height: 0});
 
@@ -61,7 +61,7 @@ const ASFloatingActionButton: React.FC<ASFloatingActionButtonProps> = (props: AS
 
     return (
         <ASButton
-            onLayout={(event) => setWidgetSize({
+            onLayout={(event:any) => setWidgetSize({
                 width: event.nativeEvent.layout.width,
                 height: event.nativeEvent.layout.height
             })}
@@ -69,7 +69,9 @@ const ASFloatingActionButton: React.FC<ASFloatingActionButtonProps> = (props: AS
                 backgroundColor: colors?.primary || '#fff',
                 ...(label && {flexDirection: 'row', aspectRatio: undefined})
             }, style]}
-            onPress={onPress}>
+            onPress={onPress}
+            {...restProps}
+        >
             {icon && typeof icon === 'string' ?
                 <ASImage
                     style={{width: 18, height: 18, marginRight: !!label ? 8 : 0}}

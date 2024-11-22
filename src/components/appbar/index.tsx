@@ -19,12 +19,13 @@ export type ASAppBarProps = ASBackButtonProps & {
 
 export const DefaultBackButton = (props: ASBackButtonProps) => {
     const {colors} = useContext(ThemeContext);
-    const {backIconColor, backIconSize, onPressBackButton} = props || {}
+    const {backIconColor, backIconSize, onPressBackButton,...restProps} = props || {}
     return (
         <TouchableOpacity
             activeOpacity={0.8}
             style={styles.backIcon}
             onPress={onPressBackButton}
+            {...restProps}
         >
             <ArrowBackIcon size={backIconSize || 24} color={backIconColor || colors.primary}/>
         </TouchableOpacity>
