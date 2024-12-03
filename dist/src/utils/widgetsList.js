@@ -84,6 +84,7 @@ class ASWidgetsList {
                 })`;
                 result += ` validationSchema={${validationSchema}}`;
                 result += ` initialValues={ ${JSON.stringify(initialValues).replace(/"/g, "")} }`;
+                result += `innerRef={formikRef}`;
                 continue;
             }
             // Get the return value for each property
