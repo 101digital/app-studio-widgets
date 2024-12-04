@@ -24,6 +24,7 @@ const ASRow = (props) => {
         // Clone the child with updated marginRight style
         return react_1.default.cloneElement(child, {
             style: [react_native_1.StyleSheet.flatten(child.props.style), marginRightStyle],
+            key: `row-${child.name}-${index}`
         });
     }) : children));
 };

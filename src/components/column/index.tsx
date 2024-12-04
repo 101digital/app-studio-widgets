@@ -44,6 +44,7 @@ const ASColumn: React.FC<ASColumnProps> = (props: ASColumnProps) => {
                 // Clone the child with updated marginBottom style
                 return React.cloneElement(child, {
                     style: [StyleSheet.flatten(child.props.style), marginBottomStyle],
+                    key: `column-${child.name}-${index}`
                 })
             }) : children}
         </View>

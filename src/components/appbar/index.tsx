@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import {StyleSheet, TouchableOpacity, View} from "react-native";
+import {StyleProp, StyleSheet, TouchableOpacity, View, ViewStyle} from "react-native";
 import {ThemeContext} from "../../context/theme-context";
 import ASText from "../text";
 import {ArrowBackIcon} from "../../assets/icon";
@@ -9,6 +9,7 @@ export type ASBackButtonProps = {
     backIconSize?: number | undefined
     onPressBackButton?: () => void
     isPreviewScreen?: boolean
+    style?: StyleProp<ViewStyle>;
 }
 
 export type ASAppBarProps = ASBackButtonProps & {
@@ -18,12 +19,13 @@ export type ASAppBarProps = ASBackButtonProps & {
 
 export const DefaultBackButton = (props: ASBackButtonProps) => {
     const {colors} = useContext(ThemeContext);
-    const {backIconColor, backIconSize, onPressBackButton} = props || {}
+    const {backIconColor, backIconSize, onPressBackButton,...restProps} = props || {}
     return (
         <TouchableOpacity
             activeOpacity={0.8}
             style={styles.backIcon}
             onPress={onPressBackButton}
+            {...restProps}
         >
             <ArrowBackIcon size={backIconSize || 24} color={backIconColor || colors.primary}/>
         </TouchableOpacity>
@@ -31,9 +33,9 @@ export const DefaultBackButton = (props: ASBackButtonProps) => {
 };
 
 const ASAppBar: React.FC<ASAppBarProps> = (props: ASAppBarProps) => {
-    const {backIconColor, backIconSize, onPressBackButton, title, traillingIcon, isPreviewScreen} = props || {}
+    const {backIconColor, backIconSize, onPressBackButton, title, traillingIcon, isPreviewScreen, style} = props || {}
     return (
-        <View style={[styles.container, {paddingTop: isPreviewScreen ? 22 : 0}]}>
+        <View style={[styles.container, {paddingTop: isPreviewScreen ? 22 : 0}, StyleSheet.flatten(style)]}>
             <DefaultBackButton
                 backIconColor={backIconColor}
                 backIconSize={backIconSize}

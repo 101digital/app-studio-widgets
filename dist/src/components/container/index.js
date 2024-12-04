@@ -31,10 +31,10 @@ const ASContainer = (props) => {
     const safeAreaStyle = disabledSafeArea
         ? {}
         : {
-            paddingTop: isHeaderVisible ? Math.max(15) : Math.max(insets.top, 15),
-            paddingBottom: Math.max(insets.bottom, 15),
-            paddingLeft: Math.max(insets.left, 15),
-            paddingRight: Math.max(insets.right, 15),
+            paddingTop: isHeaderVisible ? Math.max(15) : insets.top,
+            paddingBottom: insets.bottom,
+            paddingLeft: insets.left,
+            paddingRight: insets.right,
         };
     return (react_1.default.createElement(react_native_1.View, Object.assign({}, restProps, { style: [styles.container, safeAreaStyle, style] }), isScrollable ? (react_1.default.createElement(react_native_1.ScrollView, Object.assign({ showsVerticalScrollIndicator: false, showsHorizontalScrollIndicator: false }, scrollViewProps, { contentContainerStyle: [styles.scrollViewStyle, scrollViewContentContainerStyle] }), children)) : (children)));
 };

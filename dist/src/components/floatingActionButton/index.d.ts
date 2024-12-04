@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { StyleProp, TextStyle, ViewStyle, GestureResponderEvent } from 'react-native';
+import { GestureResponderEvent, StyleProp, TextStyle, ViewStyle } from 'react-native';
 export type ASFloatingActionButtonProps = {
     label?: string;
     textStyle?: TextStyle;

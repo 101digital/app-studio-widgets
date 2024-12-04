@@ -20,6 +20,7 @@ export type ASDropDownProps = Omit<DropdownProps<any>, "labelField" | "valueFiel
     dropdownTextStyles?: StyleProp<TextStyle>;
     labelTextStyle?: StyleProp<TextStyle>;
     isOverlayEnabled?: boolean;
+    onChange?: (item: any) => void;
     id?: string;
 };
 declare const ASDropDown: React.FC<ASDropDownProps>;

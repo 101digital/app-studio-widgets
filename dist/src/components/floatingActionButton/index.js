@@ -22,6 +22,17 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -32,17 +43,18 @@ const text_1 = __importDefault(require("../text"));
 const theme_context_1 = require("../../context/theme-context");
 const image_1 = __importDefault(require("../image"));
 const button_1 = __importDefault(require("../button"));
-const VERTICAL_POSITION = 40;
+const VERTICAL_POSITION = 30;
 const HORIZONTAL_POSITION = 20;
 const ASFloatingActionButton = (props) => {
     const { colors, } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { style, label, textStyle, icon, onPress, floatingPosition = 'bottom-right' } = props;
+    const { style, label, textStyle, icon, onPress, floatingPosition = 'bottom-right' } = props, restProps = __rest(props, ["style", "label", "textStyle", "icon", "onPress", "floatingPosition"]);
     const [floatingButtonPosition, setFloatingButtonPosition] = (0, react_1.useState)(null);
+    const [widgetSize, setWidgetSize] = (0, react_1.useState)({ width: 0, height: 0 });
     (0, react_1.useEffect)(() => {
         calculatePosition();
         return () => {
         };
-    }, [floatingPosition]);
+    }, [floatingPosition, widgetSize]);
     const calculatePosition = () => {
         const [verticalPosition, horizontalPosition] = floatingPosition === null || floatingPosition === void 0 ? void 0 : floatingPosition.split('-');
         let vPosition = {};
@@ -62,14 +74,20 @@ const ASFloatingActionButton = (props) => {
                 hPosition = { [horizontalPosition]: HORIZONTAL_POSITION };
                 break;
             case 'center':
-                hPosition = { alignSelf: 'center' };
+                hPosition = {
+                    left: '50%',
+                    transform: [{ translateX: -((widgetSize === null || widgetSize === void 0 ? void 0 : widgetSize.width) / 2) }, ...(vPosition.transform ? vPosition.transform : [])]
+                };
                 break;
         }
         setFloatingButtonPosition(Object.assign(Object.assign({}, vPosition), hPosition));
     };
     if (!floatingButtonPosition || (!icon && !label))
         return null;
-    return (react_1.default.createElement(button_1.default, { style: [styles.container, Object.assign({}, floatingButtonPosition), Object.assign({ backgroundColor: (colors === null || colors === void 0 ? void 0 : colors.primary) || '#fff' }, (label && { flexDirection: 'row', aspectRatio: undefined })), style], onPress: onPress },
+    return (react_1.default.createElement(button_1.default, Object.assign({ onLayout: (event) => setWidgetSize({
+            width: event.nativeEvent.layout.width,
+            height: event.nativeEvent.layout.height
+        }), style: [styles.container, Object.assign({}, floatingButtonPosition), Object.assign({ backgroundColor: (colors === null || colors === void 0 ? void 0 : colors.primary) || '#fff' }, (label && { flexDirection: 'row', aspectRatio: undefined })), style], onPress: onPress }, restProps),
         icon && typeof icon === 'string' ?
             react_1.default.createElement(image_1.default, { style: { width: 18, height: 18, marginRight: !!label ? 8 : 0 }, source: icon })
             : icon,

@@ -84,6 +84,7 @@ class ASWidgetsList {
                 })`;
                 result += ` validationSchema={${validationSchema}}`;
                 result += ` initialValues={ ${JSON.stringify(initialValues).replace(/"/g, "")} }`;
+                result += `innerRef={formikRef}`;
                 continue;
             }
             // Get the return value for each property
@@ -109,7 +110,6 @@ class ASWidgetsList {
             return `<ASForm${widgetAttributes}>
                          {(formikProps: FormikProps<any>)=> {
                              const {values, handleSubmit} = formikProps
-                             ${destructuredValueString}
                                 return (
                                     <>${ASWidgetsList.returnWidgetArrayOrString(attributes)}</>
                                  )

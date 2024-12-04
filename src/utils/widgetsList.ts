@@ -209,6 +209,7 @@ export class ASWidgetsList {
             /"/g,
             ""
         )} }`;
+        result += `innerRef={formikRef}`
         continue;
       }
 
@@ -239,7 +240,6 @@ export class ASWidgetsList {
       return `<ASForm${widgetAttributes}>
                          {(formikProps: FormikProps<any>)=> {
                              const {values, handleSubmit} = formikProps
-                             ${destructuredValueString}
                                 return (
                                     <>${ASWidgetsList.returnWidgetArrayOrString(
                                       attributes
