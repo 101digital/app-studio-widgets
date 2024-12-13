@@ -4,7 +4,7 @@ import { TextInputMaskProps, TextInputMaskTypeProp } from "react-native-masked-t
 export type ASTextFieldProps = Omit<TextInputMaskProps, "type"> & TextInputProps & {
     name: string;
     prefixIcon?: ReactNode | string;
-    suffixIcon?: ReactNode;
+    suffixIcon?: ReactNode | string;
     formatError?: (error: string) => string;
     label?: string;
     textFieldType?: TextInputMaskTypeProp;
