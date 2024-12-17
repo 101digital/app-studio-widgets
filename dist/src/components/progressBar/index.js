@@ -28,7 +28,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importStar(require("react"));
 const react_native_1 = require("react-native");
-const commonUtils_1 = require("../../utils/commonUtils");
 const text_1 = __importDefault(require("../text"));
 const theme_context_1 = require("../../context/theme-context");
 const ASProgressBar = (props) => {
@@ -52,8 +51,7 @@ const ASProgressBar = (props) => {
 };
 const styles = react_native_1.StyleSheet.create({
     progressBarContainer: {
-        alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     progressBarText: {
         fontSize: 16,
@@ -64,7 +62,7 @@ const styles = react_native_1.StyleSheet.create({
     progressBar: {
         height: 5,
         borderRadius: 16,
-        width: commonUtils_1.screenWidth / 1.8,
+        width: "auto",
         minWidth: 180,
         marginTop: 5
     },

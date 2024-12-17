@@ -51,8 +51,7 @@ const ASProgressBar: React.FC<ASProgressBarProps> = (props: ASProgressBarProps) 
 
 const styles = StyleSheet.create({
     progressBarContainer: {
-        alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     progressBarText: {
         fontSize: 16,
@@ -63,7 +62,7 @@ const styles = StyleSheet.create({
     progressBar: {
         height: 5,
         borderRadius: 16,
-        width: screenWidth / 1.8,
+        width: "auto",
         minWidth: 180,
         marginTop: 5
     },
