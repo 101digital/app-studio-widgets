@@ -37,13 +37,15 @@ const ASContainer: React.FC<ASContainerProps> = (props: ASContainerProps) => {
     // Set hasHeader to false if it is undefined
     const isHeaderVisible = hasHeader === undefined ? true : false;
 
+    const flattenedStyle = StyleSheet.flatten(style);
+
     const safeAreaStyle = disabledSafeArea
         ? {}
         : {
-              paddingTop: isHeaderVisible ? Math.max(15) : insets.top,
-              paddingBottom: insets.bottom,
-              paddingLeft: insets.left,
-              paddingRight: insets.right,
+              paddingTop: isHeaderVisible ? Math.max(15) : flattenedStyle?.paddingVertical ? flattenedStyle?.paddingVertical : insets.top,
+              paddingBottom: flattenedStyle?.paddingVertical ? flattenedStyle?.paddingVertical : insets.bottom,
+              paddingLeft: flattenedStyle?.paddingHorizontal ? flattenedStyle?.paddingHorizontal : insets.left,
+              paddingRight: flattenedStyle?.paddingHorizontal ? flattenedStyle?.paddingHorizontal : insets.right,
           };
 
     return (

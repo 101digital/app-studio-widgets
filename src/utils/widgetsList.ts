@@ -209,6 +209,7 @@ export class ASWidgetsList {
             /"/g,
             ""
         )} }`;
+        result += `innerRef={formikRef}`
         continue;
       }
 

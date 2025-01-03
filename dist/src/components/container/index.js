@@ -28,13 +28,14 @@ const ASContainer = (props) => {
     const hasHeader = (!isPreview && navigation !== false && route.name !== false) ? (_a = navigation.getParent()) === null || _a === void 0 ? void 0 : _a.getState().routes.some((r) => { var _a; return r.name === route.name && ((_a = r.params) === null || _a === void 0 ? void 0 : _a.headerShown) !== false; }) : undefined;
     // Set hasHeader to false if it is undefined
     const isHeaderVisible = hasHeader === undefined ? true : false;
+    const flattenedStyle = react_native_1.StyleSheet.flatten(style);
     const safeAreaStyle = disabledSafeArea
         ? {}
         : {
-            paddingTop: isHeaderVisible ? Math.max(15) : insets.top,
-            paddingBottom: insets.bottom,
-            paddingLeft: insets.left,
-            paddingRight: insets.right,
+            paddingTop: isHeaderVisible ? Math.max(15) : (flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.paddingVertical) ? flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.paddingVertical : insets.top,
+            paddingBottom: (flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.paddingVertical) ? flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.paddingVertical : insets.bottom,
+            paddingLeft: (flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.paddingHorizontal) ? flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.paddingHorizontal : insets.left,
+            paddingRight: (flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.paddingHorizontal) ? flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.paddingHorizontal : insets.right,
         };
     return (react_1.default.createElement(react_native_1.View, Object.assign({}, restProps, { style: [styles.container, safeAreaStyle, style] }), isScrollable ? (react_1.default.createElement(react_native_1.ScrollView, Object.assign({ showsVerticalScrollIndicator: false, showsHorizontalScrollIndicator: false }, scrollViewProps, { contentContainerStyle: [styles.scrollViewStyle, scrollViewContentContainerStyle] }), children)) : (children)));
 };
