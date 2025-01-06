@@ -133,6 +133,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
         placeholderStyle={[styles.placeholderStyle, placeholderTextStyles]}
         inputSearchStyle={styles.inputSearchStyle}
         iconStyle={[styles.iconStyle, iconStyles]}
+        iconColor={colors.primary}
         search={search}
         maxHeight={300}
         value={field?.value}
