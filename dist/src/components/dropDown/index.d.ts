@@ -22,7 +22,7 @@ export type ASDropDownProps = Omit<DropdownProps<any>, "labelField" | "valueFiel
     isOverlayEnabled?: boolean;
     onChange?: (item: any) => void;
     id?: string;
-    isSingleChoice?: boolean;
+    isMultiChoices?: boolean;
 };
 declare const ASDropDown: React.FC<ASDropDownProps>;
 export default ASDropDown;

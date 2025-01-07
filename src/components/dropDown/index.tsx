@@ -31,7 +31,7 @@ export type ASDropDownProps = Omit<DropdownProps<any>,
     isOverlayEnabled?: boolean;
     onChange?: (item: any) => void;
     id?: string;
-    isSingleChoice?: boolean
+    isMultiChoices?: boolean
 };
 
 const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
@@ -56,7 +56,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
         isOverlayEnabled,
         id,
         onChange,
-        isSingleChoice,
+        isMultiChoices=false,
         ...restProps
     } = props;
     const [field, meta, helpers] = useField<string | string[]>(name);
@@ -158,7 +158,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
             )}
 
             {
-                isSingleChoice ?
+                !isMultiChoices ?
                     <Dropdown
                         style={styles.dropdown}
                         placeholderStyle={[styles.placeholderStyle, placeholderTextStyles]}
