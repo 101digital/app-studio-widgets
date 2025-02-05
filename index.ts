@@ -95,6 +95,7 @@ export {
   ASPasswordTextFieldProps,
 } from "./src/components/passwordTextField";
 export { default as ASPopUp, ASPopUpProps } from "./src/components/popUp";
+export { default as ASDatePicker, ASDatePickerProps } from "./src/components/datePicker";
 export {
   default as ASLoadingScreen,
   ASLoadingScreenProps,

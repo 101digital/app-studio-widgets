@@ -1,4 +1,4 @@
-import { ASBadgeProps, ASButtonProps, ASCalendarProps, ASCheckBoxProps, ASChoiceChipsProps, ASCircleChartProps, ASColumnProps, ASContainerProps, ASCounterProps, ASDividerProps, ASDropDownProps, ASExpandableTextProps, ASFormProps, ASImageProps, ASListTileProps, ASListViewProps, ASLoadingIndicatorProps, ASLoadingScreenProps, ASPageViewProps, ASPasswordTextFieldProps, ASPinProps, ASPopUpProps, ASProgressBarProps, ASRadioButtonProps, ASRichTextProps, ASRowProps, ASSliderProps, ASSpacerProps, ASStackProps, ASSwitchProps, ASTextFieldProps, ASTextProps, ASTimerProps, ASVerticalDividerProps, ASWrapProps, E6TransactionHistoryListViewProps, ASSwipeButtonProps, ASIconButtonProps, TabsProps, ASTabViewProps, ASAppBarProps } from "../../index";
+import { ASBadgeProps, ASButtonProps, ASCalendarProps, ASCheckBoxProps, ASChoiceChipsProps, ASCircleChartProps, ASColumnProps, ASContainerProps, ASCounterProps, ASDividerProps, ASDropDownProps, ASExpandableTextProps, ASFormProps, ASImageProps, ASListTileProps, ASListViewProps, ASLoadingIndicatorProps, ASLoadingScreenProps, ASPageViewProps, ASPasswordTextFieldProps, ASPinProps, ASPopUpProps, ASProgressBarProps, ASRadioButtonProps, ASRichTextProps, ASRowProps, ASSliderProps, ASSpacerProps, ASStackProps, ASSwitchProps, ASTextFieldProps, ASTextProps, ASTimerProps, ASVerticalDividerProps, ASWrapProps, E6TransactionHistoryListViewProps, ASSwipeButtonProps, ASIconButtonProps, TabsProps, ASTabViewProps, ASAppBarProps, ASDatePickerProps } from "../../index";
 import { ASFloatingActionButtonProps } from "../components/floatingActionButton";
 export type WidgetsName = keyof WidgetsList;
 export type WidgetsList = {
@@ -35,6 +35,7 @@ export type WidgetsList = {
     ASPin: (attributes: ASPinProps) => string;
     ASPasswordTextField: (attributes: ASPasswordTextFieldProps) => string;
     ASPopUp: (attributes: ASPopUpProps) => string;
+    ASDatePicker: (attributes: ASDatePickerProps) => string;
     ASLoadingScreen: (attributes: ASLoadingScreenProps) => string;
     ASLoadingIndicator: (attributes: ASLoadingIndicatorProps) => string;
     ASSwipeButton: (attributes: ASSwipeButtonProps) => string;

@@ -34,6 +34,7 @@ export { default as ASPin, ASPinProps } from "./src/components/pin";
 export { ThemeContext, useThemeContextValue, ThemeProvider, createThemeData, useThemeColors, useThemeFonts, } from "./src/context/theme-context";
 export { default as ASPasswordTextField, ASPasswordTextFieldProps, } from "./src/components/passwordTextField";
 export { default as ASPopUp, ASPopUpProps } from "./src/components/popUp";
+export { default as ASDatePicker, ASDatePickerProps } from "./src/components/datePicker";
 export { default as ASLoadingScreen, ASLoadingScreenProps, } from "./src/components/loadingScreen";
 export { default as ASLoadingIndicator, ASLoadingIndicatorProps, } from "./src/components/loadingIndicator";
 export { default as ASDualIconRowButton, ASDualIconButtonProps, } from "./src/components/dualIconRowButton";

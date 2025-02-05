@@ -43,7 +43,8 @@ import {
   ASTabs,
   TabsProps,
   ASTabViewProps,
-  ASAppBarProps
+  ASAppBarProps,
+  ASDatePickerProps
 } from "../../index";
 import ASAppBar from "../components/appbar";
 import ASFloatingActionButton, {ASFloatingActionButtonProps} from "../components/floatingActionButton";
@@ -84,6 +85,7 @@ export type WidgetsList = {
   ASPin: (attributes: ASPinProps) => string;
   ASPasswordTextField: (attributes: ASPasswordTextFieldProps) => string;
   ASPopUp: (attributes: ASPopUpProps) => string;
+  ASDatePicker: (attributes: ASDatePickerProps) => string;
   ASLoadingScreen: (attributes: ASLoadingScreenProps) => string;
   ASLoadingIndicator: (attributes: ASLoadingIndicatorProps) => string;
   ASSwipeButton: (attributes: ASSwipeButtonProps) => string;
@@ -357,6 +359,8 @@ export class ASWidgetsList {
         ASWidgetsList.getWidgetString("ASPasswordTextField", attributes),
       ASPopUp: (attributes: ASPopUpProps) =>
         ASWidgetsList.getWidgetString("ASPopUp", attributes),
+      ASDatePicker: (attributes: ASDatePickerProps) =>
+        ASWidgetsList.getWidgetString("ASDatePicker", attributes),
       ASLoadingScreen: (attributes: ASLoadingScreenProps) =>
         ASWidgetsList.getWidgetString("ASLoadingScreen", attributes),
       ASLoadingIndicator: (attributes: ASLoadingIndicatorProps) =>
