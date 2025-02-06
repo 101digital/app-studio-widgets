@@ -1,5 +1,6 @@
 import React, { ReactNode, useContext, useState } from "react";
 import {
+  ModalProps,
   NativeSyntheticEvent,
   Pressable,
   StyleProp,
@@ -31,7 +32,12 @@ import { colors } from "utils/colors";
 
 export type ASDatePickerProps = Omit<TextInputMaskProps, "type"> &
   TextInputProps &
-  ASPopUpProps & {
+   ModalProps & {
+      children: ReactNode | ((onPressBackground?: () => void) => ReactNode);
+      visible: boolean
+      isShowCloseIcon?: boolean
+      onClose: () => void
+  } & {
     name: string;
     prefixIcon?: ReactNode | string;
     suffixIcon?: ReactNode | string;
