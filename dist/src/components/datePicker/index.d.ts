@@ -1,8 +1,12 @@
 import React, { ReactNode } from "react";
-import { StyleProp, TextInputProps, TextStyle, ViewStyle } from "react-native";
+import { ModalProps, StyleProp, TextInputProps, TextStyle, ViewStyle } from "react-native";
 import { TextInputMaskProps, TextInputMaskTypeProp } from "react-native-masked-text";
-import { ASPopUpProps } from "components/popUp";
-export type ASDatePickerProps = Omit<TextInputMaskProps, "type"> & TextInputProps & ASPopUpProps & {
+export type ASDatePickerProps = Omit<TextInputMaskProps, "type"> & TextInputProps & ModalProps & {
+    children: ReactNode | ((onPressBackground?: () => void) => ReactNode);
+    visible: boolean;
+    isShowCloseIcon?: boolean;
+    onClose: () => void;
+} & {
     name: string;
     prefixIcon?: ReactNode | string;
     suffixIcon?: ReactNode | string;

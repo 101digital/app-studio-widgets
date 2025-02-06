@@ -24,7 +24,7 @@ import { constants } from "../../utils/constants";
 import ASOverlay from "../overlay";
 import ASImage from "../image";
 import ASCalendar from "components/calendar";
-import ASPopUp, { ASPopUpProps } from "components/popUp";
+import ASPopUp from "components/popUp";
 import ASColumn from "components/column";
 import ASRow from "components/row";
 import ASButton from "components/button";
