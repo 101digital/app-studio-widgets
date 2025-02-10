@@ -28,7 +28,7 @@ import ASPopUp from "../../components/popUp";
 import ASColumn from "../../components/column";
 import ASRow from "../../components/row";
 import ASButton from "../../components/button";
-import { colors } from "utils/colors";
+import { colors } from "../../utils/colors";
 
 export type ASDatePickerProps = Omit<TextInputMaskProps, "type"> &
   TextInputProps &
