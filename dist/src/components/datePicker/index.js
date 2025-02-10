@@ -50,14 +50,13 @@ const popUp_1 = __importDefault(require("../../components/popUp"));
 const column_1 = __importDefault(require("../../components/column"));
 const row_1 = __importDefault(require("../../components/row"));
 const button_1 = __importDefault(require("../../components/button"));
-const colors_1 = require("utils/colors");
+const colors_1 = require("../../utils/colors");
 const ASDatePicker = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { name, onFocus, onBlur, suffixIcon, prefixIcon, prefixText, prefixTextStyle, formatError, options, label, textFieldType = "custom", formatNumber, labelTextStyle, inputTextStyle, borderErrorColor, borderActiveColor, style, errorMessageTextStyle, placeholderTextColor, accessibilityLabel, isOverlayEnabled, id, onChange } = props, restProps = __rest(props, ["name", "onFocus", "onBlur", "suffixIcon", "prefixIcon", "prefixText", "prefixTextStyle", "formatError", "options", "label", "textFieldType", "formatNumber", "labelTextStyle", "inputTextStyle", "borderErrorColor", "borderActiveColor", "style", "errorMessageTextStyle", "placeholderTextColor", "accessibilityLabel", "isOverlayEnabled", "id", "onChange"]);
+    const { name, onFocus, onBlur, suffixIcon, prefixIcon, prefixText, prefixTextStyle, formatError, label, formatNumber, labelTextStyle, inputTextStyle, borderErrorColor, borderActiveColor, style, errorMessageTextStyle, placeholderTextColor, accessibilityLabel, isOverlayEnabled, id, onChange } = props, restProps = __rest(props, ["name", "onFocus", "onBlur", "suffixIcon", "prefixIcon", "prefixText", "prefixTextStyle", "formatError", "label", "formatNumber", "labelTextStyle", "inputTextStyle", "borderErrorColor", "borderActiveColor", "style", "errorMessageTextStyle", "placeholderTextColor", "accessibilityLabel", "isOverlayEnabled", "id", "onChange"]);
     const [active, setActive] = (0, react_1.useState)(false);
     const [isVisible, setIsVisible] = (0, react_1.useState)(false);
     const [field, meta, helpers] = (0, formik_1.useField)(name);
-    const showMask = options && Object.keys(options).length > 0;
     const flattenedStyle = react_native_1.StyleSheet.flatten(style);
     const flattenedLabelStyle = react_native_1.StyleSheet.flatten(labelTextStyle) || {};
     const labelFontSize = flattenedLabelStyle.fontSize || styles.labelStyle.fontSize;

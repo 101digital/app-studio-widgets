@@ -1,7 +1,6 @@
 import React, { ReactNode } from "react";
 import { ModalProps, StyleProp, TextInputProps, TextStyle, ViewStyle } from "react-native";
-import { TextInputMaskProps, TextInputMaskTypeProp } from "react-native-masked-text";
-export type ASDatePickerProps = Omit<TextInputMaskProps, "type"> & TextInputProps & ModalProps & {
+export type ASDatePickerProps = TextInputProps & ModalProps & {
     children: ReactNode | ((onPressBackground?: () => void) => ReactNode);
     visible: boolean;
     isShowCloseIcon?: boolean;
@@ -12,7 +11,6 @@ export type ASDatePickerProps = Omit<TextInputMaskProps, "type"> & TextInputProp
     suffixIcon?: ReactNode | string;
     formatError?: (error: string) => string;
     label?: string;
-    textFieldType?: TextInputMaskTypeProp;
     formatNumber?: "comma" | "dot" | "percentage" | undefined;
     prefixText?: string;
     prefixTextStyle?: StyleProp<TextStyle>;

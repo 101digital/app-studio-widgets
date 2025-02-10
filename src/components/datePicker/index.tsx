@@ -12,11 +12,6 @@ import {
   View,
   ViewStyle,
 } from "react-native";
-import {
-  TextInputMask,
-  TextInputMaskProps,
-  TextInputMaskTypeProp,
-} from "react-native-masked-text";
 import { useField } from "formik";
 import ASText from "../text";
 import { ThemeContext } from "../../context/theme-context";
@@ -30,8 +25,7 @@ import ASRow from "../../components/row";
 import ASButton from "../../components/button";
 import { colors } from "../../utils/colors";
 
-export type ASDatePickerProps = Omit<TextInputMaskProps, "type"> &
-  TextInputProps &
+export type ASDatePickerProps = TextInputProps &
    ModalProps & {
       children: ReactNode | ((onPressBackground?: () => void) => ReactNode);
       visible: boolean
@@ -43,7 +37,6 @@ export type ASDatePickerProps = Omit<TextInputMaskProps, "type"> &
     suffixIcon?: ReactNode | string;
     formatError?: (error: string) => string;
     label?: string;
-    textFieldType?: TextInputMaskTypeProp;
     formatNumber?: "comma" | "dot" | "percentage" | undefined;
     prefixText?: string;
     prefixTextStyle?: StyleProp<TextStyle>;
@@ -71,9 +64,7 @@ const ASDatePicker = (props: ASDatePickerProps) => {
     prefixText,
     prefixTextStyle,
     formatError,
-    options,
     label,
-    textFieldType = "custom",
     formatNumber,
     labelTextStyle,
     inputTextStyle,
@@ -91,7 +82,6 @@ const ASDatePicker = (props: ASDatePickerProps) => {
   const [active, setActive] = useState(false);
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const [field, meta, helpers] = useField(name);
-  const showMask = options && Object.keys(options).length > 0;
   const flattenedStyle = StyleSheet.flatten(style) as ViewStyle;
   const flattenedLabelStyle = StyleSheet.flatten(labelTextStyle) || {};
   const labelFontSize =
