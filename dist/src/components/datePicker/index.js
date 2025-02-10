@@ -45,11 +45,11 @@ const theme_context_1 = require("../../context/theme-context");
 const constants_1 = require("../../utils/constants");
 const overlay_1 = __importDefault(require("../overlay"));
 const image_1 = __importDefault(require("../image"));
-const calendar_1 = __importDefault(require("components/calendar"));
-const popUp_1 = __importDefault(require("components/popUp"));
-const column_1 = __importDefault(require("components/column"));
-const row_1 = __importDefault(require("components/row"));
-const button_1 = __importDefault(require("components/button"));
+const calendar_1 = __importDefault(require("../../components/calendar"));
+const popUp_1 = __importDefault(require("../../components/popUp"));
+const column_1 = __importDefault(require("../../components/column"));
+const row_1 = __importDefault(require("../../components/row"));
+const button_1 = __importDefault(require("../../components/button"));
 const colors_1 = require("utils/colors");
 const ASDatePicker = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);

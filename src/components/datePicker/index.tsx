@@ -23,11 +23,11 @@ import { ThemeContext } from "../../context/theme-context";
 import { constants } from "../../utils/constants";
 import ASOverlay from "../overlay";
 import ASImage from "../image";
-import ASCalendar from "components/calendar";
-import ASPopUp from "components/popUp";
-import ASColumn from "components/column";
-import ASRow from "components/row";
-import ASButton from "components/button";
+import ASCalendar from "../../components/calendar";
+import ASPopUp from "../../components/popUp";
+import ASColumn from "../../components/column";
+import ASRow from "../../components/row";
+import ASButton from "../../components/button";
 import { colors } from "utils/colors";
 
 export type ASDatePickerProps = Omit<TextInputMaskProps, "type"> &
