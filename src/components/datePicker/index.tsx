@@ -1,4 +1,4 @@
-import React, { ReactNode, useContext, useState } from "react";
+import React, { ReactNode, useContext, useEffect, useState } from "react";
 import {
   ModalProps,
   NativeSyntheticEvent,
@@ -24,6 +24,7 @@ import ASRow from "../../components/row";
 import ASButton from "../../components/button";
 import { colors } from "../../utils/colors";
 import { constants } from "../../utils/constants";
+import { format } from "date-fns";
 
 export type ASDatePickerProps = TextInputProps &
   ModalProps & {
@@ -49,6 +50,10 @@ export type ASDatePickerProps = TextInputProps &
     isOverlayEnabled?: boolean;
     id?: string;
     onChange?: (text: any) => void;
+    isDefaultCurrentDate?: boolean;
+    range?: "past" | "future";
+    maxDate?: string;
+    minDate?: string;
   };
 
 const ASDatePicker = (props: ASDatePickerProps) => {
@@ -75,6 +80,10 @@ const ASDatePicker = (props: ASDatePickerProps) => {
     isOverlayEnabled,
     id,
     onChange,
+    isDefaultCurrentDate,
+    minDate,
+    maxDate,
+    range,
     ...restProps
   } = props;
   const [active, setActive] = useState(false);
@@ -95,6 +104,14 @@ const ASDatePicker = (props: ASDatePickerProps) => {
       onFocus(event);
     }
   };
+
+  const today = format(new Date(), "yyyy-MM-dd");
+
+  useEffect(() => {
+    if (!!isDefaultCurrentDate) {
+      field.onChange(name)(today);
+    }
+  }, [isDefaultCurrentDate]);
 
   // Triger this in onBlur envent
   const handleFormat = () => {
@@ -262,6 +279,23 @@ const ASDatePicker = (props: ASDatePickerProps) => {
             dayTextColor={""}
             calendarBackground={""}
             textSectionTitleColor={""}
+            minDate={
+              minDate
+                ? minDate
+                : range
+                ? range === "future"
+                  ? today
+                  : undefined
+                : undefined
+            }
+            maxDate={
+              maxDate
+                ? maxDate
+                : range
+                ? range === "past"
+                  ? today
+                  : undefined
+                : undefined}
             markedDates={
               selectingDate
                 ? {
