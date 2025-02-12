@@ -2,20 +2,19 @@ import React, { ReactNode, useContext, useState } from "react";
 import {
   ModalProps,
   NativeSyntheticEvent,
-  Pressable,
+  TouchableOpacity,
   StyleProp,
   StyleSheet,
-  TextInput,
   TextInputFocusEventData,
   TextInputProps,
   TextStyle,
   View,
   ViewStyle,
+  TextInput,
 } from "react-native";
 import { useField } from "formik";
 import ASText from "../text";
 import { ThemeContext } from "../../context/theme-context";
-import { constants } from "../../utils/constants";
 import ASOverlay from "../overlay";
 import ASImage from "../image";
 import ASCalendar from "../../components/calendar";
@@ -24,13 +23,12 @@ import ASColumn from "../../components/column";
 import ASRow from "../../components/row";
 import ASButton from "../../components/button";
 import { colors } from "../../utils/colors";
+import { constants } from "../../utils/constants";
 
 export type ASDatePickerProps = TextInputProps &
-   ModalProps & {
-      children: ReactNode | ((onPressBackground?: () => void) => ReactNode);
-      visible: boolean
-      isShowCloseIcon?: boolean
-      onClose: () => void
+  ModalProps & {
+    onClose?: () => void;
+    dateFormat?: string;
   } & {
     name: string;
     prefixIcon?: ReactNode | string;
@@ -81,7 +79,8 @@ const ASDatePicker = (props: ASDatePickerProps) => {
   } = props;
   const [active, setActive] = useState(false);
   const [isVisible, setIsVisible] = useState<boolean>(false);
-  const [field, meta, helpers] = useField(name);
+  const [field, meta] = useField(name);
+  const [selectingDate, setSelectingDate] = useState<string>();
   const flattenedStyle = StyleSheet.flatten(style) as ViewStyle;
   const flattenedLabelStyle = StyleSheet.flatten(labelTextStyle) || {};
   const labelFontSize =
@@ -135,30 +134,6 @@ const ASDatePicker = (props: ASDatePickerProps) => {
     field?.onChange(name)(text);
   };
 
-  const handleOnBlur = (
-    event: NativeSyntheticEvent<TextInputFocusEventData>
-  ) => {
-    handleFormat();
-    setActive(false);
-    field?.onBlur(name);
-    helpers?.setTouched(true);
-
-    if (onBlur) {
-      onBlur(event);
-    }
-  };
-
-  const handleOnChange = (e: string) => {
-    field?.onChange(name)(e);
-    if (onChange) {
-      onChange(e);
-    }
-  };
-
-  const getErrorMessage = (error: string) => {
-    return formatError?.(error) ?? error;
-  };
-
   const getBorderColor = () => {
     if (meta.error && meta.touched) {
       return borderErrorColor;
@@ -171,11 +146,14 @@ const ASDatePicker = (props: ASDatePickerProps) => {
   };
 
   const onOpenIsVisible = async () => {
+    console.log("pressed");
     setIsVisible(!isVisible);
   };
 
+  console.log("value", field.value);
+
   return (
-    <Pressable
+    <TouchableOpacity
       onPress={onOpenIsVisible}
       style={[
         styles.wrapperStyle,
@@ -243,9 +221,7 @@ const ASDatePicker = (props: ASDatePickerProps) => {
           <View style={styles.inputContainerStyle}>
             <TextInput
               onFocus={handleOnFocus}
-              onBlur={handleOnBlur}
-              value={`${field?.value}`}
-              onChangeText={handleOnChange}
+              value={field?.value ? `${field?.value}` : undefined}
               style={[
                 styles.textInputStyle,
                 !!flattenedStyle?.width && { width: flattenedStyle.width },
@@ -257,6 +233,7 @@ const ASDatePicker = (props: ASDatePickerProps) => {
               autoComplete={"off"}
               autoCorrect={false}
               underlineColorAndroid="transparent"
+              placeholder="YYYY-MM-DD"
               {...restProps}
             />
           </View>
@@ -274,27 +251,37 @@ const ASDatePicker = (props: ASDatePickerProps) => {
           )}
         </View>
       </View>
-      {meta?.error && meta?.touched && (
-        <ASText style={[styles.errorTextStyle, errorMessageTextStyle]}>
-          {getErrorMessage(meta?.error)}
-        </ASText>
-      )}
       {isOverlayEnabled && <ASOverlay />}
-      <ASPopUp {...restProps} visible={isVisible}>
+      <ASPopUp {...restProps} visible={isVisible} isShowCloseIcon={false}>
         <ASColumn style={Object.assign({}, styles.class_bvul0lmic, {})}>
           <ASCalendar
             selectedDayBackgroundColor={""}
-            selectedDayTextColor={""}
+            selectedDayTextColor={"red"}
             todayTextColor={""}
             arrowColor={""}
             dayTextColor={""}
             calendarBackground={""}
             textSectionTitleColor={""}
+            markedDates={
+              selectingDate
+                ? {
+                    [selectingDate]: { selected: true },
+                  }
+                : undefined
+            }
+            onDayPress={(date) =>
+              setSelectingDate(
+                date.dateString === selectingDate ? undefined : date.dateString
+              )
+            }
           />
           <ASRow style={Object.assign({}, styles.class_fnysbffjk, {})}>
             <ASButton
               onPress={() => {
                 onCloseIsVisible();
+                if (selectingDate) {
+                  field.onChange(name)(selectingDate);
+                }
               }}
               style={Object.assign({}, styles.class_a2462tv01, {})}
               textStyle={Object.assign({}, styles.class_8pqr824r1, {})}
@@ -305,7 +292,7 @@ const ASDatePicker = (props: ASDatePickerProps) => {
           </ASRow>
         </ASColumn>
       </ASPopUp>
-    </Pressable>
+    </TouchableOpacity>
   );
 };
 
@@ -356,9 +343,7 @@ const styles = StyleSheet.create({
     minHeight: 48,
   },
   textInputStyle: {
-    flex: 1,
     fontSize: 12,
-    minHeight: 48,
   },
   errorTextStyle: {
     fontSize: 12,
@@ -384,7 +369,7 @@ const styles = StyleSheet.create({
     paddingVertical: 30,
     paddingHorizontal: 14,
     justifyContent: "center",
-    backgroundColor: colors.background,
+    backgroundColor: "white",
     borderRadius: 6,
     width: "90%",
     overflow: "hidden",
