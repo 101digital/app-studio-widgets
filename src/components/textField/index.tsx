@@ -22,7 +22,7 @@ export type ASTextFieldProps = Omit<TextInputMaskProps, "type"> &
     TextInputProps & {
     name: string;
     prefixIcon?: ReactNode | string;
-    suffixIcon?: ReactNode;
+    suffixIcon?: ReactNode | string;
     formatError?: (error: string) => string;
     label?: string;
     textFieldType?: TextInputMaskTypeProp;
@@ -143,7 +143,7 @@ const ASTextField = (props: ASTextFieldProps) => {
     const handleOnChange = (e: string) => {
         field?.onChange(name)(e);
         if (onChange) {
-            onChange(e); 
+            onChange(e);
         }
     };
 
@@ -229,7 +229,12 @@ const ASTextField = (props: ASTextFieldProps) => {
                             />
                         )}
                     </View>
-                    {suffixIcon && <View style={styles.suffixIcon}>{suffixIcon}</View>}
+                    {suffixIcon && <View style={styles.suffixIcon}>{typeof suffixIcon === 'string' ?
+                        <ASImage
+                            style={{width: 20, height: 20}}
+                            source={suffixIcon}
+                        />
+                        : suffixIcon}</View>}
                 </View>
             </View>
             {meta?.error && meta?.touched && (

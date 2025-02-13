@@ -4,4 +4,5 @@ declare const screenHeight: number;
 declare const convertPercentageToPx: (percentage: number | string | DimensionValue | undefined, isWidth: boolean) => number | undefined;
 declare const isAndroid: boolean;
 declare const getLoadingStatus: (loading: boolean | boolean[] | undefined) => boolean;
-export { screenWidth, screenHeight, convertPercentageToPx, isAndroid, getLoadingStatus };
+declare const hexToRgbaWithOpacity: (hex: string | undefined, opacity?: number) => string;
+export { screenWidth, screenHeight, convertPercentageToPx, isAndroid, getLoadingStatus, hexToRgbaWithOpacity };

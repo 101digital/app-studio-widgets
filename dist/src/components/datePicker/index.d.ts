@@ -1,13 +1,14 @@
 import React, { ReactNode } from "react";
-import { StyleProp, TextInputProps, TextStyle, ViewStyle } from "react-native";
-import { TextInputMaskProps, TextInputMaskTypeProp } from "react-native-masked-text";
-export type ASTextFieldProps = Omit<TextInputMaskProps, "type"> & TextInputProps & {
+import { ModalProps, StyleProp, TextInputProps, TextStyle, ViewStyle } from "react-native";
+export type ASDatePickerProps = TextInputProps & ModalProps & {
+    onClose?: () => void;
+    dateFormat?: string;
+} & {
     name: string;
     prefixIcon?: ReactNode | string;
     suffixIcon?: ReactNode | string;
     formatError?: (error: string) => string;
     label?: string;
-    textFieldType?: TextInputMaskTypeProp;
     formatNumber?: "comma" | "dot" | "percentage" | undefined;
     prefixText?: string;
     prefixTextStyle?: StyleProp<TextStyle>;
@@ -22,11 +23,24 @@ export type ASTextFieldProps = Omit<TextInputMaskProps, "type"> & TextInputProps
     isOverlayEnabled?: boolean;
     id?: string;
     onChange?: (text: any) => void;
+    isDefaultCurrentDate?: boolean;
+    range?: "past" | "future";
+    maxDate?: string;
+    minDate?: string;
+    displayDateFormat?: string;
+    selectedDateFormat?: string;
+    selectedDayBackgroundColor?: string;
+    selectedDayTextColor?: string;
+    todayTextColor?: string;
+    arrowColor?: string;
+    dayTextColor?: string;
+    calendarBackground?: string;
+    textSectionTitleColor?: string;
 };
-declare const ASTextField: {
-    (props: ASTextFieldProps): React.JSX.Element;
+declare const ASDatePicker: {
+    (props: ASDatePickerProps): React.JSX.Element;
     defaultProps: {
         type: string;
     };
 };
-export default ASTextField;
+export default ASDatePicker;

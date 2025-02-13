@@ -26,4 +26,22 @@ const getLoadingStatus = (loading: boolean | boolean[] | undefined): boolean => 
     return loading && Array.isArray(loading) ? loading.some((item: boolean) => item) : loading
 }
 
-export {screenWidth, screenHeight, convertPercentageToPx, isAndroid, getLoadingStatus};
+const hexToRgbaWithOpacity = (hex: string | undefined, opacity: number = 0.2): string => {
+    if(!hex) return '#fff'
+    // Remove the hash (#) if present
+    hex = hex.replace(/^#/, "");
+    // Handle shorthand hex (#RGB) by expanding it to full length (#RRGGBB)
+    if (hex.length === 3) {
+        hex = hex
+            .split("")
+            .map((char) => char + char)
+            .join("");
+    }
+    // Parse the R, G, B values from the hex string
+    const r = parseInt(hex.slice(0, 2), 16);
+    const g = parseInt(hex.slice(2, 4), 16);
+    const b = parseInt(hex.slice(4, 6), 16);
+    return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+}
+
+export {screenWidth, screenHeight, convertPercentageToPx, isAndroid, getLoadingStatus,hexToRgbaWithOpacity};

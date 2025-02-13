@@ -47,6 +47,6 @@ const ASSwitch = (props) => {
             return !previousState;
         });
     };
-    return (react_1.default.createElement(react_native_1.Switch, Object.assign({ trackColor: { true: enableTrackColor, false: disabledTrackColor }, ios_backgroundColor: colors.onSurface, onValueChange: toggleSwitch, value: isEnabled, thumbColor: isEnabled ? enableThumbColor : disabledThumbColor }, restProps)));
+    return (react_1.default.createElement(react_native_1.Switch, Object.assign({ trackColor: { true: enableTrackColor, false: disabledTrackColor }, ios_backgroundColor: colors.secondary, onValueChange: toggleSwitch, value: isEnabled, thumbColor: isEnabled ? enableThumbColor : disabledThumbColor, activeThumbColor: enableThumbColor }, restProps)));
 };
 exports.default = ASSwitch;

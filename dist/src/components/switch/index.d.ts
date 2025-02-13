@@ -6,6 +6,7 @@ export type ASSwitchProps = SwitchProps & {
     enableTrackColor?: string;
     disabledTrackColor?: string;
     onChange: (value: boolean) => void;
+    activeThumbColor?: string;
 };
 declare const ASSwitch: React.FC<ASSwitchProps>;
 export default ASSwitch;
