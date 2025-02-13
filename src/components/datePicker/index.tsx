@@ -233,7 +233,7 @@ const ASDatePicker = (props: ASDatePickerProps) => {
               autoCorrect={false}
               editable={false}
               underlineColorAndroid="transparent"
-              placeholder="YYYY-MM-DD"
+              placeholder={displayDateFormat ?? "yyyy-MM-dd"}
               {...restProps}
             />
           </View>
@@ -310,8 +310,8 @@ const ASDatePicker = (props: ASDatePickerProps) => {
               }}
               style={Object.assign({}, styles.class_a2462tv01, {})}
               textStyle={Object.assign({}, styles.class_8pqr824r1, {})}
-              label={"Ok"}
-              accessibilityLabel={"Ok"}
+              label={"Okay"}
+              accessibilityLabel={"Okay"}
               simpleTextButton={false}
             />
           </ASRow>

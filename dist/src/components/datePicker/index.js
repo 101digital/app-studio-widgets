@@ -126,7 +126,7 @@ const ASDatePicker = (props) => {
                             styles.textInputStyle,
                             !!(flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.width) && { width: flattenedStyle.width },
                             inputTextStyle,
-                        ], placeholderTextColor: placeholderTextColor || constants_1.constants.defaultPlaceholderColor, autoComplete: "off", autoCorrect: false, editable: false, underlineColorAndroid: "transparent", placeholder: "YYYY-MM-DD" }, restProps))),
+                        ], placeholderTextColor: placeholderTextColor || constants_1.constants.defaultPlaceholderColor, autoComplete: "off", autoCorrect: false, editable: false, underlineColorAndroid: "transparent", placeholder: displayDateFormat !== null && displayDateFormat !== void 0 ? displayDateFormat : "yyyy-MM-dd" }, restProps))),
                 suffixIcon && (react_1.default.createElement(react_native_1.View, { style: styles.suffixIcon }, typeof suffixIcon === "string" ? (react_1.default.createElement(image_1.default, { style: { width: 20, height: 20 }, source: suffixIcon })) : (suffixIcon))))),
         isOverlayEnabled && react_1.default.createElement(overlay_1.default, null),
         react_1.default.createElement(popUp_1.default, Object.assign({}, restProps, { onClose: () => { }, visible: isVisible, isShowCloseIcon: false }),
@@ -154,7 +154,7 @@ const ASDatePicker = (props) => {
                             if (selectingDate) {
                                 field.onChange(name)((0, date_fns_1.format)(selectingDate, selectedDateFormat));
                             }
-                        }, style: Object.assign({}, styles.class_a2462tv01, {}), textStyle: Object.assign({}, styles.class_8pqr824r1, {}), label: "Ok", accessibilityLabel: "Ok", simpleTextButton: false }))))));
+                        }, style: Object.assign({}, styles.class_a2462tv01, {}), textStyle: Object.assign({}, styles.class_8pqr824r1, {}), label: "Okay", accessibilityLabel: "Okay", simpleTextButton: false }))))));
 };
 ASDatePicker.defaultProps = {
     type: "custom",
