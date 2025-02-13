@@ -269,7 +269,7 @@ const ASDatePicker = (props: ASDatePickerProps) => {
         </View>
       </View>
       {isOverlayEnabled && <ASOverlay />}
-      <ASPopUp {...restProps} visible={isVisible} isShowCloseIcon={false}>
+      <ASPopUp {...restProps} onClose={() => {}} visible={isVisible} isShowCloseIcon={false}>
         <ASColumn style={Object.assign({}, styles.class_bvul0lmic, {})}>
           <ASCalendar
             selectedDayBackgroundColor={""}

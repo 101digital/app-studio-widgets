@@ -114,12 +114,7 @@ const ASCalendar = (props) => {
     };
     return (react_1.default.createElement(react_native_calendars_1.Calendar, Object.assign({ onDayPress: _onDayPress, initialDate: new Date().toDateString(), allowSelectionOutOfRange: false, hideExtraDays: true, minDate: _getMinDate(), theme: {
             selectedDayBackgroundColor: selectedDayBackgroundColor,
-            selectedDayTextColor: selectedDayTextColor,
-            todayTextColor: todayTextColor,
-            arrowColor: arrowColor,
-            dayTextColor: dayTextColor,
-            calendarBackground: calendarBackground,
-            textSectionTitleColor: textSectionTitleColor,
+            selectedDayTextColor: colors.primary,
         }, markedDates: Object.assign(Object.assign({ [selected]: {
                 selected: true,
                 disableTouchEvent: true,

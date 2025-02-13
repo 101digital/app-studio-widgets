@@ -1,10 +1,8 @@
 import React, { ReactNode } from "react";
 import { ModalProps, StyleProp, TextInputProps, TextStyle, ViewStyle } from "react-native";
 export type ASDatePickerProps = TextInputProps & ModalProps & {
-    children: ReactNode | ((onPressBackground?: () => void) => ReactNode);
-    visible: boolean;
-    isShowCloseIcon?: boolean;
-    onClose: () => void;
+    onClose?: () => void;
+    dateFormat?: string;
 } & {
     name: string;
     prefixIcon?: ReactNode | string;
@@ -25,6 +23,10 @@ export type ASDatePickerProps = TextInputProps & ModalProps & {
     isOverlayEnabled?: boolean;
     id?: string;
     onChange?: (text: any) => void;
+    isDefaultCurrentDate?: boolean;
+    range?: "past" | "future";
+    maxDate?: string;
+    minDate?: string;
 };
 declare const ASDatePicker: {
     (props: ASDatePickerProps): React.JSX.Element;

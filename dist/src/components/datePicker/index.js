@@ -42,7 +42,6 @@ const react_native_1 = require("react-native");
 const formik_1 = require("formik");
 const text_1 = __importDefault(require("../text"));
 const theme_context_1 = require("../../context/theme-context");
-const constants_1 = require("../../utils/constants");
 const overlay_1 = __importDefault(require("../overlay"));
 const image_1 = __importDefault(require("../image"));
 const calendar_1 = __importDefault(require("../../components/calendar"));
@@ -51,12 +50,15 @@ const column_1 = __importDefault(require("../../components/column"));
 const row_1 = __importDefault(require("../../components/row"));
 const button_1 = __importDefault(require("../../components/button"));
 const colors_1 = require("../../utils/colors");
+const constants_1 = require("../../utils/constants");
+const date_fns_1 = require("date-fns");
 const ASDatePicker = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { name, onFocus, onBlur, suffixIcon, prefixIcon, prefixText, prefixTextStyle, formatError, label, formatNumber, labelTextStyle, inputTextStyle, borderErrorColor, borderActiveColor, style, errorMessageTextStyle, placeholderTextColor, accessibilityLabel, isOverlayEnabled, id, onChange } = props, restProps = __rest(props, ["name", "onFocus", "onBlur", "suffixIcon", "prefixIcon", "prefixText", "prefixTextStyle", "formatError", "label", "formatNumber", "labelTextStyle", "inputTextStyle", "borderErrorColor", "borderActiveColor", "style", "errorMessageTextStyle", "placeholderTextColor", "accessibilityLabel", "isOverlayEnabled", "id", "onChange"]);
+    const { name, onFocus, onBlur, suffixIcon, prefixIcon, prefixText, prefixTextStyle, formatError, label, formatNumber, labelTextStyle, inputTextStyle, borderErrorColor, borderActiveColor, style, errorMessageTextStyle, placeholderTextColor, accessibilityLabel, isOverlayEnabled, id, onChange, isDefaultCurrentDate, minDate, maxDate, range } = props, restProps = __rest(props, ["name", "onFocus", "onBlur", "suffixIcon", "prefixIcon", "prefixText", "prefixTextStyle", "formatError", "label", "formatNumber", "labelTextStyle", "inputTextStyle", "borderErrorColor", "borderActiveColor", "style", "errorMessageTextStyle", "placeholderTextColor", "accessibilityLabel", "isOverlayEnabled", "id", "onChange", "isDefaultCurrentDate", "minDate", "maxDate", "range"]);
     const [active, setActive] = (0, react_1.useState)(false);
     const [isVisible, setIsVisible] = (0, react_1.useState)(false);
-    const [field, meta, helpers] = (0, formik_1.useField)(name);
+    const [field, meta] = (0, formik_1.useField)(name);
+    const [selectingDate, setSelectingDate] = (0, react_1.useState)();
     const flattenedStyle = react_native_1.StyleSheet.flatten(style);
     const flattenedLabelStyle = react_native_1.StyleSheet.flatten(labelTextStyle) || {};
     const labelFontSize = flattenedLabelStyle.fontSize || styles.labelStyle.fontSize;
@@ -68,6 +70,12 @@ const ASDatePicker = (props) => {
             onFocus(event);
         }
     };
+    const today = (0, date_fns_1.format)(new Date(), "yyyy-MM-dd");
+    (0, react_1.useEffect)(() => {
+        if (!!isDefaultCurrentDate) {
+            field.onChange(name)(today);
+        }
+    }, [isDefaultCurrentDate]);
     // Triger this in onBlur envent
     const handleFormat = () => {
         let text = field.value;
@@ -101,25 +109,6 @@ const ASDatePicker = (props) => {
         }
         field === null || field === void 0 ? void 0 : field.onChange(name)(text);
     };
-    const handleOnBlur = (event) => {
-        handleFormat();
-        setActive(false);
-        field === null || field === void 0 ? void 0 : field.onBlur(name);
-        helpers === null || helpers === void 0 ? void 0 : helpers.setTouched(true);
-        if (onBlur) {
-            onBlur(event);
-        }
-    };
-    const handleOnChange = (e) => {
-        field === null || field === void 0 ? void 0 : field.onChange(name)(e);
-        if (onChange) {
-            onChange(e);
-        }
-    };
-    const getErrorMessage = (error) => {
-        var _a;
-        return (_a = formatError === null || formatError === void 0 ? void 0 : formatError(error)) !== null && _a !== void 0 ? _a : error;
-    };
     const getBorderColor = () => {
         if (meta.error && meta.touched) {
             return borderErrorColor;
@@ -130,9 +119,11 @@ const ASDatePicker = (props) => {
         setIsVisible(!isVisible);
     };
     const onOpenIsVisible = async () => {
+        console.log("pressed");
         setIsVisible(!isVisible);
     };
-    return (react_1.default.createElement(react_native_1.Pressable, { onPress: onOpenIsVisible, style: [
+    console.log("value", field.value);
+    return (react_1.default.createElement(react_native_1.TouchableOpacity, { onPress: onOpenIsVisible, style: [
             styles.wrapperStyle,
             style,
             { height: "auto", borderColor: "transparent" },
@@ -162,20 +153,38 @@ const ASDatePicker = (props) => {
                 prefixIcon && (react_1.default.createElement(react_native_1.View, { style: styles.prefixIcon }, typeof prefixIcon === "string" ? (react_1.default.createElement(image_1.default, { style: { width: 20, height: 20 }, source: prefixIcon })) : (prefixIcon))),
                 !!prefixText && (react_1.default.createElement(text_1.default, { style: [styles.prefixText, prefixTextStyle] }, prefixText)),
                 react_1.default.createElement(react_native_1.View, { style: styles.inputContainerStyle },
-                    react_1.default.createElement(react_native_1.TextInput, Object.assign({ onFocus: handleOnFocus, onBlur: handleOnBlur, value: `${field === null || field === void 0 ? void 0 : field.value}`, onChangeText: handleOnChange, style: [
+                    react_1.default.createElement(react_native_1.TextInput, Object.assign({ onFocus: handleOnFocus, value: (field === null || field === void 0 ? void 0 : field.value) ? `${field === null || field === void 0 ? void 0 : field.value}` : undefined, style: [
                             styles.textInputStyle,
                             !!(flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.width) && { width: flattenedStyle.width },
                             inputTextStyle,
-                        ], placeholderTextColor: placeholderTextColor || constants_1.constants.defaultPlaceholderColor, autoComplete: "off", autoCorrect: false, underlineColorAndroid: "transparent" }, restProps))),
+                        ], placeholderTextColor: placeholderTextColor || constants_1.constants.defaultPlaceholderColor, autoComplete: "off", autoCorrect: false, underlineColorAndroid: "transparent", placeholder: "YYYY-MM-DD" }, restProps))),
                 suffixIcon && (react_1.default.createElement(react_native_1.View, { style: styles.suffixIcon }, typeof suffixIcon === "string" ? (react_1.default.createElement(image_1.default, { style: { width: 20, height: 20 }, source: suffixIcon })) : (suffixIcon))))),
-        (meta === null || meta === void 0 ? void 0 : meta.error) && (meta === null || meta === void 0 ? void 0 : meta.touched) && (react_1.default.createElement(text_1.default, { style: [styles.errorTextStyle, errorMessageTextStyle] }, getErrorMessage(meta === null || meta === void 0 ? void 0 : meta.error))),
         isOverlayEnabled && react_1.default.createElement(overlay_1.default, null),
-        react_1.default.createElement(popUp_1.default, Object.assign({}, restProps, { visible: isVisible }),
+        react_1.default.createElement(popUp_1.default, Object.assign({}, restProps, { onClose: () => { }, visible: isVisible, isShowCloseIcon: false }),
             react_1.default.createElement(column_1.default, { style: Object.assign({}, styles.class_bvul0lmic, {}) },
-                react_1.default.createElement(calendar_1.default, { selectedDayBackgroundColor: "", selectedDayTextColor: "", todayTextColor: "", arrowColor: "", dayTextColor: "", calendarBackground: "", textSectionTitleColor: "" }),
+                react_1.default.createElement(calendar_1.default, { selectedDayBackgroundColor: "", selectedDayTextColor: "red", todayTextColor: "", arrowColor: "", dayTextColor: "", calendarBackground: "", textSectionTitleColor: "", minDate: minDate
+                        ? minDate
+                        : range
+                            ? range === "future"
+                                ? today
+                                : undefined
+                            : undefined, maxDate: maxDate
+                        ? maxDate
+                        : range
+                            ? range === "past"
+                                ? today
+                                : undefined
+                            : undefined, markedDates: selectingDate
+                        ? {
+                            [selectingDate]: { selected: true },
+                        }
+                        : undefined, onDayPress: (date) => setSelectingDate(date.dateString === selectingDate ? undefined : date.dateString) }),
                 react_1.default.createElement(row_1.default, { style: Object.assign({}, styles.class_fnysbffjk, {}) },
                     react_1.default.createElement(button_1.default, { onPress: () => {
                             onCloseIsVisible();
+                            if (selectingDate) {
+                                field.onChange(name)(selectingDate);
+                            }
                         }, style: Object.assign({}, styles.class_a2462tv01, {}), textStyle: Object.assign({}, styles.class_8pqr824r1, {}), label: "Ok", accessibilityLabel: "Ok", simpleTextButton: false }))))));
 };
 ASDatePicker.defaultProps = {
@@ -224,9 +233,7 @@ const styles = react_native_1.StyleSheet.create({
         minHeight: 48,
     },
     textInputStyle: {
-        flex: 1,
         fontSize: 12,
-        minHeight: 48,
     },
     errorTextStyle: {
         fontSize: 12,
@@ -252,7 +259,7 @@ const styles = react_native_1.StyleSheet.create({
         paddingVertical: 30,
         paddingHorizontal: 14,
         justifyContent: "center",
-        backgroundColor: colors_1.colors.background,
+        backgroundColor: "white",
         borderRadius: 6,
         width: "90%",
         overflow: "hidden",
