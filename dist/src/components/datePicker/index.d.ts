@@ -27,6 +27,8 @@ export type ASDatePickerProps = TextInputProps & ModalProps & {
     range?: "past" | "future";
     maxDate?: string;
     minDate?: string;
+    displayDateFormat?: string;
+    selectedDateFormat?: string;
 };
 declare const ASDatePicker: {
     (props: ASDatePickerProps): React.JSX.Element;

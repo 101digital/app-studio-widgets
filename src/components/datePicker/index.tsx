@@ -54,6 +54,8 @@ export type ASDatePickerProps = TextInputProps &
     range?: "past" | "future";
     maxDate?: string;
     minDate?: string;
+    displayDateFormat?: string;
+    selectedDateFormat?: string;
   };
 
 const ASDatePicker = (props: ASDatePickerProps) => {
@@ -84,6 +86,8 @@ const ASDatePicker = (props: ASDatePickerProps) => {
     minDate,
     maxDate,
     range,
+    displayDateFormat = "yyyy-MM-dd",
+    selectedDateFormat = "yyyy-MM-dd",
     ...restProps
   } = props;
   const [active, setActive] = useState(false);
@@ -109,47 +113,9 @@ const ASDatePicker = (props: ASDatePickerProps) => {
 
   useEffect(() => {
     if (!!isDefaultCurrentDate) {
-      field.onChange(name)(today);
+      field.onChange(name)(format(today, selectedDateFormat));
     }
   }, [isDefaultCurrentDate]);
-
-  // Triger this in onBlur envent
-  const handleFormat = () => {
-    let text = field.value;
-    let numberValue =
-      typeof text === "string" ? parseFloat(text) : Number(text);
-
-    if (!isNaN(numberValue)) {
-      switch (formatNumber) {
-        case "comma":
-          // Remove comma in the number so when format the already formatted (Ex: 123,456.00) number it's still working
-          // because can't parseFloat a string with comma into Number
-          // For ex: 123456 -> 123,456.00 and 123,456.00 -> 123,456.00
-          // The same apply for "dot"
-          text = parseFloat(text.replace(",", "")).toLocaleString("en-US", {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2,
-          });
-          break;
-        case "dot":
-          text = parseFloat(text.replace(".", "")).toLocaleString("de-DE", {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2,
-          });
-          break;
-        case "percentage":
-          const percentage = (numberValue * 100).toFixed(2);
-          text = `${percentage}%`;
-          break;
-
-        default:
-          text = field.value;
-          break;
-      }
-    }
-
-    field?.onChange(name)(text);
-  };
 
   const getBorderColor = () => {
     if (meta.error && meta.touched) {
@@ -166,6 +132,8 @@ const ASDatePicker = (props: ASDatePickerProps) => {
     console.log("pressed");
     setIsVisible(!isVisible);
   };
+
+  const renderDateFormat = format(field.value, displayDateFormat);
 
   console.log("value", field.value);
 
@@ -238,7 +206,7 @@ const ASDatePicker = (props: ASDatePickerProps) => {
           <View style={styles.inputContainerStyle}>
             <TextInput
               onFocus={handleOnFocus}
-              value={field?.value ? `${field?.value}` : undefined}
+              value={field?.value ? renderDateFormat : undefined}
               style={[
                 styles.textInputStyle,
                 !!flattenedStyle?.width && { width: flattenedStyle.width },
@@ -269,7 +237,12 @@ const ASDatePicker = (props: ASDatePickerProps) => {
         </View>
       </View>
       {isOverlayEnabled && <ASOverlay />}
-      <ASPopUp {...restProps} onClose={() => {}} visible={isVisible} isShowCloseIcon={false}>
+      <ASPopUp
+        {...restProps}
+        onClose={() => {}}
+        visible={isVisible}
+        isShowCloseIcon={false}
+      >
         <ASColumn style={Object.assign({}, styles.class_bvul0lmic, {})}>
           <ASCalendar
             selectedDayBackgroundColor={""}
@@ -295,7 +268,8 @@ const ASDatePicker = (props: ASDatePickerProps) => {
                 ? range === "past"
                   ? today
                   : undefined
-                : undefined}
+                : undefined
+            }
             markedDates={
               selectingDate
                 ? {
@@ -314,7 +288,9 @@ const ASDatePicker = (props: ASDatePickerProps) => {
               onPress={() => {
                 onCloseIsVisible();
                 if (selectingDate) {
-                  field.onChange(name)(selectingDate);
+                  field.onChange(name)(
+                    format(selectingDate, selectedDateFormat)
+                  );
                 }
               }}
               style={Object.assign({}, styles.class_a2462tv01, {})}

@@ -54,7 +54,7 @@ const constants_1 = require("../../utils/constants");
 const date_fns_1 = require("date-fns");
 const ASDatePicker = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { name, onFocus, onBlur, suffixIcon, prefixIcon, prefixText, prefixTextStyle, formatError, label, formatNumber, labelTextStyle, inputTextStyle, borderErrorColor, borderActiveColor, style, errorMessageTextStyle, placeholderTextColor, accessibilityLabel, isOverlayEnabled, id, onChange, isDefaultCurrentDate, minDate, maxDate, range } = props, restProps = __rest(props, ["name", "onFocus", "onBlur", "suffixIcon", "prefixIcon", "prefixText", "prefixTextStyle", "formatError", "label", "formatNumber", "labelTextStyle", "inputTextStyle", "borderErrorColor", "borderActiveColor", "style", "errorMessageTextStyle", "placeholderTextColor", "accessibilityLabel", "isOverlayEnabled", "id", "onChange", "isDefaultCurrentDate", "minDate", "maxDate", "range"]);
+    const { name, onFocus, onBlur, suffixIcon, prefixIcon, prefixText, prefixTextStyle, formatError, label, formatNumber, labelTextStyle, inputTextStyle, borderErrorColor, borderActiveColor, style, errorMessageTextStyle, placeholderTextColor, accessibilityLabel, isOverlayEnabled, id, onChange, isDefaultCurrentDate, minDate, maxDate, range, displayDateFormat = "yyyy-MM-dd", selectedDateFormat = "yyyy-MM-dd" } = props, restProps = __rest(props, ["name", "onFocus", "onBlur", "suffixIcon", "prefixIcon", "prefixText", "prefixTextStyle", "formatError", "label", "formatNumber", "labelTextStyle", "inputTextStyle", "borderErrorColor", "borderActiveColor", "style", "errorMessageTextStyle", "placeholderTextColor", "accessibilityLabel", "isOverlayEnabled", "id", "onChange", "isDefaultCurrentDate", "minDate", "maxDate", "range", "displayDateFormat", "selectedDateFormat"]);
     const [active, setActive] = (0, react_1.useState)(false);
     const [isVisible, setIsVisible] = (0, react_1.useState)(false);
     const [field, meta] = (0, formik_1.useField)(name);
@@ -73,42 +73,9 @@ const ASDatePicker = (props) => {
     const today = (0, date_fns_1.format)(new Date(), "yyyy-MM-dd");
     (0, react_1.useEffect)(() => {
         if (!!isDefaultCurrentDate) {
-            field.onChange(name)(today);
+            field.onChange(name)((0, date_fns_1.format)(today, selectedDateFormat));
         }
     }, [isDefaultCurrentDate]);
-    // Triger this in onBlur envent
-    const handleFormat = () => {
-        let text = field.value;
-        let numberValue = typeof text === "string" ? parseFloat(text) : Number(text);
-        if (!isNaN(numberValue)) {
-            switch (formatNumber) {
-                case "comma":
-                    // Remove comma in the number so when format the already formatted (Ex: 123,456.00) number it's still working
-                    // because can't parseFloat a string with comma into Number
-                    // For ex: 123456 -> 123,456.00 and 123,456.00 -> 123,456.00
-                    // The same apply for "dot"
-                    text = parseFloat(text.replace(",", "")).toLocaleString("en-US", {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2,
-                    });
-                    break;
-                case "dot":
-                    text = parseFloat(text.replace(".", "")).toLocaleString("de-DE", {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2,
-                    });
-                    break;
-                case "percentage":
-                    const percentage = (numberValue * 100).toFixed(2);
-                    text = `${percentage}%`;
-                    break;
-                default:
-                    text = field.value;
-                    break;
-            }
-        }
-        field === null || field === void 0 ? void 0 : field.onChange(name)(text);
-    };
     const getBorderColor = () => {
         if (meta.error && meta.touched) {
             return borderErrorColor;
@@ -122,6 +89,7 @@ const ASDatePicker = (props) => {
         console.log("pressed");
         setIsVisible(!isVisible);
     };
+    const renderDateFormat = (0, date_fns_1.format)(field.value, displayDateFormat);
     console.log("value", field.value);
     return (react_1.default.createElement(react_native_1.TouchableOpacity, { onPress: onOpenIsVisible, style: [
             styles.wrapperStyle,
@@ -153,7 +121,7 @@ const ASDatePicker = (props) => {
                 prefixIcon && (react_1.default.createElement(react_native_1.View, { style: styles.prefixIcon }, typeof prefixIcon === "string" ? (react_1.default.createElement(image_1.default, { style: { width: 20, height: 20 }, source: prefixIcon })) : (prefixIcon))),
                 !!prefixText && (react_1.default.createElement(text_1.default, { style: [styles.prefixText, prefixTextStyle] }, prefixText)),
                 react_1.default.createElement(react_native_1.View, { style: styles.inputContainerStyle },
-                    react_1.default.createElement(react_native_1.TextInput, Object.assign({ onFocus: handleOnFocus, value: (field === null || field === void 0 ? void 0 : field.value) ? `${field === null || field === void 0 ? void 0 : field.value}` : undefined, style: [
+                    react_1.default.createElement(react_native_1.TextInput, Object.assign({ onFocus: handleOnFocus, value: (field === null || field === void 0 ? void 0 : field.value) ? renderDateFormat : undefined, style: [
                             styles.textInputStyle,
                             !!(flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.width) && { width: flattenedStyle.width },
                             inputTextStyle,
@@ -183,7 +151,7 @@ const ASDatePicker = (props) => {
                     react_1.default.createElement(button_1.default, { onPress: () => {
                             onCloseIsVisible();
                             if (selectingDate) {
-                                field.onChange(name)(selectingDate);
+                                field.onChange(name)((0, date_fns_1.format)(selectingDate, selectedDateFormat));
                             }
                         }, style: Object.assign({}, styles.class_a2462tv01, {}), textStyle: Object.assign({}, styles.class_8pqr824r1, {}), label: "Ok", accessibilityLabel: "Ok", simpleTextButton: false }))))));
 };
