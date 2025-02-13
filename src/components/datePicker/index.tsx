@@ -56,6 +56,13 @@ export type ASDatePickerProps = TextInputProps &
     minDate?: string;
     displayDateFormat?: string;
     selectedDateFormat?: string;
+    selectedDayBackgroundColor?: string;
+    selectedDayTextColor?: string;
+    todayTextColor?: string;
+    arrowColor?: string;
+    dayTextColor?: string;
+    calendarBackground?: string;
+    textSectionTitleColor?: string;
   };
 
 const ASDatePicker = (props: ASDatePickerProps) => {
@@ -88,6 +95,13 @@ const ASDatePicker = (props: ASDatePickerProps) => {
     range,
     displayDateFormat = "yyyy-MM-dd",
     selectedDateFormat = "yyyy-MM-dd",
+    selectedDayBackgroundColor,
+    selectedDayTextColor,
+    todayTextColor,
+    arrowColor,
+    dayTextColor,
+    calendarBackground,
+    textSectionTitleColor,
     ...restProps
   } = props;
   const [active, setActive] = useState(false);
@@ -133,9 +147,9 @@ const ASDatePicker = (props: ASDatePickerProps) => {
     setIsVisible(!isVisible);
   };
 
-  const renderDateFormat = format(field.value, displayDateFormat);
+  const renderDateFormat = field.value ? format(field.value, displayDateFormat) : '';
 
-  console.log("value", field.value);
+  console.log("value", field.value, renderDateFormat);
 
   return (
     <TouchableOpacity
@@ -217,6 +231,7 @@ const ASDatePicker = (props: ASDatePickerProps) => {
               }
               autoComplete={"off"}
               autoCorrect={false}
+              editable={false}
               underlineColorAndroid="transparent"
               placeholder="YYYY-MM-DD"
               {...restProps}
@@ -245,13 +260,13 @@ const ASDatePicker = (props: ASDatePickerProps) => {
       >
         <ASColumn style={Object.assign({}, styles.class_bvul0lmic, {})}>
           <ASCalendar
-            selectedDayBackgroundColor={""}
-            selectedDayTextColor={"red"}
-            todayTextColor={""}
-            arrowColor={""}
-            dayTextColor={""}
-            calendarBackground={""}
-            textSectionTitleColor={""}
+            selectedDayBackgroundColor={selectedDayBackgroundColor ?? colors.primary ?? ""}
+            selectedDayTextColor={selectedDayTextColor ?? colors.onPrimary ?? ""}
+            todayTextColor={todayTextColor ?? colors.onPrimary ?? ""}
+            arrowColor={arrowColor ?? colors.primary ?? ""}
+            dayTextColor={dayTextColor ?? ""}
+            calendarBackground={calendarBackground ?? ""}
+            textSectionTitleColor={textSectionTitleColor ?? ""}
             minDate={
               minDate
                 ? minDate
@@ -349,7 +364,7 @@ const styles = StyleSheet.create({
   class_a2462tv01: {
     marginVertical: 10,
     flex: 1,
-    backgroundColor: colors.primary,
+    backgroundColor: '#3B70EA',
     minHeight: 48,
   },
   textInputStyle: {

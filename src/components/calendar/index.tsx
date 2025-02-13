@@ -125,7 +125,8 @@ const ASCalendar: React.FC<ASCalendarProps> = (props: ASCalendarProps) => {
       minDate={_getMinDate()}
       theme={{
         selectedDayBackgroundColor: selectedDayBackgroundColor,
-        selectedDayTextColor: colors.primary,
+        selectedDayTextColor: selectedDayTextColor,
+        arrowColor: arrowColor
       }}
       markedDates={{
         [selected]: {

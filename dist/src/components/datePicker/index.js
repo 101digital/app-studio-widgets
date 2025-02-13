@@ -53,8 +53,9 @@ const colors_1 = require("../../utils/colors");
 const constants_1 = require("../../utils/constants");
 const date_fns_1 = require("date-fns");
 const ASDatePicker = (props) => {
+    var _a, _b, _c, _d;
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { name, onFocus, onBlur, suffixIcon, prefixIcon, prefixText, prefixTextStyle, formatError, label, formatNumber, labelTextStyle, inputTextStyle, borderErrorColor, borderActiveColor, style, errorMessageTextStyle, placeholderTextColor, accessibilityLabel, isOverlayEnabled, id, onChange, isDefaultCurrentDate, minDate, maxDate, range, displayDateFormat = "yyyy-MM-dd", selectedDateFormat = "yyyy-MM-dd" } = props, restProps = __rest(props, ["name", "onFocus", "onBlur", "suffixIcon", "prefixIcon", "prefixText", "prefixTextStyle", "formatError", "label", "formatNumber", "labelTextStyle", "inputTextStyle", "borderErrorColor", "borderActiveColor", "style", "errorMessageTextStyle", "placeholderTextColor", "accessibilityLabel", "isOverlayEnabled", "id", "onChange", "isDefaultCurrentDate", "minDate", "maxDate", "range", "displayDateFormat", "selectedDateFormat"]);
+    const { name, onFocus, onBlur, suffixIcon, prefixIcon, prefixText, prefixTextStyle, formatError, label, formatNumber, labelTextStyle, inputTextStyle, borderErrorColor, borderActiveColor, style, errorMessageTextStyle, placeholderTextColor, accessibilityLabel, isOverlayEnabled, id, onChange, isDefaultCurrentDate, minDate, maxDate, range, displayDateFormat = "yyyy-MM-dd", selectedDateFormat = "yyyy-MM-dd", selectedDayBackgroundColor, selectedDayTextColor, todayTextColor, arrowColor, dayTextColor, calendarBackground, textSectionTitleColor } = props, restProps = __rest(props, ["name", "onFocus", "onBlur", "suffixIcon", "prefixIcon", "prefixText", "prefixTextStyle", "formatError", "label", "formatNumber", "labelTextStyle", "inputTextStyle", "borderErrorColor", "borderActiveColor", "style", "errorMessageTextStyle", "placeholderTextColor", "accessibilityLabel", "isOverlayEnabled", "id", "onChange", "isDefaultCurrentDate", "minDate", "maxDate", "range", "displayDateFormat", "selectedDateFormat", "selectedDayBackgroundColor", "selectedDayTextColor", "todayTextColor", "arrowColor", "dayTextColor", "calendarBackground", "textSectionTitleColor"]);
     const [active, setActive] = (0, react_1.useState)(false);
     const [isVisible, setIsVisible] = (0, react_1.useState)(false);
     const [field, meta] = (0, formik_1.useField)(name);
@@ -89,8 +90,8 @@ const ASDatePicker = (props) => {
         console.log("pressed");
         setIsVisible(!isVisible);
     };
-    const renderDateFormat = (0, date_fns_1.format)(field.value, displayDateFormat);
-    console.log("value", field.value);
+    const renderDateFormat = field.value ? (0, date_fns_1.format)(field.value, displayDateFormat) : '';
+    console.log("value", field.value, renderDateFormat);
     return (react_1.default.createElement(react_native_1.TouchableOpacity, { onPress: onOpenIsVisible, style: [
             styles.wrapperStyle,
             style,
@@ -125,12 +126,12 @@ const ASDatePicker = (props) => {
                             styles.textInputStyle,
                             !!(flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.width) && { width: flattenedStyle.width },
                             inputTextStyle,
-                        ], placeholderTextColor: placeholderTextColor || constants_1.constants.defaultPlaceholderColor, autoComplete: "off", autoCorrect: false, underlineColorAndroid: "transparent", placeholder: "YYYY-MM-DD" }, restProps))),
+                        ], placeholderTextColor: placeholderTextColor || constants_1.constants.defaultPlaceholderColor, autoComplete: "off", autoCorrect: false, editable: false, underlineColorAndroid: "transparent", placeholder: "YYYY-MM-DD" }, restProps))),
                 suffixIcon && (react_1.default.createElement(react_native_1.View, { style: styles.suffixIcon }, typeof suffixIcon === "string" ? (react_1.default.createElement(image_1.default, { style: { width: 20, height: 20 }, source: suffixIcon })) : (suffixIcon))))),
         isOverlayEnabled && react_1.default.createElement(overlay_1.default, null),
         react_1.default.createElement(popUp_1.default, Object.assign({}, restProps, { onClose: () => { }, visible: isVisible, isShowCloseIcon: false }),
             react_1.default.createElement(column_1.default, { style: Object.assign({}, styles.class_bvul0lmic, {}) },
-                react_1.default.createElement(calendar_1.default, { selectedDayBackgroundColor: "", selectedDayTextColor: "red", todayTextColor: "", arrowColor: "", dayTextColor: "", calendarBackground: "", textSectionTitleColor: "", minDate: minDate
+                react_1.default.createElement(calendar_1.default, { selectedDayBackgroundColor: (_a = selectedDayBackgroundColor !== null && selectedDayBackgroundColor !== void 0 ? selectedDayBackgroundColor : colors.primary) !== null && _a !== void 0 ? _a : "", selectedDayTextColor: (_b = selectedDayTextColor !== null && selectedDayTextColor !== void 0 ? selectedDayTextColor : colors.onPrimary) !== null && _b !== void 0 ? _b : "", todayTextColor: (_c = todayTextColor !== null && todayTextColor !== void 0 ? todayTextColor : colors.onPrimary) !== null && _c !== void 0 ? _c : "", arrowColor: (_d = arrowColor !== null && arrowColor !== void 0 ? arrowColor : colors.primary) !== null && _d !== void 0 ? _d : "", dayTextColor: dayTextColor !== null && dayTextColor !== void 0 ? dayTextColor : "", calendarBackground: calendarBackground !== null && calendarBackground !== void 0 ? calendarBackground : "", textSectionTitleColor: textSectionTitleColor !== null && textSectionTitleColor !== void 0 ? textSectionTitleColor : "", minDate: minDate
                         ? minDate
                         : range
                             ? range === "future"
@@ -197,7 +198,7 @@ const styles = react_native_1.StyleSheet.create({
     class_a2462tv01: {
         marginVertical: 10,
         flex: 1,
-        backgroundColor: colors_1.colors.primary,
+        backgroundColor: '#3B70EA',
         minHeight: 48,
     },
     textInputStyle: {
