@@ -50,7 +50,9 @@ const ASChoiceChips = (props) => {
                 (selectedChoiceChips === null || selectedChoiceChips === void 0 ? void 0 : selectedChoiceChips.find((item) => (item === null || item === void 0 ? void 0 : item.value) === value)));
         }
     };
-    return (react_1.default.createElement(wrap_1.default, { style: [styles.container, { justifyContent: contentLayout }], id: id },
+    return (react_1.default.createElement(wrap_1.default, { style: [styles.container, {
+            // justifyContent: contentLayout
+            }], id: id },
         Array.isArray(options) && options.map((chip, index) => (react_1.default.createElement(react_native_1.TouchableOpacity, { key: `${chip.value}${index}`, onPress: isSingleChoice
                 ? _onPressSingleChoiceChip(chip)
                 : _onPressChoiceChip(chip), style: [
@@ -63,6 +65,7 @@ const ASChoiceChips = (props) => {
                     borderColor: findSelected(chip === null || chip === void 0 ? void 0 : chip.value)
                         ? selectedChipBorderColor
                         : flattenedBorderColor,
+                    marginRight: options.length - 1 === index ? 0 : 12
                 },
             ] },
             !!(chip === null || chip === void 0 ? void 0 : chip.icon) && (react_1.default.createElement(react_native_1.View, { style: styles.iconContainer }, chip.icon)),

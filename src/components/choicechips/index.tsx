@@ -114,7 +114,9 @@ const ASChoiceChips: React.FC<ASChoiceChipsProps> = (
   };
 
   return (
-    <ASWrap style={[styles.container, { justifyContent: contentLayout }]} id={id}>
+    <ASWrap style={[styles.container, { 
+        // justifyContent: contentLayout
+    }]} id={id}>
       {Array.isArray(options) && options.map((chip, index) => (
         <TouchableOpacity
           key={`${chip.value}${index}`}
@@ -133,6 +135,7 @@ const ASChoiceChips: React.FC<ASChoiceChipsProps> = (
               borderColor: findSelected(chip?.value)
                 ? selectedChipBorderColor
                 : flattenedBorderColor,
+              marginRight: options.length - 1 === index ? 0: 12
             },
           ]}
         >
