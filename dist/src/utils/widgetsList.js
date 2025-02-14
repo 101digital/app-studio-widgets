@@ -180,6 +180,7 @@ class ASWidgetsList {
             ASPin: (attributes) => ASWidgetsList.getWidgetString("ASPin", attributes),
             ASPasswordTextField: (attributes) => ASWidgetsList.getWidgetString("ASPasswordTextField", attributes),
             ASPopUp: (attributes) => ASWidgetsList.getWidgetString("ASPopUp", attributes),
+            ASDatePicker: (attributes) => ASWidgetsList.getWidgetString("ASDatePicker", attributes),
             ASLoadingScreen: (attributes) => ASWidgetsList.getWidgetString("ASLoadingScreen", attributes),
             ASLoadingIndicator: (attributes) => ASWidgetsList.getWidgetString("ASLoadingIndicator", attributes),
             ASSwipeButton: (attributes) => ASWidgetsList.getWidgetString("ASSwipeButton", attributes),

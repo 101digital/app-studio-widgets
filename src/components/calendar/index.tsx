@@ -126,11 +126,7 @@ const ASCalendar: React.FC<ASCalendarProps> = (props: ASCalendarProps) => {
       theme={{
         selectedDayBackgroundColor: selectedDayBackgroundColor,
         selectedDayTextColor: selectedDayTextColor,
-        todayTextColor: todayTextColor,
-        arrowColor: arrowColor,
-        dayTextColor: dayTextColor,
-        calendarBackground: calendarBackground,
-        textSectionTitleColor: textSectionTitleColor,
+        arrowColor: arrowColor
       }}
       markedDates={{
         [selected]: {
