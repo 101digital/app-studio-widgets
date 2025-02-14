@@ -115,7 +115,7 @@ const ASChoiceChips: React.FC<ASChoiceChipsProps> = (
 
   return (
     <ASWrap style={[styles.container, { justifyContent: contentLayout }]} id={id}>
-      {options.map((chip, index) => (
+      {Array.isArray(options) && options.map((chip, index) => (
         <TouchableOpacity
           key={`${chip.value}${index}`}
           onPress={

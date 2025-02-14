@@ -51,7 +51,7 @@ const ASChoiceChips = (props) => {
         }
     };
     return (react_1.default.createElement(wrap_1.default, { style: [styles.container, { justifyContent: contentLayout }], id: id },
-        options.map((chip, index) => (react_1.default.createElement(react_native_1.TouchableOpacity, { key: `${chip.value}${index}`, onPress: isSingleChoice
+        Array.isArray(options) && options.map((chip, index) => (react_1.default.createElement(react_native_1.TouchableOpacity, { key: `${chip.value}${index}`, onPress: isSingleChoice
                 ? _onPressSingleChoiceChip(chip)
                 : _onPressChoiceChip(chip), style: [
                 styles.chip,
