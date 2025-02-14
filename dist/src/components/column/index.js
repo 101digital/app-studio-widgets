@@ -59,13 +59,13 @@ const ASColumn = (props) => {
         backgroundImage && (react_1.default.createElement(image_1.default, { source: backgroundImage, style: [styles.backgroundStyle, { height: containerHeight }], resizeMode: "stretch" // Ensure image covers the entire area
          })),
         spacing && Array.isArray(children) ? children.map((child, index) => {
+            var _a, _b;
             const isLastChild = children.length - 1 === index;
             const marginBottomStyle = { marginBottom: isLastChild ? 0 : spacing };
             // Clone the child with updated marginBottom style
-            return react_1.default.cloneElement(child, {
-                style: [react_native_1.StyleSheet.flatten(child.props.style), marginBottomStyle],
-                key: `column-${child.name}-${index}`
-            });
+            return react_1.default.cloneElement(child, Object.assign(Object.assign({}, (child.props.containerStyle
+                ? { containerStyle: [react_native_1.StyleSheet.flatten((_a = child === null || child === void 0 ? void 0 : child.props) === null || _a === void 0 ? void 0 : _a.containerStyle), marginBottomStyle] }
+                : { style: [react_native_1.StyleSheet.flatten((_b = child === null || child === void 0 ? void 0 : child.props) === null || _b === void 0 ? void 0 : _b.style), marginBottomStyle] })), { key: `column-${child.name}-${index}` }));
         }) : children));
 };
 const styles = react_native_1.StyleSheet.create({

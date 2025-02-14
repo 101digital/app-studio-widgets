@@ -18,7 +18,10 @@ const ASRow: React.FC<ASRowProps> = (props: ASRowProps) => {
                 const marginRightStyle = { marginRight: isLastChild ? 0 : spacing };
                 // Clone the child with updated marginRight style
                 return React.cloneElement(child, {
-                    style: [StyleSheet.flatten(child.props.style), marginRightStyle],
+                    ...(child.props.containerStyle
+                            ? { containerStyle: [StyleSheet.flatten(child?.props?.containerStyle), marginRightStyle] }
+                            : { style: [StyleSheet.flatten(child?.props?.style), marginRightStyle] }
+                    ),
                     key: `row-${child.name}-${index}`
                 })
             }) : children}
