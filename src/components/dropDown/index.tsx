@@ -8,6 +8,7 @@ import {FieldHookConfig, useField} from "formik";
 import {ThemeContext} from "../../context/theme-context";
 import ASOverlay from "../overlay";
 import ASButton from '../button'
+import {DownIcon} from "../../assets/icon";
 
 export type DropDownOptionsProps = {
     [key: string]: any;
@@ -174,6 +175,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
                         placeholder={placeholder}
                         onFocus={() => setIsFocus(true)}
                         onBlur={() => setIsFocus(false)}
+                        renderRightIcon={()=><DownIcon/>}
                         {...restProps}
                         selectedTextStyle={[
                             styles.selectedTextStyle,

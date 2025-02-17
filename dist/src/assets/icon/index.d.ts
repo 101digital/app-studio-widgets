@@ -5,3 +5,4 @@ export { ShowPasswordIcon } from './showPassword.icon';
 export { DecrementIcon } from './decrement.icon';
 export { IncrementIcon } from './increment.icon';
 export { ArrowBackIcon } from './arrow-back.icon';
+export { DownIcon } from './down.icon';
