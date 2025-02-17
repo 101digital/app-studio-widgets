@@ -253,7 +253,7 @@ const styles = StyleSheet.create({
     },
     placeholderStyle: {
         fontSize: 10,
-        paddingHorizontal: 13,
+        paddingHorizontal: 2,
     },
     selectedTextStyle: {
         flex: 1,
