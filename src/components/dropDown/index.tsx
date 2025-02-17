@@ -206,6 +206,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
                         placeholder={placeholder}
                         onFocus={() => setIsFocus(true)}
                         onBlur={() => setIsFocus(false)}
+                        renderRightIcon={()=><DownIcon/>}
                         {...restProps}
                         selectedTextStyle={[
                             styles.selectedTextStyle,
