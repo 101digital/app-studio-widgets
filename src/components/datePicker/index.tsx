@@ -147,7 +147,9 @@ const ASDatePicker = (props: ASDatePickerProps) => {
     setIsVisible(!isVisible);
   };
 
-  const renderDateFormat = field.value ? format(field.value, displayDateFormat) : '';
+  const renderDateFormat = field.value
+    ? format(field.value, displayDateFormat)
+    : "";
 
   console.log("value", field.value, renderDateFormat);
 
@@ -260,8 +262,12 @@ const ASDatePicker = (props: ASDatePickerProps) => {
       >
         <ASColumn style={Object.assign({}, styles.class_bvul0lmic, {})}>
           <ASCalendar
-            selectedDayBackgroundColor={selectedDayBackgroundColor ?? colors.primary ?? ""}
-            selectedDayTextColor={selectedDayTextColor ?? colors.onPrimary ?? ""}
+            selectedDayBackgroundColor={
+              selectedDayBackgroundColor ?? colors.primary ?? ""
+            }
+            selectedDayTextColor={
+              selectedDayTextColor ?? colors.onPrimary ?? ""
+            }
             todayTextColor={todayTextColor ?? colors.onPrimary ?? ""}
             arrowColor={arrowColor ?? colors.primary ?? ""}
             dayTextColor={dayTextColor ?? ""}
@@ -292,13 +298,14 @@ const ASDatePicker = (props: ASDatePickerProps) => {
                   }
                 : undefined
             }
-            onDayPress={(date) =>
-              setSelectingDate(
-                date.dateString === selectingDate ? undefined : date.dateString
-              )
-            }
+            onDayPress={(date) => {
+              onCloseIsVisible();
+              if (date) {
+                field.onChange(name)(format(date.dateString, selectedDateFormat));
+              }
+            }}
           />
-          <ASRow style={Object.assign({}, styles.class_fnysbffjk, {})}>
+          {/* <ASRow style={Object.assign({}, styles.class_fnysbffjk, {})}>
             <ASButton
               onPress={() => {
                 onCloseIsVisible();
@@ -314,7 +321,7 @@ const ASDatePicker = (props: ASDatePickerProps) => {
               accessibilityLabel={"Okay"}
               simpleTextButton={false}
             />
-          </ASRow>
+          </ASRow> */}
         </ASColumn>
       </ASPopUp>
     </TouchableOpacity>
@@ -364,7 +371,7 @@ const styles = StyleSheet.create({
   class_a2462tv01: {
     marginVertical: 10,
     flex: 1,
-    backgroundColor: '#3B70EA',
+    backgroundColor: "#3B70EA",
     minHeight: 48,
   },
   textInputStyle: {
