@@ -77,6 +77,7 @@ export type KeyboardProps = {
   keyboardButtonBorderColor?: string;
   keyboardButtonBackgroundColor?: string;
   keyboardStyle?: StyleProp<ViewStyle>
+  buttonIconColor?: string
 };
 
 export type KeyboardItemProps = {
@@ -110,7 +111,8 @@ const Keyboard: React.FC<KeyboardProps> = (props: KeyboardProps) => {
     keyboardButtonRadius,
     keyboardButtonBorderColor,
     keyboardButtonBackgroundColor,
-    keyboardStyle
+    keyboardStyle,
+    buttonIconColor
   } = props;
 
   const _onKeyboardPress = (item: KeyboardItemProps) => () => {
@@ -139,9 +141,9 @@ const Keyboard: React.FC<KeyboardProps> = (props: KeyboardProps) => {
                 {item?.label}
               </ASText>
           )}
-          {item?.value === "delete" ? deleteButtonIcon || <DeleteIcon  /> : null}
+          {item?.value === "delete" ? deleteButtonIcon || <DeleteIcon color={buttonIconColor} /> : null}
           {item?.value === "continue"
-              ? submitButtonIcon || <ForwardIcon />
+              ? submitButtonIcon || <ForwardIcon color={buttonIconColor}/>
               : null}
         </ASButton>
     );

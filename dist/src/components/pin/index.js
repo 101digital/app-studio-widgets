@@ -62,7 +62,7 @@ const KEYBOARDS = [
 ];
 const Keyboard = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { submitButtonIcon, submitButtonStyle, deleteButtonIcon, deleteButtonStyle, flatListProps, onKeyboardPress, typography, keyboardButtonRadius, keyboardButtonBorderColor, keyboardButtonBackgroundColor, keyboardStyle } = props;
+    const { submitButtonIcon, submitButtonStyle, deleteButtonIcon, deleteButtonStyle, flatListProps, onKeyboardPress, typography, keyboardButtonRadius, keyboardButtonBorderColor, keyboardButtonBackgroundColor, keyboardStyle, buttonIconColor } = props;
     const _onKeyboardPress = (item) => () => {
         onKeyboardPress === null || onKeyboardPress === void 0 ? void 0 : onKeyboardPress(item);
     };
@@ -72,9 +72,9 @@ const Keyboard = (props) => {
                 react_native_1.StyleSheet.flatten(submitButtonStyle))), { backgroundColor: backgroundColor || keyboardButtonBackgroundColor }), ((item === null || item === void 0 ? void 0 : item.value) === "delete" &&
                 react_native_1.StyleSheet.flatten(deleteButtonStyle))), { borderRadius: borderRadius || keyboardButtonRadius }), onPress: _onKeyboardPress(item) },
             (item === null || item === void 0 ? void 0 : item.value) !== "delete" && (item === null || item === void 0 ? void 0 : item.value) !== "continue" && (react_1.default.createElement(text_1.default, { style: [{ fontWeight: "bold", fontSize: 18 }, typography] }, item === null || item === void 0 ? void 0 : item.label)),
-            (item === null || item === void 0 ? void 0 : item.value) === "delete" ? deleteButtonIcon || react_1.default.createElement(icon_1.DeleteIcon, null) : null,
+            (item === null || item === void 0 ? void 0 : item.value) === "delete" ? deleteButtonIcon || react_1.default.createElement(icon_1.DeleteIcon, { color: buttonIconColor }) : null,
             (item === null || item === void 0 ? void 0 : item.value) === "continue"
-                ? submitButtonIcon || react_1.default.createElement(icon_1.ForwardIcon, null)
+                ? submitButtonIcon || react_1.default.createElement(icon_1.ForwardIcon, { color: buttonIconColor })
                 : null));
     };
     return (react_1.default.createElement(react_native_1.FlatList, Object.assign({ scrollEnabled: false, contentContainerStyle: styles.flatListContainerStyles, columnWrapperStyle: { paddingHorizontal: 50, justifyContent: 'space-around' } }, flatListProps, { data: KEYBOARDS, renderItem: _renderItem, numColumns: 3, keyExtractor: (item, index) => `${(item === null || item === void 0 ? void 0 : item.toString()) + index}` })));
