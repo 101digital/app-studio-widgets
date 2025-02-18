@@ -143,15 +143,12 @@ const ASDatePicker = (props: ASDatePickerProps) => {
   };
 
   const onOpenIsVisible = async () => {
-    console.log("pressed");
     setIsVisible(!isVisible);
   };
 
   const renderDateFormat = field.value
     ? format(field.value, displayDateFormat)
     : "";
-
-  console.log("value", field.value, renderDateFormat);
 
   return (
     <TouchableOpacity
@@ -305,23 +302,6 @@ const ASDatePicker = (props: ASDatePickerProps) => {
               }
             }}
           />
-          {/* <ASRow style={Object.assign({}, styles.class_fnysbffjk, {})}>
-            <ASButton
-              onPress={() => {
-                onCloseIsVisible();
-                if (selectingDate) {
-                  field.onChange(name)(
-                    format(selectingDate, selectedDateFormat)
-                  );
-                }
-              }}
-              style={Object.assign({}, styles.class_a2462tv01, {})}
-              textStyle={Object.assign({}, styles.class_8pqr824r1, {})}
-              label={"Okay"}
-              accessibilityLabel={"Okay"}
-              simpleTextButton={false}
-            />
-          </ASRow> */}
         </ASColumn>
       </ASPopUp>
     </TouchableOpacity>
