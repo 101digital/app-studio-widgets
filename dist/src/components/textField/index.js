@@ -135,7 +135,7 @@ const ASTextField = (props) => {
                     },
                     labelTextStyle,
                 ] }, label),
-            react_1.default.createElement(react_native_1.View, { style: [styles.contentContainerStyle, !suffixIcon && { marginRight: 16 }] },
+            react_1.default.createElement(react_native_1.View, { style: [styles.contentContainerStyle] },
                 prefixIcon && react_1.default.createElement(react_native_1.View, { style: styles.prefixIcon }, typeof prefixIcon === 'string' ?
                     react_1.default.createElement(image_1.default, { style: { width: 20, height: 20 }, source: prefixIcon })
                     : prefixIcon),
@@ -192,7 +192,7 @@ const styles = react_native_1.StyleSheet.create({
         marginRight: 4,
     },
     suffixIcon: {
-        marginLeft: 4,
+        marginLeft: 10,
         marginRight: 8,
         height: "100%",
         minWidth: 52,

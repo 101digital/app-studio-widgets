@@ -188,7 +188,7 @@ const ASTextField = (props: ASTextFieldProps) => {
                 >
                     {label}
                 </ASText>
-                <View style={[styles.contentContainerStyle, !suffixIcon && {marginRight: 16}]}>
+                <View style={[styles.contentContainerStyle]}>
                     {prefixIcon && <View style={styles.prefixIcon}>{typeof prefixIcon === 'string' ?
                         <ASImage
                             style={{width: 20, height: 20}}
@@ -293,7 +293,7 @@ const styles = StyleSheet.create({
         marginRight: 4,
     },
     suffixIcon: {
-        marginLeft: 4,
+        marginLeft: 10,
         marginRight: 8,
         height: "100%",
         minWidth: 52,
