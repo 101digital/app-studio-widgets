@@ -52,6 +52,7 @@ export type ASPinProps = KeyboardProps & {
   keyboardTypography?: TextStyle;
   inputTypography?: TextStyle;
   gap?: number;
+  style?: ViewStyle ;
   keyboardButtonRadius?: number;
   enableNativeKeyboard?: boolean;
   pinBoxRadius?: number;
@@ -138,7 +139,7 @@ const Keyboard: React.FC<KeyboardProps> = (props: KeyboardProps) => {
                 {item?.label}
               </ASText>
           )}
-          {item?.value === "delete" ? deleteButtonIcon || <DeleteIcon /> : null}
+          {item?.value === "delete" ? deleteButtonIcon || <DeleteIcon  /> : null}
           {item?.value === "continue"
               ? submitButtonIcon || <ForwardIcon />
               : null}
@@ -287,7 +288,8 @@ const ASPin: React.FC<ASPinProps> = (props: ASPinProps) => {
     pinBoxBorderColor,
     isOverlayEnabled,
     keyboardStyle,
-    name
+    name,
+    style
   } = props;
   const [pin, setPin] = useState<string[]>([]);
   const [field, meta, helpers] = useField<string>(name);
@@ -327,7 +329,7 @@ const ASPin: React.FC<ASPinProps> = (props: ASPinProps) => {
   };
 
   return (
-      <ASColumn style={[styles.flex1, !enableNativeKeyboard && {position: 'relative'} ]}>
+      <ASColumn style={[styles.flex1, !enableNativeKeyboard && {position: 'relative'}, style ]}>
         <View style={{ marginBottom: gap || 24 }}>
           <PinInputList
               pinLength={pinLength}

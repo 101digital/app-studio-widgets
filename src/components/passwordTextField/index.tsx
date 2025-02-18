@@ -9,12 +9,13 @@ export type ASPasswordTextFieldProps = ASTextFieldProps & {
   suffixIconColor: string;
   accessibilityLabel?: string;
   isOverlayEnabled?: boolean;
+  isShowSuffixIcon?: boolean;
 };
 
 const ASPasswordTextField: FC<ASPasswordTextFieldProps> = (
   props: ASPasswordTextFieldProps
 ) => {
-  const { suffixIconSize = 22, suffixIconColor, accessibilityLabel, isOverlayEnabled } = props;
+  const { suffixIconSize = 22, suffixIconColor, accessibilityLabel, isOverlayEnabled, isShowSuffixIcon=true } = props;
   const [isSecureTextEntry, setIsSecureTextEntry] = useState<boolean>(true);
 
   const onPressSecureTextEntry = () => {
@@ -27,7 +28,7 @@ const ASPasswordTextField: FC<ASPasswordTextFieldProps> = (
     <ASTextField
       suffixIcon={
         <TouchableOpacity onPress={onPressSecureTextEntry} style={styles.suffixIconContainer} accessibilityLabel={suffixIconAccessibility}>
-          {isSecureTextEntry ? (
+          {isSecureTextEntry && isShowSuffixIcon ? (
             <ShowPasswordIcon size={suffixIconSize} color={suffixIconColor} />
           ) : (
             <HidePasswordIcon size={suffixIconSize} color={suffixIconColor} />
@@ -45,8 +46,8 @@ const styles = StyleSheet.create({
   suffixIconContainer: {
     height: "100%",
     minWidth: 52,
-    alignItems: 'center',  
-    justifyContent: 'center', 
+    alignItems: 'center',
+    justifyContent: 'center',
   }
 });
 
