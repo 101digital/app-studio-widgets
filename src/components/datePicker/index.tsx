@@ -169,7 +169,7 @@ const ASDatePicker = (props: ASDatePickerProps) => {
         style={[
           styles.containerStyle,
           {
-            borderColor: getBorderColor() || flattenedStyle?.borderColor,
+            borderColor: isVisible ? '#FFA90E' : '#D6DCE0',
             height: flattenedHeight,
             borderTopWidth: flattenedStyle?.borderTopWidth,
             borderRightWidth: flattenedStyle?.borderRightWidth,
@@ -398,7 +398,7 @@ const styles = StyleSheet.create({
     marginRight: 4,
   },
   class_bvul0lmic: {
-    paddingVertical: 30,
+    paddingVertical: 40,
     paddingHorizontal: 14,
     justifyContent: "center",
     backgroundColor: "white",
