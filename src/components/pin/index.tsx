@@ -118,7 +118,7 @@ const Keyboard: React.FC<KeyboardProps> = (props: KeyboardProps) => {
   const _onKeyboardPress = (item: KeyboardItemProps) => () => {
     onKeyboardPress?.(item);
   };
-
+  
   const _renderItem = ({ item }: { item: KeyboardItemProps }) => {
     const {backgroundColor,borderColor,borderRadius} = StyleSheet.flatten(keyboardStyle) || {}
     return (
@@ -291,7 +291,8 @@ const ASPin: React.FC<ASPinProps> = (props: ASPinProps) => {
     isOverlayEnabled,
     keyboardStyle,
     name,
-    style
+    style,
+    buttonIconColor
   } = props;
   const [pin, setPin] = useState<string[]>([]);
   const [field, meta, helpers] = useField<string>(name);
@@ -361,6 +362,7 @@ const ASPin: React.FC<ASPinProps> = (props: ASPinProps) => {
             keyboardButtonRadius={keyboardButtonRadius}
             keyboardButtonBackgroundColor={keyboardButtonBackgroundColor}
             keyboardButtonBorderColor={keyboardButtonBorderColor}
+            buttonIconColor={buttonIconColor}
         />}
         {isOverlayEnabled && <ASOverlay />}
       </ASColumn>

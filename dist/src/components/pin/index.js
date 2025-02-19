@@ -66,6 +66,7 @@ const Keyboard = (props) => {
     const _onKeyboardPress = (item) => () => {
         onKeyboardPress === null || onKeyboardPress === void 0 ? void 0 : onKeyboardPress(item);
     };
+    console.log('laisduhfds', buttonIconColor);
     const _renderItem = ({ item }) => {
         const { backgroundColor, borderColor, borderRadius } = react_native_1.StyleSheet.flatten(keyboardStyle) || {};
         return (react_1.default.createElement(button_1.default, { style: Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({}, styles.keyboardButton), react_native_1.StyleSheet.flatten(keyboardStyle)), { borderColor: borderColor || keyboardButtonBorderColor || colors.onSecondary }), ((item === null || item === void 0 ? void 0 : item.value) === "continue" &&
@@ -132,7 +133,7 @@ const PinInputList = (props) => {
         ] }, !enableNativeKeyboard ? (react_1.default.createElement(text_1.default, { style: inputTypography }, pin[index] || "")) : (react_1.default.createElement(react_native_1.TextInput, { ref: (el) => (inputRefs.current[index] = el), style: [inputTypography, styles.textInputStyle], value: pin[index] || "", keyboardType: "number-pad", onChangeText: (text) => handleInputChange(text, index), onKeyPress: (e) => handleKeyPress(e, index), maxLength: 1, autoFocus: index === 0, caretHidden: true, showSoftInputOnFocus: true, focusable: false, selectTextOnFocus: false })))))));
 };
 const ASPin = (props) => {
-    const { submitButtonIcon, submitButtonStyle, deleteButtonIcon, deleteButtonStyle, flatListProps, pinLength = 6, onPress, children, onChange, keyboardTypography, inputTypography, gap, keyboardButtonRadius, enableNativeKeyboard, pinBoxRadius, pinBoxSize, keyboardButtonBackgroundColor, keyboardButtonBorderColor, pinBoxBackgroundColor, pinBoxBorderColor, isOverlayEnabled, keyboardStyle, name, style } = props;
+    const { submitButtonIcon, submitButtonStyle, deleteButtonIcon, deleteButtonStyle, flatListProps, pinLength = 6, onPress, children, onChange, keyboardTypography, inputTypography, gap, keyboardButtonRadius, enableNativeKeyboard, pinBoxRadius, pinBoxSize, keyboardButtonBackgroundColor, keyboardButtonBorderColor, pinBoxBackgroundColor, pinBoxBorderColor, isOverlayEnabled, keyboardStyle, name, style, buttonIconColor } = props;
     const [pin, setPin] = (0, react_1.useState)([]);
     const [field, meta, helpers] = (0, formik_1.useField)(name);
     const { setValue } = helpers || {};
@@ -165,7 +166,7 @@ const ASPin = (props) => {
         react_1.default.createElement(react_native_1.View, { style: { marginBottom: gap || 24 } },
             react_1.default.createElement(PinInputList, { pinLength: pinLength, pin: pin, inputTypography: inputTypography, onKeyboardPress: onKeyboardItemPress, enableNativeKeyboard: enableNativeKeyboard, pinBoxRadius: pinBoxRadius, pinBoxSize: pinBoxSize, pinBoxBackgroundColor: pinBoxBackgroundColor, pinBoxBorderColor: pinBoxBorderColor, onPress: onPress })),
         children,
-        !enableNativeKeyboard && react_1.default.createElement(Keyboard, { keyboardStyle: keyboardStyle, submitButtonIcon: submitButtonIcon, submitButtonStyle: submitButtonStyle, deleteButtonIcon: deleteButtonIcon, deleteButtonStyle: deleteButtonStyle, flatListProps: flatListProps, onKeyboardPress: onKeyboardItemPress, typography: keyboardTypography, keyboardButtonRadius: keyboardButtonRadius, keyboardButtonBackgroundColor: keyboardButtonBackgroundColor, keyboardButtonBorderColor: keyboardButtonBorderColor }),
+        !enableNativeKeyboard && react_1.default.createElement(Keyboard, { keyboardStyle: keyboardStyle, submitButtonIcon: submitButtonIcon, submitButtonStyle: submitButtonStyle, deleteButtonIcon: deleteButtonIcon, deleteButtonStyle: deleteButtonStyle, flatListProps: flatListProps, onKeyboardPress: onKeyboardItemPress, typography: keyboardTypography, keyboardButtonRadius: keyboardButtonRadius, keyboardButtonBackgroundColor: keyboardButtonBackgroundColor, keyboardButtonBorderColor: keyboardButtonBorderColor, buttonIconColor: buttonIconColor }),
         isOverlayEnabled && react_1.default.createElement(overlay_1.default, null)));
 };
 exports.default = ASPin;
