@@ -100,7 +100,8 @@ const ASDropDown = (props) => {
                 backgroundColor: colors.background,
                 borderColor: colors.secondary,
             },
-            containerStyle,
+            flatttenedContainerStyle,
+            { alignItems: 'stretch' }
         ], id: id },
         !!label && (react_1.default.createElement(text_1.default, { style: [
                 styles.labelStyle,
@@ -112,7 +113,7 @@ const ASDropDown = (props) => {
                 labelTextStyle,
             ] }, label)),
         !isMultiChoices ?
-            react_1.default.createElement(react_native_element_dropdown_1.Dropdown, Object.assign({ style: styles.dropdown, placeholderStyle: [styles.placeholderStyle, placeholderTextStyles], inputSearchStyle: styles.inputSearchStyle, iconStyle: [styles.iconStyle, iconStyles], iconColor: colors.primary, search: search, maxHeight: 300, value: field === null || field === void 0 ? void 0 : field.value, searchPlaceholder: searchPlaceholder, renderLeftIcon: renderLeftIcon, renderItem: renderSingleChoiceItem, placeholder: placeholder, onFocus: () => setIsFocus(true), onBlur: () => setIsFocus(false), renderRightIcon: () => react_1.default.createElement(icon_1.DownIcon, null) }, restProps, { selectedTextStyle: [
+            react_1.default.createElement(react_native_element_dropdown_1.Dropdown, Object.assign({ style: styles.dropdown, placeholderStyle: [styles.placeholderStyle, placeholderTextStyles, Object.assign({}, ((flatttenedContainerStyle === null || flatttenedContainerStyle === void 0 ? void 0 : flatttenedContainerStyle.alignItems) === 'center' && { textAlign: 'center' }))], inputSearchStyle: styles.inputSearchStyle, iconStyle: [styles.iconStyle, iconStyles], iconColor: colors.primary, search: search, maxHeight: 300, value: field === null || field === void 0 ? void 0 : field.value, searchPlaceholder: searchPlaceholder, renderLeftIcon: renderLeftIcon, renderItem: renderSingleChoiceItem, placeholder: placeholder, onFocus: () => setIsFocus(true), onBlur: () => setIsFocus(false), renderRightIcon: () => react_1.default.createElement(icon_1.DownIcon, null) }, restProps, { selectedTextStyle: [
                     styles.selectedTextStyle,
                     {
                         color: colors.surface,

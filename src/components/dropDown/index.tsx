@@ -138,7 +138,8 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
                     backgroundColor: colors.background,
                     borderColor: colors.secondary,
                 },
-                containerStyle,
+                flatttenedContainerStyle,
+                {alignItems: 'stretch'}
             ]}
             id={id}
         >
@@ -162,7 +163,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
                 !isMultiChoices ?
                     <Dropdown
                         style={styles.dropdown}
-                        placeholderStyle={[styles.placeholderStyle, placeholderTextStyles]}
+                        placeholderStyle={[styles.placeholderStyle, placeholderTextStyles, {...(flatttenedContainerStyle?.alignItems === 'center' && {textAlign: 'center'} )} ]}
                         inputSearchStyle={styles.inputSearchStyle}
                         iconStyle={[styles.iconStyle, iconStyles]}
                         iconColor={colors.primary}
