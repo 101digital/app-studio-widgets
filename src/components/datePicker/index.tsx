@@ -356,6 +356,7 @@ const styles = StyleSheet.create({
   },
   textInputStyle: {
     fontSize: 12,
+    width: '100%'
   },
   errorTextStyle: {
     fontSize: 12,
