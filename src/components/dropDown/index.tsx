@@ -168,7 +168,6 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
                         placeholderStyle={[styles.placeholderStyle, placeholderTextStyles, {...(flatttenedContainerStyle?.alignItems === 'center' && {textAlign: 'center'} )} ]}
                         inputSearchStyle={styles.inputSearchStyle}
                         iconStyle={[styles.iconStyle, iconStyles]}
-                        iconColor={iconColor || colors.primary}
                         search={search}
                         maxHeight={300}
                         value={field?.value}
@@ -178,7 +177,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
                         placeholder={placeholder}
                         onFocus={() => setIsFocus(true)}
                         onBlur={() => setIsFocus(false)}
-                        renderRightIcon={()=><DownIcon/>}
+                        renderRightIcon={()=><DownIcon color={iconColor}/>}
                         {...restProps}
                         selectedTextStyle={[
                             styles.selectedTextStyle,
@@ -198,7 +197,6 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
                         placeholderStyle={[styles.placeholderStyle, placeholderTextStyles]}
                         inputSearchStyle={styles.inputSearchStyle}
                         iconStyle={[styles.iconStyle, iconStyles]}
-                        iconColor={colors.primary}
                         search={search}
                         maxHeight={300}
                         value={field?.value || []}
@@ -209,7 +207,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
                         placeholder={placeholder}
                         onFocus={() => setIsFocus(true)}
                         onBlur={() => setIsFocus(false)}
-                        renderRightIcon={()=><DownIcon/>}
+                        renderRightIcon={()=><DownIcon color={iconColor}/>}
                         {...restProps}
                         selectedTextStyle={[
                             styles.selectedTextStyle,
