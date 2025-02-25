@@ -199,6 +199,7 @@ const styles = react_native_1.StyleSheet.create({
     },
     textInputStyle: {
         fontSize: 12,
+        width: '100%'
     },
     errorTextStyle: {
         fontSize: 12,

@@ -32,7 +32,8 @@ export type ASDropDownProps = Omit<DropdownProps<any>,
     isOverlayEnabled?: boolean;
     onChange?: (item: any) => void;
     id?: string;
-    isMultiChoices?: boolean
+    isMultiChoices?: boolean;
+    iconColor?: string
 };
 
 const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
@@ -58,6 +59,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
         id,
         onChange,
         isMultiChoices=false,
+        iconColor,
         ...restProps
     } = props;
     const [field, meta, helpers] = useField<string | string[]>(name);
@@ -166,7 +168,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
                         placeholderStyle={[styles.placeholderStyle, placeholderTextStyles, {...(flatttenedContainerStyle?.alignItems === 'center' && {textAlign: 'center'} )} ]}
                         inputSearchStyle={styles.inputSearchStyle}
                         iconStyle={[styles.iconStyle, iconStyles]}
-                        iconColor={colors.primary}
+                        iconColor={iconColor || colors.primary}
                         search={search}
                         maxHeight={300}
                         value={field?.value}

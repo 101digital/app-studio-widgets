@@ -66,7 +66,6 @@ const Keyboard = (props) => {
     const _onKeyboardPress = (item) => () => {
         onKeyboardPress === null || onKeyboardPress === void 0 ? void 0 : onKeyboardPress(item);
     };
-    console.log('laisduhfds', buttonIconColor);
     const _renderItem = ({ item }) => {
         const { backgroundColor, borderColor, borderRadius } = react_native_1.StyleSheet.flatten(keyboardStyle) || {};
         return (react_1.default.createElement(button_1.default, { style: Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({}, styles.keyboardButton), react_native_1.StyleSheet.flatten(keyboardStyle)), { borderColor: borderColor || keyboardButtonBorderColor || colors.onSecondary }), ((item === null || item === void 0 ? void 0 : item.value) === "continue" &&
