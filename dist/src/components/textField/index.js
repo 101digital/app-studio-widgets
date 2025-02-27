@@ -121,10 +121,10 @@ const ASTextField = (props) => {
         }
         return active ? borderActiveColor : flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderColor;
     };
-    return (react_1.default.createElement(react_native_1.View, { style: [styles.wrapperStyle, style, { height: "auto", borderColor: 'transparent' }, { paddingTop: 8 }], accessibilityLabel: accessibilityLabel, id: id },
+    return (react_1.default.createElement(react_native_1.View, { style: [styles.wrapperStyle, { height: "auto", borderColor: 'transparent', marginBottom: (flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.marginBottom) || 0 },], accessibilityLabel: accessibilityLabel, id: id },
         react_1.default.createElement(react_native_1.View, { style: [
                 styles.containerStyle,
-                Object.assign({ borderColor: getBorderColor() || (flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderColor), height: flattenedHeight, borderTopWidth: flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderTopWidth, borderRightWidth: flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderRightWidth, borderBottomWidth: flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderBottomWidth, borderLeftWidth: flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderLeftWidth }, (flattenedStyle && 'borderRadius' in flattenedStyle && flattenedStyle.borderRadius !== undefined && { borderRadius: flattenedStyle.borderRadius })),
+                Object.assign(Object.assign({ borderColor: getBorderColor() || (flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderColor), height: flattenedHeight }, flattenedStyle), { marginBottom: 0 }),
             ] },
             react_1.default.createElement(text_1.default, { style: [
                     styles.labelStyle,
@@ -165,11 +165,9 @@ const styles = react_native_1.StyleSheet.create({
     contentContainerStyle: {
         alignItems: "center",
         flexDirection: "row",
-        marginLeft: 16
     },
     labelStyle: {
         fontSize: 10,
-        // marginLeft: 16,
         marginHorizontal: 16,
         position: "absolute",
     },
@@ -181,7 +179,6 @@ const styles = react_native_1.StyleSheet.create({
     textInputStyle: {
         flex: 1,
         fontSize: 12,
-        minHeight: 48
     },
     errorTextStyle: {
         fontSize: 12,
