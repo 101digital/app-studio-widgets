@@ -121,7 +121,7 @@ const ASTextField = (props) => {
         }
         return active ? borderActiveColor : flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderColor;
     };
-    return (react_1.default.createElement(react_native_1.View, { style: [styles.wrapperStyle, { height: "auto", borderColor: 'transparent', marginBottom: (flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.marginBottom) || 0 },], accessibilityLabel: accessibilityLabel, id: id },
+    return (react_1.default.createElement(react_native_1.View, { style: [styles.wrapperStyle, { height: "auto", borderColor: 'transparent', marginBottom: (flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.marginBottom) || 0 }], accessibilityLabel: accessibilityLabel, id: id },
         react_1.default.createElement(react_native_1.View, { style: [
                 styles.containerStyle,
                 Object.assign(Object.assign({ borderColor: getBorderColor() || (flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderColor), height: flattenedHeight }, flattenedStyle), { marginBottom: 0 }),
@@ -161,6 +161,10 @@ const styles = react_native_1.StyleSheet.create({
         paddingVertical: 2,
         justifyContent: "center",
         marginBottom: 2,
+        paddingTop: 12,
+        paddingBottom: 12,
+        paddingLeft: 14,
+        paddingRight: 14,
     },
     contentContainerStyle: {
         alignItems: "center",

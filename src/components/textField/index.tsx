@@ -259,6 +259,10 @@ const styles = StyleSheet.create({
         paddingVertical: 2,
         justifyContent: "center",
         marginBottom: 2,
+        paddingTop:12,
+        paddingBottom:12,
+        paddingLeft:14,
+        paddingRight:14,
     },
     contentContainerStyle: {
         alignItems: "center",
