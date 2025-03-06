@@ -132,6 +132,7 @@ const ASTextField = (props) => {
                         backgroundColor: flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.backgroundColor,
                         color: colors.onTertiary,
                         top: labelTopPosition,
+                        left: (typeof (flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.paddingLeft) === 'number' ? flattenedStyle.paddingLeft : 0) - (typeof (labelTextStyle === null || labelTextStyle === void 0 ? void 0 : labelTextStyle.paddingLeft) === 'number' ? labelTextStyle.paddingLeft : 2)
                     },
                     labelTextStyle,
                 ] }, label),
@@ -172,7 +173,8 @@ const styles = react_native_1.StyleSheet.create({
     },
     labelStyle: {
         fontSize: 10,
-        marginHorizontal: 16,
+        paddingLeft: 2,
+        paddingRight: 2,
         position: "absolute",
     },
     inputContainerStyle: {
@@ -190,13 +192,11 @@ const styles = react_native_1.StyleSheet.create({
         marginHorizontal: 16,
     },
     prefixIcon: {
-        marginRight: 4,
+        marginRight: 8,
     },
     suffixIcon: {
-        marginLeft: 10,
-        marginRight: 8,
+        marginLeft: 8,
         height: "100%",
-        minWidth: 52,
         alignItems: 'center',
         justifyContent: 'center',
     },

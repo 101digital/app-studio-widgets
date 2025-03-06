@@ -1,11 +1,12 @@
 import React, {useContext} from 'react';
 import {ColorValue, StyleProp, StyleSheet, TextStyle, TouchableOpacity, View, ViewStyle} from 'react-native';
 import {FieldHookConfig, useField} from "formik";
-import ASText from "../text";
 import {TickIcon} from "../../assets/icon";
-import ASRow from "../row";
 import {ThemeContext} from "../../context/theme-context";
 import ASOverlay from '../overlay';
+import ASColumn from '../column'
+import ASText from '../text'
+import ASRow from '../row'
 
 export type ASRadioButtonItemProps = {
     label: string;
@@ -22,6 +23,9 @@ export type ASRadioButtonProps = {
     radioType?: 'default' | 'tick';
     isOverlayEnabled?: boolean;
     onChange?: (item: any) => void;
+    inActiveColor?: ColorValue
+    style?: ViewStyle
+    spacing?:number
 }
 
 const ASRadioButton: React.FC<ASRadioButtonProps> = (props: ASRadioButtonProps) => {
@@ -35,10 +39,15 @@ const ASRadioButton: React.FC<ASRadioButtonProps> = (props: ASRadioButtonProps) 
         labelStyle,
         radioType = 'default',
         isOverlayEnabled,
-        onChange
+        onChange,
+        inActiveColor='#C4C4C4',
+        style:flattenStyle,
+        spacing
     } = props;
     const [field, meta, helpers] = useField(name);
     const {setValue} = helpers || {};
+    const style = StyleSheet.flatten(flattenStyle)
+    const RadioButtonContainer = style?.flexDirection === 'row' ? ASRow  :ASColumn
 
     const _onPressRadioButton = (item: ASRadioButtonItemProps) => () => {
         setValue?.(item?.value)
@@ -48,7 +57,7 @@ const ASRadioButton: React.FC<ASRadioButtonProps> = (props: ASRadioButtonProps) 
     const defaultRadioButtonType = (item: ASRadioButtonItemProps) => {
         return (
             <>
-                <View style={[styles.radioButton, radioButtonStyle, {borderColor: color}]}>
+                <View style={[styles.radioButton, radioButtonStyle, {borderColor: item?.value === field?.value ? color : inActiveColor}]}>
                     {item?.value === field?.value &&
                         <View style={[styles.innerCircle, innerCircleStyle, {backgroundColor: color}]}/>}
                 </View>
@@ -88,11 +97,14 @@ const ASRadioButton: React.FC<ASRadioButtonProps> = (props: ASRadioButtonProps) 
 
     return (
         <>
-            {
-                options?.map(mapRadioButton)
-            }
-            {isOverlayEnabled && <ASOverlay />}
-        </>)
+            <RadioButtonContainer style={style} spacing={spacing}>
+                {
+                    options?.map(mapRadioButton)
+                }
+            </RadioButtonContainer>
+            {/*{isOverlayEnabled && <ASOverlay/>}*/}
+        </>
+    )
 };
 
 export default ASRadioButton;
@@ -101,7 +113,7 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginBottom: 8,
+        // marginBottom: 8,
     },
     radioButton: {
         width: 20,

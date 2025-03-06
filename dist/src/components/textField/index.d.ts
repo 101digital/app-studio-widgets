@@ -11,7 +11,7 @@ export type ASTextFieldProps = Omit<TextInputMaskProps, "type"> & TextInputProps
     formatNumber?: "comma" | "dot" | "percentage" | undefined;
     prefixText?: string;
     prefixTextStyle?: StyleProp<TextStyle>;
-    labelTextStyle?: StyleProp<TextStyle>;
+    labelTextStyle?: TextStyle;
     inputTextStyle?: StyleProp<TextStyle>;
     errorMessageTextStyle?: StyleProp<TextStyle>;
     borderErrorColor?: string;

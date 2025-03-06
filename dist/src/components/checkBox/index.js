@@ -38,10 +38,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importStar(require("react"));
+const react_native_1 = require("react-native");
 const react_native_bouncy_checkbox_1 = __importDefault(require("react-native-bouncy-checkbox"));
 const formik_1 = require("formik");
 const ASCheckBox = (props) => {
-    const { label, labelStyles, unFillColor = "transparent", fillColor, iconStyles, innerIconStyles, disabled, onChange, accessibilityLabel, size = 25, iconSize = 12, name } = props, restProps = __rest(props, ["label", "labelStyles", "unFillColor", "fillColor", "iconStyles", "innerIconStyles", "disabled", "onChange", "accessibilityLabel", "size", "iconSize", "name"]);
+    var _a;
+    const { label, labelStyles, unFillColor = "transparent", fillColor, iconStyles: flattenIconStyles, innerIconStyles: flattenInnerIconStyles, inactiveBorderColor = '#999999', disabled, onChange, accessibilityLabel, size = 25, iconSize = 12, name } = props, restProps = __rest(props, ["label", "labelStyles", "unFillColor", "fillColor", "iconStyles", "innerIconStyles", "inactiveBorderColor", "disabled", "onChange", "accessibilityLabel", "size", "iconSize", "name"]);
+    const innerIconStyles = react_native_1.StyleSheet.flatten(flattenInnerIconStyles);
+    const iconStyles = react_native_1.StyleSheet.flatten(flattenIconStyles);
+    const iconBorderRadius = (_a = innerIconStyles === null || innerIconStyles === void 0 ? void 0 : innerIconStyles.borderRadius) !== null && _a !== void 0 ? _a : iconStyles === null || iconStyles === void 0 ? void 0 : iconStyles.borderRadius;
     const formikContext = (0, formik_1.useFormikContext)();
     const [toggleCheckBox, setToggleCheckBox] = (0, react_1.useState)(false);
     let field;
@@ -62,7 +67,7 @@ const ASCheckBox = (props) => {
         }
         onChange === null || onChange === void 0 ? void 0 : onChange(newValue);
     };
-    return (react_1.default.createElement(react_native_bouncy_checkbox_1.default, Object.assign({ size: size, fillColor: fillColor, unFillColor: unFillColor, text: label, iconStyle: iconStyles, innerIconStyle: innerIconStyles, textStyle: labelStyles, onPress: (isChecked) => {
+    return (react_1.default.createElement(react_native_bouncy_checkbox_1.default, Object.assign({ size: size, fillColor: fillColor, unFillColor: unFillColor, text: label, iconStyle: [iconStyles, iconBorderRadius], innerIconStyle: [innerIconStyles, iconBorderRadius, { borderColor: toggleCheckBox ? fillColor : inactiveBorderColor }], textStyle: labelStyles, onPress: (isChecked) => {
             onValueChange(isChecked);
         }, isChecked: toggleCheckBox, iconImageStyle: { width: iconSize, height: iconSize }, disabled: disabled, accessibilityLabel: accessibilityLabel }, restProps)));
 };

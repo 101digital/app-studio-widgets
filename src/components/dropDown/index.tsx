@@ -141,7 +141,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
                     borderColor: colors.secondary,
                 },
                 flatttenedContainerStyle,
-                {alignItems: 'stretch'}
+                {alignItems: 'stretch', flexDirection: 'column'}
             ]}
             id={id}
         >

@@ -12,6 +12,7 @@ export type ASProgressBarProps = {
     progressBarStyle?: StyleProp<ViewStyle>;
     activeColor?: ColorValue
     inActiveColor?: ColorValue
+    style?: StyleProp<ViewStyle>;
 }
 
 const ASProgressBar: React.FC<ASProgressBarProps> = (props: ASProgressBarProps) => {
@@ -23,11 +24,12 @@ const ASProgressBar: React.FC<ASProgressBarProps> = (props: ASProgressBarProps) 
         progressTitleStyle,
         progressBarStyle,
         activeColor,
-        inActiveColor
+        inActiveColor,
+        style
     } = props
 
     return (
-        <View style={styles.progressBarContainer}>
+        <View style={[styles.progressBarContainer, StyleSheet.flatten(style)]}>
             {!!progressBarTitle &&
                 <ASText style={[styles.progressBarText, progressTitleStyle]}>{progressBarTitle}</ASText>}
             <View style={[styles.progressBar, {

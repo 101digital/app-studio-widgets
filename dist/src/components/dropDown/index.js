@@ -101,7 +101,7 @@ const ASDropDown = (props) => {
                 borderColor: colors.secondary,
             },
             flatttenedContainerStyle,
-            { alignItems: 'stretch' }
+            { alignItems: 'stretch', flexDirection: 'column' }
         ], id: id },
         !!label && (react_1.default.createElement(text_1.default, { style: [
                 styles.labelStyle,
