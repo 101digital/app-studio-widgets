@@ -159,7 +159,7 @@ const ASTextField = (props: ASTextFieldProps) => {
     };
 
     return (
-        <View style={[styles.wrapperStyle, style, {height: "auto", borderColor: 'transparent'}, {paddingTop: 8}]}
+        <View style={[styles.wrapperStyle, {height: "auto", borderColor: 'transparent',  marginBottom: flattenedStyle?.marginBottom || 0 }]}
               accessibilityLabel={accessibilityLabel} id={id}>
             <View
                 style={[
@@ -167,11 +167,8 @@ const ASTextField = (props: ASTextFieldProps) => {
                     {
                         borderColor: getBorderColor() || flattenedStyle?.borderColor,
                         height: flattenedHeight,
-                        borderTopWidth: flattenedStyle?.borderTopWidth,
-                        borderRightWidth: flattenedStyle?.borderRightWidth,
-                        borderBottomWidth: flattenedStyle?.borderBottomWidth,
-                        borderLeftWidth: flattenedStyle?.borderLeftWidth,
-                        ...(flattenedStyle && 'borderRadius' in flattenedStyle && flattenedStyle.borderRadius !== undefined && {borderRadius: flattenedStyle.borderRadius})
+                        ...flattenedStyle,
+                        marginBottom: 0
                     },
                 ]}
             >
@@ -188,7 +185,7 @@ const ASTextField = (props: ASTextFieldProps) => {
                 >
                     {label}
                 </ASText>
-                <View style={[styles.contentContainerStyle, !suffixIcon && {marginRight: 16}]}>
+                <View style={[styles.contentContainerStyle]}>
                     {prefixIcon && <View style={styles.prefixIcon}>{typeof prefixIcon === 'string' ?
                         <ASImage
                             style={{width: 20, height: 20}}
@@ -262,15 +259,17 @@ const styles = StyleSheet.create({
         paddingVertical: 2,
         justifyContent: "center",
         marginBottom: 2,
+        paddingTop:12,
+        paddingBottom:12,
+        paddingLeft:14,
+        paddingRight:14,
     },
     contentContainerStyle: {
         alignItems: "center",
         flexDirection: "row",
-        marginLeft: 16
     },
     labelStyle: {
         fontSize: 10,
-        // marginLeft: 16,
         marginHorizontal: 16,
         position: "absolute",
     },
@@ -282,7 +281,6 @@ const styles = StyleSheet.create({
     textInputStyle: {
         flex: 1,
         fontSize: 12,
-        minHeight: 48
     },
     errorTextStyle: {
         fontSize: 12,
@@ -293,7 +291,7 @@ const styles = StyleSheet.create({
         marginRight: 4,
     },
     suffixIcon: {
-        marginLeft: 4,
+        marginLeft: 10,
         marginRight: 8,
         height: "100%",
         minWidth: 52,

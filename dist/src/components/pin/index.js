@@ -62,7 +62,7 @@ const KEYBOARDS = [
 ];
 const Keyboard = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { submitButtonIcon, submitButtonStyle, deleteButtonIcon, deleteButtonStyle, flatListProps, onKeyboardPress, typography, keyboardButtonRadius, keyboardButtonBorderColor, keyboardButtonBackgroundColor, keyboardStyle } = props;
+    const { submitButtonIcon, submitButtonStyle, deleteButtonIcon, deleteButtonStyle, flatListProps, onKeyboardPress, typography, keyboardButtonRadius, keyboardButtonBorderColor, keyboardButtonBackgroundColor, keyboardStyle, buttonIconColor } = props;
     const _onKeyboardPress = (item) => () => {
         onKeyboardPress === null || onKeyboardPress === void 0 ? void 0 : onKeyboardPress(item);
     };
@@ -72,9 +72,9 @@ const Keyboard = (props) => {
                 react_native_1.StyleSheet.flatten(submitButtonStyle))), { backgroundColor: backgroundColor || keyboardButtonBackgroundColor }), ((item === null || item === void 0 ? void 0 : item.value) === "delete" &&
                 react_native_1.StyleSheet.flatten(deleteButtonStyle))), { borderRadius: borderRadius || keyboardButtonRadius }), onPress: _onKeyboardPress(item) },
             (item === null || item === void 0 ? void 0 : item.value) !== "delete" && (item === null || item === void 0 ? void 0 : item.value) !== "continue" && (react_1.default.createElement(text_1.default, { style: [{ fontWeight: "bold", fontSize: 18 }, typography] }, item === null || item === void 0 ? void 0 : item.label)),
-            (item === null || item === void 0 ? void 0 : item.value) === "delete" ? deleteButtonIcon || react_1.default.createElement(icon_1.DeleteIcon, null) : null,
+            (item === null || item === void 0 ? void 0 : item.value) === "delete" ? deleteButtonIcon || react_1.default.createElement(icon_1.DeleteIcon, { color: buttonIconColor }) : null,
             (item === null || item === void 0 ? void 0 : item.value) === "continue"
-                ? submitButtonIcon || react_1.default.createElement(icon_1.ForwardIcon, null)
+                ? submitButtonIcon || react_1.default.createElement(icon_1.ForwardIcon, { color: buttonIconColor })
                 : null));
     };
     return (react_1.default.createElement(react_native_1.FlatList, Object.assign({ scrollEnabled: false, contentContainerStyle: styles.flatListContainerStyles, columnWrapperStyle: { paddingHorizontal: 50, justifyContent: 'space-around' } }, flatListProps, { data: KEYBOARDS, renderItem: _renderItem, numColumns: 3, keyExtractor: (item, index) => `${(item === null || item === void 0 ? void 0 : item.toString()) + index}` })));
@@ -132,7 +132,7 @@ const PinInputList = (props) => {
         ] }, !enableNativeKeyboard ? (react_1.default.createElement(text_1.default, { style: inputTypography }, pin[index] || "")) : (react_1.default.createElement(react_native_1.TextInput, { ref: (el) => (inputRefs.current[index] = el), style: [inputTypography, styles.textInputStyle], value: pin[index] || "", keyboardType: "number-pad", onChangeText: (text) => handleInputChange(text, index), onKeyPress: (e) => handleKeyPress(e, index), maxLength: 1, autoFocus: index === 0, caretHidden: true, showSoftInputOnFocus: true, focusable: false, selectTextOnFocus: false })))))));
 };
 const ASPin = (props) => {
-    const { submitButtonIcon, submitButtonStyle, deleteButtonIcon, deleteButtonStyle, flatListProps, pinLength = 6, onPress, children, onChange, keyboardTypography, inputTypography, gap, keyboardButtonRadius, enableNativeKeyboard, pinBoxRadius, pinBoxSize, keyboardButtonBackgroundColor, keyboardButtonBorderColor, pinBoxBackgroundColor, pinBoxBorderColor, isOverlayEnabled, keyboardStyle, name } = props;
+    const { submitButtonIcon, submitButtonStyle, deleteButtonIcon, deleteButtonStyle, flatListProps, pinLength = 6, onPress, children, onChange, keyboardTypography, inputTypography, gap, keyboardButtonRadius, enableNativeKeyboard, pinBoxRadius, pinBoxSize, keyboardButtonBackgroundColor, keyboardButtonBorderColor, pinBoxBackgroundColor, pinBoxBorderColor, isOverlayEnabled, keyboardStyle, name, style, buttonIconColor } = props;
     const [pin, setPin] = (0, react_1.useState)([]);
     const [field, meta, helpers] = (0, formik_1.useField)(name);
     const { setValue } = helpers || {};
@@ -161,11 +161,11 @@ const ASPin = (props) => {
             });
         }
     };
-    return (react_1.default.createElement(column_1.default, { style: [styles.flex1, !enableNativeKeyboard && { position: 'relative' }] },
+    return (react_1.default.createElement(column_1.default, { style: [styles.flex1, !enableNativeKeyboard && { position: 'relative' }, style] },
         react_1.default.createElement(react_native_1.View, { style: { marginBottom: gap || 24 } },
             react_1.default.createElement(PinInputList, { pinLength: pinLength, pin: pin, inputTypography: inputTypography, onKeyboardPress: onKeyboardItemPress, enableNativeKeyboard: enableNativeKeyboard, pinBoxRadius: pinBoxRadius, pinBoxSize: pinBoxSize, pinBoxBackgroundColor: pinBoxBackgroundColor, pinBoxBorderColor: pinBoxBorderColor, onPress: onPress })),
         children,
-        !enableNativeKeyboard && react_1.default.createElement(Keyboard, { keyboardStyle: keyboardStyle, submitButtonIcon: submitButtonIcon, submitButtonStyle: submitButtonStyle, deleteButtonIcon: deleteButtonIcon, deleteButtonStyle: deleteButtonStyle, flatListProps: flatListProps, onKeyboardPress: onKeyboardItemPress, typography: keyboardTypography, keyboardButtonRadius: keyboardButtonRadius, keyboardButtonBackgroundColor: keyboardButtonBackgroundColor, keyboardButtonBorderColor: keyboardButtonBorderColor }),
+        !enableNativeKeyboard && react_1.default.createElement(Keyboard, { keyboardStyle: keyboardStyle, submitButtonIcon: submitButtonIcon, submitButtonStyle: submitButtonStyle, deleteButtonIcon: deleteButtonIcon, deleteButtonStyle: deleteButtonStyle, flatListProps: flatListProps, onKeyboardPress: onKeyboardItemPress, typography: keyboardTypography, keyboardButtonRadius: keyboardButtonRadius, keyboardButtonBackgroundColor: keyboardButtonBackgroundColor, keyboardButtonBorderColor: keyboardButtonBorderColor, buttonIconColor: buttonIconColor }),
         isOverlayEnabled && react_1.default.createElement(overlay_1.default, null)));
 };
 exports.default = ASPin;

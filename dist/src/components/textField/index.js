@@ -121,10 +121,10 @@ const ASTextField = (props) => {
         }
         return active ? borderActiveColor : flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderColor;
     };
-    return (react_1.default.createElement(react_native_1.View, { style: [styles.wrapperStyle, style, { height: "auto", borderColor: 'transparent' }, { paddingTop: 8 }], accessibilityLabel: accessibilityLabel, id: id },
+    return (react_1.default.createElement(react_native_1.View, { style: [styles.wrapperStyle, { height: "auto", borderColor: 'transparent', marginBottom: (flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.marginBottom) || 0 }], accessibilityLabel: accessibilityLabel, id: id },
         react_1.default.createElement(react_native_1.View, { style: [
                 styles.containerStyle,
-                Object.assign({ borderColor: getBorderColor() || (flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderColor), height: flattenedHeight, borderTopWidth: flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderTopWidth, borderRightWidth: flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderRightWidth, borderBottomWidth: flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderBottomWidth, borderLeftWidth: flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderLeftWidth }, (flattenedStyle && 'borderRadius' in flattenedStyle && flattenedStyle.borderRadius !== undefined && { borderRadius: flattenedStyle.borderRadius })),
+                Object.assign(Object.assign({ borderColor: getBorderColor() || (flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderColor), height: flattenedHeight }, flattenedStyle), { marginBottom: 0 }),
             ] },
             react_1.default.createElement(text_1.default, { style: [
                     styles.labelStyle,
@@ -135,7 +135,7 @@ const ASTextField = (props) => {
                     },
                     labelTextStyle,
                 ] }, label),
-            react_1.default.createElement(react_native_1.View, { style: [styles.contentContainerStyle, !suffixIcon && { marginRight: 16 }] },
+            react_1.default.createElement(react_native_1.View, { style: [styles.contentContainerStyle] },
                 prefixIcon && react_1.default.createElement(react_native_1.View, { style: styles.prefixIcon }, typeof prefixIcon === 'string' ?
                     react_1.default.createElement(image_1.default, { style: { width: 20, height: 20 }, source: prefixIcon })
                     : prefixIcon),
@@ -161,15 +161,17 @@ const styles = react_native_1.StyleSheet.create({
         paddingVertical: 2,
         justifyContent: "center",
         marginBottom: 2,
+        paddingTop: 12,
+        paddingBottom: 12,
+        paddingLeft: 14,
+        paddingRight: 14,
     },
     contentContainerStyle: {
         alignItems: "center",
         flexDirection: "row",
-        marginLeft: 16
     },
     labelStyle: {
         fontSize: 10,
-        // marginLeft: 16,
         marginHorizontal: 16,
         position: "absolute",
     },
@@ -181,7 +183,6 @@ const styles = react_native_1.StyleSheet.create({
     textInputStyle: {
         flex: 1,
         fontSize: 12,
-        minHeight: 48
     },
     errorTextStyle: {
         fontSize: 12,
@@ -192,7 +193,7 @@ const styles = react_native_1.StyleSheet.create({
         marginRight: 4,
     },
     suffixIcon: {
-        marginLeft: 4,
+        marginLeft: 10,
         marginRight: 8,
         height: "100%",
         minWidth: 52,

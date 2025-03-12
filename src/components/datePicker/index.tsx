@@ -143,13 +143,12 @@ const ASDatePicker = (props: ASDatePickerProps) => {
   };
 
   const onOpenIsVisible = async () => {
-    console.log("pressed");
     setIsVisible(!isVisible);
   };
 
-  const renderDateFormat = field.value ? format(field.value, displayDateFormat) : '';
-
-  console.log("value", field.value, renderDateFormat);
+  const renderDateFormat = field.value
+    ? format(field.value, displayDateFormat)
+    : "";
 
   return (
     <TouchableOpacity
@@ -167,7 +166,7 @@ const ASDatePicker = (props: ASDatePickerProps) => {
         style={[
           styles.containerStyle,
           {
-            borderColor: getBorderColor() || flattenedStyle?.borderColor,
+            borderColor: isVisible ? '#FFA90E' : '#D6DCE0',
             height: flattenedHeight,
             borderTopWidth: flattenedStyle?.borderTopWidth,
             borderRightWidth: flattenedStyle?.borderRightWidth,
@@ -260,8 +259,12 @@ const ASDatePicker = (props: ASDatePickerProps) => {
       >
         <ASColumn style={Object.assign({}, styles.class_bvul0lmic, {})}>
           <ASCalendar
-            selectedDayBackgroundColor={selectedDayBackgroundColor ?? colors.primary ?? ""}
-            selectedDayTextColor={selectedDayTextColor ?? colors.onPrimary ?? ""}
+            selectedDayBackgroundColor={
+              selectedDayBackgroundColor ?? colors.primary ?? ""
+            }
+            selectedDayTextColor={
+              selectedDayTextColor ?? colors.onPrimary ?? ""
+            }
             todayTextColor={todayTextColor ?? colors.onPrimary ?? ""}
             arrowColor={arrowColor ?? colors.primary ?? ""}
             dayTextColor={dayTextColor ?? ""}
@@ -292,29 +295,13 @@ const ASDatePicker = (props: ASDatePickerProps) => {
                   }
                 : undefined
             }
-            onDayPress={(date) =>
-              setSelectingDate(
-                date.dateString === selectingDate ? undefined : date.dateString
-              )
-            }
+            onDayPress={(date) => {
+              onCloseIsVisible();
+              if (date) {
+                field.onChange(name)(format(date.dateString, selectedDateFormat));
+              }
+            }}
           />
-          <ASRow style={Object.assign({}, styles.class_fnysbffjk, {})}>
-            <ASButton
-              onPress={() => {
-                onCloseIsVisible();
-                if (selectingDate) {
-                  field.onChange(name)(
-                    format(selectingDate, selectedDateFormat)
-                  );
-                }
-              }}
-              style={Object.assign({}, styles.class_a2462tv01, {})}
-              textStyle={Object.assign({}, styles.class_8pqr824r1, {})}
-              label={"Okay"}
-              accessibilityLabel={"Okay"}
-              simpleTextButton={false}
-            />
-          </ASRow>
         </ASColumn>
       </ASPopUp>
     </TouchableOpacity>
@@ -364,11 +351,12 @@ const styles = StyleSheet.create({
   class_a2462tv01: {
     marginVertical: 10,
     flex: 1,
-    backgroundColor: '#3B70EA',
+    backgroundColor: "#3B70EA",
     minHeight: 48,
   },
   textInputStyle: {
     fontSize: 12,
+    width: '100%'
   },
   errorTextStyle: {
     fontSize: 12,
@@ -391,7 +379,7 @@ const styles = StyleSheet.create({
     marginRight: 4,
   },
   class_bvul0lmic: {
-    paddingVertical: 30,
+    paddingVertical: 40,
     paddingHorizontal: 14,
     justifyContent: "center",
     backgroundColor: "white",

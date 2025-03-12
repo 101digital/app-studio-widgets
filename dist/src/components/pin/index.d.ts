@@ -8,6 +8,7 @@ export type ASPinProps = KeyboardProps & {
     keyboardTypography?: TextStyle;
     inputTypography?: TextStyle;
     gap?: number;
+    style?: ViewStyle;
     keyboardButtonRadius?: number;
     enableNativeKeyboard?: boolean;
     pinBoxRadius?: number;
@@ -31,6 +32,7 @@ export type KeyboardProps = {
     keyboardButtonBorderColor?: string;
     keyboardButtonBackgroundColor?: string;
     keyboardStyle?: StyleProp<ViewStyle>;
+    buttonIconColor?: string;
 };
 export type KeyboardItemProps = {
     label: string;

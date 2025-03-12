@@ -47,8 +47,6 @@ const image_1 = __importDefault(require("../image"));
 const calendar_1 = __importDefault(require("../../components/calendar"));
 const popUp_1 = __importDefault(require("../../components/popUp"));
 const column_1 = __importDefault(require("../../components/column"));
-const row_1 = __importDefault(require("../../components/row"));
-const button_1 = __importDefault(require("../../components/button"));
 const colors_1 = require("../../utils/colors");
 const constants_1 = require("../../utils/constants");
 const date_fns_1 = require("date-fns");
@@ -87,11 +85,11 @@ const ASDatePicker = (props) => {
         setIsVisible(!isVisible);
     };
     const onOpenIsVisible = async () => {
-        console.log("pressed");
         setIsVisible(!isVisible);
     };
-    const renderDateFormat = field.value ? (0, date_fns_1.format)(field.value, displayDateFormat) : '';
-    console.log("value", field.value, renderDateFormat);
+    const renderDateFormat = field.value
+        ? (0, date_fns_1.format)(field.value, displayDateFormat)
+        : "";
     return (react_1.default.createElement(react_native_1.TouchableOpacity, { onPress: onOpenIsVisible, style: [
             styles.wrapperStyle,
             style,
@@ -100,7 +98,7 @@ const ASDatePicker = (props) => {
         ], accessibilityLabel: accessibilityLabel, id: id },
         react_1.default.createElement(react_native_1.View, { style: [
                 styles.containerStyle,
-                Object.assign({ borderColor: getBorderColor() || (flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderColor), height: flattenedHeight, borderTopWidth: flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderTopWidth, borderRightWidth: flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderRightWidth, borderBottomWidth: flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderBottomWidth, borderLeftWidth: flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderLeftWidth }, (flattenedStyle &&
+                Object.assign({ borderColor: isVisible ? '#FFA90E' : '#D6DCE0', height: flattenedHeight, borderTopWidth: flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderTopWidth, borderRightWidth: flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderRightWidth, borderBottomWidth: flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderBottomWidth, borderLeftWidth: flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderLeftWidth }, (flattenedStyle &&
                     "borderRadius" in flattenedStyle &&
                     flattenedStyle.borderRadius !== undefined && {
                     borderRadius: flattenedStyle.borderRadius,
@@ -147,14 +145,12 @@ const ASDatePicker = (props) => {
                         ? {
                             [selectingDate]: { selected: true },
                         }
-                        : undefined, onDayPress: (date) => setSelectingDate(date.dateString === selectingDate ? undefined : date.dateString) }),
-                react_1.default.createElement(row_1.default, { style: Object.assign({}, styles.class_fnysbffjk, {}) },
-                    react_1.default.createElement(button_1.default, { onPress: () => {
-                            onCloseIsVisible();
-                            if (selectingDate) {
-                                field.onChange(name)((0, date_fns_1.format)(selectingDate, selectedDateFormat));
-                            }
-                        }, style: Object.assign({}, styles.class_a2462tv01, {}), textStyle: Object.assign({}, styles.class_8pqr824r1, {}), label: "Okay", accessibilityLabel: "Okay", simpleTextButton: false }))))));
+                        : undefined, onDayPress: (date) => {
+                        onCloseIsVisible();
+                        if (date) {
+                            field.onChange(name)((0, date_fns_1.format)(date.dateString, selectedDateFormat));
+                        }
+                    } })))));
 };
 ASDatePicker.defaultProps = {
     type: "custom",
@@ -198,11 +194,12 @@ const styles = react_native_1.StyleSheet.create({
     class_a2462tv01: {
         marginVertical: 10,
         flex: 1,
-        backgroundColor: '#3B70EA',
+        backgroundColor: "#3B70EA",
         minHeight: 48,
     },
     textInputStyle: {
         fontSize: 12,
+        width: '100%'
     },
     errorTextStyle: {
         fontSize: 12,
@@ -225,7 +222,7 @@ const styles = react_native_1.StyleSheet.create({
         marginRight: 4,
     },
     class_bvul0lmic: {
-        paddingVertical: 30,
+        paddingVertical: 40,
         paddingHorizontal: 14,
         justifyContent: "center",
         backgroundColor: "white",

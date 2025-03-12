@@ -8,6 +8,7 @@ import {FieldHookConfig, useField} from "formik";
 import {ThemeContext} from "../../context/theme-context";
 import ASOverlay from "../overlay";
 import ASButton from '../button'
+import {DownIcon} from "../../assets/icon";
 
 export type DropDownOptionsProps = {
     [key: string]: any;
@@ -31,7 +32,8 @@ export type ASDropDownProps = Omit<DropdownProps<any>,
     isOverlayEnabled?: boolean;
     onChange?: (item: any) => void;
     id?: string;
-    isMultiChoices?: boolean
+    isMultiChoices?: boolean;
+    iconColor?: string
 };
 
 const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
@@ -57,6 +59,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
         id,
         onChange,
         isMultiChoices=false,
+        iconColor,
         ...restProps
     } = props;
     const [field, meta, helpers] = useField<string | string[]>(name);
@@ -137,7 +140,8 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
                     backgroundColor: colors.background,
                     borderColor: colors.secondary,
                 },
-                containerStyle,
+                flatttenedContainerStyle,
+                {alignItems: 'stretch'}
             ]}
             id={id}
         >
@@ -161,10 +165,9 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
                 !isMultiChoices ?
                     <Dropdown
                         style={styles.dropdown}
-                        placeholderStyle={[styles.placeholderStyle, placeholderTextStyles]}
+                        placeholderStyle={[styles.placeholderStyle, placeholderTextStyles, {...(flatttenedContainerStyle?.alignItems === 'center' && {textAlign: 'center'} )} ]}
                         inputSearchStyle={styles.inputSearchStyle}
                         iconStyle={[styles.iconStyle, iconStyles]}
-                        iconColor={colors.primary}
                         search={search}
                         maxHeight={300}
                         value={field?.value}
@@ -174,6 +177,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
                         placeholder={placeholder}
                         onFocus={() => setIsFocus(true)}
                         onBlur={() => setIsFocus(false)}
+                        renderRightIcon={()=><DownIcon color={iconColor}/>}
                         {...restProps}
                         selectedTextStyle={[
                             styles.selectedTextStyle,
@@ -193,7 +197,6 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
                         placeholderStyle={[styles.placeholderStyle, placeholderTextStyles]}
                         inputSearchStyle={styles.inputSearchStyle}
                         iconStyle={[styles.iconStyle, iconStyles]}
-                        iconColor={colors.primary}
                         search={search}
                         maxHeight={300}
                         value={field?.value || []}
@@ -204,6 +207,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
                         placeholder={placeholder}
                         onFocus={() => setIsFocus(true)}
                         onBlur={() => setIsFocus(false)}
+                        renderRightIcon={()=><DownIcon color={iconColor}/>}
                         {...restProps}
                         selectedTextStyle={[
                             styles.selectedTextStyle,
@@ -231,7 +235,8 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         justifyContent: "center",
         borderWidth: 1,
-        paddingVertical: 10,
+        paddingTop:12,
+        paddingBottom:12,
         position: "relative",
         width: "100%",
     },
@@ -251,7 +256,7 @@ const styles = StyleSheet.create({
     },
     placeholderStyle: {
         fontSize: 10,
-        paddingHorizontal: 13,
+        paddingHorizontal: 2,
     },
     selectedTextStyle: {
         flex: 1,

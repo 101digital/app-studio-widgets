@@ -52,6 +52,7 @@ export type ASPinProps = KeyboardProps & {
   keyboardTypography?: TextStyle;
   inputTypography?: TextStyle;
   gap?: number;
+  style?: ViewStyle ;
   keyboardButtonRadius?: number;
   enableNativeKeyboard?: boolean;
   pinBoxRadius?: number;
@@ -76,6 +77,7 @@ export type KeyboardProps = {
   keyboardButtonBorderColor?: string;
   keyboardButtonBackgroundColor?: string;
   keyboardStyle?: StyleProp<ViewStyle>
+  buttonIconColor?: string
 };
 
 export type KeyboardItemProps = {
@@ -109,13 +111,14 @@ const Keyboard: React.FC<KeyboardProps> = (props: KeyboardProps) => {
     keyboardButtonRadius,
     keyboardButtonBorderColor,
     keyboardButtonBackgroundColor,
-    keyboardStyle
+    keyboardStyle,
+    buttonIconColor
   } = props;
 
   const _onKeyboardPress = (item: KeyboardItemProps) => () => {
     onKeyboardPress?.(item);
   };
-
+  
   const _renderItem = ({ item }: { item: KeyboardItemProps }) => {
     const {backgroundColor,borderColor,borderRadius} = StyleSheet.flatten(keyboardStyle) || {}
     return (
@@ -138,9 +141,9 @@ const Keyboard: React.FC<KeyboardProps> = (props: KeyboardProps) => {
                 {item?.label}
               </ASText>
           )}
-          {item?.value === "delete" ? deleteButtonIcon || <DeleteIcon /> : null}
+          {item?.value === "delete" ? deleteButtonIcon || <DeleteIcon color={buttonIconColor} /> : null}
           {item?.value === "continue"
-              ? submitButtonIcon || <ForwardIcon />
+              ? submitButtonIcon || <ForwardIcon color={buttonIconColor}/>
               : null}
         </ASButton>
     );
@@ -287,7 +290,9 @@ const ASPin: React.FC<ASPinProps> = (props: ASPinProps) => {
     pinBoxBorderColor,
     isOverlayEnabled,
     keyboardStyle,
-    name
+    name,
+    style,
+    buttonIconColor
   } = props;
   const [pin, setPin] = useState<string[]>([]);
   const [field, meta, helpers] = useField<string>(name);
@@ -327,7 +332,7 @@ const ASPin: React.FC<ASPinProps> = (props: ASPinProps) => {
   };
 
   return (
-      <ASColumn style={[styles.flex1, !enableNativeKeyboard && {position: 'relative'} ]}>
+      <ASColumn style={[styles.flex1, !enableNativeKeyboard && {position: 'relative'}, style ]}>
         <View style={{ marginBottom: gap || 24 }}>
           <PinInputList
               pinLength={pinLength}
@@ -357,6 +362,7 @@ const ASPin: React.FC<ASPinProps> = (props: ASPinProps) => {
             keyboardButtonRadius={keyboardButtonRadius}
             keyboardButtonBackgroundColor={keyboardButtonBackgroundColor}
             keyboardButtonBorderColor={keyboardButtonBorderColor}
+            buttonIconColor={buttonIconColor}
         />}
         {isOverlayEnabled && <ASOverlay />}
       </ASColumn>

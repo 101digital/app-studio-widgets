@@ -32,13 +32,15 @@ const textField_1 = __importDefault(require("../textField"));
 const showPassword_icon_1 = require("../../assets/icon/showPassword.icon");
 const hidePassword_icon_1 = require("../../assets/icon/hidePassword.icon");
 const ASPasswordTextField = (props) => {
-    const { suffixIconSize = 22, suffixIconColor, accessibilityLabel, isOverlayEnabled } = props;
+    const { suffixIconSize = 22, suffixIconColor, accessibilityLabel, isOverlayEnabled, isShowSuffixIcon = true } = props;
     const [isSecureTextEntry, setIsSecureTextEntry] = (0, react_1.useState)(true);
     const onPressSecureTextEntry = () => {
         setIsSecureTextEntry((prev) => !prev);
     };
     const suffixIconAccessibility = accessibilityLabel ? accessibilityLabel + "-icon" : "";
-    return (react_1.default.createElement(textField_1.default, Object.assign({ suffixIcon: react_1.default.createElement(react_native_1.TouchableOpacity, { onPress: onPressSecureTextEntry, style: styles.suffixIconContainer, accessibilityLabel: suffixIconAccessibility }, isSecureTextEntry ? (react_1.default.createElement(showPassword_icon_1.ShowPasswordIcon, { size: suffixIconSize, color: suffixIconColor })) : (react_1.default.createElement(hidePassword_icon_1.HidePasswordIcon, { size: suffixIconSize, color: suffixIconColor }))) }, props, { secureTextEntry: isSecureTextEntry, isOverlayEnabled: isOverlayEnabled })));
+    return (react_1.default.createElement(textField_1.default, Object.assign({ suffixIcon: isShowSuffixIcon ?
+            react_1.default.createElement(react_native_1.TouchableOpacity, { onPress: onPressSecureTextEntry, style: styles.suffixIconContainer, accessibilityLabel: suffixIconAccessibility }, isSecureTextEntry ? (react_1.default.createElement(showPassword_icon_1.ShowPasswordIcon, { size: suffixIconSize, color: suffixIconColor })) : (react_1.default.createElement(hidePassword_icon_1.HidePasswordIcon, { size: suffixIconSize, color: suffixIconColor })))
+            : null }, props, { secureTextEntry: isSecureTextEntry, isOverlayEnabled: isOverlayEnabled })));
 };
 const styles = react_native_1.StyleSheet.create({
     suffixIconContainer: {
