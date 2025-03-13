@@ -159,7 +159,11 @@ const ASTextField = (props: ASTextFieldProps) => {
     };
 
     return (
-        <View style={[styles.wrapperStyle, {height: "auto", borderColor: 'transparent',  marginBottom: flattenedStyle?.marginBottom || 0 }]}
+        <View style={[styles.wrapperStyle, {
+            height: "auto",
+            borderColor: 'transparent',
+            marginBottom: flattenedStyle?.marginBottom || 0,
+        }]}
               accessibilityLabel={accessibilityLabel} id={id}>
             <View
                 style={[
@@ -179,7 +183,7 @@ const ASTextField = (props: ASTextFieldProps) => {
                             backgroundColor: flattenedStyle?.backgroundColor,
                             color: colors.onTertiary,
                             top: labelTopPosition,
-                            left: (typeof flattenedStyle?.paddingLeft === 'number' ? flattenedStyle.paddingLeft : 0) -                                (typeof labelTextStyle?.paddingLeft === 'number' ? labelTextStyle.paddingLeft : 2)
+                            left: (typeof flattenedStyle?.paddingLeft === 'number' ? flattenedStyle.paddingLeft : 0) - (typeof labelTextStyle?.paddingLeft === 'number' ? labelTextStyle.paddingLeft : 2)
                         },
                         labelTextStyle,
                     ]}
@@ -252,7 +256,7 @@ ASTextField.defaultProps = {
 const styles = StyleSheet.create({
     wrapperStyle: {
         position: "relative",
-        width: "auto",
+        flex:1
     },
     containerStyle: {
         borderRadius: 5,
