@@ -252,7 +252,7 @@ ASTextField.defaultProps = {
 const styles = StyleSheet.create({
     wrapperStyle: {
         position: "relative",
-        width: "100%",
+        width: "auto",
     },
     containerStyle: {
         borderRadius: 5,

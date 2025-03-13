@@ -154,7 +154,7 @@ ASTextField.defaultProps = {
 const styles = react_native_1.StyleSheet.create({
     wrapperStyle: {
         position: "relative",
-        width: "100%",
+        width: "auto",
     },
     containerStyle: {
         borderRadius: 5,
