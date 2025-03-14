@@ -101,7 +101,11 @@ const ASDropDown = (props) => {
                 borderColor: colors.secondary,
             },
             flatttenedContainerStyle,
-            { alignItems: 'stretch', flexDirection: 'column' }
+            { alignItems: 'stretch', flexDirection: 'column' },
+            {
+                paddingTop: typeof (flatttenedContainerStyle === null || flatttenedContainerStyle === void 0 ? void 0 : flatttenedContainerStyle.paddingTop) === 'number' && flatttenedContainerStyle.paddingTop > 0 ? flatttenedContainerStyle.paddingTop - 1 : 0,
+                paddingBottom: typeof (flatttenedContainerStyle === null || flatttenedContainerStyle === void 0 ? void 0 : flatttenedContainerStyle.paddingBottom) === 'number' && flatttenedContainerStyle.paddingBottom > 0 ? flatttenedContainerStyle.paddingBottom - 1 : 0,
+            }
         ], id: id },
         !!label && (react_1.default.createElement(text_1.default, { style: [
                 styles.labelStyle,
