@@ -163,7 +163,8 @@ const ASTextField = (props: ASTextFieldProps) => {
             height: "auto",
             borderColor: 'transparent',
             marginBottom: flattenedStyle?.marginBottom || 0,
-        }]}
+            ...(flattenedStyle?.flex ? { flex: flattenedStyle.flex } : {})
+        },  ]}
               accessibilityLabel={accessibilityLabel} id={id}>
             <View
                 style={[
@@ -256,7 +257,6 @@ ASTextField.defaultProps = {
 const styles = StyleSheet.create({
     wrapperStyle: {
         position: "relative",
-        flex:1
     },
     containerStyle: {
         borderRadius: 5,
