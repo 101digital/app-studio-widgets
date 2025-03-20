@@ -121,7 +121,7 @@ const ASTextField = (props) => {
         }
         return active ? borderActiveColor : flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderColor;
     };
-    return (react_1.default.createElement(react_native_1.View, { style: [styles.wrapperStyle, { height: "auto", borderColor: 'transparent', marginBottom: (flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.marginBottom) || 0 }], accessibilityLabel: accessibilityLabel, id: id },
+    return (react_1.default.createElement(react_native_1.View, { style: [styles.wrapperStyle, Object.assign({ height: "auto", borderColor: 'transparent', marginBottom: (flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.marginBottom) || 0 }, ((flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.flex) ? { flex: flattenedStyle.flex } : {})),], accessibilityLabel: accessibilityLabel, id: id },
         react_1.default.createElement(react_native_1.View, { style: [
                 styles.containerStyle,
                 Object.assign(Object.assign({ borderColor: getBorderColor() || (flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderColor), height: flattenedHeight }, flattenedStyle), { marginBottom: 0 }),
@@ -132,6 +132,7 @@ const ASTextField = (props) => {
                         backgroundColor: flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.backgroundColor,
                         color: colors.onTertiary,
                         top: labelTopPosition,
+                        left: (typeof (flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.paddingLeft) === 'number' ? flattenedStyle.paddingLeft : 0) - (typeof (labelTextStyle === null || labelTextStyle === void 0 ? void 0 : labelTextStyle.paddingLeft) === 'number' ? labelTextStyle.paddingLeft : 2)
                     },
                     labelTextStyle,
                 ] }, label),
@@ -153,7 +154,6 @@ ASTextField.defaultProps = {
 const styles = react_native_1.StyleSheet.create({
     wrapperStyle: {
         position: "relative",
-        width: "100%",
     },
     containerStyle: {
         borderRadius: 5,
@@ -172,7 +172,8 @@ const styles = react_native_1.StyleSheet.create({
     },
     labelStyle: {
         fontSize: 10,
-        marginHorizontal: 16,
+        paddingLeft: 2,
+        paddingRight: 2,
         position: "absolute",
     },
     inputContainerStyle: {
@@ -190,13 +191,11 @@ const styles = react_native_1.StyleSheet.create({
         marginHorizontal: 16,
     },
     prefixIcon: {
-        marginRight: 4,
+        marginRight: 8,
     },
     suffixIcon: {
-        marginLeft: 10,
-        marginRight: 8,
+        marginLeft: 8,
         height: "100%",
-        minWidth: 52,
         alignItems: 'center',
         justifyContent: 'center',
     },

@@ -141,7 +141,13 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
                     borderColor: colors.secondary,
                 },
                 flatttenedContainerStyle,
-                {alignItems: 'stretch'}
+                {alignItems: 'stretch', flexDirection: 'column'},
+                {  /* Need to have this logic beacuse the DropDown has extra padding so it always a bit bigger to other widget even though they have the same padding
+                      Solution is to subtract 1 pixel from the top and bottom padding to compensate for the DropDown extra padding
+                    */
+                    paddingTop: typeof flatttenedContainerStyle?.paddingTop === 'number' && flatttenedContainerStyle.paddingTop > 0 ? flatttenedContainerStyle.paddingTop - 1 : 0,
+                    paddingBottom: typeof flatttenedContainerStyle?.paddingBottom === 'number' && flatttenedContainerStyle.paddingBottom > 0 ? flatttenedContainerStyle.paddingBottom - 1 : 0,
+                }
             ]}
             id={id}
         >

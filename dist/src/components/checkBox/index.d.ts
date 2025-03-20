@@ -13,6 +13,7 @@ export type ASCheckBoxProps = {
     iconSize?: number;
     name: string;
     onChange?: (value: boolean) => void;
+    inactiveBorderColor?: string;
 };
 declare const ASCheckBox: React.FC<ASCheckBoxProps>;
 export default ASCheckBox;

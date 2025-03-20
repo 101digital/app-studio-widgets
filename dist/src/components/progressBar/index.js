@@ -32,8 +32,8 @@ const text_1 = __importDefault(require("../text"));
 const theme_context_1 = require("../../context/theme-context");
 const ASProgressBar = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { progressBarTitle = '', progressValue, progressCurrentStyle, progressTitleStyle, progressBarStyle, activeColor, inActiveColor } = props;
-    return (react_1.default.createElement(react_native_1.View, { style: styles.progressBarContainer },
+    const { progressBarTitle = '', progressValue, progressCurrentStyle, progressTitleStyle, progressBarStyle, activeColor, inActiveColor, style } = props;
+    return (react_1.default.createElement(react_native_1.View, { style: [styles.progressBarContainer, react_native_1.StyleSheet.flatten(style)] },
         !!progressBarTitle &&
             react_1.default.createElement(text_1.default, { style: [styles.progressBarText, progressTitleStyle] }, progressBarTitle),
         react_1.default.createElement(react_native_1.View, { style: [styles.progressBar, {

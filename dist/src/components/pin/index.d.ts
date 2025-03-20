@@ -19,6 +19,8 @@ export type ASPinProps = KeyboardProps & {
     keyboardButtonBackgroundColor?: string;
     isOverlayEnabled?: boolean;
     name: string;
+    contentContainerStyle?: ViewStyle;
+    columnWrapperStyle?: ViewStyle;
 };
 export type KeyboardProps = {
     submitButtonIcon?: ReactNode;
@@ -33,6 +35,8 @@ export type KeyboardProps = {
     keyboardButtonBackgroundColor?: string;
     keyboardStyle?: StyleProp<ViewStyle>;
     buttonIconColor?: string;
+    contentContainerStyle?: ViewStyle;
+    columnWrapperStyle?: ViewStyle;
 };
 export type KeyboardItemProps = {
     label: string;

@@ -1,14 +1,7 @@
-import React, { useState, useContext, useEffect } from "react";
-import { TextStyle, ViewStyle } from "react-native";
+import React, {useEffect, useState,} from "react";
+import {StyleSheet, TextStyle, ViewStyle} from "react-native";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
-import {
-  useField,
-  useFormikContext,
-  FieldInputProps,
-  FieldMetaProps,
-  FieldHelperProps,
-} from "formik";
-import { ThemeContext } from "../../context/theme-context";
+import {FieldHelperProps, FieldInputProps, FieldMetaProps, useField, useFormikContext,} from "formik";
 
 export type ASCheckBoxProps = {
   label?: string;
@@ -23,6 +16,7 @@ export type ASCheckBoxProps = {
   iconSize?: number;
   name: string;
   onChange?: (value: boolean) => void;
+  inactiveBorderColor?:string
 };
 
 const ASCheckBox: React.FC<ASCheckBoxProps> = (props: ASCheckBoxProps) => {
@@ -31,8 +25,9 @@ const ASCheckBox: React.FC<ASCheckBoxProps> = (props: ASCheckBoxProps) => {
     labelStyles,
     unFillColor = "transparent",
     fillColor,
-    iconStyles,
-    innerIconStyles,
+    iconStyles:flattenIconStyles,
+    innerIconStyles:flattenInnerIconStyles,
+    inactiveBorderColor='#999999',
     disabled,
     onChange,
     accessibilityLabel,
@@ -41,9 +36,10 @@ const ASCheckBox: React.FC<ASCheckBoxProps> = (props: ASCheckBoxProps) => {
     name,
     ...restProps
   } = props;
-
+  const innerIconStyles = StyleSheet.flatten(flattenInnerIconStyles)
+  const iconStyles = StyleSheet.flatten(flattenIconStyles)
+  const iconBorderRadius: any = innerIconStyles?.borderRadius ?? iconStyles?.borderRadius;
   const formikContext = useFormikContext();
-
   const [toggleCheckBox, setToggleCheckBox] = useState<boolean>(false);
 
   let field: FieldInputProps<any> | undefined;
@@ -67,23 +63,23 @@ const ASCheckBox: React.FC<ASCheckBoxProps> = (props: ASCheckBoxProps) => {
   };
 
   return (
-    <BouncyCheckbox
-      size={size}
-      fillColor={fillColor}
-      unFillColor={unFillColor}
-      text={label}
-      iconStyle={iconStyles}
-      innerIconStyle={innerIconStyles}
-      textStyle={labelStyles}
-      onPress={(isChecked: boolean) => {
-        onValueChange(isChecked);
-      }}
-      isChecked={toggleCheckBox}
-      iconImageStyle={{ width: iconSize, height: iconSize }}
-      disabled={disabled}
-      accessibilityLabel={accessibilityLabel}
-      {...restProps}
-    />
+      <BouncyCheckbox
+          size={size}
+          fillColor={fillColor}
+          unFillColor={unFillColor}
+          text={label}
+          iconStyle={[iconStyles, iconBorderRadius]}
+          innerIconStyle={[innerIconStyles, iconBorderRadius, {borderColor: toggleCheckBox ? fillColor : inactiveBorderColor}]}
+          textStyle={labelStyles}
+          onPress={(isChecked: boolean) => {
+            onValueChange(isChecked);
+          }}
+          isChecked={toggleCheckBox}
+          iconImageStyle={{ width: iconSize, height: iconSize }}
+          disabled={disabled}
+          accessibilityLabel={accessibilityLabel}
+          {...restProps}
+      />
   );
 };
 
