@@ -29,7 +29,7 @@ export type ASTextFieldProps = Omit<TextInputMaskProps, "type"> &
     formatNumber?: "comma" | "dot" | "percentage" | undefined;
     prefixText?: string;
     prefixTextStyle?: StyleProp<TextStyle>;
-    labelTextStyle?: StyleProp<TextStyle>;
+    labelTextStyle?: TextStyle;
     inputTextStyle?: StyleProp<TextStyle>;
     errorMessageTextStyle?: StyleProp<TextStyle>;
     borderErrorColor?: string;
@@ -159,7 +159,12 @@ const ASTextField = (props: ASTextFieldProps) => {
     };
 
     return (
-        <View style={[styles.wrapperStyle, {height: "auto", borderColor: 'transparent',  marginBottom: flattenedStyle?.marginBottom || 0 }]}
+        <View style={[styles.wrapperStyle, {
+            height: "auto",
+            borderColor: 'transparent',
+            marginBottom: flattenedStyle?.marginBottom || 0,
+            ...(flattenedStyle?.flex ? { flex: flattenedStyle.flex } : {})
+        },  ]}
               accessibilityLabel={accessibilityLabel} id={id}>
             <View
                 style={[
@@ -179,6 +184,7 @@ const ASTextField = (props: ASTextFieldProps) => {
                             backgroundColor: flattenedStyle?.backgroundColor,
                             color: colors.onTertiary,
                             top: labelTopPosition,
+                            left: (typeof flattenedStyle?.paddingLeft === 'number' ? flattenedStyle.paddingLeft : 0) - (typeof labelTextStyle?.paddingLeft === 'number' ? labelTextStyle.paddingLeft : 2)
                         },
                         labelTextStyle,
                     ]}
@@ -251,7 +257,6 @@ ASTextField.defaultProps = {
 const styles = StyleSheet.create({
     wrapperStyle: {
         position: "relative",
-        width: "100%",
     },
     containerStyle: {
         borderRadius: 5,
@@ -270,7 +275,8 @@ const styles = StyleSheet.create({
     },
     labelStyle: {
         fontSize: 10,
-        marginHorizontal: 16,
+        paddingLeft:2,
+        paddingRight:2,
         position: "absolute",
     },
     inputContainerStyle: {
@@ -288,13 +294,11 @@ const styles = StyleSheet.create({
         marginHorizontal: 16,
     },
     prefixIcon: {
-        marginRight: 4,
+        marginRight: 8,
     },
     suffixIcon: {
-        marginLeft: 10,
-        marginRight: 8,
+        marginLeft: 8,
         height: "100%",
-        minWidth: 52,
         alignItems: 'center',
         justifyContent: 'center',
     },

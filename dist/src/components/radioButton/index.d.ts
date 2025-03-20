@@ -15,6 +15,9 @@ export type ASRadioButtonProps = {
     radioType?: 'default' | 'tick';
     isOverlayEnabled?: boolean;
     onChange?: (item: any) => void;
+    inActiveColor?: ColorValue;
+    style?: ViewStyle;
+    spacing?: number;
 };
 declare const ASRadioButton: React.FC<ASRadioButtonProps>;
 export default ASRadioButton;

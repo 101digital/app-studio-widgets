@@ -29,23 +29,25 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importStar(require("react"));
 const react_native_1 = require("react-native");
 const formik_1 = require("formik");
-const text_1 = __importDefault(require("../text"));
 const icon_1 = require("../../assets/icon");
-const row_1 = __importDefault(require("../row"));
 const theme_context_1 = require("../../context/theme-context");
-const overlay_1 = __importDefault(require("../overlay"));
+const column_1 = __importDefault(require("../column"));
+const text_1 = __importDefault(require("../text"));
+const row_1 = __importDefault(require("../row"));
 const ASRadioButton = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { options = [], name, radioButtonStyle, innerCircleStyle, color = colors.primary, labelStyle, radioType = 'default', isOverlayEnabled, onChange } = props;
+    const { options = [], name, radioButtonStyle, innerCircleStyle, color = colors.primary, labelStyle, radioType = 'default', isOverlayEnabled, onChange, inActiveColor = '#C4C4C4', style: flattenStyle, spacing } = props;
     const [field, meta, helpers] = (0, formik_1.useField)(name);
     const { setValue } = helpers || {};
+    const style = react_native_1.StyleSheet.flatten(flattenStyle);
+    const RadioButtonContainer = (style === null || style === void 0 ? void 0 : style.flexDirection) === 'row' ? row_1.default : column_1.default;
     const _onPressRadioButton = (item) => () => {
         setValue === null || setValue === void 0 ? void 0 : setValue(item === null || item === void 0 ? void 0 : item.value);
         onChange === null || onChange === void 0 ? void 0 : onChange(item === null || item === void 0 ? void 0 : item.value);
     };
     const defaultRadioButtonType = (item) => {
         return (react_1.default.createElement(react_1.default.Fragment, null,
-            react_1.default.createElement(react_native_1.View, { style: [styles.radioButton, radioButtonStyle, { borderColor: color }] }, (item === null || item === void 0 ? void 0 : item.value) === (field === null || field === void 0 ? void 0 : field.value) &&
+            react_1.default.createElement(react_native_1.View, { style: [styles.radioButton, radioButtonStyle, { borderColor: (item === null || item === void 0 ? void 0 : item.value) === (field === null || field === void 0 ? void 0 : field.value) ? color : inActiveColor }] }, (item === null || item === void 0 ? void 0 : item.value) === (field === null || field === void 0 ? void 0 : field.value) &&
                 react_1.default.createElement(react_native_1.View, { style: [styles.innerCircle, innerCircleStyle, { backgroundColor: color }] })),
             react_1.default.createElement(text_1.default, { style: [styles.label, labelStyle] }, item === null || item === void 0 ? void 0 : item.label)));
     };
@@ -67,16 +69,15 @@ const ASRadioButton = (props) => {
     const mapRadioButton = (item, index) => {
         return (react_1.default.createElement(react_native_1.TouchableOpacity, { key: `${index}${item === null || item === void 0 ? void 0 : item.label}`, onPress: _onPressRadioButton(item), style: styles.container }, renderRadioButtonType(item)));
     };
-    return (react_1.default.createElement(react_1.default.Fragment, null, options === null || options === void 0 ? void 0 :
-        options.map(mapRadioButton),
-        isOverlayEnabled && react_1.default.createElement(overlay_1.default, null)));
+    return (react_1.default.createElement(react_1.default.Fragment, null,
+        react_1.default.createElement(RadioButtonContainer, { style: style, spacing: spacing }, options === null || options === void 0 ? void 0 : options.map(mapRadioButton))));
 };
 exports.default = ASRadioButton;
 const styles = react_native_1.StyleSheet.create({
     container: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginBottom: 8,
+        // marginBottom: 8,
     },
     radioButton: {
         width: 20,
