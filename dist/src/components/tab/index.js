@@ -46,8 +46,8 @@ const ASTabs = ({ children, activeTabName, onTabPress, activeTabTextColor, activ
             ], onPress: () => handleTabPress(child.props.name) },
             react_1.default.createElement(react_native_1.Text, { style: [
                     styles.tabText,
-                    activeTab === child.props.name && { color: activeTabTextColor },
-                    tabHeaderTypography
+                    tabHeaderTypography,
+                    activeTab === child.props.name && { color: activeTabTextColor }
                 ] }, child.props.title),
             activeTab === child.props.name && react_1.default.createElement(horizontalLine_icon_1.HorizontalLine, { color: activeTabBorderColor, width: child.props.title.length * 6, height: 2 }))))),
         react_1.default.createElement(react_native_1.View, { style: [styles.contentContainer, tabViewStyle, { marginTop: contentOffset }] }, children.map((child) => {

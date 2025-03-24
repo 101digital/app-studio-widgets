@@ -73,8 +73,8 @@ const ASTabs: React.FC<TabsProps> = ({
             <Text
               style={[
                 styles.tabText,
-                activeTab === child.props.name && { color: activeTabTextColor },
-                tabHeaderTypography
+                tabHeaderTypography,
+                activeTab === child.props.name && { color: activeTabTextColor }
               ]}
             >
               {child.props.title}
