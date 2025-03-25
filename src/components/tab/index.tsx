@@ -25,20 +25,20 @@ export type TabsProps = {
 };
 
 const ASTabs: React.FC<TabsProps> = ({
-  children,
-  activeTabName,
-  onTabPress,
-  activeTabTextColor,
-  activeTabBorderColor = "white",
-  tabHeaderTypography,
-  tabHeaderStyle,
-  enableShadow = true,
-  contentOffset = 1,
-  tabViewStyle,
-  style,
-  id,
-  tabTitleOffset = 20
-}) => {
+   children,
+   activeTabName,
+   onTabPress,
+   activeTabTextColor,
+   activeTabBorderColor = "white",
+   tabHeaderTypography,
+   tabHeaderStyle,
+   enableShadow = true,
+   contentOffset = 1,
+   tabViewStyle,
+   style,
+   id,
+   tabTitleOffset = 8
+ }) => {
   const [activeTab, setActiveTab] = useState<string>(activeTabName || children[0]?.props?.name);
 
   const handleTabPress = (name: string) => {
@@ -54,51 +54,51 @@ const ASTabs: React.FC<TabsProps> = ({
   const height = flattenedTabHeaderStyle?.height || 50;
 
   return (
-    <View style={[styles.container, style, {backgroundColor: "rgba(52, 52, 52, alpha)"}]} id={id}>
-      {/* Scrollable Tab Headers */}
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.scrollContainer}
-        style={[styles.tabHeaderScroll, enableShadow && styles.shadow, {backgroundColor: hedaerBackgroundColor, borderRadius: borderRadius, width: width, maxHeight: maxHeight, height: height}]}
-      >
-        {children.map((child) => (
-          <TouchableOpacity
-            key={child.props.name}
-            style={[
-              styles.tab,
-              // {paddingHorizontal: tabTitleOffset}
-            ]}
-            onPress={() => handleTabPress(child.props.name)}
-          >
-            <Text
-              style={[
-                styles.tabText,
-                tabHeaderTypography,
-                activeTab === child.props.name && { color: activeTabTextColor }
-              ]}
-            >
-              {child.props.title}
-            </Text>
-            {activeTab === child.props.name && <HorizontalLine color={activeTabBorderColor} width={child.props.title.length * 6 } height={2} />}
-          </TouchableOpacity>
-        ))}
-      </ScrollView>
+      <View style={[styles.container, style, {backgroundColor: "rgba(52, 52, 52, alpha)"}]} id={id}>
+        {/* Scrollable Tab Headers */}
+        <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.scrollContainer}
+            style={[styles.tabHeaderScroll, enableShadow && styles.shadow, {backgroundColor: hedaerBackgroundColor, borderRadius: borderRadius, width: width, maxHeight: maxHeight, height: height}]}
+        >
+          {children.map((child) => (
+              <TouchableOpacity
+                  key={child.props.name}
+                  style={[
+                    styles.tab,
+                    {paddingHorizontal: tabTitleOffset, borderBottomColor: activeTab === child.props.name ? activeTabBorderColor : 'transparent'}
+                  ]}
+                  onPress={() => handleTabPress(child.props.name)}
+              >
+                <Text
+                    style={[
+                      styles.tabText,
+                      tabHeaderTypography,
+                      activeTab === child.props.name && { color: activeTabTextColor }
+                    ]}
+                >
+                  {child.props.title}
+                </Text>
+                {/*{activeTab === child.props.name && <HorizontalLine color={activeTabBorderColor} width={child.props.title.length * 6 } height={2} />}*/}
+              </TouchableOpacity>
+          ))}
+        </ScrollView>
 
-      {/* Tab Content */}
-      <View style={[styles.contentContainer, tabViewStyle, {marginTop: contentOffset}]}>
-        {children.map((child) => {
-          if (child.props.name === activeTab) {
-            return (
-              <View key={child.props.name} style={[styles.content]}>
-                {child}
-              </View>
-            );
-          }
-          return null;
-        })}
+        {/* Tab Content */}
+        <View style={[styles.contentContainer, tabViewStyle, {marginTop: contentOffset}]}>
+          {children.map((child) => {
+            if (child.props.name === activeTab) {
+              return (
+                  <View key={child.props.name} style={[styles.content]}>
+                    {child}
+                  </View>
+              );
+            }
+            return null;
+          })}
+        </View>
       </View>
-    </View>
   );
 };
 
@@ -124,7 +124,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     textAlign: "center",
     borderBottomWidth: 2,
-    borderBottomColor: 'transparent', // Default border color for inactive tabs
   },
   tabText: {
     fontSize: 12,
