@@ -66,7 +66,8 @@ const ASTabs: React.FC<TabsProps> = ({
           <TouchableOpacity
             key={child.props.name}
             style={[
-              styles.tab, {paddingHorizontal: tabTitleOffset}
+              styles.tab,
+              // {paddingHorizontal: tabTitleOffset}
             ]}
             onPress={() => handleTabPress(child.props.name)}
           >
@@ -111,6 +112,8 @@ const styles = StyleSheet.create({
     verticalAlign: "middle",
     alignItems: "center",
     paddingHorizontal: 15,
+    justifyContent:'space-between',
+    flex:1
   },
   tabHeaderScroll: {
     alignSelf: "center",

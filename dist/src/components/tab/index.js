@@ -42,7 +42,8 @@ const ASTabs = ({ children, activeTabName, onTabPress, activeTabTextColor, activ
     const height = (flattenedTabHeaderStyle === null || flattenedTabHeaderStyle === void 0 ? void 0 : flattenedTabHeaderStyle.height) || 50;
     return (react_1.default.createElement(react_native_1.View, { style: [styles.container, style, { backgroundColor: "rgba(52, 52, 52, alpha)" }], id: id },
         react_1.default.createElement(react_native_1.ScrollView, { horizontal: true, showsHorizontalScrollIndicator: false, contentContainerStyle: styles.scrollContainer, style: [styles.tabHeaderScroll, enableShadow && styles.shadow, { backgroundColor: hedaerBackgroundColor, borderRadius: borderRadius, width: width, maxHeight: maxHeight, height: height }] }, children.map((child) => (react_1.default.createElement(react_native_1.TouchableOpacity, { key: child.props.name, style: [
-                styles.tab, { paddingHorizontal: tabTitleOffset }
+                styles.tab,
+                // {paddingHorizontal: tabTitleOffset}
             ], onPress: () => handleTabPress(child.props.name) },
             react_1.default.createElement(react_native_1.Text, { style: [
                     styles.tabText,
@@ -67,6 +68,8 @@ const styles = react_native_1.StyleSheet.create({
         verticalAlign: "middle",
         alignItems: "center",
         paddingHorizontal: 15,
+        justifyContent: 'space-between',
+        flex: 1
     },
     tabHeaderScroll: {
         alignSelf: "center",
