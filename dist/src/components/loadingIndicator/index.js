@@ -19,13 +19,9 @@ const react_native_1 = require("react-native");
 const commonUtils_1 = require("../../utils/commonUtils");
 const hook_1 = require("../../utils/hook");
 const ASLoadingIndicator = (props) => {
-    const { loading, size = 'small', timeout = 40000 } = props, restProps = __rest(props
-    // Handle multiple loading. If any of the workflow loading is true => Show loading
-    , ["loading", "size", "timeout"]);
-    // Handle multiple loading. If any of the workflow loading is true => Show loading
-    const isLoading = (0, commonUtils_1.getLoadingStatus)(loading);
-    // If timeout stop loading to prevent indefinite loading
-    const isTimeout = (0, hook_1.useIsTimeoutLoading)(timeout, isLoading);
+    const { loading, size = 'small', timeout = 60000 } = props, restProps = __rest(props, ["loading", "size", "timeout"]);
+    const isLoading = (0, commonUtils_1.getLoadingStatus)(loading); // Handle multiple loading. If any of the workflow loading is true => Show loading
+    const isTimeout = (0, hook_1.useIsTimeoutLoading)(timeout, isLoading); // If timeout stop loading to prevent indefinite loading
     if (isTimeout || !isLoading)
         return null;
     return (react_1.default.createElement(react_native_1.ActivityIndicator, Object.assign({ animating: isLoading, size: size, hidesWhenStopped: true, style: styles.loadingIndicator }, restProps)));
