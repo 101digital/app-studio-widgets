@@ -110,7 +110,6 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
                         {children}
                     ) : (
                         <View style={styles.labelContainer}>
-
                             <ASText
                                 style={[
                                     styles.textStyle, // Base text style
