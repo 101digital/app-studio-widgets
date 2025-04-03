@@ -1,4 +1,4 @@
-import React, {useContext,useState} from "react";
+import React, {useContext} from "react";
 import {
     GestureResponderEvent,
     StyleSheet,
@@ -40,7 +40,7 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
     const isTimeout = useIsTimeoutLoading(60000, loading)
 
     // Ensure that style is a single object
-    const flattenedStyle:any = StyleSheet.flatten(style);
+    const flattenedStyle: any = StyleSheet.flatten(style);
 
     // Ensure that textStyle is a single object
     const flattenedTextStyle = StyleSheet.flatten(textStyle);
@@ -105,34 +105,36 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
                     {backgroundColor: getButtonBackgroundColor()},
                 ]}
             >
-                {
-                    !!children ? (
-                        {children}
-                    ) : (
-                        <View style={styles.labelContainer}>
-                            <ASText
-                                style={[
-                                    styles.textStyle, // Base text style
-                                    getButtonTextStyle(), // Dynamic button text style
-                                    flattenedTextStyle, // Flattened user-provided styles
-                                    {color: getButtonTextColor()}, // Text color logic
-                                ]}
-                            >
-                                {label}
-                            </ASText>
-                            {/*<LoadingIndicator loading={loading} style={[styles.loadingIndicator]}/>*/}
+                <>
+                    {
+                        !!children ? (
+                            children
+                        ) : (
+                            <View style={styles.labelContainer}>
+                                <ASText
+                                    style={[
+                                        styles.textStyle, // Base text style
+                                        getButtonTextStyle(), // Dynamic button text style
+                                        flattenedTextStyle, // Flattened user-provided styles
+                                        {color: getButtonTextColor()}, // Text color logic
+                                    ]}
+                                >
+                                    {label}
+                                </ASText>
+                                {/*<LoadingIndicator loading={loading} style={[styles.loadingIndicator]}/>*/}
+                            </View>
+                        )}
+                    {loading && !isTimeout && (
+                        <View style={[styles.overlayContainer, {
+                            marginLeft: -(flattenedStyle?.paddingLeft || 0),
+                            marginRight: -(flattenedStyle?.paddingRight || 0),
+                            marginTop: -(flattenedStyle?.paddingTop || 0),
+                            marginBottom: -(flattenedStyle?.paddingBottom || 0),
+                        }]}>
+                            <LoadingIndicator loading={loading} style={styles.overlayLoadingIndicator}/>
                         </View>
                     )}
-                {loading &&  !isTimeout && (
-                    <View style={[styles.overlayContainer, {
-                        marginLeft: -(flattenedStyle?.paddingLeft || 0),
-                        marginRight: -(flattenedStyle?.paddingRight || 0),
-                        marginTop: -(flattenedStyle?.paddingTop || 0),
-                        marginBottom: -(flattenedStyle?.paddingBottom || 0),
-                    }]}>
-                        <LoadingIndicator loading={loading} style={styles.overlayLoadingIndicator}/>
-                    </View>
-                )}
+                </>
             </TouchableOpacity>
         </>
     );
