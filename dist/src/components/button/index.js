@@ -94,22 +94,21 @@ const ASButton = (props) => {
                 getButtonStyle(),
                 flattenedStyle,
                 { backgroundColor: getButtonBackgroundColor() },
-            ] }), !!children ? (react_1.default.createElement(react_1.default.Fragment, null,
-            children,
+            ] }),
+            !!children ? ({ children }) : (react_1.default.createElement(react_native_1.View, { style: styles.labelContainer },
+                react_1.default.createElement(text_1.default, { style: [
+                        styles.textStyle, // Base text style
+                        getButtonTextStyle(), // Dynamic button text style
+                        flattenedTextStyle, // Flattened user-provided styles
+                        { color: getButtonTextColor() }, // Text color logic
+                    ] }, label))),
             loading && !isTimeout && (react_1.default.createElement(react_native_1.View, { style: [styles.overlayContainer, {
                         marginLeft: -((flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.paddingLeft) || 0),
                         marginRight: -((flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.paddingRight) || 0),
                         marginTop: -((flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.paddingTop) || 0),
                         marginBottom: -((flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.paddingBottom) || 0),
                     }] },
-                react_1.default.createElement(loadingIndicator_1.default, { loading: loading, style: styles.overlayLoadingIndicator }))))) : (react_1.default.createElement(react_native_1.View, { style: styles.labelContainer },
-            react_1.default.createElement(text_1.default, { style: [
-                    styles.textStyle, // Base text style
-                    getButtonTextStyle(), // Dynamic button text style
-                    flattenedTextStyle, // Flattened user-provided styles
-                    { color: getButtonTextColor() }, // Text color logic
-                ] }, label),
-            react_1.default.createElement(loadingIndicator_1.default, { loading: loading, style: [styles.loadingIndicator] }))))));
+                react_1.default.createElement(loadingIndicator_1.default, { loading: loading, style: styles.overlayLoadingIndicator }))))));
 };
 const styles = react_native_1.StyleSheet.create({
     buttonStyle: {

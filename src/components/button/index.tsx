@@ -107,19 +107,7 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
             >
                 {
                     !!children ? (
-                        <>
-                            {children}
-                            {loading &&  !isTimeout && (
-                                <View style={[styles.overlayContainer, {
-                                    marginLeft: -(flattenedStyle?.paddingLeft || 0),
-                                    marginRight: -(flattenedStyle?.paddingRight || 0),
-                                    marginTop: -(flattenedStyle?.paddingTop || 0),
-                                    marginBottom: -(flattenedStyle?.paddingBottom || 0),
-                                }]}>
-                                    <LoadingIndicator loading={loading} style={styles.overlayLoadingIndicator}/>
-                                </View>
-                            )}
-                        </>
+                        {children}
                     ) : (
                         <View style={styles.labelContainer}>
 
@@ -133,9 +121,19 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
                             >
                                 {label}
                             </ASText>
-                            <LoadingIndicator loading={loading} style={[styles.loadingIndicator]}/>
+                            {/*<LoadingIndicator loading={loading} style={[styles.loadingIndicator]}/>*/}
                         </View>
                     )}
+                {loading &&  !isTimeout && (
+                    <View style={[styles.overlayContainer, {
+                        marginLeft: -(flattenedStyle?.paddingLeft || 0),
+                        marginRight: -(flattenedStyle?.paddingRight || 0),
+                        marginTop: -(flattenedStyle?.paddingTop || 0),
+                        marginBottom: -(flattenedStyle?.paddingBottom || 0),
+                    }]}>
+                        <LoadingIndicator loading={loading} style={styles.overlayLoadingIndicator}/>
+                    </View>
+                )}
             </TouchableOpacity>
         </>
     );
