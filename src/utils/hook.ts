@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 
-const useIsTimeoutLoading = (timeout: number = 40000, loading: boolean) => {
+const useIsTimeoutLoading = (timeout: number = 40000, loading: boolean|undefined) => {
     const [isTimeout, setIsTimeout] = useState<boolean>(false);
 
     useEffect(() => {
