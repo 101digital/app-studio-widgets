@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useState} from "react";
 import {
     GestureResponderEvent,
     StyleSheet,
@@ -38,12 +38,9 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
         ...restProps
     } = props;
     const isTimeout = useIsTimeoutLoading(60000, loading)
-
-    // Ensure that style is a single object
-    const flattenedStyle: any = StyleSheet.flatten(style);
-
-    // Ensure that textStyle is a single object
-    const flattenedTextStyle = StyleSheet.flatten(textStyle);
+    const [dimensions, setDimensions] = useState({width: 0, height: 0});
+    const flattenedStyle: any = StyleSheet.flatten(style);     // Ensure that style is a single object
+    const flattenedTextStyle = StyleSheet.flatten(textStyle);     // Ensure that textStyle is a single object
 
     const getButtonBackgroundColor = () => {
         if (disabled) {
@@ -99,10 +96,17 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
                 {...restProps}
                 disabled={disabled}
                 onPress={onPress}
+                onLayout={(event) => {
+                    const {width, height} = event.nativeEvent.layout;
+                    setDimensions({width, height});
+                }}
                 style={[
                     getButtonStyle(),
                     flattenedStyle,
-                    {backgroundColor: getButtonBackgroundColor()},
+                    {
+                        backgroundColor: getButtonBackgroundColor(),
+                        overflow: loading ? 'hidden' : (flattenedStyle?.overflow || 'visible')
+                    },
                 ]}
             >
                 <>
@@ -121,20 +125,15 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
                                 >
                                     {label}
                                 </ASText>
-                                {/*<LoadingIndicator loading={loading} style={[styles.loadingIndicator]}/>*/}
                             </View>
                         )}
-                    {loading && !isTimeout && (
-                        <View style={[styles.overlayContainer, {
-                            marginLeft: -(flattenedStyle?.paddingLeft || 0),
-                            marginRight: -(flattenedStyle?.paddingRight || 0),
-                            marginTop: -(flattenedStyle?.paddingTop || 0),
-                            marginBottom: -(flattenedStyle?.paddingBottom || 0),
-                        }]}>
-                            <LoadingIndicator loading={loading} style={styles.overlayLoadingIndicator}/>
-                        </View>
-                    )}
+
                 </>
+                {loading && !isTimeout && (
+                    <View style={[styles.overlayContainer, {...dimensions}]}>
+                        <LoadingIndicator loading={loading} style={styles.overlayLoadingIndicator}/>
+                    </View>
+                )}
             </TouchableOpacity>
         </>
     );
@@ -174,8 +173,6 @@ const styles = StyleSheet.create({
     },
     overlayContainer: {
         position: 'absolute',
-        width: '100%',
-        height: '100%',
         backgroundColor: 'rgba(129,129,129,0.8)',
         justifyContent: 'center',
         alignItems: 'center',

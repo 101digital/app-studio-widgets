@@ -47,10 +47,9 @@ const ASButton = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
     const { label = "", style, textStyle, onPress, disabled, children, simpleTextButton, loading } = props, restProps = __rest(props, ["label", "style", "textStyle", "onPress", "disabled", "children", "simpleTextButton", "loading"]);
     const isTimeout = (0, hook_1.useIsTimeoutLoading)(60000, loading);
-    // Ensure that style is a single object
-    const flattenedStyle = react_native_1.StyleSheet.flatten(style);
-    // Ensure that textStyle is a single object
-    const flattenedTextStyle = react_native_1.StyleSheet.flatten(textStyle);
+    const [dimensions, setDimensions] = (0, react_1.useState)({ width: 0, height: 0 });
+    const flattenedStyle = react_native_1.StyleSheet.flatten(style); // Ensure that style is a single object
+    const flattenedTextStyle = react_native_1.StyleSheet.flatten(textStyle); // Ensure that textStyle is a single object
     const getButtonBackgroundColor = () => {
         if (disabled) {
             return colors.tertiary;
@@ -90,26 +89,26 @@ const ASButton = (props) => {
         return styles.textStyle;
     };
     return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement(react_native_1.TouchableOpacity, Object.assign({}, restProps, { disabled: disabled, onPress: onPress, style: [
+        react_1.default.createElement(react_native_1.TouchableOpacity, Object.assign({}, restProps, { disabled: disabled, onPress: onPress, onLayout: (event) => {
+                const { width, height } = event.nativeEvent.layout;
+                setDimensions({ width, height });
+            }, style: [
                 getButtonStyle(),
                 flattenedStyle,
-                { backgroundColor: getButtonBackgroundColor() },
+                {
+                    backgroundColor: getButtonBackgroundColor(),
+                    overflow: loading ? 'hidden' : ((flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.overflow) || 'visible')
+                },
             ] }),
-            react_1.default.createElement(react_1.default.Fragment, null,
-                !!children ? (children) : (react_1.default.createElement(react_native_1.View, { style: styles.labelContainer },
-                    react_1.default.createElement(text_1.default, { style: [
-                            styles.textStyle, // Base text style
-                            getButtonTextStyle(), // Dynamic button text style
-                            flattenedTextStyle, // Flattened user-provided styles
-                            { color: getButtonTextColor() }, // Text color logic
-                        ] }, label))),
-                loading && !isTimeout && (react_1.default.createElement(react_native_1.View, { style: [styles.overlayContainer, {
-                            marginLeft: -((flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.paddingLeft) || 0),
-                            marginRight: -((flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.paddingRight) || 0),
-                            marginTop: -((flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.paddingTop) || 0),
-                            marginBottom: -((flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.paddingBottom) || 0),
-                        }] },
-                    react_1.default.createElement(loadingIndicator_1.default, { loading: loading, style: styles.overlayLoadingIndicator })))))));
+            react_1.default.createElement(react_1.default.Fragment, null, !!children ? (children) : (react_1.default.createElement(react_native_1.View, { style: styles.labelContainer },
+                react_1.default.createElement(text_1.default, { style: [
+                        styles.textStyle, // Base text style
+                        getButtonTextStyle(), // Dynamic button text style
+                        flattenedTextStyle, // Flattened user-provided styles
+                        { color: getButtonTextColor() }, // Text color logic
+                    ] }, label)))),
+            loading && !isTimeout && (react_1.default.createElement(react_native_1.View, { style: [styles.overlayContainer, Object.assign({}, dimensions)] },
+                react_1.default.createElement(loadingIndicator_1.default, { loading: loading, style: styles.overlayLoadingIndicator }))))));
 };
 const styles = react_native_1.StyleSheet.create({
     buttonStyle: {
@@ -145,8 +144,6 @@ const styles = react_native_1.StyleSheet.create({
     },
     overlayContainer: {
         position: 'absolute',
-        width: '100%',
-        height: '100%',
         backgroundColor: 'rgba(129,129,129,0.8)',
         justifyContent: 'center',
         alignItems: 'center',
