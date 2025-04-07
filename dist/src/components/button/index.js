@@ -107,8 +107,8 @@ const ASButton = (props) => {
                         flattenedTextStyle, // Flattened user-provided styles
                         { color: getButtonTextColor() }, // Text color logic
                     ] }, label)))),
-            loading && !isTimeout && (react_1.default.createElement(react_native_1.View, { style: [styles.overlayContainer, Object.assign({}, dimensions)] },
-                react_1.default.createElement(loadingIndicator_1.default, { loading: loading, style: styles.overlayLoadingIndicator }))))));
+            loading && !isTimeout && (react_1.default.createElement(react_native_1.View, { style: [styles.overlayContainer, react_native_1.StyleSheet.absoluteFillObject, Object.assign({}, dimensions)] },
+                react_1.default.createElement(loadingIndicator_1.default, { color: '#D1D5DB', loading: loading, style: styles.overlayLoadingIndicator }))))));
 };
 const styles = react_native_1.StyleSheet.create({
     buttonStyle: {
@@ -144,7 +144,7 @@ const styles = react_native_1.StyleSheet.create({
     },
     overlayContainer: {
         position: 'absolute',
-        backgroundColor: 'rgba(129,129,129,0.8)',
+        backgroundColor: '#231F2080',
         justifyContent: 'center',
         alignItems: 'center',
     },

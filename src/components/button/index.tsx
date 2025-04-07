@@ -130,8 +130,8 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
 
                 </>
                 {loading && !isTimeout && (
-                    <View style={[styles.overlayContainer, {...dimensions}]}>
-                        <LoadingIndicator loading={loading} style={styles.overlayLoadingIndicator}/>
+                    <View style={[styles.overlayContainer,StyleSheet.absoluteFillObject, {...dimensions}]}>
+                        <LoadingIndicator color={'#D1D5DB'} loading={loading} style={styles.overlayLoadingIndicator}/>
                     </View>
                 )}
             </TouchableOpacity>
@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
     },
     overlayContainer: {
         position: 'absolute',
-        backgroundColor: 'rgba(129,129,129,0.8)',
+        backgroundColor: '#231F2080',
         justifyContent: 'center',
         alignItems: 'center',
     },
