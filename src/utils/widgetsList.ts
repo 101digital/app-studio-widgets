@@ -194,12 +194,20 @@ export class ASWidgetsList {
 
           if (formWidgetItem?.dataType) {
             validation += `.${formWidgetItem?.dataType}()`;
-          }
-
+          } 
+          
           for (const validationRule of formWidgetItem.validationRules) {
-            validation += `.${validationRule.type}(${validationRule.rule ? validationRule.rule + (validationRule.errorMessage ? `, '${validationRule.errorMessage}'` : '') : validationRule.errorMessage ? `'${validationRule.errorMessage}'` : ''})`;
+            let vType = validationRule.type, vRule = validationRule.rule;
+            const vMessage = validationRule.errorMessage;
 
-          }
+            if(validationRule.type === 'regex') {
+                vType = 'matches';
+                vRule = (validationRule.rule.length > 0 && validationRule.rule.charAt(0) !== '/' && validationRule.rule.charAt(validationRule.rule.length - 1) !== '/') ? `/${validationRule.rule}/` : `${validationRule.rule}`
+            }
+
+            validation += `.${vType}(${vRule ? vRule + (vMessage ? `, '${vMessage}'` : '') : vMessage ? `'${vMessage}'` : ''})`;
+        }
+
           validationStringArray.push(`${formWidgetItem.name}:${validation}`);
         }
 
