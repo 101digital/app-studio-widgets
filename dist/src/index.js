@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ASFloatingActionButton = exports.ASAppBar = exports.ASTabView = exports.ASTabs = exports.ASBottomSheet = exports.ASIconButton = exports.ASSwipeButton = exports.ASPin = exports.ASModal = exports.ASTimer = exports.ASCalendar = exports.ASChoiceChips = exports.ASCounter = exports.ASSlider = exports.ASRadioButton = exports.ASListTile = exports.ASPageView = exports.ASBadge = exports.ASCircleChart = exports.ASListView = exports.ASStack = exports.ASProgressBar = exports.ASCheckBox = exports.ASSwitch = exports.ASWrap = exports.ASExpandableText = exports.ASDropDown = exports.ASImage = exports.ASRichText = exports.ASForm = exports.ASVerticalDivider = exports.ASDivider = exports.ASSpacer = exports.ASRow = exports.ASColumn = exports.ASContainer = exports.ASTextField = exports.ASButton = exports.ASText = exports.ASWidgetsList = void 0;
+exports.ASBottomTabNavigator = exports.ASFloatingActionButton = exports.ASAppBar = exports.ASTabView = exports.ASTabs = exports.ASBottomSheet = exports.ASIconButton = exports.ASSwipeButton = exports.ASPin = exports.ASModal = exports.ASTimer = exports.ASCalendar = exports.ASChoiceChips = exports.ASCounter = exports.ASSlider = exports.ASRadioButton = exports.ASListTile = exports.ASPageView = exports.ASBadge = exports.ASCircleChart = exports.ASListView = exports.ASStack = exports.ASProgressBar = exports.ASCheckBox = exports.ASSwitch = exports.ASWrap = exports.ASExpandableText = exports.ASDropDown = exports.ASImage = exports.ASRichText = exports.ASForm = exports.ASVerticalDivider = exports.ASDivider = exports.ASSpacer = exports.ASRow = exports.ASColumn = exports.ASContainer = exports.ASTextField = exports.ASButton = exports.ASText = exports.ASWidgetsList = void 0;
 var widgetsList_1 = require("./utils/widgetsList");
 Object.defineProperty(exports, "ASWidgetsList", { enumerable: true, get: function () { return widgetsList_1.ASWidgetsList; } });
 var text_1 = require("./components/text");
@@ -84,3 +84,5 @@ var appbar_1 = require("./components/appbar");
 Object.defineProperty(exports, "ASAppBar", { enumerable: true, get: function () { return __importDefault(appbar_1).default; } });
 var floatingActionButton_1 = require("./components/floatingActionButton");
 Object.defineProperty(exports, "ASFloatingActionButton", { enumerable: true, get: function () { return __importDefault(floatingActionButton_1).default; } });
+var bottomTabNavigator_1 = require("./components/bottomTabNavigator");
+Object.defineProperty(exports, "ASBottomTabNavigator", { enumerable: true, get: function () { return __importDefault(bottomTabNavigator_1).default; } });
