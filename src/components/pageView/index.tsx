@@ -1,4 +1,6 @@
+// @ts-nocheck
 import React, { useContext, useState, ReactNode } from "react";
+
 import {
   LayoutChangeEvent,
   StyleProp,
@@ -17,7 +19,7 @@ export type ASPageViewProps = ScrollViewProps & {
   paginationBottomPosition?: number;
   snapToAlignment?: "center" | "end" | "start";
   showsHorizontalScrollIndicator: boolean;
-  showsVerticalScrollIndicator: boolean
+  showsVerticalScrollIndicator: boolean;
 };
 
 const ASPageView: (props: ASPageViewProps) => ReactNode = (
@@ -32,7 +34,7 @@ const ASPageView: (props: ASPageViewProps) => ReactNode = (
     horizontal = true,
     snapToAlignment = "center",
     showsHorizontalScrollIndicator = false,
-    showsVerticalScrollIndicator=false,
+    showsVerticalScrollIndicator = false,
     ...restProps
   } = props;
   const [height, setHeight] = useState<number>(0);

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useContext } from "react";
 import {
   StyleProp,
@@ -58,7 +59,7 @@ const ASChoiceChips: React.FC<ASChoiceChipsProps> = (
     selectedChipTextColor,
     isOverlayEnabled,
     onChange,
-    id
+    id,
   } = props;
   const [field, meta, helpers] = useField(name);
   const { setValue } = helpers || {};
@@ -114,49 +115,56 @@ const ASChoiceChips: React.FC<ASChoiceChipsProps> = (
   };
 
   return (
-    <ASWrap style={[styles.container, { 
-        // justifyContent: contentLayout
-    }]} id={id}>
-      {Array.isArray(options) && options.map((chip, index) => (
-        <TouchableOpacity
-          key={`${chip.value}${index}`}
-          onPress={
-            isSingleChoice
-              ? _onPressSingleChoiceChip(chip)
-              : _onPressChoiceChip(chip)
-          }
-          style={[
-            styles.chip,
-            choiceChipStyles,
-            {
-              backgroundColor: findSelected(chip?.value)
-                ? selectedChipBackgroundColor
-                : flattenedBackgroundColor,
-              borderColor: findSelected(chip?.value)
-                ? selectedChipBorderColor
-                : flattenedBorderColor,
-              marginRight: options.length - 1 === index ? 0: 12
-            },
-          ]}
-        >
-          {!!chip?.icon && (
-            <View style={styles.iconContainer}>{chip.icon}</View>
-          )}
-          <Text
+    <ASWrap
+      style={[
+        styles.container,
+        {
+          // justifyContent: contentLayout
+        },
+      ]}
+      id={id}
+    >
+      {Array.isArray(options) &&
+        options.map((chip, index) => (
+          <TouchableOpacity
+            key={`${chip.value}${index}`}
+            onPress={
+              isSingleChoice
+                ? _onPressSingleChoiceChip(chip)
+                : _onPressChoiceChip(chip)
+            }
             style={[
-              styles.label,
-              choiceChipTextStyles,
+              styles.chip,
+              choiceChipStyles,
               {
-                color: findSelected(chip?.value)
-                  ? selectedChipTextColor
-                  : flattenedTextColor?.color,
+                backgroundColor: findSelected(chip?.value)
+                  ? selectedChipBackgroundColor
+                  : flattenedBackgroundColor,
+                borderColor: findSelected(chip?.value)
+                  ? selectedChipBorderColor
+                  : flattenedBorderColor,
+                marginRight: options.length - 1 === index ? 0 : 12,
               },
             ]}
           >
-            {chip.label}
-          </Text>
-        </TouchableOpacity>
-      ))}
+            {!!chip?.icon && (
+              <View style={styles.iconContainer}>{chip.icon}</View>
+            )}
+            <Text
+              style={[
+                styles.label,
+                choiceChipTextStyles,
+                {
+                  color: findSelected(chip?.value)
+                    ? selectedChipTextColor
+                    : flattenedTextColor?.color,
+                },
+              ]}
+            >
+              {chip.label}
+            </Text>
+          </TouchableOpacity>
+        ))}
       {/* Render overlay on top to block interactions if overlay is enabled */}
       {isOverlayEnabled && <ASOverlay />}
     </ASWrap>

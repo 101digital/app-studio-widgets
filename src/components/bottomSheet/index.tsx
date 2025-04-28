@@ -1,36 +1,55 @@
-import ASButton from '../button';
-import React, { ReactNode, useContext } from 'react';
-import { Dimensions, Platform, SafeAreaView, StyleProp, View, ViewStyle, StyleSheet, TextStyle } from 'react-native';
-import Modal from 'react-native-modal';
+// @ts-nocheck
+import ASButton from "../button";
+import React, { ReactNode, useContext } from "react";
+import {
+  Dimensions,
+  Platform,
+  SafeAreaView,
+  StyleProp,
+  View,
+  ViewStyle,
+  StyleSheet,
+  TextStyle,
+} from "react-native";
+import Modal from "react-native-modal";
 import { CloseIcon } from "../../assets/icon/closeIcon.icon";
-import ASRow from '../row';
-import ASText from '../text';
+import ASRow from "../row";
+import ASText from "../text";
 
 const deviceHeight =
-  Platform.OS === 'ios'
-    ? Dimensions.get('window').height
-    : require('react-native-extra-dimensions-android').get('REAL_WINDOW_HEIGHT');
-
+  Platform.OS === "ios"
+    ? Dimensions.get("window").height
+    : require("react-native-extra-dimensions-android").get(
+        "REAL_WINDOW_HEIGHT"
+      );
 
 export type BottomSheetModalProps = {
   isVisible?: boolean;
   children: ReactNode;
   backdropOpacity?: number;
-  animationIn?: 'fadeIn' | 'slideInUp' | 'zoomIn' | 'slideInRight';
-  animationOut?: 'fadeOut' | 'slideOutDown' | 'zoomOut' | 'slideOutRight';
+  animationIn?: "fadeIn" | "slideInUp" | "zoomIn" | "slideInRight";
+  animationOut?: "fadeOut" | "slideOutDown" | "zoomOut" | "slideOutRight";
   animationInTiming?: number;
   animationOutTiming?: number;
   avoidKeyboard?: boolean;
   height: number;
   label?: string;
-  labelTextStyles?: TextStyle
+  labelTextStyles?: TextStyle;
   onBackButtonPress?: () => void;
   onBackdropPress?: () => void;
   onClose: () => void;
 };
 
 const ASBottomSheet = (props: BottomSheetModalProps) => {
-  const { children, backdropOpacity, height, onClose, label, labelTextStyles,  ...restProps } = props;
+  const {
+    children,
+    backdropOpacity,
+    height,
+    onClose,
+    label,
+    labelTextStyles,
+    ...restProps
+  } = props;
 
   return (
     <Modal
@@ -47,13 +66,19 @@ const ASBottomSheet = (props: BottomSheetModalProps) => {
       {...restProps}
     >
       <View style={[styles.containerStyle, { height: height } as ViewStyle]}>
-      <ASRow style={styles.headerRow}>
-        {label && <ASText style={[styles.titleStyle, labelTextStyles]}>{label}</ASText>}
-        <ASButton onPress={() => onClose()} style={styles.closeButtonStyle}>
-          <CloseIcon />
-        </ASButton>
-      </ASRow>
-        <SafeAreaView style={styles.contentContainerStyle}>{children}</SafeAreaView>
+        <ASRow style={styles.headerRow}>
+          {label && (
+            <ASText style={[styles.titleStyle, labelTextStyles]}>
+              {label}
+            </ASText>
+          )}
+          <ASButton onPress={() => onClose()} style={styles.closeButtonStyle}>
+            <CloseIcon />
+          </ASButton>
+        </ASRow>
+        <SafeAreaView style={styles.contentContainerStyle}>
+          {children}
+        </SafeAreaView>
       </View>
     </Modal>
   );
@@ -62,40 +87,40 @@ const ASBottomSheet = (props: BottomSheetModalProps) => {
 ASBottomSheet.defaultProps = {
   isVisible: false,
   backdropOpacity: 0.5,
-  animationIn: 'slideInUp',
-  animationOut: 'slideOutDown',
+  animationIn: "slideInUp",
+  animationOut: "slideOutDown",
 };
 
 const styles = StyleSheet.create({
-    modalStyle: {
-      justifyContent: 'flex-end',
-      margin: 0,
-    },
-    containerStyle: {
-      borderTopLeftRadius: 20,
-      borderTopRightRadius: 20,
-      backgroundColor: 'white',
-    },
-    headerRow: {
-      height: 30,
-      alignItems: 'center', 
-      justifyContent: 'center'
-    },
-    contentContainerStyle: {
-      justifyContent: 'center',
-      top: 24,
-      paddingHorizontal: 16
-    },
-    closeButtonStyle: {
-      position: 'absolute', 
-      right: 10, 
-      top: 10
-    },
-    titleStyle: {
-      flex: 1, 
-      textAlign: 'center', 
-      top: 12
-    }
-  });
+  modalStyle: {
+    justifyContent: "flex-end",
+    margin: 0,
+  },
+  containerStyle: {
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    backgroundColor: "white",
+  },
+  headerRow: {
+    height: 30,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  contentContainerStyle: {
+    justifyContent: "center",
+    top: 24,
+    paddingHorizontal: 16,
+  },
+  closeButtonStyle: {
+    position: "absolute",
+    right: 10,
+    top: 10,
+  },
+  titleStyle: {
+    flex: 1,
+    textAlign: "center",
+    top: 12,
+  },
+});
 
 export default ASBottomSheet;

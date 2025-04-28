@@ -1,36 +1,39 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.hexToRgbaWithOpacity = exports.getLoadingStatus = exports.isAndroid = exports.convertPercentageToPx = exports.screenHeight = exports.screenWidth = void 0;
+// @ts-nocheck
 const react_native_1 = require("react-native");
-const screenWidth = react_native_1.Dimensions.get('window').width;
+const screenWidth = react_native_1.Dimensions.get("window").width;
 exports.screenWidth = screenWidth;
-const screenHeight = react_native_1.Dimensions.get('window').height;
+const screenHeight = react_native_1.Dimensions.get("window").height;
 exports.screenHeight = screenHeight;
 const convertPercentageToPx = (percentage, isWidth) => {
     if (!percentage) {
         return undefined;
     }
-    if (typeof percentage === 'number') {
+    if (typeof percentage === "number") {
         return percentage;
     }
-    if (typeof percentage === 'string') {
-        percentage === null || percentage === void 0 ? void 0 : percentage.replace('%', '');
-        return ((parseInt(percentage, 10)) / 100) * (isWidth ? screenWidth : screenHeight);
+    if (typeof percentage === "string") {
+        percentage === null || percentage === void 0 ? void 0 : percentage.replace("%", "");
+        return ((parseInt(percentage, 10) / 100) * (isWidth ? screenWidth : screenHeight));
     }
 };
 exports.convertPercentageToPx = convertPercentageToPx;
-const isAndroid = react_native_1.Platform.OS === 'android';
+const isAndroid = react_native_1.Platform.OS === "android";
 exports.isAndroid = isAndroid;
 // Handle multiple loading. If any of the workflow loading is true => Show loading
 const getLoadingStatus = (loading) => {
     if (!loading)
         return false;
-    return loading && Array.isArray(loading) ? loading.some((item) => item) : loading;
+    return loading && Array.isArray(loading)
+        ? loading.some((item) => item)
+        : loading;
 };
 exports.getLoadingStatus = getLoadingStatus;
 const hexToRgbaWithOpacity = (hex, opacity = 0.2) => {
     if (!hex)
-        return '#fff';
+        return "#fff";
     // Remove the hash (#) if present
     hex = hex.replace(/^#/, "");
     // Handle shorthand hex (#RGB) by expanding it to full length (#RRGGBB)

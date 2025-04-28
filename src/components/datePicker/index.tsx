@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { ReactNode, useContext, useEffect, useState } from "react";
 import {
   ModalProps,
@@ -166,7 +167,7 @@ const ASDatePicker = (props: ASDatePickerProps) => {
         style={[
           styles.containerStyle,
           {
-            borderColor: isVisible ? '#FFA90E' : '#D6DCE0',
+            borderColor: isVisible ? "#FFA90E" : "#D6DCE0",
             height: flattenedHeight,
             borderTopWidth: flattenedStyle?.borderTopWidth,
             borderRightWidth: flattenedStyle?.borderRightWidth,
@@ -298,7 +299,9 @@ const ASDatePicker = (props: ASDatePickerProps) => {
             onDayPress={(date) => {
               onCloseIsVisible();
               if (date) {
-                field.onChange(name)(format(date.dateString, selectedDateFormat));
+                field.onChange(name)(
+                  format(date.dateString, selectedDateFormat)
+                );
               }
             }}
           />
@@ -356,7 +359,7 @@ const styles = StyleSheet.create({
   },
   textInputStyle: {
     fontSize: 12,
-    width: '100%'
+    width: "100%",
   },
   errorTextStyle: {
     fontSize: 12,

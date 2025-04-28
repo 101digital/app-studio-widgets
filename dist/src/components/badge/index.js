@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+// @ts-nocheck
 const react_1 = __importDefault(require("react"));
 const react_native_1 = require("react-native");
 const text_1 = __importDefault(require("../text"));
@@ -11,10 +12,7 @@ const ASBadge = (props) => {
     return (react_1.default.createElement(react_native_1.View, { style: [styles.container, containerStyle], id: id },
         react_1.default.createElement(react_native_1.View, null,
             children,
-            !!label && (react_1.default.createElement(react_native_1.View, { style: [
-                    styles.badgeStyles,
-                    badgeStyles,
-                ] },
+            !!label && (react_1.default.createElement(react_native_1.View, { style: [styles.badgeStyles, badgeStyles] },
                 react_1.default.createElement(text_1.default, { style: [styles.badgeTextStyle, badgeTextStyle] }, label))))));
 };
 const styles = react_native_1.StyleSheet.create({

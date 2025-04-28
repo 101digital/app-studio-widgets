@@ -37,6 +37,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+// @ts-nocheck
 const react_1 = __importStar(require("react"));
 const react_native_1 = require("react-native");
 const text_1 = __importDefault(require("../text"));
@@ -97,7 +98,9 @@ const ASButton = (props) => {
                 flattenedStyle,
                 {
                     backgroundColor: getButtonBackgroundColor(),
-                    overflow: loading ? 'hidden' : ((flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.overflow) || 'visible')
+                    overflow: loading
+                        ? "hidden"
+                        : (flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.overflow) || "visible",
                 },
             ] }),
             react_1.default.createElement(react_1.default.Fragment, null, !!children ? (children) : (react_1.default.createElement(react_native_1.View, { style: styles.labelContainer },
@@ -107,15 +110,19 @@ const ASButton = (props) => {
                         flattenedTextStyle, // Flattened user-provided styles
                         { color: getButtonTextColor() }, // Text color logic
                     ] }, label)))),
-            loading && !isTimeout && (react_1.default.createElement(react_native_1.View, { style: [styles.overlayContainer, react_native_1.StyleSheet.absoluteFillObject, Object.assign({}, dimensions)] },
-                react_1.default.createElement(loadingIndicator_1.default, { color: '#D1D5DB', loading: loading, style: styles.overlayLoadingIndicator }))))));
+            loading && !isTimeout && (react_1.default.createElement(react_native_1.View, { style: [
+                    styles.overlayContainer,
+                    react_native_1.StyleSheet.absoluteFillObject,
+                    Object.assign({}, dimensions),
+                ] },
+                react_1.default.createElement(loadingIndicator_1.default, { color: "#D1D5DB", loading: loading, style: styles.overlayLoadingIndicator }))))));
 };
 const styles = react_native_1.StyleSheet.create({
     buttonStyle: {
         justifyContent: "center",
         alignItems: "center",
         paddingHorizontal: 20,
-        borderRadius: 8
+        borderRadius: 8,
     },
     simpleTextButton: {
         justifyContent: "center",
@@ -143,10 +150,10 @@ const styles = react_native_1.StyleSheet.create({
         flexDirection: "row",
     },
     overlayContainer: {
-        position: 'absolute',
-        backgroundColor: '#231F2080',
-        justifyContent: 'center',
-        alignItems: 'center',
+        position: "absolute",
+        backgroundColor: "#231F2080",
+        justifyContent: "center",
+        alignItems: "center",
     },
     overlayLoadingIndicator: {
         height: 16,

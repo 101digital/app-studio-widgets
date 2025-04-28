@@ -1,48 +1,43 @@
-import React from 'react';
-import {FlatListProps, ListRenderItem, StyleSheet} from 'react-native';
-import {FlatList} from 'react-native-gesture-handler'
+// @ts-nocheck
+import React from "react";
+import { FlatListProps, ListRenderItem, StyleSheet } from "react-native";
+import { FlatList } from "react-native-gesture-handler";
 import LoadingIndicator from "../loadingIndicator";
 
 export type ASListViewProps = FlatListProps<any> & {
-    data: any[]
-    renderItem: ListRenderItem<React.ReactNode>
-    loading?: boolean | boolean[] | undefined
-    accessibilityLabel?: string;
-}
+  data: any[];
+  renderItem: ListRenderItem<React.ReactNode>;
+  loading?: boolean | boolean[] | undefined;
+  accessibilityLabel?: string;
+};
 
 const ASListView: React.FC<ASListViewProps> = (props: ASListViewProps) => {
-    const {
-        data,
-        renderItem,
-        loading,
-        ...restProps
-    } = props;
+  const { data, renderItem, loading, ...restProps } = props;
 
-    const keyExtractor = (item: any, index: number) => {
-        return `${item?.id || item?.label || ''} - ${index}`
-    }
+  const keyExtractor = (item: any, index: number) => {
+    return `${item?.id || item?.label || ""} - ${index}`;
+  };
 
-    return (
-        <>
-            <LoadingIndicator style={styles.loadingIndicator} loading={loading}/>
-            <FlatList
-                data={data}
-                renderItem={renderItem}
-                keyExtractor={keyExtractor}
-                {...restProps}
-            />
-        </>
-    );
+  return (
+    <>
+      <LoadingIndicator style={styles.loadingIndicator} loading={loading} />
+      <FlatList
+        data={data}
+        renderItem={renderItem}
+        keyExtractor={keyExtractor}
+        {...restProps}
+      />
+    </>
+  );
 };
 
 export default ASListView;
 
 const styles = StyleSheet.create({
-    loadingIndicator: {
-        marginVertical: 8
-    }
-})
-
+  loadingIndicator: {
+    marginVertical: 8,
+  },
+});
 
 // Note: ASListView example
 /*

@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyleProp, TextStyle } from 'react-native';
+import React from "react";
+import { StyleProp, TextStyle } from "react-native";
 export type ASTimerProps = {
     initialTime: number;
     textStyle?: StyleProp<TextStyle>;

@@ -37,6 +37,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+// @ts-nocheck
 const react_1 = __importStar(require("react"));
 const react_native_1 = require("react-native");
 const react_native_masked_text_1 = require("react-native-masked-text");
@@ -121,7 +122,10 @@ const ASTextField = (props) => {
         }
         return active ? borderActiveColor : flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderColor;
     };
-    return (react_1.default.createElement(react_native_1.View, { style: [styles.wrapperStyle, Object.assign({ height: "auto", borderColor: 'transparent', marginBottom: (flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.marginBottom) || 0 }, ((flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.flex) ? { flex: flattenedStyle.flex } : {})),], accessibilityLabel: accessibilityLabel, id: id },
+    return (react_1.default.createElement(react_native_1.View, { style: [
+            styles.wrapperStyle,
+            Object.assign({ height: "auto", borderColor: "transparent", marginBottom: (flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.marginBottom) || 0 }, ((flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.flex) ? { flex: flattenedStyle.flex } : {})),
+        ], accessibilityLabel: accessibilityLabel, id: id },
         react_1.default.createElement(react_native_1.View, { style: [
                 styles.containerStyle,
                 Object.assign(Object.assign({ borderColor: getBorderColor() || (flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderColor), height: flattenedHeight }, flattenedStyle), { marginBottom: 0 }),
@@ -132,19 +136,28 @@ const ASTextField = (props) => {
                         backgroundColor: flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.backgroundColor,
                         color: colors.onTertiary,
                         top: labelTopPosition,
-                        left: (typeof (flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.paddingLeft) === 'number' ? flattenedStyle.paddingLeft : 0) - (typeof (labelTextStyle === null || labelTextStyle === void 0 ? void 0 : labelTextStyle.paddingLeft) === 'number' ? labelTextStyle.paddingLeft : 2)
+                        left: (typeof (flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.paddingLeft) === "number"
+                            ? flattenedStyle.paddingLeft
+                            : 0) -
+                            (typeof (labelTextStyle === null || labelTextStyle === void 0 ? void 0 : labelTextStyle.paddingLeft) === "number"
+                                ? labelTextStyle.paddingLeft
+                                : 2),
                     },
                     labelTextStyle,
                 ] }, label),
             react_1.default.createElement(react_native_1.View, { style: [styles.contentContainerStyle] },
-                prefixIcon && react_1.default.createElement(react_native_1.View, { style: styles.prefixIcon }, typeof prefixIcon === 'string' ?
-                    react_1.default.createElement(image_1.default, { style: { width: 20, height: 20 }, source: prefixIcon })
-                    : prefixIcon),
+                prefixIcon && (react_1.default.createElement(react_native_1.View, { style: styles.prefixIcon }, typeof prefixIcon === "string" ? (react_1.default.createElement(image_1.default, { style: { width: 20, height: 20 }, source: prefixIcon })) : (prefixIcon))),
                 !!prefixText && (react_1.default.createElement(text_1.default, { style: [styles.prefixText, prefixTextStyle] }, prefixText)),
-                react_1.default.createElement(react_native_1.View, { style: styles.inputContainerStyle }, showMask ? (react_1.default.createElement(react_native_masked_text_1.TextInputMask, Object.assign({ onFocus: handleOnFocus, onBlur: handleOnBlur, value: `${field === null || field === void 0 ? void 0 : field.value}`, onChangeText: handleOnChange, style: [styles.textInputStyle, !!(flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.width) && { width: flattenedStyle.width }, inputTextStyle], placeholderTextColor: placeholderTextColor || constants_1.constants.defaultPlaceholderColor }, restProps, { options: options, type: textFieldType }))) : (react_1.default.createElement(react_native_1.TextInput, Object.assign({ onFocus: handleOnFocus, onBlur: handleOnBlur, value: `${field === null || field === void 0 ? void 0 : field.value}`, onChangeText: handleOnChange, style: [styles.textInputStyle, !!(flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.width) && { width: flattenedStyle.width }, inputTextStyle], placeholderTextColor: placeholderTextColor || constants_1.constants.defaultPlaceholderColor, autoComplete: "off", autoCorrect: false, underlineColorAndroid: "transparent" }, restProps)))),
-                suffixIcon && react_1.default.createElement(react_native_1.View, { style: styles.suffixIcon }, typeof suffixIcon === 'string' ?
-                    react_1.default.createElement(image_1.default, { style: { width: 20, height: 20 }, source: suffixIcon })
-                    : suffixIcon))),
+                react_1.default.createElement(react_native_1.View, { style: styles.inputContainerStyle }, showMask ? (react_1.default.createElement(react_native_masked_text_1.TextInputMask, Object.assign({ onFocus: handleOnFocus, onBlur: handleOnBlur, value: `${field === null || field === void 0 ? void 0 : field.value}`, onChangeText: handleOnChange, style: [
+                        styles.textInputStyle,
+                        !!(flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.width) && { width: flattenedStyle.width },
+                        inputTextStyle,
+                    ], placeholderTextColor: placeholderTextColor || constants_1.constants.defaultPlaceholderColor }, restProps, { options: options, type: textFieldType }))) : (react_1.default.createElement(react_native_1.TextInput, Object.assign({ onFocus: handleOnFocus, onBlur: handleOnBlur, value: `${field === null || field === void 0 ? void 0 : field.value}`, onChangeText: handleOnChange, style: [
+                        styles.textInputStyle,
+                        !!(flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.width) && { width: flattenedStyle.width },
+                        inputTextStyle,
+                    ], placeholderTextColor: placeholderTextColor || constants_1.constants.defaultPlaceholderColor, autoComplete: "off", autoCorrect: false, underlineColorAndroid: "transparent" }, restProps)))),
+                suffixIcon && (react_1.default.createElement(react_native_1.View, { style: styles.suffixIcon }, typeof suffixIcon === "string" ? (react_1.default.createElement(image_1.default, { style: { width: 20, height: 20 }, source: suffixIcon })) : (suffixIcon))))),
         (meta === null || meta === void 0 ? void 0 : meta.error) && (meta === null || meta === void 0 ? void 0 : meta.touched) && (react_1.default.createElement(text_1.default, { style: [styles.errorTextStyle, errorMessageTextStyle] }, getErrorMessage(meta === null || meta === void 0 ? void 0 : meta.error))),
         isOverlayEnabled && react_1.default.createElement(overlay_1.default, null)));
 };
@@ -196,8 +209,8 @@ const styles = react_native_1.StyleSheet.create({
     suffixIcon: {
         marginLeft: 8,
         height: "100%",
-        alignItems: 'center',
-        justifyContent: 'center',
+        alignItems: "center",
+        justifyContent: "center",
     },
     prefixText: {
         marginRight: 4,

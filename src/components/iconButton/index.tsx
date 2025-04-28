@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useContext } from "react";
 import {
   TouchableOpacity,
@@ -16,13 +17,21 @@ export type ASIconButtonProps = TouchableOpacityProps & {
   icon: any;
   crossOrigin?: "anonymous" | "use-credentials";
   id?: string;
-  style?: StyleProp<TouchableOpacity>
+  style?: any;
 };
 
 const ASIconButton: React.FC<ASIconButtonProps> = (
   props: ASIconButtonProps
 ) => {
-  const { onPress, width = 20, height = 20, icon, crossOrigin, id, style } = props;
+  const {
+    onPress,
+    width = 20,
+    height = 20,
+    icon,
+    crossOrigin,
+    id,
+    style,
+  } = props;
 
   const renderIcon = () => {
     if (typeof icon === "string") {

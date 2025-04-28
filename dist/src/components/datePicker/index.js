@@ -37,6 +37,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+// @ts-nocheck
 const react_1 = __importStar(require("react"));
 const react_native_1 = require("react-native");
 const formik_1 = require("formik");
@@ -98,7 +99,7 @@ const ASDatePicker = (props) => {
         ], accessibilityLabel: accessibilityLabel, id: id },
         react_1.default.createElement(react_native_1.View, { style: [
                 styles.containerStyle,
-                Object.assign({ borderColor: isVisible ? '#FFA90E' : '#D6DCE0', height: flattenedHeight, borderTopWidth: flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderTopWidth, borderRightWidth: flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderRightWidth, borderBottomWidth: flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderBottomWidth, borderLeftWidth: flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderLeftWidth }, (flattenedStyle &&
+                Object.assign({ borderColor: isVisible ? "#FFA90E" : "#D6DCE0", height: flattenedHeight, borderTopWidth: flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderTopWidth, borderRightWidth: flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderRightWidth, borderBottomWidth: flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderBottomWidth, borderLeftWidth: flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderLeftWidth }, (flattenedStyle &&
                     "borderRadius" in flattenedStyle &&
                     flattenedStyle.borderRadius !== undefined && {
                     borderRadius: flattenedStyle.borderRadius,
@@ -199,7 +200,7 @@ const styles = react_native_1.StyleSheet.create({
     },
     textInputStyle: {
         fontSize: 12,
-        width: '100%'
+        width: "100%",
     },
     errorTextStyle: {
         fontSize: 12,

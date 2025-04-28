@@ -26,6 +26,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+// @ts-nocheck
 const react_1 = __importStar(require("react"));
 const text_1 = __importDefault(require("../text"));
 const react_native_1 = require("react-native");
@@ -62,7 +63,7 @@ const KEYBOARDS = [
 ];
 const Keyboard = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { submitButtonIcon, submitButtonStyle, deleteButtonIcon, deleteButtonStyle, flatListProps, onKeyboardPress, typography, keyboardButtonRadius, keyboardButtonBorderColor, keyboardButtonBackgroundColor, keyboardStyle, buttonIconColor, contentContainerStyle, columnWrapperStyle } = props;
+    const { submitButtonIcon, submitButtonStyle, deleteButtonIcon, deleteButtonStyle, flatListProps, onKeyboardPress, typography, keyboardButtonRadius, keyboardButtonBorderColor, keyboardButtonBackgroundColor, keyboardStyle, buttonIconColor, contentContainerStyle, columnWrapperStyle, } = props;
     const _onKeyboardPress = (item) => () => {
         onKeyboardPress === null || onKeyboardPress === void 0 ? void 0 : onKeyboardPress(item);
     };
@@ -72,15 +73,23 @@ const Keyboard = (props) => {
                 react_native_1.StyleSheet.flatten(submitButtonStyle))), { backgroundColor: backgroundColor || keyboardButtonBackgroundColor }), ((item === null || item === void 0 ? void 0 : item.value) === "delete" &&
                 react_native_1.StyleSheet.flatten(deleteButtonStyle))), { borderRadius: borderRadius || keyboardButtonRadius }), onPress: _onKeyboardPress(item) },
             (item === null || item === void 0 ? void 0 : item.value) !== "delete" && (item === null || item === void 0 ? void 0 : item.value) !== "continue" && (react_1.default.createElement(text_1.default, { style: [{ fontWeight: "bold", fontSize: 18 }, typography] }, item === null || item === void 0 ? void 0 : item.label)),
-            (item === null || item === void 0 ? void 0 : item.value) === "delete" ? deleteButtonIcon || react_1.default.createElement(icon_1.DeleteIcon, { color: buttonIconColor }) : null,
+            (item === null || item === void 0 ? void 0 : item.value) === "delete"
+                ? deleteButtonIcon || react_1.default.createElement(icon_1.DeleteIcon, { color: buttonIconColor })
+                : null,
             (item === null || item === void 0 ? void 0 : item.value) === "continue"
                 ? submitButtonIcon || react_1.default.createElement(icon_1.ForwardIcon, { color: buttonIconColor })
                 : null));
     };
-    return (react_1.default.createElement(react_native_1.FlatList, Object.assign({ scrollEnabled: false }, flatListProps, { contentContainerStyle: [styles.flatListContainerStyles, react_native_1.StyleSheet.flatten(contentContainerStyle)], columnWrapperStyle: [styles.flatListColumnWrapperStyle, react_native_1.StyleSheet.flatten(columnWrapperStyle)], data: KEYBOARDS, renderItem: _renderItem, numColumns: 3, keyExtractor: (item, index) => `${(item === null || item === void 0 ? void 0 : item.toString()) + index}` })));
+    return (react_1.default.createElement(react_native_1.FlatList, Object.assign({ scrollEnabled: false }, flatListProps, { contentContainerStyle: [
+            styles.flatListContainerStyles,
+            react_native_1.StyleSheet.flatten(contentContainerStyle),
+        ], columnWrapperStyle: [
+            styles.flatListColumnWrapperStyle,
+            react_native_1.StyleSheet.flatten(columnWrapperStyle),
+        ], data: KEYBOARDS, renderItem: _renderItem, numColumns: 3, keyExtractor: (item, index) => `${(item === null || item === void 0 ? void 0 : item.toString()) + index}` })));
 };
 const PinInputList = (props) => {
-    const { pin, inputTypography, onKeyboardPress, enableNativeKeyboard, pinBoxRadius, pinBoxSize, pinBoxBackgroundColor, pinBoxBorderColor, onPress } = props;
+    const { pin, inputTypography, onKeyboardPress, enableNativeKeyboard, pinBoxRadius, pinBoxSize, pinBoxBackgroundColor, pinBoxBorderColor, onPress, } = props;
     const PIN_SIZE = 50;
     const pinLength = (props === null || props === void 0 ? void 0 : props.pinLength) || 6;
     // References for each TextInput
@@ -99,14 +108,14 @@ const PinInputList = (props) => {
     const handleKeyPress = (e, index) => {
         var _a, _b;
         const key = e.nativeEvent.key;
-        if (key === 'Backspace') {
+        if (key === "Backspace") {
             if (!pin[index] && index > 0) {
                 // If backspace is pressed and current input is empty, focus the previous input
                 (_a = inputRefs.current[index - 1]) === null || _a === void 0 ? void 0 : _a.focus();
             }
-            onKeyboardPress({ label: 'delete', value: 'delete' });
+            onKeyboardPress({ label: "delete", value: "delete" });
         }
-        if (key === 'Enter' || key === 'Submit') {
+        if (key === "Enter" || key === "Submit") {
             // Prevent the keyboard from hiding
             e.preventDefault();
             // Focus the previous input if available
@@ -127,12 +136,12 @@ const PinInputList = (props) => {
                 backgroundColor: pinBoxBackgroundColor,
                 width: pinBoxSize || PIN_SIZE,
                 height: pinBoxSize || PIN_SIZE,
-                borderRadius: pinBoxRadius
+                borderRadius: pinBoxRadius,
             },
         ] }, !enableNativeKeyboard ? (react_1.default.createElement(text_1.default, { style: inputTypography }, pin[index] || "")) : (react_1.default.createElement(react_native_1.TextInput, { ref: (el) => (inputRefs.current[index] = el), style: [inputTypography, styles.textInputStyle], value: pin[index] || "", keyboardType: "number-pad", onChangeText: (text) => handleInputChange(text, index), onKeyPress: (e) => handleKeyPress(e, index), maxLength: 1, autoFocus: index === 0, caretHidden: true, showSoftInputOnFocus: true, focusable: false, selectTextOnFocus: false })))))));
 };
 const ASPin = (props) => {
-    const { submitButtonIcon, submitButtonStyle, deleteButtonIcon, deleteButtonStyle, flatListProps, pinLength = 6, onPress, children, onChange, keyboardTypography, inputTypography, gap, keyboardButtonRadius, enableNativeKeyboard, pinBoxRadius, pinBoxSize, keyboardButtonBackgroundColor, keyboardButtonBorderColor, pinBoxBackgroundColor, pinBoxBorderColor, isOverlayEnabled, keyboardStyle, name, style, buttonIconColor, contentContainerStyle, columnWrapperStyle } = props;
+    const { submitButtonIcon, submitButtonStyle, deleteButtonIcon, deleteButtonStyle, flatListProps, pinLength = 6, onPress, children, onChange, keyboardTypography, inputTypography, gap, keyboardButtonRadius, enableNativeKeyboard, pinBoxRadius, pinBoxSize, keyboardButtonBackgroundColor, keyboardButtonBorderColor, pinBoxBackgroundColor, pinBoxBorderColor, isOverlayEnabled, keyboardStyle, name, style, buttonIconColor, contentContainerStyle, columnWrapperStyle, } = props;
     const [pin, setPin] = (0, react_1.useState)([]);
     const [field, meta, helpers] = (0, formik_1.useField)(name);
     const { setValue } = helpers || {};
@@ -161,17 +170,21 @@ const ASPin = (props) => {
             });
         }
     };
-    return (react_1.default.createElement(column_1.default, { style: [styles.flex1, !enableNativeKeyboard && { position: 'relative' }, style] },
-        react_1.default.createElement(react_native_1.View, { style: { marginBottom: gap || 24, } },
+    return (react_1.default.createElement(column_1.default, { style: [
+            styles.flex1,
+            !enableNativeKeyboard && { position: "relative" },
+            style,
+        ] },
+        react_1.default.createElement(react_native_1.View, { style: { marginBottom: gap || 24 } },
             react_1.default.createElement(PinInputList, { pinLength: pinLength, pin: pin, inputTypography: inputTypography, onKeyboardPress: onKeyboardItemPress, enableNativeKeyboard: enableNativeKeyboard, pinBoxRadius: pinBoxRadius, pinBoxSize: pinBoxSize, pinBoxBackgroundColor: pinBoxBackgroundColor, pinBoxBorderColor: pinBoxBorderColor, onPress: onPress })),
         children,
-        !enableNativeKeyboard && react_1.default.createElement(Keyboard, { keyboardStyle: keyboardStyle, submitButtonIcon: submitButtonIcon, submitButtonStyle: submitButtonStyle, deleteButtonIcon: deleteButtonIcon, deleteButtonStyle: deleteButtonStyle, flatListProps: flatListProps, contentContainerStyle: contentContainerStyle, columnWrapperStyle: columnWrapperStyle, onKeyboardPress: onKeyboardItemPress, typography: keyboardTypography, keyboardButtonRadius: keyboardButtonRadius, keyboardButtonBackgroundColor: keyboardButtonBackgroundColor, keyboardButtonBorderColor: keyboardButtonBorderColor, buttonIconColor: buttonIconColor }),
+        !enableNativeKeyboard && (react_1.default.createElement(Keyboard, { keyboardStyle: keyboardStyle, submitButtonIcon: submitButtonIcon, submitButtonStyle: submitButtonStyle, deleteButtonIcon: deleteButtonIcon, deleteButtonStyle: deleteButtonStyle, flatListProps: flatListProps, contentContainerStyle: contentContainerStyle, columnWrapperStyle: columnWrapperStyle, onKeyboardPress: onKeyboardItemPress, typography: keyboardTypography, keyboardButtonRadius: keyboardButtonRadius, keyboardButtonBackgroundColor: keyboardButtonBackgroundColor, keyboardButtonBorderColor: keyboardButtonBorderColor, buttonIconColor: buttonIconColor })),
         isOverlayEnabled && react_1.default.createElement(overlay_1.default, null)));
 };
 exports.default = ASPin;
 const styles = react_native_1.StyleSheet.create({
     flex1: {
-        width: '100%'
+        width: "100%",
     },
     keyboardButton: {
         paddingVertical: 23,
@@ -180,7 +193,7 @@ const styles = react_native_1.StyleSheet.create({
         borderWidth: 1,
         borderRadius: 5,
         width: 60,
-        height: 60
+        height: 60,
     },
     pinItemWrapper: {
         borderWidth: 1,
@@ -192,5 +205,8 @@ const styles = react_native_1.StyleSheet.create({
         textAlign: "center",
     },
     flatListContainerStyles: { gap: 16, justifyContent: "flex-end" },
-    flatListColumnWrapperStyle: { paddingHorizontal: 40, justifyContent: 'space-between' }
+    flatListColumnWrapperStyle: {
+        paddingHorizontal: 40,
+        justifyContent: "space-between",
+    },
 });

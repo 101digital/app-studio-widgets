@@ -1,5 +1,5 @@
-import React from 'react';
-import { ColorValue, StyleProp, TextStyle, ViewStyle } from 'react-native';
+import React from "react";
+import { ColorValue, StyleProp, TextStyle, ViewStyle } from "react-native";
 import { FieldHookConfig } from "formik";
 export type ASRadioButtonItemProps = {
     label: string;
@@ -12,7 +12,7 @@ export type ASRadioButtonProps = {
     innerCircleStyle?: StyleProp<ViewStyle>;
     color?: ColorValue;
     labelStyle?: StyleProp<TextStyle>;
-    radioType?: 'default' | 'tick';
+    radioType?: "default" | "tick";
     isOverlayEnabled?: boolean;
     onChange?: (item: any) => void;
     inActiveColor?: ColorValue;

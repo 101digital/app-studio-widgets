@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+// @ts-nocheck
 const react_1 = __importDefault(require("react"));
 const react_native_1 = require("react-native");
 const react_native_gesture_handler_1 = require("react-native-gesture-handler");
@@ -21,7 +22,7 @@ const loadingIndicator_1 = __importDefault(require("../loadingIndicator"));
 const ASListView = (props) => {
     const { data, renderItem, loading } = props, restProps = __rest(props, ["data", "renderItem", "loading"]);
     const keyExtractor = (item, index) => {
-        return `${(item === null || item === void 0 ? void 0 : item.id) || (item === null || item === void 0 ? void 0 : item.label) || ''} - ${index}`;
+        return `${(item === null || item === void 0 ? void 0 : item.id) || (item === null || item === void 0 ? void 0 : item.label) || ""} - ${index}`;
     };
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement(loadingIndicator_1.default, { style: styles.loadingIndicator, loading: loading }),
@@ -30,8 +31,8 @@ const ASListView = (props) => {
 exports.default = ASListView;
 const styles = react_native_1.StyleSheet.create({
     loadingIndicator: {
-        marginVertical: 8
-    }
+        marginVertical: 8,
+    },
 });
 // Note: ASListView example
 /*

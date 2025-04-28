@@ -1,5 +1,5 @@
-import React from 'react';
-import { FlatListProps, ListRenderItem } from 'react-native';
+import React from "react";
+import { FlatListProps, ListRenderItem } from "react-native";
 export type E6TransactionHistoryListViewProps = FlatListProps<any> & {
     data: any[];
     renderItem: ListRenderItem<React.ReactNode>;

@@ -1,5 +1,5 @@
-import React from 'react';
-import { ColorValue, StyleProp, TextStyle, ViewStyle } from 'react-native';
+import React from "react";
+import { ColorValue, StyleProp, TextStyle, ViewStyle } from "react-native";
 export type ASProgressBarProps = {
     progressBarTitle?: string;
     progressValue: number;

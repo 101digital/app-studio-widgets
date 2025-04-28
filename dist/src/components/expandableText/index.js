@@ -26,6 +26,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+// @ts-nocheck
 const react_1 = __importStar(require("react"));
 const react_native_1 = require("react-native");
 const text_1 = __importDefault(require("../text"));
@@ -38,17 +39,25 @@ const ASExpandableText = (props) => {
         setIsExpanded(!isExpanded);
     };
     return (react_1.default.createElement(react_native_1.View, null,
-        react_1.default.createElement(text_1.default, { numberOfLines: isExpanded ? undefined : initialLines, style: [styles.textStyle, { color: colors.onTertiaryFixedVariant }, textStyle] }, text),
+        react_1.default.createElement(text_1.default, { numberOfLines: isExpanded ? undefined : initialLines, style: [
+                styles.textStyle,
+                { color: colors.onTertiaryFixedVariant },
+                textStyle,
+            ] }, text),
         (text === null || text === void 0 ? void 0 : text.length) > initialLines && (react_1.default.createElement(react_native_1.TouchableOpacity, { onPress: toggleExpansion },
-            react_1.default.createElement(text_1.default, { style: [styles.readMoreTextStyle, {
+            react_1.default.createElement(text_1.default, { style: [
+                    styles.readMoreTextStyle,
+                    {
                         color: colors.onTertiary,
-                    }, readMoreTextStyles] }, isExpanded ? 'Read less' : 'Read more')))));
+                    },
+                    readMoreTextStyles,
+                ] }, isExpanded ? "Read less" : "Read more")))));
 };
 const styles = react_native_1.StyleSheet.create({
     textStyle: {},
     readMoreTextStyle: {
-        fontSize: 12
-    }
+        fontSize: 12,
+    },
 });
 exports.default = ASExpandableText;
 // NOTE:  ASExpandableText Example

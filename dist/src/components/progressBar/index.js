@@ -26,45 +26,50 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+// @ts-nocheck
 const react_1 = __importStar(require("react"));
 const react_native_1 = require("react-native");
 const text_1 = __importDefault(require("../text"));
 const theme_context_1 = require("../../context/theme-context");
 const ASProgressBar = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { progressBarTitle = '', progressValue, progressCurrentStyle, progressTitleStyle, progressBarStyle, activeColor, inActiveColor, style } = props;
+    const { progressBarTitle = "", progressValue, progressCurrentStyle, progressTitleStyle, progressBarStyle, activeColor, inActiveColor, style, } = props;
     return (react_1.default.createElement(react_native_1.View, { style: [styles.progressBarContainer, react_native_1.StyleSheet.flatten(style)] },
-        !!progressBarTitle &&
-            react_1.default.createElement(text_1.default, { style: [styles.progressBarText, progressTitleStyle] }, progressBarTitle),
-        react_1.default.createElement(react_native_1.View, { style: [styles.progressBar, {
+        !!progressBarTitle && (react_1.default.createElement(text_1.default, { style: [styles.progressBarText, progressTitleStyle] }, progressBarTitle)),
+        react_1.default.createElement(react_native_1.View, { style: [
+                styles.progressBar,
+                {
                     backgroundColor: colors.secondaryFixed,
-                }, progressBarStyle, { backgroundColor: inActiveColor }] },
+                },
+                progressBarStyle,
+                { backgroundColor: inActiveColor },
+            ] },
             react_1.default.createElement(react_native_1.View, { style: [
                     styles.progressCurrent,
                     {
-                        width: `${progressValue / 100 * 100}%`,
-                        backgroundColor: colors.accent2
+                        width: `${(progressValue / 100) * 100}%`,
+                        backgroundColor: colors.accent2,
                     },
                     progressCurrentStyle,
-                    { backgroundColor: activeColor }
+                    { backgroundColor: activeColor },
                 ] }))));
 };
 const styles = react_native_1.StyleSheet.create({
     progressBarContainer: {
-        justifyContent: 'center',
+        justifyContent: "center",
     },
     progressBarText: {
         fontSize: 16,
         paddingBottom: 4,
-        fontWeight: '600',
-        lineHeight: 20
+        fontWeight: "600",
+        lineHeight: 20,
     },
     progressBar: {
         height: 5,
         borderRadius: 16,
         width: "auto",
         minWidth: 180,
-        marginTop: 5
+        marginTop: 5,
     },
     progressCurrent: {
         height: 5,

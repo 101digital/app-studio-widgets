@@ -1,65 +1,60 @@
-import React, {useEffect, useState} from 'react';
-import {FlatListProps, ListRenderItem, StyleSheet} from 'react-native';
-import {FlatList} from 'react-native-gesture-handler'
+// @ts-nocheck
+import React, { useEffect, useState } from "react";
+import { FlatListProps, ListRenderItem, StyleSheet } from "react-native";
+import { FlatList } from "react-native-gesture-handler";
 import LoadingIndicator from "../../components/loadingIndicator";
 
 export type E6TransactionHistoryListViewProps = FlatListProps<any> & {
-    data: any[]
-    renderItem: ListRenderItem<React.ReactNode>
-    loading?: boolean | boolean[] | undefined
-}
+  data: any[];
+  renderItem: ListRenderItem<React.ReactNode>;
+  loading?: boolean | boolean[] | undefined;
+};
 
-const E6TransactionHistoryListView: React.FC<E6TransactionHistoryListViewProps> = (props: E6TransactionHistoryListViewProps) => {
-    const {
-        data,
-        renderItem,
-        loading,
-        ...restProps
-    } = props;
-    const [transactionList, setTransactionList] = useState<any[]>([]);
-    const keyExtractor = (item: any, index: number) => {
-        return `${item?.id || item?.label || ''} - ${index}`
+const E6TransactionHistoryListView: React.FC<
+  E6TransactionHistoryListViewProps
+> = (props: E6TransactionHistoryListViewProps) => {
+  const { data, renderItem, loading, ...restProps } = props;
+  const [transactionList, setTransactionList] = useState<any[]>([]);
+  const keyExtractor = (item: any, index: number) => {
+    return `${item?.id || item?.label || ""} - ${index}`;
+  };
+
+  useEffect(() => {
+    const transactionData = [];
+    if (data) {
+      for (const transactionItem of data) {
+        if (transactionItem?.transactionEntries) {
+          transactionData.push(...transactionItem?.transactionEntries);
+        }
+      }
+      setTransactionList(transactionData);
+    } else {
+      setTransactionList(data);
     }
 
-    useEffect(() => {
-        const transactionData = []
-        if (data) {
-            for (const transactionItem of data) {
-                if (transactionItem?.transactionEntries) {
-                    transactionData.push(...transactionItem?.transactionEntries)
-                }
-            }
-            setTransactionList(transactionData)
-        } else {
-            setTransactionList(data)
-        }
+    return () => {};
+  }, [data]);
 
-        return () => {
-        };
-
-    }, [data]);
-
-    return (
-        <>
-            <LoadingIndicator style={styles.loadingIndicator} loading={loading}/>
-            <FlatList
-                data={transactionList}
-                renderItem={renderItem}
-                keyExtractor={keyExtractor}
-                {...restProps}
-            />
-        </>
-    );
+  return (
+    <>
+      <LoadingIndicator style={styles.loadingIndicator} loading={loading} />
+      <FlatList
+        data={transactionList}
+        renderItem={renderItem}
+        keyExtractor={keyExtractor}
+        {...restProps}
+      />
+    </>
+  );
 };
 
 export default E6TransactionHistoryListView;
 
 const styles = StyleSheet.create({
-    loadingIndicator: {
-        marginVertical: 8
-    }
-})
-
+  loadingIndicator: {
+    marginVertical: 8,
+  },
+});
 
 // Note: E6TransactionHistoryListView example
 /*

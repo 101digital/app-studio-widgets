@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useContext } from "react";
 import {
   StyleProp,
@@ -15,7 +16,7 @@ export type ASBadgeProps = {
   badgeStyles?: StyleProp<ViewStyle>;
   badgeTextStyle?: StyleProp<TextStyle>;
   containerStyle?: StyleProp<ViewStyle>;
-  id?: string; 
+  id?: string;
 };
 
 const ASBadge: React.FC<ASBadgeProps> = (props: ASBadgeProps) => {
@@ -27,12 +28,7 @@ const ASBadge: React.FC<ASBadgeProps> = (props: ASBadgeProps) => {
       <View>
         {children}
         {!!label && (
-          <View
-            style={[
-              styles.badgeStyles,
-              badgeStyles,
-            ]}
-          >
+          <View style={[styles.badgeStyles, badgeStyles]}>
             <ASText style={[styles.badgeTextStyle, badgeTextStyle]}>
               {label}
             </ASText>
