@@ -48,3 +48,4 @@ export { default as ASFloatingActionButton, ASFloatingActionButtonProps } from "
 
 // E6 custom widget
 export {default as E6TransactionHistoryListView, E6TransactionHistoryListViewProps} from './src/customComponent/e6TransactionHistoryListView';
+export { default as ASBottomTabNavigator, ASBottomTabNavigationProps } from "./src/components/bottomTabNavigator";
