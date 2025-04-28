@@ -7192,10 +7192,10 @@ react-native-calendars@^1.1303.0:
   optionalDependencies:
     moment "^2.29.4"
 
-react-native-device-info@^11.1.0:
-  version "11.1.0"
-  resolved "https://registry.npmjs.org/react-native-device-info/-/react-native-device-info-11.1.0.tgz#7db5c4e5a179dce761efac155a493aa0956a40ab"
-  integrity sha512-hzXJSObJdezEz0hF7MAJ3tGeoesuQWenXXt9mrQR9Mjb8kXpZ09rqSsZ/quNpJdZpQ3rYiFa3/0GFG5KNn9PBg==
+react-native-device-info@^14.0.4:
+  version "14.0.4"
+  resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-14.0.4.tgz#56b24ace9ff29a66bdfc667209086421ed6cfdce"
+  integrity sha512-NX0wMAknSDBeFnEnSFQ8kkAcQrFHrG4Cl0mVjoD+0++iaKrOupiGpBXqs8xR0SeJyPC5zpdPl4h/SaBGly6UxA==
 
 react-native-element-dropdown@2.12.2:
   version "2.12.2"
