@@ -7829,11 +7829,6 @@ react-native-calendars@*, react-native-calendars@^1.1311.1:
   optionalDependencies:
     moment "^2.29.4"
 
-react-native-device-info@^14.0.4:
-  version "14.0.4"
-  resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-14.0.4.tgz#56b24ace9ff29a66bdfc667209086421ed6cfdce"
-  integrity sha512-NX0wMAknSDBeFnEnSFQ8kkAcQrFHrG4Cl0mVjoD+0++iaKrOupiGpBXqs8xR0SeJyPC5zpdPl4h/SaBGly6UxA==
-
 react-native-element-dropdown@2.12.2:
   version "2.12.2"
   resolved "https://registry.yarnpkg.com/react-native-element-dropdown/-/react-native-element-dropdown-2.12.2.tgz#48d0c12b87591e2498c73bbde80e18374a4c262e"
@@ -7945,13 +7940,6 @@ react-native-swipe-gestures@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/react-native-swipe-gestures/-/react-native-swipe-gestures-1.0.5.tgz#a172cb0f3e7478ccd681fd36b8bfbcdd098bde7c"
   integrity sha512-Ns7Bn9H/Tyw278+5SQx9oAblDZ7JixyzeOczcBK8dipQk2pD7Djkcfnf1nB/8RErAmMLL9iXgW0QHqiII8AhKw==
-
-react-native-swiper@^1.6.0:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/react-native-swiper/-/react-native-swiper-1.6.0.tgz#59fdbdf95addee49630312f27077622c27776819"
-  integrity sha512-OnkTTZi+9uZUgy0uz1I9oYDhCU3z36lZn+LFsk9FXPRelxb/KeABzvPs3r3SrHWy1aA67KGtSFj0xNK2QD0NJQ==
-  dependencies:
-    prop-types "^15.5.10"
 
 react-native-vector-icons@^10.2.0:
   version "10.2.0"
