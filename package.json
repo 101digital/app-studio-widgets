@@ -34,8 +34,9 @@
     "jquery": "^3.7.1",
     "lodash": "^4.17.21",
     "patch-package": "^8.0.0",
-    "react": "19.0.0",
-    "react-native": "0.78.2",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-native": "0.76.9",
     "react-native-bouncy-checkbox": "^4.1.2",
     "react-native-calendars": "^1.1311.1",
     "react-native-element-dropdown": "2.12.2",
@@ -60,7 +61,7 @@
     "@types/jquery": "^3.5.32",
     "@types/lodash": "^4.17.16",
     "@types/node": "^22.15.3",
-    "@types/react": "^19.1.2",
+    "@types/react": "~18.3.12",
     "@types/react-native": "^0.73.0",
     "@types/react-native-calendars": "^1.1267.0",
     "@types/react-native-vector-icons": "^6.4.18",
@@ -82,6 +83,6 @@
     "react-native-swiper": "^1.6.0"
   },
   "resolutions": {
-    "@types/react": "^19.1.2"
+    "@types/react": "~18.3.12"
   }
 }
