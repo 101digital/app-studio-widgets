@@ -1,6 +1,6 @@
 {
   "name": "app-studio-widgets",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Widgets for App Studio",
   "repository": "https://github.com/101digital/app-studio-widgets",
   "license": "MIT",
@@ -24,7 +24,7 @@
     "@gorhom/bottom-sheet": "^4.6.1",
     "@react-native-community/checkbox": "^0.5.17",
     "@react-native-community/slider": "^4.5.0",
-    "@react-navigation/bottom-tabs": "^7.3.10",
+    "@react-navigation/bottom-tabs": "^6.5.8",
     "@react-navigation/native": "^6.1.18",
     "@types/xdate": "^0.8.32",
     "add": "^2.0.6",
