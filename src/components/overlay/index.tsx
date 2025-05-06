@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { View, StyleSheet, Platform } from "react-native";
 
-const ASOverlay: React.FC<{}> = () => {
+const ASOverlay: React.FC<{testId?: string}> = (props) => {
   // Apply hover effect with border color change
-  return <View style={styles.overlay} />;
+  return <View testID={props.testId} style={styles.overlay} />;
 };
 
 // Styles for the Overlay component

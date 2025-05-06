@@ -110,16 +110,16 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
                         overflow: loading ? 'hidden' : (flattenedStyle?.overflow || 'visible')
                     },
                 ]}
-                testID={`${testId}-Button`}
+                testID={`button-${testId}`}
             >
                 <>
                     {
                         !!children ? (
                             children
                         ) : (
-                            <View style={styles.labelContainer} testID={`${testId}-LabelView`}>
+                            <View style={styles.labelContainer}>
                                 <ASText
-                                 testID={`${testId}-Label`}
+                                 testID={`label-${testId}`}
                                     style={[
                                         styles.textStyle, // Base text style
                                         getButtonTextStyle(), // Dynamic button text style
@@ -134,8 +134,8 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
 
                 </>
                 {loading && !isTimeout && (
-                    <View testID={`${testId}-LoadingView`} style={[styles.overlayContainer,StyleSheet.absoluteFillObject, {...dimensions}]}>
-                        <LoadingIndicator color={'#D1D5DB'} loading={loading} style={styles.overlayLoadingIndicator}/>
+                    <View testID={`loadingView-${testId}`} style={[styles.overlayContainer,StyleSheet.absoluteFillObject, {...dimensions}]}>
+                        <LoadingIndicator testID={`loadingIndicator-${testId}`} color={'#D1D5DB'} loading={loading} style={styles.overlayLoadingIndicator}/>
                     </View>
                 )}
             </TouchableOpacity>

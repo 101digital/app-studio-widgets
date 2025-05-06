@@ -162,7 +162,7 @@ const ASTextField = (props: ASTextFieldProps) => {
 
     return (
         <View
-        testID={`${testId}-View`}
+        testID={`view-${testId}`}
         style={[styles.wrapperStyle, {
             height: "auto",
             borderColor: 'transparent',
@@ -180,10 +180,9 @@ const ASTextField = (props: ASTextFieldProps) => {
                         marginBottom: 0
                     },
                 ]}
-                testID={`${testId}-View2`}
             >
                 <ASText
-                    testID={`${testId}-Label`}
+                    testID={`label-${testId}`}
                     style={[
                         styles.labelStyle,
                         {
@@ -198,23 +197,21 @@ const ASTextField = (props: ASTextFieldProps) => {
                     {label}
                 </ASText>
                 <View 
-                    style={[styles.contentContainerStyle]}
-                    testID={`${testId}-View3`}>
-                    {prefixIcon && <View style={styles.prefixIcon} testID={`${testId}-View4`}>{typeof prefixIcon === 'string' ?
+                    style={[styles.contentContainerStyle]}>
+                    {prefixIcon && <View style={styles.prefixIcon}>{typeof prefixIcon === 'string' ?
                         <ASImage
                             style={{width: 20, height: 20}}
                             source={prefixIcon}
-                            testID={`${testId}-PrefixIcon`}
+                            testID={`prefixIcon-${testId}`}
                         />
                         : prefixIcon}</View>}
                     {!!prefixText && (
                         <ASText style={[styles.prefixText, prefixTextStyle]} 
-                        testID={`${testId}-PrefixLabel`}>
+                        testID={`prefixLabel-${testId}`}>
                             {prefixText}
                         </ASText>
                     )}
-                    <View style={styles.inputContainerStyle}
-                        testID={`${testId}-View5`}>
+                    <View style={styles.inputContainerStyle}>
                         {showMask ? (
                             <TextInputMask
                                 onFocus={handleOnFocus}
@@ -226,7 +223,7 @@ const ASTextField = (props: ASTextFieldProps) => {
                                 {...restProps}
                                 options={options}
                                 type={textFieldType}
-                                testID={`${testId}-TextInputMask`}
+                                testID={`textInputMask-${testId}`}
                             />
                         ) : (
                             <TextInput
@@ -239,24 +236,23 @@ const ASTextField = (props: ASTextFieldProps) => {
                                 autoComplete={"off"}
                                 autoCorrect={false}
                                 underlineColorAndroid="transparent"
-                                testID={`${testId}-TextInput`}
+                                testID={`textInput-${testId}`}
                                 {...restProps}
                             />
                         )}
                     </View>
-                    {suffixIcon && <View style={styles.suffixIcon}
-                                testID={`${testId}-View6`} >{typeof suffixIcon === 'string' ?
+                    {suffixIcon && <View style={styles.suffixIcon}>{typeof suffixIcon === 'string' ?
                         <ASImage
                             style={{width: 20, height: 20}}
                             source={suffixIcon}
-                            testID={`${testId}-SuffixIcon`}
+                            testID={`suffixIcon-${testId}`}
                         />
                         : suffixIcon}</View>}
                 </View>
             </View>
             {meta?.error && meta?.touched && (
                 <ASText 
-                testID={`${testId}-ErrorLabel`} style={[styles.errorTextStyle, errorMessageTextStyle]}>
+                testID={`errorLabel-${testId}`} style={[styles.errorTextStyle, errorMessageTextStyle]}>
                     {getErrorMessage(meta?.error)}
                 </ASText>
             )}

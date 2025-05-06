@@ -21,6 +21,7 @@ export type ASDualIconButtonProps = TouchableOpacityProps & {
   rightIcon?: any;
   disabled?: boolean;
   loading?: boolean | boolean[] | undefined;
+  testId?: string;
 };
 
 const ASDualIconRowButton: React.FC<ASDualIconButtonProps> = (
@@ -36,6 +37,7 @@ const ASDualIconRowButton: React.FC<ASDualIconButtonProps> = (
     onPress,
     disabled,
     loading,
+    testId,
     ...restProps
   } = props;
 
@@ -84,18 +86,31 @@ const ASDualIconRowButton: React.FC<ASDualIconButtonProps> = (
         style,
         { backgroundColor: getButtonBackgroundColor() },
       ]}
+      testID={`button-${testId}`}
     >
-      {leftIcon && <Image source={leftIconSource} style={styles.icon} />}
+      {leftIcon && (
+        <Image
+          testID={`leftIcon-${testId}`}
+          source={leftIconSource}
+          style={styles.icon}
+        />
+      )}
       <View style={leftIcon && styles.marginLeft}>
         <ASText
+          testID={`label-${testId}`}
           style={[styles.textStyle, textStyle, { color: getButtonTextColor() }]}
         >
           {label}
         </ASText>
       </View>
-      <LoadingIndicator loading={loading} style={styles.loadingIndicator} />
+      <LoadingIndicator
+        testID={`loadingIndicator-${testId}`}
+        loading={loading}
+        style={styles.loadingIndicator}
+      />
       {rightIcon && !loading && (
         <Image
+          testID={`rightIcon-${testId}`}
           source={rightIconSource}
           style={[styles.icon, styles.rightIcon]}
         />

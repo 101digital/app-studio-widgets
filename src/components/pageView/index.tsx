@@ -18,6 +18,7 @@ export type ASPageViewProps = ScrollViewProps & {
   snapToAlignment?: "center" | "end" | "start";
   showsHorizontalScrollIndicator: boolean;
   showsVerticalScrollIndicator: boolean
+  testId?: string
 };
 
 const ASPageView: (props: ASPageViewProps) => ReactNode = (
@@ -33,6 +34,7 @@ const ASPageView: (props: ASPageViewProps) => ReactNode = (
     snapToAlignment = "center",
     showsHorizontalScrollIndicator = false,
     showsVerticalScrollIndicator=false,
+    testId='ASPageView',
     ...restProps
   } = props;
   const [height, setHeight] = useState<number>(0);
@@ -85,17 +87,19 @@ const ASPageView: (props: ASPageViewProps) => ReactNode = (
       snapToAlignment={snapToAlignment}
       showsHorizontalScrollIndicator={showsHorizontalScrollIndicator}
       showsVerticalScrollIndicator={showsVerticalScrollIndicator}
+      testID={`scrollView-${testId}`}
       {...snapConfig}
       {...restProps}
     >
       {Array.isArray(children) ? (
         children.map((page: React.ReactNode, index: number) => (
-          <View onLayout={onLayout} key={index} style={styles.slide}>
+          <View 
+            testID={`childView-${index}-${testId}`} onLayout={onLayout} key={index} style={styles.slide}>
             {page}
           </View>
         ))
       ) : (
-        <View onLayout={onLayout} style={styles.slide}>
+        <View testID={`slideView-${testId}`} onLayout={onLayout} style={styles.slide}>
           {children}
         </View>
       )}

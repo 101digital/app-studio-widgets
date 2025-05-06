@@ -8,7 +8,8 @@ export type ASSwitchProps = SwitchProps & {
   enableTrackColor?: string;
   disabledTrackColor?: string;
   onChange: (value: boolean) => void;
-  activeThumbColor?: string
+  activeThumbColor?: string;
+  testId?: string;
 };
 
 const ASSwitch: React.FC<ASSwitchProps> = (props: ASSwitchProps) => {
@@ -19,6 +20,7 @@ const ASSwitch: React.FC<ASSwitchProps> = (props: ASSwitchProps) => {
     onChange,
     enableTrackColor,
     disabledTrackColor,
+    testId = 'ASSwitch',
     ...restProps
   } = props;
   const [isEnabled, setIsEnabled] = useState(false);
@@ -31,15 +33,16 @@ const ASSwitch: React.FC<ASSwitchProps> = (props: ASSwitchProps) => {
   };
 
   return (
-      <Switch
-          trackColor={{ true: enableTrackColor , false: disabledTrackColor}}
-          ios_backgroundColor={colors.secondary}
-          onValueChange={toggleSwitch}
-          value={isEnabled}
-          thumbColor={isEnabled ? enableThumbColor : disabledThumbColor }
-          activeThumbColor={enableThumbColor}
-          {...restProps}
-      />
+    <Switch
+      testID={testId}
+      trackColor={{ true: enableTrackColor, false: disabledTrackColor }}
+      ios_backgroundColor={colors.secondary}
+      onValueChange={toggleSwitch}
+      value={isEnabled}
+      thumbColor={isEnabled ? enableThumbColor : disabledThumbColor}
+      activeThumbColor={enableThumbColor}
+      {...restProps}
+    />
   );
 };
 

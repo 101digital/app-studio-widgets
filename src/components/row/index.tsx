@@ -6,13 +6,14 @@ export type ASRowProps = {
     style?: StyleProp<ViewStyle>;
     accessibilityLabel?: string;
     spacing?: number
+    testId?: string
 }
 
 const ASRow: React.FC<ASRowProps> = (props: ASRowProps) => {
-    const {children, style, accessibilityLabel, spacing, ...restProps} = props || {}
+    const {children, style, accessibilityLabel, spacing, testId = 'ASRow', ...restProps} = props || {}
 
     return (
-        <View style={[styles.container, style]} accessibilityLabel={accessibilityLabel} {...restProps}>
+        <View testID={testId} style={[styles.container, style]} accessibilityLabel={accessibilityLabel} {...restProps}>
             {spacing && Array.isArray(children) ? children.map((child: any, index: number) => {
                 const isLastChild = children.length - 1 === index;
                 const marginRightStyle = { marginRight: isLastChild ? 0 : spacing };

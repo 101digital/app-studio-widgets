@@ -8,10 +8,11 @@ export type ASColumnProps = {
     backgroundImage?: any;
     accessibilityLabel?: string;
     spacing?: number;
+    testId?: string;
 };
 
 const ASColumn: React.FC<ASColumnProps> = (props: ASColumnProps) => {
-    const {children, style, backgroundImage, accessibilityLabel, spacing = 0, ...restProps} = props;
+    const {children, style, backgroundImage, accessibilityLabel, spacing = 0, testId = 'ASColumn', ...restProps} = props;
     const [containerHeight, setContainerHeight] = useState(0); // State to hold container height
     const flexValue = Array.isArray(children) && children.length > 0 ?
         children.reduce((acc: number | undefined, child: any) => {
@@ -23,6 +24,7 @@ const ASColumn: React.FC<ASColumnProps> = (props: ASColumnProps) => {
 
     return (
         <View
+            testID={`view-${testId}`}
             style={[styles.container, {...(flexValue && {flex: flexValue})}, style]}
             accessibilityLabel={accessibilityLabel}
             onLayout={(event) => {
@@ -33,6 +35,7 @@ const ASColumn: React.FC<ASColumnProps> = (props: ASColumnProps) => {
         >
             {backgroundImage && (
                 <ASImage
+                    testID={`${testId}-BackgroundImage`}
                     source={backgroundImage}
                     style={[styles.backgroundStyle, {height: containerHeight}]}
                     resizeMode="stretch" // Ensure image covers the entire area

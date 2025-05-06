@@ -19,7 +19,7 @@ export type ASTabItemProps = {
   icon: string | React.FC<SvgProps>;
   tabStyle?: ViewStyle;
   labelStyle?: ViewStyle;
-  selectedBackgroundColor?: string
+  selectedBackgroundColor?: string;
 };
 
 export type ASBottomTabNavigationProps = {
@@ -66,11 +66,7 @@ const ASBottomTabNavigation: React.FC<ASBottomTabNavigationProps> = ({
                 );
               } else {
                 IconComponent = (
-                  <Icon
-                    name={tab.icon}
-                    size={ICON_SIZE}
-                    color={tintColor}
-                  />
+                  <Icon name={tab.icon} size={ICON_SIZE} color={tintColor} />
                 );
               }
             } else {
@@ -88,7 +84,7 @@ const ASBottomTabNavigation: React.FC<ASBottomTabNavigationProps> = ({
               <TouchableOpacity
                 style={[
                   styles.customTabButton,
-                  focused && {backgroundColor: tab.selectedBackgroundColor},
+                  focused && { backgroundColor: tab.selectedBackgroundColor },
                   tab.tabStyle,
                 ]}
                 onPress={onPress}
@@ -125,7 +121,7 @@ const styles = StyleSheet.create({
     // borderRadius: 16,
     // backgroundColor: "#fff",
     margin: 4,
-    flex: 1
+    flex: 1,
   },
   activeTab: {
     backgroundColor: "#e6f0ff",

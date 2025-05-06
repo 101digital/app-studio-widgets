@@ -16,24 +16,27 @@ export type ASBadgeProps = {
   badgeTextStyle?: StyleProp<TextStyle>;
   containerStyle?: StyleProp<ViewStyle>;
   id?: string; 
+  testId?: string;
 };
 
 const ASBadge: React.FC<ASBadgeProps> = (props: ASBadgeProps) => {
-  const { children, label, badgeStyles, badgeTextStyle, containerStyle, id } =
+  const { children, testId = 'ASBadge', label, badgeStyles, badgeTextStyle, containerStyle, id } =
     props;
 
   return (
-    <View style={[styles.container, containerStyle]} id={id}>
+    <View style={[styles.container, containerStyle]} id={id} testID={`view-${testId}`}>
       <View>
         {children}
         {!!label && (
           <View
+          testID={`badgeView-${testId}`}
             style={[
               styles.badgeStyles,
               badgeStyles,
             ]}
           >
-            <ASText style={[styles.badgeTextStyle, badgeTextStyle]}>
+            <ASText 
+              testID={`badgeLabel-${testId}`} style={[styles.badgeTextStyle, badgeTextStyle]}>
               {label}
             </ASText>
           </View>

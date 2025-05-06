@@ -8,6 +8,7 @@ export type ASListViewProps = FlatListProps<any> & {
     renderItem: ListRenderItem<React.ReactNode>
     loading?: boolean | boolean[] | undefined
     accessibilityLabel?: string;
+    testId?: string
 }
 
 const ASListView: React.FC<ASListViewProps> = (props: ASListViewProps) => {
@@ -15,6 +16,7 @@ const ASListView: React.FC<ASListViewProps> = (props: ASListViewProps) => {
         data,
         renderItem,
         loading,
+        testId='ASListView',
         ...restProps
     } = props;
 
@@ -24,8 +26,9 @@ const ASListView: React.FC<ASListViewProps> = (props: ASListViewProps) => {
 
     return (
         <>
-            <LoadingIndicator style={styles.loadingIndicator} loading={loading}/>
+            <LoadingIndicator style={styles.loadingIndicator} loading={loading} testID={`loadingView-${testId}`}/>
             <FlatList
+                testID={`list-${testId}`}
                 data={data}
                 renderItem={renderItem}
                 keyExtractor={keyExtractor}
