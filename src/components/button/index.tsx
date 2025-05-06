@@ -22,6 +22,7 @@ export type ASButtonProps = TouchableOpacityProps & {
     children?: React.ReactNode;
     simpleTextButton?: boolean;
     loading?: boolean | undefined;
+    testId?: string
 };
 
 const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
@@ -35,6 +36,7 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
         children,
         simpleTextButton,
         loading,
+        testId = 'ASButton',
         ...restProps
     } = props;
     const isTimeout = useIsTimeoutLoading(60000, loading)
@@ -108,14 +110,16 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
                         overflow: loading ? 'hidden' : (flattenedStyle?.overflow || 'visible')
                     },
                 ]}
+                testID={`${testId}-Button`}
             >
                 <>
                     {
                         !!children ? (
                             children
                         ) : (
-                            <View style={styles.labelContainer}>
+                            <View style={styles.labelContainer} testID={`${testId}-LabelView`}>
                                 <ASText
+                                 testID={`${testId}-Label`}
                                     style={[
                                         styles.textStyle, // Base text style
                                         getButtonTextStyle(), // Dynamic button text style
@@ -130,7 +134,7 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
 
                 </>
                 {loading && !isTimeout && (
-                    <View style={[styles.overlayContainer,StyleSheet.absoluteFillObject, {...dimensions}]}>
+                    <View testID={`${testId}-LoadingView`} style={[styles.overlayContainer,StyleSheet.absoluteFillObject, {...dimensions}]}>
                         <LoadingIndicator color={'#D1D5DB'} loading={loading} style={styles.overlayLoadingIndicator}/>
                     </View>
                 )}
