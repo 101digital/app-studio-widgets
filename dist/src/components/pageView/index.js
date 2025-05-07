@@ -15,13 +15,23 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -40,7 +50,7 @@ const theme_context_1 = require("../../context/theme-context");
 const react_native_gesture_handler_1 = require("react-native-gesture-handler");
 const ASPageView = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { children, style, paginationStyle, paginationBottomPosition = 0, horizontal = true, snapToAlignment = "center", showsHorizontalScrollIndicator = false, showsVerticalScrollIndicator = false } = props, restProps = __rest(props, ["children", "style", "paginationStyle", "paginationBottomPosition", "horizontal", "snapToAlignment", "showsHorizontalScrollIndicator", "showsVerticalScrollIndicator"]);
+    const { children, style, paginationStyle, paginationBottomPosition = 0, horizontal = true, snapToAlignment = "center", showsHorizontalScrollIndicator = false, showsVerticalScrollIndicator = false, testId = 'ASPageView' } = props, restProps = __rest(props, ["children", "style", "paginationStyle", "paginationBottomPosition", "horizontal", "snapToAlignment", "showsHorizontalScrollIndicator", "showsVerticalScrollIndicator", "testId"]);
     const [height, setHeight] = (0, react_1.useState)(0);
     const [width, setWidth] = (0, react_1.useState)(0);
     const onLayout = (event) => {
@@ -79,7 +89,7 @@ const ASPageView = (props) => {
     //         </View>
     //     }
     // </PagerView>
-    react_1.default.createElement(react_native_gesture_handler_1.ScrollView, Object.assign({ horizontal: horizontal, decelerationRate: 0, snapToInterval: width, snapToAlignment: snapToAlignment, showsHorizontalScrollIndicator: showsHorizontalScrollIndicator, showsVerticalScrollIndicator: showsVerticalScrollIndicator }, snapConfig, restProps), Array.isArray(children) ? (children.map((page, index) => (react_1.default.createElement(react_native_1.View, { onLayout: onLayout, key: index, style: styles.slide }, page)))) : (react_1.default.createElement(react_native_1.View, { onLayout: onLayout, style: styles.slide }, children))));
+    react_1.default.createElement(react_native_gesture_handler_1.ScrollView, Object.assign({ horizontal: horizontal, decelerationRate: 0, snapToInterval: width, snapToAlignment: snapToAlignment, showsHorizontalScrollIndicator: showsHorizontalScrollIndicator, showsVerticalScrollIndicator: showsVerticalScrollIndicator, testID: `scrollView-${testId}` }, snapConfig, restProps), Array.isArray(children) ? (children.map((page, index) => (react_1.default.createElement(react_native_1.View, { testID: `childView-${index}-${testId}`, onLayout: onLayout, key: index, style: styles.slide }, page)))) : (react_1.default.createElement(react_native_1.View, { testID: `slideView-${testId}`, onLayout: onLayout, style: styles.slide }, children))));
 };
 const styles = react_native_1.StyleSheet.create({
     wrapper: {

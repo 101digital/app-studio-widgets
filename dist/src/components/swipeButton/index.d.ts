@@ -38,6 +38,7 @@ export type ASSwipeButtonProps = {
     accessibilityLabel?: string;
     loading?: boolean;
     id?: string;
+    testId?: string;
 };
 declare const ASSwipeButton: React.FC<ASSwipeButtonProps>;
 export default ASSwipeButton;

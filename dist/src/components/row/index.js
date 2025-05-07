@@ -17,8 +17,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(require("react"));
 const react_native_1 = require("react-native");
 const ASRow = (props) => {
-    const _a = props || {}, { children, style, accessibilityLabel, spacing } = _a, restProps = __rest(_a, ["children", "style", "accessibilityLabel", "spacing"]);
-    return (react_1.default.createElement(react_native_1.View, Object.assign({ style: [styles.container, style], accessibilityLabel: accessibilityLabel }, restProps), spacing && Array.isArray(children) ? children.map((child, index) => {
+    const _a = props || {}, { children, style, accessibilityLabel, spacing, testId = 'ASRow' } = _a, restProps = __rest(_a, ["children", "style", "accessibilityLabel", "spacing", "testId"]);
+    return (react_1.default.createElement(react_native_1.View, Object.assign({ testID: testId, style: [styles.container, style], accessibilityLabel: accessibilityLabel }, restProps), spacing && Array.isArray(children) ? children.map((child, index) => {
         var _a, _b;
         const isLastChild = children.length - 1 === index;
         const marginRightStyle = { marginRight: isLastChild ? 0 : spacing };

@@ -1,11 +1,11 @@
-import React, { ReactNode } from 'react';
-import { TextStyle } from 'react-native';
+import React, { ReactNode } from "react";
+import { TextStyle } from "react-native";
 export type BottomSheetModalProps = {
     isVisible?: boolean;
     children: ReactNode;
     backdropOpacity?: number;
-    animationIn?: 'fadeIn' | 'slideInUp' | 'zoomIn' | 'slideInRight';
-    animationOut?: 'fadeOut' | 'slideOutDown' | 'zoomOut' | 'slideOutRight';
+    animationIn?: "fadeIn" | "slideInUp" | "zoomIn" | "slideInRight";
+    animationOut?: "fadeOut" | "slideOutDown" | "zoomOut" | "slideOutRight";
     animationInTiming?: number;
     animationOutTiming?: number;
     avoidKeyboard?: boolean;
@@ -15,6 +15,7 @@ export type BottomSheetModalProps = {
     onBackButtonPress?: () => void;
     onBackdropPress?: () => void;
     onClose: () => void;
+    testId?: string;
 };
 declare const ASBottomSheet: {
     (props: BottomSheetModalProps): React.JSX.Element;

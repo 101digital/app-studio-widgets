@@ -22,6 +22,7 @@ export type ASTextFieldProps = Omit<TextInputMaskProps, "type"> & TextInputProps
     isOverlayEnabled?: boolean;
     id?: string;
     onChange?: (text: any) => void;
+    testId?: string;
 };
 declare const ASTextField: {
     (props: ASTextFieldProps): React.JSX.Element;

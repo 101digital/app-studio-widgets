@@ -1,5 +1,5 @@
-import React, { ReactNode } from 'react';
-import { TextStyle, ViewStyle } from 'react-native';
+import React, { ReactNode } from "react";
+import { TextStyle, ViewStyle } from "react-native";
 type TabProps = {
     name: string;
     title: string;
@@ -19,6 +19,7 @@ export type TabsProps = {
     tabViewStyle: ViewStyle;
     style: ViewStyle;
     tabTitleOffset?: number;
+    testId?: string;
 };
 declare const ASTabs: React.FC<TabsProps>;
 export default ASTabs;

@@ -24,6 +24,7 @@ export type ASDropDownProps = Omit<DropdownProps<any>, "labelField" | "valueFiel
     id?: string;
     isMultiChoices?: boolean;
     iconColor?: string;
+    testId?: string;
 };
 declare const ASDropDown: React.FC<ASDropDownProps>;
 export default ASDropDown;

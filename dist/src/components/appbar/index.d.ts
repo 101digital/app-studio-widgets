@@ -6,6 +6,7 @@ export type ASBackButtonProps = {
     onPressBackButton?: () => void;
     isPreviewScreen?: boolean;
     style?: StyleProp<ViewStyle>;
+    testId?: string;
 };
 export type ASAppBarProps = ASBackButtonProps & {
     title?: string;

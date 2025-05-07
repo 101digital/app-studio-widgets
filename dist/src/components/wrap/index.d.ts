@@ -7,6 +7,7 @@ export type ASWrapProps = {
     style?: StyleProp<ViewStyle>;
     itemMargin?: DimensionValue;
     id?: string;
+    testId?: string;
 };
 declare const ASWrap: React.FC<ASWrapProps>;
 export default ASWrap;

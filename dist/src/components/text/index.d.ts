@@ -6,6 +6,7 @@ export type ASTextProps = TextProps & {
     labelType?: 'number' | 'datetime' | 'card-number' | 'e6ExpiryDate';
     label?: string;
     accessibilityLabel?: string;
+    testId?: string;
 };
 declare const ASText: React.FC<ASTextProps>;
 export default ASText;

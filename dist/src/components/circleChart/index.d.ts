@@ -19,6 +19,7 @@ export type ASCircleChartProps = {
     diameter?: number;
     children?: React.ReactNode;
     circleStrokeWidth?: number;
+    testId?: string;
 };
 declare const ASCircleChart: React.FC<ASCircleChartProps>;
 export default ASCircleChart;
