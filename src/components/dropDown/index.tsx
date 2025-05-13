@@ -23,9 +23,9 @@ export type DropDownOptionsProps = {
 };
 
 export type ASDropDownProps = Omit<
-  DropdownProps<any>,
-  "labelField" | "valueField" | "onChange" | "data"
-> & {
+    DropdownProps<any>,
+    "labelField" | "valueField" | "onChange" | "data"
+    > & {
   options: DropDownOptionsProps[] | undefined;
   name: string | FieldHookConfig<any>;
   labelField: string;
@@ -78,79 +78,79 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
 
   const flattenedLabelStyle = StyleSheet.flatten(labelTextStyle) || {};
   const labelFontSize =
-    flattenedLabelStyle?.fontSize || styles.labelStyle.fontSize;
+      flattenedLabelStyle?.fontSize || styles.labelStyle.fontSize;
   const labelTopPosition = -labelFontSize * 0.8;
   const flatttenedContainerStyle = StyleSheet.flatten(containerStyle) || {};
 
   const renderSingleChoiceItem = (item: DropDownOptionsProps) => {
     const isSelected = field?.value === item?.value;
     return (
-      <View
-        style={[
-          styles.item,
-          {
-            ...(isSelected
-              ? { backgroundColor: hexToRgbaWithOpacity(colors.primary) }
-              : {}),
-          },
-        ]}
-      >
-        <Text
-          style={[
-            styles.textItem,
-            {
-              color: colors.surface,
-            },
-            dropdownTextStyles,
-          ]}
+        <View
+            style={[
+              styles.item,
+              {
+                ...(isSelected
+                    ? { backgroundColor: hexToRgbaWithOpacity(colors.primary) }
+                    : {}),
+              },
+            ]}
         >
-          {item[labelField]}
-        </Text>
-      </View>
+          <Text
+              style={[
+                styles.textItem,
+                {
+                  color: colors.surface,
+                },
+                dropdownTextStyles,
+              ]}
+          >
+            {item[labelField]}
+          </Text>
+        </View>
     );
   };
 
   const renderMultipleChoiceItem = (item: DropDownOptionsProps) => {
     const isSelected =
-      Array.isArray(field?.value) &&
-      field?.value?.some((_value: string | number) => _value === item?.value);
+        Array.isArray(field?.value) &&
+        field?.value?.some((_value: string | number) => _value === item?.value);
     return (
-      <View
-        style={[
-          styles.item,
-          {
-            ...(isSelected
-              ? { backgroundColor: hexToRgbaWithOpacity(colors.primary) }
-              : {}),
-          },
-        ]}
-      >
-        <Text
-          style={[
-            styles.textItem,
-            {
-              color: colors.surface,
-            },
-            dropdownTextStyles,
-          ]}
+        <View
+            style={[
+              styles.item,
+              {
+                ...(isSelected
+                    ? { backgroundColor: hexToRgbaWithOpacity(colors.primary) }
+                    : {}),
+              },
+            ]}
         >
-          {item[labelField]}
-        </Text>
-      </View>
+          <Text
+              style={[
+                styles.textItem,
+                {
+                  color: colors.surface,
+                },
+                dropdownTextStyles,
+              ]}
+          >
+            {item[labelField]}
+          </Text>
+        </View>
     );
   };
 
   const renderSelectedItem = (item: any, unSelect?: (_item: any) => void) => {
     return (
-      <ASButton
-        style={[
-          styles.multipleSelectionButton,
-          { borderColor: colors.primary },
-        ]}
-        onPress={() => unSelect?.(item)}
-      >
-        <ASText style={{}}>{item.label}</ASText>
-      </ASButton>
+        <ASButton
+            style={[
+              styles.multipleSelectionButton,
+              { borderColor: colors.primary },
+            ]}
+            onPress={() => unSelect?.(item)}
+        >
+          <ASText style={{}}>{item.label}</ASText>
+        </ASButton>
     );
   };
 
@@ -167,123 +167,123 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
   };
 
   return (
-    <View
-      style={[
-        styles.container,
-        {
-          backgroundColor: colors.background,
-          borderColor: colors.secondary,
-        },
-        flatttenedContainerStyle,
-        { alignItems: "stretch", flexDirection: "column" },
-        {
-          /* Need to have this logic beacuse the DropDown has extra padding so it always a bit bigger to other widget even though they have the same padding
-                      Solution is to subtract 1 pixel from the top and bottom padding to compensate for the DropDown extra padding
-                    */
-          // paddingTop:
-          //   typeof flatttenedContainerStyle?.paddingTop === "number" &&
-          //   flatttenedContainerStyle.paddingTop > 0
-          //     ? flatttenedContainerStyle.paddingTop - 1
-          //     : 0,
-          // paddingBottom:
-          //   typeof flatttenedContainerStyle?.paddingBottom === "number" &&
-          //   flatttenedContainerStyle.paddingBottom > 0
-          //     ? flatttenedContainerStyle.paddingBottom - 1
-          //     : 0,
-          paddingTop:flatttenedContainerStyle?.paddingTop,
-          paddingBottom:flatttenedContainerStyle?.paddingBottom,
-        },
-      ]}
-      id={id}
-    >
-      {!!label && (
-        <ASText
+      <View
           style={[
-            styles.labelStyle,
+            styles.container,
             {
-              color: colors.onTertiary,
-              top: labelTopPosition,
-              backgroundColor: flatttenedContainerStyle?.backgroundColor,
+              backgroundColor: colors.background,
+              borderColor: colors.secondary,
             },
-            labelTextStyle,
+            flatttenedContainerStyle,
+            { alignItems: "stretch", flexDirection: "column" },
+            {
+              /* Need to have this logic beacuse the DropDown has extra padding so it always a bit bigger to other widget even though they have the same padding
+                          Solution is to subtract 1 pixel from the top and bottom padding to compensate for the DropDown extra padding
+                        */
+              // paddingTop:
+              //     typeof flatttenedContainerStyle?.paddingTop === "number" &&
+              //     flatttenedContainerStyle.paddingTop > 0
+              //         ? flatttenedContainerStyle.paddingTop - 1
+              //         : 0,
+              // paddingBottom:
+              //     typeof flatttenedContainerStyle?.paddingBottom === "number" &&
+              //     flatttenedContainerStyle.paddingBottom > 0
+              //         ? flatttenedContainerStyle.paddingBottom - 1
+              //         : 0,
+                paddingTop:flatttenedContainerStyle?.paddingTop,
+                paddingBottom:flatttenedContainerStyle?.paddingBottom,
+            },
           ]}
-        >
-          {label}
-        </ASText>
-      )}
+          id={id}
+      >
+        {!!label && (
+            <ASText
+                style={[
+                  styles.labelStyle,
+                  {
+                    color: colors.onTertiary,
+                    top: labelTopPosition,
+                    backgroundColor: flatttenedContainerStyle?.backgroundColor,
+                  },
+                  labelTextStyle,
+                ]}
+            >
+              {label}
+            </ASText>
+        )}
 
-      {!isMultiChoices ? (
-        <Dropdown
-          style={styles.dropdown}
-          placeholderStyle={[
-            styles.placeholderStyle,
-            placeholderTextStyles,
-            {
-              ...(flatttenedContainerStyle?.alignItems === "center" && {
-                textAlign: "center",
-              }),
-            },
-          ]}
-          inputSearchStyle={styles.inputSearchStyle}
-          iconStyle={[styles.iconStyle, iconStyles]}
-          search={search}
-          maxHeight={300}
-          value={field?.value}
-          searchPlaceholder={searchPlaceholder}
-          // renderLeftIcon={renderLeftIcon}
-          // renderItem={renderSingleChoiceItem}
-          placeholder={placeholder}
-          onFocus={() => setIsFocus(true)}
-          onBlur={() => setIsFocus(false)}
-          // renderRightIcon={()=><DownIcon color={iconColor}/>}
-          {...restProps}
-          selectedTextStyle={[
-            styles.selectedTextStyle,
-            {
-              color: colors.surface,
-            },
-            selectedTextStyle,
-          ]}
-          data={options || []}
-          onChange={_onChangeDropDownField}
-          labelField={labelField}
-          valueField={valueField}
-          mode="auto"
-        />
-      ) : (
-        <MultiSelect
-          style={styles.dropdown}
-          placeholderStyle={[styles.placeholderStyle, placeholderTextStyles]}
-          inputSearchStyle={styles.inputSearchStyle}
-          iconStyle={[styles.iconStyle, iconStyles]}
-          search={search}
-          maxHeight={300}
-          value={field?.value || []}
-          searchPlaceholder={searchPlaceholder}
-          renderLeftIcon={renderLeftIcon}
-          renderItem={renderMultipleChoiceItem}
-          renderSelectedItem={renderSelectedItem}
-          placeholder={placeholder}
-          onFocus={() => setIsFocus(true)}
-          onBlur={() => setIsFocus(false)}
-          renderRightIcon={() => <DownIcon color={iconColor} />}
-          {...restProps}
-          selectedTextStyle={[
-            styles.selectedTextStyle,
-            {
-              color: colors.surface,
-            },
-            selectedTextStyle,
-          ]}
-          data={options || []}
-          onChange={_onChangeMultipleDropDownField}
-          labelField={labelField}
-          valueField={valueField}
-        />
-      )}
+        {!isMultiChoices ? (
+            <Dropdown
+                style={styles.dropdown}
+                placeholderStyle={[
+                  styles.placeholderStyle,
+                  placeholderTextStyles,
+                  {
+                    ...(flatttenedContainerStyle?.alignItems === "center" && {
+                      textAlign: "center",
+                    }),
+                  },
+                ]}
+                inputSearchStyle={styles.inputSearchStyle}
+                iconStyle={[styles.iconStyle, iconStyles]}
+                search={search}
+                maxHeight={300}
+                value={field?.value}
+                searchPlaceholder={searchPlaceholder}
+                renderLeftIcon={renderLeftIcon}
+                renderItem={renderSingleChoiceItem}
+                placeholder={placeholder}
+                onFocus={() => setIsFocus(true)}
+                onBlur={() => setIsFocus(false)}
+                renderRightIcon={()=><DownIcon size={iconStyles?.height || iconStyles?.width} color={iconColor}/>}
+                {...restProps}
+                selectedTextStyle={[
+                  styles.selectedTextStyle,
+                  {
+                    color: colors.surface,
+                  },
+                  selectedTextStyle,
+                ]}
+                data={options || []}
+                onChange={_onChangeDropDownField}
+                labelField={labelField}
+                valueField={valueField}
+                mode="auto"
+            />
+        ) : (
+            <MultiSelect
+                style={styles.dropdown}
+                placeholderStyle={[styles.placeholderStyle, placeholderTextStyles]}
+                inputSearchStyle={styles.inputSearchStyle}
+                iconStyle={[styles.iconStyle, iconStyles]}
+                search={search}
+                maxHeight={300}
+                value={field?.value || []}
+                searchPlaceholder={searchPlaceholder}
+                renderLeftIcon={renderLeftIcon}
+                renderItem={renderMultipleChoiceItem}
+                renderSelectedItem={renderSelectedItem}
+                placeholder={placeholder}
+                onFocus={() => setIsFocus(true)}
+                onBlur={() => setIsFocus(false)}
+                renderRightIcon={() => <DownIcon color={iconColor} />}
+                {...restProps}
+                selectedTextStyle={[
+                  styles.selectedTextStyle,
+                  {
+                    color: colors.surface,
+                  },
+                  selectedTextStyle,
+                ]}
+                data={options || []}
+                onChange={_onChangeMultipleDropDownField}
+                labelField={labelField}
+                valueField={valueField}
+            />
+        )}
 
-      {isOverlayEnabled && <ASOverlay />}
-    </View>
+        {isOverlayEnabled && <ASOverlay />}
+      </View>
   );
 };
 
