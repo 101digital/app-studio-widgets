@@ -174,7 +174,7 @@ const ASTextField = (props: ASTextFieldProps) => {
                         height: flattenedHeight,
                         ...flattenedStyle,
                         marginBottom: 0,
-                        flex:0 // Add this to fix the textfield height fill the parent height in mobile device. Need to mornitor this issue
+                        // flex:0 // Add this to fix the textfield height fill the parent height in mobile device. Need to mornitor this issue
                     },
                 ]}
             >
