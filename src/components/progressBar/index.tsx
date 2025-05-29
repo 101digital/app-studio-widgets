@@ -13,6 +13,7 @@ export type ASProgressBarProps = {
     activeColor?: ColorValue
     inActiveColor?: ColorValue
     style?: StyleProp<ViewStyle>;
+    testId?: string;
 }
 
 const ASProgressBar: React.FC<ASProgressBarProps> = (props: ASProgressBarProps) => {
@@ -25,17 +26,19 @@ const ASProgressBar: React.FC<ASProgressBarProps> = (props: ASProgressBarProps) 
         progressBarStyle,
         activeColor,
         inActiveColor,
-        style
+        style,
+        testId = 'ASProgressBar'
     } = props
 
     return (
-        <View style={[styles.progressBarContainer, StyleSheet.flatten(style)]}>
+        <View testID={`view-${testId}`} style={[styles.progressBarContainer, StyleSheet.flatten(style)]}>
             {!!progressBarTitle &&
-                <ASText style={[styles.progressBarText, progressTitleStyle]}>{progressBarTitle}</ASText>}
-            <View style={[styles.progressBar, {
+                <ASText testID={`title-${testId}`}  style={[styles.progressBarText, progressTitleStyle]}>{progressBarTitle}</ASText>}
+            <View  testID={`progressBarView-${testId}`}  style={[styles.progressBar, {
                 backgroundColor: colors.secondaryFixed,
             }, progressBarStyle, {backgroundColor: inActiveColor}]}>
                 <View
+                 testID={`currentProgressBarView-${testId}`} 
                     style={[
                         styles.progressCurrent,
                         {

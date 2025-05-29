@@ -38,8 +38,8 @@ const react_native_1 = require("react-native");
 const theme_context_1 = require("../../context/theme-context");
 const ASDivider = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { style, marginVertical = 10, width = '100%' } = props || {};
-    return (react_1.default.createElement(react_native_1.View, { style: [styles.dividerStyle, {
+    const { style, marginVertical = 10, width = '100%', testId = 'ASDivider' } = props || {};
+    return (react_1.default.createElement(react_native_1.View, { testID: testId, style: [styles.dividerStyle, {
                 marginVertical, width, backgroundColor: colors.onSurface,
             }, style] }));
 };

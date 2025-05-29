@@ -44,6 +44,7 @@ export type ASDropDownProps = Omit<
   id?: string;
   isMultiChoices?: boolean;
   iconColor?: string;
+  testId?: string;
 };
 
 const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
@@ -70,6 +71,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
     onChange,
     isMultiChoices = false,
     iconColor,
+    testId = "ASDropdown",
     ...restProps
   } = props;
   const [field, meta, helpers] = useField<string | string[]>(name);
@@ -168,6 +170,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
 
   return (
     <View
+      testID={`view-${testId}`}
       style={[
         styles.container,
         {
@@ -205,6 +208,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
             },
             labelTextStyle,
           ]}
+          testID={`label-${testId}`}
         >
           {label}
         </ASText>
@@ -212,6 +216,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
 
       {!isMultiChoices ? (
         <Dropdown
+          testID={`dropdown-${testId}`}
           style={styles.dropdown}
           placeholderStyle={[
             styles.placeholderStyle,
@@ -250,6 +255,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
         />
       ) : (
         <MultiSelect
+          testID={`dropdownMultipleSelect-${testId}`}
           style={styles.dropdown}
           placeholderStyle={[styles.placeholderStyle, placeholderTextStyles]}
           inputSearchStyle={styles.inputSearchStyle}
@@ -280,7 +286,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
         />
       )}
 
-      {isOverlayEnabled && <ASOverlay />}
+      {isOverlayEnabled && <ASOverlay testId={`dropdownOverlay-${testId}`}/>}
     </View>
   );
 };

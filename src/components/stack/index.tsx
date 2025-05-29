@@ -4,11 +4,12 @@ import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
 export type ASStackProps= {
     children: React.ReactNode;
     style?: StyleProp<ViewStyle>
+    testId?: string
 }
 
 const ASStack: React.FC<ASStackProps> = (props: ASStackProps) => {
-    const {children, style} = props
-    return <View style={[style, styles.container]}>{children}</View>;
+    const {children, style, testId = 'ASStack'} = props
+    return <View testID={testId} style={[style, styles.container]}>{children}</View>;
 };
 
 const styles = StyleSheet.create({

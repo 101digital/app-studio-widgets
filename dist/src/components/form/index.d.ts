@@ -5,6 +5,7 @@ export type ASFormProps = FormikConfig<any> & {
     onSubmit: (values: any, formikHelpers: FormikHelpers<any>) => void | Promise<any>;
     initialValues?: any;
     validationSchema?: any;
+    testId?: string;
 };
 declare const ASForm: React.FC<ASFormProps>;
 export default ASForm;

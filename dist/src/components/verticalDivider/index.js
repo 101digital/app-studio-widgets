@@ -38,8 +38,8 @@ const react_native_1 = require("react-native");
 const theme_context_1 = require("../../context/theme-context");
 const ASVerticalDivider = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { style } = props || {};
-    return (react_1.default.createElement(react_native_1.View, { style: [
+    const { style, testId = "ASVerticalDivider" } = props || {};
+    return (react_1.default.createElement(react_native_1.View, { testID: testId, style: [
             styles.verticalDividerStyle,
             {
                 backgroundColor: colors.onSurface,

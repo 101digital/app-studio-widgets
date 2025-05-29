@@ -8,6 +8,7 @@ export type ASPageViewProps = ScrollViewProps & {
     snapToAlignment?: "center" | "end" | "start";
     showsHorizontalScrollIndicator: boolean;
     showsVerticalScrollIndicator: boolean;
+    testId?: string;
 };
 declare const ASPageView: (props: ASPageViewProps) => ReactNode;
 export default ASPageView;

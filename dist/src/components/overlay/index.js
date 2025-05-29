@@ -5,9 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(require("react"));
 const react_native_1 = require("react-native");
-const ASOverlay = () => {
+const ASOverlay = (props) => {
     // Apply hover effect with border color change
-    return react_1.default.createElement(react_native_1.View, { style: styles.overlay });
+    return react_1.default.createElement(react_native_1.View, { testID: props.testId, style: styles.overlay });
 };
 // Styles for the Overlay component
 const styles = react_native_1.StyleSheet.create({

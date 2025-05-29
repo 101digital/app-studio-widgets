@@ -55,36 +55,40 @@ const text_1 = __importDefault(require("../text"));
 const icon_1 = require("../../assets/icon");
 const DefaultBackButton = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const _a = props || {}, { backIconColor, backIconSize, onPressBackButton } = _a, restProps = __rest(_a, ["backIconColor", "backIconSize", "onPressBackButton"]);
-    return (react_1.default.createElement(react_native_1.TouchableOpacity, Object.assign({ activeOpacity: 0.8, style: styles.backIcon, onPress: onPressBackButton }, restProps),
+    const _a = props || {}, { backIconColor, backIconSize, onPressBackButton, testId } = _a, restProps = __rest(_a, ["backIconColor", "backIconSize", "onPressBackButton", "testId"]);
+    return (react_1.default.createElement(react_native_1.TouchableOpacity, Object.assign({ testID: testId, activeOpacity: 0.8, style: styles.backIcon, onPress: onPressBackButton }, restProps),
         react_1.default.createElement(icon_1.ArrowBackIcon, { size: backIconSize || 24, color: backIconColor || colors.primary })));
 };
 exports.DefaultBackButton = DefaultBackButton;
 const ASAppBar = (props) => {
-    const { backIconColor, backIconSize, onPressBackButton, title, traillingIcon, isPreviewScreen, style } = props || {};
-    return (react_1.default.createElement(react_native_1.View, { style: [styles.container, { paddingTop: isPreviewScreen ? 22 : 0 }, react_native_1.StyleSheet.flatten(style)] },
-        react_1.default.createElement(exports.DefaultBackButton, { backIconColor: backIconColor, backIconSize: backIconSize, onPressBackButton: onPressBackButton }),
-        react_1.default.createElement(text_1.default, { style: styles.titleTextStyle }, title),
+    const { backIconColor, backIconSize, onPressBackButton, title, traillingIcon, isPreviewScreen, style, testId = "ASAppBar", } = props || {};
+    return (react_1.default.createElement(react_native_1.View, { testID: `view-${testId}`, style: [
+            styles.container,
+            { paddingTop: isPreviewScreen ? 22 : 0 },
+            react_native_1.StyleSheet.flatten(style),
+        ] },
+        react_1.default.createElement(exports.DefaultBackButton, { testId: `defaultBackButton-${testId}`, backIconColor: backIconColor, backIconSize: backIconSize, onPressBackButton: onPressBackButton }),
+        react_1.default.createElement(text_1.default, { testId: `title-${testId}`, style: styles.titleTextStyle }, title),
         traillingIcon ? traillingIcon : react_1.default.createElement(react_native_1.View, { style: { flex: 1 } })));
 };
 const styles = react_native_1.StyleSheet.create({
     container: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
+        flexDirection: "row",
+        justifyContent: "space-between",
         borderBottomWidth: 1,
-        borderColor: 'rgba(216, 216, 216,1)',
+        borderColor: "rgba(216, 216, 216,1)",
         paddingBottom: 22,
         paddingHorizontal: 24,
-        alignItems: 'center'
+        alignItems: "center",
     },
     backIcon: {
         flex: 1,
     },
     titleTextStyle: {
-        textAlign: 'center',
+        textAlign: "center",
         flex: 1,
-        fontWeight: '500',
-        fontSize: 18
-    }
+        fontWeight: "500",
+        fontSize: 18,
+    },
 });
 exports.default = ASAppBar;

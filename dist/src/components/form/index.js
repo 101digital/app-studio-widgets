@@ -17,8 +17,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(require("react"));
 const formik_1 = require("formik");
 const ASForm = (props) => {
-    const _a = props || {}, { children, onSubmit, initialValues, validationSchema } = _a, restProps = __rest(_a, ["children", "onSubmit", "initialValues", "validationSchema"]);
-    return (react_1.default.createElement(formik_1.Formik, Object.assign({}, restProps, { initialValues: initialValues, validationSchema: validationSchema, onSubmit: onSubmit }), (formikProps) => {
+    const _a = props || {}, { children, onSubmit, initialValues, validationSchema, testId = 'ASForm' } = _a, restProps = __rest(_a, ["children", "onSubmit", "initialValues", "validationSchema", "testId"]);
+    return (react_1.default.createElement(formik_1.Formik, Object.assign({}, restProps, { initialValues: initialValues, validationSchema: validationSchema, onSubmit: onSubmit, testID: testId }), (formikProps) => {
         return (react_1.default.createElement(react_1.default.Fragment, null, children === null || children === void 0 ? void 0 : children(formikProps)));
     }));
 };

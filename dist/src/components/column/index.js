@@ -51,7 +51,7 @@ const react_1 = __importStar(require("react"));
 const react_native_1 = require("react-native");
 const image_1 = __importDefault(require("../image"));
 const ASColumn = (props) => {
-    const { children, style, backgroundImage, accessibilityLabel, spacing = 0 } = props, restProps = __rest(props, ["children", "style", "backgroundImage", "accessibilityLabel", "spacing"]);
+    const { children, style, backgroundImage, accessibilityLabel, spacing = 0, testId = 'ASColumn' } = props, restProps = __rest(props, ["children", "style", "backgroundImage", "accessibilityLabel", "spacing", "testId"]);
     const [containerHeight, setContainerHeight] = (0, react_1.useState)(0); // State to hold container height
     const flexValue = Array.isArray(children) && children.length > 0 ?
         children.reduce((acc, child) => {
@@ -62,11 +62,11 @@ const ASColumn = (props) => {
                 return flex; // Return the first non-zero flex value found
             return acc; // Keep the previous value if none found
         }, undefined) : undefined;
-    return (react_1.default.createElement(react_native_1.View, Object.assign({ style: [styles.container, Object.assign({}, (flexValue && { flex: flexValue })), style], accessibilityLabel: accessibilityLabel, onLayout: (event) => {
+    return (react_1.default.createElement(react_native_1.View, Object.assign({ testID: `view-${testId}`, style: [styles.container, Object.assign({}, (flexValue && { flex: flexValue })), style], accessibilityLabel: accessibilityLabel, onLayout: (event) => {
             const { height } = event.nativeEvent.layout; // Get height after layout
             setContainerHeight(height); // Update state with the container height
         } }, restProps),
-        backgroundImage && (react_1.default.createElement(image_1.default, { source: backgroundImage, style: [styles.backgroundStyle, { height: containerHeight }], resizeMode: "stretch" // Ensure image covers the entire area
+        backgroundImage && (react_1.default.createElement(image_1.default, { testID: `${testId}-BackgroundImage`, source: backgroundImage, style: [styles.backgroundStyle, { height: containerHeight }], resizeMode: "stretch" // Ensure image covers the entire area
          })),
         spacing && Array.isArray(children) ? children.map((child, index) => {
             var _a, _b;

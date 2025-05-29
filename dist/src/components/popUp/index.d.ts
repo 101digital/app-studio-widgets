@@ -5,6 +5,7 @@ export type ASPopUpProps = ModalProps & {
     visible: boolean;
     isShowCloseIcon?: boolean;
     onClose: () => void;
+    testId?: string;
 };
 declare const ASPopUp: React.FC<ASPopUpProps>;
 export default ASPopUp;

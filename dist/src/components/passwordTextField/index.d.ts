@@ -6,6 +6,7 @@ export type ASPasswordTextFieldProps = ASTextFieldProps & {
     accessibilityLabel?: string;
     isOverlayEnabled?: boolean;
     isShowSuffixIcon?: boolean;
+    testId?: string;
 };
 declare const ASPasswordTextField: FC<ASPasswordTextFieldProps>;
 export default ASPasswordTextField;

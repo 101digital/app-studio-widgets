@@ -18,16 +18,16 @@ const react_1 = __importDefault(require("react"));
 const react_native_1 = require("react-native");
 const commonUtils_1 = require("../../utils/commonUtils");
 const ASImage = (props) => {
-    const { source, style, roundImageSize = 0 } = props, restProps = __rest(props, ["source", "style", "roundImageSize"]);
-    const imageSource = typeof source === 'string' ? { uri: source } : source;
+    const { source, style, roundImageSize = 0, testId = "ASImage" } = props, restProps = __rest(props, ["source", "style", "roundImageSize", "testId"]);
+    const imageSource = typeof source === "string" ? { uri: source } : source;
     const roundImageSizeValue = (0, commonUtils_1.convertPercentageToPx)(roundImageSize, true) || 0;
-    return (react_1.default.createElement(react_native_1.Image, Object.assign({ source: imageSource, style: [
+    return (react_1.default.createElement(react_native_1.Image, Object.assign({ testID: testId, source: imageSource, style: [
             {
-                width: roundImageSizeValue || '100%',
-                height: roundImageSizeValue || '100%',
+                width: roundImageSizeValue || "100%",
+                height: roundImageSizeValue || "100%",
                 borderRadius: roundImageSizeValue || 0,
             },
-            react_native_1.StyleSheet.flatten(style)
-        ] }, restProps, { resizeMode: (props === null || props === void 0 ? void 0 : props.resizeMode) || 'contain' })));
+            react_native_1.StyleSheet.flatten(style),
+        ] }, restProps, { resizeMode: (props === null || props === void 0 ? void 0 : props.resizeMode) || "contain" })));
 };
 exports.default = ASImage;

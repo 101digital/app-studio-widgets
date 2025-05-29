@@ -50,7 +50,7 @@ const theme_context_1 = require("../../context/theme-context");
 const react_native_gesture_handler_1 = require("react-native-gesture-handler");
 const ASPageView = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { children, style, paginationStyle, paginationBottomPosition = 0, horizontal = true, snapToAlignment = "center", showsHorizontalScrollIndicator = false, showsVerticalScrollIndicator = false } = props, restProps = __rest(props, ["children", "style", "paginationStyle", "paginationBottomPosition", "horizontal", "snapToAlignment", "showsHorizontalScrollIndicator", "showsVerticalScrollIndicator"]);
+    const { children, style, paginationStyle, paginationBottomPosition = 0, horizontal = true, snapToAlignment = "center", showsHorizontalScrollIndicator = false, showsVerticalScrollIndicator = false, testId = 'ASPageView' } = props, restProps = __rest(props, ["children", "style", "paginationStyle", "paginationBottomPosition", "horizontal", "snapToAlignment", "showsHorizontalScrollIndicator", "showsVerticalScrollIndicator", "testId"]);
     const [height, setHeight] = (0, react_1.useState)(0);
     const [width, setWidth] = (0, react_1.useState)(0);
     const onLayout = (event) => {
@@ -89,7 +89,7 @@ const ASPageView = (props) => {
     //         </View>
     //     }
     // </PagerView>
-    react_1.default.createElement(react_native_gesture_handler_1.ScrollView, Object.assign({ horizontal: horizontal, decelerationRate: 0, snapToInterval: width, snapToAlignment: snapToAlignment, showsHorizontalScrollIndicator: showsHorizontalScrollIndicator, showsVerticalScrollIndicator: showsVerticalScrollIndicator }, snapConfig, restProps), Array.isArray(children) ? (children.map((page, index) => (react_1.default.createElement(react_native_1.View, { onLayout: onLayout, key: index, style: styles.slide }, page)))) : (react_1.default.createElement(react_native_1.View, { onLayout: onLayout, style: styles.slide }, children))));
+    react_1.default.createElement(react_native_gesture_handler_1.ScrollView, Object.assign({ horizontal: horizontal, decelerationRate: 0, snapToInterval: width, snapToAlignment: snapToAlignment, showsHorizontalScrollIndicator: showsHorizontalScrollIndicator, showsVerticalScrollIndicator: showsVerticalScrollIndicator, testID: `scrollView-${testId}` }, snapConfig, restProps), Array.isArray(children) ? (children.map((page, index) => (react_1.default.createElement(react_native_1.View, { testID: `childView-${index}-${testId}`, onLayout: onLayout, key: index, style: styles.slide }, page)))) : (react_1.default.createElement(react_native_1.View, { testID: `slideView-${testId}`, onLayout: onLayout, style: styles.slide }, children))));
 };
 const styles = react_native_1.StyleSheet.create({
     wrapper: {

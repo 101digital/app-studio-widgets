@@ -55,7 +55,7 @@ const loadingIndicator_1 = __importDefault(require("../loadingIndicator"));
 const hook_1 = require("../../utils/hook");
 const ASButton = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { label = "", style, textStyle, onPress, disabled, children, simpleTextButton, loading } = props, restProps = __rest(props, ["label", "style", "textStyle", "onPress", "disabled", "children", "simpleTextButton", "loading"]);
+    const { label = "", style, textStyle, onPress, disabled, children, simpleTextButton, loading, testId = 'ASButton' } = props, restProps = __rest(props, ["label", "style", "textStyle", "onPress", "disabled", "children", "simpleTextButton", "loading", "testId"]);
     const isTimeout = (0, hook_1.useIsTimeoutLoading)(60000, loading);
     const [dimensions, setDimensions] = (0, react_1.useState)({ width: 0, height: 0 });
     const flattenedStyle = react_native_1.StyleSheet.flatten(style); // Ensure that style is a single object
@@ -109,16 +109,16 @@ const ASButton = (props) => {
                     backgroundColor: getButtonBackgroundColor(),
                     overflow: loading ? 'hidden' : ((flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.overflow) || 'visible')
                 },
-            ] }),
+            ], testID: `button-${testId}` }),
             react_1.default.createElement(react_1.default.Fragment, null, !!children ? (children) : (react_1.default.createElement(react_native_1.View, { style: styles.labelContainer },
-                react_1.default.createElement(text_1.default, { style: [
+                react_1.default.createElement(text_1.default, { testID: `label-${testId}`, style: [
                         styles.textStyle, // Base text style
                         getButtonTextStyle(), // Dynamic button text style
                         flattenedTextStyle, // Flattened user-provided styles
                         { color: getButtonTextColor() }, // Text color logic
                     ] }, label)))),
-            loading && !isTimeout && (react_1.default.createElement(react_native_1.View, { style: [styles.overlayContainer, react_native_1.StyleSheet.absoluteFillObject, Object.assign({}, dimensions)] },
-                react_1.default.createElement(loadingIndicator_1.default, { color: '#D1D5DB', loading: loading, style: styles.overlayLoadingIndicator }))))));
+            loading && !isTimeout && (react_1.default.createElement(react_native_1.View, { testID: `loadingView-${testId}`, style: [styles.overlayContainer, react_native_1.StyleSheet.absoluteFillObject, Object.assign({}, dimensions)] },
+                react_1.default.createElement(loadingIndicator_1.default, { testID: `loadingIndicator-${testId}`, color: '#D1D5DB', loading: loading, style: styles.overlayLoadingIndicator }))))));
 };
 const styles = react_native_1.StyleSheet.create({
     buttonStyle: {

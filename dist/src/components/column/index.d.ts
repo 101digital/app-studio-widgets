@@ -6,6 +6,7 @@ export type ASColumnProps = {
     backgroundImage?: any;
     accessibilityLabel?: string;
     spacing?: number;
+    testId?: string;
 };
 declare const ASColumn: React.FC<ASColumnProps>;
 export default ASColumn;

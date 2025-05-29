@@ -61,7 +61,7 @@ const styles = react_native_1.StyleSheet.create({
         // borderRadius: 16,
         // backgroundColor: "#fff",
         margin: 4,
-        flex: 1
+        flex: 1,
     },
     activeTab: {
         backgroundColor: "#e6f0ff",

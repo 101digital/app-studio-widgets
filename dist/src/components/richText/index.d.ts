@@ -5,6 +5,7 @@ export type ASRichTextProps = {
     style?: StyleProp<TextStyle>;
     childrenProps?: any;
     parse?: any[];
+    testId?: string;
 };
 declare const ASRichText: React.FC<ASRichTextProps>;
 export default ASRichText;

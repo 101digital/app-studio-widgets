@@ -18,11 +18,11 @@ const react_1 = __importDefault(require("react"));
 const react_native_1 = require("react-native");
 const commonUtils_1 = require("../../utils/commonUtils");
 const ASSpacer = (props) => {
-    const _a = props || {}, { style, width, height } = _a, restProps = __rest(_a, ["style", "width", "height"]);
+    const _a = props || {}, { style, width, height, testId = 'ASSpacer' } = _a, restProps = __rest(_a, ["style", "width", "height", "testId"]);
     // ASSpacer must use number instead of string percentage ("50%") that will cause scroll view unable to scroll
     const heightValue = (0, commonUtils_1.convertPercentageToPx)(height, false);
     const widthValue = (0, commonUtils_1.convertPercentageToPx)(width, true);
-    return (react_1.default.createElement(react_native_1.View, Object.assign({ style: [styles.spacerStyle, { width: widthValue, height: heightValue }, style] }, restProps)));
+    return (react_1.default.createElement(react_native_1.View, Object.assign({ testID: testId, style: [styles.spacerStyle, { width: widthValue, height: heightValue }, style] }, restProps)));
 };
 const styles = react_native_1.StyleSheet.create({
     spacerStyle: {

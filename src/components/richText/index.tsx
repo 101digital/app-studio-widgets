@@ -8,13 +8,15 @@ export type ASRichTextProps = {
     style?: StyleProp<TextStyle>;
     childrenProps?: any;
     parse?: any[]
+    testId?: string;
 }
 
 const ASRichText: React.FC<ASRichTextProps> = (props: ASRichTextProps) => {
     const {colors} = useContext(ThemeContext);
     const {
         children, style, parse,
-        childrenProps = {allowFontScaling: false}
+        childrenProps = {allowFontScaling: false},
+        testId = 'ASRichText'
     } = props || {}
 
     return (
@@ -22,6 +24,7 @@ const ASRichText: React.FC<ASRichTextProps> = (props: ASRichTextProps) => {
             style={[styles.textStyle, {color: colors.primaryFixed}, style]}
             parse={parse}
             childrenProps={childrenProps}
+            testID={testId}
         >
             {children}
         </ParsedText>

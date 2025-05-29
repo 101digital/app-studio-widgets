@@ -9,6 +9,7 @@ export type ASProgressBarProps = {
     activeColor?: ColorValue;
     inActiveColor?: ColorValue;
     style?: StyleProp<ViewStyle>;
+    testId?: string;
 };
 declare const ASProgressBar: React.FC<ASProgressBarProps>;
 export default ASProgressBar;

@@ -42,15 +42,15 @@ const text_1 = __importDefault(require("../text"));
 const theme_context_1 = require("../../context/theme-context");
 const ASExpandableText = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { initialLines = 1, text, textStyle, readMoreTextStyles } = props;
+    const { initialLines = 1, text, textStyle, readMoreTextStyles, testId = 'ASExpandableText' } = props;
     const [isExpanded, setIsExpanded] = react_1.default.useState(false);
     const toggleExpansion = () => {
         setIsExpanded(!isExpanded);
     };
-    return (react_1.default.createElement(react_native_1.View, null,
-        react_1.default.createElement(text_1.default, { numberOfLines: isExpanded ? undefined : initialLines, style: [styles.textStyle, { color: colors.onTertiaryFixedVariant }, textStyle] }, text),
-        (text === null || text === void 0 ? void 0 : text.length) > initialLines && (react_1.default.createElement(react_native_1.TouchableOpacity, { onPress: toggleExpansion },
-            react_1.default.createElement(text_1.default, { style: [styles.readMoreTextStyle, {
+    return (react_1.default.createElement(react_native_1.View, { testID: `view-${testId}` },
+        react_1.default.createElement(text_1.default, { testID: `text-${testId}`, numberOfLines: isExpanded ? undefined : initialLines, style: [styles.textStyle, { color: colors.onTertiaryFixedVariant }, textStyle] }, text),
+        (text === null || text === void 0 ? void 0 : text.length) > initialLines && (react_1.default.createElement(react_native_1.TouchableOpacity, { onPress: toggleExpansion, testID: `readMoreButton-${testId}` },
+            react_1.default.createElement(text_1.default, { testID: `readMoreText-${testId}`, style: [styles.readMoreTextStyle, {
                         color: colors.onTertiary,
                     }, readMoreTextStyles] }, isExpanded ? 'Read less' : 'Read more')))));
 };

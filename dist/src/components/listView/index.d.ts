@@ -5,6 +5,7 @@ export type ASListViewProps = FlatListProps<any> & {
     renderItem: ListRenderItem<React.ReactNode>;
     loading?: boolean | boolean[] | undefined;
     accessibilityLabel?: string;
+    testId?: string;
 };
 declare const ASListView: React.FC<ASListViewProps>;
 export default ASListView;

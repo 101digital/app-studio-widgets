@@ -7,17 +7,19 @@ export type ASFormProps = FormikConfig<any> & {
     onSubmit: (values: any, formikHelpers: FormikHelpers<any>) => void | Promise<any>;
     initialValues?: any;
     validationSchema?: any;
+    testId?: string
 }
 
 const ASForm: React.FC<ASFormProps> = (props: ASFormProps) => {
-    const {children, onSubmit, initialValues, validationSchema, ...restProps} = props || {}
+    const {children, onSubmit, initialValues, validationSchema, testId = 'ASForm', ...restProps} = props || {}
 
     return (
         <Formik
             {...restProps}
             initialValues={initialValues}
             validationSchema={validationSchema}
-            onSubmit={onSubmit}>
+            onSubmit={onSubmit}
+            testID={testId}>
             {(formikProps: FormikProps<typeof initialValues | any>) => {
                 return (
                     <>
