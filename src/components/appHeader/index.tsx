@@ -1,13 +1,6 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  StyleSheet,
-  ViewStyle,
-  TextStyle,
-} from 'react-native';
+import {Image, StyleSheet, Text, TextStyle, TouchableOpacity, View, ViewStyle,} from 'react-native';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 type BackButtonProps = {
   isEnabled: boolean;
@@ -39,47 +32,47 @@ type ASAppHeaderProps = {
 };
 
 const ASAppHeader: React.FC<ASAppHeaderProps> = ({
-  styles: customStyles = {},
-  backButton,
-  headerTitle,
-  actions = [],
-}) => {
+     styles: customStyles = {},
+     backButton,
+     headerTitle,
+     actions = [],
+   }:ASAppHeaderProps) => {
   const renderIcon = (
-    icon: React.ReactNode | string,
-    size = 24,
-    color = '#000'
+      icon: React.ReactNode | string,
+      size = 24,
+      color = '#000'
   ) => {
     if (typeof icon === 'string') {
       return (
-        <Image
-          source={{ uri: icon }}
-          style={{ width: size, height: size, tintColor: color }}
-        />
+          <Image
+              source={{ uri: icon }}
+              style={{ width: size, height: size, tintColor: color }}
+          />
       );
     }
     return icon;
   };
 
-  const renderActions = (alignment: 'left' | 'right') =>
-    actions
-      .filter((action) => action.alignment === alignment)
-      .map((action, idx) => (
+  const renderActions = (alignment: 'left' | 'right') => {
+    const filteredActions = actions.filter((action) => action.alignment === alignment)
+    return filteredActions.map((action, idx) => (
         <TouchableOpacity
-          key={`${alignment}-${idx}`}
-          onPress={action.onPress}
-          style={stylesObj.actionButton}
+            key={`${alignment}-${idx}`}
+            onPress={action.onPress}
+            style={[stylesObj.actionButton,   idx === filteredActions.length - 1 ? { marginRight: 0 } : null]} // Prevent last item to have marginRight
         >
           {renderIcon(action.icon, action.iconSize)}
         </TouchableOpacity>
-      ));
+    ));
+  }
 
   const renderBackButton = () => {
     if (!backButton?.isEnabled) return null;
 
     const btn = (
-      <TouchableOpacity onPress={backButton.onPress} style={stylesObj.backButton}>
-        {renderIcon(backButton.icon, backButton.size, backButton.color)}
-      </TouchableOpacity>
+        <TouchableOpacity onPress={backButton.onPress} style={stylesObj.backButton}>
+          {renderIcon(backButton.icon, backButton.size, backButton.color)}
+        </TouchableOpacity>
     );
 
     if (backButton.isLargerBackButton) {
@@ -127,35 +120,38 @@ const ASAppHeader: React.FC<ASAppHeaderProps> = ({
     }
   };
 
+  const insets =useSafeAreaInsets();
+
   return (
-    <View style={customStyles}>
-      {/* Full row back button (if enabled) */}
-      {backButton?.isEnabled && backButton.isLargerBackButton && renderBackButton()}
+      <View style={[customStyles,{
+        paddingTop: (customStyles?.paddingTop ?? 0) + (insets?.top ?? 0), // Handle safe area view
+        height: (customStyles?.height ?? 0) + (insets?.top ?? 0), // Handle safe area view
+      }]}>
+        {backButton?.isEnabled && backButton.isLargerBackButton && renderBackButton()} {/* Full row back button (if enabled) */}
+        {/* Main app header */}
+        <View style={stylesObj.headerContainer}>
+          <View style={stylesObj.leftContainer}>
+            {!backButton?.isLargerBackButton && renderBackButton()}
+            {renderActions('left')}
+          </View>
 
-      {/* Main app header */}
-      <View style={stylesObj.headerContainer}>
-        <View style={stylesObj.leftContainer}>
-          {!backButton?.isLargerBackButton && renderBackButton()}
-          {renderActions('left')}
+          {/* Title */}
+          <View style={getTitleContainerStyle()}>
+            <Text
+                style={[
+                  stylesObj.titleText,
+                  headerTitle.textStyles,
+                  { textAlign: getTitleTextAlign() },
+                ]}
+                numberOfLines={1}
+            >
+              {headerTitle.title}
+            </Text>
+          </View>
+
+          <View style={stylesObj.rightContainer}>{renderActions('right')}</View>
         </View>
-
-        {/* Title */}
-        <View style={getTitleContainerStyle()}>
-          <Text
-            style={[
-              stylesObj.titleText,
-              headerTitle.textStyles,
-              { textAlign: getTitleTextAlign() },
-            ]}
-            numberOfLines={1}
-          >
-            {headerTitle.title}
-          </Text>
-        </View>
-
-        <View style={stylesObj.rightContainer}>{renderActions('right')}</View>
       </View>
-    </View>
   );
 };
 
@@ -164,7 +160,6 @@ const stylesObj = StyleSheet.create({
     height: 56,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 8,
   },
   leftContainer: {
     flexDirection: 'row',
