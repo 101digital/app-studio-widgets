@@ -46,7 +46,9 @@ const ASAppHeader: React.FC<ASAppHeaderProps> = ({
       return (
           <Image
               source={{ uri: icon }}
-              style={{ width: size, height: size, tintColor: color }}
+              style={{ width: size, height: size,
+                // tintColor: color // tintColor removed for not being used by Lahiru
+          }}
           />
       );
     }
