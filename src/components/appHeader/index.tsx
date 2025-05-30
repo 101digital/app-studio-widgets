@@ -22,6 +22,7 @@ type ActionItem = {
   iconSize?: number;
   alignment: 'left' | 'right';
   onPress: () => void;
+  color?: string;
 };
 
 type ASAppHeaderProps = {
@@ -46,8 +47,7 @@ const ASAppHeader: React.FC<ASAppHeaderProps> = ({
       return (
           <Image
               source={{ uri: icon }}
-              style={{ width: size, height: size,
-                // tintColor: color // tintColor removed for not being used by Lahiru
+              style={{ width: size, height: size, tintColor: color
           }}
           />
       );
@@ -61,9 +61,9 @@ const ASAppHeader: React.FC<ASAppHeaderProps> = ({
         <TouchableOpacity
             key={`${alignment}-${idx}`}
             onPress={action.onPress}
-            style={[stylesObj.actionButton,   idx === filteredActions.length - 1 ? { marginRight: 0 } : null]} // Prevent last item to have marginRight
+            style={[stylesObj.actionButton, idx === filteredActions.length - 1 ? { marginRight: 0 } : null]} // Prevent last item to have marginRight
         >
-          {renderIcon(action.icon, action.iconSize)}
+          {renderIcon(action.icon, action.iconSize, action.color)}
         </TouchableOpacity>
     ));
   }
