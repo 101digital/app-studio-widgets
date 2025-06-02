@@ -39,6 +39,7 @@ const ASAppHeader: React.FC<ASAppHeaderProps> = ({
      headerTitle,
      actions = [],
     isPreview,
+    ...restProps
    }:ASAppHeaderProps) => {
   const renderIcon = (
       icon: React.ReactNode | string,
@@ -127,10 +128,12 @@ const ASAppHeader: React.FC<ASAppHeaderProps> = ({
   const insets = isPreview ? null : useSafeAreaInsets();
 
   return (
-      <View style={[customStyles,{
-        paddingTop: (customStyles?.paddingTop ?? 0) + (insets?.top ?? 0), // Handle safe area view
-        height: (customStyles?.height ?? 0) + (insets?.top ?? 0), // Handle safe area view
-      }]}>
+      <View
+          {...restProps}
+          style={[customStyles, {
+            paddingTop: (customStyles?.paddingTop ?? 0) + (insets?.top ?? 0), // Handle safe area view
+            height: (customStyles?.height ?? 0) + (insets?.top ?? 0), // Handle safe area view
+          }]}>
         {backButton?.isEnabled && backButton.isLargerBackButton && renderBackButton()} {/* Full row back button (if enabled) */}
         {/* Main app header */}
         <View style={stylesObj.headerContainer}>
@@ -145,7 +148,7 @@ const ASAppHeader: React.FC<ASAppHeaderProps> = ({
                 style={[
                   stylesObj.titleText,
                   headerTitle.textStyles,
-                  { textAlign: getTitleTextAlign() },
+                  {textAlign: getTitleTextAlign()},
                 ]}
                 numberOfLines={1}
             >
