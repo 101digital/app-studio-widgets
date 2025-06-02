@@ -30,6 +30,7 @@ type ASAppHeaderProps = {
   backButton?: BackButtonProps;
   headerTitle: HeaderTitleProps;
   actions?: ActionItem[];
+  isPreview?: boolean
 };
 
 const ASAppHeader: React.FC<ASAppHeaderProps> = ({
@@ -37,6 +38,7 @@ const ASAppHeader: React.FC<ASAppHeaderProps> = ({
      backButton,
      headerTitle,
      actions = [],
+    isPreview,
    }:ASAppHeaderProps) => {
   const renderIcon = (
       icon: React.ReactNode | string,
@@ -122,7 +124,7 @@ const ASAppHeader: React.FC<ASAppHeaderProps> = ({
     }
   };
 
-  const insets =useSafeAreaInsets();
+  const insets = isPreview ? null : useSafeAreaInsets();
 
   return (
       <View style={[customStyles,{
