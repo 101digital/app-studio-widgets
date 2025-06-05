@@ -62,7 +62,7 @@ const DefaultBackButton = (props) => {
 exports.DefaultBackButton = DefaultBackButton;
 const ASAppBar = (props) => {
     const { backIconColor, backIconSize, onPressBackButton, title, traillingIcon, isPreviewScreen, style, testId = "ASAppBar", } = props || {};
-    return (react_1.default.createElement(react_native_1.View, { testID: `view-${testId}`, style: [
+    return (react_1.default.createElement(react_native_1.View, { testID: testId, style: [
             styles.container,
             { paddingTop: isPreviewScreen ? 22 : 0 },
             react_native_1.StyleSheet.flatten(style),

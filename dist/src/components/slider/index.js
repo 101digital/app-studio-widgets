@@ -55,7 +55,7 @@ const text_1 = __importDefault(require("../text"));
 const theme_context_1 = require("../../context/theme-context");
 const ASSlider = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { minimumValue, maximumValue, step = 1, name, onChange } = props, restProps = __rest(props, ["minimumValue", "maximumValue", "step", "name", "onChange"]);
+    const { minimumValue, maximumValue, step = 1, name, onChange, testId = "ASSlider" } = props, restProps = __rest(props, ["minimumValue", "maximumValue", "step", "name", "onChange", "testId"]);
     const [field, meta, helpers] = (0, formik_1.useField)(name);
     const { setValue } = helpers || {};
     const sliderValue = parseFloat(field === null || field === void 0 ? void 0 : field.value);
@@ -63,9 +63,9 @@ const ASSlider = (props) => {
         setValue === null || setValue === void 0 ? void 0 : setValue(value);
         onChange === null || onChange === void 0 ? void 0 : onChange(value);
     };
-    return (react_1.default.createElement(react_native_1.View, { style: styles.container },
+    return (react_1.default.createElement(react_native_1.View, { testID: testId, style: styles.container },
         react_1.default.createElement(slider_1.default, Object.assign({ style: styles.slider, value: sliderValue, minimumValue: minimumValue, maximumValue: maximumValue, step: step, thumbTintColor: colors.primary, minimumTrackTintColor: colors.primary, maximumTrackTintColor: colors.onTertiary }, restProps, { onValueChange: _onValueChange })),
-        !!sliderValue && react_1.default.createElement(text_1.default, { style: styles.valueText }, sliderValue)));
+        !!sliderValue && react_1.default.createElement(text_1.default, { testId: `valueLabel-${testId}`, style: styles.valueText }, sliderValue)));
 };
 const styles = react_native_1.StyleSheet.create({
     container: {

@@ -63,6 +63,7 @@ export type ASDatePickerProps = TextInputProps &
     dayTextColor?: string;
     calendarBackground?: string;
     textSectionTitleColor?: string;
+    testId?: string;
   };
 
 const ASDatePicker = (props: ASDatePickerProps) => {
@@ -102,6 +103,7 @@ const ASDatePicker = (props: ASDatePickerProps) => {
     dayTextColor,
     calendarBackground,
     textSectionTitleColor,
+    testId="ASDatePicker",
     ...restProps
   } = props;
   const [active, setActive] = useState(false);
@@ -161,6 +163,7 @@ const ASDatePicker = (props: ASDatePickerProps) => {
       ]}
       accessibilityLabel={accessibilityLabel}
       id={id}
+      testID={testId}
     >
       <View
         style={[

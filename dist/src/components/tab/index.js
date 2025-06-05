@@ -49,7 +49,7 @@ const ASTabs = ({ children, activeTabName, onTabPress, activeTabTextColor, activ
     const width = (flattenedTabHeaderStyle === null || flattenedTabHeaderStyle === void 0 ? void 0 : flattenedTabHeaderStyle.width) || "90%";
     const maxHeight = (flattenedTabHeaderStyle === null || flattenedTabHeaderStyle === void 0 ? void 0 : flattenedTabHeaderStyle.height) || 50;
     const height = (flattenedTabHeaderStyle === null || flattenedTabHeaderStyle === void 0 ? void 0 : flattenedTabHeaderStyle.height) || 50;
-    return (react_1.default.createElement(react_native_1.View, { testID: `view-${testId}`, style: [
+    return (react_1.default.createElement(react_native_1.View, { testID: testId, style: [
             styles.container,
             style,
             { backgroundColor: "rgba(52, 52, 52, alpha)" },

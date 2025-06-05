@@ -5,6 +5,7 @@ export type ASSliderProps = SliderProps & {
     minimumValue: number;
     maximumValue: number;
     name: string;
+    testId?: string;
 };
 declare const ASSlider: React.FC<ASSliderProps>;
 export default ASSlider;

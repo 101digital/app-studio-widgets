@@ -52,7 +52,7 @@ const ASIconButton: React.FC<ASIconButtonProps> = (
 
   return (
     <TouchableOpacity
-      testID={`view-${testId}`}
+      testID={testId}
       onPress={onPress}
       style={[styles.button, style]}
       id={id}

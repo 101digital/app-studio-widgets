@@ -68,7 +68,7 @@ const ASTabs: React.FC<TabsProps> = ({
 
   return (
     <View
-      testID={`view-${testId}`}
+      testID={testId}
       style={[
         styles.container,
         style,

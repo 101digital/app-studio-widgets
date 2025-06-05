@@ -36,7 +36,7 @@ const ASPasswordTextField: FC<ASPasswordTextFieldProps> = (
 
   return (
     <ASTextField
-      testID={`view-${testId}`}
+      testID={testId}
       suffixIcon={
         isShowSuffixIcon ? (
           <TouchableOpacity

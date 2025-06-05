@@ -13,6 +13,7 @@ export type ASCounterProps = {
     style?: ViewStyle;
     name: string;
     onChange?: (item: number) => void;
+    testId?: string;
 };
 declare const ASCounter: React.FC<ASCounterProps>;
 export default ASCounter;

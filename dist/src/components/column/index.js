@@ -62,7 +62,7 @@ const ASColumn = (props) => {
                 return flex; // Return the first non-zero flex value found
             return acc; // Keep the previous value if none found
         }, undefined) : undefined;
-    return (react_1.default.createElement(react_native_1.View, Object.assign({ testID: `view-${testId}`, style: [styles.container, Object.assign({}, (flexValue && { flex: flexValue })), style], accessibilityLabel: accessibilityLabel, onLayout: (event) => {
+    return (react_1.default.createElement(react_native_1.View, Object.assign({ testID: testId, style: [styles.container, Object.assign({}, (flexValue && { flex: flexValue })), style], accessibilityLabel: accessibilityLabel, onLayout: (event) => {
             const { height } = event.nativeEvent.layout; // Get height after layout
             setContainerHeight(height); // Update state with the container height
         } }, restProps),

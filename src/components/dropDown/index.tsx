@@ -170,7 +170,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
 
   return (
     <View
-      testID={`view-${testId}`}
+      testID={testId}
       style={[
         styles.container,
         {

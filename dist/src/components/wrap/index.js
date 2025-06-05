@@ -18,7 +18,7 @@ const react_1 = __importDefault(require("react"));
 const react_native_1 = require("react-native");
 const ASWrap = (props) => {
     const { children, direction = 'row', style, itemMargin, testId = 'ASWrap' } = props, restProps = __rest(props, ["children", "direction", "style", "itemMargin", "testId"]);
-    return (react_1.default.createElement(react_native_1.View, Object.assign({ testID: `view-${testId}`, style: [styles.container, { flexDirection: direction }, style] }, restProps), !!itemMargin ? react_1.default.Children.map(children, (child, index) => (react_1.default.createElement(react_native_1.View, { key: index, style: [styles.item, { margin: itemMargin || 5 }] }, child))) : children));
+    return (react_1.default.createElement(react_native_1.View, Object.assign({ testID: testId, style: [styles.container, { flexDirection: direction }, style] }, restProps), !!itemMargin ? react_1.default.Children.map(children, (child, index) => (react_1.default.createElement(react_native_1.View, { key: index, style: [styles.item, { margin: itemMargin || 5 }] }, child))) : children));
 };
 const styles = react_native_1.StyleSheet.create({
     container: {

@@ -38,7 +38,7 @@ const ASTabView: React.FC<ASTabViewProps> = (props: ASTabViewProps) => {
     <View
       {...restProps}
       style={[styles.container, style]}
-      testID={`view-${testId}`}
+      testID={testId}
     >
       {isScrollable ? (
         <ScrollView

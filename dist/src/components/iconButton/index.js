@@ -15,7 +15,7 @@ const ASIconButton = (props) => {
         }
         return react_1.default.createElement(react_native_1.View, { style: { width, height } }, icon);
     };
-    return (react_1.default.createElement(react_native_1.TouchableOpacity, { testID: `view-${testId}`, onPress: onPress, style: [styles.button, style], id: id }, renderIcon()));
+    return (react_1.default.createElement(react_native_1.TouchableOpacity, { testID: testId, onPress: onPress, style: [styles.button, style], id: id }, renderIcon()));
 };
 exports.default = ASIconButton;
 const styles = react_native_1.StyleSheet.create({

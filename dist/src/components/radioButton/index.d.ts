@@ -18,6 +18,7 @@ export type ASRadioButtonProps = {
     inActiveColor?: ColorValue;
     style?: ViewStyle;
     spacing?: number;
+    testId?: string;
 };
 declare const ASRadioButton: React.FC<ASRadioButtonProps>;
 export default ASRadioButton;

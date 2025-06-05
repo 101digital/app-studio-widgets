@@ -24,7 +24,7 @@ const ASColumn: React.FC<ASColumnProps> = (props: ASColumnProps) => {
 
     return (
         <View
-            testID={`view-${testId}`}
+            testID={testId}
             style={[styles.container, {...(flexValue && {flex: flexValue})}, style]}
             accessibilityLabel={accessibilityLabel}
             onLayout={(event) => {

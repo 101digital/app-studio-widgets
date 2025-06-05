@@ -32,7 +32,7 @@ const ASBottomSheet = (props) => {
                 label && (react_1.default.createElement(text_1.default, { testID: `label-${testId}`, style: [styles.titleStyle, labelTextStyles] }, label)),
                 react_1.default.createElement(button_1.default, { testID: `closeButton-${testId}`, onPress: () => onClose(), style: styles.closeButtonStyle },
                     react_1.default.createElement(closeIcon_icon_1.CloseIcon, null))),
-            react_1.default.createElement(react_native_1.SafeAreaView, { testID: `view-${testId}`, style: styles.contentContainerStyle }, children))));
+            react_1.default.createElement(react_native_1.SafeAreaView, { testID: testId, style: styles.contentContainerStyle }, children))));
 };
 ASBottomSheet.defaultProps = {
     isVisible: false,

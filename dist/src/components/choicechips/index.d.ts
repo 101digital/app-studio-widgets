@@ -21,6 +21,7 @@ export type ASChoiceChipsProps = {
     isOverlayEnabled?: boolean;
     onChange?: (value: any) => void;
     id?: string;
+    testId?: string;
 };
 declare const ASChoiceChips: React.FC<ASChoiceChipsProps>;
 export default ASChoiceChips;

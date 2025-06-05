@@ -21,7 +21,7 @@ const ASExpandableText: React.FC<ASExpandableTextProps> = (props: ASExpandableTe
     };
 
     return (
-        <View testID={`view-${testId}`}>
+        <View testID={testId}>
             <ASText
                 testID={`text-${testId}`}
                 numberOfLines={isExpanded ? undefined : initialLines}

@@ -26,6 +26,7 @@ export type ASRadioButtonProps = {
     inActiveColor?: ColorValue
     style?: ViewStyle
     spacing?:number
+    testId?: string
 }
 
 const ASRadioButton: React.FC<ASRadioButtonProps> = (props: ASRadioButtonProps) => {
@@ -42,7 +43,8 @@ const ASRadioButton: React.FC<ASRadioButtonProps> = (props: ASRadioButtonProps) 
         onChange,
         inActiveColor='#C4C4C4',
         style:flattenStyle,
-        spacing
+        spacing,
+        testId = "ASRadioButton",
     } = props;
     const [field, meta, helpers] = useField(name);
     const {setValue} = helpers || {};
@@ -88,7 +90,7 @@ const ASRadioButton: React.FC<ASRadioButtonProps> = (props: ASRadioButtonProps) 
 
     const mapRadioButton = (item: ASRadioButtonItemProps, index: number) => {
         return (
-            <TouchableOpacity key={`${index}${item?.label}`} onPress={_onPressRadioButton(item)}
+            <TouchableOpacity testID={`button-${testId}`}  key={`${index}${item?.label}`} onPress={_onPressRadioButton(item)}
                               style={styles.container}>
                 {renderRadioButtonType(item)}
             </TouchableOpacity>
@@ -97,7 +99,7 @@ const ASRadioButton: React.FC<ASRadioButtonProps> = (props: ASRadioButtonProps) 
 
     return (
         <>
-            <RadioButtonContainer style={style} spacing={spacing}>
+            <RadioButtonContainer testId={testId} style={style} spacing={spacing}>
                 {
                     options?.map(mapRadioButton)
                 }
