@@ -24,7 +24,7 @@ const ASBadge: React.FC<ASBadgeProps> = (props: ASBadgeProps) => {
     props;
 
   return (
-    <View style={[styles.container, containerStyle]} id={id} testID={`view-${testId}`}>
+    <View style={[styles.container, containerStyle]} id={id} testID={testId}>
       <View>
         {children}
         {!!label && (

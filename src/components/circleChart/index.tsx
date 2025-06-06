@@ -53,7 +53,7 @@ const ASCircleChart: React.FC<ASCircleChartProps> = (props: ASCircleChartProps) 
     const activeStrokeSizePercentage = (circleCircumference * (100 - progress)) / 100;
 
     return (
-        <View style={styles.container} testID={`view-${testId}`}>
+        <View style={styles.container} testID={testId}>
             <Svg  testID={`svgView-${testId}`} width={diameter} height={diameter} viewBox={`0 0 ${viewBox * 2} ${viewBox * 2}`}>
                 <G rotation={'-90'} origin={`${viewBox}, ${viewBox}`}>
                     <Circle

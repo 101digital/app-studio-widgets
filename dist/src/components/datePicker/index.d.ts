@@ -36,6 +36,7 @@ export type ASDatePickerProps = TextInputProps & ModalProps & {
     dayTextColor?: string;
     calendarBackground?: string;
     textSectionTitleColor?: string;
+    testId?: string;
 };
 declare const ASDatePicker: {
     (props: ASDatePickerProps): React.JSX.Element;

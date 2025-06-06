@@ -8,7 +8,7 @@ const react_native_1 = require("react-native");
 const text_1 = __importDefault(require("../text"));
 const ASBadge = (props) => {
     const { children, testId = 'ASBadge', label, badgeStyles, badgeTextStyle, containerStyle, id } = props;
-    return (react_1.default.createElement(react_native_1.View, { style: [styles.container, containerStyle], id: id, testID: `view-${testId}` },
+    return (react_1.default.createElement(react_native_1.View, { style: [styles.container, containerStyle], id: id, testID: testId },
         react_1.default.createElement(react_native_1.View, null,
             children,
             !!label && (react_1.default.createElement(react_native_1.View, { testID: `badgeView-${testId}`, style: [

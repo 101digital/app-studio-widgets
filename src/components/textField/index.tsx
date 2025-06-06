@@ -162,7 +162,7 @@ const ASTextField = (props: ASTextFieldProps) => {
 
     return (
         <View
-        testID={`view-${testId}`}
+        testID={testId}
         style={[styles.wrapperStyle, {
             height: "auto",
             borderColor: 'transparent',

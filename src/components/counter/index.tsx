@@ -25,6 +25,7 @@ export type ASCounterProps = {
   style?: ViewStyle;
   name: string;
   onChange?: (item: number) => void;
+  testId?: string
 }
 
 // ASCounter component with typed props
@@ -40,7 +41,8 @@ const ASCounter: React.FC<ASCounterProps> = ({
   style,
   name,
   labelTypography,
-  onChange
+  onChange,
+  testId = "ASCounter"
 }) => {
   const [field, meta, helpers] = useField(name);
   const { setValue } = helpers || {};

@@ -10,6 +10,7 @@ export type ASSliderProps = SliderProps & {
     minimumValue: number;
     maximumValue: number;
     name: string
+    testId?: string;
 }
 
 const ASSlider: React.FC<ASSliderProps> = (props: ASSliderProps) => {
@@ -20,6 +21,7 @@ const ASSlider: React.FC<ASSliderProps> = (props: ASSliderProps) => {
         step = 1,
         name,
         onChange,
+        testId="ASSlider",
         ...restProps
     } = props
     const [field, meta, helpers] = useField(name);
@@ -32,7 +34,7 @@ const ASSlider: React.FC<ASSliderProps> = (props: ASSliderProps) => {
     }
 
     return (
-        <View style={styles.container}>
+        <View testID={testId} style={styles.container}>
             <Slider
                 style={styles.slider}
                 value={sliderValue}
@@ -45,7 +47,7 @@ const ASSlider: React.FC<ASSliderProps> = (props: ASSliderProps) => {
                 {...restProps}
                 onValueChange={_onValueChange}
             />
-            {!!sliderValue && <ASText style={styles.valueText}>{sliderValue}</ASText>}
+            {!!sliderValue && <ASText testId={`valueLabel-${testId}`} style={styles.valueText}>{sliderValue}</ASText>}
         </View>
     );
 };

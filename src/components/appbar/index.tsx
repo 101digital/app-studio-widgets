@@ -62,7 +62,7 @@ const ASAppBar: React.FC<ASAppBarProps> = (props: ASAppBarProps) => {
   } = props || {};
   return (
     <View
-      testID={`view-${testId}`}
+      testID={testId}
       style={[
         styles.container,
         { paddingTop: isPreviewScreen ? 22 : 0 },

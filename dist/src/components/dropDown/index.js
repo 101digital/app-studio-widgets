@@ -118,7 +118,7 @@ const ASDropDown = (props) => {
         onSelect === null || onSelect === void 0 ? void 0 : onSelect(item); // Trigger the onSelect callback if provided
         onChange === null || onChange === void 0 ? void 0 : onChange(item); // Trigger onChange event if provided
     };
-    return (react_1.default.createElement(react_native_1.View, { testID: `view-${testId}`, style: [
+    return (react_1.default.createElement(react_native_1.View, { testID: testId, style: [
             styles.container,
             {
                 backgroundColor: colors.background,

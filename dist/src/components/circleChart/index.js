@@ -53,7 +53,7 @@ const ASCircleChart = (props) => {
     const circleCircumference = 2 * Math.PI * radius;
     const strokeColor = color || colors.outline;
     const activeStrokeSizePercentage = (circleCircumference * (100 - progress)) / 100;
-    return (react_1.default.createElement(react_native_1.View, { style: styles.container, testID: `view-${testId}` },
+    return (react_1.default.createElement(react_native_1.View, { style: styles.container, testID: testId },
         react_1.default.createElement(react_native_svg_1.default, { testID: `svgView-${testId}`, width: diameter, height: diameter, viewBox: `0 0 ${viewBox * 2} ${viewBox * 2}` },
             react_1.default.createElement(react_native_svg_1.G, { rotation: '-90', origin: `${viewBox}, ${viewBox}` },
                 react_1.default.createElement(react_native_svg_1.Circle, { cx: "50%", cy: "50%", stroke: secondaryColor || strokeColor, opacity: inActiveStrokeOpacity, strokeWidth: circleStrokeWidth, r: radius, fill: "rgba(0,0,0,0)" }),

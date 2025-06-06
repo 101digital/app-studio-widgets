@@ -149,7 +149,7 @@ const ASSwipeButton: React.FC<ASSwipeButtonProps> = (props) => {
   ) => (styles ? StyleSheet.flatten(styles) : {});
 
   return (
-    <View accessibilityLabel={accessibilityLabel} id={id} testID={`view-${testId}`}>
+    <View accessibilityLabel={accessibilityLabel} id={id} testID={testId}>
       <SwipeButton
         testID={`swipeButton-${testId}`}
         containerStyles={flattenStyles(containerStyles)}

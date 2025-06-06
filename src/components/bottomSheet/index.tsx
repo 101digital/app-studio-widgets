@@ -86,7 +86,7 @@ const ASBottomSheet = (props: BottomSheetModalProps) => {
           </ASButton>
         </ASRow>
         <SafeAreaView
-          testID={`view-${testId}`}
+          testID={testId}
           style={styles.contentContainerStyle}
         >
           {children}

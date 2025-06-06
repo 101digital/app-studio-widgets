@@ -31,7 +31,7 @@ const ASProgressBar: React.FC<ASProgressBarProps> = (props: ASProgressBarProps) 
     } = props
 
     return (
-        <View testID={`view-${testId}`} style={[styles.progressBarContainer, StyleSheet.flatten(style)]}>
+        <View testID={testId} style={[styles.progressBarContainer, StyleSheet.flatten(style)]}>
             {!!progressBarTitle &&
                 <ASText testID={`title-${testId}`}  style={[styles.progressBarText, progressTitleStyle]}>{progressBarTitle}</ASText>}
             <View  testID={`progressBarView-${testId}`}  style={[styles.progressBar, {

@@ -50,7 +50,7 @@ const ASPasswordTextField = (props) => {
     const suffixIconAccessibility = accessibilityLabel
         ? accessibilityLabel + "-icon"
         : "";
-    return (react_1.default.createElement(textField_1.default, Object.assign({ testID: `view-${testId}`, suffixIcon: isShowSuffixIcon ? (react_1.default.createElement(react_native_1.TouchableOpacity, { testID: `suffixIconButton-${testId}`, onPress: onPressSecureTextEntry, style: styles.suffixIconContainer, accessibilityLabel: suffixIconAccessibility }, isSecureTextEntry ? (react_1.default.createElement(showPassword_icon_1.ShowPasswordIcon, { size: suffixIconSize, color: suffixIconColor })) : (react_1.default.createElement(hidePassword_icon_1.HidePasswordIcon, { size: suffixIconSize, color: suffixIconColor })))) : null }, props, { secureTextEntry: isSecureTextEntry, isOverlayEnabled: isOverlayEnabled })));
+    return (react_1.default.createElement(textField_1.default, Object.assign({ testID: testId, suffixIcon: isShowSuffixIcon ? (react_1.default.createElement(react_native_1.TouchableOpacity, { testID: `suffixIconButton-${testId}`, onPress: onPressSecureTextEntry, style: styles.suffixIconContainer, accessibilityLabel: suffixIconAccessibility }, isSecureTextEntry ? (react_1.default.createElement(showPassword_icon_1.ShowPasswordIcon, { size: suffixIconSize, color: suffixIconColor })) : (react_1.default.createElement(hidePassword_icon_1.HidePasswordIcon, { size: suffixIconSize, color: suffixIconColor })))) : null }, props, { secureTextEntry: isSecureTextEntry, isOverlayEnabled: isOverlayEnabled })));
 };
 const styles = react_native_1.StyleSheet.create({
     suffixIconContainer: {
