@@ -167,7 +167,9 @@ const ASTextField = (props: ASTextFieldProps) => {
             height: "auto",
             borderColor: 'transparent',
             marginBottom: flattenedStyle?.marginBottom || 0,
-            ...(flattenedStyle?.flex ? { flex: flattenedStyle.flex } : {})
+            ...(flattenedStyle?.flex ? { flex: flattenedStyle.flex } : {}),
+            ...(flattenedStyle?.width ? { flex: flattenedStyle.width } : {}),
+            ...(flattenedStyle?.alignSelf ? { flex: flattenedStyle.alignSelf } : {})
         },  ]}
               accessibilityLabel={accessibilityLabel} id={id}>
             <View
@@ -196,7 +198,7 @@ const ASTextField = (props: ASTextFieldProps) => {
                 >
                     {label}
                 </ASText>
-                <View 
+                <View
                     style={[styles.contentContainerStyle]}>
                     {prefixIcon && <View style={styles.prefixIcon}>{typeof prefixIcon === 'string' ?
                         <ASImage
@@ -206,7 +208,7 @@ const ASTextField = (props: ASTextFieldProps) => {
                         />
                         : prefixIcon}</View>}
                     {!!prefixText && (
-                        <ASText style={[styles.prefixText, prefixTextStyle]} 
+                        <ASText style={[styles.prefixText, prefixTextStyle]}
                         testID={`prefixLabel-${testId}`}>
                             {prefixText}
                         </ASText>
@@ -251,7 +253,7 @@ const ASTextField = (props: ASTextFieldProps) => {
                 </View>
             </View>
             {meta?.error && meta?.touched && (
-                <ASText 
+                <ASText
                 testID={`errorLabel-${testId}`} style={[styles.errorTextStyle, errorMessageTextStyle]}>
                     {getErrorMessage(meta?.error)}
                 </ASText>
