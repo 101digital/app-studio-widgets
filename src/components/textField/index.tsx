@@ -168,8 +168,8 @@ const ASTextField = (props: ASTextFieldProps) => {
             borderColor: 'transparent',
             marginBottom: flattenedStyle?.marginBottom || 0,
             ...(flattenedStyle?.flex ? { flex: flattenedStyle.flex } : {}),
-            ...(flattenedStyle?.width ? { flex: flattenedStyle.width } : {}),
-            ...(flattenedStyle?.alignSelf ? { flex: flattenedStyle.alignSelf } : {})
+            ...(flattenedStyle?.width ? { width: flattenedStyle.width } : {}),
+            ...(flattenedStyle?.alignSelf ? { alignSelf: flattenedStyle.alignSelf } : {})
         },  ]}
               accessibilityLabel={accessibilityLabel} id={id}>
             <View
