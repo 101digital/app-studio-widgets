@@ -1,6 +1,6 @@
 {
   "name": "app-studio-widgets",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "description": "Widgets for App Studio",
   "repository": "https://github.com/101digital/app-studio-widgets",
   "license": "MIT",
@@ -35,7 +35,7 @@
     "lodash": "^4.17.21",
     "patch-package": "^8.0.0",
     "react": "19.0.0",
-    "react-native": "0.79.3",
+    "react-native": "0.79.1",
     "react-native-bouncy-checkbox": "^4.1.2",
     "react-native-calendars": "^1.1311.1",
     "react-native-element-dropdown": "2.12.4",
