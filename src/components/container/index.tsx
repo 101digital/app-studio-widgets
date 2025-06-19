@@ -1,8 +1,7 @@
-import React, { ReactNode, useContext } from 'react';
-import { ScrollView, ScrollViewProps, StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useNavigation, useRoute } from '@react-navigation/native';
-import { ThemeContext } from "../../context/theme-context";
+import React, {ReactNode} from 'react';
+import {ScrollView, ScrollViewProps, StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {useNavigation, useRoute} from '@react-navigation/native';
 
 export type ASContainerProps = {
     children: ReactNode;
@@ -41,16 +40,16 @@ const ASContainer: React.FC<ASContainerProps> = (props: ASContainerProps) => {
     const safeAreaStyle = disabledSafeArea
         ? {}
         : {
-              paddingTop: isHeaderVisible ? Math.max(15) : flattenedStyle?.paddingVertical ? flattenedStyle?.paddingVertical : insets.top,
-              paddingBottom: flattenedStyle?.paddingVertical ? flattenedStyle?.paddingVertical : insets.bottom,
-              paddingLeft: flattenedStyle?.paddingHorizontal ? flattenedStyle?.paddingHorizontal : insets.left,
-              paddingRight: flattenedStyle?.paddingHorizontal ? flattenedStyle?.paddingHorizontal : insets.right,
-          };
+            paddingTop: isHeaderVisible ? Math.max(flattenedStyle?.paddingTop ?? 0, insets.top, 15) : (flattenedStyle?.paddingTop ?? 0) + insets.top,
+            paddingBottom: (flattenedStyle?.paddingBottom ?? 0) + insets.bottom,
+            paddingLeft: (flattenedStyle?.paddingLeft ?? 0) + insets.left,
+            paddingRight: (flattenedStyle?.paddingRight ?? 0) + insets.right,
+        };
 
     return (
         <View
             {...restProps}
-            style={[styles.container, safeAreaStyle, style]}
+            style={[styles.container, style, safeAreaStyle]}
         >
             {isScrollable ? (
                 <ScrollView
