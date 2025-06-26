@@ -1,6 +1,7 @@
 import React from 'react';
 import {Image, StyleSheet, Text, TextStyle, TouchableOpacity, View, ViewStyle,} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 type BackButtonProps = {
   isEnabled: boolean;
@@ -47,13 +48,18 @@ const ASAppHeader: React.FC<ASAppHeaderProps> = ({
       color = '#000'
   ) => {
     if (typeof icon === 'string') {
-      return (
-          <Image
-              source={{ uri: icon }}
-              style={{ width: size, height: size, tintColor: color
-          }}
-          />
-      );
+      if (icon.startsWith('http')) {
+        return (
+            <Image
+                source={{uri: icon}}
+                style={{
+                  width: size, height: size, tintColor: color
+                }}
+            />
+        );
+      } else {
+        return <MaterialIcons name={icon} size={size} color={color}/>
+      }
     }
     return icon;
   };
