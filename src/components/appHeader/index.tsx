@@ -56,6 +56,7 @@ const ASAppHeader: React.FC<ASAppHeaderProps> = ({
     size = 24,
     color = "#000"
   ) => {
+    console.log("renderIcon", icon, size, color);
     if (typeof icon === "string") {
       if (icon.startsWith("http")) {
         return (
