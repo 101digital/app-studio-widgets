@@ -57,7 +57,6 @@ const ASAppHeader: React.FC<ASAppHeaderProps> = ({
     size = 24,
     color = "#000"
   ) => {
-    console.log("renderIcon", icon, size, color);
     if (typeof icon === "string") {
       if (icon.startsWith("http")) {
         return (
@@ -72,7 +71,6 @@ const ASAppHeader: React.FC<ASAppHeaderProps> = ({
         );
       } else {
         return (
-          <ASRow>
           <ASText
             style={{
               fontSize: size,
@@ -83,37 +81,6 @@ const ASAppHeader: React.FC<ASAppHeaderProps> = ({
           >
             {icon}
           </ASText>
-          <ASText
-            style={{
-              fontSize: size,
-              fontFamily: "Poppins",
-              color: color,
-            }}
-            accessibilityLabel={"back_button_icon_2"}
-          >
-            {icon}
-          </ASText>
-          <ASText
-            style={{
-              fontSize: size,
-              fontFamily: "Outfit",
-              color: color,
-            }}
-            accessibilityLabel={"back_button_icon_3"}
-          >
-            {icon}
-          </ASText>
-          <ASText
-            style={{
-              fontSize: size,
-              fontFamily: "Roboto",
-              color: color,
-            }}
-            accessibilityLabel={"back_button_icon_4"}
-          >
-            {icon}
-          </ASText>
-          </ASRow>
         );
       }
     }
