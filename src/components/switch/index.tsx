@@ -36,7 +36,7 @@ const ASSwitch: React.FC<ASSwitchProps> = (props: ASSwitchProps) => {
     <Switch
       testID={testId}
       trackColor={{ true: enableTrackColor, false: disabledTrackColor }}
-      ios_backgroundColor={colors.secondary}
+      ios_backgroundColor={disabledTrackColor} 
       onValueChange={toggleSwitch}
       value={isEnabled}
       thumbColor={isEnabled ? enableThumbColor : disabledThumbColor}
