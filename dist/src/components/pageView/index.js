@@ -47,10 +47,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importStar(require("react"));
 const react_native_1 = require("react-native");
 const theme_context_1 = require("../../context/theme-context");
-const react_native_gesture_handler_1 = require("react-native-gesture-handler");
 const ASPageView = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { children, style, paginationStyle, paginationBottomPosition = 0, horizontal = true, snapToAlignment = "center", showsHorizontalScrollIndicator = false, showsVerticalScrollIndicator = false, testId = 'ASPageView' } = props, restProps = __rest(props, ["children", "style", "paginationStyle", "paginationBottomPosition", "horizontal", "snapToAlignment", "showsHorizontalScrollIndicator", "showsVerticalScrollIndicator", "testId"]);
+    const { children, paginationStyle, paginationBottomPosition = 0, horizontal = true, snapToAlignment = "center", showsHorizontalScrollIndicator = false, showsVerticalScrollIndicator = false, testId = 'ASPageView' } = props, restProps = __rest(props, ["children", "paginationStyle", "paginationBottomPosition", "horizontal", "snapToAlignment", "showsHorizontalScrollIndicator", "showsVerticalScrollIndicator", "testId"]);
     const [height, setHeight] = (0, react_1.useState)(0);
     const [width, setWidth] = (0, react_1.useState)(0);
     const onLayout = (event) => {
@@ -66,35 +65,9 @@ const ASPageView = (props) => {
     const snapConfig = horizontal
         ? { snapToOffsets: [0, width], horizontal: true }
         : { snapToOffsets: [0, height] };
-    return (
-    // <PagerView
-    //     initialPage={0}
-    //     showsButtons={false}
-    //     orientation={"horizontal"}
-    //     loop={false}
-    //     dotStyle={[styles.dot, {backgroundColor: colors.black500,}]}
-    //     activeDotStyle={[styles.activeDot, {backgroundColor: colors.white,}]}
-    //     {...restprops}
-    //     style={[styles.wrapper, style]}
-    // >
-    //     {Array.isArray(children) ? children.map((page: React.ReactNode, index: number) => (
-    //             <View onLayout={onLayout}
-    //                   key={index} style={styles.slide}>
-    //                 {page}
-    //             </View>
-    //         )) :
-    //         <View onLayout={onLayout}
-    //               style={styles.slide}>
-    //             {children}
-    //         </View>
-    //     }
-    // </PagerView>
-    react_1.default.createElement(react_native_gesture_handler_1.ScrollView, Object.assign({ horizontal: horizontal, decelerationRate: 0, snapToInterval: width, snapToAlignment: snapToAlignment, showsHorizontalScrollIndicator: showsHorizontalScrollIndicator, showsVerticalScrollIndicator: showsVerticalScrollIndicator, testID: `scrollView-${testId}` }, snapConfig, restProps), Array.isArray(children) ? (children.map((page, index) => (react_1.default.createElement(react_native_1.View, { testID: `childView-${index}-${testId}`, onLayout: onLayout, key: index, style: styles.slide }, page)))) : (react_1.default.createElement(react_native_1.View, { testID: `slideView-${testId}`, onLayout: onLayout, style: styles.slide }, children))));
+    return (react_1.default.createElement(react_native_1.ScrollView, Object.assign({ horizontal: horizontal, decelerationRate: 0 }, (width > 0 && horizontal ? { snapToInterval: width } : {}), { snapToAlignment: snapToAlignment, showsHorizontalScrollIndicator: showsHorizontalScrollIndicator, showsVerticalScrollIndicator: showsVerticalScrollIndicator, testID: `scrollView-${testId}` }, snapConfig, restProps), Array.isArray(children) ? (children.map((page, index) => (react_1.default.createElement(react_native_1.View, { testID: `childView-${index}-${testId}`, onLayout: onLayout, key: index, style: styles.slide }, page)))) : (react_1.default.createElement(react_native_1.View, { testID: `slideView-${testId}`, onLayout: onLayout, style: styles.slide }, children))));
 };
 const styles = react_native_1.StyleSheet.create({
-    wrapper: {
-        width: "100%",
-    },
     slide: {},
     dot: {
         width: 8,
@@ -116,13 +89,10 @@ exports.default = ASPageView;
 //Note: ASPageView example
 /*
     <ASPageView
-                pages={[
-                    <ASRow>
+              <ASRow>
                         <ASText style={{ fontSize: 24}}>Test Page view</ASText>
                         <Icon name="user-circle-o" size={30} color="theme.colors.primaryIconColor"/>
-                    </ASRow>
-                    ,
-                    <ASText style={{textAlign: 'center', fontSize: 24}}>Welcome to App Studio</ASText>,
+                         <ASText style={{textAlign: 'center', fontSize: 24}}>Welcome to App Studio</ASText>,
                     <ASColumn style={{}}>
                         <ASText>Test1</ASText>
                         <ASText>Test2</ASText>
@@ -140,6 +110,6 @@ exports.default = ASPageView;
                         <ASText>Test5</ASText>
                         <ASText>Test.....</ASText>
                     </ASColumn>
-                ]}
-            />
+                    </ASRow>
+            </ASPageView>
 * */

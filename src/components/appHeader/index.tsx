@@ -170,8 +170,8 @@ const ASAppHeader: React.FC<ASAppHeaderProps> = ({
       style={[
         customStyles,
         {
-          paddingTop: (customStyles?.paddingTop ?? 0) + (insets?.top ?? 0), // Handle safe area view
-          height: (customStyles?.height ?? 0) + (insets?.top ?? 0), // Handle safe area view
+          paddingTop: (Number(customStyles?.paddingTop) ?? 0) + (insets?.top ?? 0), // Handle safe area view
+          height: (Number(customStyles?.height) ?? 0) + (insets?.top ?? 0), // Handle safe area view
         },
       ]}
     >

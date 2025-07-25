@@ -131,7 +131,7 @@ const ASTextField = (props) => {
         }
         return active ? borderActiveColor : flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderColor;
     };
-    return (react_1.default.createElement(react_native_1.View, { testID: `view-${testId}`, style: [styles.wrapperStyle, Object.assign({ height: "auto", borderColor: 'transparent', marginBottom: (flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.marginBottom) || 0 }, ((flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.flex) ? { flex: flattenedStyle.flex } : {})),], accessibilityLabel: accessibilityLabel, id: id },
+    return (react_1.default.createElement(react_native_1.View, { testID: `view-${testId}`, style: [styles.wrapperStyle, Object.assign(Object.assign(Object.assign({ height: "auto", borderColor: 'transparent', marginBottom: (flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.marginBottom) || 0 }, ((flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.flex) ? { flex: flattenedStyle.flex } : {})), ((flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.width) ? { width: flattenedStyle.width } : {})), ((flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.alignSelf) ? { alignSelf: flattenedStyle.alignSelf } : {})),], accessibilityLabel: accessibilityLabel, id: id },
         react_1.default.createElement(react_native_1.View, { style: [
                 styles.containerStyle,
                 Object.assign(Object.assign({ borderColor: getBorderColor() || (flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderColor), height: flattenedHeight }, flattenedStyle), { marginBottom: 0 }),
@@ -194,6 +194,7 @@ const styles = react_native_1.StyleSheet.create({
     textInputStyle: {
         flex: 1,
         fontSize: 12,
+        paddingVertical: 0,
     },
     errorTextStyle: {
         fontSize: 12,

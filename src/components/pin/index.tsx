@@ -241,7 +241,7 @@ const PinInputList: React.FC<PinInputListProps> = (
                         <ASText style={inputTypography}>{pin[index] || ""}</ASText>
                     ) : (
                         <TextInput
-                            ref={(el) => (inputRefs.current[index] = el!)}
+                            ref={(el) => {inputRefs.current[index] = el!}}
                             style={[inputTypography, styles.textInputStyle]}
                             value={pin[index] || ""}
                             keyboardType="number-pad"

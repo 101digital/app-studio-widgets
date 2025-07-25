@@ -40,10 +40,10 @@ const ASContainer: React.FC<ASContainerProps> = (props: ASContainerProps) => {
     const safeAreaStyle = disabledSafeArea
         ? {}
         : {
-            paddingTop: isHeaderVisible ? Math.max(flattenedStyle?.paddingTop ?? 0, insets.top, 15) : (flattenedStyle?.paddingTop ?? 0) + insets.top,
-            paddingBottom: (flattenedStyle?.paddingBottom ?? 0) + insets.bottom,
-            paddingLeft: (flattenedStyle?.paddingLeft ?? 0) + insets.left,
-            paddingRight: (flattenedStyle?.paddingRight ?? 0) + insets.right,
+            paddingTop: isHeaderVisible ? Math.max(Number(flattenedStyle?.paddingTop) ?? 0, insets.top, 15) : (Number(flattenedStyle?.paddingTop) ?? 0) + insets.top,
+            paddingBottom: (Number(flattenedStyle?.paddingBottom) ?? 0) + insets.bottom,
+            paddingLeft: (Number(flattenedStyle?.paddingLeft) ?? 0) + insets.left,
+            paddingRight: (Number(flattenedStyle?.paddingRight) ?? 0) + insets.right,
         };
 
     return (

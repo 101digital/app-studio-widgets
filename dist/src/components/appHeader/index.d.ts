@@ -1,5 +1,5 @@
-import React from 'react';
-import { ViewStyle, TextStyle } from 'react-native';
+import React from "react";
+import { TextStyle, ViewStyle } from "react-native";
 type BackButtonProps = {
     isEnabled: boolean;
     icon: React.ReactNode | string;
@@ -11,19 +11,21 @@ type BackButtonProps = {
 type HeaderTitleProps = {
     title: string;
     textStyles?: TextStyle;
-    alignment?: 'left' | 'center' | 'right';
+    alignment?: "left" | "center" | "right";
 };
 type ActionItem = {
     icon: React.ReactNode | string;
     iconSize?: number;
-    alignment: 'left' | 'right';
+    alignment: "left" | "right";
     onPress: () => void;
+    color?: string;
 };
 type ASAppHeaderProps = {
     styles?: ViewStyle;
     backButton?: BackButtonProps;
     headerTitle: HeaderTitleProps;
     actions?: ActionItem[];
+    isPreview?: boolean;
 };
 declare const ASAppHeader: React.FC<ASAppHeaderProps>;
 export default ASAppHeader;

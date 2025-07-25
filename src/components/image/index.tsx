@@ -21,8 +21,7 @@ export type ASImageProps = Omit<ImageProps, "source"> & {
   testId?: string;
 };
 
-const ASImage: (props: ASImageProps) => JSX.Element = (props: ASImageProps) => {
-  const {
+const ASImage: React.FC<ASImageProps> = (props) => {  const {
     source,
     style,
     roundImageSize = 0,

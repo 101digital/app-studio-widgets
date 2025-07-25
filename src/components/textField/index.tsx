@@ -208,7 +208,7 @@ const ASTextField = (props: ASTextFieldProps) => {
                         />
                         : prefixIcon}</View>}
                     {!!prefixText && (
-                        <ASText style={[styles.prefixText, prefixTextStyle]}
+                        <ASText style={[styles.prefixText, prefixTextStyle] } 
                         testID={`prefixLabel-${testId}`}>
                             {prefixText}
                         </ASText>
