@@ -5,7 +5,7 @@ import { ThemeContext } from "../../context/theme-context";
 import ASLoadingIndicator from "../loadingIndicator";
 import { ArrowForwardIcon } from "../../assets/icon/arrow-forward.icon";
 import $ from "jquery";
-import { toNumber } from "utils/commonUtils";
+import { toNumber } from "../../utils/commonUtils";
 
 export type ASSwipeButtonProps = {
   containerStyles?: ViewStyle | ViewStyle[];

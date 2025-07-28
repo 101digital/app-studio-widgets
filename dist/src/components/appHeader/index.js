@@ -18,7 +18,7 @@ const react_1 = __importDefault(require("react"));
 const react_native_1 = require("react-native");
 const react_native_safe_area_context_1 = require("react-native-safe-area-context");
 const text_1 = __importDefault(require("../text"));
-const commonUtils_1 = require("utils/commonUtils");
+const commonUtils_1 = require("../../utils/commonUtils");
 const ASAppHeader = (_a) => {
     var _b, _c;
     var { styles: customStyles = {}, backButton, headerTitle, actions = [], isPreview } = _a, restProps = __rest(_a, ["styles", "backButton", "headerTitle", "actions", "isPreview"]);

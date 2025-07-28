@@ -11,7 +11,7 @@ import {
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import ASText from "../text";
 import ASRow from "../row";
-import { toNumber } from "utils/commonUtils";
+import { toNumber } from "../../utils/commonUtils";
 
 type BackButtonProps = {
   isEnabled: boolean;

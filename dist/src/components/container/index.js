@@ -18,7 +18,7 @@ const react_1 = __importDefault(require("react"));
 const react_native_1 = require("react-native");
 const react_native_safe_area_context_1 = require("react-native-safe-area-context");
 const native_1 = require("@react-navigation/native");
-const commonUtils_1 = require("utils/commonUtils");
+const commonUtils_1 = require("../../utils/commonUtils");
 const ASContainer = (props) => {
     var _a, _b, _c, _d, _e, _f;
     const { children, style, isScrollable = true, scrollViewContentContainerStyle, scrollViewProps, disabledSafeArea, isPreview = false } = props, restProps = __rest(props, ["children", "style", "isScrollable", "scrollViewContentContainerStyle", "scrollViewProps", "disabledSafeArea", "isPreview"]);

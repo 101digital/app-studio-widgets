@@ -17,7 +17,7 @@ import {ThemeContext} from "../../context/theme-context";
 import {constants} from "../../utils/constants";
 import ASOverlay from "../overlay";
 import ASImage from "../image";
-import { toNumber } from "utils/commonUtils";
+import { toNumber } from "../../utils/commonUtils";
 
 export type ASTextFieldProps = Omit<TextInputMaskProps, "type"> &
     TextInputProps & {

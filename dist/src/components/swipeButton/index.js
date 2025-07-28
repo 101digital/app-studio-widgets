@@ -43,7 +43,7 @@ const theme_context_1 = require("../../context/theme-context");
 const loadingIndicator_1 = __importDefault(require("../loadingIndicator"));
 const arrow_forward_icon_1 = require("../../assets/icon/arrow-forward.icon");
 const jquery_1 = __importDefault(require("jquery"));
-const commonUtils_1 = require("utils/commonUtils");
+const commonUtils_1 = require("../../utils/commonUtils");
 const ASSwipeButton = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
     const { containerStyles, disabled, disableResetOnTap, disabledRailBackgroundColor, disabledThumbIconBackgroundColor, disabledThumbIconBorderColor, enableReverseSwipe, forceReset, height, onSwipeFail, onSwipeStart, onPress, railBackgroundColor, railBorderColor, railFillBackgroundColor, railFillBorderColor, railStyles, resetAfterSuccessAnimDelay, resetAfterSuccessAnimDuration, screenReaderEnabled, shouldResetAfterSuccess, swipeSuccessThreshold, thumbIconBackgroundColor, thumbIconBorderColor, thumbIconComponent, thumbIconImageSource, thumbIconStyles, thumbIconWidth, label, titleColor, titleFontSize, titleMaxFontScale, labelStyles, width, accessibilityLabel, loading, id, testId = 'ASSwipeButton' } = props;

@@ -2,7 +2,7 @@ import React, {ReactNode} from 'react';
 import {ScrollView, ScrollViewProps, StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useNavigation, useRoute} from '@react-navigation/native';
-import { toNumber } from 'utils/commonUtils';
+import { toNumber } from "../../utils/commonUtils";
 
 export type ASContainerProps = {
     children: ReactNode;
