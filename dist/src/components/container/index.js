@@ -18,6 +18,7 @@ const react_1 = __importDefault(require("react"));
 const react_native_1 = require("react-native");
 const react_native_safe_area_context_1 = require("react-native-safe-area-context");
 const native_1 = require("@react-navigation/native");
+const commonUtils_1 = require("utils/commonUtils");
 const ASContainer = (props) => {
     var _a, _b, _c, _d, _e, _f;
     const { children, style, isScrollable = true, scrollViewContentContainerStyle, scrollViewProps, disabledSafeArea, isPreview = false } = props, restProps = __rest(props, ["children", "style", "isScrollable", "scrollViewContentContainerStyle", "scrollViewProps", "disabledSafeArea", "isPreview"]);
@@ -32,10 +33,10 @@ const ASContainer = (props) => {
     const safeAreaStyle = disabledSafeArea
         ? {}
         : {
-            paddingTop: isHeaderVisible ? Math.max((_b = Number(flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.paddingTop)) !== null && _b !== void 0 ? _b : 0, insets.top, 15) : ((_c = Number(flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.paddingTop)) !== null && _c !== void 0 ? _c : 0) + insets.top,
-            paddingBottom: ((_d = Number(flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.paddingBottom)) !== null && _d !== void 0 ? _d : 0) + insets.bottom,
-            paddingLeft: ((_e = Number(flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.paddingLeft)) !== null && _e !== void 0 ? _e : 0) + insets.left,
-            paddingRight: ((_f = Number(flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.paddingRight)) !== null && _f !== void 0 ? _f : 0) + insets.right,
+            paddingTop: isHeaderVisible ? Math.max((_b = (0, commonUtils_1.toNumber)(flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.paddingTop)) !== null && _b !== void 0 ? _b : 0, insets.top, 15) : ((_c = (0, commonUtils_1.toNumber)(flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.paddingTop)) !== null && _c !== void 0 ? _c : 0) + insets.top,
+            paddingBottom: ((_d = (0, commonUtils_1.toNumber)(flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.paddingBottom)) !== null && _d !== void 0 ? _d : 0) + insets.bottom,
+            paddingLeft: ((_e = (0, commonUtils_1.toNumber)(flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.paddingLeft)) !== null && _e !== void 0 ? _e : 0) + insets.left,
+            paddingRight: ((_f = (0, commonUtils_1.toNumber)(flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.paddingRight)) !== null && _f !== void 0 ? _f : 0) + insets.right,
         };
     return (react_1.default.createElement(react_native_1.View, Object.assign({}, restProps, { style: [styles.container, style, safeAreaStyle] }), isScrollable ? (react_1.default.createElement(react_native_1.ScrollView, Object.assign({ showsVerticalScrollIndicator: false, showsHorizontalScrollIndicator: false }, scrollViewProps, { contentContainerStyle: [styles.scrollViewStyle, scrollViewContentContainerStyle] }), children)) : (children)));
 };

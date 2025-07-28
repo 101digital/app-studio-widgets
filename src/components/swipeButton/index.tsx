@@ -5,6 +5,7 @@ import { ThemeContext } from "../../context/theme-context";
 import ASLoadingIndicator from "../loadingIndicator";
 import { ArrowForwardIcon } from "../../assets/icon/arrow-forward.icon";
 import $ from "jquery";
+import { toNumber } from "utils/commonUtils";
 
 export type ASSwipeButtonProps = {
   containerStyles?: ViewStyle | ViewStyle[];
@@ -160,7 +161,7 @@ const ASSwipeButton: React.FC<ASSwipeButtonProps> = (props) => {
         disabledThumbIconBorderColor={disabledThumbIconBorderColor}
         enableReverseSwipe={enableReverseSwipe}
         forceReset={forceReset}
-        height={Number(height)}
+        height={toNumber(height)}
         onSwipeFail={onSwipeFail}
         onSwipeStart={onSwipeStart}
         onSwipeSuccess={onSwipeSuccess}
@@ -184,7 +185,7 @@ const ASSwipeButton: React.FC<ASSwipeButtonProps> = (props) => {
         title={label}
         titleMaxFontScale={titleMaxFontScale}
         titleStyles={flattenStyles(labelStyles)}
-        width={Number(width)}
+        width={toNumber(width)}
       />
     </View>
   );

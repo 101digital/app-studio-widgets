@@ -17,6 +17,7 @@ import {ThemeContext} from "../../context/theme-context";
 import {constants} from "../../utils/constants";
 import ASOverlay from "../overlay";
 import ASImage from "../image";
+import { toNumber } from "utils/commonUtils";
 
 export type ASTextFieldProps = Omit<TextInputMaskProps, "type"> &
     TextInputProps & {
@@ -90,12 +91,11 @@ const ASTextField = (props: ASTextFieldProps) => {
         }
     };
 
-
     // Triger this in onBlur envent
     const handleFormat = () => {
         let text = field.value;
         let numberValue =
-            typeof text === "string" ? parseFloat(text) : Number(text);
+            typeof text === "string" ? parseFloat(text) : toNumber(text);
 
         if (!isNaN(numberValue)) {
             switch (formatNumber) {

@@ -56,6 +56,7 @@ const theme_context_1 = require("../../context/theme-context");
 const constants_1 = require("../../utils/constants");
 const overlay_1 = __importDefault(require("../overlay"));
 const image_1 = __importDefault(require("../image"));
+const commonUtils_1 = require("utils/commonUtils");
 const ASTextField = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
     const { name, onFocus, onBlur, suffixIcon, prefixIcon, prefixText, prefixTextStyle, formatError, options, label, textFieldType = "custom", formatNumber, labelTextStyle, inputTextStyle, borderErrorColor, borderActiveColor, style, errorMessageTextStyle, placeholderTextColor, accessibilityLabel, isOverlayEnabled, id, onChange, testId = "ASTextField" } = props, restProps = __rest(props, ["name", "onFocus", "onBlur", "suffixIcon", "prefixIcon", "prefixText", "prefixTextStyle", "formatError", "options", "label", "textFieldType", "formatNumber", "labelTextStyle", "inputTextStyle", "borderErrorColor", "borderActiveColor", "style", "errorMessageTextStyle", "placeholderTextColor", "accessibilityLabel", "isOverlayEnabled", "id", "onChange", "testId"]);
@@ -76,7 +77,7 @@ const ASTextField = (props) => {
     // Triger this in onBlur envent
     const handleFormat = () => {
         let text = field.value;
-        let numberValue = typeof text === "string" ? parseFloat(text) : Number(text);
+        let numberValue = typeof text === "string" ? parseFloat(text) : (0, commonUtils_1.toNumber)(text);
         if (!isNaN(numberValue)) {
             switch (formatNumber) {
                 case "comma":

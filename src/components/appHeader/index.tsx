@@ -11,6 +11,7 @@ import {
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import ASText from "../text";
 import ASRow from "../row";
+import { toNumber } from "utils/commonUtils";
 
 type BackButtonProps = {
   isEnabled: boolean;
@@ -171,8 +172,8 @@ const ASAppHeader: React.FC<ASAppHeaderProps> = ({
       style={[
         customStyles,
         {
-          paddingTop: (Number(customStyles?.paddingTop) ?? 0) + (insets?.top ?? 0), // Handle safe area view
-          height: (Number(customStyles?.height) ?? 0) + (insets?.top ?? 0), // Handle safe area view
+          paddingTop: (toNumber(customStyles?.paddingTop)) + (insets?.top ?? 0), // Handle safe area view
+          height: (toNumber(customStyles?.height)) + (insets?.top ?? 0), // Handle safe area view
         },
       ]}
     >

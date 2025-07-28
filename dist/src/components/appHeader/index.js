@@ -18,8 +18,9 @@ const react_1 = __importDefault(require("react"));
 const react_native_1 = require("react-native");
 const react_native_safe_area_context_1 = require("react-native-safe-area-context");
 const text_1 = __importDefault(require("../text"));
+const commonUtils_1 = require("utils/commonUtils");
 const ASAppHeader = (_a) => {
-    var _b, _c, _d, _e;
+    var _b, _c;
     var { styles: customStyles = {}, backButton, headerTitle, actions = [], isPreview } = _a, restProps = __rest(_a, ["styles", "backButton", "headerTitle", "actions", "isPreview"]);
     const renderIcon = (icon, size = 24, color = "#000") => {
         if (typeof icon === "string") {
@@ -94,8 +95,8 @@ const ASAppHeader = (_a) => {
     return (react_1.default.createElement(react_native_1.View, Object.assign({}, restProps, { style: [
             customStyles,
             {
-                paddingTop: ((_b = Number(customStyles === null || customStyles === void 0 ? void 0 : customStyles.paddingTop)) !== null && _b !== void 0 ? _b : 0) + ((_c = insets === null || insets === void 0 ? void 0 : insets.top) !== null && _c !== void 0 ? _c : 0), // Handle safe area view
-                height: ((_d = Number(customStyles === null || customStyles === void 0 ? void 0 : customStyles.height)) !== null && _d !== void 0 ? _d : 0) + ((_e = insets === null || insets === void 0 ? void 0 : insets.top) !== null && _e !== void 0 ? _e : 0), // Handle safe area view
+                paddingTop: ((0, commonUtils_1.toNumber)(customStyles === null || customStyles === void 0 ? void 0 : customStyles.paddingTop)) + ((_b = insets === null || insets === void 0 ? void 0 : insets.top) !== null && _b !== void 0 ? _b : 0), // Handle safe area view
+                height: ((0, commonUtils_1.toNumber)(customStyles === null || customStyles === void 0 ? void 0 : customStyles.height)) + ((_c = insets === null || insets === void 0 ? void 0 : insets.top) !== null && _c !== void 0 ? _c : 0), // Handle safe area view
             },
         ] }),
         (backButton === null || backButton === void 0 ? void 0 : backButton.isEnabled) &&

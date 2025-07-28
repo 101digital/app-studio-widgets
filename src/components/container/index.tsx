@@ -2,6 +2,7 @@ import React, {ReactNode} from 'react';
 import {ScrollView, ScrollViewProps, StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useNavigation, useRoute} from '@react-navigation/native';
+import { toNumber } from 'utils/commonUtils';
 
 export type ASContainerProps = {
     children: ReactNode;
@@ -40,10 +41,10 @@ const ASContainer: React.FC<ASContainerProps> = (props: ASContainerProps) => {
     const safeAreaStyle = disabledSafeArea
         ? {}
         : {
-            paddingTop: isHeaderVisible ? Math.max(Number(flattenedStyle?.paddingTop) ?? 0, insets.top, 15) : (Number(flattenedStyle?.paddingTop) ?? 0) + insets.top,
-            paddingBottom: (Number(flattenedStyle?.paddingBottom) ?? 0) + insets.bottom,
-            paddingLeft: (Number(flattenedStyle?.paddingLeft) ?? 0) + insets.left,
-            paddingRight: (Number(flattenedStyle?.paddingRight) ?? 0) + insets.right,
+            paddingTop: isHeaderVisible ? Math.max(toNumber(flattenedStyle?.paddingTop) ?? 0, insets.top, 15) : (toNumber(flattenedStyle?.paddingTop) ?? 0) + insets.top,
+            paddingBottom: (toNumber(flattenedStyle?.paddingBottom) ?? 0) + insets.bottom,
+            paddingLeft: (toNumber(flattenedStyle?.paddingLeft) ?? 0) + insets.left,
+            paddingRight: (toNumber(flattenedStyle?.paddingRight) ?? 0) + insets.right,
         };
 
     return (
