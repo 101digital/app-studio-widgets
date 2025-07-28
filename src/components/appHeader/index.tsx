@@ -112,6 +112,7 @@ const ASAppHeader: React.FC<ASAppHeaderProps> = ({
       <TouchableOpacity
         onPress={backButton.onPress}
         style={stylesObj.backButton}
+        testID={'header-back-button'}
       >
         {renderIcon(backButton.icon, backButton.size, backButton.color)}
       </TouchableOpacity>

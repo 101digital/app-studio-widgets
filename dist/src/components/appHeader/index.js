@@ -50,7 +50,7 @@ const ASAppHeader = (_a) => {
     const renderBackButton = () => {
         if (!(backButton === null || backButton === void 0 ? void 0 : backButton.isEnabled))
             return null;
-        const btn = (react_1.default.createElement(react_native_1.TouchableOpacity, { onPress: backButton.onPress, style: stylesObj.backButton }, renderIcon(backButton.icon, backButton.size, backButton.color)));
+        const btn = (react_1.default.createElement(react_native_1.TouchableOpacity, { onPress: backButton.onPress, style: stylesObj.backButton, testID: 'header-back-button' }, renderIcon(backButton.icon, backButton.size, backButton.color)));
         if (backButton.isLargerBackButton) {
             return react_1.default.createElement(react_native_1.View, { style: stylesObj.fullRowBack }, btn);
         }
