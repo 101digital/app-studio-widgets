@@ -1,5 +1,5 @@
 import React from "react";
-import { ViewStyle } from "react-native";
+import { ViewStyle, ImageSourcePropType } from "react-native";
 export type ASSwipeButtonProps = {
     containerStyles?: ViewStyle | ViewStyle[];
     disabled?: boolean;
@@ -26,7 +26,7 @@ export type ASSwipeButtonProps = {
     thumbIconBackgroundColor?: string;
     thumbIconBorderColor?: string;
     thumbIconComponent?: React.ReactElement;
-    thumbIconImageSource?: string | number;
+    thumbIconImageSource?: ImageSourcePropType;
     thumbIconStyles?: ViewStyle | ViewStyle[];
     thumbIconWidth?: number;
     label?: string;

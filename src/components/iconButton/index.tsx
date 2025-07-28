@@ -16,7 +16,7 @@ export type ASIconButtonProps = TouchableOpacityProps & {
   icon: any;
   crossOrigin?: "anonymous" | "use-credentials";
   id?: string;
-  style?: StyleProp<TouchableOpacity>;
+  style?: StyleProp<ViewStyle>;
   testId?: string;
 };
 

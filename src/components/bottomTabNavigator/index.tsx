@@ -8,7 +8,7 @@ import {
   StyleSheet,
 } from "react-native";
 import { SvgProps } from "react-native-svg";
-import Icon from "react-native-vector-icons/FontAwesome";
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const Tab = createBottomTabNavigator();
 
@@ -66,7 +66,7 @@ const ASBottomTabNavigation: React.FC<ASBottomTabNavigationProps> = ({
                 );
               } else {
                 IconComponent = (
-                  <Icon name={tab.icon} size={ICON_SIZE} color={tintColor} />
+                  <Icon name={tab.icon} size={ICON_SIZE} color={tintColor}/>
                 );
               }
             } else {

@@ -1,3 +1,4 @@
+import React from "react";
 import { DimensionValue, ImageProps, ImageSourcePropType } from "react-native";
 import { ImageResizeMode } from "react-native/Libraries/Image/ImageResizeMode";
 export type ASImageProps = Omit<ImageProps, "source"> & {
@@ -9,5 +10,5 @@ export type ASImageProps = Omit<ImageProps, "source"> & {
     accessibilityLabel?: string;
     testId?: string;
 };
-declare const ASImage: (props: ASImageProps) => JSX.Element;
+declare const ASImage: React.FC<ASImageProps>;
 export default ASImage;
