@@ -1,10 +1,11 @@
 import React, { ReactElement, useContext, useEffect } from "react";
-import { StyleSheet, TextStyle, View, ViewStyle, Text } from "react-native";
+import { StyleSheet, TextStyle, View, ViewStyle, ImageSourcePropType } from "react-native";
 import SwipeButton from "rn-swipe-button";
 import { ThemeContext } from "../../context/theme-context";
 import ASLoadingIndicator from "../loadingIndicator";
 import { ArrowForwardIcon } from "../../assets/icon/arrow-forward.icon";
 import $ from "jquery";
+import { toNumber } from "../../utils/commonUtils";
 
 export type ASSwipeButtonProps = {
   containerStyles?: ViewStyle | ViewStyle[];
@@ -32,7 +33,7 @@ export type ASSwipeButtonProps = {
   thumbIconBackgroundColor?: string;
   thumbIconBorderColor?: string;
   thumbIconComponent?: React.ReactElement;
-  thumbIconImageSource?: string | number;
+  thumbIconImageSource?: ImageSourcePropType;
   thumbIconStyles?: ViewStyle | ViewStyle[];
   thumbIconWidth?: number;
   label?: string;
@@ -44,6 +45,7 @@ export type ASSwipeButtonProps = {
   accessibilityLabel?: string;
   loading?: boolean;
   id?: string;
+  testId?: string;
 };
 
 const ASSwipeButton: React.FC<ASSwipeButtonProps> = (props) => {
@@ -86,6 +88,7 @@ const ASSwipeButton: React.FC<ASSwipeButtonProps> = (props) => {
     accessibilityLabel,
     loading,
     id,
+    testId='ASSwipeButton'
   } = props;
 
   const onSwipeSuccess = () => {
@@ -147,8 +150,9 @@ const ASSwipeButton: React.FC<ASSwipeButtonProps> = (props) => {
   ) => (styles ? StyleSheet.flatten(styles) : {});
 
   return (
-    <View accessibilityLabel={accessibilityLabel} id={id}>
+    <View accessibilityLabel={accessibilityLabel} id={id} testID={`view-${testId}`}>
       <SwipeButton
+        {...( { testID: `swipeButton-${testId}` } as any )}        
         containerStyles={flattenStyles(containerStyles)}
         disabled={disabled}
         disableResetOnTap={disableResetOnTap}
@@ -157,7 +161,7 @@ const ASSwipeButton: React.FC<ASSwipeButtonProps> = (props) => {
         disabledThumbIconBorderColor={disabledThumbIconBorderColor}
         enableReverseSwipe={enableReverseSwipe}
         forceReset={forceReset}
-        height={height}
+        height={toNumber(height)}
         onSwipeFail={onSwipeFail}
         onSwipeStart={onSwipeStart}
         onSwipeSuccess={onSwipeSuccess}
@@ -181,7 +185,7 @@ const ASSwipeButton: React.FC<ASSwipeButtonProps> = (props) => {
         title={label}
         titleMaxFontScale={titleMaxFontScale}
         titleStyles={flattenStyles(labelStyles)}
-        width={width}
+        width={toNumber(width)}
       />
     </View>
   );

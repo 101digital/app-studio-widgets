@@ -23,7 +23,8 @@ export type ASCircleChartProps = {
      */
     diameter?: number;
     children?: React.ReactNode;
-    circleStrokeWidth?: number
+    circleStrokeWidth?: number;
+    testId?: string;
 };
 
 const ASCircleChart: React.FC<ASCircleChartProps> = (props: ASCircleChartProps) => {
@@ -35,7 +36,8 @@ const ASCircleChart: React.FC<ASCircleChartProps> = (props: ASCircleChartProps) 
         children,
         secondaryColor,
         inActiveStrokeOpacity = 1,
-        circleStrokeWidth = 12
+        circleStrokeWidth = 12,
+        testId='ASCircleChart'
     } = props
     if (progress < 0 || progress > 100) {
         console.error('progress value must be between 0 and 100');
@@ -51,8 +53,8 @@ const ASCircleChart: React.FC<ASCircleChartProps> = (props: ASCircleChartProps) 
     const activeStrokeSizePercentage = (circleCircumference * (100 - progress)) / 100;
 
     return (
-        <View style={styles.container}>
-            <Svg width={diameter} height={diameter} viewBox={`0 0 ${viewBox * 2} ${viewBox * 2}`}>
+        <View style={styles.container} testID={`view-${testId}`}>
+            <Svg  testID={`svgView-${testId}`} width={diameter} height={diameter} viewBox={`0 0 ${viewBox * 2} ${viewBox * 2}`}>
                 <G rotation={'-90'} origin={`${viewBox}, ${viewBox}`}>
                     <Circle
                         cx="50%"
@@ -76,7 +78,7 @@ const ASCircleChart: React.FC<ASCircleChartProps> = (props: ASCircleChartProps) 
                     />
                 </G>
             </Svg>
-            <View style={[StyleSheet.absoluteFillObject, styles.valueContainer]}>{children}</View>
+            <View testID={`childrenView-${testId}`} style={[StyleSheet.absoluteFillObject, styles.valueContainer]}>{children}</View>
         </View>
     );
 };

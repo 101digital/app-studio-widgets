@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2017",// "es5",
+    "target": "es2017", // "es5",
     "strict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -14,26 +14,24 @@
     //"Need "moduleResolution": "node", and "skipLibCheck": true,  to be able to run yarn build"
     "moduleResolution": "node",
     "skipLibCheck": true,
+    // "paths": {
+    //   "@widgets/*": [
+    //     "./src/*",
+    //     "./src/*/index",
+    //     "src/*"
+    //   ]
+    // }
     "paths": {
-      "@widgets/*": [
-        "./src/*",
-        "./src/*/index",
-        "src/*"
-      ]
+      "react": ["./node_modules/@types/react"]
     }
   },
-  "exclude": [
-    "dist",
-    "node_modules",
-    "src/**/*.test.tsx",
-    "babel.config.js"
-  ],
+  "exclude": ["dist", "node_modules", "src/**/*.test.tsx", "babel.config.js"],
   "ts-node": {
-//    "transpileOnly": true,
-//    "compilerOptions": {
-//      "module": "ESNext",
-//      "esModuleInterop": true
-//    },
+    //    "transpileOnly": true,
+    //    "compilerOptions": {
+    //      "module": "ESNext",
+    //      "esModuleInterop": true
+    //    },
     "esm": true // <--- this is the most important part
   }
 }

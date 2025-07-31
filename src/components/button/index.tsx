@@ -22,6 +22,7 @@ export type ASButtonProps = TouchableOpacityProps & {
     children?: React.ReactNode;
     simpleTextButton?: boolean;
     loading?: boolean | undefined;
+    testId?: string
 };
 
 const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
@@ -35,6 +36,7 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
         children,
         simpleTextButton,
         loading,
+        testId = 'ASButton',
         ...restProps
     } = props;
     const isTimeout = useIsTimeoutLoading(60000, loading)
@@ -108,6 +110,7 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
                         overflow: loading ? 'hidden' : (flattenedStyle?.overflow || 'visible')
                     },
                 ]}
+                testID={`button-${testId}`}
             >
                 <>
                     {
@@ -116,6 +119,7 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
                         ) : (
                             <View style={styles.labelContainer}>
                                 <ASText
+                                 testID={`label-${testId}`}
                                     style={[
                                         styles.textStyle, // Base text style
                                         getButtonTextStyle(), // Dynamic button text style
@@ -130,8 +134,8 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
 
                 </>
                 {loading && !isTimeout && (
-                    <View style={[styles.overlayContainer, {...dimensions}]}>
-                        <LoadingIndicator loading={loading} style={styles.overlayLoadingIndicator}/>
+                    <View testID={`loadingView-${testId}`} style={[styles.overlayContainer,StyleSheet.absoluteFillObject, {...dimensions}]}>
+                        <LoadingIndicator testID={`loadingIndicator-${testId}`} color={'#D1D5DB'} loading={loading} style={styles.overlayLoadingIndicator}/>
                     </View>
                 )}
             </TouchableOpacity>
@@ -173,7 +177,7 @@ const styles = StyleSheet.create({
     },
     overlayContainer: {
         position: 'absolute',
-        backgroundColor: 'rgba(129,129,129,0.8)',
+        backgroundColor: '#231F2080',
         justifyContent: 'center',
         alignItems: 'center',
     },

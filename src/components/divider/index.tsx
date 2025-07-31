@@ -6,14 +6,15 @@ export type ASDividerProps = {
     style?: StyleProp<ViewStyle>;
     marginVertical?: DimensionValue
     width?: DimensionValue
+    testId?: string
 }
 
 const ASDivider: React.FC<ASDividerProps> = (props: ASDividerProps) => {
     const {colors} = useContext(ThemeContext);
-    const {style, marginVertical = 10, width = '100%'} = props || {}
+    const {style, marginVertical = 10, width = '100%', testId = 'ASDivider'} = props || {}
 
     return (
-        <View style={[styles.dividerStyle, {
+        <View testID={testId} style={[styles.dividerStyle, {
             marginVertical, width, backgroundColor: colors.onSurface,
         }, style]}/>
     )

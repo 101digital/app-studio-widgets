@@ -9,6 +9,7 @@ export type ASDualIconButtonProps = TouchableOpacityProps & {
     rightIcon?: any;
     disabled?: boolean;
     loading?: boolean | boolean[] | undefined;
+    testId?: string;
 };
 declare const ASDualIconRowButton: React.FC<ASDualIconButtonProps>;
 export default ASDualIconRowButton;

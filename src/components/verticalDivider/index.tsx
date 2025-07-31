@@ -10,16 +10,18 @@ import { ThemeContext } from "../../context/theme-context";
 
 export type ASVerticalDividerProps = {
   style?: StyleProp<ViewStyle>;
+  testId?: string;
 };
 
 const ASVerticalDivider: React.FC<ASVerticalDividerProps> = (
   props: ASVerticalDividerProps
 ) => {
   const { colors } = useContext(ThemeContext);
-  const { style } = props || {};
+  const { style, testId = "ASVerticalDivider" } = props || {};
 
   return (
     <View
+      testID={testId}
       style={[
         styles.verticalDividerStyle,
         {

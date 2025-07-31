@@ -1,18 +1,19 @@
 import React, {useContext} from 'react';
-import {ColorValue, StyleSheet, Text, TextProps, TextStyle} from 'react-native'
+import {ColorValue, StyleSheet, Text, TextProps, TextStyle,StyleProp} from 'react-native'
 import {ThemeContext} from "../../context/theme-context";
 
 export type ASTextProps = TextProps & {
     children?: string | undefined | number | React.ReactNode;
-    style?: TextStyle;
+    style?: StyleProp<TextStyle>;
     labelType?: 'number' | 'datetime' | 'card-number' | 'e6ExpiryDate'
     label?: string;
     accessibilityLabel?: string
+    testId?: string
 }
 
 const ASText: React.FC<ASTextProps> = (props: ASTextProps) => {
     const {colors} = useContext(ThemeContext);
-    const {children, labelType, label, ...restProps} = props || {}
+    const {children, labelType, label, testId = 'ASText', ...restProps} = props || {}
     let labelValue = labelType === 'number' ? (children ?? label) : (children || label);
     const style = StyleSheet.flatten(props?.style)
 
@@ -77,7 +78,7 @@ const ASText: React.FC<ASTextProps> = (props: ASTextProps) => {
     }
 
     return (
-        <Text {...restProps} style={[styles.textStyle, style, getTextColor()]}>
+        <Text testID={testId} {...restProps} style={[styles.textStyle, style, getTextColor()]}>
             {labelValue}
         </Text>
     )

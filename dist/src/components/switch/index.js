@@ -15,13 +15,23 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -39,7 +49,7 @@ const react_native_1 = require("react-native");
 const theme_context_1 = require("../../context/theme-context");
 const ASSwitch = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { enableThumbColor, disabledThumbColor, onChange, enableTrackColor, disabledTrackColor } = props, restProps = __rest(props, ["enableThumbColor", "disabledThumbColor", "onChange", "enableTrackColor", "disabledTrackColor"]);
+    const { enableThumbColor, disabledThumbColor, onChange, enableTrackColor, disabledTrackColor, testId = 'ASSwitch' } = props, restProps = __rest(props, ["enableThumbColor", "disabledThumbColor", "onChange", "enableTrackColor", "disabledTrackColor", "testId"]);
     const [isEnabled, setIsEnabled] = (0, react_1.useState)(false);
     const toggleSwitch = () => {
         setIsEnabled((previousState) => {
@@ -47,6 +57,6 @@ const ASSwitch = (props) => {
             return !previousState;
         });
     };
-    return (react_1.default.createElement(react_native_1.Switch, Object.assign({ trackColor: { true: enableTrackColor, false: disabledTrackColor }, ios_backgroundColor: colors.secondary, onValueChange: toggleSwitch, value: isEnabled, thumbColor: isEnabled ? enableThumbColor : disabledThumbColor, activeThumbColor: enableThumbColor }, restProps)));
+    return (react_1.default.createElement(react_native_1.Switch, Object.assign({ testID: testId, trackColor: { true: enableTrackColor, false: disabledTrackColor }, ios_backgroundColor: colors.secondary, onValueChange: toggleSwitch, value: isEnabled, thumbColor: isEnabled ? enableThumbColor : disabledThumbColor, activeThumbColor: enableThumbColor }, restProps)));
 };
 exports.default = ASSwitch;

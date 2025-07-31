@@ -44,4 +44,7 @@ const hexToRgbaWithOpacity = (hex: string | undefined, opacity: number = 0.2): s
     return `rgba(${r}, ${g}, ${b}, ${opacity})`;
 }
 
-export {screenWidth, screenHeight, convertPercentageToPx, isAndroid, getLoadingStatus,hexToRgbaWithOpacity};
+const toNumber = (value: unknown): number =>
+  typeof value === 'number' ? value : parseFloat(value as string) || 0;
+
+export {screenWidth, screenHeight, convertPercentageToPx, isAndroid, getLoadingStatus,hexToRgbaWithOpacity, toNumber};

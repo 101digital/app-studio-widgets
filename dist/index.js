@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ASTabs = exports.ASBottomSheet = exports.ASIconButton = exports.E6TransactionHistoryListView = exports.ASSwipeButton = exports.ASDualIconRowButton = exports.ASLoadingIndicator = exports.ASLoadingScreen = exports.ASDatePicker = exports.ASPopUp = exports.ASPasswordTextField = exports.useThemeFonts = exports.useThemeColors = exports.createThemeData = exports.ThemeProvider = exports.useThemeContextValue = exports.ThemeContext = exports.ASPin = exports.ASModal = exports.ASTimer = exports.ASCalendar = exports.ASChoiceChips = exports.ASCounter = exports.ASSlider = exports.ASRadioButton = exports.ASListTile = exports.ASPageView = exports.ASBadge = exports.ASCircleChart = exports.ASListView = exports.ASStack = exports.ASProgressBar = exports.ASCheckBox = exports.ASSwitch = exports.ASWrap = exports.ASExpandableText = exports.ASDropDown = exports.ASImage = exports.ASRichText = exports.ASForm = exports.ASVerticalDivider = exports.ASDivider = exports.ASSpacer = exports.ASRow = exports.ASColumn = exports.ASContainer = exports.ASTextField = exports.ASButton = exports.ASText = exports.ASWidgetsList = void 0;
-exports.ASFloatingActionButton = exports.ASAppBar = exports.ASTabView = void 0;
+exports.ASAppHeader = exports.ASBottomTabNavigator = exports.ASFloatingActionButton = exports.ASAppBar = exports.ASTabView = void 0;
 var widgetsList_1 = require("./src/utils/widgetsList");
 Object.defineProperty(exports, "ASWidgetsList", { enumerable: true, get: function () { return widgetsList_1.ASWidgetsList; } });
 var text_1 = require("./src/components/text");
@@ -107,3 +107,7 @@ var appbar_1 = require("./src/components/appbar");
 Object.defineProperty(exports, "ASAppBar", { enumerable: true, get: function () { return __importDefault(appbar_1).default; } });
 var floatingActionButton_1 = require("./src/components/floatingActionButton");
 Object.defineProperty(exports, "ASFloatingActionButton", { enumerable: true, get: function () { return __importDefault(floatingActionButton_1).default; } });
+var bottomTabNavigator_1 = require("./src/components/bottomTabNavigator");
+Object.defineProperty(exports, "ASBottomTabNavigator", { enumerable: true, get: function () { return __importDefault(bottomTabNavigator_1).default; } });
+var appHeader_1 = require("./src/components/appHeader");
+Object.defineProperty(exports, "ASAppHeader", { enumerable: true, get: function () { return __importDefault(appHeader_1).default; } });

@@ -15,13 +15,23 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -46,9 +56,10 @@ const theme_context_1 = require("../../context/theme-context");
 const constants_1 = require("../../utils/constants");
 const overlay_1 = __importDefault(require("../overlay"));
 const image_1 = __importDefault(require("../image"));
+const commonUtils_1 = require("../../utils/commonUtils");
 const ASTextField = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { name, onFocus, onBlur, suffixIcon, prefixIcon, prefixText, prefixTextStyle, formatError, options, label, textFieldType = "custom", formatNumber, labelTextStyle, inputTextStyle, borderErrorColor, borderActiveColor, style, errorMessageTextStyle, placeholderTextColor, accessibilityLabel, isOverlayEnabled, id, onChange } = props, restProps = __rest(props, ["name", "onFocus", "onBlur", "suffixIcon", "prefixIcon", "prefixText", "prefixTextStyle", "formatError", "options", "label", "textFieldType", "formatNumber", "labelTextStyle", "inputTextStyle", "borderErrorColor", "borderActiveColor", "style", "errorMessageTextStyle", "placeholderTextColor", "accessibilityLabel", "isOverlayEnabled", "id", "onChange"]);
+    const { name, onFocus, onBlur, suffixIcon, prefixIcon, prefixText, prefixTextStyle, formatError, options, label, textFieldType = "custom", formatNumber, labelTextStyle, inputTextStyle, borderErrorColor, borderActiveColor, style, errorMessageTextStyle, placeholderTextColor, accessibilityLabel, isOverlayEnabled, id, onChange, testId = "ASTextField" } = props, restProps = __rest(props, ["name", "onFocus", "onBlur", "suffixIcon", "prefixIcon", "prefixText", "prefixTextStyle", "formatError", "options", "label", "textFieldType", "formatNumber", "labelTextStyle", "inputTextStyle", "borderErrorColor", "borderActiveColor", "style", "errorMessageTextStyle", "placeholderTextColor", "accessibilityLabel", "isOverlayEnabled", "id", "onChange", "testId"]);
     const [active, setActive] = (0, react_1.useState)(false);
     const [field, meta, helpers] = (0, formik_1.useField)(name);
     const showMask = options && Object.keys(options).length > 0;
@@ -66,7 +77,7 @@ const ASTextField = (props) => {
     // Triger this in onBlur envent
     const handleFormat = () => {
         let text = field.value;
-        let numberValue = typeof text === "string" ? parseFloat(text) : Number(text);
+        let numberValue = typeof text === "string" ? parseFloat(text) : (0, commonUtils_1.toNumber)(text);
         if (!isNaN(numberValue)) {
             switch (formatNumber) {
                 case "comma":
@@ -121,12 +132,12 @@ const ASTextField = (props) => {
         }
         return active ? borderActiveColor : flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderColor;
     };
-    return (react_1.default.createElement(react_native_1.View, { style: [styles.wrapperStyle, Object.assign({ height: "auto", borderColor: 'transparent', marginBottom: (flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.marginBottom) || 0 }, ((flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.flex) ? { flex: flattenedStyle.flex } : {})),], accessibilityLabel: accessibilityLabel, id: id },
+    return (react_1.default.createElement(react_native_1.View, { testID: `view-${testId}`, style: [styles.wrapperStyle, Object.assign(Object.assign(Object.assign({ height: "auto", borderColor: 'transparent', marginBottom: (flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.marginBottom) || 0 }, ((flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.flex) ? { flex: flattenedStyle.flex } : {})), ((flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.width) ? { width: flattenedStyle.width } : {})), ((flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.alignSelf) ? { alignSelf: flattenedStyle.alignSelf } : {})),], accessibilityLabel: accessibilityLabel, id: id },
         react_1.default.createElement(react_native_1.View, { style: [
                 styles.containerStyle,
                 Object.assign(Object.assign({ borderColor: getBorderColor() || (flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.borderColor), height: flattenedHeight }, flattenedStyle), { marginBottom: 0 }),
             ] },
-            react_1.default.createElement(text_1.default, { style: [
+            react_1.default.createElement(text_1.default, { testID: `label-${testId}`, style: [
                     styles.labelStyle,
                     {
                         backgroundColor: flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.backgroundColor,
@@ -138,14 +149,14 @@ const ASTextField = (props) => {
                 ] }, label),
             react_1.default.createElement(react_native_1.View, { style: [styles.contentContainerStyle] },
                 prefixIcon && react_1.default.createElement(react_native_1.View, { style: styles.prefixIcon }, typeof prefixIcon === 'string' ?
-                    react_1.default.createElement(image_1.default, { style: { width: 20, height: 20 }, source: prefixIcon })
+                    react_1.default.createElement(image_1.default, { style: { width: 20, height: 20 }, source: prefixIcon, testID: `prefixIcon-${testId}` })
                     : prefixIcon),
-                !!prefixText && (react_1.default.createElement(text_1.default, { style: [styles.prefixText, prefixTextStyle] }, prefixText)),
-                react_1.default.createElement(react_native_1.View, { style: styles.inputContainerStyle }, showMask ? (react_1.default.createElement(react_native_masked_text_1.TextInputMask, Object.assign({ onFocus: handleOnFocus, onBlur: handleOnBlur, value: `${field === null || field === void 0 ? void 0 : field.value}`, onChangeText: handleOnChange, style: [styles.textInputStyle, !!(flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.width) && { width: flattenedStyle.width }, inputTextStyle], placeholderTextColor: placeholderTextColor || constants_1.constants.defaultPlaceholderColor }, restProps, { options: options, type: textFieldType }))) : (react_1.default.createElement(react_native_1.TextInput, Object.assign({ onFocus: handleOnFocus, onBlur: handleOnBlur, value: `${field === null || field === void 0 ? void 0 : field.value}`, onChangeText: handleOnChange, style: [styles.textInputStyle, !!(flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.width) && { width: flattenedStyle.width }, inputTextStyle], placeholderTextColor: placeholderTextColor || constants_1.constants.defaultPlaceholderColor, autoComplete: "off", autoCorrect: false, underlineColorAndroid: "transparent" }, restProps)))),
+                !!prefixText && (react_1.default.createElement(text_1.default, { style: [styles.prefixText, prefixTextStyle], testID: `prefixLabel-${testId}` }, prefixText)),
+                react_1.default.createElement(react_native_1.View, { style: styles.inputContainerStyle }, showMask ? (react_1.default.createElement(react_native_masked_text_1.TextInputMask, Object.assign({ onFocus: handleOnFocus, onBlur: handleOnBlur, value: `${field === null || field === void 0 ? void 0 : field.value}`, onChangeText: handleOnChange, style: [styles.textInputStyle, !!(flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.width) && { width: flattenedStyle.width }, inputTextStyle], placeholderTextColor: placeholderTextColor || constants_1.constants.defaultPlaceholderColor }, restProps, { options: options, type: textFieldType, testID: `textInputMask-${testId}` }))) : (react_1.default.createElement(react_native_1.TextInput, Object.assign({ onFocus: handleOnFocus, onBlur: handleOnBlur, value: `${field === null || field === void 0 ? void 0 : field.value}`, onChangeText: handleOnChange, style: [styles.textInputStyle, !!(flattenedStyle === null || flattenedStyle === void 0 ? void 0 : flattenedStyle.width) && { width: flattenedStyle.width }, inputTextStyle], placeholderTextColor: placeholderTextColor || constants_1.constants.defaultPlaceholderColor, autoComplete: "off", autoCorrect: false, underlineColorAndroid: "transparent", testID: `textInput-${testId}` }, restProps)))),
                 suffixIcon && react_1.default.createElement(react_native_1.View, { style: styles.suffixIcon }, typeof suffixIcon === 'string' ?
-                    react_1.default.createElement(image_1.default, { style: { width: 20, height: 20 }, source: suffixIcon })
+                    react_1.default.createElement(image_1.default, { style: { width: 20, height: 20 }, source: suffixIcon, testID: `suffixIcon-${testId}` })
                     : suffixIcon))),
-        (meta === null || meta === void 0 ? void 0 : meta.error) && (meta === null || meta === void 0 ? void 0 : meta.touched) && (react_1.default.createElement(text_1.default, { style: [styles.errorTextStyle, errorMessageTextStyle] }, getErrorMessage(meta === null || meta === void 0 ? void 0 : meta.error))),
+        (meta === null || meta === void 0 ? void 0 : meta.error) && (meta === null || meta === void 0 ? void 0 : meta.touched) && (react_1.default.createElement(text_1.default, { testID: `errorLabel-${testId}`, style: [styles.errorTextStyle, errorMessageTextStyle] }, getErrorMessage(meta === null || meta === void 0 ? void 0 : meta.error))),
         isOverlayEnabled && react_1.default.createElement(overlay_1.default, null)));
 };
 ASTextField.defaultProps = {
@@ -184,6 +195,7 @@ const styles = react_native_1.StyleSheet.create({
     textInputStyle: {
         flex: 1,
         fontSize: 12,
+        paddingVertical: 0,
     },
     errorTextStyle: {
         fontSize: 12,

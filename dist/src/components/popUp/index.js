@@ -19,37 +19,35 @@ const react_native_1 = require("react-native");
 const button_1 = __importDefault(require("../button"));
 const text_1 = __importDefault(require("../text"));
 const ASPopUp = (props) => {
-    const { children, visible, isShowCloseIcon = true, onClose } = props, restProps = __rest(props, ["children", "visible", "isShowCloseIcon", "onClose"]);
-    return (react_1.default.createElement(react_native_1.Modal, Object.assign({ style: styles.modalContainer, animationType: "fade", transparent: true, visible: visible, onRequestClose: () => {
-        } }, restProps),
+    const { children, visible, isShowCloseIcon = true, onClose, testId = "ASPopUp" } = props, restProps = __rest(props, ["children", "visible", "isShowCloseIcon", "onClose", "testId"]);
+    return (react_1.default.createElement(react_native_1.Modal, Object.assign({ style: styles.modalContainer, testID: `modalView-${testId}`, animationType: "fade", transparent: true, visible: visible, onRequestClose: () => { } }, restProps),
         react_1.default.createElement(react_native_1.View, { style: styles.container }, children),
-        isShowCloseIcon &&
-            react_1.default.createElement(button_1.default, { style: styles.closeButton, onPress: onClose },
-                react_1.default.createElement(text_1.default, { style: styles.closeIconText }, "X"))));
+        isShowCloseIcon && (react_1.default.createElement(button_1.default, { testID: `closeButton-${testId}`, style: styles.closeButton, onPress: onClose },
+            react_1.default.createElement(text_1.default, { testID: `closeLabel-${testId}`, style: styles.closeIconText }, "X")))));
 };
 const styles = react_native_1.StyleSheet.create({
     modalContainer: {
-        flex: 1
+        flex: 1,
     },
     container: {
         flex: 1,
         backgroundColor: "rgba(0,0,0,0.5)",
-        justifyContent: 'center',
-        alignItems: 'center'
+        justifyContent: "center",
+        alignItems: "center",
     },
     closeButton: {
-        backgroundColor: '#fff',
+        backgroundColor: "#fff",
         borderRadius: 50,
-        position: 'absolute',
+        position: "absolute",
         top: 40,
         right: 10,
         width: 30,
         height: 30,
-        justifyContent: 'center',
-        alignItems: 'center'
+        justifyContent: "center",
+        alignItems: "center",
     },
     closeIconText: {
-        fontSize: 18
-    }
+        fontSize: 18,
+    },
 });
 exports.default = ASPopUp;

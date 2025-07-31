@@ -17,6 +17,7 @@ import {ThemeContext} from "../../context/theme-context";
 import {constants} from "../../utils/constants";
 import ASOverlay from "../overlay";
 import ASImage from "../image";
+import { toNumber } from "../../utils/commonUtils";
 
 export type ASTextFieldProps = Omit<TextInputMaskProps, "type"> &
     TextInputProps & {
@@ -40,6 +41,7 @@ export type ASTextFieldProps = Omit<TextInputMaskProps, "type"> &
     isOverlayEnabled?: boolean;
     id?: string;
     onChange?: (text: any) => void;
+    testId?: string;
 };
 
 const ASTextField = (props: ASTextFieldProps) => {
@@ -68,6 +70,7 @@ const ASTextField = (props: ASTextFieldProps) => {
         isOverlayEnabled,
         id,
         onChange,
+        testId = "ASTextField",
         ...restProps
     } = props;
     const [active, setActive] = useState(false);
@@ -88,12 +91,11 @@ const ASTextField = (props: ASTextFieldProps) => {
         }
     };
 
-
     // Triger this in onBlur envent
     const handleFormat = () => {
         let text = field.value;
         let numberValue =
-            typeof text === "string" ? parseFloat(text) : Number(text);
+            typeof text === "string" ? parseFloat(text) : toNumber(text);
 
         if (!isNaN(numberValue)) {
             switch (formatNumber) {
@@ -159,11 +161,15 @@ const ASTextField = (props: ASTextFieldProps) => {
     };
 
     return (
-        <View style={[styles.wrapperStyle, {
+        <View
+        testID={`view-${testId}`}
+        style={[styles.wrapperStyle, {
             height: "auto",
             borderColor: 'transparent',
             marginBottom: flattenedStyle?.marginBottom || 0,
-            ...(flattenedStyle?.flex ? { flex: flattenedStyle.flex } : {})
+            ...(flattenedStyle?.flex ? { flex: flattenedStyle.flex } : {}),
+            ...(flattenedStyle?.width ? { width: flattenedStyle.width } : {}),
+            ...(flattenedStyle?.alignSelf ? { alignSelf: flattenedStyle.alignSelf } : {})
         },  ]}
               accessibilityLabel={accessibilityLabel} id={id}>
             <View
@@ -178,6 +184,7 @@ const ASTextField = (props: ASTextFieldProps) => {
                 ]}
             >
                 <ASText
+                    testID={`label-${testId}`}
                     style={[
                         styles.labelStyle,
                         {
@@ -191,15 +198,18 @@ const ASTextField = (props: ASTextFieldProps) => {
                 >
                     {label}
                 </ASText>
-                <View style={[styles.contentContainerStyle]}>
+                <View
+                    style={[styles.contentContainerStyle]}>
                     {prefixIcon && <View style={styles.prefixIcon}>{typeof prefixIcon === 'string' ?
                         <ASImage
                             style={{width: 20, height: 20}}
                             source={prefixIcon}
+                            testID={`prefixIcon-${testId}`}
                         />
                         : prefixIcon}</View>}
                     {!!prefixText && (
-                        <ASText style={[styles.prefixText, prefixTextStyle]}>
+                        <ASText style={[styles.prefixText, prefixTextStyle] } 
+                        testID={`prefixLabel-${testId}`}>
                             {prefixText}
                         </ASText>
                     )}
@@ -215,7 +225,7 @@ const ASTextField = (props: ASTextFieldProps) => {
                                 {...restProps}
                                 options={options}
                                 type={textFieldType}
-
+                                testID={`textInputMask-${testId}`}
                             />
                         ) : (
                             <TextInput
@@ -228,6 +238,7 @@ const ASTextField = (props: ASTextFieldProps) => {
                                 autoComplete={"off"}
                                 autoCorrect={false}
                                 underlineColorAndroid="transparent"
+                                testID={`textInput-${testId}`}
                                 {...restProps}
                             />
                         )}
@@ -236,12 +247,14 @@ const ASTextField = (props: ASTextFieldProps) => {
                         <ASImage
                             style={{width: 20, height: 20}}
                             source={suffixIcon}
+                            testID={`suffixIcon-${testId}`}
                         />
                         : suffixIcon}</View>}
                 </View>
             </View>
             {meta?.error && meta?.touched && (
-                <ASText style={[styles.errorTextStyle, errorMessageTextStyle]}>
+                <ASText
+                testID={`errorLabel-${testId}`} style={[styles.errorTextStyle, errorMessageTextStyle]}>
                     {getErrorMessage(meta?.error)}
                 </ASText>
             )}
@@ -287,6 +300,7 @@ const styles = StyleSheet.create({
     textInputStyle: {
         flex: 1,
         fontSize: 12,
+        paddingVertical: 0,
     },
     errorTextStyle: {
         fontSize: 12,

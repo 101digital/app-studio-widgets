@@ -15,13 +15,23 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -44,7 +54,7 @@ const theme_context_1 = require("../../context/theme-context");
 const loadingIndicator_1 = __importDefault(require("../loadingIndicator"));
 const ASDualIconRowButton = (props) => {
     const { colors } = (0, react_1.useContext)(theme_context_1.ThemeContext);
-    const { label = "", style, textStyle, leftIcon, rightIcon, onPress, disabled, loading } = props, restProps = __rest(props, ["label", "style", "textStyle", "leftIcon", "rightIcon", "onPress", "disabled", "loading"]);
+    const { label = "", style, textStyle, leftIcon, rightIcon, onPress, disabled, loading, testId } = props, restProps = __rest(props, ["label", "style", "textStyle", "leftIcon", "rightIcon", "onPress", "disabled", "loading", "testId"]);
     const leftIconSource = typeof leftIcon === "string" &&
         (leftIcon.startsWith("http") || leftIcon.startsWith("data:"))
         ? { uri: leftIcon }
@@ -75,12 +85,12 @@ const ASDualIconRowButton = (props) => {
             styles.buttonStyle,
             style,
             { backgroundColor: getButtonBackgroundColor() },
-        ] }),
-        leftIcon && react_1.default.createElement(react_native_1.Image, { source: leftIconSource, style: styles.icon }),
+        ], testID: `button-${testId}` }),
+        leftIcon && (react_1.default.createElement(react_native_1.Image, { testID: `leftIcon-${testId}`, source: leftIconSource, style: styles.icon })),
         react_1.default.createElement(react_native_1.View, { style: leftIcon && styles.marginLeft },
-            react_1.default.createElement(text_1.default, { style: [styles.textStyle, textStyle, { color: getButtonTextColor() }] }, label)),
-        react_1.default.createElement(loadingIndicator_1.default, { loading: loading, style: styles.loadingIndicator }),
-        rightIcon && !loading && (react_1.default.createElement(react_native_1.Image, { source: rightIconSource, style: [styles.icon, styles.rightIcon] }))));
+            react_1.default.createElement(text_1.default, { testID: `label-${testId}`, style: [styles.textStyle, textStyle, { color: getButtonTextColor() }] }, label)),
+        react_1.default.createElement(loadingIndicator_1.default, { testID: `loadingIndicator-${testId}`, loading: loading, style: styles.loadingIndicator }),
+        rightIcon && !loading && (react_1.default.createElement(react_native_1.Image, { testID: `rightIcon-${testId}`, source: rightIconSource, style: [styles.icon, styles.rightIcon] }))));
 };
 const styles = react_native_1.StyleSheet.create({
     buttonStyle: {

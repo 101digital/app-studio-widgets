@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.hexToRgbaWithOpacity = exports.getLoadingStatus = exports.isAndroid = exports.convertPercentageToPx = exports.screenHeight = exports.screenWidth = void 0;
+exports.toNumber = exports.hexToRgbaWithOpacity = exports.getLoadingStatus = exports.isAndroid = exports.convertPercentageToPx = exports.screenHeight = exports.screenWidth = void 0;
 const react_native_1 = require("react-native");
 const screenWidth = react_native_1.Dimensions.get('window').width;
 exports.screenWidth = screenWidth;
@@ -47,3 +47,5 @@ const hexToRgbaWithOpacity = (hex, opacity = 0.2) => {
     return `rgba(${r}, ${g}, ${b}, ${opacity})`;
 };
 exports.hexToRgbaWithOpacity = hexToRgbaWithOpacity;
+const toNumber = (value) => typeof value === 'number' ? value : parseFloat(value) || 0;
+exports.toNumber = toNumber;

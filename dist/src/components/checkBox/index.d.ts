@@ -14,6 +14,7 @@ export type ASCheckBoxProps = {
     name: string;
     onChange?: (value: boolean) => void;
     inactiveBorderColor?: string;
+    testId?: string;
 };
 declare const ASCheckBox: React.FC<ASCheckBoxProps>;
 export default ASCheckBox;

@@ -46,3 +46,5 @@ export { default as ASTabs, TabsProps } from './src/components/tab';
 export { default as ASTabView, ASTabViewProps } from './src/components/tabView';
 export { default as ASAppBar, ASAppBarProps } from './src/components/appbar';
 export { default as ASFloatingActionButton, ASFloatingActionButtonProps } from "./src/components/floatingActionButton";
+export { default as ASBottomTabNavigator, ASBottomTabNavigationProps } from "./src/components/bottomTabNavigator";
+export { default as ASAppHeader } from "./src/components/appHeader";

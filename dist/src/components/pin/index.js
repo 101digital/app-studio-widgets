@@ -15,13 +15,23 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -129,7 +139,7 @@ const PinInputList = (props) => {
                 height: pinBoxSize || PIN_SIZE,
                 borderRadius: pinBoxRadius
             },
-        ] }, !enableNativeKeyboard ? (react_1.default.createElement(text_1.default, { style: inputTypography }, pin[index] || "")) : (react_1.default.createElement(react_native_1.TextInput, { ref: (el) => (inputRefs.current[index] = el), style: [inputTypography, styles.textInputStyle], value: pin[index] || "", keyboardType: "number-pad", onChangeText: (text) => handleInputChange(text, index), onKeyPress: (e) => handleKeyPress(e, index), maxLength: 1, autoFocus: index === 0, caretHidden: true, showSoftInputOnFocus: true, focusable: false, selectTextOnFocus: false })))))));
+        ] }, !enableNativeKeyboard ? (react_1.default.createElement(text_1.default, { style: inputTypography }, pin[index] || "")) : (react_1.default.createElement(react_native_1.TextInput, { ref: (el) => { inputRefs.current[index] = el; }, style: [inputTypography, styles.textInputStyle], value: pin[index] || "", keyboardType: "number-pad", onChangeText: (text) => handleInputChange(text, index), onKeyPress: (e) => handleKeyPress(e, index), maxLength: 1, autoFocus: index === 0, caretHidden: true, showSoftInputOnFocus: true, focusable: false, selectTextOnFocus: false })))))));
 };
 const ASPin = (props) => {
     const { submitButtonIcon, submitButtonStyle, deleteButtonIcon, deleteButtonStyle, flatListProps, pinLength = 6, onPress, children, onChange, keyboardTypography, inputTypography, gap, keyboardButtonRadius, enableNativeKeyboard, pinBoxRadius, pinBoxSize, keyboardButtonBackgroundColor, keyboardButtonBorderColor, pinBoxBackgroundColor, pinBoxBorderColor, isOverlayEnabled, keyboardStyle, name, style, buttonIconColor, contentContainerStyle, columnWrapperStyle } = props;

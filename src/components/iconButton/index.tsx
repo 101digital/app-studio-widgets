@@ -16,19 +16,30 @@ export type ASIconButtonProps = TouchableOpacityProps & {
   icon: any;
   crossOrigin?: "anonymous" | "use-credentials";
   id?: string;
-  style?: StyleProp<TouchableOpacity>
+  style?: StyleProp<ViewStyle>;
+  testId?: string;
 };
 
 const ASIconButton: React.FC<ASIconButtonProps> = (
   props: ASIconButtonProps
 ) => {
-  const { onPress, width = 20, height = 20, icon, crossOrigin, id, style } = props;
+  const {
+    onPress,
+    width = 20,
+    height = 20,
+    icon,
+    crossOrigin,
+    id,
+    style,
+    testId = "ASIconButton",
+  } = props;
 
   const renderIcon = () => {
     if (typeof icon === "string") {
       if (icon.startsWith("data:") || icon.startsWith("http")) {
         return (
           <Image
+            testID={`icon-${testId}`}
             source={{ uri: icon }}
             style={{ width, height }}
             crossOrigin={crossOrigin}
@@ -40,7 +51,12 @@ const ASIconButton: React.FC<ASIconButtonProps> = (
   };
 
   return (
-    <TouchableOpacity onPress={onPress} style={[styles.button, style]} id={id}>
+    <TouchableOpacity
+      testID={`view-${testId}`}
+      onPress={onPress}
+      style={[styles.button, style]}
+      id={id}
+    >
       {renderIcon()}
     </TouchableOpacity>
   );
