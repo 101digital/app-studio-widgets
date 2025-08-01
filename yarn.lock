@@ -1297,12 +1297,12 @@
     invariant "^2.2.4"
     nullthrows "^1.1.1"
 
-"@react-navigation/bottom-tabs@^7.3.10":
-  version "7.4.2"
-  resolved "https://registry.yarnpkg.com/@react-navigation/bottom-tabs/-/bottom-tabs-7.4.2.tgz#8d721ce399565185c1e82f2048b50945e9d7860e"
-  integrity sha512-jyBux5l3qqEucY5M/ZWxVvfA8TQu7DVl2gK+xB6iKqRUfLf7dSumyVxc7HemDwGFoz3Ug8dVZFvSMEs+mfrieQ==
+"@react-navigation/bottom-tabs@7.4.4":
+  version "7.4.4"
+  resolved "https://registry.yarnpkg.com/@react-navigation/bottom-tabs/-/bottom-tabs-7.4.4.tgz#8896a8877b679da9aeb2ed7dda3b4964a88e4863"
+  integrity sha512-/YEBu/cZUgYAaNoSfUnqoRjpbt8NOsb5YvDiKVyTcOOAF1GTbUw6kRi+AGW1Sm16CqzabO/TF2RvN1RmPS9VHg==
   dependencies:
-    "@react-navigation/elements" "^2.5.2"
+    "@react-navigation/elements" "^2.6.1"
     color "^4.2.3"
 
 "@react-navigation/core@^7.12.1":
@@ -1318,10 +1318,10 @@
     use-latest-callback "^0.2.4"
     use-sync-external-store "^1.5.0"
 
-"@react-navigation/elements@^2.5.2":
-  version "2.5.2"
-  resolved "https://registry.yarnpkg.com/@react-navigation/elements/-/elements-2.5.2.tgz#e74aed3671f280773b0066c308f679a0e9e679ab"
-  integrity sha512-aGC3ukF5+lXuiF5bK7bJyRuWCE+Tk4MZ3GoQpAb7u7+m0KmsquliDhj4UCWEUU5kUoCeoRAUvv+1lKcYKf+WTQ==
+"@react-navigation/elements@^2.6.1":
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/@react-navigation/elements/-/elements-2.6.1.tgz#c101f0b72b48024c8fe3ee09eccb871fa398f761"
+  integrity sha512-kVbIo+5FaqJv6MiYUR6nQHiw+10dmmH/P10C29wrH9S6fr7k69fImHGeiOI/h7SMDJ2vjWhftyEjqYO+c2LG/w==
   dependencies:
     color "^4.2.3"
     use-latest-callback "^0.2.4"
@@ -5346,10 +5346,10 @@ react-native-element-dropdown@2.12.4:
   dependencies:
     lodash "^4.17.21"
 
-react-native-gesture-handler@^2.25.0:
-  version "2.26.0"
-  resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-2.26.0.tgz#e8774c8cd90f7e72c0ecade0ac1b4f7160fcbd5f"
-  integrity sha512-pfE1j9Vzu0qpWj/Aq1IK+cYnougN69mCKvWuq1rdNjH2zs1WIszF0Mum9/oGQTemgjyc/JgiqOOTgwcleAMAGg==
+react-native-gesture-handler@2.27.1:
+  version "2.27.1"
+  resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-2.27.1.tgz#8865b2345f4c65536517f20cedc420481fc72d49"
+  integrity sha512-57TUWerhdz589OcDD21e/YlL923Ma4OIpyWsP0hy7gItBCPm5d7qIUW7Yo/cS2wo1qDdOhJaNlvlBD1lDou1fA==
   dependencies:
     "@egjs/hammerjs" "^2.0.17"
     hoist-non-react-statics "^3.3.0"

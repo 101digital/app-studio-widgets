@@ -24,7 +24,7 @@
     "@gorhom/bottom-sheet": "^5.1.2",
     "@react-native-community/checkbox": "^0.5.17",
     "@react-native-community/slider": "^4.5.6",
-    "@react-navigation/bottom-tabs": "^7.3.10",
+    "@react-navigation/bottom-tabs": "7.4.4",
     "@react-navigation/native": "^7.1.6",
     "@types/xdate": "^0.8.35",
     "add": "^2.0.6",
@@ -39,7 +39,7 @@
     "react-native-bouncy-checkbox": "^4.1.2",
     "react-native-calendars": "^1.1311.1",
     "react-native-element-dropdown": "2.12.4",
-    "react-native-gesture-handler": "^2.25.0",
+    "react-native-gesture-handler": "2.27.1",
     "react-native-masked-text": "^1.13.0",
     "react-native-mime-types": "^2.5.0",
     "react-native-modal": "^14.0.0-rc.1",
@@ -77,11 +77,11 @@
   "peerDependencies": {
     "@react-native-community/slider": "^4.5.0",
     "react-native-calendars": "^1.1303.0",
-    "react-native-gesture-handler": "~2.20.2",
+    "react-native-gesture-handler": "2.27.1",
     "react-native-reanimated": "~3.6.2",
     "react-native-swiper": "^1.6.0"
   },
   "resolutions": {
- "@types/react": "^19.1.2"
+    "@types/react": "^19.1.2"
   }
 }
