@@ -1,6 +1,6 @@
 {
   "name": "app-studio-widgets",
-  "version": "0.0.32",
+  "version": "0.0.33",
   "description": "Widgets for App Studio",
   "repository": "https://github.com/101digital/app-studio-widgets",
   "license": "MIT",
@@ -46,7 +46,7 @@
     "react-native-pager-view": "^6.7.1",
     "react-native-parsed-text": "^0.0.22",
     "react-native-reanimated": "^3.17.5",
-    "react-native-safe-area-context": "^5.4.0",
+    "react-native-safe-area-context": "5.4.0",
     "react-native-vector-icons": "^10.2.0",
     "release-it": "^19.0.1",
     "rn-swipe-button": "^3.0.1",
