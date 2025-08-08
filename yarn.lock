@@ -5432,10 +5432,10 @@ react-native-safe-area-context@4.5.0:
   resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-4.5.0.tgz#9208313236e8f49e1920ac1e2a2c975f03aed284"
   integrity sha512-0WORnk9SkREGUg2V7jHZbuN5x4vcxj/1B0QOcXJjdYWrzZHgLcUzYWWIUecUPJh747Mwjt/42RZDOaFn3L8kPQ==
 
-react-native-safe-area-context@^5.4.0:
-  version "5.5.0"
-  resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-5.5.0.tgz#8eb4ff66f405e83e77a1a2215a1ee731b77545e6"
-  integrity sha512-BQcSvVEJj3T4zBQH9YrnlfcLGHiVOsmeiE10PSBsmI/xyzULSZdJISFOH0HLcLU7/nePC+HsaaVzIsEa1CVBYw==
+react-native-safe-area-context@5.4.0:
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-5.4.0.tgz#04b51940408c114f75628a12a93569d30c525454"
+  integrity sha512-JaEThVyJcLhA+vU0NU8bZ0a1ih6GiF4faZ+ArZLqpYbL6j7R3caRqj+mE3lEtKCuHgwjLg3bCxLL1GPUJZVqUA==
 
 react-native-svg@^15.11.2:
   version "15.12.0"
