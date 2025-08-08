@@ -1,6 +1,6 @@
 {
   "name": "app-studio-widgets",
-  "version": "0.0.33",
+  "version": "0.0.34",
   "description": "Widgets for App Studio",
   "repository": "https://github.com/101digital/app-studio-widgets",
   "license": "MIT",
@@ -79,7 +79,8 @@
     "react-native-calendars": "^1.1303.0",
     "react-native-gesture-handler": "2.27.1",
     "react-native-reanimated": "~3.6.2",
-    "react-native-swiper": "^1.6.0"
+    "react-native-swiper": "^1.6.0",
+    "react-native-safe-area-context": "5.4.0"
   },
   "resolutions": {
     "@types/react": "^19.1.2"
