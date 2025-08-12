@@ -20,7 +20,7 @@ const ASSwitch: React.FC<ASSwitchProps> = (props: ASSwitchProps) => {
     onChange,
     enableTrackColor,
     disabledTrackColor,
-    testId = 'ASSwitch',
+    testId = "ASSwitch",
     ...restProps
   } = props;
   const [isEnabled, setIsEnabled] = useState(false);
@@ -36,11 +36,12 @@ const ASSwitch: React.FC<ASSwitchProps> = (props: ASSwitchProps) => {
     <Switch
       testID={testId}
       trackColor={{ true: enableTrackColor, false: disabledTrackColor }}
-      ios_backgroundColor={disabledTrackColor} 
+      ios_backgroundColor={disabledTrackColor}
       onValueChange={toggleSwitch}
       value={isEnabled}
       thumbColor={isEnabled ? enableThumbColor : disabledThumbColor}
       activeThumbColor={enableThumbColor}
+      style={{alignSelf: 'flex-start'}}
       {...restProps}
     />
   );
