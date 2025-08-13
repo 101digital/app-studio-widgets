@@ -376,7 +376,6 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     keyboardButton: {
-        paddingVertical: 23,
         justifyContent: "center",
         alignItems: "center",
         borderWidth: 1,
