@@ -54,7 +54,7 @@ const ASChoiceChips: React.FC<ASChoiceChipsProps> = (
     choiceChipTextStyles,
     choiceChipStyles,
     selectedChipBackgroundColor,
-    selectedChipBorderColor,
+    selectedChipBorderColor = 'transparent',
     selectedChipTextColor,
     isOverlayEnabled,
     onChange,
