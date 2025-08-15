@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import {
   ImageStyle,
+  Platform,
   StyleProp,
   StyleSheet,
   Text,
@@ -17,6 +18,7 @@ import { ThemeContext } from "../../context/theme-context";
 import ASOverlay from "../overlay";
 import ASButton from "../button";
 import { DownIcon } from "../../assets/icon";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export type DropDownOptionsProps = {
   [key: string]: any;
@@ -70,18 +72,22 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
     id,
     onChange,
     isMultiChoices = false,
-    iconColor,
+    iconColor = colors.primary,
     testId = "ASDropdown",
+    disable,
     ...restProps
   } = props;
   const [field, meta, helpers] = useField<string | string[]>(name);
   const { setValue } = helpers || {};
+  
   const [isFocus, setIsFocus] = useState(false);
-
+  const insets = useSafeAreaInsets();
   const flattenedLabelStyle = StyleSheet.flatten(labelTextStyle) || {};
+  const dropdownBorderColor = disable ? '#C4C4C4' : meta.error ? colors.error : isFocus ? colors.primary: '#231F20'
   const labelFontSize =
     flattenedLabelStyle?.fontSize || styles.labelStyle.fontSize;
-  const labelTopPosition = -labelFontSize * 0.8;
+
+  const labelTopPosition = 2;
   const flatttenedContainerStyle = StyleSheet.flatten(containerStyle) || {};
 
   const renderSingleChoiceItem = (item: DropDownOptionsProps) => {
@@ -167,7 +173,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
     onSelect?.(item); // Trigger the onSelect callback if provided
     onChange?.(item); // Trigger onChange event if provided
   };
-
+  console.log('insets.top', insets.top)
   return (
     <View
       testID={`view-${testId}`}
@@ -187,7 +193,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
             typeof flatttenedContainerStyle?.paddingTop === "number" &&
             flatttenedContainerStyle.paddingTop > 0
               ? flatttenedContainerStyle.paddingTop - 1
-              : 0,
+              : field?.value?.length > 0 ? 10 : 0,
           paddingBottom:
             typeof flatttenedContainerStyle?.paddingBottom === "number" &&
             flatttenedContainerStyle.paddingBottom > 0
@@ -197,28 +203,17 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
       ]}
       id={id}
     >
-      {!!label && (
-        <ASText
-          style={[
-            styles.labelStyle,
-            {
-              color: colors.onTertiary,
-              top: labelTopPosition,
-              backgroundColor: flatttenedContainerStyle?.backgroundColor,
-            },
-            labelTextStyle,
-          ]}
-          testID={`label-${testId}`}
-        >
-          {label}
-        </ASText>
-      )}
 
       {!isMultiChoices ? (
         <Dropdown
           testID={`dropdown-${testId}`}
-          style={styles.dropdown}
+          style={[styles.dropdown, {borderColor: dropdownBorderColor}]}
+          disable={disable}
+          containerStyle={Platform.OS === 'android' ? { marginTop: -insets.top, padding: 15 } : undefined}
           placeholderStyle={[
+            {
+              color: colors.onTertiary
+            },
             styles.placeholderStyle,
             placeholderTextStyles,
             {
@@ -227,8 +222,8 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
               }),
             },
           ]}
-          inputSearchStyle={styles.inputSearchStyle}
-          iconStyle={[styles.iconStyle, iconStyles]}
+          // inputSearchStyle={styles.inputSearchStyle}
+          iconStyle={[styles.iconStyle, iconStyles, {tintColor: iconColor}]}
           search={search}
           maxHeight={300}
           value={field?.value}
@@ -238,12 +233,12 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
           placeholder={placeholder}
           onFocus={() => setIsFocus(true)}
           onBlur={() => setIsFocus(false)}
-          // renderRightIcon={()=><DownIcon color={iconColor}/>}
+          // renderRightIcon={()=><DownIcon color={'iconColor'}/>}
           {...restProps}
           selectedTextStyle={[
             styles.selectedTextStyle,
             {
-              color: colors.surface,
+              color: '#231F20'
             },
             selectedTextStyle,
           ]}
@@ -285,8 +280,27 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
           valueField={valueField}
         />
       )}
+{
+  field?.value?.length > 0 && <View style={[styles.labelView,
+            {
+              top: labelTopPosition,
+              backgroundColor: colors.background,
+            },]}>
+        <ASText
+          style={[
+            styles.labelStyle,
+            {color:meta.error ? colors.error: isFocus ? colors.primary : colors.onSurface }, 
+            labelTextStyle,
+          ]}
+          testID={`label-${testId}`}
+        >
+          {'Label'}
+        </ASText>
 
+      </View>
+}
       {isOverlayEnabled && <ASOverlay testId={`dropdownOverlay-${testId}`}/>}
+      
     </View>
   );
 };
@@ -295,17 +309,20 @@ export default ASDropDown;
 
 const styles = StyleSheet.create({
   container: {
-    borderRadius: 5,
-    justifyContent: "center",
-    borderWidth: 1,
-    paddingTop: 12,
-    paddingBottom: 12,
-    position: "relative",
-    width: "100%",
+    padding: 0,
+  },
+  labelView: {
+    marginHorizontal: 10,
+    position: "absolute",
+    paddingHorizontal: 2,
   },
   dropdown: {
-    borderRadius: 5,
-    minWidth: isAndroid ? 60 : "auto",
+    justifyContent: "center",
+    borderWidth: 1,
+    position: "relative",
+    width: "100%",
+    height: 44,
+    minWidth: isAndroid ? 60 : "auto"
   },
   item: {
     padding: 15,
@@ -318,12 +335,12 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   placeholderStyle: {
-    fontSize: 10,
-    paddingHorizontal: 2,
+    fontSize: 12,
+    paddingHorizontal: 10,
   },
   selectedTextStyle: {
     flex: 1,
-    fontSize: isAndroid ? 10 : 12,
+    fontSize: 12,
     paddingRight: isAndroid ? 0 : 30,
     alignSelf: "center",
     paddingHorizontal: 13,
@@ -332,15 +349,14 @@ const styles = StyleSheet.create({
   iconStyle: {
     width: 20,
     height: 20,
+    marginRight: 8
   },
   inputSearchStyle: {
     height: 40,
     fontSize: 12,
   },
   labelStyle: {
-    fontSize: 10,
-    marginHorizontal: 16,
-    position: "absolute",
+    fontSize: 12,
   },
   multipleSelectionButton: {
     margin: 10,
