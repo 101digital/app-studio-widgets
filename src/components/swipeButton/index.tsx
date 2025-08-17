@@ -5,7 +5,7 @@ import { ThemeContext } from "../../context/theme-context";
 import ASLoadingIndicator from "../loadingIndicator";
 import $ from "jquery";
 import { toNumber } from "../../utils/commonUtils";
-import { SwipeThumb } from "assets/icon/swipe-thumb.icon";
+import { SwipeThumb } from "../../assets/icon/swipe-thumb.icon";
 
 export type ASSwipeButtonProps = {
   containerStyles?: ViewStyle | ViewStyle[];
