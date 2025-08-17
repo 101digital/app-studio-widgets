@@ -72,23 +72,22 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
     id,
     onChange,
     isMultiChoices = false,
-    iconColor = colors.primary,
+    iconColor,
     testId = "ASDropdown",
-    disable,
+    disable = false,
     ...restProps
   } = props;
   const [field, meta, helpers] = useField<string | string[]>(name);
   const { setValue } = helpers || {};
-  
   const [isFocus, setIsFocus] = useState(false);
   const insets = useSafeAreaInsets();
+
   const flattenedLabelStyle = StyleSheet.flatten(labelTextStyle) || {};
-  const dropdownBorderColor = disable ? '#C4C4C4' : meta.error ? colors.error : isFocus ? colors.primary: '#231F20'
   const labelFontSize =
     flattenedLabelStyle?.fontSize || styles.labelStyle.fontSize;
-
-  const labelTopPosition = 2;
+  const labelTopPosition = -labelFontSize * 0.8;
   const flatttenedContainerStyle = StyleSheet.flatten(containerStyle) || {};
+  const borderColor = (meta.error && meta.error.length > 0) ? colors.error : isFocus ? colors.secondary : '#C4C4C4';
 
   const renderSingleChoiceItem = (item: DropDownOptionsProps) => {
     const isSelected = field?.value === item?.value;
@@ -153,7 +152,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
       <ASButton
         style={[
           styles.multipleSelectionButton,
-          { borderColor: colors.primary },
+          { borderColor: borderColor },
         ]}
         onPress={() => unSelect?.(item)}
       >
@@ -173,7 +172,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
     onSelect?.(item); // Trigger the onSelect callback if provided
     onChange?.(item); // Trigger onChange event if provided
   };
-  console.log('insets.top', insets.top)
+
   return (
     <View
       testID={`view-${testId}`}
@@ -181,7 +180,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
         styles.container,
         {
           backgroundColor: colors.background,
-          borderColor: colors.secondary,
+          borderColor
         },
         flatttenedContainerStyle,
         { alignItems: "stretch", flexDirection: "column" },
@@ -193,7 +192,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
             typeof flatttenedContainerStyle?.paddingTop === "number" &&
             flatttenedContainerStyle.paddingTop > 0
               ? flatttenedContainerStyle.paddingTop - 1
-              : field?.value?.length > 0 ? 10 : 0,
+              : 0,
           paddingBottom:
             typeof flatttenedContainerStyle?.paddingBottom === "number" &&
             flatttenedContainerStyle.paddingBottom > 0
@@ -203,17 +202,12 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
       ]}
       id={id}
     >
-
       {!isMultiChoices ? (
         <Dropdown
           testID={`dropdown-${testId}`}
-          style={[styles.dropdown, {borderColor: dropdownBorderColor}]}
-          disable={disable}
+          style={styles.dropdown}
           containerStyle={Platform.OS === 'android' ? { marginTop: -insets.top, padding: 15 } : undefined}
           placeholderStyle={[
-            {
-              color: colors.onTertiary
-            },
             styles.placeholderStyle,
             placeholderTextStyles,
             {
@@ -222,8 +216,9 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
               }),
             },
           ]}
-          // inputSearchStyle={styles.inputSearchStyle}
-          iconStyle={[styles.iconStyle, iconStyles, {tintColor: iconColor}]}
+          inputSearchStyle={styles.inputSearchStyle}
+          disable={disable}
+          iconStyle={[styles.iconStyle, iconStyles]}
           search={search}
           maxHeight={300}
           value={field?.value}
@@ -233,12 +228,12 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
           placeholder={placeholder}
           onFocus={() => setIsFocus(true)}
           onBlur={() => setIsFocus(false)}
-          // renderRightIcon={()=><DownIcon color={'iconColor'}/>}
+          // renderRightIcon={()=><DownIcon color={iconColor}/>}
           {...restProps}
           selectedTextStyle={[
             styles.selectedTextStyle,
             {
-              color: '#231F20'
+              color: disable ? '#999999' : colors.surface,
             },
             selectedTextStyle,
           ]}
@@ -247,6 +242,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
           labelField={labelField}
           valueField={valueField}
           mode="auto"
+          
         />
       ) : (
         <MultiSelect
@@ -257,6 +253,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
           iconStyle={[styles.iconStyle, iconStyles]}
           search={search}
           maxHeight={300}
+          containerStyle={Platform.OS === 'android' ? { marginTop: -insets.top, padding: 15 } : undefined}
           value={field?.value || []}
           searchPlaceholder={searchPlaceholder}
           renderLeftIcon={renderLeftIcon}
@@ -270,7 +267,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
           selectedTextStyle={[
             styles.selectedTextStyle,
             {
-              color: colors.surface,
+              color: disable ? '#999999' : colors.surface,
             },
             selectedTextStyle,
           ]}
@@ -278,29 +275,32 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
           onChange={_onChangeMultipleDropDownField}
           labelField={labelField}
           valueField={valueField}
+          disable={disable}
         />
       )}
-{
-  field?.value?.length > 0 && <View style={[styles.labelView,
-            {
-              top: labelTopPosition,
-              backgroundColor: colors.background,
-            },]}>
+
+      {!!label && !!field.value && (
         <ASText
           style={[
             styles.labelStyle,
-            {color:meta.error ? colors.error: isFocus ? colors.primary : colors.onSurface }, 
+            {
+              top: labelTopPosition,
+              left: 12,
+              backgroundColor: flatttenedContainerStyle?.backgroundColor,
+              paddingHorizontal: 2
+            },
             labelTextStyle,
+            {
+              color: !!meta.error ? colors.error : isFocus ? colors.secondary : colors.onTertiary,
+            }
           ]}
           testID={`label-${testId}`}
         >
-          {'Label'}
+          {label}
         </ASText>
+      )}
 
-      </View>
-}
       {isOverlayEnabled && <ASOverlay testId={`dropdownOverlay-${testId}`}/>}
-      
     </View>
   );
 };
@@ -309,20 +309,15 @@ export default ASDropDown;
 
 const styles = StyleSheet.create({
   container: {
-    padding: 0,
-  },
-  labelView: {
-    marginHorizontal: 10,
-    position: "absolute",
-    paddingHorizontal: 2,
-  },
-  dropdown: {
     justifyContent: "center",
     borderWidth: 1,
+    paddingTop: 12,
+    paddingBottom: 12,
     position: "relative",
     width: "100%",
-    height: 44,
-    minWidth: isAndroid ? 60 : "auto"
+  },
+  dropdown: {
+    minWidth: isAndroid ? 60 : "auto",
   },
   item: {
     padding: 15,
@@ -335,28 +330,27 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   placeholderStyle: {
-    fontSize: 12,
-    paddingHorizontal: 10,
+    fontSize: 10,
+    paddingHorizontal: 2,
   },
   selectedTextStyle: {
     flex: 1,
-    fontSize: 12,
+    fontSize: isAndroid ? 10 : 12,
     paddingRight: isAndroid ? 0 : 30,
     alignSelf: "center",
-    paddingHorizontal: 13,
     paddingVertical: isAndroid ? 4 : 10,
   },
   iconStyle: {
     width: 20,
     height: 20,
-    marginRight: 8
   },
   inputSearchStyle: {
     height: 40,
     fontSize: 12,
   },
   labelStyle: {
-    fontSize: 12,
+    fontSize: 10,
+    position: "absolute",
   },
   multipleSelectionButton: {
     margin: 10,

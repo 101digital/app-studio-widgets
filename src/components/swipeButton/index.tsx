@@ -3,9 +3,9 @@ import { StyleSheet, TextStyle, View, ViewStyle, ImageSourcePropType } from "rea
 import SwipeButton from "rn-swipe-button";
 import { ThemeContext } from "../../context/theme-context";
 import ASLoadingIndicator from "../loadingIndicator";
-import { ArrowForwardIcon } from "../../assets/icon/arrow-forward.icon";
 import $ from "jquery";
 import { toNumber } from "../../utils/commonUtils";
+import { SwipeThumb } from "assets/icon/swipe-thumb.icon";
 
 export type ASSwipeButtonProps = {
   containerStyles?: ViewStyle | ViewStyle[];
@@ -59,7 +59,7 @@ const ASSwipeButton: React.FC<ASSwipeButtonProps> = (props) => {
     disabledThumbIconBorderColor,
     enableReverseSwipe,
     forceReset,
-    height,
+    height = 60,
     onSwipeFail,
     onSwipeStart,
     onPress,
@@ -105,7 +105,7 @@ const ASSwipeButton: React.FC<ASSwipeButtonProps> = (props) => {
         ) : thumbIconComponent ? (
           thumbIconComponent
         ) : (
-          <ArrowForwardIcon />
+          <SwipeThumb />
         )}
       </View>
     );
@@ -150,8 +150,8 @@ const ASSwipeButton: React.FC<ASSwipeButtonProps> = (props) => {
   ) => (styles ? StyleSheet.flatten(styles) : {});
 
   return (
-    <View accessibilityLabel={accessibilityLabel} id={id} testID={`view-${testId}`}>
       <SwipeButton
+        id={id} testID={`view-${testId}`}
         {...( { testID: `swipeButton-${testId}` } as any )}        
         containerStyles={flattenStyles(containerStyles)}
         disabled={disabled}
@@ -187,7 +187,6 @@ const ASSwipeButton: React.FC<ASSwipeButtonProps> = (props) => {
         titleStyles={flattenStyles(labelStyles)}
         width={toNumber(width)}
       />
-    </View>
   );
 };
 
