@@ -9,11 +9,11 @@ const SwipeThumb = (props: { size?: number; color?: ColorValue }) => {
     return (
         <Svg {...props} width="60" height="60" viewBox="0 0 67 60" fill="none">
             <G filter="url(#filter0_d_165_4517)">
-            <Rect x="8" y="4" width="60" height="60" rx="26" fill="#FBBF2D" shapeRendering="crispEdges" />
+            <Rect x="8" y="4" width="60" height="60" rx="26" fill="#FBBF2D"/>
             <Path d="M42.1668 31.1667H35.1668V38.1667H32.8335V31.1667H25.8335V28.8334H32.8335V21.8334H35.1668V28.8334H42.1668V31.1667Z" fill="#231F20" />
             </G>
             <Defs>
-            <Filter x="0" y="0" width="60" height="60" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+            <Filter x="0" y="0" width="60" height="60" filterUnits="userSpaceOnUse">
                 <FeFlood floodOpacity="0" result="BackgroundImageFix" />
                 <FeColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
                 <FeOffset dy="4" />
