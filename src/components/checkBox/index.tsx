@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import {
@@ -8,7 +8,7 @@ import {
   useField,
   useFormikContext,
 } from "formik";
-import { colors } from "../../utils/colors";
+import { ThemeContext } from "../../..";
 
 export type ASCheckBoxProps = {
   label?: string;
@@ -48,6 +48,7 @@ const ASCheckBox: React.FC<ASCheckBoxProps> = (props: ASCheckBoxProps) => {
     ...restProps
   } = props;
   const innerIconStyles = StyleSheet.flatten(flattenInnerIconStyles);
+  const { colors } = useContext(ThemeContext);
   const iconStyles = StyleSheet.flatten(flattenIconStyles);
   const iconBorderRadius: any =
     innerIconStyles?.borderRadius ?? iconStyles?.borderRadius;
