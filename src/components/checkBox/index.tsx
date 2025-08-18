@@ -89,7 +89,7 @@ const ASCheckBox: React.FC<ASCheckBoxProps> = (props: ASCheckBoxProps) => {
         { borderColor: toggleCheckBox ? fillColor : inactiveBorderColor },
       ]}
       textContainerStyle={{ flex: 'auto', ...(!label && { display: "none" }) }}
-      textStyle={[{color: colors.primaryFixed}, labelStyles]}
+      textStyle={[{color: colors.textPrimary}, labelStyles]}
       onPress={(isChecked: boolean) => {
         onValueChange(isChecked);
       }}

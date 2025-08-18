@@ -87,7 +87,8 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
     flattenedLabelStyle?.fontSize || styles.labelStyle.fontSize;
   const labelTopPosition = -labelFontSize * 0.8;
   const flatttenedContainerStyle = StyleSheet.flatten(containerStyle) || {};
-  const borderColor = (meta.error && meta.error.length > 0) ? colors.error : isFocus ? colors.secondary : '#C4C4C4';
+
+  const borderColor = (meta.error && meta.error.length > 0) ? colors.error : isFocus ? colors.secondary : colors.backgroundTertiary;
 
   const renderSingleChoiceItem = (item: DropDownOptionsProps) => {
     const isSelected = field?.value === item?.value;
@@ -233,7 +234,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
           selectedTextStyle={[
             styles.selectedTextStyle,
             {
-              color: disable ? '#999999' : colors.surface,
+              color: disable ? colors.backgroundTertiary : colors.surface,
             },
             selectedTextStyle,
           ]}
