@@ -8,6 +8,7 @@ import {
   useField,
   useFormikContext,
 } from "formik";
+import { colors } from "../../utils/colors";
 
 export type ASCheckBoxProps = {
   label?: string;
@@ -25,6 +26,8 @@ export type ASCheckBoxProps = {
   inactiveBorderColor?: string;
   testId?: string;
 };
+
+
 
 const ASCheckBox: React.FC<ASCheckBoxProps> = (props: ASCheckBoxProps) => {
   const {
@@ -80,12 +83,12 @@ const ASCheckBox: React.FC<ASCheckBoxProps> = (props: ASCheckBoxProps) => {
       text={label}
       iconStyle={[iconStyles, iconBorderRadius]}
       innerIconStyle={[
+        iconStyles,
         innerIconStyles,
-        iconBorderRadius,
         { borderColor: toggleCheckBox ? fillColor : inactiveBorderColor },
       ]}
       textContainerStyle={{ flex: 'auto', ...(!label && { display: "none" }) }}
-      textStyle={labelStyles}
+      textStyle={[{color: colors.primaryFixed}, labelStyles]}
       onPress={(isChecked: boolean) => {
         onValueChange(isChecked);
       }}
