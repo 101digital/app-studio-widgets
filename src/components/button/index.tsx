@@ -36,13 +36,15 @@ const ASButton: React.FC<ASButtonProps> = (props: ASButtonProps) => {
         children,
         simpleTextButton,
         loading,
-        testId = 'ASButton',
+        testId: _testId = 'ASButton',
+        testID,
         ...restProps
     } = props;
     const isTimeout = useIsTimeoutLoading(60000, loading)
     const [dimensions, setDimensions] = useState({width: 0, height: 0});
     const flattenedStyle: any = StyleSheet.flatten(style);     // Ensure that style is a single object
     const flattenedTextStyle = StyleSheet.flatten(textStyle);     // Ensure that textStyle is a single object
+    const testId =  testID || _testId;
 
     const getButtonBackgroundColor = () => {
         if (disabled) {
