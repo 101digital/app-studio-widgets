@@ -92,7 +92,7 @@ const ASTextField = (props: ASTextFieldProps) => {
             onFocus(event);
         }
     };
-    const borderColor = (meta.error && meta.error.length > 0) ? colors.error : (active && editable) ? colors.secondary : '#C4C4C4';
+    const borderColor = (meta.error && meta.error.length > 0) ? colors.error : (active && editable) ? colors.primary : colors.borderInput;
 
     // Triger this in onBlur envent
     const handleFormat = () => {
@@ -208,7 +208,7 @@ const ASTextField = (props: ASTextFieldProps) => {
                                 onBlur={handleOnBlur}
                                 value={`${field?.value}`}
                                 onChangeText={handleOnChange}
-                                style={[styles.textInputStyle, !!flattenedStyle?.width && {width: flattenedStyle.width}, inputTextStyle, !editable && {color: '#999999'}]}
+                                style={[styles.textInputStyle, !!flattenedStyle?.width && {width: flattenedStyle.width}, inputTextStyle, !editable && {color: colors.disable}]}
                                 placeholderTextColor={placeholderTextColor || constants.defaultPlaceholderColor}
                                 {...restProps}
                                 options={options}
@@ -222,7 +222,7 @@ const ASTextField = (props: ASTextFieldProps) => {
                                 onBlur={handleOnBlur}
                                 value={`${field?.value}`}
                                 onChangeText={handleOnChange}
-                                style={[styles.textInputStyle, !!flattenedStyle?.width && {width: flattenedStyle.width}, inputTextStyle, !editable && {color: '#999999'}]}
+                                style={[styles.textInputStyle, !!flattenedStyle?.width && {width: flattenedStyle.width}, inputTextStyle, !editable && {color: colors.disable}]}
                                 placeholderTextColor={placeholderTextColor || constants.defaultPlaceholderColor}
                                 autoComplete={"off"}
                                 autoCorrect={false}
@@ -248,7 +248,7 @@ const ASTextField = (props: ASTextFieldProps) => {
                     styles.labelStyle,
                     {
                         backgroundColor: flattenedStyle?.backgroundColor,
-                        color: meta?.error ? colors.error : (active && editable) ? colors.secondary : colors.onSurface,
+                        color: !editable ? colors.disable : meta?.error ? colors.error : (active && editable) ? colors.primary : colors.borderInput,
                         top: labelTopPosition,
                         left: (typeof flattenedStyle?.paddingLeft === 'number' ? flattenedStyle.paddingLeft : 0) - (typeof labelTextStyle?.paddingLeft === 'number' ? labelTextStyle.paddingLeft : 2)
                     },

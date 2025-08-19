@@ -37,7 +37,7 @@ const ASCheckBox: React.FC<ASCheckBoxProps> = (props: ASCheckBoxProps) => {
     fillColor,
     iconStyles: flattenIconStyles,
     innerIconStyles: flattenInnerIconStyles,
-    inactiveBorderColor = "#999999",
+    inactiveBorderColor,
     disabled,
     onChange,
     accessibilityLabel,
@@ -86,7 +86,7 @@ const ASCheckBox: React.FC<ASCheckBoxProps> = (props: ASCheckBoxProps) => {
       innerIconStyle={[
         iconStyles,
         innerIconStyles,
-        { borderColor: toggleCheckBox ? fillColor : inactiveBorderColor },
+        { borderColor: toggleCheckBox ? fillColor : inactiveBorderColor ? inactiveBorderColor : colors.disable },
       ]}
       textContainerStyle={{ flex: 'auto', ...(!label && { display: "none" }) }}
       textStyle={[{color: colors.textPrimary}, labelStyles]}

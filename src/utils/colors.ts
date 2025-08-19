@@ -24,6 +24,8 @@ export type ThemeColorProps = {
     accent3?: string;
     accent4?: string;
     accent5?: string;
+    borderInput?: string;
+    disable?: string;
 };
 
 export const colors: ThemeColorProps = {
@@ -52,6 +54,8 @@ export const colors: ThemeColorProps = {
     "accent3": "#0579cc",
     "accent4": "#696969",
     "accent5": "transparent",
+    "borderInput": "#C4C4C4",
+    "disable": "#999999"
 };
 export const rgbToHex = (color: string) => {
     const a = color.replace(/[^\d,]/g, '').split(',');
