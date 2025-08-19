@@ -248,7 +248,7 @@ const ASTextField = (props: ASTextFieldProps) => {
                     styles.labelStyle,
                     {
                         backgroundColor: flattenedStyle?.backgroundColor,
-                        color: !editable ? colors.disable : meta?.error ? colors.error : (active && editable) ? colors.primary : colors.inputLabel,
+                        color: meta?.error ? colors.error : (active && editable) ? colors.primary : colors.inputLabel,
                         top: labelTopPosition,
                         left: (typeof flattenedStyle?.paddingLeft === 'number' ? flattenedStyle.paddingLeft : 0) - (typeof labelTextStyle?.paddingLeft === 'number' ? labelTextStyle.paddingLeft : 2)
                     },
