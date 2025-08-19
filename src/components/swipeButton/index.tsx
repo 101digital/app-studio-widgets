@@ -5,7 +5,7 @@ import { ThemeContext } from "../../context/theme-context";
 import ASLoadingIndicator from "../loadingIndicator";
 import $ from "jquery";
 import { toNumber } from "../../utils/commonUtils";
-import { SwipeThumb } from "../../assets/icon/swipe-thumb.icon";
+import { ArrowForwardIcon } from "../../assets/icon/arrow-forward.icon";
 
 export type ASSwipeButtonProps = {
   containerStyles?: ViewStyle | ViewStyle[];
@@ -105,7 +105,7 @@ const ASSwipeButton: React.FC<ASSwipeButtonProps> = (props) => {
         ) : thumbIconComponent ? (
           thumbIconComponent
         ) : (
-          <SwipeThumb />
+          <ArrowForwardIcon />
         )}
       </View>
     );
