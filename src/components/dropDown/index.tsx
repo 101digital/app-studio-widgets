@@ -292,7 +292,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
             },
             labelTextStyle,
             {
-              color: !!meta.error ? colors.error : isFocus ? colors.secondary : colors.borderInput,
+              color: !!meta.error ? colors.error : isFocus ? colors.secondary : colors.inputLabel,
             }
           ]}
           testID={`label-${testId}`}
