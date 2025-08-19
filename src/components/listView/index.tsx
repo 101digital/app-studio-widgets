@@ -1,6 +1,5 @@
 import React from 'react';
-import {FlatListProps, ListRenderItem, StyleSheet} from 'react-native';
-import {FlatList} from 'react-native-gesture-handler'
+import {FlatListProps, ListRenderItem, StyleSheet, FlatList} from 'react-native';
 import LoadingIndicator from "../loadingIndicator";
 
 export type ASListViewProps = FlatListProps<any> & {
