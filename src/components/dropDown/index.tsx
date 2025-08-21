@@ -87,6 +87,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
     flattenedLabelStyle?.fontSize || styles.labelStyle.fontSize;
   const labelTopPosition = -labelFontSize * 0.8;
   const flatttenedContainerStyle = StyleSheet.flatten(containerStyle) || {};
+  const renderIconColor = disable ? colors.disable : iconColor ? iconColor : colors.primary
 
   const borderColor = (meta.error && meta.error.length > 0) ? colors.error : isFocus ? colors.primary : colors.borderInput;
 
@@ -219,7 +220,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
           ]}
           inputSearchStyle={styles.inputSearchStyle}
           disable={disable}
-          iconStyle={[styles.iconStyle, iconStyles]}
+          iconStyle={[styles.iconStyle, {tintColor: renderIconColor} ,iconStyles]}
           search={search}
           maxHeight={300}
           value={field?.value}
@@ -251,7 +252,6 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
           style={styles.dropdown}
           placeholderStyle={[styles.placeholderStyle, placeholderTextStyles]}
           inputSearchStyle={styles.inputSearchStyle}
-          iconStyle={[styles.iconStyle, iconStyles]}
           search={search}
           maxHeight={300}
           containerStyle={Platform.OS === 'android' ? { marginTop: -insets.top, padding: 15 } : undefined}
@@ -259,11 +259,12 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
           searchPlaceholder={searchPlaceholder}
           renderLeftIcon={renderLeftIcon}
           renderItem={renderMultipleChoiceItem}
+          iconStyle={[styles.iconStyle, {tintColor: renderIconColor} ,iconStyles]}
           renderSelectedItem={renderSelectedItem}
           placeholder={placeholder}
           onFocus={() => setIsFocus(true)}
           onBlur={() => setIsFocus(false)}
-          renderRightIcon={() => <DownIcon color={iconColor} />}
+          // renderRightIcon={() => <DownIcon color={iconColor} />}
           {...restProps}
           selectedTextStyle={[
             styles.selectedTextStyle,
@@ -292,7 +293,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
             },
             labelTextStyle,
             {
-              color: !!meta.error ? colors.error : isFocus ? colors.secondary : colors.inputLabel,
+              color: !!meta.error ? colors.error : isFocus ? colors.primary : colors.inputLabel,
             }
           ]}
           testID={`label-${testId}`}
