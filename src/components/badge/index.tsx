@@ -25,7 +25,6 @@ const ASBadge: React.FC<ASBadgeProps> = (props: ASBadgeProps) => {
 
   return (
     <View style={[styles.container, containerStyle]} id={id} testID={`view-${testId}`}>
-      <View>
         {children}
         {!!label && (
           <View
@@ -41,22 +40,21 @@ const ASBadge: React.FC<ASBadgeProps> = (props: ASBadgeProps) => {
             </ASText>
           </View>
         )}
-      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "column",
+    flexDirection: "row",
   },
   badgeStyles: {
     borderRadius: 30,
     justifyContent: "center",
     alignItems: "center",
     borderWidth: 2,
-    minWidth: 30,
-    minHeight: 30,
+    minWidth: 15,
+    minHeight: 15,
     top: 0,
     right: 0,
   },

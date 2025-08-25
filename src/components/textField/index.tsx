@@ -42,6 +42,7 @@ export type ASTextFieldProps = Omit<TextInputMaskProps, "type"> &
     id?: string;
     onChange?: (text: any) => void;
     testId?: string;
+    editable?: boolean;
 };
 
 const ASTextField = (props: ASTextFieldProps) => {
@@ -71,6 +72,7 @@ const ASTextField = (props: ASTextFieldProps) => {
         id,
         onChange,
         testId = "ASTextField",
+        editable = true,
         ...restProps
     } = props;
     const [active, setActive] = useState(false);
@@ -80,7 +82,7 @@ const ASTextField = (props: ASTextFieldProps) => {
     const flattenedLabelStyle = StyleSheet.flatten(labelTextStyle) || {};
     const labelFontSize =
         flattenedLabelStyle.fontSize || styles.labelStyle.fontSize;
-    const labelTopPosition = -labelFontSize * 0.8;
+    const labelTopPosition = -labelFontSize * 0.55;
     const flattenedHeight = flattenedStyle?.height || 56;
     const handleOnFocus = (
         event: NativeSyntheticEvent<TextInputFocusEventData>
@@ -90,6 +92,7 @@ const ASTextField = (props: ASTextFieldProps) => {
             onFocus(event);
         }
     };
+    const borderColor = (meta.error && meta.error.length > 0) ? colors.error : (active && editable) ? colors.primary : colors.borderInput;
 
     // Triger this in onBlur envent
     const handleFormat = () => {
@@ -165,7 +168,7 @@ const ASTextField = (props: ASTextFieldProps) => {
         testID={`view-${testId}`}
         style={[styles.wrapperStyle, {
             height: "auto",
-            borderColor: 'transparent',
+            borderColor: borderColor,
             marginBottom: flattenedStyle?.marginBottom || 0,
             ...(flattenedStyle?.flex ? { flex: flattenedStyle.flex } : {}),
             ...(flattenedStyle?.width ? { width: flattenedStyle.width } : {}),
@@ -176,28 +179,13 @@ const ASTextField = (props: ASTextFieldProps) => {
                 style={[
                     styles.containerStyle,
                     {
-                        borderColor: getBorderColor() || flattenedStyle?.borderColor,
                         height: flattenedHeight,
                         ...flattenedStyle,
+                        borderColor: borderColor || flattenedStyle?.borderColor,
                         marginBottom: 0
                     },
                 ]}
             >
-                <ASText
-                    testID={`label-${testId}`}
-                    style={[
-                        styles.labelStyle,
-                        {
-                            backgroundColor: flattenedStyle?.backgroundColor,
-                            color: colors.onTertiary,
-                            top: labelTopPosition,
-                            left: (typeof flattenedStyle?.paddingLeft === 'number' ? flattenedStyle.paddingLeft : 0) - (typeof labelTextStyle?.paddingLeft === 'number' ? labelTextStyle.paddingLeft : 2)
-                        },
-                        labelTextStyle,
-                    ]}
-                >
-                    {label}
-                </ASText>
                 <View
                     style={[styles.contentContainerStyle]}>
                     {prefixIcon && <View style={styles.prefixIcon}>{typeof prefixIcon === 'string' ?
@@ -220,12 +208,13 @@ const ASTextField = (props: ASTextFieldProps) => {
                                 onBlur={handleOnBlur}
                                 value={`${field?.value}`}
                                 onChangeText={handleOnChange}
-                                style={[styles.textInputStyle, !!flattenedStyle?.width && {width: flattenedStyle.width}, inputTextStyle]}
+                                style={[styles.textInputStyle, !!flattenedStyle?.width && {width: flattenedStyle.width}, inputTextStyle, !editable && {color: colors.disable}]}
                                 placeholderTextColor={placeholderTextColor || constants.defaultPlaceholderColor}
                                 {...restProps}
                                 options={options}
                                 type={textFieldType}
                                 testID={`textInputMask-${testId}`}
+                                editable={editable}
                             />
                         ) : (
                             <TextInput
@@ -233,12 +222,13 @@ const ASTextField = (props: ASTextFieldProps) => {
                                 onBlur={handleOnBlur}
                                 value={`${field?.value}`}
                                 onChangeText={handleOnChange}
-                                style={[styles.textInputStyle, !!flattenedStyle?.width && {width: flattenedStyle.width}, inputTextStyle]}
+                                style={[styles.textInputStyle, !!flattenedStyle?.width && {width: flattenedStyle.width}, inputTextStyle, !editable && {color: colors.disable}]}
                                 placeholderTextColor={placeholderTextColor || constants.defaultPlaceholderColor}
                                 autoComplete={"off"}
                                 autoCorrect={false}
                                 underlineColorAndroid="transparent"
                                 testID={`textInput-${testId}`}
+                                editable={editable}
                                 {...restProps}
                             />
                         )}
@@ -252,7 +242,21 @@ const ASTextField = (props: ASTextFieldProps) => {
                         : suffixIcon}</View>}
                 </View>
             </View>
-            {meta?.error && meta?.touched && (
+            {label && !!field.value && <ASText
+                testID={`label-${testId}`}
+                style={[
+                    styles.labelStyle,
+                    {
+                        backgroundColor: flattenedStyle?.backgroundColor,
+                        color: meta?.error ? colors.error : (active && editable) ? colors.primary : colors.inputLabel,
+                        top: labelTopPosition,
+                        left: (typeof flattenedStyle?.paddingLeft === 'number' ? flattenedStyle.paddingLeft : 0) - (typeof labelTextStyle?.paddingLeft === 'number' ? labelTextStyle.paddingLeft : 2)
+                    },
+                ]}
+            >
+                {label}
+            </ASText>}
+            {meta?.error && (
                 <ASText
                 testID={`errorLabel-${testId}`} style={[styles.errorTextStyle, errorMessageTextStyle]}>
                     {getErrorMessage(meta?.error)}
@@ -272,7 +276,6 @@ const styles = StyleSheet.create({
         position: "relative",
     },
     containerStyle: {
-        borderRadius: 5,
         borderWidth: 1,
         paddingVertical: 2,
         justifyContent: "center",
@@ -287,7 +290,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
     },
     labelStyle: {
-        fontSize: 10,
+        fontSize: 12,
         paddingLeft:2,
         paddingRight:2,
         position: "absolute",
@@ -304,7 +307,7 @@ const styles = StyleSheet.create({
     },
     errorTextStyle: {
         fontSize: 12,
-        marginLeft: 16,
+        marginLeft: 5,
         marginHorizontal: 16,
     },
     prefixIcon: {

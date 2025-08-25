@@ -89,7 +89,7 @@ const ASRadioButton: React.FC<ASRadioButtonProps> = (props: ASRadioButtonProps) 
     const mapRadioButton = (item: ASRadioButtonItemProps, index: number) => {
         return (
             <TouchableOpacity key={`${index}${item?.label}`} onPress={_onPressRadioButton(item)}
-                              style={styles.container}>
+                              style={[styles.container, index < options.length && {marginBottom: 10}]}>
                 {renderRadioButtonType(item)}
             </TouchableOpacity>
         )
@@ -113,7 +113,6 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         alignItems: 'center',
-        // marginBottom: 8,
     },
     radioButton: {
         width: 20,

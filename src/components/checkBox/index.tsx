@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import {
@@ -8,6 +8,7 @@ import {
   useField,
   useFormikContext,
 } from "formik";
+import { ThemeContext } from "../../..";
 
 export type ASCheckBoxProps = {
   label?: string;
@@ -26,6 +27,8 @@ export type ASCheckBoxProps = {
   testId?: string;
 };
 
+
+
 const ASCheckBox: React.FC<ASCheckBoxProps> = (props: ASCheckBoxProps) => {
   const {
     label,
@@ -34,7 +37,7 @@ const ASCheckBox: React.FC<ASCheckBoxProps> = (props: ASCheckBoxProps) => {
     fillColor,
     iconStyles: flattenIconStyles,
     innerIconStyles: flattenInnerIconStyles,
-    inactiveBorderColor = "#999999",
+    inactiveBorderColor,
     disabled,
     onChange,
     accessibilityLabel,
@@ -45,6 +48,7 @@ const ASCheckBox: React.FC<ASCheckBoxProps> = (props: ASCheckBoxProps) => {
     ...restProps
   } = props;
   const innerIconStyles = StyleSheet.flatten(flattenInnerIconStyles);
+  const { colors } = useContext(ThemeContext);
   const iconStyles = StyleSheet.flatten(flattenIconStyles);
   const iconBorderRadius: any =
     innerIconStyles?.borderRadius ?? iconStyles?.borderRadius;
@@ -80,12 +84,12 @@ const ASCheckBox: React.FC<ASCheckBoxProps> = (props: ASCheckBoxProps) => {
       text={label}
       iconStyle={[iconStyles, iconBorderRadius]}
       innerIconStyle={[
+        iconStyles,
         innerIconStyles,
-        iconBorderRadius,
-        { borderColor: toggleCheckBox ? fillColor : inactiveBorderColor },
+        { borderColor: toggleCheckBox ? fillColor : inactiveBorderColor ? inactiveBorderColor : colors.disable },
       ]}
       textContainerStyle={{ flex: 'auto', ...(!label && { display: "none" }) }}
-      textStyle={labelStyles}
+      textStyle={[{color: colors.textPrimary}, labelStyles]}
       onPress={(isChecked: boolean) => {
         onValueChange(isChecked);
       }}

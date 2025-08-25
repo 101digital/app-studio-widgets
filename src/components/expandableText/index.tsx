@@ -9,12 +9,13 @@ export type ASExpandableTextProps = {
     textStyle?: StyleProp<TextStyle>;
     readMoreTextStyles?: StyleProp<TextStyle>;
     testId?: string;
+    defaultExpanded?: boolean;
 }
 
 const ASExpandableText: React.FC<ASExpandableTextProps> = (props: ASExpandableTextProps) => {
     const {colors} = useContext(ThemeContext);
-    const {initialLines = 1, text, textStyle, readMoreTextStyles, testId = 'ASExpandableText'} = props
-    const [isExpanded, setIsExpanded] = React.useState(false);
+    const {initialLines = 1, text, textStyle, readMoreTextStyles, testId = 'ASExpandableText', defaultExpanded = false} = props
+    const [isExpanded, setIsExpanded] = React.useState(defaultExpanded);
 
     const toggleExpansion = () => {
         setIsExpanded(!isExpanded);
