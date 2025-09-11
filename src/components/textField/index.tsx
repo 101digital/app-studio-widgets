@@ -312,7 +312,6 @@ const styles = StyleSheet.create({
     },
     suffixIcon: {
         marginLeft: 8,
-        height: "100%",
         alignItems: 'center',
         justifyContent: 'center',
     },
