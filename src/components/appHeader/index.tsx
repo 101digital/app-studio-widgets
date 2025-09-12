@@ -179,7 +179,7 @@ const ASAppHeader: React.FC<ASAppHeaderProps> = ({
     >
       {backButton?.isEnabled &&
         backButton.isLargerBackButton &&
-        renderBackButton()}{" "}
+        renderBackButton()}
       {/* Full row back button (if enabled) */}
       {/* Main app header */}
       <View style={stylesObj.headerContainer}>
