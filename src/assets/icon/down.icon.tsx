@@ -5,7 +5,7 @@ import {ThemeContext} from "../../context/theme-context";
 
 const DownIcon = (props: { size?: number; color?: ColorValue }) => {
     const {colors} = React.useContext(ThemeContext);
-    const {size = 24, color = colors.primary} = props || {}
+    const {size = 20, color = colors.primary} = props || {}
     return (
         <Svg width={size}
              height={size} viewBox="0 0 20 20"  fill={'none'}>
