@@ -47,7 +47,7 @@ const ASCheckBox: React.FC<ASCheckBoxProps> = (props: ASCheckBoxProps) => {
   const innerIconStyles = StyleSheet.flatten(flattenInnerIconStyles);
   const iconStyles = StyleSheet.flatten(flattenIconStyles);
   const iconBorderRadius: any =
-    innerIconStyles?.borderRadius ?? iconStyles?.borderRadius;
+    innerIconStyles?.borderRadius || iconStyles?.borderRadius || 4
   const formikContext = useFormikContext();
   const [toggleCheckBox, setToggleCheckBox] = useState<boolean>(false);
 
@@ -69,7 +69,7 @@ const ASCheckBox: React.FC<ASCheckBoxProps> = (props: ASCheckBoxProps) => {
       helpers.setValue(newValue);
     }
     onChange?.(newValue);
-  };
+  };  
 
   return (
     <BouncyCheckbox
@@ -78,11 +78,10 @@ const ASCheckBox: React.FC<ASCheckBoxProps> = (props: ASCheckBoxProps) => {
       fillColor={fillColor}
       unFillColor={unFillColor}
       text={label}
-      iconStyle={[iconStyles, iconBorderRadius]}
+      iconStyle={[iconStyles, {borderRadius: iconBorderRadius}]}
       innerIconStyle={[
         innerIconStyles,
-        iconBorderRadius,
-        { borderColor: toggleCheckBox ? fillColor : inactiveBorderColor },
+        { borderColor: toggleCheckBox ? fillColor : inactiveBorderColor, borderRadius: iconBorderRadius },
       ]}
       textContainerStyle={{ flex: 'auto', ...(!label && { display: "none" }) }}
       textStyle={labelStyles}
