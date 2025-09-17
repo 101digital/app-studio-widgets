@@ -238,7 +238,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
           placeholder={placeholder}
           onFocus={() => setIsFocus(true)}
           onBlur={() => setIsFocus(false)}
-          // renderRightIcon={()=><DownIcon color={iconColor}/>}
+          renderRightIcon={()=><DownIcon color={iconColor}/>}
           {...restProps}
           selectedTextStyle={[
             styles.selectedTextStyle,
