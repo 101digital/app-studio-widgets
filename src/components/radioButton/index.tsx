@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
     innerCircle: {
         width: 12,
         height: 12,
-        borderRadius: 6,
+        borderRadius: 16,
     },
     label: {},
     ticklabel: {
