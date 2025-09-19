@@ -233,8 +233,8 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
           maxHeight={300}
           value={field?.value}
           searchPlaceholder={searchPlaceholder}
-          // renderLeftIcon={renderLeftIcon}
-          // renderItem={renderSingleChoiceItem}
+          renderLeftIcon={renderLeftIcon}
+          renderItem={renderSingleChoiceItem}
           placeholder={placeholder}
           onFocus={() => setIsFocus(true)}
           onBlur={() => setIsFocus(false)}
@@ -327,7 +327,7 @@ const styles = StyleSheet.create({
     paddingRight: isAndroid ? 0 : 30,
     alignSelf: "center",
     paddingHorizontal: 13,
-    paddingVertical: isAndroid ? 4 : 10,
+    paddingLeft:0,
   },
   iconStyle: {
     width: 20,
@@ -353,10 +353,10 @@ const styles = StyleSheet.create({
 // Note: ASDropdown Example
 /*
                 <ASDropdown
-                            name={'employmentSector'}
-                            label={'Employment sector'}
-                            options={[{label: 'F&B', value: 'f&b'}, {
-                                label: 'Financial and Insurance/ Takaful Activities',
-                                value: 'Financial and Insurance/ Takaful Activities'
-                            }]}/>
+                  name={'employmentSector'}
+                  label={'Employment sector'}
+                  options={[{label: 'F&B', value: 'f&b'}, {
+                      label: 'Financial and Insurance/ Takaful Activities',
+                      value: 'Financial and Insurance/ Takaful Activities'
+                }]}/>
 * */
