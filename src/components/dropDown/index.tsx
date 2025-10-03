@@ -106,7 +106,7 @@ const ASDropDown: React.FC<ASDropDownProps> = (props: ASDropDownProps) => {
             dropdownTextStyles,
           ]}
         >
-          {item[labelField]}
+          {item[labelField] ?? item[valueField]}
         </Text>
       </View>
     );
